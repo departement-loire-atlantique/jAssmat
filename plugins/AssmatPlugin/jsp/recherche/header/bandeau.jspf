@@ -1,0 +1,72 @@
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@page import="com.jalios.jcms.Channel"%>
+<%@page import="generated.PortalJspCollection"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="generated.ProfilASSMAT"%>
+<%@page import="java.util.Set"%>
+<%@page import="fr.cg44.plugin.corporateidentity.tools.PageTitle"%>
+<%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
+<% jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/headstall/model1.css");
+jcmsContext.addCSSHeader("plugins/AssmatPlugin/css/plugin.css");
+String name = PageTitle.getPageTitle(false);
+Set<ProfilASSMAT> listeProfilAM = (Set<ProfilASSMAT>) request.getSession().getAttribute("listeProfilAMSelection");
+PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublication("$jcmsplugin.assmatplugin.portail.selection.recherche");
+
+// Nombre d'assmat séléctionnée
+int nb = 0;
+if(Util.notEmpty(listeProfilAM)){
+  nb = listeProfilAM.size(); 
+}
+String[] parameters = new String[]{nb+""};
+
+// Si groupe RAM ou super contributeur
+Boolean isRAM = AssmatUtil.getMemberIsRam(loggedMember);
+Boolean isContribPower = AssmatUtil.getMemberIsContribPower(loggedMember);
+%>
+<div class=" headerEspacePerso headerRecherche container-fluid bandeauAM">
+
+	<div class="row-fluid title">
+	
+	  <div class="span12 label">
+	  	  
+	  	  
+	     <h1><%= name %><jalios:edit data="<%= currentCategory  %>"/></h1>
+	     
+	     
+	     <div style="float: right; display: table; font-weight: 700; margin-top: 10px;" class="menu hidden-tablet hidden-phone hide-touch printHide">
+	     
+	       <%-- Les assmats séléctionnées --%>
+	       <div style="display: table-cell; width: 130px; border-right: 2px black dotted; vertical-align: middle; padding-left: 15px; line-height: normal;">
+           <a style="width: 95px; display: table-cell;" class="afficheSelection" href='<%=portalSelection.getDisplayUrl(userLocale)%>'><trsb:glp key="AFFICHER-SELECTION" parameter="<%=parameters%>" /></a>
+           <div style="display: table-cell; vertical-align: middle;">
+              <img alt="" src="plugins/AssmatPlugin/img/picto-star.png" />
+           </div>
+         </div>
+         
+         <%-- Afficher PDF des résultats --%>
+         <div style="display: table-cell; vertical-align: middle; padding-left: 10px; line-height: normal;">
+           <a style="width: 152px; display: table-cell; text-align: center;  padding-right: 5px;" href="<%= request.getContextPath() %>/assmat.pdf?type=detail"  target="_blank" title="<%= glp("plugin.tools.accessibily.newTabLabel") %>">
+	           <jalios:select>
+	             <jalios:if predicate='<%= isRAM || isContribPower %>'>
+	               <trsb:glp key="PRINT-OR-SAVE-RAM" showButtonEdit="false" />
+	             </jalios:if>
+	             <jalios:default>
+	               <trsb:glp key="PRINT-OR-SAVE" showButtonEdit="false" />
+	             </jalios:default>
+	           </jalios:select>
+	         </a>
+	         <div style="display: table-cell; vertical-align: middle;">
+	           <img class="spr-picto-impression" alt="" src="s.gif" /> 
+	         </div> 
+         </div>
+	     
+	     </div>
+
+	  
+	  </div>
+	
+	
+	   
+	</div>
+</div>

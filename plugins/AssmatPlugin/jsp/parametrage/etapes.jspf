@@ -1,0 +1,54 @@
+<!-- MENU FORMULAIRE A ETAPES -->
+		<%@page import="fr.cg44.plugin.assmat.handler.ParametrageAssmatHandler"%>
+
+		<form method="post" action="<%= ServletUtil.getResourcePath(request) %>" id ="formEtapes" class="formEtapes">
+				<nav class="menuFormulaireEtape">
+				       
+				       
+				          <ul class="menuEtapes triangle">
+				      
+				           
+				            <li <%if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {%> class="current"<%} %> >
+				            
+				            
+				              <label <%if(step>0){ %>class="hasLink"<%} %> for="identification"><%=glp("jcmsplugin.assmatplugin.parametrage.visibilite")%></label>
+				               <%if(step>0){ %>
+				              <input class="noSubmitEven" type="submit" name="formStep" id ="identification" value="0"/>
+				              <%} %>
+				            </li>
+				            
+	                  <li <%if (step == ParametrageAssmatHandler.CONTACTS_STEP) {%> class="current" <%} %>>
+				           <label <%if(step>1){ %>class="hasLink"<%} %> for="verification"><%=glp("jcmsplugin.assmatplugin.parametrage.contacts")%></label>
+				           <%if(step>1){ %>
+                      <input class="noSubmitEven" type="submit" name="formStep" id ="verification" value="1"/>
+                    </li>
+                    <%} %>
+				            
+				            <li <%if (step == ParametrageAssmatHandler.OFFRE_STEP) {%>  class="current"<%} %>>
+				           
+				           <label <%if(step>2){ %>class="hasLink"<%} %> for="contacts"><%=glp("jcmsplugin.assmatplugin.parametrage.offre")%></label>
+				            <%if(step>2){ %>
+                      <input class="noSubmitEven" type="submit" name="formStep" id ="contacts" value="2"/>
+                      <%} %>
+                    </li>
+    
+				            <li <%if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {%>  class="current"<%} %> >
+    
+				            <label <%if(step>3){ %>class="hasLink"<%} %> for="login"><%=glp("jcmsplugin.assmatplugin.parametrage.disponibilite")%></label>
+				              <%if(step>3){ %>
+                      <input class="noSubmitEven" type="submit" name="formStep" id ="login" value="3"/>
+                      <%} %>
+                    </li>
+                    
+                    
+				            <li <%if (step == ParametrageAssmatHandler.AUTORISATION_STEP) {%>  class="current"<%} %> >
+    
+				            <label for="login"><%=glp("jcmsplugin.assmatplugin.parametrage.autorisations")%></label>
+				              <%if(step>3){ %>
+                      <input class="noSubmitEven" type="submit" name="formStep" id ="login" value="4"/>
+                      <%} %>
+                    </li>
+				  </ul>
+				</nav>
+			<%=formHandler.getAllFormStepHiddenFields()%>
+		</form>

@@ -1,0 +1,314 @@
+#Page accueil
+jcmsplugin.assmatplugin.accueil.activeprofil: J'active mon profil
+jcmsplugin.assmatplugin.accueil.activecompte: Activez votre compte et définissez votre identifiant (login) et votre mot de passe
+jcmsplugin.assmatplugin.accueil.dispo: Renseignez votre offre d'accueil et vos disponibilités
+jcmsplugin.assmatplugin.accueil.activego: C'est parti !
+jcmsplugin.assmatplugin.accueil.deja.active: J'ai déjà activé mon profil
+jcmsplugin.assmatplugin.accueil.modifier.actualiser: Pour le modifier ou l'actualiser :
+jcmsplugin.assmatplugin.accueil.connectezvous: Connectez-vous
+jcmsplugin.assmatplugin.accueil.mdp.oublie: Mot de passe oublié
+jcmsplugin.assmatplugin.accueil.prevenu.ouverture: Je souhaite être prévenue lors de l'ouverture du nouveau site :
+jcmsplugin.assmatplugin.accueil.prevenu.email: par e-mail
+jcmsplugin.assmatplugin.accueil.prevenu.sms: par SMS
+
+jcmsplugin.assmatplugin.accueil.menu.ici: Vous êtes
+
+#page inscription
+
+jcmsplugin.assmatplugin.inscription.activer.compte.avant: Même si vous aviez déjà activé votre compte dans l'ancien site, merci de suivre les étapes suivantes.
+jcmsplugin.assmatplugin.inscription.champ.civilité: Civilité*
+jcmsplugin.assmatplugin.inscription.champ.civilité.mme: Mne
+jcmsplugin.assmatplugin.inscription.champ.civilité.m: M.
+jcmsplugin.assmatplugin.inscription.activer.compte: Activez votre compte et définissez votre login et mot de passe
+jcmsplugin.assmatplugin.inscription.choix.login: Choisissez votre login
+jcmsplugin.assmatplugin.inscription.info.login: Le login est l’identifiant que vous utiliserez pour vous connecter au site pour mettre à jour vos disponibilités ou faire une démarche en ligne.
+jcmsplugin.assmatplugin.inscription.info.choix: Pour vous connecter au site vous préférez utiliser
+jcmsplugin.assmatplugin.inscription.champ.lbl.nom: Nom*
+jcmsplugin.assmatplugin.inscription.champ.lbl.prenom: Prénon*
+jcmsplugin.assmatplugin.inscription.champ.lbl.naissance: Date de naissance*
+jcmsplugin.assmatplugin.inscription.champ.lbl.agrement: Votre numéro de dossier d'agrément
+jcmsplugin.assmatplugin.inscription.champ.lbl.facultatif: (facultatif)
+jcmsplugin.assmatplugin.inscription.champ.lbl.noteagre: NB : ce numéro est présent sur votre attestation d'agrément
+jcmsplugin.assmatplugin.inscription.champ.lbl.verif.info: Merci de vérifier les informations suivantes
+jcmsplugin.assmatplugin.inscription.champ.lbl.verif.vous: Vous êtes :
+jcmsplugin.assmatplugin.inscription.champ.lbl.verif.naissance: Date de naissance :
+jcmsplugin.assmatplugin.inscription.champ.lbl.verif.dossier: Votre n° de dossier d'agrément :
+jcmsplugin.assmatplugin.inscription.champ.lbl.verif.date: Date de 1er agrément :
+jcmsplugin.assmatplugin.inscription.champ.lbl.verif.lieu: Lieu(x) d'exercice :
+jcmsplugin.assmatplugin.inscription.champ.lbl.verif.agrement: Votre agrément :
+jcmsplugin.assmatplugin.inscription.champ.lbl.verif.domicile: Domicile :
+jcmsplugin.assmatplugin.inscription.champ.lbl.verif.maison: Maison d'assistantes maternelles :
+jcmsplugin.assmatplugin.inscription.champ.lbl.contact.preciser: Veuillez maintenant préciser
+jcmsplugin.assmatplugin.inscription.champ.lbl.contact.email: Votre adresse e-mail
+jcmsplugin.assmatplugin.inscription.champ.lbl.contact.portable: Votre télephone portable
+jcmsplugin.assmatplugin.inscription.champ.lbl.contact.preferer: Vous préfèrez recevoir des messages du Departement
+jcmsplugin.assmatplugin.inscription.champ.lbl.contact.paremail: par e-mail
+jcmsplugin.assmatplugin.inscription.champ.lbl.contact.parsms: par sms
+jcmsplugin.assmatplugin.inscription.champ.lbl.contact.msgexemple: Exemples de messages pouvant être envoyés par le Département :
+jcmsplugin.assmatplugin.inscription.champ.lbl.contact.msg: Confirmation de l'activation de votre profil, confirmation lors du changement de mot de passe, accusé de réception d'une d'éclaration d'accueil, accusé de réception d'un changement signalé à l'unité agrément...
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.mail: votre e-mail :
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.tel: votre n° de téléphone portable :
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.agrement: votre n° de dossier d'agrément :
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp: Choisissez votre mot de passe
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp.isntru: Le mot de passe doit comporter un minimum de 8 caractères avec : au moins une lettre en majuscule, au moins une lettre en minuscule, et au moins un chiffre.
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.motpasse: Mot de passe
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.motpasseconf: Confirmation du mot de passe
+jcmsplugin.assmatplugin.inscription.champ.lbl.verification.erreur: Je signale une erreur
+jcmsplugin.assmatplugin.inscription.verification.place: {0} {0,choice,0#places|1#place|2#places}
+jcmsplugin.assmatplugin.inscription.champ.lbl.verification.confirmer: Je confirme ces informations
+jcmsplugin.assmatplugin.inscription.error.contact.mail.envoye: Votre mail à bien été envoyé
+jcmsplugin.assmatplugin.inscription.error.signal.mail.subjet:[Signalement d'une erreur dans un profil ASSMAT]
+jcmsplugin.assmatplugin.inscription.error.profil.mail.subjet:[Profil ASSMAT introuvable]
+jcmsplugin.assmatplugin.inscription.error.contact.error.envoi: Pour des raisons technique, votre mail n'a pas pu êtres envoyé.
+jcmsplugin.assmatplugin.inscription.error.identification.error.echoue:Désolé, cette nouvelle tentative a echoué
+jcmsplugin.assmatplugin.inscription.error.token.invalide: La durée d'activation de votre compte à expirée, vous devrez recommencer la procédure d'activation.
+jcmsplugin.assmatplugin.inscription.error.code.confirmation: Veuillez renseigner votre code de confirmation
+jcmsplugin.assmatplugin.inscription.error.sms.expire: Votre code de confirmation a expiré. Merci de recommencer la procédure d'inscription.
+jcmsplugin.assmatplugin.inscription.error.sms.nonvalide: Votre code de confirmation n'est pas valide, veuillez ressayer.
+jcmsplugin.assmatplugin.inscription.error.mail.exception: Pour des raisons techniques, votre mail n'a pas pu être envoyé.
+jcmsplugin.assmatplugin.inscription.error.mail.support:Ce message sera envoyé automatiquement au support du site. Vous serez recontactée ensuite pour donner suite à cet échange.
+jcmsplugin.assmatplugin.inscription.error.mail.ua:Ce message sera envoyé automatiquement à votre unité agrément. Vous serez recontactée ensuite pour donner suite à cet échange.
+jcmsplugin.assmatplugin.inscription.error.interdit: Vous n'êtes pas autorisé à créer un compte.
+jcmsplugin.assmatplugin.inscription.error.existedeja: Un compte existe déja pour cet utilisateur
+jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms à déja été enregistré
+
+#Mail d'activation
+jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour
+jcmsplugin.assmatplugin.activation.mail.lbl.finaliser: Nous avons bien pris en compte votre demande d'activation de votre compte sur le site assmat.loire-atlantique.fr. Pour la finaliser, il vous suffit de cliquer sur ce lien :
+jcmsplugin.assmatplugin.activation.mail.lbl.dispo: Vous accéderez alors à un formulaire vous permettant d'indiquer votre offre d'accueil et vos disponibilités.
+jcmsplugin.assmatplugin.activation.mail.lbl.procedure: Attention, ce lien n'est actif que 48 heures. Au-delà, vous devrez recommencer la procédure d'activation.
+jcmsplugin.assmatplugin.activation.mail.lbl.nota: Nota : Si ce lien n'est pas cliquable, il faut copier-coller l'adresse
+jcmsplugin.assmatplugin.activation.mail.lbl.navigateur: dans le champ adresse de votre navigateur.
+jcmsplugin.assmatplugin.activation.mail.lbl.bientot: A bientôt.
+
+
+#Message erreur page inscription
+jcmsplugin.assmatplugin.inscription.error.field: Le champ "{0}" est obligatoire, veuillez le remplir.
+jcmsplugin.assmatplugin.inscription.error.notfound: Merci de revérifier les informations saisies et de renseigner votre numéro de dossier d’agrément qui figure sur votre attestation. Vérifiez aussi sur votre attestation sous quel nom vous êtes connue du Département (nom de jeune fille ou nom marital)
+jcmsplugin.assmatplugin.inscription.error.contact.field: Veuillez remplir au moins un des champs e-mail ou téléphone.
+jcmsplugin.assmatplugin.inscription.error.contact.envoi.field: Veuillez sélectionner un mode d'envoi pour les messages
+jcmsplugin.assmatplugin.inscription.error.contact.envoi.nomail: Pour êtres alerté par mail, veuillez renseigner votre adresse e-mail.
+jcmsplugin.assmatplugin.inscription.error.contact.envoi.notel: Pour êtres alerté par sms, veuillez renseigner votre numéro de téléphone.
+jcmsplugin.assmatplugin.inscription.error.contact.mail.error: Cette adresse n’est pas valide. Merci de vérifier votre saisie.
+jcmsplugin.assmatplugin.inscription.error.contact.tel.error: Ce numéro n’est pas valide. Merci de vérifier votre saisie.
+jcmsplugin.assmatplugin.inscription.error.contact.choix.login: Le choix du type de login est obligatoire.
+jcmsplugin.assmatplugin.inscription.error.contact.choix.mdp: Le mot de passe est obligatoire.
+jcmsplugin.assmatplugin.inscription.error.contact.contact.codepostale: Veuillez saisir votre code postale
+jcmsplugin.assmatplugin.inscription.error.contact.choix.mdp.confirm: La confirmation du mot de passe est obligatoire
+jcmsplugin.assmatplugin.inscription.error.contact.choix.mdp.error: Le mot de passe de confirmation ne correspond pas au mot de passe saisi
+jcmsplugin.assmatplugin.inscription.error.contact.choix.mdp.invalid: Votre mot de passe n’est pas suffisamment sécurisé. Merci de saisir au moins une lettre en majuscule, au moins une lettre en minuscule et au moins un chiffre
+
+jcmsplugin.assmatplugin.parametrage.tel.error.valide: Le champ {0} n'est pas un numéro valide
+jcmsplugin.assmatplugin.parametrage.mail.error.valide: Le champ {0} n'est pas un email valide
+
+# Page parametrage
+jcmsplugin.assmatplugin.parametrage.visibilite: Visibilité
+jcmsplugin.assmatplugin.parametrage.contacts: Contacts à afficher
+jcmsplugin.assmatplugin.parametrage.offre: Offre d'accueil
+jcmsplugin.assmatplugin.parametrage.disponibilite: Disponibilité
+jcmsplugin.assmatplugin.parametrage.autorisations: Autorisations
+
+jcmsplugin.assmatplugin.parametrage.visibilite.active: Merci d'avoir activé votre compte. Encore quelques étapes pour décrire votre offre et vos disponibilités.
+jcmsplugin.assmatplugin.parametrage.contacts.active: Pour être contactée par les parents, souhaitez-vous addicher sur le site ?
+jcmsplugin.assmatplugin.parametrage.offre.active: Merci de renseigner les informations suivantes pour présenter votre offre et vos conditions d'accueil sur le site. Ces informations sont facultatives mais vous permettrons de mieux renseigner les parents.
+
+jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.futur: Souhaitez-vous afficher votre profil dans le futur site ?
+jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.oui: Oui
+jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.non: Non
+jcmsplugin.assmatplugin.parametrage.champ.contact.tel-fix: Votre téléphone fixe:
+jcmsplugin.assmatplugin.parametrage.champ.contact.tel-portable: Votre téléphone portable:
+jcmsplugin.assmatplugin.parametrage.champ.contact.msg.changer-num: Si vous changez le numéro de portable indiqué ci-dessus, vous recevrez les alertes SMS du site à ce nouveau numéro
+jcmsplugin.assmatplugin.parametrage.champ.contact.crenau: Précisez un créneau horaire pour les appels :
+jcmsplugin.assmatplugin.parametrage.msg.contact.mail: Souhaitez-vous aussi pouvoir être contactée par mail ?
+jcmsplugin.assmatplugin.parametrage.champ.contact.msg.adress-protege: NB: Votre adresse e-mail sera protégée et n'apparaîtra pas en claire sur le site. Les parents pourront cependant vous envoyer un mail par le biais d'un formulaire sécurisé.
+jcmsplugin.assmatplugin.parametrage.champ.contact.mail: Votre adresse e-mail :
+jcmsplugin.assmatplugin.parametrage.champ.contact.msg.changer-mail: Si vous changez cette adresse, vous recevrez les messages du site à cette nouvelle adresse.
+jcmsplugin.assmatplugin.parametrage.msg.contact.dispo: Souhaitez-vous afficher ces contacts uniquement en cas de disponibilité ?
+jcmsplugin.assmatplugin.parametrage.msg.contact.dispo.oui: Si vous cochez oui, le(s) numéro(s) de téléphone(s) et contact par mail disparaîtront automatiquement du site si vous avez déclaré n'avoir aucune place disponible.
+jcmsplugin.assmatplugin.parametrage.msg.contact.dispo.non: Si vous cochez non, le(s) numéro(s) de téléphone(s) et contact par mail seront affichés sur le site même si vous n'avez pas de disponibilité.
+jcmsplugin.assmatplugin.parametrage.error.contact.champ-manquant.error: Il vous faut rensigner au moins un champ.
+jcmsplugin.assmatplugin.libelle.ua.ou: ou
+jcmsplugin.assmatplugin.socle.footer.msg.1: Une question, besoin d'aide?
+
+
+jcmsplugin.assmatplugin.espaceperso.modiflogin:Modifier mon login :
+jcmsplugin.assmatplugin.espaceperso.utilisemail:Actuellement vous utilisez votre e-mail :
+jcmsplugin.assmatplugin.espaceperso.utilisetel:Actuellement vous utilisez votre numéro de téléphone :
+jcmsplugin.assmatplugin.espaceperso.utiliseagr:Actuellement vous utilisez votre numéro de dossier d'agrément:
+jcmsplugin.assmatplugin.espaceperso.declaremail:Si vous souhaitez déclarer une autre adresse mail ou autre numéro de téléphone portable que ceux indiqués ci-dessous, cliquez ici.
+jcmsplugin.assmatplugin.espaceperso.declarelog:Cochez une autre option si vous souhaitez changer votre login.
+jcmsplugin.assmatplugin.espaceperso.passconfirm:Confirmation du mot de passe :
+jcmsplugin.assmatplugin.espaceperso.motdepass:Mot de passe :
+jcmsplugin.assmatplugin.espaceperso.motdepasscomporte:Le mot de passe doit comporter un minimum de 8 caractères avec : au moins une lettre majuscule, au moins une lettre en minuscule, et au moins un chiffre.
+jcmsplugin.assmatplugin.espaceperso.modifmdp:Modifier mon mot de passe
+jcmsplugin.assmatplugin.espaceperso.monagr:Mon n° de dossier d'agrément :
+jcmsplugin.assmatplugin.espaceperso.monnum:Mon n° de téléphone :
+jcmsplugin.assmatplugin.espaceperso.monmail:Mon e-mail :
+
+
+# Connexion AM
+plugin.assmatplugin.form.login.am.loginTitle: Connectez-vous
+
+plugin.assmatplugin.error.globale: Une erreur est survenue
+
+plugin.assmatplugin.mention.champ.obligatoire: * champs obligatoires
+
+plugin.assmatplugin.dispo.lbl.1: En activité
+plugin.assmatplugin.dispo.lbl.2: En congé parental
+plugin.assmatplugin.dispo.lbl.3: En congé maternité
+plugin.assmatplugin.dispo.lbl.4: En congé maladie
+plugin.assmatplugin.dispo.lbl.5: A la retraite
+plugin.assmatplugin.dispo.lbl.6: En arrêt temporaire d'activité
+plugin.assmatplugin.dispo.lbl.7: Autre
+jcmsplugin.assmatplugin.socle.footer.msg.2: Contactez-nous par <a href="{0}">e-mail</a> ou par téléphone au <span class="bold">{1}</span>
+
+jcmsplugin.assmatplugin.mailjet.inscription.ouverture.site.id: MailJet - ID du groupe d'inscription pour l'ouverture du site
+
+jcmsplugin.assmatplugin.sms.url: URL racine de l'API de la plateforme SMS
+jcmsplugin.assmatplugin.sms.url.endpoint.authentification: Endpoint pour l'authentification
+jcmsplugin.assmatplugin.sms.url.endpoint.groups: Endpoint pour lister les groupes
+jcmsplugin.assmatplugin.sms.url.endpoint.diffusionrequests: Endpoint pour déclencher une diffusion
+jcmsplugin.assmatplugin.sms.url.endpoint.diffusions: Endpoint pour suivre l'avancement d'une diffusion
+jcmsplugin.assmatplugin.sms.login: Login d'identification à la plateforme SMS
+jcmsplugin.assmatplugin.sms.password: Mot de passe d'identification à la plateforme SMS
+jcmsplugin.assmatplugin.sms.custid: Numéro de compte client à la plateforme SMS
+
+
+jcmsplugin.derniere-actualisation.profil: Date de dernière actualisation : {0}
+
+jcmsplugin.assmatplugin.sms.scheduler.schedule: Planification du déclenchement de la mise à jour des statuts des SMS en base
+
+# Page de contact (formulaire contacte assmat)
+jcmsplugin.assmatplugin.form.requiredText.question: Vous pouvez nous envoyer une question par mail en utilisant le formulaire ci-dessous.
+jcmsplugin.assmatplugin.title.inscriptionAM: Inscription du {0} par {1} - {2}
+
+jcmsplugin.assmatplugin.telephone-support: Numéro de téléphone du support
+extra.Category.jcmsplugin.assmatplugin.search.mapping: Mapping pour la recherche d'assmat
+extra.Category.jcmsplugin.assmatplugin.menu: Nom de la catégorie dans le menu de navigation
+
+doc.rest.rsrc-meth.SolisRestResources: POST
+doc.rest.rsrc-desc./solis/dossier: Ressource permettant de mettre à jour les contenus JCMS provenant de Solis. Des paramètres "id" représentent les numéros d'agréments
+
+doc.rest.rsrc-meth.SolisRestMemberResources: GET
+doc.rest.rsrc-desc.SolisRestMemberResources: Resource permettant de retourner le XML d'un membre lié au paramètre "idDossier"
+
+
+ui.fo.resetpass.request.form.validation-sms-sent: Un SMS vient de vous être envoyé.
+
+ui.fo.resetpass.request.form.missing-email-telephone: Veuillez spécifier l'adresse e-mail ou le numéro de portable correspondant à votre compte sur ce site.
+ui.fo.resetpass.request.form.invalid-telephone: Le numéro de téléphone que vous avez spécifié est invalide.
+ui.fo.resetpass.request.form.request-already-done-phone: Une demande de changement de mot de passe a déjà été effectuée il y a moins de {0} pour ce numéro de téléphone. <br/>Veuillez attendre que le SMS vous parvienne.
+ui.fo.resetpass.phone.no-matching-member.content-text: Nous sommes désolés mais aucun compte correspondant à ce numéro de téléphone n'a pu être trouvé.
+
+ui.fo.resetpass.request.phone.label: Téléphone
+plugin.corporateidentity.form.login.phone.subtitle: (Mobile)
+
+jcmsplugin.assmatplugin.tableau-bord.sms.identifiant: Identifiant du message
+jcmsplugin.assmatplugin.tableau-bord.sms.cdate: Date de création
+jcmsplugin.assmatplugin.tableau-bord.sms.tel-and-name: N° de téléphone et nom de l'assmat
+jcmsplugin.assmatplugin.tableau-bord.sms.content: Contenu du message
+jcmsplugin.assmatplugin.tableau-bord.sms.id-diffusion: Identifiant de diffusion ou code d'erreur
+jcmsplugin.assmatplugin.tableau-bord.sms.statut-diffusion: Statut de diffusion sur la plateforme Orange
+
+jcmsplugin.assmatplugin.tableau-bord.sms.tel-and-name.value: N° {0}
+jcmsplugin.assmatplugin.tableau-bord.sms.content.value1: Nombre de caractères: {0}
+jcmsplugin.assmatplugin.tableau-bord.sms.content.value2: Sujet: {0}
+
+jcmsplugin.assmatplugin.ui.fo.resetpass.request.title: Mot de passe oublié
+jcmsplugin.assmatplugin.ui.fo.resetpass.request.txt:Pour définir un nouveau mot de passe, merci de renseigner l'un ou l'autre des champs ci-dessous.
+jcmsplugin.assmatplugin.mail.login.txt:Si vous avez choisi comme identifiant d'accès au site votre adresse email, veuillez la saisir ci-dessous.
+jcmsplugin.assmatplugin.tel.login.txt:Si vous avez choisi votre numéro de téléphone mobile comme identifiant d'accès au site, veuillez le saisir dans le champ Téléphone mobile.
+jcmsplugin.assmatplugin.ui.fo.resetpass.request.phone.label: Votre téléphone
+jcmsplugin.assmatplugin.ui.fo.resetpass.valide: Valider
+jcmsplugin.assmatplugin.ui.fo.resetpass.reset.title:Définir un nouveau mot de passe
+jcmsplugin.assmatplugin.form.login.subtitle.tel: (mobile)
+
+
+jcmsplugin.assmatplugin.version-site.socle: Site version socle
+
+
+#AnnuairePH
+cg44.pdf.label.assmat.titre.liste: Liste des Assistantes maternelles correspondant à votre recherche :
+cg44.pdf.label.assmat.titre.selection: Liste des Assistantes maternelles correspondant à votre sélection :
+
+#Accueil - Recherche
+jcmsplugin.assmatplugin.accueil.recherche.form.title: Rechercher une assistante maternelle
+jcmsplugin.assmatplugin.accueil.recherche.nb.am: {0,choice,0#Il n''y a pas d''assistante maternelle référencée sur ce site|1#Il y a une assistante maternelle référencée sur ce site|2#{0,number,integer} assistantes maternelles sont actuellement référencées sur ce site} 
+
+jcmsplugin.assmatplugin.accueil.recherche.commune.label: Commune ou code postal *
+jcmsplugin.assmatplugin.accueil.recherche.commune.placeholder: Saisissez une commune
+
+jcmsplugin.assmatplugin.accueil.recherche.rue.label: Rue / lieu-dit
+jcmsplugin.assmatplugin.accueil.recherche.rue.placeholder: Précisez une adresse
+
+jcmsplugin.assmatplugin.accueil.recherche.perimetre.label: Périmètre de recherche
+jcmsplugin.assmatplugin.accueil.recherche.perimetre.title: Choisir le périmètre de la recherche
+
+jcmsplugin.assmatplugin.accueil.recherche.age.label: Âge de l'enfant *
+jcmsplugin.assmatplugin.accueil.recherche.age.title: Choisir l'age de l'enfant
+
+jcmsplugin.assmatplugin.accueil.recherche.aPartirDe.label: À partir de
+jcmsplugin.assmatplugin.accueil.recherche.aPartirDe.title: Choisir la date de début
+
+jcmsplugin.assmatplugin.accueil.recherche.btn.plus: + de critères
+
+jcmsplugin.assmatplugin.accueil.recherche.launch: Rechercher
+jcmsplugin.assmatplugin.accueil.recherche.advancedSearch: Recherche avancée
+
+
+#Recherche AM
+jcmsplugin.assmatplugin.recherche.am.form.title: Rechercher
+
+jcmsplugin.assmatplugin.recherche.am.commune.label: Commune ou code postal*
+jcmsplugin.assmatplugin.recherche.am.commune.placeholder: Saisissez une commune
+
+jcmsplugin.assmatplugin.recherche.am.quartier.label: Par quartier
+jcmsplugin.assmatplugin.recherche.am.quartier.title: Choisir le quartier
+
+jcmsplugin.assmatplugin.recherche.am.microQuartier.label: Par micro-quartier
+jcmsplugin.assmatplugin.recherche.am.microQuartier.title: Choisir le micro-quartier
+
+jcmsplugin.assmatplugin.recherche.am.rue.label: Rue / lieu-dit
+jcmsplugin.assmatplugin.recherche.am.rue.placeholder: Précisez une adresse
+
+jcmsplugin.assmatplugin.recherche.am.perimetre.label: Périmètre de recherche
+jcmsplugin.assmatplugin.recherche.am.perimetre.title: Choisir le périmètre de la recherche
+
+jcmsplugin.assmatplugin.recherche.am.age.label: Age de l'enfant*
+jcmsplugin.assmatplugin.recherche.am.age.title: Choisir l'age de l'enfant
+
+jcmsplugin.assmatplugin.recherche.am.aPartirDe.label: A partir de
+jcmsplugin.assmatplugin.recherche.am.aPartirDe.title: Choisir la date de début
+
+jcmsplugin.assmatplugin.recherche.am.nbPlaces.label: Nombre de places disponibles*
+jcmsplugin.assmatplugin.recherche.am.nbPlaces.title: Choisir le nombre de place(s)
+jcmsplugin.assmatplugin.recherche.am.nbPlaces.select.label: {0,choice,0#0 place|1#1 place|2#{0,number,integer} places}
+
+jcmsplugin.assmatplugin.recherche.am.nom.label: Par nom de l'assistante maternelle
+jcmsplugin.assmatplugin.recherche.am.nom.title: Précisez un nom
+
+jcmsplugin.assmatplugin.recherche.am.result.title.1: Résultat de votre recherche :
+jcmsplugin.assmatplugin.recherche.am.result.title.2: {0,choice,0#0 assistante maternelle|1#1 assistante maternelle|2#{0,number,integer} assistantes maternelles}
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo: {0} avec des disponibilités
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne: {0} avec des disponibilités non renseignées
+jcmsplugin.assmatplugin.recherche.am.result.recap.am.contact: {0} non disponibles mais acceptant d'être contactées
+
+jcmsplugin.assmatplugin.recherche.am.afficher.selection: Afficher ma sélection ({0})
+
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.popup: Disponible actuellement
+jcmsplugin.assmatplugin.recherche.am.result.recap.futur.dispo.popup: Disponible à partir de {0}
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne.popup: Disponibilités non renseignées
+jcmsplugin.assmatplugin.recherche.am.result.recap.am.non.contact.popup: Non disponible et ne souhaite pas être contactée
+jcmsplugin.assmatplugin.recherche.am.result.recap.am.contact.popup: Non disponible mais accepte d'être contactée 
+extra.Member.jcmsplugin.assmatplugin.idsolis.lieu : ID RAM (compte membre RAM uniquement)
+jcmsplugin.assmatplugin.group.ram.id: Id du groupe RAM
+jcmsplugin.assmatplugin.group.ram.nantes.id: Id du groupe des RAM de Nantes
+jcmsplugin.assmatplugin.group.asso.id: Id du groupe Associations 
+
+jcmsplugin.assmatplugin.list.dispo: {0,choice,1#1 place disponible|2#{0,number,integer} places disponibles} pour 1 enfant de {1}
+
+plugin.assmatplugin.swagger.demarches.url: Url du web service swagger pour les démarches
+
+plugin.assmatplugin.declaration.pilote.group.id: ID du groupe pilote pour déclarations d'accueil
+
+plugin.assmatplugin.contacter.courriel.error: Le format du champ "Courriel" est incorrect. Veuillez le vérifier. Exemple: contact@mail.fr

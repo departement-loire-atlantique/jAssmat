@@ -1,0 +1,86 @@
+
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@page import="java.util.TreeSet"%>
+<%@page import="org.apache.commons.lang.StringUtils"%>
+<!-- DEBUT -->
+ <% 
+ 
+ jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/FestivalCard/festivalCardQueryDisplay.css");
+ 
+ String idCategMam = channel.getProperty("$plugin.assmatplugin.categ.relaiam");
+Category categRAM= channel.getCategory(idCategMam); 
+Set<Place> setPlace =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorCommune(city,categRAM));
+
+// 0011728: Affichage relais dans recherche AM sur Nantes 
+if(Util.notEmpty(selectPlace)) {
+  setPlace.removeAll(setPlace);
+  setPlace.addAll(selectPlace);
+}
+session.setAttribute("relais", setPlace);
+List<Place> setPointRelais = new ArrayList<Place>();
+%>
+<div class="title-bar-container dotted-title dotted-portlet Outter PortletWYSIWYG ID_r1_58309 dnd-header ajax-refresh-div Portlet PortletSkinable Inner  containerRelais">
+<trsb:glp key="INFORMATION-RESULTAT-RECHERCHE-AM-COL-RELAIS" />
+
+<%if(Util.notEmpty(setPlace)){%>
+<div class="relaisMAM">
+<jalios:foreach name="itPlace" type="Place" collection="<%=setPlace %>">
+<div class="relais">
+  <div class="left">
+    <img src="plugins/ToolsPlugin/images/googlemaps/markers/drop/drop_44bedf.png" />
+  </div>
+<div class="right">
+  <p class="gras"> <%=itPlace.getTitle() %></p>
+  <jalios:if predicate="<%=Util.notEmpty(itPlace.getStreet())%>">
+ <jalios:wiki> <%=itPlace.getStreet() %></jalios:wiki>
+  </jalios:if>
+  
+    <!-- Ticket 0011217 -->
+     <p> <%=itPlace.getZipCode() %> <%=itPlace.getCity() %></p>
+
+   <jalios:if predicate="<%=Util.notEmpty(itPlace.getPhones()) %>">
+     <p><span class="gras">Tél :</span>
+     <%= StringUtils.join(itPlace.getPhones(), " - ") %>
+     </p>
+  </jalios:if>
+   <jalios:if predicate="<%=Util.notEmpty(itPlace.getMails()) %>">
+     <p>
+     <jalios:foreach name="itMail" type="String" array="<%= itPlace.getMails()%>">
+     <%
+     String mail = itMail;
+     Category cat = channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.ram"));
+ if(Util.notEmpty(cat)){
+ String lien = cat.getDisplayUrl(userLocale) + "?mailRAM=" + encodeForHTML(mail) + "&titleRAM=" + encodeForURL(itPlace.getTitle()); 
+     %>
+     <u><a class="gras" href="<%=lien %>">Courriel</a></u>
+     <%} %>
+     </jalios:foreach>
+     </p>
+  </jalios:if>
+  <jalios:if predicate="<%=Util.notEmpty(itPlace.getWebsites()) %>">
+     <p>
+     <jalios:foreach name="itSite" type="String" array="<%= itPlace.getWebsites()%>">
+     <u><a class="gras" href="<%=itSite%>">Site internet</a></u>
+     </jalios:foreach>
+     </p>
+  </jalios:if>
+</div>
+</div>
+<%
+if(Util.notEmpty(itPlace.getExtraData("extra.Place.plugin.tools.geolocation.latitude")) && Util.notEmpty(itPlace.getExtraData("extra.Place.plugin.tools.geolocation.longitude")) ){
+  setPointRelais.add(itPlace);
+  } 
+%>
+
+</jalios:foreach>
+<%request.setAttribute("listPointRelais", setPointRelais); %>
+</div>
+<%}else { %>
+
+
+  <p class="boutonmarqueur bleu"><a href="relaisram"><strong>Trouver le relais<br />de votre secteur</strong></a></p></div>
+
+
+<% } %>
+
+</div>

@@ -1,0 +1,208 @@
+<%@page import="io.swagger.client.model.DeclarationAccueilDTO"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+  
+%>
+
+<%
+
+if (step == DeclarerAccueilAssmatHandler.PLANNING) {
+  
+  
+  String nomEnfant = declarationForm.getNomEnfant(); 
+  String prenomEnfant= declarationForm.getPrenomEnfant();
+  
+  String[] parameters = new String[] {};
+  parameters = (String[]) Util.insertArray(parameters, 0, prenomEnfant);
+  parameters = (String[]) Util.insertArray(parameters, 1, nomEnfant);
+  String libelleAccueil = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-PL-Z2R-PHR-HTML", parameters);
+  
+
+   
+  String dateDebutAccueil = "";
+  if(Util.notEmpty(declarationForm.getDateDebutAccueil())) {
+    dateDebutAccueil = DATE_TIME_FORMAT.print(declarationForm.getDateDebutAccueil());
+  }
+  
+  
+  String dateFinAccueil = "";
+  if(Util.notEmpty(declarationForm.getDateFinProvisoire())) {
+    dateFinAccueil = DATE_TIME_FORMAT.print(declarationForm.getDateFinProvisoire());
+  }
+  
+  String[] parametersTextAccueil = new String[] {};
+  parametersTextAccueil = (String[]) Util.insertArray(parametersTextAccueil, 0, prenomEnfant);
+  parametersTextAccueil = (String[]) Util.insertArray(parametersTextAccueil, 1, nomEnfant);
+  parametersTextAccueil = (String[]) Util.insertArray(parametersTextAccueil, 2, dateDebutAccueil);
+  parametersTextAccueil = (String[]) Util.insertArray(parametersTextAccueil, 3, dateFinAccueil);
+  String libelleTexteAccueil = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-PL-Z1-QUE-PRO-HTML", parametersTextAccueil);
+  
+  
+  String[] parametersPlanningDif = new String[] {};
+  parametersPlanningDif = (String[]) Util.insertArray(parametersPlanningDif, 0, prenomEnfant);
+  parametersPlanningDif = (String[]) Util.insertArray(parametersPlanningDif, 1, nomEnfant);
+ 
+  String libelleVacancesSco = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-PL-Z3-QUE-HTML", parametersPlanningDif);
+  String libellePlanningDif = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-PL-Z3-QUE-HTML", parametersPlanningDif);
+        
+
+   // Planning regulier (indique quels jours sont cochés)  
+   Boolean[] joursCheckTab = new Boolean[7];
+   int cpt = 0;
+   for(String itJour : DeclarerAccueilAssmatHandler.JOURS) {
+     joursCheckTab[cpt] = DeclarerAccueilAssmatHandler.hasJourSemaine(formHandler.getDeclaration(), itJour, 1);
+     cpt++;
+   }
+  
+   // Map des creneau horraire par jour (planning regulier)
+   Map<String, ArrayList<CreneauHorraire>> creneauMap = DeclarerAccueilAssmatHandler.getCreneauHorraireJour(formHandler.getDeclaration(), 1);
+   int nbCreneau = DeclarerAccueilAssmatHandler.getNbCreneau(creneauMap);
+  
+   
+   
+   // Planning vacances   
+   Boolean[] joursVacCheckTab = new Boolean[7];
+   cpt = 0;
+   for(String itJour : DeclarerAccueilAssmatHandler.JOURS) {
+     joursVacCheckTab[cpt] = DeclarerAccueilAssmatHandler.hasJourSemaine(formHandler.getDeclaration(), itJour, 2);
+     cpt++;
+   }
+
+   // Map des creneau horraire par jour (planning vacances)
+   Map<String, ArrayList<CreneauHorraire>> creneauVacMap = DeclarerAccueilAssmatHandler.getCreneauHorraireJour(formHandler.getDeclaration(), 2);
+   int nbCreneauVac = DeclarerAccueilAssmatHandler.getNbCreneau(creneauVacMap);
+
+  
+
+   
+   
+   //Planning regulier Vacances
+   
+   String debcr1lundiVac= formHandler.getDebcr1lundi() !=null ? formHandler.getDebcr1lundiVac() : "";  
+   String fincr1lundiVac= formHandler.getFincr1lundi() !=null ? formHandler.getFincr1lundiVac() : "";  
+   String debcr2lundiVac= formHandler.getDebcr2lundi() !=null ? formHandler.getDebcr2lundiVac() : "";  
+   String fincr2lundiVac= formHandler.getFincr2lundi() !=null ? formHandler.getFincr2lundiVac() : "";  
+   String debcr3lundiVac= formHandler.getDebcr3lundi() !=null ? formHandler.getDebcr3lundiVac() : "";  
+   String fincr3lundiVac= formHandler.getFincr3lundi() !=null ? formHandler.getFincr3lundiVac() : "";  
+
+   String debcr1mardiVac= formHandler.getDebcr1mardi() !=null ? formHandler.getDebcr1mardiVac() : "";  
+   String fincr1mardiVac= formHandler.getFincr1mardi() !=null ? formHandler.getFincr1mardiVac() : "";  
+   String debcr2mardiVac= formHandler.getDebcr2mardi() !=null ? formHandler.getDebcr2mardiVac() : "";  
+   String fincr2mardiVac= formHandler.getFincr2mardi() !=null ? formHandler.getFincr2mardiVac() : "";  
+   String debcr3mardiVac= formHandler.getDebcr3mardi() !=null ? formHandler.getDebcr3mardiVac() : "";  
+   String fincr3mardiVac= formHandler.getFincr3mardi() !=null ? formHandler.getFincr3mardiVac() : "";  
+
+   String debcr1mercrediVac= formHandler.getDebcr1mercredi() !=null ? formHandler.getDebcr1mercrediVac() : "";  
+   String fincr1mercrediVac= formHandler.getFincr1mercredi() !=null ? formHandler.getFincr1mercrediVac() : "";  
+   String debcr2mercrediVac= formHandler.getDebcr2mercredi() !=null ? formHandler.getDebcr2mercrediVac() : "";  
+   String fincr2mercrediVac= formHandler.getFincr2mercredi() !=null ? formHandler.getFincr2mercrediVac() : "";  
+   String debcr3mercrediVac= formHandler.getDebcr3mercredi() !=null ? formHandler.getDebcr3mercrediVac() : "";  
+   String fincr3mercrediVac= formHandler.getFincr3mercredi() !=null ? formHandler.getFincr3mercrediVac() : "";  
+  
+   String debcr1jeudiVac= formHandler.getDebcr1jeudiVac() !=null ? formHandler.getDebcr1jeudiVac() : "";  
+   String fincr1jeudiVac= formHandler.getFincr1jeudiVac() !=null ? formHandler.getFincr1jeudiVac() : "";  
+   String debcr2jeudiVac= formHandler.getDebcr2jeudiVac() !=null ? formHandler.getDebcr1jeudiVac() : "";  
+   String fincr2jeudiVac= formHandler.getFincr2jeudiVac() !=null ? formHandler.getFincr1jeudiVac() : "";  
+   String debcr3jeudiVac= formHandler.getDebcr3jeudiVac() !=null ? formHandler.getDebcr1jeudiVac() : "";  
+   String fincr3jeudiVac= formHandler.getFincr3jeudiVac() !=null ? formHandler.getFincr1jeudiVac() : "";  
+
+   String debcr1vendrediVac= formHandler.getDebcr1vendrediVac() !=null ? formHandler.getDebcr1vendrediVac() : "";  
+   String fincr1vendrediVac= formHandler.getFincr1vendrediVac() !=null ? formHandler.getFincr1vendrediVac() : "";  
+   String debcr2vendrediVac= formHandler.getDebcr2vendrediVac() !=null ? formHandler.getDebcr2vendrediVac() : "";  
+   String fincr2vendrediVac= formHandler.getFincr2vendrediVac() !=null ? formHandler.getFincr2vendrediVac() : "";  
+   String debcr3vendrediVac= formHandler.getDebcr3vendrediVac() !=null ? formHandler.getDebcr3vendrediVac() : "";  
+   String fincr3vendrediVac= formHandler.getFincr3vendrediVac() !=null ? formHandler.getFincr3vendrediVac() : "";  
+
+   String debcr1samediVac= formHandler.getDebcr1samediVac() !=null ? formHandler.getDebcr1samediVac() : "";  
+   String fincr1samediVac= formHandler.getFincr1samediVac() !=null ? formHandler.getFincr1samediVac() : "";  
+   String debcr2samediVac= formHandler.getDebcr2samediVac() !=null ? formHandler.getDebcr1samediVac() : "";  
+   String fincr2samediVac= formHandler.getFincr2samediVac() !=null ? formHandler.getFincr1samediVac() : "";  
+   String debcr3samediVac= formHandler.getDebcr3samediVac() !=null ? formHandler.getDebcr1samediVac() : "";  
+   String fincr3samediVac= formHandler.getFincr3samediVac() !=null ? formHandler.getFincr1samediVac() : "";  
+
+   String debcr1dimancheVac= formHandler.getDebcr1dimanche() !=null ? formHandler.getDebcr1dimancheVac() : "";  
+   String fincr1dimancheVac= formHandler.getFincr1dimanche() !=null ? formHandler.getFincr1dimancheVac() : "";  
+   String debcr2dimancheVac= formHandler.getDebcr2dimanche() !=null ? formHandler.getDebcr2dimancheVac() : "";  
+   String fincr2dimancheVac= formHandler.getFincr2dimanche() !=null ? formHandler.getFincr2dimancheVac() : "";  
+   String debcr3dimancheVac= formHandler.getDebcr3dimanche() !=null ? formHandler.getDebcr3dimancheVac() : "";  
+   String fincr3dimancheVac= formHandler.getFincr3dimanche() !=null ? formHandler.getFincr3dimancheVac() : "";  
+  
+   
+
+   //Permet de ne pas enrregistrer un false lorsque que l'utilisateur enregistre en brouillon sans rien cocher 
+   String accueilVacances = formHandler.getDeclaration().getAccueilVacances() != null ? Boolean.toString(formHandler.getDeclaration().getAccueilVacances()) : "";  
+   //Permet de ne pas enrregistrer un false lorsque que l'utilisateur enregistre en brouillon sans rien cocher 
+   String planningDifferentVacances = formHandler.getDeclaration().getPlanningDifferentVacances() != null ? Boolean.toString(formHandler.getDeclaration().getPlanningDifferentVacances()) : "";
+   String precision = formHandler.getDeclaration().getPrecision() != null ? formHandler.getDeclaration().getPrecision() : "";
+   
+  
+   Boolean estProvisoireBool = formHandler.getDeclaration().getEstProvisoire();  
+   Boolean uniquementVacances = formHandler.getDeclaration().getUniquementVacances();  
+   
+   
+   
+  
+%>
+
+      <!-- BLOC SAISIE -->
+      <div class="semaine1">
+      <div class="blocSaisie semaine">
+        
+        <jalios:select>
+	        <jalios:if predicate='<%= choixAccueilOccasionnel %>'>
+	          <p><trsb:glp key="ASS-DEC-AOCC-INTRO-HTML" /></p>	    
+	          <textarea id="precisionsPlanning" name="precision" rows="4" cols="" placeholder='<trsb:glp attribute="true" key="ASS-DEC-AOCC-PRE-HTML" />' ><%= precision %></textarea>
+	        </jalios:if>
+	        <jalios:default>
+	          <p><trsb:glp key="ASS-DEC-PIRR-INTRO-HTML" /></p>      
+            <textarea id="precisionsPlanning" name="precision" rows="4" cols="" placeholder='<trsb:glp attribute="true" key="ASS-DEC-PIRR-PRE-HTML" />' ><%= precision %></textarea>         
+	        </jalios:default>
+        </jalios:select>
+      </div>
+      </div>
+      <!-- FIN BLOC SAISIE -->
+
+
+     <p class="submit prev">
+         <label for="submitprev"> <input type="submit" id="submitprev"
+             name="opPrevious"
+             value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML" ></trsb:glp>"
+             class="submitButton"> <span class="input-box"
+             style="background-color: #aec900"><span
+                 class="spr-recherche-ok"></span></span>
+         </label> <input type="hidden" name="noSendRedirect" value="true"> 
+ 
+     </p> 
+    
+ 
+      <p class="submit enregistrer" style='visibility: hidden'>
+        <label for="create"> <input type="submit" id="create" name="opCreate" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML" ></trsb:glp>" class="submitButton">
+          <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
+        </label> <input type="hidden" name="noSendRedirect" value="true"> <input type="hidden" name="id" value="c_5065">
+      </p>
+    
+      <p class="submit">
+        <label for="submit"> <input type="submit" id="submit"
+          name="opFinish" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML" ></trsb:glp>" class="submitButton">
+          <span class="input-box" style="background-color: #aec900"><span
+            class="spr-recherche-ok"></span></span>
+        </label> <input type="hidden" name="noSendRedirect" value="true">
+        <input type="hidden" name="id" value="c_5065">
+      
+      </p>
+
+	<%}%>
+<!-- FIN -->
+
+
+
+
+

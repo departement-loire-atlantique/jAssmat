@@ -1,0 +1,61 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+
+
+              
+<!-- 2.3.2.2  Bloc des démarches enregistrées en brouillon -->      
+<jalios:if predicate="<%= declarationBrouillonList != null && declarationBrouillonList.size() > 0 %>">      
+    
+      <div class="demarche brouillon">
+      
+          <div class="titre-demarche-brouillon">
+            <img src="plugins/AssmatPlugin/img/icon-accueil-brouillon.png" alt="" style="padding-right: 10px;"/>                      
+            <trsb:glp key="ASS-ACC-BR-TITRE1-HTML"></trsb:glp>
+          </div>
+      
+         <div class="div-responsive">
+         <%-- Iteration sur les demarches d'accueil brouillon --%>
+           <jalios:foreach collection="<%= declarationBrouillonList %>" name="itAccueil" type="AccueilDTO">
+           
+              <%
+               String nomEnfant = itAccueil.getNomEnfant();
+               String prenomEnfant = itAccueil.getPrenomEnfant();
+               Integer idDeclaration = itAccueil.getIdDeclaration();
+               String dateModifDeclarationString = "";
+               if(Util.notEmpty(itAccueil.getDateMaj())) {
+                 dateModifDeclarationString = DATE_TIME_FORMAT.print(itAccueil.getDateMaj());
+                }
+              %>
+              
+              <div class="ligne-demarche-brouillon">
+                            
+                  <div class="nom-enfant">
+                    <trsb:glp key="ASS-ACC-BR-ENF-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>'></trsb:glp>
+                  </div>
+                  
+                  <div class="date-modif">
+                    <%= dateModifDeclarationString %>
+                  </div>
+                  
+                  <div class="terminer-declaration">
+                    <%-- Terminer la déclaration d'accueil --%>
+                    <div>
+                        <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
+                        <a href="<%= lienDeclarationAccueil %>?idModifDeclaration=<%= idDeclaration %>">
+                            <trsb:glp key="ASS-ACC-BR-REP-HTML" />                  
+                        </a>
+                    </div>
+                    <%-- Annuler la déclaration d'accueil --%>
+                    <div>
+                        <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
+                        <a class="modal confirm" title='<%= AssmatUtil.getMessage("ASS-ACC-BR-SUPP-VAL-HTML") %>' href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/annulerDeclaration.jsp?idDeclaration=<%= idDeclaration %>&redirect=<%= lienRetourModal %>" >
+                            <trsb:glp key="ASS-ACC-BR-SUPP-HTML" />                  
+                        </a>                    
+                    </div>
+                  </div>
+                
+              </div>
+          
+           </jalios:foreach> 
+         </div>                               
+      </div>              
+</jalios:if>

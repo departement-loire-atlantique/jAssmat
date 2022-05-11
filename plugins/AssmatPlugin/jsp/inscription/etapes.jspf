@@ -1,0 +1,54 @@
+<!-- MENU FORMULAIRE A ETAPES -->
+<%@ page contentType="text/html; charset=UTF-8"%>
+        <%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%
+int nbTentativeStep0 = formHandler.getNbTentativeErrone();
+%>
+       <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" id ="formEtapes" class="formEtapes">
+				<nav class="menuFormulaireEtape">
+				       
+				       
+				          <ul class="menuEtapes triangle">
+				      
+				           
+				            <li <%if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {%> class="current"<%} %> >
+				            
+				            
+				              <label   <%if(step>InscriptionAssmatHandler.IDENTIFICATION_STEP || (step ==InscriptionAssmatHandler.IDENTIFICATION_STEP && nbTentativeStep0>=InscriptionAssmatHandler.NB_TENTATIVE_MAX) ){ %>class="hasLink"<%} %>   for="identification">Identification</label>
+				               <%if(step>InscriptionAssmatHandler.IDENTIFICATION_STEP || (step ==InscriptionAssmatHandler.IDENTIFICATION_STEP && nbTentativeStep0>=InscriptionAssmatHandler.NB_TENTATIVE_MAX)){ %>
+				              <input class="noSubmitEven" type="submit" name="formStep" id ="identification" value="0"/>
+				              <%} %>
+				            </li>
+				            
+	                  <li <%if (step == InscriptionAssmatHandler.VERIFICATION_STEP) {%> class="current" <%} %>>
+				           <label   <%if(step>1){ %>class="hasLink"<%} %>  for="verification">Vérification</label>
+				           <%if(step>1){ %>
+                      <input class="noSubmitEven" type="submit" name="formStep" id ="verification" value="1"/>
+                    </li>
+                    <%} %>
+				            
+				            <li <%if (step == InscriptionAssmatHandler.CONTACT_STEP) {%>  class="current"<%} %>>
+				           
+				           <label  <%if(step>2){ %>class="hasLink"<%} %>  for="contacts">Contacts</label>
+				            <%if(step>2){ %>
+                      <input class="noSubmitEven" type="submit" name="formStep" id ="contacts" value="2"/>
+                      <%} %>
+                    </li>
+    
+				            <li <%if (step == InscriptionAssmatHandler.LOGIN_STEP) {%>  class="current"<%} %> >
+    
+				            <label  <%if(step>3){ %>class="hasLink"<%} %>  for="login">Login et mot de passe</label>
+				              <%if(step>3){ %>
+                      <input class="noSubmitEven" type="submit" name="formStep" id ="login" value="3"/>
+                      <%} %>
+                    </li>
+                    
+                    
+                    
+				            <li <%if (step == InscriptionAssmatHandler.CONFIRMATION_STEP) {%>  class="current"<%} %>>
+				            <p>Confirmation</p></li>
+				         
+				          </ul>
+				  </nav>
+				   <%=formHandler.getAllFormStepHiddenFields()%>
+   </form>

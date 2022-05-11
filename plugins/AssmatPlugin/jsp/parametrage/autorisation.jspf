@@ -1,0 +1,108 @@
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+
+<%
+boolean autorisationSite =    formHandler.getAvailableAutorisationSite();
+boolean autorisationCAF =     formHandler.getAvailableAutorisationCAF();
+boolean autorisationRelais =  formHandler.getAvailableAutorisationRelais();
+
+if (step == ParametrageAssmatHandler.AUTORISATION_STEP) {
+  if (!formHandler.getAfficherMessageConfirmation()) {
+%>
+    <div class="info-gauche cell-left">
+      <p><trsb:glp key="AUTOR-DPT-HTML"></trsb:glp></p>
+    </div>
+    <div class="radio-droite cell-right">
+      <input type="radio" name="autorisationSite" id="ouiAutorisationSite" class="radio" value="true"
+        <% if(autorisationSite) { %> checked <% } %>>
+      <label for="ouiAutorisationSite"><trsb:glp key="AUTOR-DPT-OUI-HTML"></trsb:glp></label>
+      <input type="radio" name="autorisationSite" id="nonAutorisationSite" class="radio" value="false"
+        <% if(!autorisationSite) { %> checked <% } %>>
+      <label for="nonAutorisationSite" ><trsb:glp key="AUTOR-DPT-NON-HTML"></trsb:glp></label>
+    </div>
+
+    <div class="borderDot title-bar-container dotted-portlet" style="margin-top: 10px; margin-bottom: 20px;"></div>
+
+    <div class="info-gauche cell-left">
+      <p><trsb:glp key="AUTOR-CAF-HTML"></trsb:glp></p>
+    </div>
+    <div class="radio-droite cell-right">
+      <input type="radio" name="autorisationCAF" id="ouiAutorisationCAF" class="radio" value="true"
+        <% if(autorisationCAF) { %> checked <% } %>>
+      <label for="ouiAutorisationCAF"><trsb:glp key="AUTOR-CAF-OUI-HTML"></trsb:glp></label>
+      <input type="radio" name="autorisationCAF" id="nonAutorisationCAF" class="radio" value="false"
+        <% if(!autorisationCAF){ %> checked <% } %>>
+      <label for="nonAutorisationCAF"><trsb:glp key="AUTOR-CAF-NON-HTML"></trsb:glp></label>
+    </div>
+
+    <div class="borderDot title-bar-container dotted-portlet" style="margin-top: 10px; margin-bottom: 20px;"></div>
+
+    <div class="info-gauche cell-left">
+      <p><trsb:glp key="AUTOR-RAM-HTML"></trsb:glp></p>
+    </div>
+    <div class="radio-droite cell-right">
+      <input type="radio" name="autorisationRelais" id="ouiAutorisationRelais" class="radio" value="true"
+        <% if(autorisationRelais)  { %> checked <% } %>>
+      <label for="ouiAutorisationRelais"><trsb:glp key="AUTOR-RAM-OUI-HTML"></trsb:glp></label>
+      <input type="radio" name="autorisationRelais" id="nonAutorisationRelais" class="radio" value="false"
+        <% if(!autorisationRelais)  { %> checked <% } %>>
+      <label for="nonAutorisationRelais"><trsb:glp key="AUTOR-RAM-NON-HTML"></trsb:glp></label>
+    </div>
+    
+    <div class="alert alert-block fade in alert-cg">
+      <trsb:glp key="AUTOR-LEG-HTML"></trsb:glp>
+    </div>
+    
+    <div class="borderDot title-bar-container dotted-portlet"></div>
+    <p class="submit prev">
+        <label for="submit"> 
+        <input type="submit" id="submitPrev"
+            name="opPrevious" value='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>' class="submitButton">
+            <span class="input-box" style="background-color: #aec900">
+                <span class="spr-recherche-ok"></span>
+            </span>
+        </label>
+        <input type="hidden" name="noSendRedirect" value="true" />
+        
+    </p>
+        
+    <p class="submit">
+      <label for="submit"> <input type="submit" id="submit" name="opNext" value='<trsb:glp key="AUTOR-BOUTON" attribute="true"></trsb:glp>' class="submitButton">
+        <span class="input-box" style="background-color: #aec900">
+          <span class="spr-recherche-ok"></span>
+        </span>
+      </label>
+      <input type="hidden" name="noSendRedirect" value="true" />
+    
+    </p>
+  <%  } else { %>
+  
+    <h3 class="title-bar-container dotted-portlet"><trsb:glp key="AUTOR-MERCI-INTRO-HTML"></trsb:glp></h3>
+    <%
+    String canalCommunication = formHandler.getAvailableCanalDeCommunicationSite();
+    
+    %>
+    <% if("0".equals(canalCommunication)) { %>
+      <div>
+        <p><trsb:glp key="AUTOR-MERCI-SMS-HTML"></trsb:glp></p>
+        
+      </div>
+    <% } else if("1".equals(canalCommunication)) { %>
+      <div>
+        <p><trsb:glp key="AUTOR-MERCI-MAIL-HTML"></trsb:glp></p>
+      </div>
+    <% } %>
+  
+    <div class="borderDot title-bar-container dotted-portlet"></div>
+
+    <p class="submit">
+      <label for="submit"> <input type="submit" id="submit" name="opCreate" value='<trsb:glp key="AUTOR-MERCI-BOUT-HTML" attribute="true"></trsb:glp>' class="submitButton next">     
+        <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
+      </label>
+      <input type="hidden" name="noSendRedirect" value="true" />
+      <input type="hidden" name="opFinish" value="true" />
+    </p> 
+  <% } %>
+<% } %>

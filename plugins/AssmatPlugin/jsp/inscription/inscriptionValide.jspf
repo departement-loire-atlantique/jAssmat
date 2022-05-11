@@ -1,0 +1,41 @@
+
+<%String idJspParam = channel.getProperty("jcmsplugin.assmatplugin.socle.jsp.parametrage");
+Publication jspParam = null;
+String link="#";
+if(Util.notEmpty(idJspParam)){
+  jspParam = channel.getPublication(idJspParam);
+  link = jspParam.getDisplayUrl(userLocale);
+}
+%>
+<div class="headstall container-fluid formulaireActivation">
+  <div class="row-fluid">
+    <!-- COLONNE GAUCHE -->
+      <div class="span2 iconEtape">
+        <img alt="etape1"
+          src="plugins/AssmatPlugin/img/icon-activation-form.png" />
+      </div>
+    <!-- FIN COLONNE GAUCHE -->
+    <!-- COLONNE DROITE -->
+    <div class="span10 label">
+      <div class="row-fluid title">
+        <div class="label">
+          <h1>Inscription terminée !</h1>
+        </div>
+      </div>
+    </div>
+    <div class="span9 label">
+      <div class="row-fluid">
+            <div class="ajax-refresh-div">  
+             <%@ include file='/jcore/doMessageBox.jsp' %>
+               
+               <div class="formActivation form-cg">
+                  <div class="form-cg-gray">
+                    Vous pouvez maintenant accédez à votre compte <a href="<%=link%>">ici</a>
+          </div>
+        </div>
+            </div>
+      </div>
+     </div>
+  </div>
+ </div>
+ 

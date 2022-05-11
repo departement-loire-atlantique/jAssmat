@@ -1,0 +1,159 @@
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+  
+%>
+<%
+if (step == InscriptionAssmatHandler.LOGIN_STEP) {
+  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/PortletLogin/portletLoginFullDisplay.css");
+  String emailAssmat = formHandler.getEmail();
+  boolean isEmailChoice=false;
+  String choix = formHandler.getTypeenvoi();
+  if(Util.notEmpty(choix)){
+    if("mail".equals(choix)){
+      isEmailChoice= true;
+    }
+  }
+  String telephoneAssmat = formHandler.getTelephone();
+  int numeroDossierAssmat = formHandler.getNumeroAgrementInteger();
+%>
+
+				<!-- FORMULAIRE A ETAPES -->
+			 <p class="instructionsSaisie"><trsb:glp key="LOGIN-LEGENDE-HTML" ></trsb:glp></p>
+              
+						
+							<div class="blocLabel">
+								<p class=""><trsb:glp key="LOGIN-PREF-CONNEXION-HTML" ></trsb:glp></p>
+							</div>
+
+							<div class="blocChamp multipleRadio">
+							<%if(isEmailChoice && Util.isEmpty(channel.getMemberFromLogin(emailAssmat))){ %>
+								<input type="radio" <%if(Util.notEmpty(choix) && isEmailChoice ){%> checked="checked" <%} %> name="choixLogin" id="email" class="radio"
+									value="email" style="background: transparent;"><label
+									for="email"><trsb:glp key="LOGIN-PREF-CONNEXION-EMAIL-HTML" ></trsb:glp> <%=emailAssmat%> 
+									 <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-EMAIL-BULLE-HTML" ></trsb:glp>" 
+                data-color="<%=dataColor%>">
+                <img alt="?" src="s.gif" class="spr-interrogation">
+                </button>
+									<%} else if(!isEmailChoice && Util.isEmpty(channel.getMemberFromLogin(telephoneAssmat))){ %>
+									</label><input
+									type="radio" name="choixLogin" id="tel" class="radio" <%if(Util.notEmpty(choix) && !isEmailChoice){%> checked="checked" <%} %> value="tel"><label
+									for="tel"><trsb:glp key="LOGIN-PREF-CONNEXION-TEL-HTML" ></trsb:glp> <br /><%=telephoneAssmat %>
+										<button class="cg-tooltip buttonHelp" data-category-id="nonez" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-TEL-BULLE-HTML" ></trsb:glp>" 
+                data-color="<%=dataColor%>">
+                <img alt="?" src="s.gif" class="spr-interrogation">
+                </button>		
+									<%} %>
+								</label> <input type="radio" name="choixLogin" id="dossier" class="radio"
+									value="dossier"><label for="dossier"><trsb:glp key="LOGIN-PREF-CONNEXION-DOSSIER-HTML" ></trsb:glp> <%=numeroDossierAssmat %> 
+									<button class="cg-tooltip buttonHelp" data-category-id="nonea" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-DOSSIER-BULLE-HTML" ></trsb:glp>" 
+                data-color="<%=dataColor%>">
+                <img alt="?" src="s.gif" class="spr-interrogation">
+                </button>
+								</label>
+							</div>
+
+							<h3 class="title-bar-container dotted-portlet"><trsb:glp key="LOGIN-INTRO-MDP-HTML" ></trsb:glp></h3>
+							<p class="instructionsSaisie"><trsb:glp key="LOGIN-LEGENDE-MDP-HTML" ></trsb:glp></p>
+							
+							
+            <div class="alert alert-block alertPass hide alert-cg alert-warn"><h4><%=glp("msg.message-box.warning")%></h4>
+            <p></p>
+            </div>
+							<div class="blocLabel">
+								<label for="password"><trsb:glp key="LOGIN-MDP-HTML" ></trsb:glp></label> 
+							</div>
+            
+							<div class="blocChamp">
+								<input type="password" name="password" id="password" class="fullwidth fullwidthInfo"> 
+								<button class="cg-tooltip buttonHelp" data-category-id="nfdone" aria-label="<trsb:glp attribute="true" key="LOGIN-MDP-BULLE-HTML" ></trsb:glp>" 
+                data-color="<%=dataColor%>">
+                <img alt="?" src="s.gif" class="spr-interrogation">
+                </button>
+							</div>
+
+							<div class="blocLabel">
+								<label for="confirm"><trsb:glp key="LOGIN-MDP-CONF-HTML" ></trsb:glp></label>
+							</div>
+
+							<div class="blocChamp">
+								<input type="password" name="passwordConfirm" id="passwordConfirm" class="fullwidth fullwidthInfo"> 
+								<button class="cg-tooltip buttonHelp" data-category-id="nofde" aria-label="<trsb:glp attribute="true" key="LOGIN-MDP-CONF-BULLE-HTML" ></trsb:glp>" 
+                data-color="<%=dataColor%>">
+                <img alt="?" src="s.gif" class="spr-interrogation">
+                </button>
+							</div>
+							
+							
+							
+							<div class="blocLabel">
+                <div class="" style="min-height: 1px;"></div>
+              </div>
+              
+              <div class="blocChamp">
+                  <input id="visible-password" type="checkbox" />
+                  <label for="visible-password" style="margin-left: 22px;"> <trsb:glp key="CONNEXION-AM-VISIBLE-PASSWORD" /> </label>
+              </div>
+              
+				
+
+							<div class="borderDot title-bar-container dotted-portlet"></div>
+
+                 <p class="submit prev">
+                            <label for="submitprev"> <input type="submit" id="submitprev"
+                                name="opPrevious"
+                                value="<trsb:glp attribute="true" key="IDENT-BOUTON-PREV" ></trsb:glp>"
+                                class="submitButton"> <span class="input-box"
+                                style="background-color: #aec900"><span
+                                    class="spr-recherche-ok"></span></span>
+                            </label> <input type="hidden" name="noSendRedirect" value="true"> 
+                    
+                        </p> 
+
+							<p class="submit">
+								<label for="submit"> <input type="submit" id="submit"
+									name="opNext" value="<trsb:glp attribute="true" key="LOGIN-BOUTON-HTML" ></trsb:glp>" class="submitButton">
+									<span class="input-box" style="background-color: #aec900"><span
+										class="spr-recherche-ok"></span></span>
+								</label> <input type="hidden" name="noSendRedirect" value="true">
+								<input type="hidden" name="id" value="c_5065">
+							
+							</p>
+
+				
+				<!-- FIN FORMULAIRE A ETAPES -->
+		
+<jalios:javascript>
+
+jQuery( "#formContact" ).submit(function( event ) {     
+    jQuery.plugin.AssmatPlugin.verifyMotDePasse("#password", "<%=AssmatUtil.getMessage("ERROR-MDP-SECURITY") %>");   
+ });
+
+jQuery( "#password" ).focusout(function(event) {    
+    jQuery.plugin.AssmatPlugin.verifyMotDePasse("#password",  "<%=AssmatUtil.getMessage("ERROR-MDP-SECURITY") %>");   
+ });
+ 
+ 
+jQuery('#visible-password').change(function () {
+    if(this.checked){
+      document.getElementById('passwordConfirm').type='text';
+      document.getElementById('password').type='text';
+    }else {      
+      document.getElementById('passwordConfirm').type='password';
+      document.getElementById('password').type='password';
+    }    
+});
+
+</jalios:javascript>
+
+
+<!-- FIN -->
+
+<%} %>
+
+
+

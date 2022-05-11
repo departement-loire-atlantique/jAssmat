@@ -1,0 +1,74 @@
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<%@page import="com.jalios.jcms.Channel"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="fr.cg44.plugin.assmat.handler.ParametrageAssmatHandler"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@page contentType="text/html; charset=UTF-8"%>
+
+<%
+if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
+	boolean visibiliteSite = formHandler.getAvailableVisibiliteSite();
+	%>
+	<%
+
+	if(formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()){ 
+	
+	
+	%>
+		<!-- FORMULAIRE A ETAPES -->
+		<div class="blocComplet ">
+			<div class="blocLabel blocLabelLong">
+				<p class=""><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
+			</div>
+
+			<div class="blocChamp multipleRadio afficher-profile blocForm">
+				<span>
+					<input type="radio" name="visibiliteSite" id="oui" class="radio" value="true"
+						<%if(visibiliteSite || aide_caf){ %>  checked="checked" <%} %> style="background: transparent;" />
+					<label for="email"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.oui") %></label>
+				</span>
+			<% if(!aide_caf) {%>
+				<span>	
+					<input type="radio" name="visibiliteSite" id="non" class="radio" value="false"
+						<%if(!visibiliteSite){ %> checked="checked" <%} %> />
+					<label for="tel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.non") %><br /></label> 
+				</span>
+				<%} %>
+			</div>
+		</div>
+
+		<div class="blocComplet gauche">
+					
+			<p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML" %>'></trsb:glp></p>
+		</div>
+	<% }else{ %>
+		<div class="blocComplet gauche">
+			<p><trsb:glp key="VISIB-REFUS-TEXTE-HTML"></trsb:glp></p>
+		</div>
+	<% } %>
+	
+	<%-- Contribuer dans VISIB-AFF-LEG-HTML et VISIB-REFUS-TEXTE-HTML ? pas de clé dans invision --%>
+	<div class="alert alert-block fade in alert-cg">
+		<h4><trsb:glp key="HTML-A-SAVOIR"></trsb:glp></h4>		
+		<p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML-SAVOIR" %>'></trsb:glp></p>
+	</div>
+
+	<% if(formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()){ %>
+	<div class="borderDot title-bar-container dotted-portlet"></div>
+
+	<p class="submit">
+		<label for="submit"> <input type="submit" id="submit"
+			name="opCreate" value='<trsb:glp attribute="true" key="VISIB-BOUTON" ></trsb:glp>' class="submitButton">
+			<span class="input-box" style="background-color: #aec900">
+				<span class="spr-recherche-ok"></span>
+			</span>
+		</label>
+		<input type="hidden" name="noSendRedirect" value="true" />
+		<input type="hidden" name="id" value="c_5065" />
+		<input type="hidden" name="opNext" value="true" />
+	</p>
+	<%} %>
+	<!-- FIN FORMULAIRE A ETAPES -->
+<%} %>

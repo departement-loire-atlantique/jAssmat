@@ -1,0 +1,37 @@
+<%@page import="com.jalios.jcms.Channel"%>
+<%@page import="generated.PortalJspCollection"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="generated.ProfilASSMAT"%>
+<%@page import="java.util.Set"%>
+<%@page import="fr.cg44.plugin.corporateidentity.tools.PageTitle"%>
+<% jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/headstall/model1.css");
+
+String name = PageTitle.getPageTitle(false);
+Set<ProfilASSMAT> listeProfilAM = (Set<ProfilASSMAT>) request.getSession().getAttribute("listeProfilAMSelection");
+ %>
+<div class="headstall container-fluid bandeauAM">
+
+	<div class="row-fluid title">
+	  <div class="span8 label"><h1><%= name %><jalios:edit data="<%= currentCategory  %>"/></h1></div>
+	  
+	  <div class="span4 menu hidden-phone printHide containerBandeauBtn">
+	    
+	    
+	    <%-- Bouton d'impression --%>
+	   
+	   <%
+	   String lienSelect = "#";
+	   if(Util.notEmpty(listeProfilAM)){
+	     lienSelect = channel.getUrl() + "assmat.pdf?type=list";
+	   } %>
+
+    <li class="link linkSelection btnImprim">
+      <a href="<%= lienSelect %>"  target="_blank" title="<%= glp("plugin.tools.accessibily.newTabLabel") %>">
+    Afficher ma sélection en tableau</a>
+    <img class="spr-picto-impression" alt="" src="s.gif" />
+    </li>
+
+<%-- 	    <%@ include file='/plugins/CorporateIdentityPlugin/jsp/headstall/print.jspf' %>   --%>
+	  </div>
+	</div>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type name="Demarche" superclass="com.jalios.jcms.Content" debatable="false" unitFieldEdition="true" audienced="false" categoryTab="true" readRightTab="true" updateRightTab="true" templateTab="true" workflowTab="true" advancedTab="true" titleML="false" abstract="true" hbm="true" authgroups="||||||">
+  <title ml="false">
+    <label xml:lang="fr">Titre</label>
+  </title>
+  <fields />
+  <label xml:lang="fr">Démarche</label>
+</type>
+

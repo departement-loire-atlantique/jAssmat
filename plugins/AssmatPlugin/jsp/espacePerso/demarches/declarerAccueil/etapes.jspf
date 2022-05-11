@@ -1,0 +1,50 @@
+<!-- MENU FORMULAIRE A ETAPES -->
+<%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+        <%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+
+       <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" id ="formEtapes" class="formEtapes">
+				<nav class="menuFormulaireEtape">
+				       
+				       
+				          <ul class="menuEtapes triangle">
+				      
+				           
+				            <li <%if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {%> class="current"<%} %> >
+				            
+				            
+				              <label   <%if((step>DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI || (step ==DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI)) && step != DeclarerAccueilAssmatHandler.VALIDATION  ){ %>class="hasLink"<%} %>   for="identification"><trsb:glp key="ASS-DEC-MENU-1-HTML" ></trsb:glp></label>
+				               <%if((step>DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI || (step ==DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI)) && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>
+				              <input type="submit" name="formStep" id ="identification" value="0"/>
+				              <%} %>
+				            </li>
+				            
+	                  <li <%if (step == DeclarerAccueilAssmatHandler.LIEU_ACCUEIL) {%> class="current" <%} %>>
+				           <label   <%if(step>1 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>class="hasLink"<%} %>  for="verification"><trsb:glp key="ASS-DEC-MENU-2-HTML" ></trsb:glp></label>
+				           <%if(step>1 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>
+                      <input type="submit" name="formStep" id ="verification" value="1"/>
+                    </li>
+                    <%} %>
+				            
+				            <li <%if (step == DeclarerAccueilAssmatHandler.MODALITES) {%>  class="current"<%} %>>
+				           
+				           <label  <%if(step>2 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>class="hasLink"<%} %>  for="contacts"><trsb:glp key="ASS-DEC-MENU-3-HTML" ></trsb:glp></label>
+				            <%if(step>2 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>
+                      <input type="submit" name="formStep" id ="contacts" value="2"/>
+                      <%} %>
+                    </li>
+    
+				            <li <%if (step == DeclarerAccueilAssmatHandler.PLANNING || step == DeclarerAccueilAssmatHandler.VALIDATION) {%>  class="current"<%} %> >
+    
+				            <label  <%if(step>3 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>class="hasLink"<%} %>  for="login"><trsb:glp key="ASS-DEC-MENU-4-HTML" ></trsb:glp></label>
+				              <%if(step>3 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>
+                      <input type="submit" name="formStep" id ="login" value="3"/>
+                      <%} %>
+                    </li>
+
+				          </ul>
+				  </nav>				  
+				  <input type="hidden" value="Etape précédente" name="opPrevious">
+				  <input type="hidden" value="true" name="opChangeStep">
+				   <%=formHandler.getAllFormStepHiddenFields()%>
+   </form>

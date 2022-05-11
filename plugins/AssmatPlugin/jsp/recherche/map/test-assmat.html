@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Create and style clusters</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 16px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        }
+</style>
+
+<div id='map'></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2d1ZWxsZWMiLCJhIjoiY2ppMGQ4cjc4MDAyMDN3czcyNG5iemJuOCJ9.B-V2m44J4ehkvnlpEdoijg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [-1.537021, 47.231835],
+    zoom: 12
+});
+
+map.on('load', function() {
+    // Add a new source from our GeoJSON data and set the
+    // 'cluster' option to true. GL-JS will add the point_count property to your source data.
+    map.addSource("assmat", {
+        type: "geojson",
+        data: "features-assmat.geojson",
+        cluster: true,
+        clusterMaxZoom: 14, // Max zoom to cluster points on
+        clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+    });
+    
+    map.addSource("contours", {
+        type: "geojson",
+        data: "features-relais.geojson",
+        cluster: true,
+        clusterMaxZoom: 14, // Max zoom to cluster points on
+        clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+    });    
+
+    map.addLayer({
+        id: "clusters",
+        type: "circle",
+        source: "assmat",
+        filter: ["has", "point_count"],
+        paint: {
+            // Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+            // with three steps to implement three types of circles:
+            //   * Blue, 20px circles when point count is less than 100
+            //   * Yellow, 30px circles when point count is between 100 and 750
+            //   * Pink, 40px circles when point count is greater than or equal to 750
+            "circle-color": [
+                "step",
+                ["get", "point_count"],
+                "#51bbd6",
+                100,
+                "#f1f075",
+                750,
+                "#f28cb1"
+            ],
+            "circle-radius": [
+                "step",
+                ["get", "point_count"],
+                20,
+                100,
+                30,
+                750,
+                40
+            ]
+        }
+    });
+
+    map.addLayer({
+        id: "cluster-count",
+        type: "symbol",
+        source: "assmat",
+        filter: ["has", "point_count"],
+        layout: {
+            "text-field": "{point_count_abbreviated}",
+            "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+            "text-size": 12
+        }
+    });
+
+    map.addLayer({
+        id: "assmat-point",
+        type: "circle",
+        source: "assmat",
+        filter: ["!has", "point_count"],
+        paint: {
+            "circle-color": "#11b4da",
+            "circle-radius": 10,
+            "circle-stroke-width": 1,
+            "circle-stroke-color": "#fff"
+        }
+    });
+    
+    map.addLayer({
+        'id': 'maine',
+        'type': 'fill',
+        'source': {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [
+                    [
+                        [
+                            -1.655308433914535,
+                            47.497598610210787,
+                            0.0
+                        ],
+                        [
+                            -1.655443694660198,
+                            47.497639187696592,
+                            0.0
+                        ],
+                        [
+                            -1.657300874375848,
+                            47.49847562787258,
+                            0.0
+                        ],
+                        [
+                            -1.658269804041402,
+                            47.498982395881633,
+                            0.0
+                        ],
+                        [
+                            -1.659615962303916,
+                            47.500107068174358,
+                            0.0
+                        ],
+                        [
+                            -1.66107924579715,
+                            47.501002505328273,
+                            0.0
+                        ],
+                        [
+                            -1.662511280602077,
+                            47.501493398777612,
+                            0.0
+                        ],
+                        [
+                            -1.664788711717985,
+                            47.501729471605522,
+                            0.0
+                        ],
+                        [
+                            -1.67280750352231,
+                            47.502308642116482,
+                            0.0
+                        ],
+                        [
+                            -1.674000172326465,
+                            47.502267065018572,
+                            0.0
+                        ],
+                        [
+                            -1.67708521818874,
+                            47.501755385769947,
+                            0.0
+                        ],
+                        [
+                            -1.678191951758049,
+                            47.50144669607883,
+                            0.0
+                        ],
+                        [
+                            -1.678363449591945,
+                            47.50108000779484,
+                            0.0
+                        ],
+                        [
+                            -1.67914569308169,
+                            47.499117029280427,
+                            0.0
+                        ],
+                        [
+                            -1.679340733088612,
+                            47.499065002142132,
+                            0.0
+                        ],
+                        [
+                            -1.679289766314359,
+                            47.498391645744462,
+                            0.0
+                        ],
+                        [
+                            -1.678132675707938,
+                            47.496269471062121,
+                            0.0
+                        ],
+                        [
+                            -1.676917687636482,
+                            47.489850096119177,
+                            0.0
+                        ],
+                        [
+                            -1.678323322056815,
+                            47.484689701043962,
+                            0.0
+                        ],
+                        [
+                            -1.681371553746124,
+                            47.478436985521803,
+                            0.0
+                        ],
+                        [
+                            -1.683305064574286,
+                            47.475014554750018,
+                            0.0
+                        ],
+                        [
+                            -1.684927174667335,
+                            47.471850798861517,
+                            0.0
+                        ],
+                        [
+                            -1.685203701547053,
+                            47.471120959525066,
+                            0.0
+                        ],
+                        [
+                            -1.683799776226739,
+                            47.470989933622462,
+                            0.0
+                        ],
+                        [
+                            -1.682918329836561,
+                            47.47075038718399,
+                            0.0
+                        ],
+                        [
+                            -1.679860134536996,
+                            47.468964450592701,
+                            0.0
+                        ],
+                        [
+                            -1.67914106267971,
+                            47.46822418201662,
+                            0.0
+                        ],
+                        [
+                            -1.678716459902662,
+                            47.466122135593572,
+                            0.0
+                        ],
+                        [
+                            -1.678731788945084,
+                            47.46544610318594,
+                            0.0
+                        ],
+                        [
+                            -1.67421354438561,
+                            47.458177469580271,
+                            0.0
+                        ],
+                        [
+                            -1.661307466487269,
+                            47.45271960376445,
+                            0.0
+                        ],
+                        [
+                            -1.660561493808826,
+                            47.452519558851407,
+                            0.0
+                        ],
+                        [
+                            -1.659429662176115,
+                            47.452468430646633,
+                            0.0
+                        ],
+                        [
+                            -1.659585643204752,
+                            47.452778694231952,
+                            0.0
+                        ],
+                        [
+                            -1.659602561030505,
+                            47.453003453588693,
+                            0.0
+                        ],
+                        [
+                            -1.658164015173281,
+                            47.455079201347623,
+                            0.0
+                        ],
+                        [
+                            -1.65724134107401,
+                            47.456056679664712,
+                            0.0
+                        ],
+                        [
+                            -1.655421918958026,
+                            47.457470426272103,
+                            0.0
+                        ],
+                        [
+                            -1.654839689274886,
+                            47.457670474745399,
+                            0.0
+                        ],
+                        [
+                            -1.65398847404801,
+                            47.457835296278311,
+                            0.0
+                        ],
+                        [
+                            -1.653507606582923,
+                            47.457626398550168,
+                            0.0
+                        ],
+                        [
+                            -1.652974803073064,
+                            47.45759992556718,
+                            0.0
+                        ],
+                        [
+                            -1.651528359552981,
+                            47.457784936216008,
+                            0.0
+                        ],
+                        [
+                            -1.650747287485624,
+                            47.457992014969648,
+                            0.0
+                        ],
+                        [
+                            -1.649989575251884,
+                            47.458513763318223,
+                            0.0
+                        ],
+                        [
+                            -1.649611302324701,
+                            47.45879670468711,
+                            0.0
+                        ],
+                        [
+                            -1.647024530760662,
+                            47.463456576737542,
+                            0.0
+                        ],
+                        [
+                            -1.646989968128681,
+                            47.465461614711572,
+                            0.0
+                        ],
+                        [
+                            -1.647121289680332,
+                            47.468564647866977,
+                            0.0
+                        ],
+                        [
+                            -1.647376094950583,
+                            47.471527483637139,
+                            0.0
+                        ],
+                        [
+                            -1.647556744501765,
+                            47.47215238102045,
+                            0.0
+                        ],
+                        [
+                            -1.648882932740382,
+                            47.474786552873219,
+                            0.0
+                        ],
+                        [
+                            -1.648871516698171,
+                            47.484400360279061,
+                            0.0
+                        ],
+                        [
+                            -1.648932560685514,
+                            47.485209476918939,
+                            0.0
+                        ],
+                        [
+                            -1.64936027500942,
+                            47.485599967971197,
+                            0.0
+                        ],
+                        [
+                            -1.6494954227758,
+                            47.485639653986681,
+                            0.0
+                        ],
+                        [
+                            -1.652368764410436,
+                            47.488513132888762,
+                            0.0
+                        ],
+                        [
+                            -1.653877010398936,
+                            47.490037159315797,
+                            0.0
+                        ],
+                        [
+                            -1.654661075844368,
+                            47.491631617466069,
+                            0.0
+                        ],
+                        [
+                            -1.65525777093604,
+                            47.496925242863092,
+                            0.0
+                        ],
+                        [
+                            -1.655308433914535,
+                            47.497598610210787,
+                            0.0
+                        ]
+                    ]
+                ]
+                }
+            }
+        },
+        'layout': {},
+        'paint': {
+            'fill-color': '#088',
+            'fill-opacity': 0.8
+        }
+    });
+    
+    // contours
+    map.addLayer({
+        id: "bounds",
+        type: "fill",
+        source: "contours",
+        layout: {},
+        paint: {
+            'fill-color': '#088',
+            'fill-opacity': 0.8
+        }
+    });    
+
+    // When a click event occurs on a feature in the places layer, open a popup at the
+    // location of the feature, with description HTML from its properties.
+    map.on('click', 'assmat-point', function (e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        var nom = e.features[0].properties.nom;
+
+        console.log(coordinates);
+        console.log(nom);
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(nom)
+            .addTo(map);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', 'assmat-point', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'assmat-point', function () {
+        map.getCanvas().style.cursor = '';
+    });
+
+
+});
+</script>
+
+</body>
+</html>

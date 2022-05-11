@@ -1,0 +1,38 @@
+
+<div class="blocEnfantEntier Place<%=numeroPlace %>">
+	<div class="blocEnfant">
+		<label>Place <%=numeroPlace %></label>
+		<div class="form-select">
+			<span class="input-box" style="background-color: #b0cc00;"><span
+				class="spr-select_arrow"></span></span> <select  onChange="jQuery.plugin.AssmatPlugin.submitForm()"  class="ajax-refresh selectPlace"
+				<%if((nbPlace < numeroPlace) && nbPlace !=-1){ %> disabled <%} %>
+				name="age<%=numeroPlace %>" title="Choisir le mois">
+				<jalios:foreach name="itCat" type="Category"
+					collection="<%=categAge.getChildrenSet() %>">
+
+					<option
+						<%if(trancheAge.equals(itCat.getExtraData("extra.Category.jcmsplugin.assmatplugin.search.mapping"))){ %>
+						selected <%} %>
+						value="<%=itCat.getExtraData("extra.Category.jcmsplugin.assmatplugin.search.mapping") %>"><%=itCat.getName() %> / <%=itCat.getExtraData("extra.Category.jcmsplugin.assmatplugin.search.mapping") %></option>
+				</jalios:foreach>
+			</select>
+		</div>
+	</div>
+	<div class="blocEnfant">
+		<label>A partir de </label>
+		<div class="form-select">
+			<span class="input-box" style="background-color: #b0cc00;"><span
+				class="spr-select_arrow"></span></span><select  onChange="jQuery.plugin.AssmatPlugin.submitForm()"  class="ajax-refresh selectDatePlace"
+				<%if((nbPlace < numeroPlace)&& nbPlace !=-1){ %> disabled <%} %>
+				name="month<%=numeroPlace %>" title="Choisir le mois">
+				
+				<% java.util.Date date = new java.util.Date(dateRef.getTime()); %>
+        <%for(int iterator =1; iterator<13;iterator++){ %>
+				<option <%if(date.getMonth() ==dateSelected.getMonth()){ %> selected <%} %> value="<%=date.getTime()%>"><%=StringUtils.capitalize(formatter.format(date))%></option>
+				<%
+                date= DateUtils.addMonths(date,1);
+                } %>
+			</select>
+		</div>
+	</div>
+</div>

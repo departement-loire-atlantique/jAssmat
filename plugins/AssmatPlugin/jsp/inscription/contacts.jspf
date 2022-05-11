@@ -1,0 +1,137 @@
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+  
+%>
+<%
+if (step == InscriptionAssmatHandler.CONTACT_STEP) {
+ 
+  
+  String emailAssmat = formHandler.getEmail();
+  String telAssmat= formHandler.getTelephone();
+  String typeEnvoi= formHandler.getTypeenvoi();
+  boolean isMail=false;
+  
+  if(Util.notEmpty(typeEnvoi)){
+	  if("mail".equals(typeEnvoi)){
+	    isMail = true;
+    }
+  } else {
+	// MANTIS 10628
+	  if(Util.notEmpty(emailAssmat) && Util.notEmpty(telAssmat)){
+		  isMail = true;
+	  } else if(Util.notEmpty(emailAssmat) && Util.isEmpty(telAssmat)){
+		  isMail = true;
+	  } else if(Util.notEmpty(telAssmat) && Util.isEmpty(emailAssmat)){
+		  isMail = false;
+	  } else if(Util.isEmpty(telAssmat) && Util.isEmpty(emailAssmat)){
+		  isMail = true;
+	  }
+  }
+  
+  if(Util.isEmpty(emailAssmat)){
+    emailAssmat="";
+  }
+  if(Util.isEmpty(telAssmat)){
+    telAssmat="";
+  }
+  
+%>
+
+
+				<!-- FORMULAIRE A ETAPES -->
+										
+            <div class="blocComplet gauche">
+								<div class="blocLabel blocForm">
+									<label for="email"><trsb:glp key="CONTACTS-EMAIL-HTML" ></trsb:glp></label>
+								</div>
+	
+								<div class="blocChamp blocForm">
+								<input type="text"  name="email" id="email" value="<%=emailAssmat %>" class="fullwidth fullwidthInfo">
+								<button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<trsb:glp attribute="true" key="CONTACTS-EMAIL-BULLE-HTML" ></trsb:glp>" 
+								data-color="<%=dataColor%>">
+								<img alt="?" src="s.gif" class="spr-interrogation">
+								</button>
+	
+								</div>
+							</div>
+							
+						<div class="blocComplet gauche simple">
+                <div class="blocLabel blocForm">
+                  <p >et/ou</p>
+                </div>
+  
+                <div class="blocChamp blocForm">
+             
+                </div>
+              </div>	
+							
+           <div class="blocComplet gauche">
+								<div class="blocLabel blocForm">
+									<label for="telephone"><trsb:glp key="CONTACTS-TEL-PORTABLE-HTML" ></trsb:glp></label>
+								</div>
+	
+								<div class="blocChamp blocForm">
+								 <input type="text" name="telephone" id="telephone" value="<%=telAssmat %>" class="fullwidth fullwidthInfo">
+								 <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<trsb:glp attribute="true" key="CONTACTS-TEL-BULLE-HTML" ></trsb:glp>" 
+                data-color="<%=dataColor%>">
+                <img alt="?" src="s.gif" class="spr-interrogation">
+                </button>
+								</div>
+							</div>
+							
+							<div class="blocComplet gauche">
+                  <div class="blocLabel">
+                    <p class=""><trsb:glp key="CONTACTS-PREF-HTML" ></trsb:glp></p>
+                  </div>
+  
+                  <div class="blocChamp multipleRadio civilite blocForm">
+                    <span>
+                        <input <%if(isMail){ %>checked="checked"  <%} %> type="radio" name="typeenvoi" id="emailBox" class="radio" value="mail" style="background: transparent;">
+                        <label for="email"><trsb:glp key="CONTACTS-PREF-EMAIL-HTML" ></trsb:glp></label>
+                    </span>
+                    <span>
+                        <input <%if(!isMail){ %>checked="checked"  <%} %> type="radio" name="typeenvoi" id="tel" class="radio" value="telephone">
+                        <label for="tel"><trsb:glp  key="CONTACTS-PREF-SMS-HTML" ></trsb:glp><br /></label> 
+                    </span>
+                  </div>
+                </div>
+               <div class="exempleMessage">
+		             <p><b><trsb:glp key="CONTACTS-EXEMPLES-HTML-TITLE" ></trsb:glp></b><br>
+		             <i><trsb:glp key="CONTACTS-EXEMPLES-HTML" ></trsb:glp></i></p>
+	             </div> 
+	              
+							<div class="borderDot title-bar-container dotted-portlet"></div>
+                        <p class="submit prev">
+                            <label for="submitprev"> <input type="submit" id="submitprev"
+                                name="opPrevious"
+                                value="<trsb:glp attribute="true" key="IDENT-BOUTON-PREV" ></trsb:glp>"
+                                class="submitButton"> <span class="input-box"
+                                style="background-color: #aec900"><span
+                                    class="spr-recherche-ok"></span></span>
+                            </label> <input type="hidden" name="noSendRedirect" value="true"> 
+                    
+                        </p>   
+							<p class="submit">
+								<label for="submit"> <input type="submit" id="submit"
+									name="opNext" value="<trsb:glp attribute="true" key="CONTACTS-BOUTON" ></trsb:glp>" class="submitButton">
+									<span class="input-box" style="background-color: #aec900"><span
+										class="spr-recherche-ok"></span></span>
+								</label> <input type="hidden" name="noSendRedirect" value="true">
+								<input type="hidden" name="id" value="c_5065">
+					
+							</p>
+
+
+
+				<!-- FIN FORMULAIRE A ETAPES -->
+	
+<!-- FIN -->
+<%} %>
+
+
+
+
