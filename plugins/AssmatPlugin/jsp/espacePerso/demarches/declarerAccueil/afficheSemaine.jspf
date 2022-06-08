@@ -1,0 +1,99 @@
+
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<p class="semaine">Semaine <%=numeroSemaine%></p>
+        <label for="specificiteSemaine<%=numeroSemaine%>" class="specificite question"><trsb:glp key="ASS-DEC-PL-Z2V-SPE-HTML" ></trsb:glp>
+         <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label='<%= AssmatUtil.getMessage("ASS-DEC-PL-Z2V-SPE-INF-HTML", false) %>' data-color="#AEC900">
+              <img alt="?" src="s.gif" class="spr-interrogation">
+            </button></label>
+
+          <input placeholder="Spécificité semaine <%=numeroSemaine%>" type="text" name="libelle<%=numeroSemaine%>" id="specificiteSemaine<%=numeroSemaine%>" value='<%= libelle %>' class="specificite">
+
+
+        
+        <jalios:select>
+            <jalios:if predicate='<%= !estProvisoireBool || Util.isEmpty(dateFinAccueil) %>'>
+                <p class="important"><trsb:glp key="ASS-DEC-PL-Z1-QUE-BASE-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>' ></trsb:glp></p>          
+            </jalios:if>          
+            <jalios:default>
+                <p class="important"><%=libelleTexteAccueil %></p>
+            </jalios:default>        
+        </jalios:select>
+        
+        
+        <%-- Jour de la semaine --%>
+        <jalios:foreach array="<%= DeclarerAccueilAssmatHandler.JOURS %>" name="itJour" type="String">
+	        <div class="gauche">
+	          <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore complètement chargée.'); return false;}" type="checkbox" <%= joursCheckTab[itCounter-1] ? "checked" : "" %> name="s<%= numeroSemaine + itJour %>" class="false-input cal<%= itJour.toLowerCase() %>">
+	        </div>
+	        <div class="intituleExtra">
+	          <label><%= itJour %></label>
+	        </div>        
+        </jalios:foreach>
+        
+  
+        <div class="renseignementPlanning" style='display: <%= Util.arrayContains(joursCheckTab, true) ? "" : "none" %> ;'>
+        
+<%--           <p><strong><%=libelleIntro %></strong></p> --%>
+
+          <p class="question"><trsb:glp key="ASS-DEC-PL-Z2V-PREC-HTML" ></trsb:glp></p> 
+        </div>
+
+
+        <div class="posRel">
+        <div class="semainier" style='display: <%= Util.arrayContains(joursCheckTab, true) ? "" : "none" %> ;'>
+          <p class="btnFonctionnalite plus copierColler"><a href="#" onclick="return false;"><trsb:glp key="ASS-DEC-PL-Z2R-COP-HTML" ></trsb:glp></a></p>
+                  <table class="tableCreneau">
+                      <thead>
+                          <tr>
+                              <th class=""></th>
+                              <th class="" colspan="2" scope="col">Créneau 1</th>
+                              <th class="creneau2" colspan="2" scope="col" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'>Créneau 2</th>
+                              <th class="creneau3" colspan="2" scope="col" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'>Créneau 3</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td class="">Jours</td>
+                              <td class="">H début</td>
+                              <td class="">H fin</td>
+                              <td class="creneau2" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'>H début</td>
+                              <td class="creneau2" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'>H fin</td>
+                              <td class="creneau3" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'>H début</td>
+                              <td class="creneau3" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'>H fin</td>
+                          </tr>                                                 
+                          <jalios:foreach array="<%= DeclarerAccueilAssmatHandler.JOURS %>" name="itJour" type="String">
+                          
+                            <%
+                              // La liste des horraires pour le jour de la boucle (itJour)
+                              ArrayList<CreneauHorraire> horraireList = creneauMap.get(itJour);
+                            %>
+                                                                                                                        
+                            <tr class="<%= itJour.toLowerCase() %>" style='display: <%= joursCheckTab[itCounter-1]? "" : "none"   %> ;'>
+                              <th scope="row" class=""><%= itJour %></th>
+                              <td class="creneau1 debut"><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>debcr1<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 0 ? horraireList.get(0).getDebut() : "" %>' ></td>
+                              <td class="creneau1 fin"><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>fincr1<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 0 ? horraireList.get(0).getFin() : "" %>'></td>
+                              <td class="creneau2 debut" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>debcr2<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 1 ? horraireList.get(1).getDebut() : "" %>'></td>
+                              <td class="creneau2 fin" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>fincr2<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 1 ? horraireList.get(1).getFin() : "" %>'></td>
+                              <td class="creneau3 debut" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>debcr3<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 2 ? horraireList.get(2).getDebut() : "" %>'></td>
+                              <td class="creneau3 fin" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>fincr3<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 2 ? horraireList.get(2).getFin() : "" %>'></td>
+                            </tr>                                                  
+                          </jalios:foreach>
+                      </tbody>
+                  </table>
+
+                  <p class="btnFonctionnalite plus ajouterCreneau"><a href="#" onclick="return false;"><trsb:glp key="ASS-DEC-PL-Z2R-AJO-HTML" ></trsb:glp></a>
+                  <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-PL-Z2R-AJO-INFB-HTML") %>" data-color="#AEC900">
+                     <img alt="?" src="s.gif" class="spr-interrogation">
+                  </button></p>
+                  <p class="btnFonctionnalite plus ajouterCreneau3" style='display: <%= nbCreneau == 2 ? "" : "none" %>;' onclick="return false;" ><a href="#"><trsb:glp key="ASS-DEC-PL-Z2R-AJO-HTML" ></trsb:glp></a>
+                   <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-PL-Z2R-AJO-INFB-HTML") %>" data-color="#AEC900">
+                     <img alt="?" src="s.gif" class="spr-interrogation">
+                  </button>
+                  </p>
+                  <p class="btnFonctionnalite moins supprimerCreneau2" style='display: <%= nbCreneau == 2 ? "" : "none" %>;' onclick="return false;"><a href="#"><trsb:glp key="ASS-DEC-PL-Z2R-SUP-HTML" ></trsb:glp></a></p>
+                  <p class="btnFonctionnalite moins supprimerCreneau3" style='display: <%= nbCreneau == 3 ? "" : "none" %>;' onclick="return false;"><a href="#"><trsb:glp key="ASS-DEC-PL-Z2R-SUP-HTML" ></trsb:glp></a></p>
+                </div>
+                </div> <!-- /position -->
+                
+        
+        <div class="borderDot title-bar-container dotted-portlet" style="margin-top: 10px;"></div>

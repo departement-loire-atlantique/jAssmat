@@ -1,0 +1,169 @@
+<%@page import="com.jalios.util.Util"%>
+<%@page import="fr.cg44.plugin.assmat.handler.ParametrageAssmatHandler"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@page contentType="text/html; charset=UTF-8"%>
+<%
+String visibiliteTelephoneFixe = formHandler.getAvailableVisbiliteTelephoneFixe();
+String visibiliteTelephonePortable = formHandler.getAvailableVisibiliteTelephonePortable();
+String visibiliteAdresseEmail = formHandler.getAvailableVisibiliteAdresseEmail();
+boolean afficherContactUniquementSiD = formHandler.getAvailableAfficherContactUniquementSiD();
+String telephoneMobile = formHandler.getTelephonePortable();
+if(Util.isEmpty(telephoneMobile)){
+  telephoneMobile = formHandler.getPublication().getAuthor().getMobile();
+}
+
+
+if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
+	String canalDeCommunication = formHandler.getAvailableCanalDeCommunicationSite();
+%>
+	<div class="blocComplet gauche">
+
+		<div class="blocLabel">
+			<p class=""><trsb:glp key="CONTACT-TEL-HTML"></trsb:glp></p>
+		</div>
+		<div class="blocChamp multipleRadio civilite blocForm">
+			<span>
+				<input type="text" name="telephoneFixe" id="fixe" value='<%= Util.notEmpty(formHandler.getAvailableTelephoneFixe())?formHandler.getAvailableTelephoneFixe():""%>' class="petit" />
+			</span>
+			<span>
+				<input type="radio" name="visbiliteTelephoneFixe" id="oui_fixe" class="radio" value="true"
+					<%if(Util.notEmpty(visibiliteTelephoneFixe) && "true".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> />
+				<label for="oui_fixe"><trsb:glp key="CONTACT-TEL-OUI-HTML"></trsb:glp></label>
+			</span>
+			<span>
+				<input type="radio" name="visbiliteTelephoneFixe" id="non_fixe" class="radio" value="false"
+					<%if(Util.notEmpty(visibiliteTelephoneFixe) && "false".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> />
+				<label for="non_fixe"><trsb:glp key="CONTACT-TEL-NON-HTML"></trsb:glp><br /></label> 
+			</span>
+		</div>
+	</div>
+
+	<div class="blocComplet gauche">
+		<div class="blocLabel">
+			<p class=""><trsb:glp key="CONTACT-MOB-HTML"></trsb:glp></p>
+		</div>
+		<div class="blocChamp multipleRadio civilite blocForm">
+			<span>
+				<input type="text" name="telephonePortable" id="telephone" <%if(Util.notEmpty(telephoneMobile)){ %>value='<%=telephoneMobile%>' <%} %> class="petit" 
+					<% if("0".equals(canalDeCommunication)) { %> disabled <% } %>>
+					<% if("0".equals(canalDeCommunication)) { %><input type="hidden" name="telephonePortable" value='<%=telephoneMobile%>'/><%} %>
+			</span>
+			<span>
+				<input type="radio" name="visibiliteTelephonePortable" id="oui_portable" class="radio" value="true"
+					<%if(Util.notEmpty(visibiliteTelephonePortable) && "true".equals(visibiliteTelephonePortable) ){ %> checked="checked" <%} %> />
+				<label for="oui_portable"><trsb:glp key="CONTACT-MOB-OUI-HTML"></trsb:glp></label>
+			</span>
+			<span>
+				<input type="radio" name="visibiliteTelephonePortable" id="non_portable" class="radio" value="false"
+					<%if(Util.notEmpty(visibiliteTelephonePortable) && "false".equals(visibiliteTelephonePortable) ){%> checked="checked" <%} %> />
+				<label for="non_portable"><trsb:glp key="CONTACT-MOB-NON-HTML"></trsb:glp><br /></label> 
+			</span>
+		</div>
+		<div style="clear: both"></div>
+		<%if("true".equals(visibiliteTelephonePortable) ){ %>
+		<p><trsb:glp key="CONTACT-TEL-LEG-HTML"></trsb:glp></p>
+		<%} %>
+	</div>
+
+	<div class="blocComplet gauche" id="creneau">
+		<div class="blocLabel">
+			<p class=""><trsb:glp key="CONTACT-TEL-HOR-HTML"></trsb:glp></p>
+		</div>
+		<div class="blocChamp afficher-profile blocForm">
+			<span>
+				<input type="text" name="creneauHorairesDappel" id="creneau_input" value='<%= Util.notEmpty(formHandler.getAvailableCreneauHorairesDappel())?formHandler.getAvailableCreneauHorairesDappel():"" %>' class="petit">
+			</span>
+		</div>
+
+
+	</div>
+
+	<h3 class="title-bar-container dotted-portlet"><trsb:glp key="CONTACT-INTROMAIL-HTML"></trsb:glp></h3>
+	
+	
+	<div class="blocComplet gauche">
+
+		<p><trsb:glp key="CONTACT-LEG-MAIL-HTML"></trsb:glp></p>
+
+		<div class="blocLabel">
+			<p class=""><trsb:glp key="CONTACT-MAIL-HTML"></trsb:glp></p>
+		</div>
+		<div class="blocChamp multipleRadio civilite blocForm">
+			<span>
+				<input type="text" name="adresseMail" id="email" value='<%=Util.notEmpty(formHandler.getAdresseMail())?formHandler.getAdresseMail():""%>' class="petit" 
+					<% if("1".equals(canalDeCommunication)) { %> disabled <% } %>>
+					<% if("1".equals(canalDeCommunication)) { %><input type="hidden" name="adresseMail" value='<%=Util.notEmpty(formHandler.getAdresseMail())?formHandler.getAdresseMail():""%>'/><%} %>
+			</span>
+			<span>
+				<input onclick="jQuery.plugin.AssmatPlugin.toggle('contactMsgMail', 'show');" type="radio" name="visibiliteAdresseEmail" id="oui-mail" class="radio" value="true"
+					<%if( (Util.notEmpty(visibiliteAdresseEmail) && "true".equals(visibiliteAdresseEmail)) || (Util.notEmpty(formHandler.getAdresseMail()) && ("none".equals(visibiliteAdresseEmail) || Util.isEmpty(visibiliteAdresseEmail)))  ){ %> checked="checked" <%} %> />
+				<label for="oui-mail"><trsb:glp key="CONTACT-MAIL-OUI-HTML"></trsb:glp></label>
+			</span>
+			<span>
+				<input onclick="jQuery.plugin.AssmatPlugin.toggle('contactMsgMail', 'hide');" type="radio" name="visibiliteAdresseEmail" id="non-mail" class="radio" value="false"
+					<%if(Util.notEmpty(visibiliteAdresseEmail) && "false".equals(visibiliteAdresseEmail) ){%> checked="checked" <%} %> />
+				<label for="non-mail"><trsb:glp key="CONTACT-MAIL-NON-HTML"></trsb:glp><br /></label> 
+			</span>
+		</div>
+		<div style="clear: both"></div>
+		
+		<p id="contactMsgMail"><trsb:glp key="CONTACT-LEG2-MAIL-HTML"></trsb:glp></p>
+	</div>
+
+	<h3 class="title-bar-container dotted-portlet"><trsb:glp key="CONTACT-DISPO-HTML"></trsb:glp></h3>
+
+	<div class="blocComplet gauche">
+		<div class="blocChamp multipleRadio civilite blocForm">
+			<span>
+				<input type="radio" name="afficherContactUniquementSiD" id="oui-si-dispo" class="radio" value="true"
+					<%if(afficherContactUniquementSiD){ %>  checked="checked" <%} %> style="background: transparent;">
+				<label for="oui-si-dispo"><trsb:glp key="CONTACT-DISPO-OUI-HTML"></trsb:glp></label>
+			</span>
+			<span>
+				<input type="radio" name="afficherContactUniquementSiD" id="non-si-dispo" class="radio" value="false"
+					<%if(!afficherContactUniquementSiD){ %> checked="checked" <%} %>>
+				<label for="non-si-dispo"><trsb:glp key="CONTACT-DISPO-NON-HTML"></trsb:glp><br /></label> 
+			</span>
+		</div>
+	</div>
+
+	<trsb:glp key="CONTACT-DISPO-LEG-HTML"></trsb:glp>
+	<%--
+	<p><%=glp("jcmsplugin.assmatplugin.parametrage.msg.contact.dispo.oui")%></p>
+	<p><%=glp("jcmsplugin.assmatplugin.parametrage.msg.contact.dispo.non")%></p>
+ --%>
+	<div class="borderDot title-bar-container dotted-portlet"></div>
+
+    <p class="submit prev">
+        <label for="submit"> 
+        <input type="submit" id="submitPrev"
+            name="opPrevious" value='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>' class="submitButton">
+            <span class="input-box" style="background-color: #aec900">
+                <span class="spr-recherche-ok"></span>
+            </span>
+        </label>
+        <input type="hidden" name="noSendRedirect" value="true" />
+        
+    </p>
+                        
+	<p class="submit">
+		<label for="submit"> <input type="submit" id="submit"
+			name="opNext" value='<trsb:glp key="CONTACT-BOUTON-HTML" attribute="true"></trsb:glp>' class="submitButton">
+			<span class="input-box" style="background-color: #aec900">
+				<span class="spr-recherche-ok"></span>
+			</span>
+		</label>
+		<input type="hidden" name="noSendRedirect" value="true" />
+		
+	
+	</p>
+	<jalios:javascript>
+  
+  <%if(Util.isEmpty(visibiliteAdresseEmail) || !"true".equals(visibiliteAdresseEmail) ){ %>
+  jQuery( "#contactMsgMail" ).hide();
+   <% } %>
+	</jalios:javascript>
+	<!-- FIN FORMULAIRE A ETAPES -->
+<%} %>

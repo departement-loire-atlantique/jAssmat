@@ -1,0 +1,149 @@
+<%@page import="fr.cg44.plugin.tools.facetedsearch.exception.UnknowCityException"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="java.util.Collections"%>
+<%
+//Commune
+String communeId = getUntrustedStringParameter("idCommune",null);
+String commune = getUntrustedStringParameter("cityName",null);
+int codeInsee = getIntParameter("codeInsee",0);
+CityManager cityManager = CityManager.INSTANCE;
+City city = null;
+String communeCode = null;
+
+// A t'on bien toujours le code Insee d'envoyé?
+if(Util.notEmpty(codeInsee)){
+	try {
+	 city =(City) cityManager.getCityByCode(String.valueOf(codeInsee), City.class);
+	 communeCode = city.getZipCode();
+	} catch (UnknowCityException e){
+		logger.warn("La commune <"+commune+"> <"+codeInsee+"> n'a pas été trouvée.");
+	}
+}
+
+//Adresse 
+String adresse ="";
+if(Util.notEmpty(getUntrustedStringParameter("adresse",null))){
+    adresse = getUntrustedStringParameter("adresse","");
+}
+
+//DISTANCE
+int distance = getIntParameter("distance", 0);
+
+//QUARTIERS
+List<String> listeIdQuartiers =  new ArrayList<String>();
+String[] codesQuartiers = getStringParameterValues("quartier", ".*");
+if (Util.notEmpty(codesQuartiers)) {
+	listeIdQuartiers.addAll(Arrays.asList(codesQuartiers));
+}
+
+//MICRO QUARTIERS
+List<String> listeIdMicroQuartiers =  new ArrayList<String>();
+String[] codesMicroQuartiers = getStringParameterValues("microQuartier", ".*");
+if (Util.notEmpty(codesMicroQuartiers)) {
+	listeIdMicroQuartiers.addAll(Arrays.asList(codesMicroQuartiers));
+}
+
+// A partir de
+long time = getLongParameter("month", -1);
+Date dateTime = new Date(time);
+// Age de l'enfant
+String trancheAgeKey = getUntrustedStringParameter("age", "-1");
+String[] tabTrancheAge = Util.decodeStringArray(trancheAgeKey);
+
+//LIEU D'EXERCICE
+HashSet<Category> categorySet = new HashSet<Category>();
+String[] idCategLieu = getStringParameterValues("lieuexercice", ".*");
+if (Util.notEmpty(idCategLieu)) {
+	categorySet.addAll(AssmatUtil.getCategorySetFromIds(idCategLieu));
+}
+
+//PAR TYPE D'ACCUEIl
+String[] idCategType = getStringParameterValues("typeaccueil", ".*");
+if (Util.notEmpty(idCategType)) {
+	categorySet.addAll(AssmatUtil.getCategorySetFromIds(idCategType));
+}
+
+//PAR SPECIFICITE
+String[] idCategSpecificite = getStringParameterValues("specificite", ".*");
+if (Util.notEmpty(idCategSpecificite)) {
+	categorySet.addAll(AssmatUtil.getCategorySetFromIds(idCategSpecificite));
+}
+
+
+HashMap<String, Boolean> hashMapBooleanChamps = new HashMap<String, Boolean>();
+hashMapBooleanChamps = AssmatUtil.getHashMapFromSelectedCategories(categorySet);
+
+//Checkbox selon les choix de l'utilisateur (seulement les dispos, les non renseignÃ©es ect ..)
+boolean withDispo = true;
+boolean withDispoFuture = true;
+boolean withNonDispo = true;
+boolean withDispoNonRenseigne = true;
+
+if (Util.notEmpty(request.getParameter("withDispo"))) {
+	if (request.getParameter("withDispo").equalsIgnoreCase("false")) {
+		withDispo = false;
+	}
+}
+
+if (Util.notEmpty(request.getParameter("withDispoFuture"))) {
+	if (request.getParameter("withDispoFuture").equalsIgnoreCase("false")) {
+		withDispoFuture = false;
+	}
+}
+
+if (Util.notEmpty(request.getParameter("withNonDispo"))) {
+	if (request.getParameter("withNonDispo").equalsIgnoreCase("false")) {
+		withNonDispo = false;
+	}
+}
+
+if (Util.notEmpty(request.getParameter("withDispoNonRenseigne"))) {
+   if (request.getParameter("withDispoNonRenseigne").equalsIgnoreCase("false")) {
+		withDispoNonRenseigne = false;
+   }
+ }
+
+//Criteres de recherche
+boolean lieuDomicile = Util.notEmpty(hashMapBooleanChamps.get("lieuDomicile")) ? hashMapBooleanChamps.get("lieuDomicile") : false;
+boolean lieuMam = Util.notEmpty(hashMapBooleanChamps.get("lieuMam")) ? hashMapBooleanChamps.get("lieuMam") : false;
+boolean accueilPerisco = Util.notEmpty(hashMapBooleanChamps.get("accueilPeriscolaire")) ? hashMapBooleanChamps.get("accueilPeriscolaire") : false;
+boolean accueilMercredi = Util.notEmpty(hashMapBooleanChamps.get("accueilMercredi")) ? hashMapBooleanChamps.get("accueilMercredi") : false;
+boolean accueilVacances = Util.notEmpty(hashMapBooleanChamps.get("accueilVacances")) ? hashMapBooleanChamps.get("accueilVacances") : false;
+boolean accueilAvant7h = Util.notEmpty(hashMapBooleanChamps.get("accueilAvant7h")) ? hashMapBooleanChamps.get("accueilAvant7h") : false;
+boolean accueilApres20h = Util.notEmpty(hashMapBooleanChamps.get("accueilApres20h")) ? hashMapBooleanChamps.get("accueilApres20h") : false;
+boolean accueilSamedi = Util.notEmpty(hashMapBooleanChamps.get("accueilSamedi")) ? hashMapBooleanChamps.get("accueilSamedi") : false;
+boolean accueilDimanche = Util.notEmpty(hashMapBooleanChamps.get("accueilDimanche")) ? hashMapBooleanChamps.get("accueilDimanche") : false;
+boolean accueilNuit = Util.notEmpty(hashMapBooleanChamps.get("accueilNuit")) ? hashMapBooleanChamps.get("accueilNuit") : false;
+boolean specHandicape = Util.notEmpty(hashMapBooleanChamps.get("specHandicape")) ? hashMapBooleanChamps.get("specHandicape") : false;
+boolean specPartiel = Util.notEmpty(hashMapBooleanChamps.get("specPartiel")) ? hashMapBooleanChamps.get("specPartiel") : false;
+boolean specDepannages = Util.notEmpty(hashMapBooleanChamps.get("specDepannages")) ? hashMapBooleanChamps.get("specDepannages") : false;
+boolean accueilAtypique = Util.notEmpty(hashMapBooleanChamps.get("accueilAtypique")) ? hashMapBooleanChamps.get("accueilAtypique") : false;
+
+// Coordonnées géographiques (commune ou adresse)
+String longitude = getUntrustedStringParameter("longitude","");
+String latitude = getUntrustedStringParameter("latitude","");
+
+double geoLong = 0.0;
+double geoLat = 0.0;
+
+/* 	On ne prend en compte les coordonnées de longitude / latitude que si on a une adresse de renseignée
+	ou si on a une distance autre que "Toute la commune"
+ */
+if ((distance>0 || Util.notEmpty(adresse)) && Util.notEmpty(longitude) && Util.notEmpty(latitude)) {
+	geoLong = Double.parseDouble(longitude);
+	geoLat = Double.parseDouble(latitude);
+}
+
+
+
+
+ //Nom de l'assmat 
+ String nomAssmat = getUntrustedStringParameter("nomassmat", "");
+
+ // Clé de hash pour le trie aléatoire des assmats lors d'une recherche
+ String hashKey = getUntrustedStringParameter("hashKey", "");
+ if (Util.isEmpty(hashKey)) {
+   hashKey = Integer.toString((int) (Math.random() * 1000) + 1);
+ }
+%>

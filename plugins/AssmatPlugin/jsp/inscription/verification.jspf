@@ -1,0 +1,465 @@
+<%@page import="java.math.BigDecimal"%>
+<%@page import="com.jalios.util.ReflectUtil"%>
+<%@page import="java.lang.reflect.Field"%>
+<%@page import="fr.cg44.plugin.tools.ToolsUtil"%>
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="fr.trsb.cd44.solis.beans.AssmatSolis"%>
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+  
+%>
+<%
+if (step == InscriptionAssmatHandler.VERIFICATION_STEP) {
+  
+ AssmatSolis assMat = formHandler.getAssmat();
+if(Util.notEmpty(assMat)){ 
+ SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
+ DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+ 
+
+//Recuperation des infos en param
+ String civiliteAsssmat = formHandler.getCivilite(); 
+ String nomAsssmat = formHandler.getNom(); 
+ String prenomAsssmat = formHandler.getPrenom(); 
+ Date dateAnniv = dateFormatter.parse(formHandler.getDateDeNaissance());
+ String dateNaissanceAssmat = formatter.format(dateAnniv);
+ int numAssmat = formHandler.getNumeroAgrementInteger();
+ String datePremierAgrement = "";
+ if(Util.notEmpty(formHandler.getDatePremierAgrement())) {
+  Date dateAgre = dateFormatter.parse(formHandler.getDatePremierAgrement());
+   datePremierAgrement = formatter.format(dateAgre); 
+ }
+ 
+ String dateDernierRenouvellement = "";
+ if(Util.notEmpty(formHandler.getDateDernierRenouvellement())) {
+  Date date = dateFormatter.parse(formHandler.getDateDernierRenouvellement());
+  dateDernierRenouvellement = formatter.format(date); 
+ }
+ String dateProchainRenouvellement = "";
+ if(Util.notEmpty(formHandler.getDateProchainRenouvellement())) {
+  Date date = dateFormatter.parse(formHandler.getDateProchainRenouvellement());
+  dateProchainRenouvellement = formatter.format(date); 
+ }
+ String dateDernierRenouvellementMAM = "";
+ if(Util.notEmpty(formHandler.getDateDernierRenouvellementMAM())) {
+  Date date = dateFormatter.parse(formHandler.getDateDernierRenouvellementMAM());
+  dateDernierRenouvellementMAM = formatter.format(date); 
+ }
+ String dateProchainRenouvellementMAM = "";
+ if(Util.notEmpty(formHandler.getDateProchainRenouvellementMAM())) {
+  Date date = dateFormatter.parse(formHandler.getDateProchainRenouvellementMAM());
+  dateProchainRenouvellementMAM = formatter.format(date); 
+ } 
+ 
+ Double latAM = formHandler.getLatAM();
+ Double longAM = formHandler.getLongAM();
+ Double latMAM = formHandler.getLatMAM();
+ Double longMAM = formHandler.getLongMAM();
+ 
+ if((Util.isEmpty(latMAM) ||latMAM == 0.0 ) && (Util.isEmpty(longMAM) ||longMAM == 0.0 ) && assMat.getExerceMam()){
+   longMAM = assMat.getLongitudeMam().doubleValue();
+   latMAM = assMat.getLatitudeMam().doubleValue();
+ }
+ 
+ 
+ 
+ if((Util.isEmpty(longAM) ||longAM == 0.0 ) && (Util.isEmpty(latAM) ||latAM == 0.0 )&& assMat.getExerceDomicile() ){
+   longAM = assMat.getLongitude().doubleValue();
+   latAM = assMat.getLatitude().doubleValue();
+ }
+ 
+ 
+ //Recuepration des infos de l'assmat
+String exerceDomicileLbl = "";
+ boolean exerceDomicile = false;
+if(Util.notEmpty(assMat.getExerceDomicile())){
+    exerceDomicile = assMat.getExerceDomicile();
+    if(exerceDomicile){
+      exerceDomicileLbl= AssmatUtil.getAdresseDomicile(assMat);
+    }
+}
+
+String exerceMamLbl = "";
+boolean exerceMam = false;
+if(Util.notEmpty(assMat.getExerceMam())){
+     exerceMam = assMat.getExerceMam();
+     
+     if(Util.notEmpty(exerceMam) && exerceMam){
+       exerceMamLbl = AssmatUtil.getAdresseMAM(assMat);
+     }
+}
+     
+%>
+
+		
+				<!-- FORMULAIRE A ETAPES -->
+	 		
+		<div class="formulaire">
+							<div class="blocComplet mileu simple">
+									<div class="blocLabel">
+										<p class=""><trsb:glp key="VERIF-IDENTITE" ></trsb:glp></p>
+									</div>
+	
+									<div class="blocChamp blocForm">
+										<span><p><%= civiliteAsssmat %> <%= prenomAsssmat %> <%= nomAsssmat %></p>
+										</span>
+									</div>
+								</div>
+							
+							<%if(Util.notEmpty(dateNaissanceAssmat)){ %>
+           <div class="blocComplet mileu simple">
+                  <div class="blocLabel">
+                    <p class=""><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.verif.naissance") %></p>
+                  </div>
+  
+                  <div class="blocChamp blocForm">
+                    <span><p><%=dateNaissanceAssmat%></p>
+                    </span>
+                  </div>
+                </div>
+                <%} %>
+                
+                  <%if(numAssmat != InscriptionAssmatHandler.NUMERO_AGREMENT_DEFAULT){ %>
+                <div class="blocComplet mileu simple">
+                  <div class="blocLabel">
+                    <p class=""><trsb:glp key="VERIF-NUM-DOSSIER" ></trsb:glp></p>
+                  </div>
+  
+                  <div class="blocChamp blocForm">
+                    <span><p><%=numAssmat%></p>
+                    </span>
+                  </div>
+                </div>
+                <% }%>
+                
+                <%if(Util.notEmpty(datePremierAgrement)){ %>
+                <div class="blocComplet mileu simple">
+                  <div class="blocLabel">
+                    <p class=""><trsb:glp key="VERIF-DATE-1ER-AGREMENT" ></trsb:glp></p>
+                  </div>
+  
+                  <div class="blocChamp blocForm">
+                    <span><p><%= datePremierAgrement%></p>
+                    </span>
+                  </div>
+                </div>
+                <%} %>
+
+        
+                <div class="blocComplet mileu simple">
+                  <div class="blocLabel">
+                    <p class=""><trsb:glp key="VERIF-PERIODE-AGREMENT" ></trsb:glp></p>
+                  </div>
+  
+                  <div class="blocChamp blocForm">
+                    <span><p>Du <%= dateDernierRenouvellement %> au <%= dateProchainRenouvellement %></p>
+                    </span>
+                  </div>
+                </div>
+         
+      
+                <%-- AGREMENT --%>
+                <div class="blocComplet mileu simple">
+                  <div class="blocLabel">
+                    <p class=""><trsb:glp key="VERIF-AGREMENT" ></trsb:glp></p>
+                  </div>
+
+                  
+                  <div class="blocChamp blocForm">
+                  
+                    
+                    <%-- AGREMENT DOMICILE --%>
+                    <jalios:if predicate='<%= exerceDomicile %>'>
+	                    <span>                   
+		                    <p class="nobold">
+		                     A <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp><br/>
+		                      
+		                    
+		                    </p>
+		                   
+                        <% for(int itPlace=1; itPlace<=8; itPlace++) { %>
+                        
+                          <%
+                          // agrementTrancheAgeKey
+                          Field agrementTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"AgrementTrancheAgeKey");
+                          String agremenTracheAgeKey = (String) ReflectUtil.getFieldValue(assMat, agrementTracheAgeKeyField);
+                          
+                          // placeTracheAgeKey
+                          Field placeTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"TrancheAgeKey");
+                          Integer placeTracheAgeKey = (Integer) ReflectUtil.getFieldValue(assMat, placeTracheAgeKeyField);    
+                          
+                          // PlaceNbPlaces
+                          Field placeNbPlacesField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"NbPlaces");
+                          Integer placeNbPlaces = (Integer) ReflectUtil.getFieldValue(assMat, placeNbPlacesField);
+    
+                          // placeTrancheAge
+                          Field placeTrancheAgeField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"TrancheAge");
+                          String placeTrancheAge = (String) ReflectUtil.getFieldValue(assMat, placeTrancheAgeField);
+    
+                          // PlaceLibCompl
+                          Field placeLibComplField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"LibCompl");
+                          String placeLibCompl = (String) ReflectUtil.getFieldValue(assMat, placeLibComplField);
+                          %>
+                        
+                          <% if(Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("dom-")){%>                   
+                           <p class="bold"> <%=JcmsUtil.glp(channel.getCurrentUserLang(), "jcmsplugin.assmatplugin.inscription.verification.place", placeNbPlaces)%> <%= AssmatUtil.getTitlePlace(placeTrancheAge, placeLibCompl, placeTracheAgeKey) %></p>
+                          <%} %>
+                        
+                        <%} %>                
+                      </span>
+		                     </jalios:if>
+	   
+		                     <jalios:if predicate='<%= exerceMam %>'>
+                      <span>                                     
+                        <p class="nobold">
+                         En <trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp><br/>
+                          
+                          <span>                                     
+     
+                        </p>
+                        
+                      
+                        <% for(int itPlace=1; itPlace<=8; itPlace++) { %>
+                        
+                          <%
+                          // agrementTrancheAgeKey
+                          Field agrementTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"AgrementTrancheAgeKey");
+                          String agremenTracheAgeKey = (String) ReflectUtil.getFieldValue(assMat, agrementTracheAgeKeyField);
+                          
+                          // placeTracheAgeKey
+                          Field placeTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"TrancheAgeKey");
+                          Integer placeTracheAgeKey = (Integer) ReflectUtil.getFieldValue(assMat, placeTracheAgeKeyField);    
+                          
+                          // PlaceNbPlaces
+                          Field placeNbPlacesField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"NbPlaces");
+                          Integer placeNbPlaces = (Integer) ReflectUtil.getFieldValue(assMat, placeNbPlacesField);
+    
+                          // placeTrancheAge
+                          Field placeTrancheAgeField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"TrancheAge");
+                          String placeTrancheAge = (String) ReflectUtil.getFieldValue(assMat, placeTrancheAgeField);
+    
+                          // PlaceLibCompl
+                          Field placeLibComplField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"LibCompl");
+                          String placeLibCompl = (String) ReflectUtil.getFieldValue(assMat, placeLibComplField);
+                          %>
+                        
+                          <% if(Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("mam-")){%>                   
+                           <p class="bold"> <%=JcmsUtil.glp(channel.getCurrentUserLang(), "jcmsplugin.assmatplugin.inscription.verification.place", placeNbPlaces)%> <%= AssmatUtil.getTitlePlace(placeTrancheAge, placeLibCompl, placeTracheAgeKey) %></p>
+                          <%} %>
+                        
+                        <%} %>
+                    
+                      </span>
+                        </p>
+                          </jalios:if>
+                     </div>     
+                       </div>   
+                 <div class="blocComplet mileu simple">
+                        <div class="blocLabel">
+                          <p class="nobold"><trsb:glp key="VERIF-LIEU-EXERCICE" ></trsb:glp></p>
+                        </div>
+
+                  
+                  <div class="blocChamp blocForm">    
+		                    <jalios:if predicate='<%= exerceDomicile %>'>
+		                     <p class="nobold">
+                         <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp><br/>
+                          
+                          <span>                                     
+     
+                        </p>
+	                    <%if(Util.notEmpty(exerceDomicileLbl)){%> 
+	                     <div class="blocCarte" style="margin-bottom: 30px;">                                   
+		                      <p><span class=""><%= exerceDomicileLbl %></span></p>     
+		                      <div class="carto">
+				                    <% request.setAttribute("gMapsType", "large"); %>
+				                    <% request.setAttribute("latitude", new BigDecimal(latAM)); %>
+				                    <% request.setAttribute("longitude",new BigDecimal(longAM)); %>
+		                        <jsp:include page='/plugins/AssmatPlugin/jsp/inscription/map/mapDisplay.jsp?idMap=dom' />
+		                        <% request.removeAttribute("gMapsType"); %>
+		                        <% request.removeAttribute("latitude"); %>
+		                        <% request.removeAttribute("longitude"); %>
+		                        <input type="hidden" id ="latAMTampon" name="latAMTampon" value="<%=latAM%>">
+		                         <input type="hidden" id="longAMTampon" name="longAMTampon" value="<%=longAM%>">
+		                         <input type="hidden" id ="latAM" name="latAM" value="<%=latAM%>">
+                             <input type="hidden" id="longAM" name="longAM" value="<%=longAM%>">
+		                      </div>
+		                      <p class="submit submitNewPositionAM hide">
+		                      <label for="submit"> <input type="button" id="submit"
+					                  name="opCreate" value="Valider" class="submitButton">
+					                  <span class="input-box" style="background-color: #aec900"><span
+					                    class="spr-recherche-ok"></span></span>
+					                </label> <input type="hidden" name="noSendRedirect" value="true">
+						                     
+	                      </p> 
+	                    </div> 
+	                      <jalios:javascript>
+	                      
+	                      jQuery( ".submitNewPositionAM" ).click(function(event) {
+                          document.getElementById("latAM").value =  document.getElementById("latAMTampon").value;
+                          document.getElementById("longAM").value =  document.getElementById("longAMTampon").value;
+                          jQuery( ".submitNewPositionAM" ).hide();
+                         
+                          
+                        });
+	                      
+	                      </jalios:javascript>
+	                      
+	                      
+	                      
+	                      
+	                    <%                    
+	                    }%>                                                  
+                    </jalios:if>
+                   
+                  
+                   
+                    <%-- AGREMENT MAISON ASSISTANTES --%>
+                    <jalios:if predicate='<%= exerceMam %>'>
+	                    <span>                                     
+		                    <p class="nobold">
+		                     <trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp><br/>
+		                      
+		  
+		                    </p>
+
+	                    </span>
+	                  
+                  
+	                    <%if(Util.notEmpty(exerceMamLbl)){%> 
+	                     <div class="blocCarte">                                   
+	                        <p><span></span><span class=""><%= exerceMamLbl %></span></p>
+	                      
+	                       
+	                        <div class="carto">
+	                          <% request.setAttribute("gMapsType", "large"); %>
+	                          <% request.setAttribute("latitude",new BigDecimal(latMAM)); %>
+	                          <% request.setAttribute("longitude",new BigDecimal(longMAM)); %>
+	                          <jsp:include page='/plugins/AssmatPlugin/jsp/inscription/map/mapDisplay.jsp?idMap=mam' />
+	                          <% request.removeAttribute("gMapsType"); %>
+	                          <% request.removeAttribute("latitude"); %>
+	                          <% request.removeAttribute("longitude"); %>
+	                          <input type="hidden" id ="latMAMTampon" name="latMAMTampon" value="<%=latMAM%>">
+                             <input type="hidden" id="longMAMTampon" name="longMAMTampon" value="<%=longMAM%>">
+                             <input type="hidden" id ="latMAM" name="latMAM" value="<%=latMAM%>">
+                             <input type="hidden" id="longMAM" name="longMAM" value="<%=longMAM%>">
+	                        </div>
+	                         <p class="submit submitNewPositionMAM hide">
+                          <label for="submit"> <input type="button" id="submit"
+                            name="opCreate" value="Valider" class="submitButton">
+                            <span class="input-box" style="background-color: #aec900"><span
+                              class="spr-recherche-ok"></span></span>
+                          </label> <input type="hidden" name="noSendRedirect" value="true">
+                                
+                        </p> 
+                        </div> 
+	                         <jalios:javascript>
+                        
+                        jQuery( ".submitNewPositionMAM" ).click(function(event) {
+                          document.getElementById("latMAM").value =  document.getElementById("latMAMTampon").value;
+                          document.getElementById("longMAM").value =  document.getElementById("longMAMTampon").value;
+                          jQuery( ".submitNewPositionMAM" ).hide();
+                          
+                          
+                        });
+                        
+                        </jalios:javascript>
+	                        
+	                      
+	                    <%                    
+	                    }%>  
+                    </jalios:if>
+                     <p><span class="notBold"><trsb:glp key="TEXTE-CORRECTION-LIEU-HTML" ></trsb:glp></span></p>
+                     
+                       </div>                                             
+                   </div>                                                                                   
+                
+            
+
+							<div class="borderDot title-bar-container dotted-portlet"></div>
+							
+         
+							
+							<p class="submit">
+							 <a class="signalerErreur"  data-jalios-action="toggle:show toggle:hide remove:disabled toggle:hide" data-jalios-target=".SignalementErreur|.formulaire|#inputContact|.h3Signale" href="#"><trsb:glp key="VERIF-ERREUR"></trsb:glp></a>
+								<label for="submit"> <input type="submit" id="submit"
+									name="opCreate" value="<trsb:glp key="VERIF-BOUTON" attribute="true"></trsb:glp>" class="submitButton">
+									<span class="input-box" style="background-color: #aec900"><span
+										class="spr-recherche-ok"></span></span>
+								</label> <input type="hidden" name="noSendRedirect" value="true">
+							 <input type="hidden" name="opNext" value="true">
+							</p>
+</div>  
+  
+<!-- 	Formulaire pour signaler une erreur -->
+	<div class="SignalementErreur">
+	<h3 class="title-bar-container dotted-portlet"><span class="texte-parametrable text-parametrable"><trsb:glp key="VERIF-ERREUR"></trsb:glp></span></h3>
+		 <div class="blocComplet gauche">
+                <div class="blocLabel blocForm">
+                   <label for="texte"><trsb:glp key="VERIF-ERREUR-TEXTE-INTRO-HTML" ></trsb:glp></label><br><span class="infoContact"><i> <trsb:glp key="VERIF-ERREUR-TEXTE-HTML" ></trsb:glp> </i></span> 
+                </div>
+                
+                <div class="blocChamp blocForm petit">
+                  <textarea rows="10" cols="50" name="texteSignalement" form="formContact" id="textAreaContact"></textarea>
+                </div>
+      </div>
+              
+              <p class="submit">
+                <label for="submit"> <input type="submit" id="submit"
+                  name="" value="Valider" class="submitButton">
+                  <span class="input-box" style="background-color: #aec900"><span
+                    class="spr-recherche-ok"></span></span>
+                </label> <input type="hidden" name="noSendRedirect" value="true">
+                  <input type="hidden" disabled="disabled" id="inputContact" name="opContact" value="true">
+              </p>
+             <%if(Util.notEmpty(formHandler.getNameUA()) && Util.notEmpty(formHandler.getNumeroTelUA())){ %>
+		<div style="margin-top: 70px;">
+		
+		<%
+		String parameterUA="";
+		int iteratorUA =0;
+		for(String itTel : formHandler.getNumeroTelUA()){ 
+		  if(iteratorUA!=0){
+		    parameterUA+= glp("jcmsplugin.assmatplugin.libelle.ua.ou");
+		  }
+		  parameterUA+=itTel;
+		  iteratorUA++;
+		  } 
+		
+		String[] tabParam =  new String[]{}; 
+		tabParam= (String[])Util.insertArray(tabParam, 0, formHandler.getNameUA());
+		tabParam=(String[]) Util.insertArray(tabParam, 1, parameterUA);
+		
+		%>
+		
+			<p><trsb:glp key="LIBELLE-TEL-UNITE-AGREMENT-HTML" parameter="<%=tabParam %>"></trsb:glp>
+			</p>
+		</div>
+		<%} %>
+		<%--   
+              <p class="submit">
+              
+                <label for="submit"> <input type="submit" id="submit"
+                  name="opCreate" value="Etape suivante" class="submitButton">
+                  <span class="input-box" style="background-color: #aec900"><span
+                    class="spr-recherche-ok"></span></span>
+                </label> <input type="hidden" name="noSendRedirect" value="true">
+               <input type="hidden" name="opNext" value="true">
+              </p>
+		 --%>
+		</div>		
+				<!-- FIN FORMULAIRE A ETAPES -->
+	
+<!-- FIN -->
+<%} 
+
+}%>
+
+
+
+

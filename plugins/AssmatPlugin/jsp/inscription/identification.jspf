@@ -1,0 +1,223 @@
+<%@page import="com.jalios.util.Util"%>
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+  
+%>
+<%
+//Recuperation des infos 
+String nom =formHandler.getNom();
+String prenom = formHandler.getPrenom();
+String dateNaissance =formHandler.getDateDeNaissance();
+String civilite =formHandler.getCivilite();
+String numeroAgrementString = "";
+if(formHandler.getNumeroAgrementInteger() != InscriptionAssmatHandler.NUMERO_AGREMENT_DEFAULT){
+	numeroAgrementString = formHandler.getNumeroAgrement();
+}
+int nbTentative = formHandler.getNbTentativeErrone();
+
+
+
+boolean isMme = false;
+if("mme".equalsIgnoreCase(civilite)){
+  isMme= true;
+}
+if("m".equalsIgnoreCase(civilite)){
+  isMme= false;
+}
+
+
+//On les vide pour ne pas afficher "null"
+if(Util.isEmpty(nom)){
+  nom="";
+}
+if(Util.isEmpty(prenom)){
+  prenom="";
+}
+if(Util.isEmpty(dateNaissance)){
+  dateNaissance="";
+}
+
+if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
+%>
+
+	 <%if(nbTentative<InscriptionAssmatHandler.NB_TENTATIVE_MAX){ 
+	 
+%>
+				<!-- FORMULAIRE A ETAPES -->
+				<%if(nbTentative!=0){ %>
+						<p class=""><trsb:glp key="IDENT-ECHEC-TEXTE-HTML" ></trsb:glp></p><br>
+						<%} %>
+							<div class="blocComplet gauche">
+									<div class="blocLabel">
+										<p class=""><trsb:glp key="IDENT-CIV-HTML" ></trsb:glp></p>
+									</div>
+	
+									<div class="blocChamp multipleRadio civilite blocForm">
+										<span>
+										<input type="radio" name="civilite" id="mme" class="radio"
+											value="mme" <%if(Util.notEmpty(civilite) && isMme ){ %>  checked="checked" <%} %>  style="background: transparent;">
+											<label for="mme"><%=glp("ui.com.lbl.salut.mrs") %></label></span>
+										
+										<span>
+										<input
+											type="radio" <%if(Util.notEmpty(civilite) && !isMme ){ %>  checked="checked" <%} %>  name="civilite" id="mr" class="radio" value="m"><label
+											for="mr"><%=glp("ui.com.lbl.salut.mr") %><br />
+											</label> 
+										</span>
+									</div>
+								</div>
+							
+            <div class="blocComplet gauche">
+								<div class="blocLabel blocForm">
+									<label for="Nom"><trsb:glp key="IDENT-NOM-HTML" ></trsb:glp></label>
+								</div>
+	
+								<div class="blocChamp blocForm">
+									<input type="text" name="nom" id="nom" value="<%=nom %>"
+										class="fullwidth">
+								</div>
+							</div>
+							
+           <div class="blocComplet gauche">
+								<div class="blocLabel blocForm">
+									<label for="Prenom"><trsb:glp key="IDENT-PRENOM-HTML" ></trsb:glp></label>
+								</div>
+	
+								<div class="blocChamp blocForm">
+									<input type="text" name="prenom" value="<%=prenom %>" id="prenom" class="fullwidth">
+								</div>
+							</div>
+							
+							<div class="blocComplet gauche">
+								<div class="blocLabel blocForm">
+	                <label for="naissance"><trsb:glp key="IDENT-DATE-HTML" ></trsb:glp><trsb:glp key="IDENT-DATE-EXEMPLE-HTML" ></trsb:glp></label>
+	              </div>
+	              
+	              <div class="blocChamp blocForm petit">
+	                <input type="text" value="<%=dateNaissance %>" name=dateDeNaissance id="dateDeNaissance" class="">
+	              </div>
+              </div>
+              
+               <div class="blocComplet gauche">
+	                <div class="blocLabel blocForm">
+	                <label for="agrement"><trsb:glp key="IDENT-NUM-DOSSIER-HTML" ></trsb:glp><trsb:glp key="IDENT-NUM-DOSSIER-NB-HTML" ></trsb:glp></label>
+	              </div>
+
+		              <div class="blocChamp blocForm petit">
+		                <input type="text" name="numeroAgrement" id="numeroAgrement" value="<%= numeroAgrementString %>" class="">
+		              </div>
+	             </div>
+	             
+	             <%--  0010190: Activation du compte - écran identification - pb texte administrable  --%>
+<!-- 	              <div class="noteForm"> -->
+<%-- 	                <span><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.noteagre") %></span> --%>
+<!-- 	              </div> -->
+              
+<span style="float:left"><%= glp("plugin.assmatplugin.mention.champ.obligatoire") %></span>
+							<div class="borderDot title-bar-container dotted-portlet"></div>
+
+<div>
+                                                
+						<p class="submit">
+							<label for="submit"> <input type="submit" id="submit"
+								name="opCreate"
+								value="<trsb:glp attribute="true" key="IDENT-BOUTON" ></trsb:glp>"
+								class="submitButton"> <span class="input-box"
+								style="background-color: #aec900"><span
+									class="spr-recherche-ok"></span></span>
+							</label> <input type="hidden" name="noSendRedirect" value="true"> <input
+								type="hidden" name="opNext" value="true">
+					
+						</p>
+</div>			
+
+				
+				<!-- FIN FORMULAIRE A ETAPES -->
+	<%} else {%>
+	
+	
+	<!-- Formulaire de contact support -->
+	<!-- 
+	 <p class=""><trsb:glp key="IDENT-ECHEC-TEXTE-HTML" ></trsb:glp></p><br>
+	  -->
+
+    <%-- Champ téléphone --%>
+	<div class="blocComplet gauche">
+		<div class="blocLabel blocForm">
+			<label for="telephone"><trsb:glp key="IDENT-ECHEC2-TEL-HTML"></trsb:glp></label>
+		</div>
+		<div class="blocChamp blocForm">
+<%  String telephone2Error = Util.getString(formHandler.getTelephone2Error(),"");    %>		
+			<input type="text" name="telephone2Error" id="telephone2Error" value="<%= telephone2Error %>" class="">
+		</div>
+	</div>
+	
+	<%-- Email --%>
+	<div class="blocComplet gauche">
+		<div class="blocLabel blocForm">
+			<label for="codePostal"><trsb:glp key="IDENT-ECHEC2-MAIL-HTML"></trsb:glp></label>
+		</div>
+		<div class="blocChamp blocForm">
+<%  String mail2Error = Util.getString(formHandler.getMail2Error(),"");    %> 
+			<input type="text" name="mail2Error" id="mail2Error" value="<%= mail2Error %>" class="">
+		</div>
+	</div>
+
+<div class="blocComplet gauche">
+	  
+	  
+                  <div class="blocLabel blocForm">
+                  <label for="codePostal"><trsb:glp key="IDENT-ECHEC2-CP-HTML"></trsb:glp><trsb:glp key="IDENT-ECHEC2-CP-EXEMPLE-HTML" ></trsb:glp></label>
+                </div>
+
+<%
+String codePostal = formHandler.getCodePostal();
+
+%>
+                  <div class="blocChamp blocForm petit">
+                    <input type="text" name="codePostal" id="codePostal" <%if(Util.notEmpty(codePostal)){ %> value="<%=codePostal %>" <%} %> class="">
+                  </div>
+               </div>
+	
+              <div class="blocComplet gauche">
+                <div class="blocLabel blocForm">
+                <label for="texte"><trsb:glp key="IDENT-ECHEC2-TXT-HTML"></trsb:glp><trsb:glp key="IDENT-ECHEC2-TXT-EXEMPLE-HTML" ></trsb:glp></label>
+                <%--
+                  <label for="texte">Votre message</label><br><span class="infoContact"><i>Ce message sera envoyé automatiquement au support du site. Vous serez recontactée ensuite pour donner suite à cet échange.</i></span>
+                   --%> 
+                </div>
+                
+                <div class="blocChamp blocForm petit">
+                <TEXTAREA name="texteSupport" id="textAreaContact" rows=10 COLS=50><%= Util.notEmpty(formHandler.getTexteSupport())?formHandler.getTexteSupport():"" %></TEXTAREA> 
+                  
+                </div>
+              </div>
+              <br>
+             <trsb:glp key="CONTACT-SUPPORT-TEL-HTML"></trsb:glp>
+
+              <div class="borderDot title-bar-container dotted-portlet"></div>
+
+              <p class="submit">
+              
+                <label for="submit"> <input type="submit" id="submit"
+                  name="opCreate" value="Envoyer" class="submitButton">
+                  <span class="input-box" style="background-color: #aec900"><span
+                    class="spr-recherche-ok"></span></span>
+                </label> <input type="hidden" name="noSendRedirect" value="true">
+                <input type="hidden" name="id" value="c_5065">
+                  <input type="hidden" name="opContact" value="true">
+                  
+              </p>
+
+	
+	<%} %>
+<!-- FIN -->
+<%} %>
+
+
+
+

@@ -1,0 +1,12 @@
+<%@page import="fr.cg44.plugin.assmat.handler.ParametrageAssmatHandler"%>
+<%if (step == ParametrageAssmatHandler.VISIBILITE_STEP && formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()) {%>
+  <h3 class="title-bar-container dotted-portlet"><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "INTRO-HTML"%>'></trsb:glp></h3>
+<%} %>
+
+<%if (step == ParametrageAssmatHandler.CONTACTS_STEP) {%>
+  <h3 class="title-bar-container dotted-portlet"><trsb:glp key="CONTACT-INTROTEL-HTML"></trsb:glp></h3>
+<%} %>
+
+<%if (step == ParametrageAssmatHandler.OFFRE_STEP) {%>
+  <h3 class="title-bar-container dotted-portlet"><trsb:glp key="OFFRE-INTRO-HTML"></trsb:glp></h3>
+<%} %>                                  

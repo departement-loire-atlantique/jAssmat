@@ -1,0 +1,161 @@
+<%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+  
+%>
+
+<%
+
+if (step == DeclarerAccueilAssmatHandler.PLANNING) {
+  
+  String dateDebutAccueil = "";
+  if(Util.notEmpty(declarationForm.getDateDebutAccueil())) {
+    dateDebutAccueil = DATE_TIME_FORMAT.print(declarationForm.getDateDebutAccueil());
+  }
+  
+  String dateFinAccueil = "";
+  if(Util.notEmpty(declarationForm.getDateFinProvisoire())) {
+    dateFinAccueil = DATE_TIME_FORMAT.print(declarationForm.getDateFinProvisoire());
+  }
+
+  
+  String nomEnfant = declarationForm.getNomEnfant();
+  String prenomEnfant= declarationForm.getPrenomEnfant();
+  String[] parametersIntro = new String[] {};
+  parametersIntro = (String[]) Util.insertArray(parametersIntro, 0, prenomEnfant);
+  parametersIntro = (String[]) Util.insertArray(parametersIntro, 1, nomEnfant);
+ 
+  
+  
+  String[] parametersTextAccueil = new String[] {};
+  parametersTextAccueil = (String[]) Util.insertArray(parametersTextAccueil, 0, prenomEnfant);
+  parametersTextAccueil = (String[]) Util.insertArray(parametersTextAccueil, 1, nomEnfant);
+  parametersTextAccueil = (String[]) Util.insertArray(parametersTextAccueil, 2, dateDebutAccueil);
+  parametersTextAccueil = (String[]) Util.insertArray(parametersTextAccueil, 3, dateFinAccueil);
+  String libelleTexteAccueil = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-PL-Z1-QUE-PRO-HTML", parametersTextAccueil);
+  
+  String accueilProvisoire = formHandler.getEstProvisoire();
+  
+  String libelleVacancesSco = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-PL-Z3-QUE-HTML", parametersIntro);
+  String libellePlanningDif = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-PL-Z3-QUE-HTML", parametersIntro);
+  
+  String libelleIntro = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-PL-Z2V-PHR-HTML", parametersIntro);
+
+  String precision = formHandler.getDeclaration().getPrecision() != null ? formHandler.getDeclaration().getPrecision() : "";
+
+ Boolean estProvisoireBool = formHandler.getDeclaration().getEstProvisoire();  
+ Boolean uniquementVacances = formHandler.getDeclaration().getUniquementVacances(); 
+ 
+  
+%>
+
+
+      <!-- BLOC SAISIE -->
+      <div class="blocSaisie">
+        <p class="important"><trsb:glp key="ASS-DEC-PL-Z2V-PHR-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>' ></trsb:glp></p>
+        <p> <trsb:glp key="ASS-DEC-PL-Z2V-TEXT-HTML" ></trsb:glp></p>
+
+
+
+
+
+        <% for(int numeroSemaine = 1 ; numeroSemaine <= 10 ; numeroSemaine++) { %>
+	
+	          <%
+						// Planning variable (indique quels jours sont cochés)  
+						Boolean[] joursCheckTab = new Boolean[7];
+						int cpt = 0;
+						for(String itJour : DeclarerAccueilAssmatHandler.JOURS) {
+						  joursCheckTab[cpt] = DeclarerAccueilAssmatHandler.hasJourSemaine(formHandler.getDeclaration(), itJour, numeroSemaine);
+						  cpt++;
+						}
+						
+						// Map des creneau horraire par jour (planning regulier)
+						Map<String, ArrayList<CreneauHorraire>> creneauMap = DeclarerAccueilAssmatHandler.getCreneauHorraireJour(formHandler.getDeclaration(), numeroSemaine);
+						int nbCreneau = DeclarerAccueilAssmatHandler.getNbCreneau(creneauMap);
+						
+						String libelle = "";
+						if(formHandler.getDeclaration() != null && formHandler.getDeclaration().getSemaineTypes() != null && formHandler.getDeclaration().getSemaineTypes().size() >= numeroSemaine) {
+						  libelle = formHandler.getDeclaration().getSemaineTypes().get(numeroSemaine-1).getLibelle();
+						  libelle = libelle != null ? libelle : "";
+						}
+						// Condition si la semaine doit d'afficher ou non. (si des information sont remplies pour cette semaine alors celle-ci s'affiche)
+						Boolean isVisibleSemaine =  numeroSemaine == 1 || numeroSemaine == 2 || Util.notEmpty(libelle) || nbCreneau >= 1 || Util.arrayContains(joursCheckTab, true) ? true : false;						
+						%>
+	
+	
+		        <div class="semaineBlock semaine<%= numeroSemaine %>" style='display: <%= isVisibleSemaine ? "" : "none" %> ;'>
+		           <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficheSemaine.jspf'%>
+		           
+		           <jalios:if predicate='<%= numeroSemaine != 1 && numeroSemaine != 10 %>'>
+				           <p class="btnFonctionnalite plus ajouterSemaine ajouterSemaine<%= numeroSemaine + 1 %>">
+				               <a href="#" onclick="return false;"><trsb:glp key="ASS-DEC-PL-Z2V-AJO-SEM-HTML"  ></trsb:glp></a>
+				           </p>
+		           </jalios:if>
+		           
+		           <jalios:if predicate='<%= numeroSemaine != 1 && numeroSemaine != 2 %>'>
+				           <p class="btnFonctionnalite moins supprimerSemaine<%= numeroSemaine %>">
+				               <a href="#" onclick="return false;">Supprimer la dernière semaine type</a>
+				           </p>
+		           </jalios:if>		           
+		        </div>
+          
+        <% } %>
+    
+
+        <div class="borderDot title-bar-container dotted-portlet" style="margin-top: 10px;"></div>
+
+        <label for="precisionsPlanning">
+          <strong>
+          <trsb:glp key="ASS-DEC-PL-Z2-PRE-AUTR-HTML" ></trsb:glp></strong></label>
+        <textarea id="precisionsPlanning" name="precision" rows="4" cols=""><%= precision %></textarea>
+
+      </div>
+      <!-- FIN BLOC SAISIE -->
+
+
+
+      
+
+     <p class="submit prev">
+          <label for="submitprev"> <input type="submit" id="submitprev"
+              name="opPrevious"
+              value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML" ></trsb:glp>"
+              class="submitButton"> <span class="input-box"
+              style="background-color: #aec900"><span
+                  class="spr-recherche-ok"></span></span>
+          </label> <input type="hidden" name="noSendRedirect" value="true"> 
+  
+      </p> 
+    
+ 
+      <p class="submit enregistrer" style='visibility: hidden;'>
+        <label for="create"> <input type="submit" id="create" name="opCreate" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML" ></trsb:glp>" class="submitButton">
+          <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
+        </label> <input type="hidden" name="noSendRedirect" value="true"> <input type="hidden" name="id" value="c_5065">
+      </p>
+    
+      <p class="submit">
+         <label for="submit"> <input type="submit" id="submit"
+           name="opFinish" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML" ></trsb:glp>" class="submitButton">
+           <span class="input-box" style="background-color: #aec900"><span
+             class="spr-recherche-ok"></span></span>
+         </label> <input type="hidden" name="noSendRedirect" value="true">
+         <input type="hidden" name="id" value="c_5065">
+       
+       </p>
+   
+
+
+	<%}%>
+<!-- FIN -->
+
+
+
+
+

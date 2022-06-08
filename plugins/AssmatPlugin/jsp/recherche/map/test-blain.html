@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Add a GeoJSON polygon</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibG9pcmVhdGxhbnRpcXVlIiwiYSI6ImNqaHZ5YnNnazBkbWIza21tbWQ2NHF4aWMifQ.oAN8kiv6TejIMjHDVLelXA';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [-68.13734351262877, 45.137451890638886],
+    zoom: 5
+});
+
+map.on('load', function () {
+
+    map.addSource("blain", {
+        type: "geojson",
+        data: "featuretest.geojson"
+    });
+
+    map.addLayer({
+        'id': 'maine-line',
+        'type': 'line',
+        'source': "blain",
+        'layout': {},
+        'paint': {
+            'line-color': 'red',
+            'line-opacity': 1,
+            'line-width': 1
+        }
+    });
+
+    map.addLayer({
+        'id': 'maine-fill',
+        'type': 'fill',
+        'source': "blain",
+        'layout': {},
+        'paint': {
+            'fill-color': 'red',
+            'fill-opacity': 0.1
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>

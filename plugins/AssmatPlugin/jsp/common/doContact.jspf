@@ -1,0 +1,45 @@
+<jalios:if predicate="<%= Util.notEmpty(obj.getPhones()) || Util.notEmpty(obj.getFax()) || Util.notEmpty(obj.getMails()) || Util.notEmpty(obj.getWebsites())  %>"><%
+  %><div class="contacts">
+	    <jalios:if predicate="<%= Util.notEmpty(obj.getPhones()) %>"><%
+	      %><div class="phone"><div><%= glp("plugin.tools.common.tel") %></div>
+	        <p itemprop="telephone"><jalios:foreach name="itPhone" type="String" array="<%= obj.getPhones() %>"><%
+	        %><%= (itCounter > 1)?" - ":""%><%= itPhone %>
+	      </jalios:foreach></p></div><%
+	   %></jalios:if><%
+	   
+	   %><jalios:if predicate="<%= Util.notEmpty(obj.getFax()) %>"><%
+	      %><div class="fax">
+	           <div><%= glp("plugin.tools.common.fax") %></div>
+	           <p itemprop="faxNumber"><jalios:foreach name="itFax" type="String" array="<%= obj.getFax() %>"><%
+	              %><%= (itCounter > 1)? " - ":"" %><%= itFax %>
+	           </jalios:foreach></p><%
+	      %></div><%
+	   %></jalios:if><%
+	              
+	   %><jalios:if predicate="<%= Util.notEmpty(obj.getMails()) %>"><%
+	       String[] list = obj.getMails();
+	     %><div class="mail"><%
+	        %><div><%= glp("plugin.tools.common.email", list.length) %></div><%
+	          %><p><%
+	            %><jalios:foreach name="itMail" type="String" array="<%= list %>"><%
+					Category cat = channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.ram"));
+					if(Util.notEmpty(cat)){
+	      				String lien = cat.getDisplayUrl(userLocale) + "?mailRAM=" + encodeForHTML(itMail) + "&titleRAM=" + encodeForURL(obj.getTitle());
+	                	%><%= (itCounter > 1)? " - ":"" %><a href='<%= lien %>'><%= itMail %></a><%
+	      		  	}
+	            %></jalios:foreach><%
+	          %></p><%
+	     %></div><%
+	   %></jalios:if><%
+	   
+	   %><jalios:if predicate="<%= Util.notEmpty(obj.getWebsites()) %>"><%
+	       String[] list = obj.getWebsites();
+	      %><div class="website"><%
+	        %><p><%
+	          %><jalios:foreach name="itWebsite" type="String" array="<%= list %>">
+	            <%= (itCounter > 1)? " - ":"" %><a href="<%= itWebsite %>" target="blank" title="<%= obj.getTitle() %> - <%= glp("plugin.tools.accessibily.newTabLabel") %>"><%= glp("plugin.tools.common.website") %></a>
+	          </jalios:foreach><%
+	      %></p></div><%
+	   %></jalios:if><%
+	%></div><%
+%></jalios:if>

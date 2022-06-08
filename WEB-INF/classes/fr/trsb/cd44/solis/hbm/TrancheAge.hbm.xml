@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="fr.trsb.cd44.solis.beans.TrancheAge" table="tranche_age">
+        <id name="trancheAgeKey" type="int">
+            <column name="tranche_age_key" />
+            <generator class="assigned" />
+        </id>
+        <property name="ageMin" type="java.lang.Integer">
+            <column name="age_min" />
+        </property>
+        <property name="ageMax" type="java.lang.Integer">
+            <column name="age_max" />
+        </property>
+    </class>
+</hibernate-mapping>

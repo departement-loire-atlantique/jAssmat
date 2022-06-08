@@ -1,0 +1,47 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "nom": "nom-assmat-2"
+      },
+      "geometry": {
+        "coordinates": [
+          -1.537021,
+          47.231835
+        ],
+        "type": "Point"
+      },
+      "id": "4b4a862229664740d8ae346bacb06191"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nom": "Toto"
+      },
+      "geometry": {
+        "coordinates": [
+          -1.528762,
+          47.221571
+        ],
+        "type": "Point"
+      },
+      "id": "9b2ce88f326bf5332e41445d5833a2ff"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nom": "nom-assmat-1"
+      },
+      "geometry": {
+        "coordinates": [
+          -1.544267,
+          47.228368
+        ],
+        "type": "Point"
+      },
+      "id": "ef8b8dd0424d37ce041c951391e522cb"
+    }
+  ],
+  "type": "FeatureCollection"
+}

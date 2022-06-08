@@ -1,0 +1,129 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+
+
+
+<%-- 2.3.2.3 Bloc des accueils en cours --%>
+
+<div class="demarche en-cours">
+
+   <div class="titre-demarche-en-cours" style="overflow: auto;">
+     <img src="plugins/AssmatPlugin/img/icon-accueil-en-cours.png" alt="" style="padding-right: 10px;"/>               
+     <trsb:glp key="ASS-ACC-EC-TITRE1-HTML"></trsb:glp>
+         
+     <%-- Déclarer un nouvel accueil --%>
+     <a class="black-link" href="<%= lienDeclarationAccueil %>" style="float: right;">
+       <img src="plugins/AssmatPlugin/img/plus-vert.png" alt=""/>
+       <trsb:glp key="ASS-DEC-PL-DEC-HTML" />    
+     </a>
+     
+     <%-- Planning de l'assmat --%>
+     <jalios:if predicate="<%= Util.notEmpty(declarationEnCoursList) %>"> 
+       <a class="black-link" href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherPlanning.jsp" style="float: right;">
+          <img src="plugins/AssmatPlugin/img/cal-vert.png" alt=""/>
+          Planning
+       </a>
+     </jalios:if>     
+     
+   </div>
+   
+   <div class="information">
+     <trsb:glp key="ASS-ACC-EC-T-INFO-HTML" />            
+   </div>  
+   
+   <jalios:if predicate="<%= Util.isEmpty(declarationEnCoursList) %>"> 
+      <div class="information" style="padding-top: 0px;">
+       <trsb:glp key="ASS-ACC-EC-NULL-HTML" />            
+     </div> 
+   </jalios:if>
+   
+   
+   <jalios:if predicate="<%= declarationEnCoursList != null && declarationEnCoursList.size() > 0 %>">  
+   
+     <div class="div-responsive">
+         <div class="ligne-demarche-en-cours" style="margin-top: 5px; padding-bottom: 10px; font-weight: bold;">
+           <div class="nom-enfant">
+           </div>
+           <div class="date-declaration">
+              <trsb:glp key="ASS-ACC-EC-DATE-DECL-HTML" />  
+            </div>
+            
+            <div class="date-accueil">
+              <trsb:glp key="ASS-ACC-EC-DATE_ACC-HTML" />  
+            </div>                           
+         </div>
+         
+         
+         
+         <jalios:foreach collection="<%= declarationEnCoursList %>" name="itAccueil" type="AccueilDTO">
+             <%
+             String nomEnfant = itAccueil.getNomEnfant();
+             String prenomEnfant = itAccueil.getPrenomEnfant();
+             Integer idDeclaration = itAccueil.getIdDeclaration();
+             String dateModifDeclarationString = "";
+             if(Util.notEmpty(itAccueil.getDateMaj())) {
+               dateModifDeclarationString = DATE_TIME_FORMAT.print(itAccueil.getDateMaj());
+              } 
+             String dateAccueilString = "";
+             if(Util.notEmpty(itAccueil.getDateDebutAccueil())) {
+               dateAccueilString = DATE_TIME_FORMAT.print(itAccueil.getDateDebutAccueil());
+              } 
+             %>  
+             
+             <div class="ligne-demarche-en-cours">
+          
+               <div class="nom-enfant">
+                 <%= prenomEnfant %> <%= nomEnfant %>
+               </div>
+           
+               <div class="date-declaration">
+                 <%= dateModifDeclarationString %>
+               </div>
+               
+               <div class="date-accueil">
+                 <%= dateAccueilString %>
+               </div>
+               
+               <div class="action-declaration">
+                
+                  <%-- Afficher la déclaration --%>
+                  <div>
+                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
+                       <a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherDeclaration.jsp?idDeclaration=<%= idDeclaration %>">                            
+                           <trsb:glp key="ASS-ACC-EC-LIEN-AFF-HTML" />              
+                       </a> 
+                  </div>  
+               
+                  <%-- Supprime la déclaration --%>
+                  <div>
+                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
+                       <a class="modal confirm" title='<%= AssmatUtil.getMessage("ASS-ACC-EC-SUPP-VAL-HTML") %>' href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/annulerDeclaration.jsp?idDeclaration=<%= idDeclaration %>&etat=supprime&redirect=<%= lienRetourModal %>" >
+                           <trsb:glp key="ASS-ACC-EC-SUPP-HTML" />                  
+                       </a>                    
+                   </div>
+               
+                   <%-- Modifier la déclaration --%>
+                   <div>
+                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
+                       <a href="<%= lienDeclarationAccueil %>?idModifDeclaration=<%= idDeclaration %>&idModifEnCours=<%= idDeclaration %>">                            
+                           <trsb:glp key="ASS-ACC-EC-LIEN-MOD-HTML" />              
+                       </a> 
+                   </div>
+                   
+                   <%-- Déclaration de fin d'accueil --%>
+                   <div>
+                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
+                       <a href="<%= lienDeclarationFinAccueil %>?idDeclaration=<%= idDeclaration %>">                            
+                               <trsb:glp key="ASS-ACC-EC-LIEN-DECFIN-HTML" />              
+                           </a> 
+                        </div>
+                       
+                   </div>
+              
+                  </div> 
+             
+             </jalios:foreach> 
+           </div>
+        </jalios:if>
+            
+    </div>
+	

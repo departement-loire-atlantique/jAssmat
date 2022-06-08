@@ -1,0 +1,103 @@
+
+<%@page import="fr.cg44.plugin.assmat.managers.AssmatSearchDAO"%>
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<%@page import="fr.cg44.plugin.tools.mailjet.MailjetClient"%>
+<%@page import="generated.OuvertureSite"%>
+<%@ taglib prefix="trsb"
+  uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
+
+<jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.PrevenirOuvertureSiteHandler'>
+  <jsp:setProperty name='formHandler' property='request' value='<%=request%>' />
+  <jsp:setProperty name='formHandler' property='response' value='<%=response%>' />
+  <jsp:setProperty name='formHandler' property="noRedirect" value="true" />
+  <jsp:setProperty name='formHandler' property='*' />
+</jsp:useBean>
+<%
+if (formHandler.validate()) {
+  %>
+  <%@ include file="/plugins/AssmatPlugin/jsp/accueil/prevenirOuvertureValidation.jspf" %>
+  <% 
+  
+} 
+
+TreeSet<OuvertureSite> content = Channel.getChannel().getPublicationSet(OuvertureSite.class, loggedMember);
+String idGroup = channel.getProperty("jcmsplugin.assmatplugin.mailjet.inscription.ouverture.site.id");
+
+String tableauMail[] = {idGroup};
+
+boolean prevenirParMail = AssmatUtil.isContainsGroupsMailJet(loggedMember.getEmail(), tableauMail); 
+
+// ArrayList<String> listEmail = MailjetClient.getEmailsFromGroup(idGroup);
+// boolean prevenirParMail = false;
+// if(Util.notEmpty(listEmail)){
+//   for(String itEmail : listEmail){
+//     if(itEmail.equalsIgnoreCase(loggedMember.getEmail())){
+//       prevenirParMail = true;
+//     }
+//   }
+// }
+
+%>
+
+<div class="contactPerso">
+  <%@ include file='/jcore/doMessageBox.jsp' %>
+  <div class="form-cg">
+    <div class="form-cg-gray prevenirOuverturePerso">
+      <p><b><trsb:glp key="ACCUEIL-PROFIL-PREV-OUVERTURE"></trsb:glp></b></p>
+      <form class="formContact" action="<%=ServletUtil.getUrl(request)%>">
+        <div class="title-bar-container dotted-portlet formLabel">
+        <%if(Util.notEmpty(loggedMember.getEmail())){ %>
+        
+         <div class="blocComplet gauche">
+    
+        <label class="labelTitle">par mail : <%=loggedMember.getEmail() %></label>
+
+      <div class="multipleRadio civilite blocForm">
+        <span>
+          <input type="radio" name="prevMail" <%if(prevenirParMail){ %>checked<%} %> id="oui_fixe" class="radio" value="true"
+            />
+          <label for="oui_fixe"><trsb:glp key="CONTACT-TEL-OUI-HTML"></trsb:glp></label>
+        </span>
+        <span>
+          <input type="radio" name="prevMail" <%if(!prevenirParMail){ %>checked<%} %>  id="non_fixe" class="radio" value="false"/>
+          <label for="non_fixe"><trsb:glp key="CONTACT-TEL-NON-HTML"></trsb:glp><br /></label> 
+        </span>
+      </div>
+    </div>   
+      
+          <%} %>
+        <%if(Util.notEmpty(loggedMember.getMobile())){ %>
+          
+          <div class="blocComplet gauche">
+     
+       <label class="labelTitle"><%=glp("jcmsplugin.assmatplugin.accueil.prevenu.sms")%> au <%= loggedMember.getMobile()%></label>
+
+      <div class=" multipleRadio civilite blocForm">
+        <span>
+          <input type="radio" name="prevTel" id="oui_fixe" <%if(Util.notEmpty(AssmatSearchDAO.getOuvertureSiteByTel(loggedMember.getMobile()))){ %>checked<%} %> class="radio" value="true"
+            />
+          <label for="oui_fixe"><trsb:glp key="CONTACT-TEL-OUI-HTML"></trsb:glp></label>
+        </span>
+        <span>
+          <input type="radio" name="prevTel" id="non_fixe" <%if(Util.isEmpty(AssmatSearchDAO.getOuvertureSiteByTel(loggedMember.getMobile()))){ %>checked <%} %>  class="radio" value="false"
+             />
+          <label for="non_fixe"><trsb:glp key="CONTACT-TEL-NON-HTML"></trsb:glp><br /></label> 
+        </span>
+      </div>
+    </div> 
+     <input type="hidden" name="tel" value="<%= loggedMember.getMobile() %>" />     
+        <%} %>
+        </div>
+        <p class="submit">
+          <label for="submit"> 
+            <input type="submit" id="submit" name="opCreate" value="Valider" class="ajax-refresh submitButton"> 
+            <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
+          </label> 
+          <input type="hidden" name="noSendRedirect" value="true"> 
+          <input type="hidden" name="id" value="c_5065">
+           <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" />
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

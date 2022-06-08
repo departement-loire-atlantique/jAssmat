@@ -1,0 +1,360 @@
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+  
+<%
+
+if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
+  
+  
+  
+   String nomEnfant = formHandler.getDeclaration().getNomEnfant(); 
+   String prenomEnfant= formHandler.getDeclaration().getPrenomEnfant(); 
+   String sexeEnfant= formHandler.getDeclaration().getSexeEnfant();
+
+   String dateNaissanceEnfant = "";
+   if(Util.notEmpty(formHandler.getDeclaration().getDateNaissanceEnfant())) {
+    dateNaissanceEnfant = DATE_TIME_FORMAT.print(formHandler.getDeclaration().getDateNaissanceEnfant());
+   }
+  
+   String dateDebutAccueil = "";
+   if(Util.notEmpty(formHandler.getDeclaration().getDateDebutAccueil())) {
+     dateDebutAccueil = DATE_TIME_FORMAT.print(formHandler.getDeclaration().getDateDebutAccueil());
+   }
+  
+   String civiliteRepresentant1= formHandler.getDeclaration().getCiviliteRepresentant1();
+   String nomRepresentant1= formHandler.getDeclaration().getNomRepresentant1();  
+   String prenomRepresentant1= formHandler.getDeclaration().getPrenomRepresentant1(); 
+   String telephoneRepresentant1= formHandler.getDeclaration().getTelephoneRepresentant1();  
+   String adresseRepresentant1= formHandler.getDeclaration().getAdresseRepresentant1(); 
+   String codePostalRepresentant1= formHandler.getDeclaration().getCpRepresentant1();
+   String villeRepresentant1= formHandler.getDeclaration().getCommuneRepresentant1();
+   String complementRepresentant1= formHandler.getDeclaration().getComplAdresseRepresentant1();  
+   Boolean saisieAdresseR1 = formHandler.getSaisieAdresseR1() != null ? formHandler.getSaisieAdresseR1() : false;
+   
+   String civiliteRepresentant2= formHandler.getDeclaration().getCiviliteRepresentant2();
+   String nomRepresentant2= formHandler.getDeclaration().getNomRepresentant2(); 
+   String prenomRepresentant2= formHandler.getDeclaration().getPrenomRepresentant2();  
+   String telephoneRepresentant2= formHandler.getDeclaration().getTelephoneRepresentant2();  
+   String adresseRepresentant2= formHandler.getDeclaration().getAdresseRepresentant2();
+   String codePostalRepresentant2= formHandler.getDeclaration().getCpRepresentant2();
+   String villeRepresentant2= formHandler.getDeclaration().getCommuneRepresentant2();
+   String complementRepresentant2= formHandler.getDeclaration().getComplAdresseRepresentant2();
+   Boolean saisieAdresseR2 = formHandler.getSaisieAdresseR2() != null ? formHandler.getSaisieAdresseR2() : false;
+  
+   
+   boolean saisieAdresseDif= Util.notEmpty(telephoneRepresentant2) || Util.notEmpty(adresseRepresentant2) || Util.notEmpty(complementRepresentant2); 
+  
+  //On les vide pour ne pas afficher "null"
+   if(Util.isEmpty(nomEnfant)){
+     nomEnfant="";
+   }
+   if(Util.isEmpty(prenomEnfant)){
+     prenomEnfant="";
+   }
+   if(Util.isEmpty(sexeEnfant)){
+     sexeEnfant="";
+   }
+ 
+   if(Util.isEmpty(nomRepresentant1)){
+     nomRepresentant1="";
+   }
+
+   if(Util.isEmpty(prenomRepresentant1)){
+     prenomRepresentant1="";
+   }
+   if(Util.isEmpty(civiliteRepresentant1)){
+     civiliteRepresentant1="";
+   }
+   if(Util.isEmpty(telephoneRepresentant1)){
+     telephoneRepresentant1="";
+   }
+
+
+   if(Util.isEmpty(adresseRepresentant1)){
+     adresseRepresentant1="";
+   }
+   if(Util.isEmpty(codePostalRepresentant1)){
+     codePostalRepresentant1="";
+   }   
+   
+   String adresseAutoCompleteRepresentant1;
+   adresseAutoCompleteRepresentant1 = formHandler.getAdresseAutoCompleteRepresentant1() != null ? formHandler.getAdresseAutoCompleteRepresentant1() : "" ;
+   
+   if(Util.notEmpty(codePostalRepresentant1) && Util.isEmpty(adresseAutoCompleteRepresentant1)) {
+     adresseAutoCompleteRepresentant1 = adresseRepresentant1 + " " + codePostalRepresentant1 + " " + villeRepresentant1;
+   }
+   
+   if(Util.isEmpty(villeRepresentant1)){
+     villeRepresentant1="";
+   }
+   if(Util.isEmpty(complementRepresentant1)){
+     complementRepresentant1="";
+   }
+   if(Util.isEmpty(nomRepresentant2)){
+     nomRepresentant2="";
+   }
+   if(Util.isEmpty(prenomRepresentant2)){
+     prenomRepresentant2="";
+   }
+   if(Util.isEmpty(civiliteRepresentant2)){
+     civiliteRepresentant2="";
+   }
+   
+   if(Util.isEmpty(telephoneRepresentant2)){
+     telephoneRepresentant2="";
+   }
+   if(Util.isEmpty(adresseRepresentant2)){
+     adresseRepresentant2="";
+   }
+   if(Util.isEmpty(codePostalRepresentant2)){
+     codePostalRepresentant2="";
+   }   
+   if(Util.isEmpty(villeRepresentant2)){
+     villeRepresentant2="";
+   }
+   
+   String adresseAutoCompleteRepresentant2;
+   adresseAutoCompleteRepresentant2 = formHandler.getAdresseAutoCompleteRepresentant2() != null ? formHandler.getAdresseAutoCompleteRepresentant2() : "" ;
+   
+   if(Util.notEmpty(codePostalRepresentant2) && Util.isEmpty(adresseAutoCompleteRepresentant2)) {
+     adresseAutoCompleteRepresentant2 = adresseRepresentant2 + " " + codePostalRepresentant2 + " " + villeRepresentant2;
+   }
+   
+   if(Util.isEmpty(complementRepresentant2)){
+     complementRepresentant2="";
+   }  
+%>
+
+
+
+      <p><trsb:glp key="ASS-DEC-GEN-OBL-HTML" ></trsb:glp></p>
+
+      <div class="blocSaisie">
+        <p class="important"><trsb:glp key="ASS-DEC-ENF-DECL-HTML" ></trsb:glp></p>
+      
+        <label for="nomEnfant" class="gauche"><trsb:glp key="ASS-DEC-ENF-NOM-HTML" ></trsb:glp></label>
+        <input <%= isModif ? "readonly" : "" %> type="text" name="nomEnfant" id="nomEnfant" class="droite" value="<%= nomEnfant %>" >      
+        
+        <label for="prenomEnfant" class="gauche"><trsb:glp key="ASS-DEC-ENF-PRENOM-HTML" ></trsb:glp></label> 
+        <input <%= isModif ? "readonly" : "" %> type="text" name="prenomEnfant" id="prenomEnfant" value="<%=prenomEnfant %>" class="droite"> 
+      
+        <p class="gauche"><trsb:glp key="ASS-DEC-ENF-SEXE-HTML" ></trsb:glp></p>
+        
+        <div class="droite">
+          <input <%= isModif && "Garçon".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> type="radio" name="sexeEnfant" id="sexe" class="radio" <%if("Fille".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> value="Fille" style="background: transparent;">
+          <label for="fille" class="labelRadio">Fille</label>
+  
+          <input <%= isModif && "Fille".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> type="radio" name="sexeEnfant" id="sexe" class="radio" <%if("Garçon".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> value="Garçon" style="background: transparent;">
+          <label for="garçon" class="labelRadio">Garçon</label>
+        </div>
+         
+        <label for="dateNaissance" class="gauche"><trsb:glp key="ASS-DEC-ENF-NAISS-HTML" ></trsb:glp>
+        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-NAISS-COMPL-HTML" ></trsb:glp></span>
+        </label> 
+        <input type="String" <%= isModif ? "readonly" : "" %> value="<%= dateNaissanceEnfant %>" name="dateNaissanceEnfant" id="dateNaissance" class="droite">          
+          
+         
+          
+          
+        <label for="dateAccueil" class="gauche"><trsb:glp key="ASS-DEC-ENF-ACC-HTML" ></trsb:glp>
+        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-ACC-COMPL-HTML" ></trsb:glp></span></label> 
+        <input type="string" <%= isModif ? "readonly" : "" %> value="<%= dateDebutAccueil %>" name="dateDebutAccueil" id="dateAccueil" class="droite">
+      
+      </div>
+      
+      <div class="blocSaisie">
+        <p class="important"><trsb:glp key="ASS-DEC-ENF-REP1-TITRE-HTML" ></trsb:glp></p>
+        
+        <p class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-CIV-HTML" ></trsb:glp></p>
+        
+        <div class="droite">
+          <input type="radio" <%if("Madame".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> name="civiliteRepresentant1" id="civilite1" class="radio" value="Madame" style="background: transparent;">
+          <label for="fille"  class="labelRadio"><trsb:glp key="ASS-DEC-ENF-REP1-MME-HTML" ></trsb:glp></label>
+  
+          <input type="radio" <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> name="civiliteRepresentant1" id="civilite1" class="radio" value="Monsieur" style="background: transparent;">
+          <label for="garcon" class="labelRadio"><trsb:glp key="ASS-DEC-ENF-REP1-MR-HTML" ></trsb:glp></label>
+        </div>
+        
+        <label for="nomRepresentant1" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-NOM-HTML" ></trsb:glp></label> 
+        <input type="text" value="<%=nomRepresentant1 %>" name="nomRepresentant1" id="nomRepresentant1" class="droite">
+        
+        <label for="prenomRepresentant1" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-PRENOM-HTML" ></trsb:glp></label> 
+        <input type="text" value="<%=prenomRepresentant1 %>" name="prenomRepresentant1" id="prenomRepresentant1" class="droite">    
+        
+        <label for="tel1" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-TEL-HTML" ></trsb:glp>
+        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-REP1-TEL-COMPL-HTML" ></trsb:glp></span></label> 
+        <input type="text" value="<%=telephoneRepresentant1 %>" name="telephoneRepresentant1" id="tel1" class="droite">
+      
+        
+        <label for="adresse1" class="gauche question"><trsb:glp key="ASS-DEC-ENF-REP1-ADR-HTML" ></trsb:glp><button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-ENF-REP1-INF-HTML") %>" data-color="#AEC900">
+              <img alt="?" src="s.gif" class="spr-interrogation">
+            </button>
+        </label>
+        <div class="droite" style="width: 61%; position: relative;">
+	        <input type="text" data-representant="R1" id="adresseAutoCompleteRepresentantR1" <%= Util.notEmpty(codePostalRepresentant1) || saisieAdresseR2 ? "disabled" : "" %> value='<%= HttpUtil.encodeForHTMLAttribute(adresseAutoCompleteRepresentant1) %>' name="adresseAutoCompleteRepresentant1" class="typeahead adresseAutoCompleteRepresentant" style="padding-right: 42px !important; width:100% !important;" data-jalios-ajax-refresh-url="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/acAdresse.jsp?representant=R1" >
+	        <button data-representant="R1" id="clearAdressRepresentantR1" title="Vider le champ" type="button" class="resetCross clearAdressRepresentant" style='position: absolute; right: 0; <%= Util.notEmpty(codePostalRepresentant1) && !saisieAdresseR1 ? "" : "display: none;"  %>'>
+	            <img title="Vider le champ" alt="Vider le champ" class="spr-select_cross" src="s.gif">
+	        </button>
+        </div>
+        
+        <div class="gauche">
+          <input type="checkbox" <%if(saisieAdresseR1){ %> checked <%} %> data-representant="R1" name="saisieAdresseR1" id="saisieAdresseR1" class="false-input saisieAdresseCheckBox">
+        </div>
+        <div class="intituleExtra">
+          <label for="saisieAdresseR1"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-HTML" /></label>
+        </div>
+        
+        <div id="blockSaisieAdresseR1" style='display: <%= saisieAdresseR1 ? "block" : "none"  %>'>
+	        <div class="gauche">
+	         &nbsp;
+	        </div>
+	        <div class="intituleExtra">
+	          <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-TEXT-HTML" />
+	        </div>
+	        
+	        <label for="voieR1" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" /> </label>       
+	        <input id="voieR1" type="text" name="adresseRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant1) %>" class="droite champLg">
+	        
+	        <label for="codePostalR1" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" /> </label>            
+	        <input id="codePostalR1" type="text" name="codePostalRepresentant1" value="<%= codePostalRepresentant1 %>" class="droite" >
+	        
+	        <label for="villeR1" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" /> </label>  
+	        <input id="villeR1" type="text" name="villeRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant1) %>" class="droite" style="margin-bottom: 15px;">
+        </div>
+       
+        <label for="complement1" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-CPLM-HTML" ></trsb:glp>
+        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-REP1-CPLM1-HTML" ></trsb:glp></span></label> 
+        <input type="text" value="<%= HttpUtil.encodeForHTMLAttribute(complementRepresentant1) %>" name="complementRepresentant1" id="complement" class="droite champLg">
+     
+      </div>
+      
+      <div class="blocSaisie">
+        <p class="important"><trsb:glp key="ASS-DEC-ENF-REP2-TITRE-HTML" ></trsb:glp></p>
+        
+        <p class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-CIV-HTML" ></trsb:glp></p>
+        
+        <div class="droite">
+          <input type="radio" <%if("Madame".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> name="civiliteRepresentant2" id="civilite2" class="radio" value="Madame" style="background: transparent;">
+          <label for="fille" class="labelRadio"><trsb:glp key="ASS-DEC-ENF-REP2-MME-HTML" ></trsb:glp></label>
+  
+          <input type="radio" <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> name="civiliteRepresentant2" id="civilite2" class="radio" value="Monsieur" style="background: transparent;">
+          <label for="garcon"  class="labelRadio"><trsb:glp key="ASS-DEC-ENF-REP2-MR-HTML" ></trsb:glp></label>
+        </div>
+        
+        <label for="nomRepresentant2" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-NOM-HTML" ></trsb:glp></label>
+        <input type="text" value="<%= nomRepresentant2 %>" name="nomRepresentant2" id="nomRepresentant2" class="droite">
+        
+        <label for="prenomRepresentant2" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-PRENOM-HTML" ></trsb:glp></label> 
+        <input type="text" value="<%= prenomRepresentant2 %>" name="prenomRepresentant2" id="prenomRepresentant2" class="droite">   
+                
+        <div class="gauche">
+          <input type="checkbox" <%if(saisieAdresseDif || saisieAdresseR2){ %> checked <%} %> name="saisieAdresseDif" id="adresseDifferente" class="false-input">
+        </div>
+        <div class="intituleExtra">
+          <label id="adresseDifferente"><trsb:glp key="ASS-DEC-ENF-REP2-CASE-HTML" ></trsb:glp></label>
+        </div>
+        
+      <div class="blocAdresseDifferente" style='display: <%= saisieAdresseDif || saisieAdresseR2 ? "block" : "none" %>;'>
+	      <label for="tel2" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-TEL-HTML" ></trsb:glp>
+	      <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-REP2-TEL-COMPL-HTML" ></trsb:glp></span></label>
+	      <input type="text" value="<%=telephoneRepresentant2 %>" name="telephoneRepresentant2" id="tel2" class="droite">
+	    
+	    
+   
+    
+          <label for="adresse2" class="gauche question"><trsb:glp key="ASS-DEC-ENF-REP2-ADR-HTML" ></trsb:glp><button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-ENF-REP2-INF-HTML") %>" data-color="#AEC900">
+              <img alt="?" src="s.gif" class="spr-interrogation">
+            </button>
+          </label> 
+          <div class="droite" style="width: 61%; position: relative;">
+             <input data-representant="R2" type="text" id="adresseAutoCompleteRepresentantR2" <%= Util.notEmpty(codePostalRepresentant2) || saisieAdresseR2 ? "disabled" : "" %> value='<%= HttpUtil.encodeForHTMLAttribute(adresseAutoCompleteRepresentant2) %>'  name="adresseAutoCompleteRepresentant2" class="typeahead adresseAutoCompleteRepresentant" style="padding-right: 42px !important; width:100% !important;" data-jalios-ajax-refresh-url="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/acAdresse.jsp?representant=R2" >
+             <button data-representant="R2" id="clearAdressRepresentantR2" title="Vider le champ" type="button" class="resetCross clearAdressRepresentant" style='position: absolute; right: 0; <%= Util.notEmpty(codePostalRepresentant2) && !saisieAdresseR2 ? "" : "display: none;"  %>'>
+                <img title="Vider le champ" alt="Vider le champ" class="spr-select_cross" src="s.gif">
+             </button>
+          </div>
+             
+   
+          <div class="gauche">
+          <input type="checkbox" <%if(saisieAdresseR2){ %> checked <%} %> data-representant="R2" name="saisieAdresseR2" id="saisieAdresseR2" class="false-input saisieAdresseCheckBox">
+	        </div>
+	        <div class="intituleExtra">
+	          <label for="saisieAdresseR2"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-HTML" /></label>
+	        </div>
+   
+   
+          <div id="blockSaisieAdresseR2" style='display: <%= saisieAdresseR2 ? "block" : "none"  %>'>
+	          <div class="gauche">
+	           &nbsp;
+	          </div>
+	          <div class="intituleExtra">
+	            <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-TEXT-HTML" />
+	          </div>    
+	             
+	             
+	          <label for="voieR2" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" /> </label>       
+		        <input id="voieR2" type="text" name="adresseRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant2) %>" class="droite champLg">
+		        
+		        <label for="codePostalR2" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" /> </label>            
+		        <input id="codePostalR2" type="text" name="codePostalRepresentant2" value="<%= codePostalRepresentant2 %>" class="droite" >
+		        
+		        <label for="villeR2" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" /> </label>  
+		        <input id="villeR2" type="text" name="villeRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant2) %>" class="droite" style="margin-bottom: 15px;">
+          </div>
+          
+                    
+	        <label for="complement2" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-CPLM-HTML" ></trsb:glp>
+	        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-REP2-CPLM1-HTML" ></trsb:glp></span></label> 
+	        <input type="text" value="<%= HttpUtil.encodeForHTMLAttribute(complementRepresentant2) %>" name="complementRepresentant2" id="complement" class="droite champLg">
+	      
+	        
+        
+        </div>
+        
+        
+      </div>
+
+
+     <p class="submit prev" style="visibility: hidden;">
+          <label for="submitprev"> <input type="submit" id="submitprev"
+              name="opPrevious"
+              value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML" ></trsb:glp>"
+              class="submitButton"> <span class="input-box"
+              style="background-color: #aec900"><span
+                  class="spr-recherche-ok"></span></span>
+          </label> <input type="hidden" name="noSendRedirect" value="true"> 
+  
+      </p> 
+
+      <p class="submit enregistrer" style='<%= isModif ? "visibility : hidden" : ""  %>'>
+        <label for="create"> 
+          <input type="submit" id="create" name="opCreate" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML" ></trsb:glp>" class="submitButton">
+          <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
+        </label> 
+        <input type="hidden" name="noSendRedirect" value="true"> 
+        <input type="hidden" name="id" value="c_5065">
+      </p>
+    
+      <p class="submit">
+         <label for="submit"> 
+           <input type="submit" id="submit" name="opNext" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML" ></trsb:glp>" class="submitButton">
+           <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
+         </label> 
+         <input type="hidden" name="noSendRedirect" value="true">
+         <input type="hidden" name="id" value="c_5065">        
+      </p>
+      
+
+      
+  <%}%>
+<!-- FIN -->
+
+
+
+
+

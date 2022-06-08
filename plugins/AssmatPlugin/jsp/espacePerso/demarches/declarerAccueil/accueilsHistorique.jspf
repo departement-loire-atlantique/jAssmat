@@ -1,0 +1,133 @@
+<%@page import="io.swagger.client.model.DeclarationHistoriqueDTO"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+
+
+
+<%-- 2.3.2.3 Bloc des accueils en cours --%>
+
+<div class="demarche en-cours">
+
+   <div class="titre-demarche-en-cours" style="overflow: auto; padding: 25px 25px;">                  
+     <trsb:glp key="ASS-MACC-HISTO-TITRE-HTML"></trsb:glp>    
+   </div>
+   
+   <div class="information">
+     <trsb:glp key="ASS-MACC-HISTO-INFO-HTML" />            
+   </div>  
+   
+   <jalios:if predicate="<%= Util.isEmpty(declarationHistoriqueList) %>"> 
+      <div class="information" style="padding-top: 0px;">
+       <trsb:glp key="ASS-MACC-HISTO-NULL-HTML" />            
+     </div> 
+   </jalios:if>
+   
+   
+   <jalios:if predicate="<%= declarationHistoriqueList != null && declarationHistoriqueList.size() > 0 %>">  
+   
+     <div class="div-responsive">
+         <div class="ligne-demarche-en-cours" style="margin-top: 5px; padding-bottom: 10px; font-weight: bold;">
+           <div class="nom-enfant">
+           </div>
+           <div class="date-declaration">
+              <trsb:glp key="ASS-MACC-HISTO-DATE-DEB-HTML" />  
+            </div>
+            
+            <div class="date-accueil">
+              <trsb:glp key="ASS-MACC-HISTO-DATE-FIN-HTML" />  
+            </div>                           
+         </div>
+         
+         <jalios:pager linkCss="ajax-refresh nofocus" name="pagerHistorique" declare='true' pageSize="5" action="init" size="<%= declarationHistoriqueList.size() %>"/>
+         
+         <jalios:foreach collection="<%= declarationHistoriqueList %>" name="itAccueil" type="AccueilDTO"  max='<%= pagerHistorique.getPageSize() %>' skip='<%= pagerHistorique.getStart() %>'>
+             <%
+             String nomEnfant = itAccueil.getNomEnfant();
+             String prenomEnfant = itAccueil.getPrenomEnfant();
+             Integer idDeclaration = itAccueil.getIdDeclaration();
+             String dateDebutAccueilString = "";
+             if(Util.notEmpty(itAccueil.getDateDebutAccueil())) {
+               dateDebutAccueilString = DATE_TIME_FORMAT.print(itAccueil.getDateDebutAccueil());
+              } 
+             String dateFinAccueilString = "";
+             if(Util.notEmpty(itAccueil.getDateFinAccueil())) {
+               dateFinAccueilString = DATE_TIME_FORMAT.print(itAccueil.getDateFinAccueil());
+             }
+             
+             // Id pour la déclaration de début d'accueil
+             String idDebutAccueil = "";
+             Date dateHistoDebut = null;
+             List<DeclarationHistoriqueDTO> histoDeclarationDebutList = itAccueil.getHistoriqueDeclarationsDebut();
+             for(DeclarationHistoriqueDTO itHistoDebut : histoDeclarationDebutList) {
+               if(dateHistoDebut == null || dateHistoDebut.before(itHistoDebut.getDateMaj().toDate()) ) {
+                 dateHistoDebut = itHistoDebut.getDateMaj().toDate();
+                 idDebutAccueil = itHistoDebut.getId() + "";
+               }
+             }
+             
+             %>  
+             
+             <div class="ligne-demarche-en-cours">
+          
+               <div class="nom-enfant">
+                 <%= prenomEnfant %> <%= nomEnfant %>
+               </div>
+           
+               <div class="date-declaration">
+                 <%= dateDebutAccueilString %>
+               </div>
+               
+               <div class="date-accueil">
+                 <%= dateFinAccueilString %>
+               </div>
+               
+               <div class="action-declaration">
+                
+                  <%-- Afficher la déclaration de début --%>
+                   <div>
+                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
+                       <a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherDeclaration.jsp?idDeclaration=<%= idDebutAccueil %>">                            
+                           <trsb:glp key="ASS-MACC-HISTO-LIEN-AFF-DEB-HTML" />            
+                       </a> 
+                   </div>  
+                             
+                   <%-- Afficher la déclaration de fin --%>
+                   <div>
+                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
+                       <a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherDeclaration.jsp?idDeclaration=<%= idDeclaration %>">
+                           <trsb:glp key="ASS-MACC-HISTO-LIEN-AFF-FIN-HTML" />           
+                       </a> 
+                   </div>
+                   
+                   <%-- Modification date de fin d'accueil --%>
+                   <div>
+                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
+                       <a href="<%= lienDeclarationFinAccueil %>?idDeclaration=<%= idDeclaration %>">                            
+                           <trsb:glp key="ASS-MACC-HISTO-LIEN-AFF-MODIF-FIN-HTML" />           
+                       </a> 
+                    </div>
+                   
+               </div>
+          
+             </div> 
+         
+         </jalios:foreach> 
+         
+       </div>
+       
+       <div style="margin-bottom: 6px; margin-top: 2px;">
+          <jalios:pager name="pagerHistorique" template="corporate"/>
+       </div>
+       
+    </jalios:if>
+        
+</div>
+ 
+ 
+ <script>
+ 
+// empeche le scroll vers le haut de la page lors d'un clique sur le pager
+var els = document.querySelectorAll(".nofocus");
+for (var i=0; i < els.length; i++) {
+    els[i].setAttribute("data-jalios-ajax-refresh", "nofocus");
+}
+ </script> 

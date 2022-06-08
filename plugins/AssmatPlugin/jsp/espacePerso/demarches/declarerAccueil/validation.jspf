@@ -1,0 +1,46 @@
+<%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+
+
+<%
+  //Lien pour la déclaration d'accueil
+  Publication declarationAccueilPortlet = channel.getPublication(channel.getProperty("plugin.assmatplugin.portlet.declararer-accueil.id"));
+  String lienDeclarationAccueil = "";
+  if (declarationAccueilPortlet != null) {
+    lienDeclarationAccueil = declarationAccueilPortlet.getDisplayUrl(userLocale);
+  }
+  
+   
+  //Lien pour actualiser mes disponibilités
+  Publication actualiserDispoPortlet = channel.getPublication(channel.getProperty("plugin.assmatplugin.portlet.actualiser-dispo.id"));
+  String lienActualiserDispo = "";
+  if (actualiserDispoPortlet != null) {
+    lienActualiserDispo = actualiserDispoPortlet.getDisplayUrl(userLocale);
+  }
+  
+%>
+
+<jalios:if predicate='<%= step == DeclarerAccueilAssmatHandler.VALIDATION %>'>
+
+  <p class="important"><trsb:glp key="ASS-DEC-PL-FIN-HTML" /></p>
+
+  <p><trsb:glp key="ASS-DEC-PL-FIN-INFO-HTML" /></p>
+
+  <p style="margin-top: 20px">
+	  <a class="black-link" href="<%= lienDeclarationAccueil %>">
+	    <img src="plugins/AssmatPlugin/img/plus-vert.png" alt=""/>
+	    <trsb:glp key="ASS-DEC-PL-DEC-HTML" />    
+	  </a>
+	 	  
+	  <a class="black-link" href="<%= lienActualiserDispo %>">
+	     <img src="plugins/AssmatPlugin/img/icon-calendrier-blanc.png" alt=""/>
+	     <trsb:glp key="ASS-DEC-PL-DIS-HTML" />
+	  </a>
+  </p>
+
+</jalios:if>

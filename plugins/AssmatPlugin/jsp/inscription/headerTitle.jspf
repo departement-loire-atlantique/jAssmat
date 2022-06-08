@@ -1,0 +1,55 @@
+
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<%
+    if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
+
+        if (Util.notEmpty(request.getAttribute("notFoundCompte"))) {
+            if ("true".equals(request.getAttribute("notFoundCompte"))) {
+                notfoundCompte = true;
+            }
+        }
+
+        boolean ticket10451 = false;
+        if (Util.notEmpty(request.getAttribute("ticket10451"))) {
+            if ("true".equals(request.getAttribute("ticket10451"))) {
+                ticket10451 = true;
+            }
+        }
+
+        if (notfoundCompte) {
+%>
+  <h3 class="title-bar-container dotted-portlet"><trsb:glp key="IDENT-ECHEC-INTRO-HTML" ></trsb:glp></h3>
+  <%
+  	}else if(Util.notEmpty(formHandler.getNbTentativeErrone())){
+  			if (formHandler.getNbTentativeErrone() >= InscriptionAssmatHandler.NB_TENTATIVE_MAX) {
+                if (ticket10451) {
+                	%>
+                	    <h3 class="title-bar-container dotted-portlet"><trsb:glp key="IDENT-TICKET10451-INTRO-HTML"></trsb:glp></h3>
+                	<%
+                	                } else {
+                	%>
+                	    <h3 class="title-bar-container dotted-portlet"><trsb:glp key="IDENT-ECHEC2-INTRO-HTML"></trsb:glp></h3>
+                	<%
+                	                }				
+    }else{%>
+    <h3 class="title-bar-container dotted-portlet"><trsb:glp key="IDENT-INTRO-HTML" ></trsb:glp></h3>
+<%
+    }
+  }
+} %>
+
+<%if (step == InscriptionAssmatHandler.VERIFICATION_STEP) {%>
+    <h3 class="title-bar-container dotted-portlet h3Signale"><trsb:glp key="VERIF-INTRO-HTML" ></trsb:glp></h3>
+<%} %>
+
+<%if (step == InscriptionAssmatHandler.CONTACT_STEP) {%>
+    <h3 class="title-bar-container dotted-portlet"><trsb:glp key="CONTACTS-INTRO-HTML" ></trsb:glp></h3>
+<%} %>
+
+<%if (step == InscriptionAssmatHandler.LOGIN_STEP) {%>
+    <h3 class="title-bar-container dotted-portlet"><trsb:glp key="LOGIN-INTRO-HTML" ></trsb:glp></h3>
+<%} %>
+
+<%if (step == InscriptionAssmatHandler.CONFIRMATION_STEP) {%>
+    <h3 class="title-bar-container dotted-portlet"><trsb:glp key="CONFIRM-INTRO-HTML" ></trsb:glp></h3>
+<%} %>

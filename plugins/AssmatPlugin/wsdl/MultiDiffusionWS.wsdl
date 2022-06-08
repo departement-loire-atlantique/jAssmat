@@ -1,0 +1,1007 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="MultiDiffusionWS" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="MultiDiffusionWS" xmlns:intf="MultiDiffusionWS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="MultiDiffusionWS" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="stopMessage">
+    <complexType>
+     <sequence>
+      <element name="custId" type="xsd:string"/>
+      <element name="idMessage" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="stopMessageResponse">
+    <complexType>
+     <sequence>
+      <element name="stopMessageReturn" type="impl:WSSendReport"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSSendReport">
+    <sequence>
+     <element name="msgId" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="sendMessage">
+    <complexType>
+     <sequence>
+      <element name="wsMessage" type="impl:WSMessage"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSMessage">
+    <sequence>
+     <element name="content" nillable="true" type="xsd:string"/>
+     <element name="custId" nillable="true" type="xsd:string"/>
+     <element name="from" nillable="true" type="xsd:string"/>
+     <element name="fullContenu" type="xsd:boolean"/>
+     <element name="orgName" nillable="true" type="xsd:string"/>
+     <element name="resumeContent" nillable="true" type="xsd:string"/>
+     <element name="sendProfiles" nillable="true" type="xsd:string"/>
+     <element name="strategy" nillable="true" type="xsd:string"/>
+     <element name="subject" nillable="true" type="xsd:string"/>
+     <element name="to" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="sendMessageResponse">
+    <complexType>
+     <sequence>
+      <element name="sendMessageReturn" type="impl:WSSendReport"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListDescriptors">
+    <complexType>
+     <sequence>
+      <element name="custId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListDescriptorsResponse">
+    <complexType>
+     <sequence>
+      <element name="getListDescriptorsReturn" type="impl:WSListDescriptors"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSListDescriptor">
+    <sequence>
+     <element name="listDescription" nillable="true" type="xsd:string"/>
+     <element name="listId" nillable="true" type="xsd:string"/>
+     <element name="listName" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSListDescriptors">
+    <sequence>
+     <element maxOccurs="unbounded" name="listDescriptors" nillable="true" type="impl:WSListDescriptor"/>
+    </sequence>
+   </complexType>
+   <element name="sendAdvancedMessage">
+    <complexType>
+     <sequence>
+      <element name="wsAdvancedMessage" type="impl:WSAdvancedMessage"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSAdvancedMessage">
+    <sequence>
+     <element name="content" nillable="true" type="xsd:string"/>
+     <element name="custId" nillable="true" type="xsd:string"/>
+     <element name="faxReplyTo" nillable="true" type="xsd:string"/>
+     <element name="from" nillable="true" type="xsd:string"/>
+     <element name="fullContenu" type="xsd:boolean"/>
+     <element name="mailReplyTo" nillable="true" type="xsd:string"/>
+     <element name="orgName" nillable="true" type="xsd:string"/>
+     <element name="resumeContent" nillable="true" type="xsd:string"/>
+     <element name="sendProfiles" nillable="true" type="xsd:string"/>
+     <element name="smsReplyTo" nillable="true" type="xsd:string"/>
+     <element name="startCall" nillable="true" type="xsd:dateTime"/>
+     <element name="strategy" nillable="true" type="xsd:string"/>
+     <element name="subject" nillable="true" type="xsd:string"/>
+     <element name="telReplyTo" nillable="true" type="xsd:string"/>
+     <element name="to" nillable="true" type="xsd:string"/>
+     <element name="validFaxReplyTo" type="xsd:boolean"/>
+     <element name="validFormatMailReplyTo" type="xsd:boolean"/>
+     <element name="validMaxStartCall" type="xsd:boolean"/>
+     <element name="validMinStartCall" type="xsd:boolean"/>
+     <element name="validSmsReplyTo" type="xsd:boolean"/>
+     <element name="validTelReplyTo" type="xsd:boolean"/>
+     <element name="validityPeriod" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="sendAdvancedMessageResponse">
+    <complexType>
+     <sequence>
+      <element name="sendAdvancedMessageReturn" type="impl:WSSendReport"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listResults">
+    <complexType>
+     <sequence>
+      <element name="wsFilter" type="impl:WSListFilter"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSListFilter">
+    <sequence>
+     <element name="custId" nillable="true" type="xsd:string"/>
+     <element name="dateBegin" nillable="true" type="xsd:dateTime"/>
+     <element name="dateEnd" nillable="true" type="xsd:dateTime"/>
+     <element name="from" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" name="msgIds" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:string"/>
+     <element name="to" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="listResultsResponse">
+    <complexType>
+     <sequence>
+      <element name="listResultsReturn" type="impl:WSResultsReport"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSResultReport">
+    <sequence>
+     <element name="attachedFileName" nillable="true" type="xsd:string"/>
+     <element name="audioFileName" nillable="true" type="xsd:string"/>
+     <element name="content" nillable="true" type="xsd:string"/>
+     <element name="custId" nillable="true" type="xsd:string"/>
+     <element name="date" nillable="true" type="xsd:dateTime"/>
+     <element name="from" nillable="true" type="xsd:string"/>
+     <element name="msgId" nillable="true" type="xsd:string"/>
+     <element name="nbProfiles" nillable="true" type="xsd:string"/>
+     <element name="orgName" nillable="true" type="xsd:string"/>
+     <element name="resumeContent" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:string"/>
+     <element name="strategy" nillable="true" type="xsd:string"/>
+     <element name="subject" nillable="true" type="xsd:string"/>
+     <element name="to" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSResultsReport">
+    <sequence>
+     <element maxOccurs="unbounded" name="reports" nillable="true" type="impl:WSResultReport"/>
+    </sequence>
+   </complexType>
+   <element name="listFullResults">
+    <complexType>
+     <sequence>
+      <element name="wsFilter" type="impl:WSListFilter"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listFullResultsResponse">
+    <complexType>
+     <sequence>
+      <element name="listFullResultsReturn" type="impl:WSFullResultsReport"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSFullResultReport">
+    <sequence>
+     <element name="attachedFileName" nillable="true" type="xsd:string"/>
+     <element name="audioFileName" nillable="true" type="xsd:string"/>
+     <element name="content" nillable="true" type="xsd:string"/>
+     <element name="custId" nillable="true" type="xsd:string"/>
+     <element name="date" nillable="true" type="xsd:dateTime"/>
+     <element name="from" nillable="true" type="xsd:string"/>
+     <element name="fullResultProfiles" nillable="true" type="xsd:string"/>
+     <element name="msgId" nillable="true" type="xsd:string"/>
+     <element name="nbProfiles" nillable="true" type="xsd:string"/>
+     <element name="orgName" nillable="true" type="xsd:string"/>
+     <element name="resumeContent" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:string"/>
+     <element name="strategy" nillable="true" type="xsd:string"/>
+     <element name="subject" nillable="true" type="xsd:string"/>
+     <element name="to" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSFullResultsReport">
+    <sequence>
+     <element maxOccurs="unbounded" name="fullReports" nillable="true" type="impl:WSFullResultReport"/>
+    </sequence>
+   </complexType>
+   <element name="getAccountInformation">
+    <complexType>
+     <sequence>
+      <element name="custId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAccountInformationResponse">
+    <complexType>
+     <sequence>
+      <element name="getAccountInformationReturn" type="impl:WSAccount"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSAccount">
+    <sequence>
+     <element name="archiveTime" nillable="true" type="xsd:string"/>
+     <element name="custId" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" name="strategies" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="addListDescriptor">
+    <complexType>
+     <sequence>
+      <element name="custId" type="xsd:string"/>
+      <element name="list" type="impl:WSListDescriptor"/>
+      <element name="sendProfiles" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addListDescriptorResponse">
+    <complexType>
+     <sequence>
+      <element name="addListDescriptorReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyListDescriptor">
+    <complexType>
+     <sequence>
+      <element name="custId" type="xsd:string"/>
+      <element name="list" type="impl:WSListDescriptor"/>
+      <element name="sendProfiles" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyListDescriptorResponse">
+    <complexType/>
+   </element>
+   <element name="removeListDescriptor">
+    <complexType>
+     <sequence>
+      <element name="custId" type="xsd:string"/>
+      <element name="listId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeListDescriptorResponse">
+    <complexType/>
+   </element>
+   <element name="about">
+    <complexType/>
+   </element>
+   <element name="aboutResponse">
+    <complexType>
+     <sequence>
+      <element name="aboutReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listMOs">
+    <complexType>
+     <sequence>
+      <element name="filterMOs" type="impl:WSFilterMO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSFilterMO">
+    <sequence>
+     <element name="beginDate" nillable="true" type="xsd:dateTime"/>
+     <element name="endDate" nillable="true" type="xsd:dateTime"/>
+     <element name="primaryKeyword" nillable="true" type="xsd:string"/>
+     <element name="secondaryKeyword" nillable="true" type="xsd:string"/>
+     <element name="shortNumber" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="listMOsResponse">
+    <complexType>
+     <sequence>
+      <element name="listMOsReturn" type="impl:WSResultsMO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSResultMO">
+    <sequence>
+     <element name="alias" nillable="true" type="xsd:string"/>
+     <element name="campaignName" nillable="true" type="xsd:string"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+     <element name="primaryKeyword" nillable="true" type="xsd:string"/>
+     <element name="receiveDate" nillable="true" type="xsd:dateTime"/>
+     <element name="secondaryKeyword" nillable="true" type="xsd:string"/>
+     <element name="shortNumber" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfWSResultMO">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:WSResultMO"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSResultMOArray">
+    <sequence>
+     <element name="WSResultMO" nillable="true" type="impl:ArrayOfWSResultMO"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSResultsMO">
+    <sequence>
+     <element name="WSResultsMO" nillable="true" type="impl:WSResultMOArray"/>
+    </sequence>
+   </complexType>
+   <element name="listMO24s">
+    <complexType>
+     <sequence>
+      <element name="filterMOs" type="impl:WSFilterMO24"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSFilterMO24">
+    <sequence>
+     <element name="beginDate" nillable="true" type="xsd:dateTime"/>
+     <element name="endDate" nillable="true" type="xsd:dateTime"/>
+    </sequence>
+   </complexType>
+   <element name="listMO24sResponse">
+    <complexType>
+     <sequence>
+      <element name="listMO24sReturn" type="impl:WSResultsMO24"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WSResultMT24">
+    <sequence>
+     <element name="messageMt" nillable="true" type="xsd:string"/>
+     <element name="sendDateMt" nillable="true" type="xsd:dateTime"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfWSResultMT24">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:WSResultMT24"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSResultsMT24Array">
+    <sequence>
+     <element name="wsResultMt24" nillable="true" type="impl:ArrayOfWSResultMT24"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSResultMO24">
+    <sequence>
+     <element name="messageMo" nillable="true" type="xsd:string"/>
+     <element name="number" nillable="true" type="xsd:string"/>
+     <element name="receiveDateMo" nillable="true" type="xsd:dateTime"/>
+     <element name="wsResultsMt24" nillable="true" type="impl:WSResultsMT24Array"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfWSResultMO24">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:WSResultMO24"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSResultsMO24Array">
+    <sequence>
+     <element name="WSResultMO" nillable="true" type="impl:ArrayOfWSResultMO24"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSResultsMO24">
+    <sequence>
+     <element name="WSResultsMO" nillable="true" type="impl:WSResultsMO24Array"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="modifyListDescriptorRequest">
+
+      <wsdl:part element="impl:modifyListDescriptor" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendMessageResponse">
+
+      <wsdl:part element="impl:sendMessageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="aboutRequest">
+
+      <wsdl:part element="impl:about" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListDescriptorsResponse">
+
+      <wsdl:part element="impl:getListDescriptorsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendAdvancedMessageResponse">
+
+      <wsdl:part element="impl:sendAdvancedMessageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendAdvancedMessageRequest">
+
+      <wsdl:part element="impl:sendAdvancedMessage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="aboutResponse">
+
+      <wsdl:part element="impl:aboutResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="stopMessageRequest">
+
+      <wsdl:part element="impl:stopMessage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listFullResultsResponse">
+
+      <wsdl:part element="impl:listFullResultsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyListDescriptorResponse">
+
+      <wsdl:part element="impl:modifyListDescriptorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addListDescriptorRequest">
+
+      <wsdl:part element="impl:addListDescriptor" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addListDescriptorResponse">
+
+      <wsdl:part element="impl:addListDescriptorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listMOsRequest">
+
+      <wsdl:part element="impl:listMOs" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListDescriptorsRequest">
+
+      <wsdl:part element="impl:getListDescriptors" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listMOsResponse">
+
+      <wsdl:part element="impl:listMOsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeListDescriptorRequest">
+
+      <wsdl:part element="impl:removeListDescriptor" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listFullResultsRequest">
+
+      <wsdl:part element="impl:listFullResults" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="stopMessageResponse">
+
+      <wsdl:part element="impl:stopMessageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listMO24sResponse">
+
+      <wsdl:part element="impl:listMO24sResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountInformationResponse">
+
+      <wsdl:part element="impl:getAccountInformationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountInformationRequest">
+
+      <wsdl:part element="impl:getAccountInformation" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listResultsResponse">
+
+      <wsdl:part element="impl:listResultsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeListDescriptorResponse">
+
+      <wsdl:part element="impl:removeListDescriptorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendMessageRequest">
+
+      <wsdl:part element="impl:sendMessage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listResultsRequest">
+
+      <wsdl:part element="impl:listResults" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listMO24sRequest">
+
+      <wsdl:part element="impl:listMO24s" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="MultiDiffusionWS">
+
+      <wsdl:operation name="stopMessage">
+
+         <wsdl:input message="impl:stopMessageRequest" name="stopMessageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:stopMessageResponse" name="stopMessageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendMessage">
+
+         <wsdl:input message="impl:sendMessageRequest" name="sendMessageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sendMessageResponse" name="sendMessageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListDescriptors">
+
+         <wsdl:input message="impl:getListDescriptorsRequest" name="getListDescriptorsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getListDescriptorsResponse" name="getListDescriptorsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendAdvancedMessage">
+
+         <wsdl:input message="impl:sendAdvancedMessageRequest" name="sendAdvancedMessageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sendAdvancedMessageResponse" name="sendAdvancedMessageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listResults">
+
+         <wsdl:input message="impl:listResultsRequest" name="listResultsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listResultsResponse" name="listResultsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listFullResults">
+
+         <wsdl:input message="impl:listFullResultsRequest" name="listFullResultsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listFullResultsResponse" name="listFullResultsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountInformation">
+
+         <wsdl:input message="impl:getAccountInformationRequest" name="getAccountInformationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAccountInformationResponse" name="getAccountInformationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addListDescriptor">
+
+         <wsdl:input message="impl:addListDescriptorRequest" name="addListDescriptorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addListDescriptorResponse" name="addListDescriptorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyListDescriptor">
+
+         <wsdl:input message="impl:modifyListDescriptorRequest" name="modifyListDescriptorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:modifyListDescriptorResponse" name="modifyListDescriptorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeListDescriptor">
+
+         <wsdl:input message="impl:removeListDescriptorRequest" name="removeListDescriptorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:removeListDescriptorResponse" name="removeListDescriptorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="about">
+
+         <wsdl:input message="impl:aboutRequest" name="aboutRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:aboutResponse" name="aboutResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listMOs">
+
+         <wsdl:input message="impl:listMOsRequest" name="listMOsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listMOsResponse" name="listMOsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listMO24s">
+
+         <wsdl:input message="impl:listMO24sRequest" name="listMO24sRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listMO24sResponse" name="listMO24sResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MultiDiffusionWSSoapBinding" type="impl:MultiDiffusionWS">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="stopMessage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="stopMessageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="stopMessageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendMessage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendMessageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendMessageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListDescriptors">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getListDescriptorsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getListDescriptorsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendAdvancedMessage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendAdvancedMessageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendAdvancedMessageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listResults">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listResultsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listResultsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listFullResults">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listFullResultsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listFullResultsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountInformation">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAccountInformationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAccountInformationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addListDescriptor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addListDescriptorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addListDescriptorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyListDescriptor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyListDescriptorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyListDescriptorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeListDescriptor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeListDescriptorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeListDescriptorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="about">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="aboutRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="aboutResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listMOs">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listMOsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listMOsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listMO24s">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listMO24sRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listMO24sResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="MultiDiffusionWSService">
+
+      <wsdl:port binding="impl:MultiDiffusionWSSoapBinding" name="MultiDiffusionWS">
+
+         <wsdlsoap:address location="https://www.api-contact-everyone.fr.orange-business.com/ContactEveryone/services/MultiDiffusionWS"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

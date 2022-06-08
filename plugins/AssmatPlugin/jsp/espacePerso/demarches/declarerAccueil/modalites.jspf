@@ -1,0 +1,168 @@
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="org.jsoup.select.Evaluator.IsEmpty"%>
+<%@page import="java.lang.reflect.InvocationTargetException"%>
+<%@page import="java.lang.reflect.Method"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+  
+%>
+
+<%
+
+if (step == DeclarerAccueilAssmatHandler.MODALITES) {
+  
+  // Permet de ne pas enrregistrer un false lorsque que l'utilisateur enregistre en brouillon sans rien cocher 
+  String planningRegulier = formHandler.getDeclaration().getPlanningRegulier() != null ? Boolean.toString(formHandler.getDeclaration().getPlanningRegulier()) : "" ;
+  
+  // Permet de ne pas enrregistrer un false lorsque que l'utilisateur enregistre en brouillon sans rien cocher 
+  String accueilOccasionnel = formHandler.getDeclaration().getAccueilOccasionnel() != null ? Boolean.toString(formHandler.getDeclaration().getAccueilOccasionnel()) : "" ;
+  
+  //Permet de ne pas enrregistrer un false lorsque que l'utilisateur enregistre en brouillon sans rien cocher 
+  String planningSemainesTypes = formHandler.getDeclaration().getPlanningSemainesTypes() != null ? Boolean.toString(formHandler.getDeclaration().getPlanningSemainesTypes()) : "" ;
+   
+  //Permet de ne pas enrregistrer un false lorsque que l'utilisateur enregistre en brouillon sans rien cocher  
+  String uniquementVacances = formHandler.getDeclaration().getUniquementVacances() != null ? Boolean.toString(formHandler.getDeclaration().getUniquementVacances()) : "" ;
+  
+  //Permet de ne pas enrregistrer un false lorsque que l'utilisateur enregistre en brouillon sans rien cocher 
+  String estProvisoire = formHandler.getDeclaration().getEstProvisoire() != null ? Boolean.toString(formHandler.getDeclaration().getEstProvisoire()) : "" ;
+  
+  String dateFinProvisoire = "";
+  if(Util.notEmpty(formHandler.getDeclaration().getDateFinProvisoire())) {
+    dateFinProvisoire = DATE_TIME_FORMAT.print(formHandler.getDeclaration().getDateFinProvisoire());
+  }
+  
+  String motifProvisoire = Util.notEmpty(formHandler.getDeclaration().getMotifProvisoire()) ? formHandler.getDeclaration().getMotifProvisoire() : "";
+ 
+%>
+
+      <div class="blocSaisie">
+        
+        <!-- planning régulier ou variable -->
+        <p class="important"><trsb:glp key="ASS-DEC-MOD-Q1-HTML"></trsb:glp></p>
+     
+        <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore complètement chargée.'); return false;}" type="radio" value ="true" <%if("true".equals(planningRegulier)){ %> checked <%} %> class="radio" name="planningRegulier" id="accueilRegulier">
+        <label for="accueilRegulier" class="question">
+          <trsb:glp key="ASS-DEC-MOD-PLREG-HTML" ></trsb:glp>
+        </label>  
+        <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-PREG-INFO-HTML") %>" data-color="#AEC900">
+            <img alt="?" src="s.gif" class="spr-interrogation">
+        </button>
+               
+        <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore complètement chargée.'); return false;}" type="radio" value ="false"  <%if("false".equals(planningRegulier)){ %> checked <%} %> class="radio" name="planningRegulier" id="accueilVarible">
+        <label for="accueilVarible" class="question"><trsb:glp key="ASS-DEC-MOD-PLV-HTML" ></trsb:glp>
+            <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-PLV-INF-HTML") %>" data-color="#AEC900">
+              <img alt="?" src="s.gif" class="spr-interrogation">
+            </button>
+        </label>
+        
+        
+        <div class="accueilOcca-semaineType" <%if(!"false".equals(planningRegulier)){ %>  style="display: none;" <%} %>>       
+	        
+	        <!-- Accueil occasionnel -->
+	        <div class="accueil-occasionnel">
+		        <p class="important">&nbsp;</p>
+		        <p class="important">
+		          <trsb:glp key="ASS-DEC-MOD-QAOCC-HTML"></trsb:glp>
+			        <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-AOCC-INFO-HTML") %>" data-color="#AEC900">
+	              <img alt="?" src="s.gif" class="spr-interrogation">
+	            </button>
+		        </p>
+		     
+		        <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore complètement chargée.'); return false;}" type="radio" value="true" <%if("true".equals(accueilOccasionnel)){ %> checked <%} %> class="radio" name="accueilOccasionnel" id="OuiOcca">
+		        <label for="OuiOcca">Oui</label>
+		        
+		        <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore complètement chargée.'); return false;}" type="radio" value="false" <%if("false".equals(accueilOccasionnel)){ %> checked <%} %> class="radio" name="accueilOccasionnel" id="NonOcca">
+		        <label for="NonOcca">Non</label>
+	        </div>
+	        
+	        <!-- Semaines types -->
+	        <div class="semaine-type" <%if(!"false".equals(accueilOccasionnel)){ %>  style="display: none;" <%} %>>
+		        <p class="important">&nbsp;</p>
+		        <p class="important">
+		          <trsb:glp key="ASS-DEC-MOD-QIRR-HTML"></trsb:glp>
+		          <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-PIRR-INFO-HTML") %>" data-color="#AEC900">
+                <img alt="?" src="s.gif" class="spr-interrogation">
+              </button>
+		        </p>
+		     
+		        <input type="radio" value="true" <%if("true".equals(planningSemainesTypes)){ %> checked <%} %> class="radio" name="planningSemainesTypes" id="ouiSemaineType">
+		        <label for="ouiSemaineType">Oui</label>
+		        
+		        <input type="radio" value="false" <%if("false".equals(planningSemainesTypes)){ %> checked <%} %> class="radio" name="planningSemainesTypes" id="nonSemaineType">
+		        <label for="nonSemaineType">Non</label>
+	        </div>
+        </div>
+        
+        <!-- Uniquement pendant les vacances -->
+        <p class="important">&nbsp;</p>
+        <p class="important"><trsb:glp key="ASS-DEC-MOD-Q2-HTML" ></trsb:glp></p>
+     
+        <input type="radio" value="true" <%if("true".equals(uniquementVacances)){ %> checked <%} %> class="radio" name="uniquementVacances" id="ouiCacancesScolaires">
+        <label for="ouiCacancesScolaires">Oui</label>
+        
+        <input type="radio" value="false" <%if("false".equals(uniquementVacances)){ %> checked <%} %> class="radio" name="uniquementVacances" id="nonVacancesScolaires">
+        <label for="nonVacancesScolaires">Non</label>
+        
+        
+        <!-- Accueil provisoire -->
+        <p class="important">&nbsp;</p>
+        <p class="important"><trsb:glp key="ASS-DEC-MOD-Q3-HTML" ></trsb:glp></p>
+        <p><trsb:glp key="ASS-DEC-MOD-Q3-INF-HTML" /></p>
+        
+        <input type="radio" value="true"  class="radio" <%if("true".equals(estProvisoire)){ %> checked <%} %> name="estProvisoire" id="accueilProvisoireOui" />
+        <label for="accueilProvisoireOui">Oui</label>
+        
+        <input type="radio" value="false"  <%if("false".equals(estProvisoire)){ %> checked <%} %> class="radio" name="estProvisoire" id="accueilProvisoireNon" />
+        <label for="accueilProvisoireNon">Non</label>
+        
+       
+        <div class="accueilProvisoire" <%if(!"true".equals(estProvisoire)){ %>  style="display: none;" <%} %>>
+
+          <label for="dateFin" class="gauche"><trsb:glp key="ASS-DEC-MOD-DFI-HTML" ></trsb:glp></label> 
+          <input type="string" value="<%= dateFinProvisoire %>" name="dateFinProvisoire" id="dateFin" class="droite">                    
+  
+          <label for="motif" class="gauche"><trsb:glp key="ASS-DEC-MOD-MOT-HTML" ></trsb:glp>
+          <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-MOT-INF-HTML") %>" data-color="#AEC900">
+              <img alt="?" src="s.gif" class="spr-interrogation">
+            </button></label> 
+          <input type="text" name="motifProvisoire" value="<%= motifProvisoire %>" id="motif" class="droite">      
+        </div> 
+        
+      </div>
+      
+
+      
+     <p class="submit prev">
+         <label for="submitprev"> <input type="submit" id="submitprev"
+             name="opPrevious"
+             value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML" ></trsb:glp>"
+             class="submitButton"> <span class="input-box"
+             style="background-color: #aec900"><span
+                 class="spr-recherche-ok"></span></span>
+         </label> <input type="hidden" name="noSendRedirect" value="true">  
+     </p> 
+    
+ 
+      <p class="submit enregistrer" style='<%= isModif ? "visibility : hidden" : ""  %>'>
+        <label for="create"> <input id="create" type="submit" name="opCreate" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML" ></trsb:glp>" class="submitButton">
+          <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
+        </label> <input type="hidden" name="noSendRedirect" value="true"> 
+      </p>
+    
+      <p class="submit">
+          <label for="submit"> <input type="submit" id="submit"
+            name="opNext" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML" ></trsb:glp>" class="submitButton">
+            <span class="input-box" style="background-color: #aec900"><span
+              class="spr-recherche-ok"></span></span>
+          </label>           
+      </p>
+
+	<%}%>
+<!-- FIN -->
+
+
+
+
+

@@ -1,0 +1,17 @@
+<%
+/*
+* Fichier réalisant une requête issu d'une PQF et le stockant dans l'objet Request.
+* Utile pour faire qu'une requête quand on a deux PQF sur la page (affichage liste et carte)
+*/ 
+
+// On fait la requête
+%><%@ include file='/types/PortletQueryForeach/doQuery.jsp'%><%
+%><%@ include file='/types/PortletQueryForeach/doSort.jsp'%><%
+
+// Sauvegarde pour les deux autres portlets
+request.setAttribute("collectionToDisplay", collection);
+request.setAttribute("resultSize", resultSize);
+request.setAttribute("sort", sort);
+request.setAttribute("skipResults", skipResults);
+
+%>

@@ -1,0 +1,8 @@
+<%
+// Suppression des variables dans l'objet Request créé dans le fichier "doBeginRequest.jspf"
+request.removeAttribute("collectionToDisplay");
+request.removeAttribute("resultSize");
+request.removeAttribute("skipResults");
+request.removeAttribute("sort");
+
+%>
