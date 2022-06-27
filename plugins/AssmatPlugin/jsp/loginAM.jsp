@@ -1,196 +1,125 @@
-<%--
-   @Summary: Login form for public channel
-   @Category: Authentication
-   @Deprecated: False
-   @Customizable: True
-   @Requestable: True
---%><%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
-<%@page import="fr.cg44.plugin.tools.googlemaps.proxy.Proxy"%>
-<%@page import="fr.cg44.plugin.tools.modal.ModalCreator"%><%
-%><%@ page import="com.jalios.jcms.authentication.handlers.DelegationAuthenticationHandler" %><%
-%><%@ include file='/jcore/doInitPage.jsp' %>
-<%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%><%
+<%@page import="fr.cg44.plugin.socle.SocleUtils"%>
+<%@ page import="fr.cg44.plugin.socle.VideoUtils" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%
+%><%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%><%
+%><%@ include file='/jcore/doInitPage.jspf' %><%
+%><% PortletJsp portlet = (PortletJsp)request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
+%><%@ include file='/front/doFullDisplay.jspf' %><%
 
-jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/PortletLogin/portletLoginFullDisplay.css");
+request.setAttribute("title", glp("ui.fo.login.title"));
+Data reqPortal = getDataParameter("portal");
+String loginPortalId = reqPortal != null ? reqPortal.getId() : ((Data)request.getAttribute("Portal")).getId();
 
-%><%@ include file='/jcore/doHeader.jsp' %><%
-%><%
-  request.setAttribute("title", glp("ui.fo.login.title"));
-  Data reqPortal = getDataParameter("portal");
-  String loginPortalId = reqPortal != null ? reqPortal.getId() : ((Data)request.getAttribute("Portal")).getId();
-  
-  // We assume this JSP is not embedded twice in a page.  
-  String inputIdLogin    = "FrontLoginInputLogin";
-  String inputIdPassword = "FrontLoginInputPassword";
-  String inputIdMemorize = "FrontLoginInputMemorize";
-  String inputWidgetLoginCustomAttribute = "id=\"" + inputIdLogin + "\"";
-  String inputWidgetPasswordCustomAttribute = "id=\"" + inputIdPassword + "\"";
-  
-  // R�cup�ration de la cat�gorie courante
-  Category currentCategory = PortalManager.getDisplayContext(channel.getCurrentJcmsContext()).getCurrentCategory();
-  
-%><div class="portlet-login-full-display title-bar-container dotted-title <%= (ModalCreator.isModalPortal())? "modal-portal":"" %>"><%
-   %><h2><%= glp("plugin.assmatplugin.form.login.am.loginTitle") %></h2><%
-   
-   %>
-   <%@ include file='/jcore/doMessageBox.jsp' %>
-   <div class="form-cg">
-        <div class="form-cg-gray container-fluid">
-        <jalios:include target="LOGIN_FORM_HEADER" targetContext="div" /><%
-          // Url de redirection
-             // Si on est dans une cat�gorie, on reste sur cette cat�gorie 
-             String redirectUrl = Util.getString(getValidHttpUrl("redirect"), ServletUtil.getBaseUrl(request) + "index.jsp");
-             String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccueilAssmat")) ? request.getParameter("redirectAccueilAssmat") : "";
-            
-          if (ModalCreator.isModalPortal()) {
-            Category cat = channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.socle.confirm.catLoginRedirect", null));            
-            if (Util.notEmpty(cat)) {
-              redirectUrl = ServletUtil.getBaseUrl(request) + cat.getDisplayUrl(channel.getCurrentUserLocale());
-              
-              if(Util.notEmpty(redirectAccueilAssmat)) {
-                Publication portalPerso = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.socle.portail.param.id"));
-                redirectUrl = redirectUrl + "?redirectForce=" + portalPerso.getDisplayUrl(userLocale);               
-              }              
-            }
-          } 
-        %>
-        <%
-        String identification = (String) session.getAttribute("identification");
-        session.removeAttribute("identification");
-        // Exception pour RAM ou Syndicat
-       if(Util.notEmpty(identification)) {
-        redirectUrl = getValidHttpUrl("redirect");
-       }
-        %>
-        
-        <jalios:select>
-          
-          <jalios:if predicate="<%= Util.notEmpty(identification) %>">                      
-             <p><%= AssmatUtil.getMessage("CONNEXION-" + identification ,true) %></p>     
-          </jalios:if>
-          
-          <jalios:default>
-            <p><%= AssmatUtil.getMessage("CONNEXION-AM-DESCRIPTION",true) %></p>  
-          </jalios:default>
-        
-        </jalios:select>
-        
-        <%
-        // 11454 : Si pas de redirect connu alors allez vers la page d'accueil de gestion de profil d'un AM 
-        if(redirectUrl == null) {
-          Publication portalPerso = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.socle.portail.param.id"));
-          redirectUrl = portalPerso.getDisplayUrl(userLocale);
-        }
-        %>
-        
-        <%-- Standard LOGIN --%>
-        <form action="<%= redirectUrl %>" method="post" name="login">
-        
-        
-        
-        <div class="login row-fluid">
-          <div class="label span4"><%
-             %><label for="<%= inputIdLogin %>"><%
-               %><%= glp("plugin.corporateidentity.form.login.loginLabel") %><%
-             %></label><%
-             %><span></span><%
-            %></div>
-            <div class="span8"><%
-              %><jalios:widget css="cg-input" editor='<%= AbstractWidget.UI_EDITOR_TEXTFIELD %>' widgetName='<%= channel.getAuthMgr().getLoginParameter() %>' size='<%= 14 %>' customAttributes='<%= inputWidgetLoginCustomAttribute %>'/><%
-            %></div><%
-         %></div><%
-              
-          %><div class="clear clear-margin"></div><%
-          
-          %><div class="password row-fluid">
-             <div class="label span4"><%
-               %><label for="<%= inputIdPassword %>"><%
-                 %><%= glp("plugin.corporateidentity.form.login.passwordLabel") %><%
-               %></label><%
-             %></div><%
-            
-            %><div class="span8"><%
-                %><jalios:widget css="cg-input" editor='<%= AbstractWidget.UI_EDITOR_PASSWORD %>' widgetName='<%= channel.getAuthMgr().getPasswordParameter() %>'  size='<%= 14 %>' customAttributes='<%= inputWidgetPasswordCustomAttribute %>' /><%
-            %></div><%
-          %></div><%
-          
-          %><div class="clear"></div><%
-          
-          // Rester connect�
-          %>
-          
-          <div class="remember-me row-fluid">
-		          <div class="label span4" style="min-height: 1px;">
-		          </div>
-		          <div class="span8">
-				          <input style="display: inline-block !important; width: auto !important;" id="visible-password" type="checkbox" />
-				          <label for="visible-password"> <trsb:glp key="CONNEXION-AM-VISIBLE-PASSWORD" /> </label>
-              </div>
-          </div>
-          
-          <jalios:if predicate="<%= channel.getAuthMgr().isShowingPersistentOption() %>">
-            <div class="remember-me row-fluid">
-              <div class="label span4" style="min-height: 1px;">
-              </div>
-              <div class="span8">
-                  <input style="display: inline-block !important; width: auto !important;" id="<%= inputIdMemorize %>" type="checkbox" name="<%= channel.getAuthMgr().getPersistentParameter() %>" value="true" <%= channel.getAuthMgr().getDefaultPersistentValue() ? "checked=\"checked\"" : "" %> />
-                  <label for="<%= inputIdMemorize %>"><%= glp("plugin.corporateidentity.form.login.rememberMe") %></label>
-                </div>
+// We assume this JSP is not embedded twice in a page.  
+String inputIdLogin    = "FrontLoginInputLogin";
+String inputIdPassword = "FrontLoginInputPassword";
+String inputIdMemorize = "FrontLoginInputMemorize";
+String inputWidgetLoginCustomAttribute = "id=\"" + inputIdLogin + "\"";
+String inputWidgetPasswordCustomAttribute = "id=\"" + inputIdPassword + "\"";
+
+// Labels
+String loginText = glp("jcmsplugin.socle.identifiant");
+String passwordText = glp("ui.fo.login.lbl.passwd");
+String buttonText = glp("jcmsplugin.socle.valider");
+
+// Récupération de la catégorie courante
+Category currentCategory = PortalManager.getDisplayContext(channel.getCurrentJcmsContext()).getCurrentCategory();
+
+String redirectUrl = Util.getString(getValidHttpUrl("redirect"), ServletUtil.getBaseUrl(request) + "index.jsp");
+String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccueilAssmat")) ? request.getParameter("redirectAccueilAssmat") : "";
+%>
+
+<main role="main" id="content">
+   <div class="ds44-container-large">
+      
+    <ds:titleNoImage title="<%= portlet.getTitle(userLang) %>" breadcrumb="true"></ds:titleNoImage>
+
+      <div class="ds44-img50 ds44--xxl-padding-tb">
+         <div class="ds44-inner-container">
+            <div class="ds44-grid12-offset-1">
+               <section class="ds44-box ds44-theme">
+                  <div class="ds44-innerBoxContainer">
+                     <div class="grid-12-small-1">
+                        <div class="col-5-small-1">
+                           <form novalidate="true" data-is-initialized="true" action="<%= channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.general.categ.accueil")).getDisplayUrl(userLocale) %>" method="post" name="login">
+                              <h2 class="h4-like ds44-mb-std"><%= glp("plugin.assmatplugin.screen.login.alreadyhaveaccount") %></h2>
+                              <%= glp("plugin.assmatplugin.screen.login.assistantmaternel.desc.html") %>
+                              <div>
+                                 <div class="ds44-form__container">
+                                    <div class="ds44-posRel">
+                                       <label for="form-element-78494" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("ui.adm.mail-info.login") %></span></span></label>
+                                       <input type="text" id="login" name="<%= channel.getAuthMgr().getLoginParameter() %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", loginText) %>' required size="14"/>
+                                       <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.adm.mail-info.login")) %></span></button>
+                                    </div>
+                                 </div>
+                              </div>
+                              <%--
+                              
+                               --%>
+                               <%--
+                              <div>
+                                 <div class="ds44-form__container">
+                                    <div class="ds44-posRel">
+                                       <label for="current-password" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("ui.adm.mail-info.password") %></span></span></label>
+                                       <input type="password" id="current-password" name="JCMS_password" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("ui.fo.login.lbl.passwd")) %>' size="14" required autocomplete="current-password"><button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", passwordText) %></span></button>
+                                       <label for="password" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= passwordText %></span></span></label>
+                                       <button class="ds44-showPassword" type="button">
+                                       <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
+                                       <span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.afficher-contenu-champ", glp("ui.adm.mail-info.password")) %></span>
+                                       </button>
+                                       <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.adm.mail-info.password")) %></span></button>
+                                    </div>
+                                 </div>
+                              </div>
+                              --%>
+                              <div>
+                                <div class="ds44-form__container">
+                                  <div class="ds44-posRel">
+                                     <label for="current-password" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("ui.adm.mail-info.password") %></span></span></label>
+                                     <input type="password" id="current-password" name="JCMS_password" class="ds44-inpStd" autocomplete="current-password" title="null">
+                                     <button class="ds44-showPassword" type="button">
+                                     <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
+                                     <span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.afficher-contenu-champ", glp("ui.adm.mail-info.password")) %></span>
+                                     </button>
+                                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.adm.mail-info.password")) %></span></button>
+                                  </div>
+                               </div>
+                             </div>
+                              
+                              <div>
+                                 <div id="form-element-47598" data-name="form-element-47598" class="ds44-form__checkbox_container ds44-form__container" title="null">
+                                    <div class="ds44-form__container ds44-checkBox-radio_list ">
+                                       <input type="checkbox" id="name-check-form-element-47598-connect" name="form-element-47598" value="connect" class="ds44-checkbox"><label for="name-check-form-element-47598-connect" class="ds44-boxLabel" id="name-check-label-form-element-47598-connect"><%= glp("jcmsplugin.socle.form.login.memoriser") %></label>
+                                    </div>
+                                 </div>
+                              </div>
+                              <button class="ds44-btnStd ds44-btn--invert ds44-bntALeft ds44-mtb1" title="Se connecter à votre compte">
+                              <span class="ds44-btnInnerText"><%= glp("plugin.assmatplugin.screen.login.seconnecter") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+                              </button>
+                              <p class="ds44-noMrg"><a href="plugins/AssmatPlugin/jsp/login/mailPassword.jsp?portal=<%= loginPortalId %>"><%= glp("jcmsplugin.assmatplugin.accueil.mdp.oublie") %></a></p>
+                              
+                              <input type='hidden' name="redirectUrl" value='<%= redirectUrl %>' data-technical-field/>
+                              <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
+
+                              <jalios:if predicate="<%= !channel.getAuthMgr().isShowingPersistentOption() %>">
+                                <input type="hidden" name="<%= channel.getAuthMgr().getPersistentParameter() %>" value="<%= channel.getAuthMgr().getDefaultPersistentValue() %>" />
+                              </jalios:if>
+                           </form>
+                        </div>
+                        <div class="col-2-small-1 txtcenter ds44-h100">
+                           <div class="ds44-separator ds44-flex-valign-center ds44-flex-align-center ds44-flex-container"></div>
+                        </div>
+                        <div class="col-5-small-1">
+                           <h2 class="h4-like ds44-mb-std" id="titreCreerCompte"><%= glp("plugin.assmatplugin.screen.login.noaccount") %></h2>
+                           <h3 class="h5-like"><%= glp("plugin.assmatplugin.screen.login.assistantmaternel") %></h3>
+                           <p><%= glp("plugin.assmatplugin.screen.login.assistantmaternel.intro") %></p>
+                           <button class="ds44-btnStd ds44-mt2"><span class="ds44-btnInnerText"><%= glp("plugin.assmatplugin.screen.login.enableaccount") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+                        </div>
+                     </div>
+                  </div>
+               </section>
             </div>
-          </jalios:if>   
-          
-          <div class="clear"></div>  
-          
-          <div class="submit-and-forget">
-            <a href="plugins/AssmatPlugin/jsp/login/mailPassword.jsp?portal=<%= loginPortalId %>"><%= glp("plugin.tools.form.forgotPassword") %></a><%
-                String defaultColor = Proxy.getMainColor();
-                String serviceStyle = (Util.notEmpty(defaultColor))? "style=\"background-color: "+defaultColor+"\"":"";
-            %><div class="submit">
-                <label for="submitLogin">
-                  <input type='submit' id='submitLogin' name="<%= channel.getAuthMgr().getOpLoginParameter() %>" value="<%= glp("plugin.tools.form.validate") %>"  class='submitButton'/>
-              <span class="input-box" <%= serviceStyle %>><span class="spr-recherche-ok"></span></span>
-            </label>
-                
-              <%
-             
-                    
-              %>
-              <input type="hidden" name="redirectAccueilAssmat" value="<%= redirectAccueilAssmat %>" />
-              <input type="hidden" name="loginType" value="am" />
-              <input type="hidden" name="redirect" value="<%= encodeForHTMLAttribute(redirectUrl) %>" class="Form" />
-                <input type="hidden" name="jsp" value="<%= ResourceHelper.getLogin() %>" />
-                <input type="hidden" name="portal" value="<%= encodeForHTMLAttribute(loginPortalId) %>" />
-                <jalios:if predicate="<%= !channel.getAuthMgr().isShowingPersistentOption() %>">
-                 <input type="hidden" name="<%= channel.getAuthMgr().getPersistentParameter() %>" value="<%= channel.getAuthMgr().getDefaultPersistentValue() %>" />
-                </jalios:if>
-              </div>
-            </div>
-            
-            <%--
-        <div class="help row-fluid">
-          <div class="label">
-            <span><%= glp("plugin.corporateidentity.form.login.helpLabel") %>  <a style="text-decoration:underline;"  href="./presse" target="_parent">ici</a> </span>
-          </div> 
-        </div>  
-         --%>
-         </form>
-      <jalios:include target="LOGIN_FORM_FOOTER" targetContext="div" /><%
-      %><div class="clear"></div>
-    </div>
-  </div>
-</div>
-
-<jalios:javascript>
-
-jQuery('#visible-password').change(function () {
-    if(this.checked){
-      document.getElementById('FrontLoginInputPassword').type='text';  
-    }else {      
-      document.getElementById('FrontLoginInputPassword').type='password';   
-    }    
-});
-
-</jalios:javascript>
-
-<%@ include file='/jcore/doFooter.jsp' %>
-
+         </div>
+      </div>
+   </div>
+</main>
