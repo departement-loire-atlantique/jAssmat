@@ -220,7 +220,13 @@
     <directory path="img" />
     <directory path="js" />    
     <directory path="jsp" />
-    <file path="jsp/solis/infosSolis.jsp" include="EDIT_PUB_FOOTER" />    
+    <file path="jsp/solis/infosSolis.jsp" include="EDIT_PUB_FOOTER" />
+    <file path="jsp/target/exportMemberAmCsvLink.jsp" include="WORKADMIN_USERS" /> 
+    <file path="jsp/target/memberAMLogin.jsp" include="EDIT_MBR_MAINTAB_FOOTER"/>
+    <file path="jsp/target/smsBoard.jsp" include="ADMIN_REPORTING|ADMIN_REPORTING_SUBMENU"/>
+    <file path="jsp/target/profilAMLink.jsp" include="MEMBER_PROFILE_MAINTAB"/>
+    <file path="jsp/target/sendMailAssmatLink.jsp" include="ADMIN_OPERATION|ADMIN_OPERATION_SUBMENU"/>
+    <file path="jsp/target/expireImportLink.jsp" include="ADMIN_OPERATION|ADMIN_OPERATION_SUBMENU"/>  
   </public-files>
   
   <webapp-files>
