@@ -220,6 +220,7 @@
     <directory path="img" />
     <directory path="js" />    
     <directory path="jsp" />
+    <file path="jsp/solis/infosSolis.jsp" include="EDIT_PUB_FOOTER" />    
   </public-files>
   
   <webapp-files>
