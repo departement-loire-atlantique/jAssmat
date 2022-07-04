@@ -173,6 +173,10 @@
     
     <!-- Utilisé pour le service rest de solis et mailjet client -->
     <jar path="json-simple-1.1.1.jar" />
+    <!-- Utilisé par la génération PDF -->
+    <jar path="itext-2.0.2.jar" />
+    
+    
   
   </jars>
 
