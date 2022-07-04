@@ -27,6 +27,8 @@
     <type name="FormulaireDeContactDuneAM" />
     <type name="InscriptionAM" /> 
     <type name="OuvertureSite" />
+    <type name="PortletFacetteDispo" />
+    <type name="PortletFacetteMois" />
     <type name="ProfilASSMAT" />
     <type name="Routage" />
     <type name="SignalerDemenagement" />
@@ -111,6 +113,18 @@
       </template>
     </templates>    
     
+    <templates type="PortletFacetteMois">
+        <template name="default" file="doPortletFacetteMoisBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates> 
+    
+    <templates type="PortletFacetteDispo">
+        <template name="default" file="doPortletFacetteDispoBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates> 
+    
   </types>
 
   <jars>
@@ -156,6 +170,9 @@
     <jar path="okio-1.6.0.jar" /> 
     <jar path="swagger-annotations-1.5.15.jar" /> 
     <jar path="swagger-java-client-1.0.0.jar" />
+    
+    <!-- Utilisé pour le service rest de solis et mailjet client -->
+    <jar path="json-simple-1.1.1.jar" />
   
   </jars>
 
