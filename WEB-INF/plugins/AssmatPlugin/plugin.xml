@@ -199,9 +199,12 @@
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.FormContactDuneAMDataController" types="FormulaireDeContactDuneAM" />
     <datacontroller     class="fr.cg44.plugin.administrabletexteplugin.datacontroller.TexteParametrableDataController" types="TexteParametrable" />
  
+     <!--
+ 
     <channellistener    class="fr.cg44.plugin.assmat.listener.AssmatChannelListener" />
     <channellistener    class="fr.cg44.plugin.assmat.listener.SMSChannelListener" />
-           
+          -->
+             
     <!--
     <alarmlistener         class="fr.cg44.plugin.assmat.alarm.listener.NotConnectAlarmListener" schedule="* 3 * * * *" manager="AssmatAlarmManager"/>
     <alarmlistener         class="fr.cg44.plugin.assmat.alarm.listener.AvailabilityAlarmListener" schedule="* 3 * * * *" manager="AssmatAlarmManager"/>
