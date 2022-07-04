@@ -323,3 +323,4 @@ plugin.assmatplugin.screen.login.seconnecter: Se connecter
 plugin.assmatplugin.screen.login.assistantmaternel: Vous êtes assistant·e maternelle
 plugin.assmatplugin.screen.login.assistantmaternel.intro: La création d’un compte sur le site assmat vous permet de réaliser vos déclarations d’accueil en ligne et d’afficher ou non vos disponibilités pour les parents.
 plugin.assmatplugin.screen.login.enableaccount: Activer votre compte
+plugin.assmatplugin.screen.login.connecter: Se connecter à votre compte

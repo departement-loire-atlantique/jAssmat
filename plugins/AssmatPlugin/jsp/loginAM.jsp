@@ -93,7 +93,7 @@ String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccue
                                     </div>
                                  </div>
                               </div>
-                              <button class="ds44-btnStd ds44-btn--invert ds44-bntALeft ds44-mtb1" title="Se connecter à votre compte">
+                              <button class="ds44-btnStd ds44-btn--invert ds44-bntALeft ds44-mtb1" title='<%= glp("plugin.assmatplugin.screen.login.connecter") %>'>
                               <span class="ds44-btnInnerText"><%= glp("plugin.assmatplugin.screen.login.seconnecter") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i>
                               </button>
                               <p class="ds44-noMrg"><a href="plugins/AssmatPlugin/jsp/login/mailPassword.jsp?portal=<%= loginPortalId %>"><%= glp("jcmsplugin.assmatplugin.accueil.mdp.oublie") %></a></p>
