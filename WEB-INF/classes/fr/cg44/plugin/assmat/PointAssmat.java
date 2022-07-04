@@ -2,7 +2,7 @@ package fr.cg44.plugin.assmat;
 
 import java.util.Date;
 
-import fr.cg44.plugin.tools.googlemaps.geometry.Point;
+import fr.cg44.plugin.socle.Point;
 
 /**
  * Point localisé dans un espace à 2 dimensions avec une notion d'ordre et un type de point.

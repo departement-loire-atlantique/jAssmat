@@ -312,3 +312,5 @@ plugin.assmatplugin.swagger.demarches.url: Url du web service swagger pour les d
 plugin.assmatplugin.declaration.pilote.group.id: ID du groupe pilote pour déclarations d'accueil
 
 plugin.assmatplugin.contacter.courriel.error: Le format du champ "Courriel" est incorrect. Veuillez le vérifier. Exemple: contact@mail.fr
+
+jcmsplugin.socle.facette.disponibilites.default-label: Disponibilités
