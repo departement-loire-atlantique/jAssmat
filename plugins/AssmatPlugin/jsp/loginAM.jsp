@@ -32,7 +32,7 @@ String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccue
 <main role="main" id="content">
    <div class="ds44-container-large">
       
-    <ds:titleNoImage title="<%= portlet.getTitle(userLang) %>" breadcrumb="true"></ds:titleNoImage>
+    <ds:titleNoImage title='<%= Util.notEmpty(portlet) ? portlet.getTitle(userLang) : glp("plugin.assmatplugin.screen.login.title") %>' breadcrumb="true"></ds:titleNoImage>
 
       <div class="ds44-img50 ds44--xxl-padding-tb">
          <div class="ds44-inner-container">
@@ -79,7 +79,7 @@ String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccue
                                      <input type="password" id="current-password" name="JCMS_password" class="ds44-inpStd" autocomplete="current-password" title="null">
                                      <button class="ds44-showPassword" type="button">
                                      <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
-                                     <span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.afficher-contenu-champ", glp("ui.adm.mail-info.password")) %></span>
+                                     <span class="visually-hidden"><%= glp("plugin.assmatplugin.facette.afficher-contenu-champ", glp("ui.adm.mail-info.password")) %></span>
                                      </button>
                                      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.adm.mail-info.password")) %></span></button>
                                   </div>

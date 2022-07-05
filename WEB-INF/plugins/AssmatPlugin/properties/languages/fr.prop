@@ -315,6 +315,7 @@ plugin.assmatplugin.contacter.courriel.error: Le format du champ "Courriel" est 
 
 # ECRAN DE CONNEXION
 
+plugin.assmatplugin.screen.login.title: Connexion à votre compte
 plugin.assmatplugin.screen.login.alreadyhaveaccount: J’ai déjà un compte
 plugin.assmatplugin.screen.login.noaccount: Je n'ai pas encore de compte
 plugin.assmatplugin.screen.login.assistantmaternel.desc.html: <p>Cet espace est réservé aux assistantes et assistants maternel agréés par le Département.</p>\
@@ -324,3 +325,4 @@ plugin.assmatplugin.screen.login.assistantmaternel: Vous êtes assistant·e mate
 plugin.assmatplugin.screen.login.assistantmaternel.intro: La création d’un compte sur le site assmat vous permet de réaliser vos déclarations d’accueil en ligne et d’afficher ou non vos disponibilités pour les parents.
 plugin.assmatplugin.screen.login.enableaccount: Activer votre compte
 plugin.assmatplugin.screen.login.connecter: Se connecter à votre compte
+plugin.assmatplugin.facette.afficher-contenu-champ: Afficher le contenu du champ : {0}
