@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type name="FormulaireDeContactRAM" superclass="com.jalios.jcms.Form" formOneSubmit="false" formNotify="false" formAuthor="j_2" formRedirectMode="home" categoryTab="true" readRightTab="true" updateRightTab="true" templateTab="true" workflowTab="true" advancedTab="true" titleML="false" database="true" hbm="true" debatable="false" unitFieldEdition="true" audienced="false">
+  <title ml="false">
+    <label xml:lang="fr">Titre</label>
+  </title>
+  <fields>
+    <field name="name" editor="textfield" required="true" type="String" searchable="true" size="80" compactDisplay="true">
+      <label xml:lang="fr">Nom</label>
+    </field>
+    <field name="firstName" editor="textfield" required="true" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="false" descriptionType="text">
+      <label xml:lang="fr">Prénom</label>
+    </field>
+    <field name="courriel" editor="email" required="true" compactDisplay="false" type="String" searchable="false" size="50" maxlength="500" pattern="([-0-9a-zA-Z_\.']+@[-0-9a-zA-Z_\.]+)?" ml="false">
+      <label xml:lang="fr">Courriel</label>
+    </field>
+    <field name="phone" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="false" descriptionType="text">
+      <label xml:lang="fr">Téléphone</label>
+    </field>
+    <field name="message" editor="textarea" required="true" compactDisplay="false" type="String" searchable="false" rows="5" cols="80" ml="false" wiki="false" wikiwyg="false" html="false" checkHtml="false" descriptionType="text">
+      <label xml:lang="fr">Votre message</label>
+    </field>
+    <field name="memberId" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="false" descriptionType="text">
+      <label xml:lang="fr">MemberId</label>
+    </field>
+    <field name="mailRAM" editor="email" required="false" compactDisplay="false" type="String" searchable="false" size="50" maxlength="500" pattern="([-0-9a-zA-Z_\.']+@[-0-9a-zA-Z_\.]+)?" ml="false">
+      <label xml:lang="fr">mail RAM</label>
+    </field>
+  </fields>
+  <label xml:lang="fr">Formulaire de contact - RAM</label>
+</type>
+

@@ -5,7 +5,106 @@
   <label xml:lang="fr">Module Assmat</label>
   <description xml:lang="fr">Module Assmat</description>
  
-
+ <types>
+    <type name="ChangementCadreDaccueil" />
+    <type name="ChangementSituationFamiliale" />
+    <type name="DeclarerAccueil" />
+    <type name="Demarche" />        
+    <type name="Disponibilite" />  
+    <type name="FormContactAssmat" />
+    <type name="FormulaireDeContactActualiserCoo" />
+    <type name="FormulaireDeContactRAM" />
+    <type name="FormulaireDeContactDuneAM" />
+    <type name="InscriptionAM" /> 
+    <type name="OuvertureSite" />
+    <type name="PortletFacetteDispo" />
+    <type name="PortletFacetteMois" />
+    <type name="ProfilASSMAT" />
+    <type name="Routage" />
+    <type name="SignalerDemenagement" />
+    <type name="SignalerDemenagementAutreDeparte" />
+    <type name="TexteParametrable" />
+   
+    <templates type="PortletNavigate">
+      <template name="menuEspacePersonnel" file="menuEspacePersonnel.jsp" usage="box">
+        <label xml:lang="en">Menu in the welcome of the section</label>
+        <label xml:lang="fr">Menu d'accueil de l'espace personnel</label>
+      </template>
+       <template name="menuEspacePersonnel" file="menuEspacePersonnel.jsp" usage="full">
+        <label xml:lang="en">Menu in the welcome of the section</label>
+        <label xml:lang="fr">Menu d'accueil de l'espace personnel</label>
+      </template>
+      <template name="menuAssmat" file="doPortletNavigateMenuAssmat.jsp" usage='box'>
+        <label xml:lang="fr">Gabarit Menu pour assmat</label>
+      </template>
+    </templates>
+    
+    <templates type="PortletQueryForeach">
+      <template name="servicesNavigation" file="pqfEspacesIcons.jsp" usage="box">
+        <label xml:lang="fr">Affichage des espaces</label>
+      </template>
+    </templates>
+    
+    <templates type="ProfilASSMAT">
+      <template name="default" file="profilASSMATQueryDisplay.jsp" usage="query">
+        <label xml:lang="en">profilAssmatQueryDisplay in query display</label>
+        <label xml:lang="fr">profilAssmatQueryDisplay en query display</label>
+      </template>
+       <template name="default" file="profilAssmatFullDisplay.jsp" usage="full">
+        <label xml:lang="en">Full display</label>
+        <label xml:lang="fr">StructurePersonnesHandicapeesEnf en query display</label>
+      </template>
+    </templates>
+    
+    <templates type="Place">
+      <template name="default" file="placeQueryDisplay.jsp" usage="query">
+        <label xml:lang="en">Place Query Display</label>
+        <label xml:lang="fr">Affichage d'une fiche lieu en Query display</label>
+      </template>
+      <template name="default" file="placeInfoWindowGoogleMaps.jsp" usage="geolocationInfoWindow">
+        <label xml:lang="en">Place Query Display</label>
+        <label xml:lang="fr">Affichage d'une fiche lieu en Query display</label>
+      </template>
+      <template name="default" file="placeInfoWindowGoogleMaps.jsp" usage="geolocationInfoWindowList">
+        <label xml:lang="en">Place Query Display</label>
+        <label xml:lang="fr">Affichage d'une fiche lieu en Query display</label>
+      </template>
+    </templates>
+   
+    <templates type="City">
+      <template name="assmat" file="cityInfoWindowGoogleMapsAssmat.jsp" usage='geolocationInfoWindowAssmat'>
+        <label xml:lang="en">City in Google Maps</label>
+        <label xml:lang="fr">Commune dans Google Maps</label>
+      </template>
+    </templates>
+    
+    <templates type="ProfilASSMAT">
+      <template name="default" file="profilAMInfoWindowGoogleMapsAssmat.jsp" usage='geolocationInfoWindow'>
+        <label xml:lang="en">City in Google Maps</label>
+        <label xml:lang="fr">Commune dans Google Maps</label>
+      </template>     
+    </templates>
+    
+    <templates type="InscriptionAM">
+      <template name="default" file="doInscriptionAMFullDisplay.jsp" usage="full">
+        <label xml:lang="en">Full display 404</label>
+        <label xml:lang="fr">Full display 404</label>
+      </template>
+    </templates>    
+    
+    <templates type="PortletFacetteMois">
+        <template name="default" file="doPortletFacetteMoisBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates> 
+    
+    <templates type="PortletFacetteDispo">
+        <template name="default" file="doPortletFacetteDispoBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates> 
+    
+  </types>
     
 
 

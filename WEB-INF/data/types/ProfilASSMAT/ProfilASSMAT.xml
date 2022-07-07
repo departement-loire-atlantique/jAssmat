@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type name="ProfilASSMAT" superclass="com.jalios.jcms.UserContent" categoryTab="false" readRightTab="false" updateRightTab="false" templateTab="false" workflowTab="false" advancedTab="false" titleML="false" database="true" hbm="true" debatable="false" unitFieldEdition="false" audienced="false">
+  <title ml="false" searchable="true">
+    <label xml:lang="fr">Titre</label>
+  </title>
+  <fields>
+    <field name="num_agrement" editor="int" required="false" compactDisplay="false" type="int" default="0" ml="false" hidden="true" descriptionType="text" searchable="false" html="false" checkHtml="true" unitPos="after">
+      <label xml:lang="fr">Numéro d'agrément</label>
+    </field>
+    <field name="visibiliteSite" editor="boolean" required="false" compactDisplay="false" type="boolean" default="on" ml="false" descriptionType="text" searchable="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Visibilité site</label>
+      <onLabel xml:lang="fr">Oui</onLabel>
+      <offLabel xml:lang="fr">Non</offLabel>
+    </field>
+    <field name="typeLogin" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="1|2|3" ml="false" descriptionType="text" labelList="Télephone portable|Email|Numero" searchable="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Type login</label>
+    </field>
+    <field name="compteActive" editor="boolean" required="false" compactDisplay="false" type="boolean" default="on">
+      <label xml:lang="fr">Compte activé</label>
+      <onLabel xml:lang="fr">Oui</onLabel>
+      <onLabel xml:lang="en">Yes</onLabel>
+      <offLabel xml:lang="fr">Non</offLabel>
+      <offLabel xml:lang="en">No</offLabel>
+    </field>
+    <field name="profilRenseigne" editor="boolean" required="false" compactDisplay="false" type="boolean" default="on">
+      <label xml:lang="fr">Profil renseigné</label>
+      <onLabel xml:lang="fr">Oui</onLabel>
+      <onLabel xml:lang="en">Yes</onLabel>
+      <offLabel xml:lang="fr">Non</offLabel>
+      <offLabel xml:lang="en">No</offLabel>
+    </field>
+    <field name="telephoneFixe" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" tab="contact" descriptionType="text">
+      <label xml:lang="fr">Téléphone fixe</label>
+    </field>
+    <field name="visbiliteTelephoneFixe" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="contact">
+      <label xml:lang="fr">Visbilité téléphone fixe</label>
+    </field>
+    <field name="visibiliteTelephonePortable" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="contact">
+      <label xml:lang="fr">Visibilité téléphone portable</label>
+    </field>
+    <field name="creneauHorairesDappel" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" tab="contact">
+      <label xml:lang="fr">Créneau horaires d'appel</label>
+    </field>
+    <field name="visibiliteAdresseEmail" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="contact">
+      <label xml:lang="fr">Visibilité adresse email</label>
+    </field>
+    <field name="afficherContactUniquementSiD" editor="boolean" required="false" compactDisplay="false" type="boolean" default="off">
+      <label xml:lang="fr">Afficher contact uniquement si dispo</label>
+      <onLabel xml:lang="fr">Oui</onLabel>
+      <onLabel xml:lang="en">Yes</onLabel>
+      <offLabel xml:lang="fr">Non</offLabel>
+      <offLabel xml:lang="en">No</offLabel>
+    </field>
+    <field name="canalDeCommunicationSite" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="checkbox" valueList="0|1" ml="false" descriptionType="text" searchable="false" html="false" checkHtml="true" tab="contact" labelList="Téléphone|Email">
+      <label xml:lang="fr">Canal de communication site</label>
+    </field>
+    <field name="autorisationSite" editor="boolean" required="false" compactDisplay="false" type="boolean" default="on" ml="false" descriptionType="text" searchable="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Autorisation Département</label>
+      <onLabel xml:lang="fr">Oui</onLabel>
+      <offLabel xml:lang="fr">Non</offLabel>
+    </field>
+    <field name="autorisationCAF" editor="boolean" required="false" compactDisplay="false" type="boolean" default="on" ml="false" descriptionType="text" searchable="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Autorisation CAF</label>
+      <onLabel xml:lang="fr">Oui</onLabel>
+      <offLabel xml:lang="fr">Non</offLabel>
+    </field>
+    <field name="autorisationRelais" editor="boolean" required="false" compactDisplay="false" type="boolean" default="on" ml="false" descriptionType="text" searchable="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Autorisation Relais</label>
+      <onLabel xml:lang="fr">Oui</onLabel>
+      <offLabel xml:lang="fr">Non</offLabel>
+    </field>
+    <field name="accueilTempsPartiel" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Accueil temps partiel</label>
+    </field>
+    <field name="accueilPeriscolaire" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Accueil périscolaire</label>
+    </field>
+    <field name="accueilMercredi" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Accueil mercredi</label>
+    </field>
+    <field name="accueilPendantLesVacancesSco" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Accueil pendant les vacances scolaires</label>
+    </field>
+    <field name="horairesAtypiques" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Horaires atypiques</label>
+    </field>
+    <field name="avant7h" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Avant 7h</label>
+    </field>
+    <field name="apres20h" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Après 20h</label>
+    </field>
+    <field name="leSamedi" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Le samedi</label>
+    </field>
+    <field name="leDimanche" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Le dimanche</label>
+    </field>
+    <field name="laNuit" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">La nuit</label>
+    </field>
+    <field name="accepteDepannage" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Accepte dépannage</label>
+    </field>
+    <field name="precisionsDepannage" editor="textarea" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" tab="offreAccueil" descriptionType="text">
+      <label xml:lang="fr">Précisions dépannage</label>
+    </field>
+    <field name="accueilEnfantHandicap" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Accueil enfant handicap</label>
+    </field>
+    <field name="precisionsEnfantHandicap" editor="textarea" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" tab="offreAccueil" descriptionType="text">
+      <label xml:lang="fr">Précisions enfant handicap</label>
+    </field>
+    <field name="logementAccessible" editor="enumerate" required="false" compactDisplay="false" type="String" chooser="listbox" valueList="true|false|none" ml="false" descriptionType="text" labelList="Oui|Non|Aucun" searchable="false" html="false" checkHtml="true" tab="offreAccueil">
+      <label xml:lang="fr">Logement accessible</label>
+    </field>
+    <field name="precisionsLogementAccessible" editor="textarea" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" tab="offreAccueil" descriptionType="text">
+      <label xml:lang="fr">Précisions logement accessible</label>
+    </field>
+    <field name="etapeDeValidation" editor="int" required="false" compactDisplay="false" type="int" default="0" ml="false" hidden="true" descriptionType="text" searchable="false" html="false" checkHtml="true" unitPos="after">
+      <label xml:lang="fr">Etape de gestion du profil</label>
+    </field>
+    <field name="nombreDerreurEtapeIdentifica" editor="int" required="false" compactDisplay="false" type="int" default="0" ml="false" hidden="true" descriptionType="text" searchable="false" html="false" checkHtml="true" unitPos="after">
+      <label xml:lang="fr">Nombre d'erreur etape identification</label>
+    </field>
+    <field name="commune" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" hidden="true" descriptionType="text">
+      <label xml:lang="fr">commune</label>
+    </field>
+    <field name="communeMam" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" hidden="true" descriptionType="text">
+      <label xml:lang="fr">Commune Mam</label>
+    </field>
+    <field name="latitudeAssmat" editor="double" required="false" compactDisplay="false" type="double" decimals="2" default="0">
+      <label xml:lang="fr">Latitude Assmat</label>
+    </field>
+    <field name="longitudeAssmat" editor="double" required="false" compactDisplay="false" type="double" decimals="2" default="0">
+      <label xml:lang="fr">Longitude Assmat</label>
+    </field>
+    <field name="latitudeMAM" editor="double" required="false" compactDisplay="false" type="double" decimals="2" default="0">
+      <label xml:lang="fr">Latitude MAM</label>
+    </field>
+    <field name="longitudeMAM" editor="double" required="false" compactDisplay="false" type="double" decimals="2" default="0">
+      <label xml:lang="fr">Longitude MAM</label>
+    </field>
+  </fields>
+  <label xml:lang="fr">Profil ASSMAT</label>
+  <tabs>
+    <tab id="disponibilites">
+      <label xml:lang="fr">Disponibilités</label>
+    </tab>
+    <tab id="offreAccueil">
+      <label xml:lang="fr">Offre d'accueil</label>
+    </tab>
+    <tab id="autorisation">
+      <label xml:lang="fr">Autorisation</label>
+    </tab>
+    <tab id="contact">
+      <label xml:lang="fr">Contact</label>
+    </tab>
+  </tabs>
+</type>
+

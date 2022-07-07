@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type name="SignalerDemenagement" superclass="generated.Demarche" debatable="false" unitFieldEdition="true" audienced="false" categoryTab="true" readRightTab="true" updateRightTab="true" templateTab="true" workflowTab="true" advancedTab="true" titleML="false">
+  <label xml:lang="fr">Signaler déménagement</label>
+  <title ml="false">
+    <label xml:lang="fr">Titre</label>
+  </title>
+  <fields>
+    <field type="super" />
+    <field name="nouvelleAdresse" editor="textfield" required="true" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Nouvelle adresse</label>
+    </field>
+    <field name="codePostal" editor="textfield" required="true" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Code postal</label>
+    </field>
+    <field name="commune" editor="textfield" required="true" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Commune</label>
+    </field>
+    <field name="datePrevuePourLeDemenagement" editor="textfield" required="true" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Date prévue pour le déménagement</label>
+    </field>
+    <field name="nouveauNumeroDeTelephone" editor="textfield" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Nouveau numéro de téléphone</label>
+    </field>
+    <field name="precisions" editor="textarea" required="false" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" descriptionType="text" wiki="false" wikiwyg="false">
+      <label xml:lang="fr">Précisions</label>
+    </field>
+    <field name="certifieExactitude" editor="boolean" required="false" compactDisplay="false" type="boolean" default="off" ml="false" descriptionType="text" searchable="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Certifie exactitude</label>
+      <onLabel xml:lang="fr">Oui</onLabel>
+      <offLabel xml:lang="fr">Non</offLabel>
+    </field>
+  </fields>
+</type>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type name="ChangementCadreDaccueil" superclass="generated.Demarche" debatable="false" unitFieldEdition="true" audienced="false" categoryTab="true" readRightTab="true" updateRightTab="true" templateTab="true" workflowTab="true" advancedTab="true" titleML="false">
+  <title ml="false">
+    <label xml:lang="fr">Titre</label>
+  </title>
+  <fields>
+    <field type="super" />
+    <field name="modification" editor="textarea" required="true" compactDisplay="false" type="String" searchable="false" size="80" ml="false" html="false" checkHtml="true" descriptionType="text" wiki="false" wikiwyg="false">
+      <label xml:lang="fr">Modification</label>
+    </field>
+    <field name="certifieExactitude" editor="boolean" required="false" compactDisplay="false" type="boolean" default="off" ml="false" descriptionType="text" searchable="false" html="false" checkHtml="true">
+      <label xml:lang="fr">Certifie exactitude</label>
+      <onLabel xml:lang="fr">Oui</onLabel>
+      <offLabel xml:lang="fr">Non</offLabel>
+    </field>
+  </fields>
+  <label xml:lang="fr">Changement cadre d'accueil</label>
+</type>
+
