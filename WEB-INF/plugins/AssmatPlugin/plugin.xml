@@ -163,8 +163,17 @@
     
 
 
+  <java-classes>
+    <java package="fr.cg44.plugin.assmat" />
+    <java package="fr.cg44.plugin.administrabletexteplugin" />
+    <java package="fr.cg44.plugin.tools" />
+    <java package="fr.trsb.cd44.solis" />
+  </java-classes>
+
+
   <private-files>
     <directory path="properties" />
+    <file path="TagTRSBglp.tld" />
   </private-files>
   
   <public-files>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="fr.trsb.cd44.solis.beans.CorresRamUa" table="corres_ram_ua">       
+        <composite-id> 
+          <key-property name="idRam" type="java.lang.Integer" column="id_ram" />
+          <key-property name="idUa" type="java.lang.Integer" column="id_ua" /> 
+        </composite-id>               
+    </class>
+</hibernate-mapping>
