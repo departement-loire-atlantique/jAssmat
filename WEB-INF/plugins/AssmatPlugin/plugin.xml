@@ -180,7 +180,8 @@
 
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ExportPolicyFilterCd44" />
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ImportPolicyFilterExpireCd44" />
-   
+  
+   <!--
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.DemarcheDataController" types="Demarche" />
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.DispoASSMATDataController" types="Disponibilite" />
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.FormContactAssmatDataController" types="FormContactAssmat" />
@@ -193,7 +194,7 @@
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.MemberGroupDataController" types="Member" />
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.FormContactDuneAMDataController" types="FormulaireDeContactDuneAM" />
     <datacontroller     class="fr.cg44.plugin.administrabletexteplugin.datacontroller.TexteParametrableDataController" types="TexteParametrable" />
- 
+ -->
 
  
     <channellistener    class="fr.cg44.plugin.assmat.listener.AssmatChannelListener" />
