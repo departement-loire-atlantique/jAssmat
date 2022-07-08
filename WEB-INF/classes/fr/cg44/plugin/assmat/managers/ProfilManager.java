@@ -5,11 +5,10 @@ import fr.cg44.plugin.assmat.AssmatUtil.SelectionEtatDispo;
 import fr.cg44.plugin.assmat.AssmatUtil.SelectionLogin;
 import fr.cg44.plugin.assmat.beans.AssmatSearch;
 import fr.cg44.plugin.assmat.hibernate.HibernateCD44Util;
-import fr.cg44.plugin.tools.facetedsearch.exception.UnknowCityException;
-import fr.cg44.plugin.tools.facetedsearch.manager.CityManager;
+
 import fr.trsb.cd44.solis.beans.AssmatSolis;
 import fr.trsb.cd44.solis.manager.SolisManager;
-import generated.City;
+
 import generated.Disponibilite;
 import generated.ProfilASSMAT;
 
@@ -21,11 +20,7 @@ import org.apache.log4j.Logger;
 import com.jalios.jcms.Member;
 import com.jalios.jcms.db.HibernateUtil;
 import com.jalios.util.Util;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
+
 
 /**
  * Manager utilisé dans l'édition d'une fiche profil en front office

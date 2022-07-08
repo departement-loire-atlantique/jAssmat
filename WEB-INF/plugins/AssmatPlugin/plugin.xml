@@ -5,17 +5,7 @@
   <label xml:lang="fr">Module Assmat</label>
   <description xml:lang="fr">Module Assmat</description>
  
-  <dependencies>
-    <!--<dependency name="SEOPlugin" />-->
-    <!--<dependency name="ToolsPlugin" />-->
-    <!--<dependency name="CorporateIdentityPlugin" />-->
-    <!--<dependency name="AgendaPlugin" />-->
-    <!--<dependency name="EServicePlugin" />-->
-    <!--<dependency name="AdministrableTextePlugin" />-->
-    <dependency name="PostgreSQLPlugin" />       
-  </dependencies>
-
-  <types>
+ <types>
     <type name="ChangementCadreDaccueil" />
     <type name="ChangementSituationFamiliale" />
     <type name="DeclarerAccueil" />
@@ -27,6 +17,8 @@
     <type name="FormulaireDeContactDuneAM" />
     <type name="InscriptionAM" /> 
     <type name="OuvertureSite" />
+    <type name="PortletFacetteDispo" />
+    <type name="PortletFacetteMois" />
     <type name="ProfilASSMAT" />
     <type name="Routage" />
     <type name="SignalerDemenagement" />
@@ -50,17 +42,6 @@
     <templates type="PortletQueryForeach">
       <template name="servicesNavigation" file="pqfEspacesIcons.jsp" usage="box">
         <label xml:lang="fr">Affichage des espaces</label>
-      </template>
-    </templates>
-    
-    <templates type="PortletQueryForeachGoogleMaps">
-      <template name="pqfInfiniteScrollAndMapAssociation" file="pqfInfiniteScrollAndMapAssociation.jsp" usage='box'>
-        <label xml:lang="en">Associations - Display content with pager et a Google map</label>
-        <label xml:lang="fr">Associations - Affichage avec pager et une carte Google</label>
-      </template>
-      <template name="pqfInfiniteScrollAndMapDepartmentCloseToYouAssmat" file="pqfInfiniteScrollAndMapDepartmentCloseToYou.jsp" usage='box'>
-        <label xml:lang="en">Department Close to You - Display content with infinite scroll et a Google map</label>
-        <label xml:lang="fr">Département près de chez vous - Assmat</label>
       </template>
     </templates>
     
@@ -111,9 +92,23 @@
       </template>
     </templates>    
     
+    <templates type="PortletFacetteMois">
+        <template name="default" file="doPortletFacetteMoisBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates> 
+    
+    <templates type="PortletFacetteDispo">
+        <template name="default" file="doPortletFacetteDispoBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates> 
+    
   </types>
-
-  <jars>
+  
+  
+  
+   <jars>
     <jar path="smsClient.jar" />
     <jar path="ant-1.7.0.jar" />
     <jar path="ant-launcher-1.7.0.jar" />
@@ -156,8 +151,16 @@
     <jar path="okio-1.6.0.jar" /> 
     <jar path="swagger-annotations-1.5.15.jar" /> 
     <jar path="swagger-java-client-1.0.0.jar" />
+    
+    <!-- Utilisé pour le service rest de solis et mailjet client -->
+    <jar path="json-simple-1.1.1.jar" />
+    <!-- Utilisé par la génération PDF -->
+    <jar path="itext-2.0.2.jar" />
+    
+    
   
   </jars>
+    
 
 
   <java-classes>
@@ -169,13 +172,18 @@
   
   <plugincomponents>
 
+
+   <!--
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.DemarcheRightPolicyFilter" />
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.AssmatPortalPolicyFilter" />
-    <!--
+
+
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ExportPolicyFilterCd44" />
-    -->
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ImportPolicyFilterExpireCd44" />
-   
+    
+        -->
+  
+
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.DemarcheDataController" types="Demarche" />
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.DispoASSMATDataController" types="Disponibilite" />
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.FormContactAssmatDataController" types="FormContactAssmat" />
@@ -188,25 +196,29 @@
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.MemberGroupDataController" types="Member" />
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.FormContactDuneAMDataController" types="FormulaireDeContactDuneAM" />
     <datacontroller     class="fr.cg44.plugin.administrabletexteplugin.datacontroller.TexteParametrableDataController" types="TexteParametrable" />
- 
+
+
+    <!--
     <channellistener    class="fr.cg44.plugin.assmat.listener.AssmatChannelListener" />
     <channellistener    class="fr.cg44.plugin.assmat.listener.SMSChannelListener" />
-           
+          -->    
     <!--
     <alarmlistener         class="fr.cg44.plugin.assmat.alarm.listener.NotConnectAlarmListener" schedule="* 3 * * * *" manager="AssmatAlarmManager"/>
     <alarmlistener         class="fr.cg44.plugin.assmat.alarm.listener.AvailabilityAlarmListener" schedule="* 3 * * * *" manager="AssmatAlarmManager"/>
     -->
+    
+        <!--
 
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationHandler" />
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationDossierHandler" />
     
+        -->
+        
   </plugincomponents>
     
-  <openapi>
-    <resource class="fr.cg44.plugin.assmat.webservice.SolisRestResources" uriTemplate="/solis/dossier" />
-    <resource class="fr.cg44.plugin.assmat.webservice.SolisRestMemberResources" uriTemplate="/solis/member/{idDossier}" />
-    <resource class="fr.cg44.plugin.assmat.webservice.ExportXmlRam" uriTemplate="/relais" />
-  </openapi>
+    
+    
+
 
   <private-files>
     <directory path="properties" />
@@ -220,38 +232,8 @@
     <directory path="img" />
     <directory path="js" />    
     <directory path="jsp" />
-    <file path="jsp/solis/infosSolis.jsp" include="EDIT_PUB_FOOTER" />
-    <file path="jsp/target/exportMemberAmCsvLink.jsp" include="WORKADMIN_USERS" /> 
-    <file path="jsp/target/memberAMLogin.jsp" include="EDIT_MBR_MAINTAB_FOOTER"/>
-    <file path="jsp/target/smsBoard.jsp" include="ADMIN_REPORTING|ADMIN_REPORTING_SUBMENU"/>
-    <file path="jsp/target/profilAMLink.jsp" include="MEMBER_PROFILE_MAINTAB"/>
-    <file path="jsp/target/sendMailAssmatLink.jsp" include="ADMIN_OPERATION|ADMIN_OPERATION_SUBMENU"/>
-    <file path="jsp/target/expireImportLink.jsp" include="ADMIN_OPERATION|ADMIN_OPERATION_SUBMENU"/>  
   </public-files>
   
-  <webapp-files>
-    <!-- SGU 05/05/2022 : voir si necessaire de reprendre ou pas
-    <file path="jcore/doMessageBox.jsp" />
-    <file path="plugins/CorporateIdentityPlugin/jsp/login/mailPassword.jsp" />
-    -->
-    
-    <!-- Fichier hibernate de configuration -->
-    <file path="/WEB-INF/classes/assmat.cfg.xml" />
-    <!-- Fichier hibernate des caches -->
-    <file path="/WEB-INF/classes/assmat_ehcache.xml" />
-    <!-- Fichier hibernate des types -->  
-    <file path="/WEB-INF/classes/fr/cg44/plugin/assmat/beans/hbm/AssmatSearch.hbm.xml" />
-    <file path="/WEB-INF/classes/fr/cg44/plugin/assmat/beans/hbm/DispoAssmat.hbm.xml" />
-    <file path="/WEB-INF/classes/fr/cg44/plugin/assmat/beans/hbm/TrsbActivation.hbm.xml" />
-    <file path="/WEB-INF/classes/fr/cg44/plugin/assmat/beans/hbm/EnvoiSms.hbm.xml" />
-
-    <!-- Fichier hibernate des types solis -->
-    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/AssmatSolis.hbm.xml" />
-    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/TrancheAge.hbm.xml" />
-    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/GroupementRam.hbm.xml" />
-    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/CorresRamUa.hbm.xml" />    
-    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/Quartier.hbm.xml" />
-    
-  </webapp-files>
+  
 </plugin>
 
