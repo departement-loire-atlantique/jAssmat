@@ -210,9 +210,11 @@
     <alarmlistener         class="fr.cg44.plugin.assmat.alarm.listener.AvailabilityAlarmListener" schedule="* 3 * * * *" manager="AssmatAlarmManager"/>
     -->
 
+	<!--
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationHandler" />
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationDossierHandler" />
-    
+    -->
+		
   </plugincomponents>
     
   <openapi>
