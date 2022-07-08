@@ -173,13 +173,15 @@
   <plugincomponents>
 
 
-
+   <!--
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.DemarcheRightPolicyFilter" />
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.AssmatPortalPolicyFilter" />
 
 
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ExportPolicyFilterCd44" />
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ImportPolicyFilterExpireCd44" />
+    
+        -->
   
    <!--
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.DemarcheDataController" types="Demarche" />
