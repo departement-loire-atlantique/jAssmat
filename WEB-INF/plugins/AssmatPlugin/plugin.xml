@@ -174,7 +174,9 @@
 
 
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.DemarcheRightPolicyFilter" />
+    <!--
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.AssmatPortalPolicyFilter" />
+    -->
 
     <!--
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ExportPolicyFilterCd44" />
