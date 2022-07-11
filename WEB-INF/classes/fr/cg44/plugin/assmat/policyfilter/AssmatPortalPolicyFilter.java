@@ -62,10 +62,7 @@ public class AssmatPortalPolicyFilter extends BasicPortalPolicyFilter {
 			if (Util.notEmpty(profil)) {
 				// On redirige vers le portail 1 colonne (gestion du profil)
 				portal = (PortalInterface) channel.getData(idPortalAccueil);
-			} else {
-				portal = (PortalInterface) channel.getData(idPortalAccueil);
-	
-			}
+			} 
 			// Le membre n'as pas de profil, on le redirige vers l'accueil
 		
 		return portal;
