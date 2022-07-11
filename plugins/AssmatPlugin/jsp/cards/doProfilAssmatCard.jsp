@@ -25,6 +25,10 @@ formater = new SimpleDateFormat("dd/MM/yyyy");
 
 String cssCard = Util.notEmpty(request.getAttribute("cssCard")) ? request.getAttribute("cssCard").toString() : "";
 
+boolean logementAccessible = Util.notEmpty(profilAM.getLogementAccessible()) && "true".equalsIgnoreCase(profilAM.getLogementAccessible());
+boolean accueilTmpPartiel = Util.notEmpty(profilAM.getAccueilTempsPartiel()) && "true".equalsIgnoreCase(profilAM.getAccueilTempsPartiel());
+boolean accueilAccepteRemplacement = Util.notEmpty(profilAM.getAccepteDepannage()) && "true".equalsIgnoreCase(profilAM.getAccepteDepannage());
+
 %>
 
 <section class="ds44-card ds44-card--fiche <%= cssCard %>">
@@ -221,16 +225,17 @@ String cssCard = Util.notEmpty(request.getAttribute("cssCard")) ? request.getAtt
 	      <%} %> 
       </ul>
       
-      <h4 class="h3-like ds44-mt3"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-SPECIFICITE-HTML" ></trsb:glp></h4>
-      <jalios:if predicate='<%= Util.notEmpty(profilAM.getLogementAccessible()) && "true".equalsIgnoreCase(profilAM.getLogementAccessible()) %>'>
-        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-handicap-moteur ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-ACCESSIBLE" /></p>
+      <jalios:if predicate="<%= logementAccessible && accueilTmpPartiel && accueilAccepteRemplacement %>">
+	      <h4 class="h3-like ds44-mt3"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-SPECIFICITE-HTML" ></trsb:glp></h4>
+	      <jalios:if predicate='<%= logementAccessible %>'>
+	        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-handicap-moteur ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-ACCESSIBLE" /></p>
+	      </jalios:if>
+	      <jalios:if predicate='<%= accueilTmpPartiel %>'>
+	        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-PARTIEL" /></p>
+	      </jalios:if>
+	      <jalios:if predicate='<%= accueilAccepteRemplacement %>'>
+	        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-user ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-REMPLACEMENT" /></p>
+	      </jalios:if>
       </jalios:if>
-      <jalios:if predicate='<%= Util.notEmpty(profilAM.getAccueilTempsPartiel()) && "true".equalsIgnoreCase(profilAM.getAccueilTempsPartiel()) %>'>
-        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-PARTIEL" /></p>
-      </jalios:if>
-      <jalios:if predicate='<%= Util.notEmpty(profilAM.getAccepteDepannage()) && "true".equalsIgnoreCase(profilAM.getAccepteDepannage()) %>'>
-        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-user ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-REMPLACEMENT" /></p>
-      </jalios:if>
-      
   </div>
 </section>

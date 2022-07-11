@@ -129,7 +129,9 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
   Double latitude = obj.getLatitudeAssmat();
   String localisation = Util.notEmpty(longitude) && Util.notEmpty(latitude) ? SocleUtils.formatOpenStreetMapLink(latitude.toString(), longitude.toString()) : null;
   
-  
+  boolean logementAccessible = Util.notEmpty(obj.getLogementAccessible()) && "true".equalsIgnoreCase(obj.getLogementAccessible());
+  boolean accueilTmpPartiel = Util.notEmpty(obj.getAccueilTempsPartiel()) && "true".equalsIgnoreCase(obj.getAccueilTempsPartiel());
+  boolean accueilAccepteRemplacement = Util.notEmpty(obj.getAccepteDepannage()) && "true".equalsIgnoreCase(obj.getAccepteDepannage());
 %>
 
 <main id="content" role="main">
@@ -339,18 +341,20 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                          </ul>
                       </jalios:if>
                    </div>
-                   <div class="col mls ds44-mtb3">
-                      <h2 class="h3-like" id="idTitre-list2"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-SPECIFICITE-HTML" ></trsb:glp> :</h2>
-                      <jalios:if predicate='<%= Util.notEmpty(obj.getLogementAccessible()) && "true".equalsIgnoreCase(obj.getLogementAccessible()) %>'>
-                        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-handicap-moteur ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-ACCESSIBLE" /></p>
-				      </jalios:if>
-				      <jalios:if predicate='<%= Util.notEmpty(obj.getAccueilTempsPartiel()) && "true".equalsIgnoreCase(obj.getAccueilTempsPartiel()) %>'>
-				        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-PARTIEL" /></p>
-				      </jalios:if>
-				      <jalios:if predicate='<%= Util.notEmpty(obj.getAccepteDepannage()) && "true".equalsIgnoreCase(obj.getAccepteDepannage()) %>'>
-				        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-user ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-REMPLACEMENT" /></p>
-				      </jalios:if>
-                   </div>
+                   <jalios:if predicate="<%= logementAccessible && accueilTmpPartiel && accueilAccepteRemplacement %>">
+	                   <div class="col mls ds44-mtb3">
+	                      <h2 class="h3-like" id="idTitre-list2"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-SPECIFICITE-HTML" ></trsb:glp> :</h2>
+	                      <jalios:if predicate='<%= logementAccessible %>'>
+	                        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-handicap-moteur ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-ACCESSIBLE" /></p>
+					      </jalios:if>
+					      <jalios:if predicate='<%= accueilTmpPartiel %>'>
+					        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-PARTIEL" /></p>
+					      </jalios:if>
+					      <jalios:if predicate='<%= accueilAccepteRemplacement %>'>
+					        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-user ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-REMPLACEMENT" /></p>
+					      </jalios:if>
+	                   </div>
+                   </jalios:if>
 				</div>
                 
             </div>    
