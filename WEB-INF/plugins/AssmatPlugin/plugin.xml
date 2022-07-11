@@ -234,6 +234,28 @@
     <directory path="jsp" />
   </public-files>
   
+  <webapp-files>
+
+    
+    <!-- Fichier hibernate de configuration -->
+    <file path="/WEB-INF/classes/assmat.cfg.xml" />
+    <!-- Fichier hibernate des caches -->
+    <file path="/WEB-INF/classes/assmat_ehcache.xml" />
+    <!-- Fichier hibernate des types -->  
+    <file path="/WEB-INF/classes/fr/cg44/plugin/assmat/beans/hbm/AssmatSearch.hbm.xml" />
+    <file path="/WEB-INF/classes/fr/cg44/plugin/assmat/beans/hbm/DispoAssmat.hbm.xml" />
+    <file path="/WEB-INF/classes/fr/cg44/plugin/assmat/beans/hbm/TrsbActivation.hbm.xml" />
+    <file path="/WEB-INF/classes/fr/cg44/plugin/assmat/beans/hbm/EnvoiSms.hbm.xml" />
+
+    <!-- Fichier hibernate des types solis -->
+    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/AssmatSolis.hbm.xml" />
+    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/TrancheAge.hbm.xml" />
+    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/GroupementRam.hbm.xml" />
+    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/CorresRamUa.hbm.xml" />    
+    <file path="/WEB-INF/classes/fr/trsb/cd44/solis/hbm/Quartier.hbm.xml" />
+    
+  </webapp-files>
+  
   
 </plugin>
 
