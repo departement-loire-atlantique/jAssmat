@@ -1,0 +1,170 @@
+#######################################################################################################
+# DEBUT DES ANCIENNES PROPS (LEGACY)
+#######################################################################################################
+
+plugin.tools.js: plugins/ToolsPlugin/js/initTouchClasses.js plugins/ToolsPlugin/js/googleSeoMarker.js
+
+channel.css.all.0102030405.fo: plugins/AssmatPlugin/css/assmat.css 
+#channel.css.all.0102030405.fo: plugins/AssmatPlugin/css/plugin.css
+# ID de la catégorie  Accueil Inscription  ASSMAT
+jcmsplugin.assmatplugin.inscription.categ.accueil: cra_60247
+
+# ID du portail accueil socle
+jcmsplugin.assmatplugin.socle.portal.accueil: cra_60260
+
+# ID du portail accueil general
+jcmsplugin.assmatplugin.general.portal.accueil: c_5004
+
+# ID du portail 1 colonne
+jcmsplugin.assmatplugin.socle.portal.colonne: cra_60262
+
+# ID de la catégorie Gestion du profil
+jcmsplugin.assmatplugin.socle.categ.gestion: cra_60248
+
+# ID de la catégorie Accueil socle
+jcmsplugin.assmatplugin.socle.categ.accueil: cra_60246
+
+# ID de la catégorie Accueil general
+jcmsplugin.assmatplugin.general.categ.accueil: local_56369
+
+# ID de la jsp parametrage
+jcmsplugin.assmatplugin.socle.jsp.parametrage: cra_60296
+
+# ID de la jsp inscription
+jcmsplugin.assmatplugin.socle.jsp.inscription: cra_60266
+
+# ID de la catégorie de confirmation d'inscription
+jcmsplugin.assmatplugin.socle.confirm.catLoginRedirect: mfo_60353
+
+# ID de la catégorie Espace personnel
+jcmsplugin.assmatplugin.socle.categ.accueil.perso: cra_60267
+
+# ID du portail accueil Espace Perso
+jcmsplugin.assmatplugin.socle.portail.param.id:cra_60294
+
+# Remplacement du fichier de Login
+jcms.resource.login: plugins/AssmatPlugin/jsp/loginAM.jsp
+jcms.resource.mail-password: plugins/AssmatPlugin/jsp/login/mailPassword.jsp
+
+# Catégorie pour le plan du site
+jcmsplugin.assmatplugin.navigation.principale: local_56368
+jcmsplugin.assmatplugin.navigation.transverse: r1_58210
+
+jcmsplugin.assmatplugin.mailjet.inscription.ouverture.site.id.number: 
+
+jcmsplugin.assmatplugin.sms.url: https://contact-everyone.orange-business.com
+jcmsplugin.assmatplugin.sms.url.endpoint.authentification: /api/v1.1/oauth/token
+jcmsplugin.assmatplugin.sms.url.endpoint.groups: /api/v1.1/groups
+jcmsplugin.assmatplugin.sms.url.endpoint.diffusionrequests: /api/v1.1/groups/[id_group]/diffusion-requests
+jcmsplugin.assmatplugin.sms.url.endpoint.diffusions: /api/v1.1/diffusions
+jcmsplugin.assmatplugin.sms.login: 
+jcmsplugin.assmatplugin.sms.password: 
+jcmsplugin.assmatplugin.sms.custid:  
+
+jcmsplugin.assmatplugin.sms.scheduler.schedule: * * * * * *
+
+# ID du groupe assistante maternelle
+jcmsplugin.assmatplugin.groupe.assistante_maternelle: agi_60678
+
+# ID du formulaire de contact
+jcmsplugin.assmatplugin.formulaire.contact: local_57730
+# ID du formulaire de contact assmat
+jcmsplugin.assmatplugin.formulaire.contact.assmat: tle_61032
+
+jcmsplugin.assmatplugin.telephone-support: 02 40 99 15 44
+
+$jcmsplugin.assmatplugin.categ.trancheage: cra_66999 
+$jcmsplugin.assmatplugin.categ.lieuexerce: cra_67000 
+$jcmsplugin.assmatplugin.categ.typeaccueil: cra_67001
+$jcmsplugin.assmatplugin.categ.specificite: cra_67002
+$jcmsplugin.assmatplugin.categ.distance: cra_66998
+
+$jcmsplugin.assmatplugin.portlet.intro.id: tle_102926
+$jcmsplugin.assmatplugin.portlet.relais.id : r1_58309
+$jcmsplugin.assmatplugin.portlet.publicite-bottom-carto.id: tle_102946
+$jcmsplugin.assmatplugin.portail.selection.recherche:cra_66994
+
+$jcmsplugin.assmatplugin.portlet.image-departement-contour-communes: p1_166681
+
+$jcmsplugin.assmatplugin.categ.routage:rp1_64671 
+$jcmsplugin.assmatplugin.categ.routage.signalement:rp1_64689
+
+$jcmsplugin.assmatplugin.categ.relais.mam:rp1_62675
+
+
+extra.Category.jcmsplugin.assmatplugin.search.mapping:
+extra.Category.jcmsplugin.assmatplugin.menu.area:
+
+# id de la catégory du portail du formulaire de contact RAM
+jcmsplugin.assmatplugin.formulaire.contact.ram: agi_63974
+
+# id de la catégory du portail du formulaire de contact d'une AM
+jcmsplugin.assmatplugin.formulaire.contact.am: cra_103016
+
+# id de la catégory des sujet du formulaire de contact assmat
+$id.plugin.corporateidentity.formPortal.contact.subjet.cat: rp1_64677
+
+#id du groupe Contributeur avec pouvoir
+$id.plugin.corporateidentity.contributeur.pouvoir.group: p1_91703
+
+$plugin.corporateidentity.place.typesDeLieux.cate: rp1_62655
+$plugin.corporateidentity.place.placeMapList.cate: rp1_62651
+
+jcmsplugin.assmatplugin.portal.recherche.am: cra_66992
+
+$plugin.assmatplugin.categ.relaiam: rp1_62675
+
+jcmsplugin.assmatplugin.version-site.socle.boolean: true
+
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.popup.color: #AEC900
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.futur.popup.color: #f78b00
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne.popup.color: #bebebe
+jcmsplugin.assmatplugin.recherche.am.result.recap.am.contact.popup.color: #bebebe
+
+extra.Member.jcmsplugin.assmatplugin.idsolis.lieu:
+
+jcmsplugin.assmatplugin.group.ram.id: cra_103522
+jcmsplugin.assmatplugin.group.asso.id: cra_103523
+jcmsplugin.assmatplugin.group.ram.nantes.id: p1_157463
+
+
+plugin.assmatplugin.portal.ram.id: cra_103154 
+plugin.assmatplugin.portal.asso.id: r1_103250 
+
+
+plugin.assmatplugin.categ.ram.id: r1_58148 
+plugin.assmatplugin.categ.asso.id: r1_58149  
+
+plugin.assmatplugin.portlet.ram.changepass: cra_103161
+plugin.assmatplugin.portlet.ram.validepass: cra_103164
+
+plugin.assmatplugin.portlet.asso.changepass: p1_106455
+
+plugin.assmatplugin.categorie.unite.agrement.id: rp1_62661
+plugin.assmatplugin.portail.contact.coordram.id: cra_103159
+plugin.assmatplugin.categ.actualiser.coord.ram.id: cra_103156
+
+plugin.assmatplugin.jsp.ram.dowland.id: cra_103488
+
+plugin.assmatplugin.portlet.declararer-accueil.id: mfo_63832
+plugin.assmatplugin.portlet.declararer-fin-accueil.id: p1_112167
+
+plugin.assmatplugin.portlet.actualiser-dispo.id: mfo_60476
+
+plugin.assmatplugin.swagger.demarches.url: 
+
+plugin.assmatplugin.declaration.pilote.group.id : agi_60678
+
+jcmsplugin.assmatplugin.synchroAM.boolean: false
+
+# Sentry
+sentry.dsn: 
+sentry.public.key: 
+
+#######################################################################################################
+# FIN DES ANCIENNES PROPS (LEGACY)
+# DANS LE CADRE DE LA REFONTE 2022 METTRE LES NOUVELLES PROPS EN DESSOUS DE CETTE LIGNE !!!
+#######################################################################################################
+
+jcmsplugin.socle.recherche.acceuil.jsp.display: plugins/AssmatPlugin/jsp/facettes/displayResultAssmat.jsp 
+hibernate.cfg.postgresql.prop.hibernate.connection.datasource: 
