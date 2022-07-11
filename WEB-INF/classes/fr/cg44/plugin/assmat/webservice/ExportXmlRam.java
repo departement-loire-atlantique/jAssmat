@@ -76,6 +76,8 @@ public class ExportXmlRam extends DataRestResource {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = null;
         try {
+          // pour être conforme, désactiver complètement la déclaration DOCTYPE :
+          docFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
           docBuilder = docFactory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
           logger.warn("Impossible de générer le XML", e);
@@ -105,6 +107,8 @@ public class ExportXmlRam extends DataRestResource {
   public static String toString(Document doc) throws TransformerException {
     StringWriter sw = new StringWriter();
     TransformerFactory tf = TransformerFactory.newInstance();
+    // pour être conforme, désactiver complètement la déclaration DOCTYPE :
+    tf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
     Transformer transformer = tf.newTransformer();
     transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
     transformer.setOutputProperty(OutputKeys.METHOD, "xml");
@@ -121,6 +125,8 @@ public class ExportXmlRam extends DataRestResource {
     DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
     DocumentBuilder docBuilder = null;
     try {
+      // pour être conforme, désactiver complètement la déclaration DOCTYPE :
+      docFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
       docBuilder = docFactory.newDocumentBuilder();
     } catch (ParserConfigurationException e) {
       logger.warn("Impossible de générer le XML", e);
