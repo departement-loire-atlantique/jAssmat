@@ -212,11 +212,15 @@
 
         
   </plugincomponents>
+  
+  
+  <openapi>
+    <resource class="fr.cg44.plugin.assmat.webservice.SolisRestResources" uriTemplate="/solis/dossier" />
+    <resource class="fr.cg44.plugin.assmat.webservice.SolisRestMemberResources" uriTemplate="/solis/member/{idDossier}" />
+    <resource class="fr.cg44.plugin.assmat.webservice.ExportXmlRam" uriTemplate="/relais" />
+  </openapi>
     
     
-    
-
-
   <private-files>
     <directory path="properties" />
     <file path="TagTRSBglp.tld" />
