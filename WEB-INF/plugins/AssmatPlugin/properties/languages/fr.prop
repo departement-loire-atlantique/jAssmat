@@ -326,3 +326,6 @@ plugin.assmatplugin.screen.login.assistantmaternel.intro: La création d’un co
 plugin.assmatplugin.screen.login.enableaccount: Activer votre compte
 plugin.assmatplugin.screen.login.connecter: Se connecter à votre compte
 plugin.assmatplugin.facette.afficher-contenu-champ: Afficher le contenu du champ : {0}
+
+# PROFIL ASSMAT
+plugin.assmatplugin.profilassmat.lastupdate: Infos mises à jour le {0}
