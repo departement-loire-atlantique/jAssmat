@@ -13,8 +13,6 @@ import fr.cg44.plugin.assmat.AssmatUtil;
 import fr.cg44.plugin.assmat.PointAssmat;
 import fr.cg44.plugin.assmat.beans.AssmatSearch;
 import fr.cg44.plugin.assmat.beans.DispoAssmat;
-import fr.cg44.plugin.assmat.managers.ProfilManager;
-import generated.ProfilASSMAT;
 
 /**
  * Compare le réuslat des assmats

@@ -165,3 +165,7 @@ sentry.public.key:
 # FIN DES ANCIENNES PROPS (LEGACY)
 # DANS LE CADRE DE LA REFONTE 2022 METTRE LES NOUVELLES PROPS EN DESSOUS DE CETTE LIGNE !!!
 #######################################################################################################
+
+#  Médias / cards
+media.data-template.default.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCard.jsp
+media.data-template.card.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCard.jsp
