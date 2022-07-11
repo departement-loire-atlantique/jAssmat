@@ -173,15 +173,13 @@
   <plugincomponents>
 
 
-   <!--
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.DemarcheRightPolicyFilter" />
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.AssmatPortalPolicyFilter" />
 
 
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ExportPolicyFilterCd44" />
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ImportPolicyFilterExpireCd44" />
-    
-        -->
+
   
 
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.DemarcheDataController" types="Demarche" />
@@ -198,22 +196,17 @@
     <datacontroller     class="fr.cg44.plugin.administrabletexteplugin.datacontroller.TexteParametrableDataController" types="TexteParametrable" />
 
 
-
     <channellistener    class="fr.cg44.plugin.assmat.listener.AssmatChannelListener" />
-        <!--
     <channellistener    class="fr.cg44.plugin.assmat.listener.SMSChannelListener" />
-          -->    
+
     <!--
     <alarmlistener         class="fr.cg44.plugin.assmat.alarm.listener.NotConnectAlarmListener" schedule="* 3 * * * *" manager="AssmatAlarmManager"/>
     <alarmlistener         class="fr.cg44.plugin.assmat.alarm.listener.AvailabilityAlarmListener" schedule="* 3 * * * *" manager="AssmatAlarmManager"/>
     -->
     
-        <!--
 
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationHandler" />
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationDossierHandler" />
-    
-        -->
         
   </plugincomponents>
     
