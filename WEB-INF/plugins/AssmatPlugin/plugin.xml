@@ -176,10 +176,10 @@
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.DemarcheRightPolicyFilter" />
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.AssmatPortalPolicyFilter" />
 
-
+    <!--
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ExportPolicyFilterCd44" />
     <policyfilter          class="fr.cg44.plugin.assmat.policyfilter.ImportPolicyFilterExpireCd44" />
-
+    -->
   
 
     <datacontroller     class="fr.cg44.plugin.assmat.datacontroller.DemarcheDataController" types="Demarche" />
@@ -197,7 +197,9 @@
 
 
     <channellistener    class="fr.cg44.plugin.assmat.listener.AssmatChannelListener" />
+    <!--
     <channellistener    class="fr.cg44.plugin.assmat.listener.SMSChannelListener" />
+    -->
 
     <!--
     <alarmlistener         class="fr.cg44.plugin.assmat.alarm.listener.NotConnectAlarmListener" schedule="* 3 * * * *" manager="AssmatAlarmManager"/>
