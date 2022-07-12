@@ -77,7 +77,7 @@ public class AssmatUtil {
 	
 	private static final ApiClient API_CLIENT = new ApiClient();
 
-	private static final String PWD_REGEX = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$";
+	private static final String PWD_REGEX = getChannel().getProperty("plugin.assmatplugin.pwd.regex");
 
 
 	private static final String idGroupeRAM = Channel.getChannel().getProperty("jcmsplugin.assmatplugin.group.ram.id");

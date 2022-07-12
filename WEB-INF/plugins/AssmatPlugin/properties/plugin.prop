@@ -168,3 +168,4 @@ sentry.public.key:
 
 jcmsplugin.socle.recherche.acceuil.jsp.display: plugins/AssmatPlugin/jsp/facettes/displayResultAssmat.jsp 
 hibernate.cfg.postgresql.prop.hibernate.connection.datasource: 
+plugin.assmatplugin.pwd.regex: ^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$
