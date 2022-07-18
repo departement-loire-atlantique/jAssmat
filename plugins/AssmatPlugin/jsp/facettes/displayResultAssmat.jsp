@@ -90,6 +90,8 @@ if(Util.notEmpty(dispoTab)) {
       withDispoFuture = true;
     }else if("withNonDispo".equals(itDispo)) {
       withNonDispo = true;
+    }else if("withDispoNonRenseigne".equals(itDispo)) {
+      withDispoNonRenseigne = true;
     }
   }
   // Si aucune dispo de cochée alors afficher avec diso et dispo future
@@ -137,12 +139,6 @@ if ((distance>0 || Util.notEmpty(adresse)) && Util.notEmpty(longitude) && Util.n
 
 
 
-
-
-
-
-
-
 <%
 
 SimpleDateFormat formaterDispoFutur = new SimpleDateFormat("MMMM yyyy"); 
@@ -156,7 +152,9 @@ Boolean isPresentSearch = dateTime.getMonth() == currentDate.getMonth() && dateT
 
 
 // Si le visteur est un RAM
-// TODO
+Boolean isRam = AssmatUtil.getMemberIsRam(loggedMember);
+Boolean isContribPower = AssmatUtil.getMemberIsContribPower(loggedMember);
+
 
 // Set des Assmat avec dispo
 Set<AssmatSearch> resultSetDispo = new HashSet<AssmatSearch>();
@@ -178,8 +176,12 @@ logger.warn("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
 
 
 
-// Set des Assmat avec dispo non renseignÃ©es (seulement pour les RAM)
-// TODO
+// Set des Assmat avec dispo non renseignées (seulement pour les RAM)
+Set<AssmatSearch> resultSetDispoNonRenseigne = new HashSet<AssmatSearch>();
+if(isRam || isContribPower) {
+  resultSetDispoNonRenseigne = AssmatSearchDAO.getResultSearchDispoNonRenseigne(null, codeInsee, null, null, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat);
+  logger.warn("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
+}
 
 
 // La date de dispo futur la plus PROCHE (dans le future) pour chaque assmat
@@ -189,7 +191,6 @@ logger.warn("resultDateDispoFutur : " + resultDateDispoFutur.size());
 
 
 // Liste des dispos pour les dispos de la recherche par assmat
-// TODO
 Map<Long, Set<DispoAssmat>> resultDispoRechercheMap = AssmatSearchDAO.getResultDispo(null, codeInsee, null, null, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat, 1);
 logger.warn("resultDispoRechercheMap : "+resultDispoRechercheMap.size());
 session.setAttribute("resultDispoRechercheMap", resultDispoRechercheMap);
@@ -197,7 +198,6 @@ session.setAttribute("resultDispoRechercheMap", resultDispoRechercheMap);
 
 
 // Liste des dispos pour les dispos futures par assmat
-// TODO
 Map<Long, Set<DispoAssmat>> resultDispoFuturMap = AssmatSearchDAO.getResultDispo(null, codeInsee, null, null, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat, 2);
 logger.warn("resultDispoFuturMap : "+resultDispoFuturMap.size());
 session.setAttribute("resultDispoFuturMap", resultDispoFuturMap);
@@ -223,9 +223,9 @@ logger.warn("assmatPointsTriee : " + assmatPointsTriee.size());
 
 
 // Retire les assmat déja présente dans les liste de résultats précédantes
-// resultSetDispoNonRenseigne.removeAll(resultSetDispo);
-// resultSetDispoNonRenseigne.removeAll(resultSetDispoFutur);
-// resultSetDispoNonRenseigne.removeAll(resultSetNonDispoContact);
+resultSetDispoNonRenseigne.removeAll(resultSetDispo);
+resultSetDispoNonRenseigne.removeAll(resultSetDispoFutur);
+resultSetDispoNonRenseigne.removeAll(resultSetNonDispoContact);
 resultSetDispoFutur.removeAll(resultSetDispo);
 resultSetNonDispoContact.removeAll(resultSetDispoFutur);
 resultSetNonDispoContact.removeAll(resultSetDispo);
@@ -235,7 +235,7 @@ resultSetNonDispoContact.removeAll(resultSetDispo);
 resultSetDispo = AssmatUtil.removeAssmatNonvisible(resultSetDispo);
 resultSetDispoFutur = AssmatUtil.removeAssmatNonvisible(resultSetDispoFutur);
 resultSetNonDispoContact = AssmatUtil.removeAssmatNonvisible(resultSetNonDispoContact);
-// resultSetDispoNonRenseigne = AssmatUtil.removeAssmatNonvisible(resultSetDispoNonRenseigne);
+resultSetDispoNonRenseigne = AssmatUtil.removeAssmatNonvisible(resultSetDispoNonRenseigne);
 
 
 
@@ -243,7 +243,7 @@ int nbAssmatTotal = resultSetDispo.size() + resultSetDispoFutur.size() + resultS
 logger.warn("resultSetDispo : " + resultSetDispo.size());
 logger.warn("resultSetDispoFutur : " + resultSetDispoFutur.size());
 logger.warn("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
-// logger.warn("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
+logger.warn("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
 
 
 
@@ -362,15 +362,28 @@ if(withNonDispo){
 
 
 //Les assmat dispo non renseigné
-// TODO
-
-
-
+if(withDispoNonRenseigne){
+    for(AssmatSearch amSearch :resultSetDispoNonRenseigne ){ 
+      profilAMsearch = (ProfilASSMAT) channel.getPublication(amSearch.getDbprofilId());
+      if(Util.notEmpty(profilAMsearch)){            
+       if(profilAMsearch.getVisibiliteSite()){
+         boolean isDomicile= amSearch.getIsDomicile();         
+         // Quand consolidation pas bonne des latitude longitude, alors 0 0
+         double geoLatitude = 0;
+         double geoLongitude = 0;
+         if(Util.notEmpty(amSearch.getLatitude())){
+             geoLatitude = amSearch.getLatitude();
+         }
+         if(Util.notEmpty(amSearch.getLongitude())){
+             geoLongitude = amSearch.getLongitude();
+         }         
+       assmatPoints.put( amSearch, new PointAssmat(String.valueOf(geoLatitude), String.valueOf(geoLongitude), channel.getProperty("jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne.popup.color"), glp("jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne.popup"), 4,isDomicile) );
+      }      
+     }
+    }
+}
 
 assmatPointsTriee.putAll(assmatPoints);
-
-
-
 
 // Mise en session pour l'export en PDF
 session.removeAttribute("isSelection"); 

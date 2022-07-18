@@ -12,7 +12,8 @@
     <!--<dependency name="AgendaPlugin" />-->
     <!--<dependency name="EServicePlugin" />-->
     <!--<dependency name="AdministrableTextePlugin" />-->
-    <!--<dependency name="PostgreSQLPlugin" /> -->       
+    <!--<dependency name="PostgreSQLPlugin" /> -->  
+    <dependency name="SoclePlugin" />     
   </dependencies>
 
   <types>

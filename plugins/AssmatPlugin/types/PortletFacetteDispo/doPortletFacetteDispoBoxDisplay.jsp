@@ -1,3 +1,4 @@
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.apache.commons.lang.StringUtils"%>
 <%@page import="org.apache.commons.lang.time.DateUtils"%>
@@ -17,6 +18,10 @@
   
   String labelChamp =  Util.notEmpty(obj.getLabel()) ? obj.getLabel() : JcmsUtil.glp(userLang, "jcmsplugin.socle.facette.disponibilites.default-label");
 
+  //Si le visteur est un RAM
+  Boolean isRam = AssmatUtil.getMemberIsRam(loggedMember);
+  Boolean isContribPower = AssmatUtil.getMemberIsContribPower(loggedMember);
+  
 %>
 
 <div class="ds44-form__container">
@@ -88,14 +93,16 @@
 
 				</li>
 				
-<!-- 				<li class="ds44-select-list_elem"> -->
-<!-- 					<div class="ds44-form__container ds44-checkBox-radio_list "> -->
-<!-- 						<input type="checkbox" id="name-check-form-element-89423-4" -->
-<!-- 							name="form-element-89423" value="4" class="ds44-checkbox" /><label -->
-<!-- 							for="name-check-form-element-89423-4" class="ds44-boxLabel" -->
-<!-- 							id="name-check-label-form-element-89423-4">Choix 4</label> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
+				<jalios:if predicate="<%= (isRam || isContribPower) %>">
+					<li class="ds44-select-list_elem">
+						<div class="ds44-form__container ds44-checkBox-radio_list ">
+							<input type="checkbox" id="name-check-form-element-89423-4"
+								name="form-element-89423" value="withDispoNonRenseigne" class="ds44-checkbox" /><label
+								for="name-check-form-element-89423-4" class="ds44-boxLabel"
+								id="name-check-label-form-element-89423-4"><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO-NON-RENSEIGNEES" /></label>
+						</div>
+					</li>
+				</jalios:if>
 				
 			</ul>
 		</div>
