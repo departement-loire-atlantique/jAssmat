@@ -1,3 +1,4 @@
+<%@page import="fr.cg44.plugin.assmat.selector.RelaisMamSelectorCommune"%>
 <%@page import="fr.trsb.cd44.solis.beans.AssmatSolis"%>
 <%@page import="fr.trsb.cd44.solis.manager.SolisManager"%>
 <%@page import="fr.cg44.plugin.assmat.comparator.AssmatSearchDistanceComparator"%>
@@ -385,6 +386,27 @@ if(withDispoNonRenseigne){
 
 assmatPointsTriee.putAll(assmatPoints);
 
+
+
+
+
+// Calcul du relais MAM
+String idCategMam = channel.getProperty("$plugin.assmatplugin.categ.relaiam");
+Category categRAM= channel.getCategory(idCategMam); 
+Set<Place> setPlace =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorCommune(SocleUtils.getCommuneFromCode(codeInsee+""),categRAM));
+
+
+
+
+
+logger.warn("Relais : " + setPlace);
+
+
+
+
+
+
+
 // Mise en session pour l'export en PDF
 session.removeAttribute("isSelection"); 
 session.setAttribute("urlRecherche", ServletUtil.getUrl(request));
@@ -397,12 +419,12 @@ Map<String, String[]> paramsMap = new HashMap<String, String[]>();
 paramsMap.putAll(request.getParameterMap());
 
 
-paramsMap.put("cityName", new String[]{"Bouaye"});
-paramsMap.put("adresse", new String[]{"marguerites"});
-paramsMap.put("codeInsee", new String[]{"44104"});
-paramsMap.put("distance", new String[]{"0"});
+paramsMap.put("cityName", new String[]{request.getParameter("commune[text]")});
+paramsMap.put("adresse", new String[]{request.getParameter("adresse[text]")});
+paramsMap.put("codeInsee", new String[]{request.getParameter("commune")});
+paramsMap.put("distance", new String[]{request.getParameter("rayon")});
 paramsMap.put("age", new String[]{"-1"});
-paramsMap.put("month", new String[]{"6"});
+paramsMap.put("month", new String[]{request.getParameter("mois")});
 
 
 
