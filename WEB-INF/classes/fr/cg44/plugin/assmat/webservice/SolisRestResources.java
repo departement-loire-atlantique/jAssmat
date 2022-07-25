@@ -335,16 +335,16 @@ public class SolisRestResources extends JcmsRestResource {
     
     // Longitude et latitude MAM et domicile
     if(assmat.getLongitude() == null || assmat.getLatitude() == null) {
-      clone.setLatitudeAssmat(0);
-      clone.setLongitudeAssmat(0);
+      clone.setLatitudeAssmat(0d);
+      clone.setLongitudeAssmat(0d);
     }else {
       clone.setLatitudeAssmat(assmat.getLatitude().doubleValue());
       clone.setLongitudeAssmat(assmat.getLongitude().doubleValue());
     }
     
     if(assmat.getLongitudeMam() == null || assmat.getLatitudeMam() == null) {
-      clone.setLatitudeMAM(0);
-      clone.setLongitudeMAM(0);
+      clone.setLatitudeMAM(0d);
+      clone.setLongitudeMAM(0d);
     }else {
       clone.setLatitudeMAM(assmat.getLatitudeMam().doubleValue());
       clone.setLongitudeMAM(assmat.getLongitudeMam().doubleValue());

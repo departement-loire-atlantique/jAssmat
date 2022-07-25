@@ -313,6 +313,9 @@ plugin.assmatplugin.declaration.pilote.group.id: ID du groupe pilote pour décla
 
 plugin.assmatplugin.contacter.courriel.error: Le format du champ "Courriel" est incorrect. Veuillez le vérifier. Exemple: contact@mail.fr
 
+
+jcmsplugin.socle.facette.disponibilites.default-label: Disponibilités
+=======
 # ECRAN DE CONNEXION
 
 plugin.assmatplugin.screen.login.title: Connexion à votre compte
@@ -329,3 +332,4 @@ plugin.assmatplugin.facette.afficher-contenu-champ: Afficher le contenu du champ
 
 # PROFIL ASSMAT
 plugin.assmatplugin.profilassmat.lastupdate: Infos mises à jour le {0}
+

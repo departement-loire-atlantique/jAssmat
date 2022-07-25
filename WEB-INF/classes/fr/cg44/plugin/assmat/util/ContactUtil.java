@@ -10,8 +10,6 @@ import com.jalios.jcms.JcmsUtil;
 import com.jalios.jcms.context.JcmsContext;
 import com.jalios.util.Util;
 
-import fr.cg44.plugin.corporateidentity.exception.UnknowCityZipCodeException;
-import fr.cg44.plugin.corporateidentity.tools.CityManager;
 import generated.City;
 import generated.FormContactAssmat;
 
@@ -33,33 +31,7 @@ public class ContactUtil {
   public static void Contact1Util() {
   }
 
-  /**
-   * Nom de la commune à partir du code postal.
-   */
-  public static String getCitynameByZipcode(String cityZipCode) {
 
-    if (Util.isEmpty(cityZipCode)) {
-      return "?";
-    }
-
-    if (cityZipCode.equals("44000") || cityZipCode.equals("44100") || cityZipCode.equals("44200") || cityZipCode.equals("44300")) {
-      return "Nantes";
-    }
-
-    if (!cityZipCode.substring(0, 2).equals("44")) {
-      return "hors département";
-    }
-
-    try {
-      CityManager cityManager = CityManager.INSTANCE;
-      City city = cityManager.getCityByZipCode(cityZipCode);
-      return city.getTitle();
-    } catch (UnknowCityZipCodeException uce) {
-      LOGGER.warn("Pas de commune correspondante au code postal " + cityZipCode);
-      return "commune de Loire-Atlantique";
-    }
-
-  }
 
   /**
    * Envoi d'un email de contact.

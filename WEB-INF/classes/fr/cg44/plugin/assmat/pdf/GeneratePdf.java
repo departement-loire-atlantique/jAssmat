@@ -60,8 +60,6 @@ import fr.cg44.plugin.assmat.comparator.DisponibiliteComparator;
 import fr.cg44.plugin.assmat.managers.AssmatSearchDAO;
 import fr.cg44.plugin.assmat.managers.ProfilManager;
 import fr.cg44.plugin.assmat.selector.PlaceSelector;
-import fr.cg44.plugin.corporateidentity.annuairePH.AnnuairePHConstants;
-import fr.cg44.plugin.corporateidentity.annuairePH.AnnuairePhJcmsProperties;
 import fr.trsb.cd44.solis.beans.AssmatSolis;
 import fr.trsb.cd44.solis.manager.QuartierDAO;
 import fr.trsb.cd44.solis.manager.SolisManager;
@@ -876,28 +874,7 @@ public class GeneratePdf extends PdfPageEventHelper {
   }
 
 
-  /**
-   * supression d'un PDF du cache
-   * 
-   * @param key
-   *            la clé
-   * @return si la suppression est correcte
-   */
-  public static boolean removePdfFromCache(String key) {
-    File f = new File(channel.getRealPath(JcmsUtil.glpd("cg44.pdf.label.coderpa.pdf_path"))
-        + AnnuairePHConstants.PDF_PREFFIX + key + ".pdf");
-    return f.delete();
-  }
 
-  public static String getPdfPath(String id) {
-    return AnnuairePhJcmsProperties.PDF_PATH_GENERATION.getString()
-        + AnnuairePhJcmsProperties.PDF_PREFFIX_NAME.getString() + id + ".pdf";
-  }
-
-  public static String getPdfCompletPath(String id) {
-    return AnnuairePhJcmsProperties.PDF_PATH_GENERATION.getString()
-        + AnnuairePhJcmsProperties.PDF_COMPLET_NAME.getString();
-  }
 
   /**
    * Traitement de la liste pour une selection d'assmat

@@ -166,6 +166,13 @@ sentry.public.key:
 # DANS LE CADRE DE LA REFONTE 2022 METTRE LES NOUVELLES PROPS EN DESSOUS DE CETTE LIGNE !!!
 #######################################################################################################
 
+
+jcmsplugin.socle.recherche.accueil.jsp.display: plugins/AssmatPlugin/jsp/facettes/displayResultAssmat.jsp 
+hibernate.cfg.postgresql.prop.hibernate.connection.datasource: 
+plugin.assmatplugin.pwd.regex: ^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$
+jcmsplugin.socle.recherche.export.pdf: /assmat.pdf?type=detail
+
 #  Médias / cards
 media.data-template.default.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCard.jsp
 media.data-template.card.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCard.jsp
+
