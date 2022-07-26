@@ -487,7 +487,6 @@ jsonObject.add("result", jsonArray);
 ProfilManager profilMgr = ProfilManager.getInstance();
 ProfilASSMAT itProfilAM = null;
 
-jcmsContext.setTemplateUsage(TypeTemplateEntry.USAGE_DISPLAY_QUERY);
 
 %>
 
