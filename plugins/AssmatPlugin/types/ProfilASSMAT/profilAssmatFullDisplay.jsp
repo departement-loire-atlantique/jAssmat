@@ -4,10 +4,8 @@
 <%@page import="fr.cg44.plugin.assmat.selector.RelaisMamSelectorIDSolis"%>
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil.SelectionEtatDispo"%>
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil.SelectionEtatDispo"%>
-<%@page import="fr.cg44.plugin.tools.facetedsearch.exception.UnknowCityException"%>
 <%@page import="fr.cg44.plugin.assmat.comparator.DisponibiliteComparator"%>
 <%@page import="fr.cg44.plugin.assmat.selector.RelaisMamSelectorCommune"%>
-<%@page import="fr.cg44.plugin.tools.facetedsearch.manager.CityManager"%>
 <%@page import="fr.cg44.plugin.assmat.beans.AssmatSearch"%>
 <%@page import="fr.cg44.plugin.assmat.SemainierUtil"%>
 <%@page import="fr.cg44.plugin.assmat.Semainier"%>
@@ -19,8 +17,7 @@
 <%@page import="fr.trsb.cd44.solis.manager.SolisManager"%>
 <%@page import="fr.cg44.plugin.tools.ToolsUtil"%>
 <%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
-<%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%>
-<%@page import="fr.cg44.plugin.tools.modal.ModalGenerator"%><%
+<%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%><%
 %><%@ page contentType="text/html; charset=UTF-8"%><%
 %><%@ include file='/jcore/doInitPage.jsp'%>
 

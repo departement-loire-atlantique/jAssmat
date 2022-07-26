@@ -173,6 +173,6 @@ plugin.assmatplugin.pwd.regex: ^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$
 jcmsplugin.socle.recherche.export.pdf: /assmat.pdf?type=detail
 
 #  Médias / cards
-media.data-template.default.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCard.jsp
+media.data-template.default.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCardSimple.jsp
 media.data-template.card.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCard.jsp
 
