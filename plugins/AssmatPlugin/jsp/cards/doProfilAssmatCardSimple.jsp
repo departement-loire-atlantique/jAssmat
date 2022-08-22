@@ -114,19 +114,33 @@ if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
 		    // Si l'assmat a des dispo ou accepte d'etre contacter meme sans dispo
 		    Boolean showContactDispo = !pub.getAfficherContactUniquementSiD() || hasDispo;
 		    %>
-		    <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisbiliteTelephoneFixe()) && Util.notEmpty(pub.getTelephoneFixe()) %>">
 		    
-		        <!-- Tel fixe -->
-		        <jalios:if predicate="<%= Util.notEmpty(pub.getTelephoneFixe()) %>">
-		          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%=pub.getTelephoneFixe() %></p>
-		        </jalios:if>
+		    <jalios:if predicate="<%= showContactDispo  %>">
 		    
-		    
-		         <!-- Tel mobile -->
-		         
-                
-            </jalios:if>
+			    <!-- Tel fixe -->
+			    <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisbiliteTelephoneFixe()) && Util.notEmpty(pub.getTelephoneFixe()) %>">		    		        
+			        <jalios:if predicate="<%= Util.notEmpty(pub.getTelephoneFixe()) %>">
+			          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%=pub.getTelephoneFixe() %></p>
+			        </jalios:if>		   	                         
+	            </jalios:if>
+	            
+	            
+	            <jalios:if predicate="<%= Util.notEmpty(pub.getAuthor()) %>">
+	            
+		            <!-- Tel mobile -->
+	                <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisibiliteTelephonePortable()) && Util.notEmpty(pub.getAuthor().getMobile()) %>">
+	                   <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%=pub.getAuthor().getMobile() %></p>
+	                </jalios:if>
+	                	                
+	                <!--  Courriel -->
+	                <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisibiliteAdresseEmail()) && Util.notEmpty(pub.getAuthor().getEmail()) %>">
+	                   <!-- TODO -->
+<%-- 	                   <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i><%= pub.getAuthor().getEmail() %></p> --%>
+	                </jalios:if>
+	                
+	            </jalios:if>
             
+            </jalios:if>
         </div>
         <i class="icon icon-arrow-right ds44-cardArrow" aria-hidden="true"></i>
     </div>
