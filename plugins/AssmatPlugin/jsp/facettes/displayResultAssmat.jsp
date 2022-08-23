@@ -47,8 +47,10 @@ Date dateTime = new Date(time);
 
 
 // Adresse 
-// Ne sert plus, seulement longitude latitude utilisé avec rayon.
 String adresse = "";
+if(Util.notEmpty(getUntrustedStringParameter("adresse",null))){
+  adresse = getUntrustedStringParameter("adresse","");
+}
 
 // Rayon (Distance)
 int distance = getIntParameter("rayon", 0);
@@ -484,6 +486,8 @@ jsonObject.add("result", jsonArray);
 
 ProfilManager profilMgr = ProfilManager.getInstance();
 ProfilASSMAT itProfilAM = null;
+
+
 %>
 
 
@@ -497,9 +501,20 @@ itProfilAM = profilMgr.getProfilASSMATbyAssmatSearch(itEntry.getKey());
 if(Util.notEmpty(itProfilAM)){
   AssmatSearch itSearch = itEntry.getKey();
   PointAssmat itPoint = itEntry.getValue();
-
+  
+  request.setAttribute("point", itPoint);
+  
+  
+  
+  %><jalios:buffer name="itPubListGabarit"><%  
+      %><jalios:media data="<%= itProfilAM %>" /><%
+  %>
+  </jalios:buffer><%
+      
+      
+      
   // Ajout du résultat au json
-  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM,  Double.toString(itPoint.getLatitude()), Double.toString(itPoint.getLongitude()), itPoint.getCouleurPoint(), itCounter + " " + itSearch.getNomAssmat(), itSearch.getNomAssmat(), null));
+  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM,  Double.toString(itPoint.getLatitude()), Double.toString(itPoint.getLongitude()), itPoint.getCouleurPoint(), itPubListGabarit, itSearch.getNomAssmat(), null));
 
 }
 %>
