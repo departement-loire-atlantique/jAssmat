@@ -315,7 +315,7 @@ plugin.assmatplugin.contacter.courriel.error: Le format du champ "Courriel" est 
 
 
 jcmsplugin.socle.facette.disponibilites.default-label: Disponibilités
-=======
+
 # ECRAN DE CONNEXION
 
 plugin.assmatplugin.screen.login.title: Connexion à votre compte
