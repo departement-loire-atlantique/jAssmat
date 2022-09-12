@@ -54,7 +54,8 @@ boolean accueilAccepteRemplacement = Util.notEmpty(profilAM.getAccepteDepannage(
       </section>
 
       <h4 class="h3-like ds44-mt3"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-DISPONIBILITE-HTML" ></trsb:glp></h4>
-      TODO
+      
+      <%@include file='/plugins/AssmatPlugin/jsp/include/displayDisponibilites.jspf' %>
       
       <h4 class="h3-like ds44-mt3"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-AGREMENT-HTML" ></trsb:glp></h4>
       <ul class="ds44-uList">

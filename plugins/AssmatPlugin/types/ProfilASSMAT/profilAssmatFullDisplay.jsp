@@ -190,7 +190,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
         <div class="ds44-inner-container ds44-mtb3">
             <div class="ds44-grid12-offset-2">
                 <h2 class="h2-like ds44-mt3"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-DISPONIBILITE-HTML" ></trsb:glp></h2>
-                <p>TODO</p>
+                <%@include file='/plugins/AssmatPlugin/jsp/include/displayDisponibilites.jspf' %>
                 
                 <h2 class="h2-like ds44-mt3"><%= glp("jcmsplugin.socle.titre.endetails") %></h2>
                 <%--
