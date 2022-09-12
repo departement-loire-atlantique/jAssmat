@@ -47,102 +47,88 @@ boolean notfoundCompte= false;
 <%
 	if (Util.isEmpty(token)) {
 %>
+<main id="content">
 
-<div class="headstall container-fluid formulaireActivation">
-	<div class="row-fluid">
-		<!-- COLONNE GAUCHE -->
-		<div class="span2 iconEtape">
-			<img alt="etape1"
-				src="plugins/AssmatPlugin/img/icon-activation-form.png" />
-		</div>
-		<!-- FIN COLONNE GAUCHE -->
-		<!-- COLONNE DROITE -->
-		<div class="span10 label">
-			<div class="row-fluid title">
-				<div class="label">
-					<h1>
-						<trsb:glp key="IDENT-TITRE"></trsb:glp>
-					</h1>
-				</div>
-			</div>
-		</div>
-		<div class="span9 label">
-			<div class="row-fluid">
-				<div class="ajax-refresh-div">
-					<%@ include
-						file='/plugins/AssmatPlugin/jsp/inscription/etapes.jspf'%>
-
-					<div class="formActivation form-cg">
-						<div class="form-cg-gray">
-							<%@ include file='/jcore/doMessageBox.jsp'%>
-							<form method="post"
-								action="<%=ServletUtil.getResourcePath(request)%>"
-								name="formContact" id="formContact" class="formContact">
-
-
-
-								<%@ include
-									file='/plugins/AssmatPlugin/jsp/inscription/headerTitle.jspf'%>
-								<%@ include
-									file='/plugins/AssmatPlugin/jsp/inscription/identification.jspf'%>
-								<%@ include
-									file='/plugins/AssmatPlugin/jsp/inscription/verification.jspf'%>
-								<%@ include
-									file='/plugins/AssmatPlugin/jsp/inscription/contacts.jspf'%>
-								<%@ include
-									file='/plugins/AssmatPlugin/jsp/inscription/loginEtMotDePasse.jspf'%>
-								<%@ include
-									file='/plugins/AssmatPlugin/jsp/inscription/confirmation.jspf'%>
-								<!--  Ecriture des champ cachés             -->
-								<%=formHandler.getFormStepHiddenFields()%>
-								<jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
-				    	<input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>"/>
-					</jalios:if> 
-
-							</form>
+	<div class="formulaireActivation ds44-container-large">
+	
+	    <h2><trsb:glp key="IDENT-TITRE"></trsb:glp></h2>
+	
+			<div class="span9">
+				<div class="row-fluid">
+					<div class="ajax-refresh-div">
+						<%@ include
+							file='/plugins/AssmatPlugin/jsp/inscription/etapes.jspf'%>
+	
+						<div class="formActivation form-cg">
+							<div class="form-cg-gray">
+								<%@ include file='/jcore/doMessageBox.jsp'%>
+								<form method="post"
+									action="<%=ServletUtil.getResourcePath(request)%>"
+									name="formContact" id="formContact" class="formContact">
+	
+	
+	
+									<%@ include
+										file='/plugins/AssmatPlugin/jsp/inscription/headerTitle.jspf'%>
+									<%@ include
+										file='/plugins/AssmatPlugin/jsp/inscription/identification.jspf'%>
+									<%@ include
+										file='/plugins/AssmatPlugin/jsp/inscription/verification.jspf'%>
+									<%@ include
+										file='/plugins/AssmatPlugin/jsp/inscription/contacts.jspf'%>
+									<%@ include
+										file='/plugins/AssmatPlugin/jsp/inscription/loginEtMotDePasse.jspf'%>
+									<%@ include
+										file='/plugins/AssmatPlugin/jsp/inscription/confirmation.jspf'%>
+									<!--  Ecriture des champ cachés             -->
+									<%=formHandler.getFormStepHiddenFields()%>
+									<jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
+					    	<input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>"/>
+						</jalios:if> 
+	
+								</form>
+							</div>
 						</div>
+	
+	
 					</div>
-
-
+				</div>
+			</div>
+	</div>
+	
+	<%
+		} else {
+			//Insscription valide
+			if (!formHandler.isInscriptionOK()) {
+	%>
+	<div class="headstall container-fluid formulaireActivation">
+		<div class="row-fluid">
+			<!-- COLONNE GAUCHE -->
+			<div class="span2 iconEtape">
+				<img alt="etape1"
+					src="plugins/AssmatPlugin/img/icon-activation-form.png" />
+			</div>
+			<!-- FIN COLONNE GAUCHE -->
+			<!-- COLONNE DROITE -->
+			<div class="span10">
+				<div class="row-fluid title">
+				   <h2>Inscription invalide</h2>
+				</div>
+			</div>
+			<div class="span9">
+				<div class="row-fluid">
+					<div class="ajax-refresh-div">
+						<%@ include file='/jcore/doMessageBox.jsp'%>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+	
+	
+	<%
+		}
+		}
+	%>
 
-<%
-	} else {
-		//Insscription valide
-		if (!formHandler.isInscriptionOK()) {
-%>
-<div class="headstall container-fluid formulaireActivation">
-	<div class="row-fluid">
-		<!-- COLONNE GAUCHE -->
-		<div class="span2 iconEtape">
-			<img alt="etape1"
-				src="plugins/AssmatPlugin/img/icon-activation-form.png" />
-		</div>
-		<!-- FIN COLONNE GAUCHE -->
-		<!-- COLONNE DROITE -->
-		<div class="span10 label">
-			<div class="row-fluid title">
-				<div class="label">
-					<h1>Inscription invalide</h1>
-				</div>
-			</div>
-		</div>
-		<div class="span9 label">
-			<div class="row-fluid">
-				<div class="ajax-refresh-div">
-					<%@ include file='/jcore/doMessageBox.jsp'%>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<%
-	}
-	}
-%>
+</main>
