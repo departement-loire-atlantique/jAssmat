@@ -67,30 +67,37 @@ int nbTentativeStep0 = formHandler.getNbTentativeErrone();
 				            <a href="#" class="passed" aria-label="Étape 1 : Validée - Enfant">
 				                <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
 				                <span class="visually-hidden">Étape 1 : Validée - </span>
-				                <span class="text">Enfant</span>
+				                <span class="text">Identification</span>
 				            </a>
 				        </li>
 				        <li class="ds44-nav-step" aria-current="page">
 				            <div class="active">
 				                <span class="number" aria-hidden="true">2</span>
 				                <span class="visually-hidden">Étape 2 : En cours - </span>
-				                <span class="text">Lieu</span>
+				                <span class="text">Vérification</span>
 				            </div>
 				        </li>
 				        <li class="ds44-nav-step">
 				            <div class="inactive">
 				                <span class="number" aria-hidden="true">3</span>
 				                <span class="visually-hidden">Étape 3 :</span>
-				                <span class="text">Modalités</span>
+				                <span class="text">Contacts</span>
 				            </div>
 				        </li>
 				        <li class="ds44-nav-step">
-				            <div class="inactive">
-				                <span class="number" aria-hidden="true">4</span>
-				                <span class="visually-hidden">Étape 4 :</span>
-				                <span class="text">Planning</span>
-				            </div>
-				        </li>
+                            <div class="inactive">
+                                <span class="number" aria-hidden="true">4</span>
+                                <span class="visually-hidden">Étape 4 :</span>
+                                <span class="text">Login et mot de passe</span>
+                            </div>
+                        </li>
+                        <li class="ds44-nav-step">
+                            <div class="inactive">
+                                <span class="number" aria-hidden="true">5</span>
+                                <span class="visually-hidden">Étape 5 :</span>
+                                <span class="text">Confirmation</span>
+                            </div>
+                        </li>
 				    </ol>
 				</nav>
 				   <%=formHandler.getAllFormStepHiddenFields()%>

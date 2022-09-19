@@ -50,7 +50,7 @@ boolean notfoundCompte= false;
 <main id="content">
 
 	<div class="formulaireActivation ds44-container-large">
-	
+	   <div class="ds44-inner-container">
 	    <h2><trsb:glp key="IDENT-TITRE"></trsb:glp></h2>
 	
 			<div class="span9">
@@ -58,9 +58,7 @@ boolean notfoundCompte= false;
 					<div class="ajax-refresh-div">
 						<%@ include
 							file='/plugins/AssmatPlugin/jsp/inscription/etapes.jspf'%>
-	
-						<div class="formActivation form-cg">
-							<div class="form-cg-gray">
+
 								<%@ include file='/jcore/doMessageBox.jsp'%>
 								<form method="post"
 									action="<%=ServletUtil.getResourcePath(request)%>"
@@ -87,10 +85,7 @@ boolean notfoundCompte= false;
 						</jalios:if> 
 	
 								</form>
-							</div>
-						</div>
-	
-	
+
 					</div>
 				</div>
 			</div>
@@ -130,5 +125,5 @@ boolean notfoundCompte= false;
 		}
 		}
 	%>
-
+    </div>
 </main>
