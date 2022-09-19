@@ -52,14 +52,14 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 						<p class=""><trsb:glp key="IDENT-ECHEC-TEXTE-HTML" ></trsb:glp></p><br>
 						<%}%>
 						    <!-- Civilité -->
-						    <div id="form-element-<%= uuid %>" data-name="civilite" class="ds44-form__radio_container ds44-form__container" title="">
-				               <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.civilité") %><sup aria-hidden="true">*</sup></p>
+						    <div id="form-element-<%= uuid %>" data-name="civilite" class="ds44-form__radio_container ds44-form__container" title="" data-required="true">
+				               <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.civilite") %><sup aria-hidden="true">*</sup></p>
 				               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message">Au moins une de ces cases doit être cochée :</p>
 				               <div class="ds44-form__container ds44-checkBox-radio_list">
-				                  <input type="radio" name="civilite" value="mr" id="name-radio-form-element-<%= uuid %>-mr" class="ds44-radio" required="" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-bkp-aria-describedby="mandatory-message-form-element-<%= uuid %>" required=""><label id="label-radio-form-element-<%= uuid %>-mr" for="name-radio-form-element-<%= uuid %>-mr" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.civilité.mme") %></label>
+				                  <input type="radio" name="civilite" value="mr" id="name-radio-form-element-<%= uuid %>-mr" class="ds44-radio" required="" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-bkp-aria-describedby="mandatory-message-form-element-<%= uuid %>" required=""><label id="label-radio-form-element-<%= uuid %>-mr" for="name-radio-form-element-<%= uuid %>-mr" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.civilite.mme") %></label>
 				               </div>
 				               <div class="ds44-form__container ds44-checkBox-radio_list">
-				                  <input type="radio" name="civilite" value="mme" id="name-radio-form-element-<%= uuid %>-mme" class="ds44-radio" required="" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-bkp-aria-describedby="mandatory-message-form-element-<%= uuid %>" required=""><label id="label-radio-form-element-<%= uuid %>-mme" for="name-radio-form-element-<%= uuid %>-mme" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.civilité.m") %></label>
+				                  <input type="radio" name="civilite" value="mme" id="name-radio-form-element-<%= uuid %>-mme" class="ds44-radio" required="" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-bkp-aria-describedby="mandatory-message-form-element-<%= uuid %>" required=""><label id="label-radio-form-element-<%= uuid %>-mme" for="name-radio-form-element-<%= uuid %>-mme" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.civilite.m") %></label>
 				               </div>
 				            </div>
 				            <!-- Nom -->

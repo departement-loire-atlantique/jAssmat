@@ -22,13 +22,27 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
   int numeroDossierAssmat = formHandler.getNumeroAgrementInteger();
 %>
 
-				<!-- FORMULAIRE A ETAPES -->
-			 <p class="instructionsSaisie"><trsb:glp key="LOGIN-LEGENDE-HTML" ></trsb:glp></p>
-              
-						
-							<div class="blocLabel">
-								<p class=""><trsb:glp key="LOGIN-PREF-CONNEXION-HTML" ></trsb:glp></p>
-							</div>
+    <!-- FORMULAIRE A ETAPES -->
+    <p class="instructionsSaisie"><trsb:glp key="LOGIN-LEGENDE-HTML" ></trsb:glp></p>
+    
+    <%-- Préférence de connexion --%>
+    <% uuid = UUID.randomUUID().toString(); %>
+    <div id="form-element-<%= uuid %>" data-name="choixLogin" class="ds44-form__radio_container ds44-form__container" data-required="true">
+        <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.choixLogin") %><sup aria-hidden="true">*</sup></p>
+	    <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message">Au moins une de ces cases doit être cochée :</p>
+	    <div class="ds44-form__container ds44-checkBox-radio_list ">
+	        <input type="radio" name="choixLogin" value="tel" id="name-radio-form-element-<%= uuid %>-tel" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" />
+	        <label id="label-radio-form-element-<%= uuid %>-tel" for="name-radio-form-element-<%= uuid %>-tel" class="ds44-radioLabel">
+	        Homme
+	        </label>
+	    </div>
+	    <div class="ds44-form__container ds44-checkBox-radio_list ">
+	        <input type="radio" name="choixLogin" value="dossier" id="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" />
+	        <label id="label-radio-form-element-<%= uuid %>-dossier" for="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radioLabel">
+	        Femme
+	        </label>
+	    </div>
+    </div>
 
 							<div class="blocChamp multipleRadio">
 							<%if(isEmailChoice && Util.isEmpty(channel.getMemberFromLogin(emailAssmat))){ %>
@@ -154,6 +168,3 @@ jQuery('#visible-password').change(function () {
 <!-- FIN -->
 
 <%} %>
-
-
-

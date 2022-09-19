@@ -16,9 +16,9 @@ jcmsplugin.assmatplugin.accueil.menu.ici: Vous êtes
 #page inscription
 
 jcmsplugin.assmatplugin.inscription.activer.compte.avant: Même si vous aviez déjà activé votre compte dans l'ancien site, merci de suivre les étapes suivantes.
-jcmsplugin.assmatplugin.inscription.champ.civilité: Civilité
-jcmsplugin.assmatplugin.inscription.champ.civilité.mme: Mme
-jcmsplugin.assmatplugin.inscription.champ.civilité.m: M.
+jcmsplugin.assmatplugin.inscription.champ.civilite: Civilité
+jcmsplugin.assmatplugin.inscription.champ.civilite.mme: Mme
+jcmsplugin.assmatplugin.inscription.champ.civilite.m: M.
 jcmsplugin.assmatplugin.inscription.activer.compte: Activez votre compte et définissez votre login et mot de passe
 jcmsplugin.assmatplugin.inscription.choix.login: Choisissez votre login
 jcmsplugin.assmatplugin.inscription.info.login: Le login est l’identifiant que vous utiliserez pour vous connecter au site pour mettre à jour vos disponibilités ou faire une démarche en ligne.
@@ -65,6 +65,7 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.typeenvoi: Vous préférez recevoi
 jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation: Code de confirmation
 jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.mail: Par e-mail
 jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.sms: Par SMS
+jcmsplugin.assmatplugin.inscription.champ.lbl.choixLogin: Pour vous connecter au site vous préférez utiliser :
 jcmsplugin.assmatplugin.inscription.verification.place: {0} {0,choice,0#places|1#place|2#places}
 jcmsplugin.assmatplugin.inscription.champ.lbl.verification.confirmer: Je confirme ces informations
 jcmsplugin.assmatplugin.inscription.error.contact.mail.envoye: Votre mail à bien été envoyé
