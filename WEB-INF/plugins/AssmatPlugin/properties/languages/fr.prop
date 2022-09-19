@@ -60,6 +60,10 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.email: E-mail
 jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage: Votre message ici
 jcmsplugin.assmatplugin.inscription.champ.desc.votremessage: Ce message sera envoyé automatiquement au support du site. Merci de préciser au mieux votre demande.
 jcmsplugin.assmatplugin.inscription.champ.lbl.codepostal: Code postal
+jcmsplugin.assmatplugin.inscription.champ.lbl.mobile: Téléphone mobile
+jcmsplugin.assmatplugin.inscription.champ.lbl.typeenvoi: Vous préférez recevoir des messages du Département
+jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.mail: Par e-mail
+jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.sms: Par SMS
 jcmsplugin.assmatplugin.inscription.verification.place: {0} {0,choice,0#places|1#place|2#places}
 jcmsplugin.assmatplugin.inscription.champ.lbl.verification.confirmer: Je confirme ces informations
 jcmsplugin.assmatplugin.inscription.error.contact.mail.envoye: Votre mail à bien été envoyé
@@ -78,6 +82,7 @@ jcmsplugin.assmatplugin.inscription.error.interdit: Vous n'êtes pas autorisé �
 jcmsplugin.assmatplugin.inscription.error.existedeja: Un compte existe déja pour cet utilisateur
 jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms à déja été enregistré
 jcmsplugin.assmatplugin.btn.etapesuivante: Etape suivante
+jcmsplugin.assmatplugin.btn.etapeprecedente: Etape précédente
 jcmsplugin.assmatplugin.btn.envoyer: Envoyer
 
 #Mail d'activation

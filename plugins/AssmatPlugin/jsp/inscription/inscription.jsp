@@ -16,6 +16,9 @@
 
 
 <%
+//UUID unique pour les champs
+String uuid = UUID.randomUUID().toString();
+
 boolean notfoundCompte= false;
 	if (formHandler.validate()) {
 		request.setAttribute("modal.redirect", request.getAttribute("workspaceURL"));
