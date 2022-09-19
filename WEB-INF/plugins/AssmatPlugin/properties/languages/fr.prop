@@ -27,6 +27,7 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.nom: Nom
 jcmsplugin.assmatplugin.inscription.champ.lbl.prenom: Prénom
 jcmsplugin.assmatplugin.inscription.champ.lbl.naissance: Date de naissance
 jcmsplugin.assmatplugin.inscription.champ.lbl.agrement: Votre numéro de dossier d'agrément
+jcmsplugin.assmatplugin.inscription.champ.desc.agrement: NB : ce numéro est présent sur votre attestation d'agrément (référence à rappeler). Il ne doit comporter ni point, ni tiret, ni espace (ex. 508772 ou 1299 sans mettre les 00 devant)
 jcmsplugin.assmatplugin.inscription.champ.lbl.facultatif: (facultatif)
 jcmsplugin.assmatplugin.inscription.champ.lbl.noteagre: NB : ce numéro est présent sur votre attestation d'agrément
 jcmsplugin.assmatplugin.inscription.champ.lbl.verif.info: Merci de vérifier les informations suivantes
@@ -54,6 +55,11 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp.isntru: Le mot de passe 
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.motpasse: Mot de passe
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.motpasseconf: Confirmation du mot de passe
 jcmsplugin.assmatplugin.inscription.champ.lbl.verification.erreur: Je signale une erreur
+jcmsplugin.assmatplugin.inscription.champ.lbl.telephone: Téléphone
+jcmsplugin.assmatplugin.inscription.champ.lbl.email: E-mail
+jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage: Votre message ici
+jcmsplugin.assmatplugin.inscription.champ.desc.votremessage: Ce message sera envoyé automatiquement au support du site. Merci de préciser au mieux votre demande.
+jcmsplugin.assmatplugin.inscription.champ.lbl.codepostal: Code postal
 jcmsplugin.assmatplugin.inscription.verification.place: {0} {0,choice,0#places|1#place|2#places}
 jcmsplugin.assmatplugin.inscription.champ.lbl.verification.confirmer: Je confirme ces informations
 jcmsplugin.assmatplugin.inscription.error.contact.mail.envoye: Votre mail à bien été envoyé
@@ -71,6 +77,8 @@ jcmsplugin.assmatplugin.inscription.error.mail.ua:Ce message sera envoyé automa
 jcmsplugin.assmatplugin.inscription.error.interdit: Vous n'êtes pas autorisé à créer un compte.
 jcmsplugin.assmatplugin.inscription.error.existedeja: Un compte existe déja pour cet utilisateur
 jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms à déja été enregistré
+jcmsplugin.assmatplugin.btn.etapesuivante: Etape suivante
+jcmsplugin.assmatplugin.btn.envoyer: Envoyer
 
 #Mail d'activation
 jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour

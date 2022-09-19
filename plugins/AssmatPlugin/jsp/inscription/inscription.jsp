@@ -62,7 +62,7 @@ boolean notfoundCompte= false;
 								<%@ include file='/jcore/doMessageBox.jsp'%>
 								<form method="post"
 									action="<%=ServletUtil.getResourcePath(request)%>"
-									name="formContact" id="formContact" class="formContact">
+									name="formContact" id="formContact">
 	
 	
 	
