@@ -62,6 +62,7 @@ jcmsplugin.assmatplugin.inscription.champ.desc.votremessage: Ce message sera env
 jcmsplugin.assmatplugin.inscription.champ.lbl.codepostal: Code postal
 jcmsplugin.assmatplugin.inscription.champ.lbl.mobile: Téléphone mobile
 jcmsplugin.assmatplugin.inscription.champ.lbl.typeenvoi: Vous préférez recevoir des messages du Département
+jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation: Code de confirmation
 jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.mail: Par e-mail
 jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.sms: Par SMS
 jcmsplugin.assmatplugin.inscription.verification.place: {0} {0,choice,0#places|1#place|2#places}
