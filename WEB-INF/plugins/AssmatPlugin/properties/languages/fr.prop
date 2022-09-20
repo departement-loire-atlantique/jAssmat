@@ -332,4 +332,7 @@ plugin.assmatplugin.facette.afficher-contenu-champ: Afficher le contenu du champ
 
 # PROFIL ASSMAT
 plugin.assmatplugin.profilassmat.lastupdate: Infos mises à jour le {0}
-
+plugin.assmatplugin.profilassmat.place.domicile.inconnu: 1 place disponible pour {0} à domicile
+plugin.assmatplugin.profilassmat.place.mam.inconnu: 1 place disponible pour {0} en MAM
+plugin.assmatplugin.profilassmat.place.creneauDispo: Créneau disponible
+plugin.assmatplugin.profilassmat.place.creneauNonDispo: Créneau non disponible
