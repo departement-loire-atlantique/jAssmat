@@ -2,7 +2,7 @@
 # DEBUT DES ANCIENNES PROPS (LEGACY)
 #######################################################################################################
 
-plugin.tools.js: plugins/ToolsPlugin/js/initTouchClasses.js plugins/ToolsPlugin/js/googleSeoMarker.js
+#plugin.tools.js: plugins/ToolsPlugin/js/initTouchClasses.js plugins/ToolsPlugin/js/googleSeoMarker.js
 
 #channel.css.all.0102030405.fo: plugins/AssmatPlugin/css/assmat.css 
 #channel.css.all.0102030405.fo: plugins/AssmatPlugin/css/plugin.css
@@ -179,3 +179,5 @@ media.data-template.card.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilA
 # iconographie
 jcmsplugin.assmat.profil.logo.creneauDispo: https://design.loire-atlantique.fr//assets/images/creneauDispo.svg
 jcmsplugin.assmat.profil.logo.creneauNonDispo: https://design.loire-atlantique.fr//assets/images/creneauNonDispo.svg
+media.data-template.card.Place: /plugins/AssmatPlugin/jsp/cards/doPlaceCard.jsp
+

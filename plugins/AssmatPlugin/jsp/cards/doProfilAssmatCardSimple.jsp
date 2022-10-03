@@ -49,7 +49,7 @@ if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
 <!--             <button class="pas" type="button" aria-describedby="1"><i class="icon icon-star-empty" aria-hidden="true"></i><span class="visually-hidden">Sélection</span></button> -->
 <!--         </p> -->
         <div class="ds44-innerBoxContainer">
-            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle" id="1"><a href='<%= pub.getDisplayUrl(userLocale)  %>' class="ds44-card__globalLink"><%= mbr.getFullName() %></a></p>
+            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle" id="1"><div href='<%= pub.getDisplayUrl(userLocale)  %>' class="ds44-card__globalLink"><%= mbr.getFullName() %></div></p>
             <hr class="mbs" aria-hidden="true"/>
             
             
@@ -61,7 +61,7 @@ if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
                         
                 <!-- Distance -->
 	            <jalios:if predicate="<%= Util.notEmpty(pointAssmat) && distance != -1 %>">
-	                <%= nf.format(distance) %> km de l'adresse recherchée</br>
+	               <%= glp("plugin.assmatplugin.profilassmat.distance", nf.format(distance)) %></br>
 	            </jalios:if>
             
                 <%-- adresse du domicile --%>
@@ -119,8 +119,8 @@ if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
 		    
 			    <!-- Tel fixe -->
 			    <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisbiliteTelephoneFixe()) && Util.notEmpty(pub.getTelephoneFixe()) %>">		    		        
-			        <jalios:if predicate="<%= Util.notEmpty(pub.getTelephoneFixe()) %>">
-			          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%=pub.getTelephoneFixe() %></p>
+			        <jalios:if predicate="<%= Util.notEmpty(pub.getTelephoneFixe()) %>">			          
+			          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><ds:phone number="<%= pub.getTelephoneFixe() %>" pubTitle="<%= pub.getTelephoneFixe() %>"></ds:phone></p>			          
 			        </jalios:if>		   	                         
 	            </jalios:if>
 	            
@@ -129,13 +129,14 @@ if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
 	            
 		            <!-- Tel mobile -->
 	                <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisibiliteTelephonePortable()) && Util.notEmpty(pub.getAuthor().getMobile()) %>">
-	                   <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%=pub.getAuthor().getMobile() %></p>
+	                   <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><ds:phone number="<%= pub.getAuthor().getMobile() %>" pubTitle="<%= pub.getAuthor().getMobile() %>"></ds:phone> </p>	                   
 	                </jalios:if>
 	                	                
 	                <!--  Courriel -->
-	                <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisibiliteAdresseEmail()) && Util.notEmpty(pub.getAuthor().getEmail()) %>">
-	                   <!-- TODO -->
-<%-- 	                   <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i><%= pub.getAuthor().getEmail() %></p> --%>
+	                <%  Publication contactPub = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.am")); %>
+	                <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisibiliteAdresseEmail()) && Util.notEmpty(pub.getAuthor().getEmail()) && Util.notEmpty(contactPub) %>">	                   
+	                   <% String lien = contactPub.getDisplayUrl(userLocale) + "?idMAM=" + pub.getAuthor().getId(); %>
+	                   <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i><a href="<%= lien %>" aria-label='<%= glp("jcmsplugin.socle.contactmail.label") %> <%= pub.getAuthor().getFullName() %>'><%= glp("jcmsplugin.socle.mail") %></a></p>
 	                </jalios:if>
 	                
 	            </jalios:if>
