@@ -31,6 +31,7 @@
     <type name="PortletFacetteAge" />
     <type name="PortletFacetteDispo" />
     <type name="PortletFacetteMois" />
+    <type name="PortletFacetteNomAssmat" />  
     <type name="PortletFacetteQuartier" />   
     <type name="ProfilASSMAT" />
     <type name="Routage" />
@@ -119,6 +120,12 @@
     
     <templates type="PortletFacetteDispo">
         <template name="default" file="doPortletFacetteDispoBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates>
+    
+    <templates type="PortletFacetteNomAssmat">
+        <template name="default" file="doPortletFacetteNomAssmatBoxDisplay.jsp" usage='box'>
           <label xml:lang="fr">DS44 : gabarit générique simple</label>
         </template>
     </templates>

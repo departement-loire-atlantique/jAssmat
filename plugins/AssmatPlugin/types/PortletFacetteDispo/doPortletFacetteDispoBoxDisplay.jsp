@@ -9,10 +9,13 @@
 <%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
 
 <%
+
+  request.setAttribute("isSelectFacette", true);
+
   PortletFacetteDispo obj = (PortletFacetteDispo)portlet; 
   String rechercheId = (String) request.getAttribute("rechercheId");	
   String idFormElement = glp("jcmsplugin.socle.facette.form-element") + "-" + rechercheId + obj.getId();
-  String labelChamp =  Util.notEmpty(obj.getLabel()) ? obj.getLabel() : JcmsUtil.glp(userLang, "jcmsplugin.socle.facette.disponibilites.default-label");
+  String labelChamp =  Util.notEmpty(obj.getLabel()) ? obj.getLabel() : JcmsUtil.glp(userLang, "jcmsplugin.assmatplugin.facette.disponibilites.default-label");
 
   //Si le visteur est un RAM
   Boolean isRam = AssmatUtil.getMemberIsRam(loggedMember);

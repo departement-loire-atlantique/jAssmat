@@ -9,10 +9,12 @@
 <%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
 
 <%
+  request.setAttribute("isSelectFacette", true);
+
   PortletFacetteAge obj = (PortletFacetteAge)portlet; 
   String rechercheId = (String) request.getAttribute("rechercheId");
   String idFormElement = glp("jcmsplugin.socle.facette.form-element") + "-" + rechercheId + obj.getId();
-  String labelChamp =  Util.notEmpty(obj.getLabel()) ? obj.getLabel() : JcmsUtil.glp(userLang, "jcmsplugin.socle.facette.age.default-label");
+  String labelChamp =  Util.notEmpty(obj.getLabel()) ? obj.getLabel() : JcmsUtil.glp(userLang, "jcmsplugin.assmatplugin.facette.age.default-label");
 
 
   Category categAge = channel.getCategory("$jcmsplugin.assmatplugin.categ.trancheage");

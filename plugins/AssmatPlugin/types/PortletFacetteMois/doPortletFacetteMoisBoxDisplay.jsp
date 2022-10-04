@@ -6,11 +6,13 @@
 <%@ include file='/plugins/SoclePlugin/jsp/facettes/commonParamsFacettes.jspf' %>
 <%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%>
 <%
+  request.setAttribute("isSelectFacette", true);
+
   PortletFacetteMois obj = (PortletFacetteMois)portlet; 
 
   String rechercheId = (String) request.getAttribute("rechercheId");	
   String idFormElement = glp("jcmsplugin.socle.facette.form-element") + "-" + rechercheId + obj.getId();
-  String labelChamp =  Util.notEmpty(obj.getLabel()) ? obj.getLabel() : JcmsUtil.glp(userLang, "jcmsplugin.socle.facette.mois.default-label");
+  String labelChamp =  Util.notEmpty(obj.getLabel()) ? obj.getLabel() : JcmsUtil.glp(userLang, "jcmsplugin.assmatplugin.facette.mois.default-label");
 
 	
   java.util.Date dateRef = new java.util.Date();
