@@ -52,23 +52,23 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 						<p class=""><trsb:glp key="IDENT-ECHEC-TEXTE-HTML" ></trsb:glp></p><br>
 						<%}%>
 						    <!-- Civilité -->
-						    <div id="form-element-<%= uuid %>" data-name="civilite" class="ds44-form__radio_container ds44-form__container" title="" data-required="true">
+				            <div id="form-element-<%= uuid %>" data-name="civilite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
 				               <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.civilite") %><sup aria-hidden="true">*</sup></p>
-				               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message">Au moins une de ces cases doit être cochée :</p>
-				               <div class="ds44-form__container ds44-checkBox-radio_list">
-				                  <input type="radio" name="civilite" value="mr" id="name-radio-form-element-<%= uuid %>-mr" class="ds44-radio" required="" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-bkp-aria-describedby="mandatory-message-form-element-<%= uuid %>" required=""><label id="label-radio-form-element-<%= uuid %>-mr" for="name-radio-form-element-<%= uuid %>-mr" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.civilite.mme") %></label>
-				               </div>
-				               <div class="ds44-form__container ds44-checkBox-radio_list">
-				                  <input type="radio" name="civilite" value="mme" id="name-radio-form-element-<%= uuid %>-mme" class="ds44-radio" required="" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-bkp-aria-describedby="mandatory-message-form-element-<%= uuid %>" required=""><label id="label-radio-form-element-<%= uuid %>-mme" for="name-radio-form-element-<%= uuid %>-mme" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.civilite.m") %></label>
-				               </div>
-				            </div>
+							   <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message">Au moins une de ces cases doit être cochée :</p>
+							   <div class="ds44-form__container ds44-checkBox-radio_list ">
+							      <input type="radio" name="civilite" value="mme" id="name-radio-form-element-<%= uuid %>-mme" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-mme" for="name-radio-form-element-<%= uuid %>-mme" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.civilite.mme") %></label>
+							   </div>
+							   <div class="ds44-form__container ds44-checkBox-radio_list ">
+							      <input type="radio" name="civilite" value="mr" id="name-radio-form-element-<%= uuid %>-mr" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-mr" for="name-radio-form-element-<%= uuid %>-mr" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.civilite.m") %></label>
+							   </div>
+							</div>
 				            <!-- Nom -->
 				            <% uuid = UUID.randomUUID().toString(); %>
 				            <div class="ds44-form__container">
 				               <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom") %><sup aria-hidden="true">*</sup></p>
 							   <div class="ds44-posRel">
 							      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom") %><sup aria-hidden="true">*</sup></span></span></label>
-							      <input type="text" id="form-element-<%= uuid %>" name="name" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom") %> - obligatoire' required="true">
+							      <input type="text" id="form-element-<%= uuid %>" name="nom" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom") %> - obligatoire' required="true">
 							      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden">Effacer le contenu saisi dans le champ : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom") %></span></button>
 							   </div>
 							</div>
@@ -88,7 +88,7 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 							   <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %><sup aria-hidden="true">*</sup></p>
 							   <div class="ds44-posRel">
 							      <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %><sup aria-hidden="true">*</sup></span></span></label>
-							      <div data-name="naissance" class="ds44-datepicker__shape ds44-inpStd" data-past-dates="true" data-next-year-dates="false" title=""><input id="form-element-<%= uuid %>" required="" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %> : Jour (ex. 20) - obligatoire' data-is-date="true" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>"><span>/</span><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %> : Mois (ex. 05) - obligatoire' data-is-date="true" required="" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>"><span>/</span><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %> : Année (ex. 2020) - obligatoire' data-is-date="true" required="" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>"></div>
+							      <div data-name="dateDeNaissance" class="ds44-datepicker__shape ds44-inpStd" data-past-dates="true" data-next-year-dates="false" title=""><input id="form-element-<%= uuid %>" required="" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %> : Jour (ex. 20) - obligatoire' data-is-date="true" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>"><span>/</span><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %> : Mois (ex. 05) - obligatoire' data-is-date="true" required="" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>"><span>/</span><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %> : Année (ex. 2020) - obligatoire' data-is-date="true" required="" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>"></div>
 							      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden">Effacer le contenu saisi dans le champ : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %></span></button>
 							      <span class="ds44-calendar" aria-hidden="true" aria-describedby=""><i class="icon icon-date icon--large" aria-hidden="true"></i><span class="visually-hidden">Afficher le calendrier pour le champ : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %></span></span>
 							      <div data-calendar-past-dates="true" data-calendar-next-year-dates="false" class="vanilla-calendar hidden"></div>
@@ -121,9 +121,9 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 <%-- 	                <span><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.noteagre") %></span> --%>
 <!-- 	              </div> -->
                         <div class="ds44-form__container">
-	                        <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>'>
-	                        <input type="hidden" name="noSendRedirect" value="true">
-	                        <input type="hidden" name="opNext" value="true">
+                            <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+                            <input type="hidden" name="opNext" value="true" data-technical-field>
+	                        <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field>
                         </div>
 </div>			
 
@@ -201,10 +201,10 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
     <trsb:glp key="CONTACT-SUPPORT-TEL-HTML"></trsb:glp>
     
     <div class="ds44-form__container">
-	    <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>'>
-	    <input type="hidden" name="noSendRedirect" value="true">
-	    <input type="hidden" name="id" value="c_5065">
-	    <input type="hidden" name="opContact" value="true">
+	    <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field>
+	    <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+	    <input type="hidden" name="id" value="c_5065" data-technical-field>
+	    <input type="hidden" name="opContact" value="true" data-technical-field>
     </div>
 	
 	<%} %>

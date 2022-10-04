@@ -13,7 +13,9 @@
 <%
 int nbTentativeStep0 = formHandler.getNbTentativeErrone();
 %>
-       <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" id ="formEtapes" class="formEtapes">
+       <form method="post" action="plugins/SoclePlugin/jsp/forms/doFormDecodeParams.jsp" id ="formEtapes" class="formEtapes">
+       
+       <input type='hidden' name='redirect' value='<%= ServletUtil.getResourcePath(request) %>' data-technical-field />
 				<nav class="menuFormulaireEtape">
 				       
 				       

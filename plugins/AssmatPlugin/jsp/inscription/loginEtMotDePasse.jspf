@@ -33,46 +33,34 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
 	    <div class="ds44-form__container ds44-checkBox-radio_list ">
 	        <input type="radio" name="choixLogin" value="tel" id="name-radio-form-element-<%= uuid %>-tel" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" />
 	        <label id="label-radio-form-element-<%= uuid %>-tel" for="name-radio-form-element-<%= uuid %>-tel" class="ds44-radioLabel">
-	        Homme
+	        <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.login.tel", telephoneAssmat) %>
+	              <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
+                      <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
+                      <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
+                      </button><span id="label_simpletooltip_<%= uuid %>" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>" aria-hidden="true">
+                      <trsb:glp key="LOGIN-PREF-CONNEXION-TEL-BULLE-HTML" ></trsb:glp>
+                      </span>
+                  </span>
 	        </label>
 	    </div>
 	    <div class="ds44-form__container ds44-checkBox-radio_list ">
 	        <input type="radio" name="choixLogin" value="dossier" id="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" />
 	        <label id="label-radio-form-element-<%= uuid %>-dossier" for="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radioLabel">
-	        Femme
+	        <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.login.agrement", numeroDossierAssmat) %>
+	              <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>2">
+                      <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>2" data-hashtooltip-id="<%= uuid %>2" aria-describedby="label_simpletooltip_<%= uuid %>2">
+                      <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
+                      </button><span id="label_simpletooltip_<%= uuid %>2" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>2" aria-hidden="true">
+                      <trsb:glp key="LOGIN-PREF-CONNEXION-DOSSIER-BULLE-HTML" ></trsb:glp>
+                      </span>
+                  </span>
 	        </label>
 	    </div>
     </div>
 
-							<div class="blocChamp multipleRadio">
-							<%if(isEmailChoice && Util.isEmpty(channel.getMemberFromLogin(emailAssmat))){ %>
-								<input type="radio" <%if(Util.notEmpty(choix) && isEmailChoice ){%> checked="checked" <%} %> name="choixLogin" id="email" class="radio"
-									value="email" style="background: transparent;"><label
-									for="email"><trsb:glp key="LOGIN-PREF-CONNEXION-EMAIL-HTML" ></trsb:glp> <%=emailAssmat%> 
-									 <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-EMAIL-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
-                <img alt="?" src="s.gif" class="spr-interrogation">
-                </button>
-									<%} else if(!isEmailChoice && Util.isEmpty(channel.getMemberFromLogin(telephoneAssmat))){ %>
-									</label><input
-									type="radio" name="choixLogin" id="tel" class="radio" <%if(Util.notEmpty(choix) && !isEmailChoice){%> checked="checked" <%} %> value="tel"><label
-									for="tel"><trsb:glp key="LOGIN-PREF-CONNEXION-TEL-HTML" ></trsb:glp> <br /><%=telephoneAssmat %>
-										<button class="cg-tooltip buttonHelp" data-category-id="nonez" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-TEL-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
-                <img alt="?" src="s.gif" class="spr-interrogation">
-                </button>		
-									<%} %>
-								</label> <input type="radio" name="choixLogin" id="dossier" class="radio"
-									value="dossier"><label for="dossier"><trsb:glp key="LOGIN-PREF-CONNEXION-DOSSIER-HTML" ></trsb:glp> <%=numeroDossierAssmat %> 
-									<button class="cg-tooltip buttonHelp" data-category-id="nonea" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-DOSSIER-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
-                <img alt="?" src="s.gif" class="spr-interrogation">
-                </button>
-								</label>
-							</div>
 
-							<h3 class="title-bar-container dotted-portlet"><trsb:glp key="LOGIN-INTRO-MDP-HTML" ></trsb:glp></h3>
-							<p class="instructionsSaisie"><trsb:glp key="LOGIN-LEGENDE-MDP-HTML" ></trsb:glp></p>
+	<p class="h4-like title-bar-container dotted-portlet"><trsb:glp key="LOGIN-INTRO-MDP-HTML" ></trsb:glp></p>
+	<p class="instructionsSaisie"><trsb:glp key="LOGIN-LEGENDE-MDP-HTML" ></trsb:glp></p>
 							
 							
             <div class="alert alert-block alertPass hide alert-cg alert-warn"><h4><%=glp("msg.message-box.warning")%></h4>
@@ -121,20 +109,20 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
                             <label for="submitprev"> <input type="submit" id="submitprev"
                                 name="opPrevious"
                                 value="<trsb:glp attribute="true" key="IDENT-BOUTON-PREV" ></trsb:glp>"
-                                class="submitButton"> <span class="input-box"
+                                class="submitButton" data-technical-field> <span class="input-box"
                                 style="background-color: #aec900"><span
                                     class="spr-recherche-ok"></span></span>
-                            </label> <input type="hidden" name="noSendRedirect" value="true"> 
+                            </label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field> 
                     
                         </p> 
 
 							<p class="submit">
 								<label for="submit"> <input type="submit" id="submit"
-									name="opNext" value="<trsb:glp attribute="true" key="LOGIN-BOUTON-HTML" ></trsb:glp>" class="submitButton">
+									name="opNext" value="<trsb:glp attribute="true" key="LOGIN-BOUTON-HTML" ></trsb:glp>" class="submitButton" data-technical-field>
 									<span class="input-box" style="background-color: #aec900"><span
 										class="spr-recherche-ok"></span></span>
-								</label> <input type="hidden" name="noSendRedirect" value="true">
-								<input type="hidden" name="id" value="c_5065">
+								</label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+								<input type="hidden" name="id" value="c_5065" data-technical-field>
 							
 							</p>
 

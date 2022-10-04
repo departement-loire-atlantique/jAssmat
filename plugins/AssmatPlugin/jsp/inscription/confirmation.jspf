@@ -48,9 +48,9 @@ if(!isMail){ %>
 	        </div> 
 	        
 	        <div class="ds44-form__container">
-                <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.valide")%>'>
-                <input type="hidden" name="noSendRedirect" value="true"> 
-                <input type="hidden" name="id" value="c_5065">
+                <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.valide")%>' data-technical-field>
+                <input type="hidden" name="noSendRedirect" value="true" data-technical-field> 
+                <input type="hidden" name="id" value="c_5065" data-technical-field>
             </div>
 	              
 		<%}else{ %>					

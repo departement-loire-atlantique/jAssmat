@@ -11,6 +11,7 @@
 	<jsp:setProperty name='formHandler' property='request' value='<%=request%>' />
 	<jsp:setProperty name='formHandler' property='response'	value='<%=response%>' />
 	<jsp:setProperty name='formHandler' property="noRedirect" value="true" />
+	<jsp:setProperty name='formHandler' property="civilite" value='<%= getUntrustedStringParameter("civilite[0]", null) %>' />
 	<jsp:setProperty name='formHandler' property='*' />
 </jsp:useBean>
 
@@ -63,12 +64,13 @@ boolean notfoundCompte= false;
 							file='/plugins/AssmatPlugin/jsp/inscription/etapes.jspf'%>
 
 								<%@ include file='/jcore/doMessageBox.jsp'%>
+								<p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
 								<form method="post"
-									action="<%=ServletUtil.getResourcePath(request)%>"
-									name="formContact" id="formContact">
-	
-	
-	
+									action="<%= ServletUtil.getResourcePath(request) %>"
+									name="formContact" id="formContact" data-no-encoding="true">
+									
+		                            <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
+		                            
 									<%@ include
 										file='/plugins/AssmatPlugin/jsp/inscription/headerTitle.jspf'%>
 									<%@ include

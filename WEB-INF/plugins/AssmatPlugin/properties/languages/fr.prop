@@ -48,8 +48,8 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.contact.parsms: par sms
 jcmsplugin.assmatplugin.inscription.champ.lbl.contact.msgexemple: Exemples de messages pouvant être envoyés par le Département :
 jcmsplugin.assmatplugin.inscription.champ.lbl.contact.msg: Confirmation de l'activation de votre profil, confirmation lors du changement de mot de passe, accusé de réception d'une d'éclaration d'accueil, accusé de réception d'un changement signalé à l'unité agrément...
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.mail: votre e-mail :
-jcmsplugin.assmatplugin.inscription.champ.lbl.login.tel: votre n° de téléphone portable :
-jcmsplugin.assmatplugin.inscription.champ.lbl.login.agrement: votre n° de dossier d'agrément :
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.tel: Votre n° de téléphone portable : {0}
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.agrement: Votre n° de dossier d'agrément : {0}
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp: Choisissez votre mot de passe
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp.isntru: Le mot de passe doit comporter un minimum de 8 caractères avec : au moins une lettre en majuscule, au moins une lettre en minuscule, et au moins un chiffre.
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.motpasse: Mot de passe
@@ -86,6 +86,7 @@ jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms �
 jcmsplugin.assmatplugin.btn.etapesuivante: Etape suivante
 jcmsplugin.assmatplugin.btn.etapeprecedente: Etape précédente
 jcmsplugin.assmatplugin.btn.envoyer: Envoyer
+jcmsplugin.assmatplugin.btn.valider: Valider
 
 #Mail d'activation
 jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour

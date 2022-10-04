@@ -176,3 +176,6 @@ jcmsplugin.socle.recherche.export.pdf: /assmat.pdf?type=detail
 media.data-template.default.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCardSimple.jsp
 media.data-template.card.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCard.jsp
 
+# Formats de dates
+jcmsplugin.assmat.format.date.form: yyyy-MM-dd
+jcmsplugin.assmat.format.date.profil: dd/MM/yyyy

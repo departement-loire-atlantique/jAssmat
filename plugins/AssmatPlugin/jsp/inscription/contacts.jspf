@@ -155,10 +155,10 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
 	        </div> 
 	        
 	        <div class="ds44-form__container">
-	            <input type="submit" name="opPrevious" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%>'>
-                <input type="submit" name="opNext" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>'>
-                <input type="hidden" name="noSendRedirect" value="true"> 
-                <input type="hidden" name="id" value="c_5065">
+	            <input type="submit" name="opPrevious" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%>' data-technical-field>
+                <input type="submit" name="opNext" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field>
+                <input type="hidden" name="noSendRedirect" value="true" data-technical-field> 
+                <input type="hidden" name="id" value="c_5065" data-technical-field>
             </div>
             
 			<!-- FIN FORMULAIRE A ETAPES -->
