@@ -39,7 +39,10 @@ int maxResult = box.getMaxResults();
 
 
 // Commune : Code insee
-Integer codeInsee = getIntParameter("commune", 0);
+//Integer codeInsee = getIntParameter("commune", 0);
+String codeInseeString = getStringParameter("adresse", "0", ".*");
+codeInseeString = codeInseeString.substring(0, 5);
+Integer codeInsee =  Integer.parseInt(codeInseeString);
 
 // A partir de
 long time = getLongParameter("mois", -1);
@@ -56,15 +59,24 @@ if(Util.notEmpty(getUntrustedStringParameter("adresse",null))){
 int distance = getIntParameter("rayon", 0);
 
 
+//QUARTIERS
+List<String> listeIdQuartiers =  new ArrayList<String>();
+String[] codesQuartiers = getStringParameterValues("quartier", ".*");
+if (Util.notEmpty(codesQuartiers)) {
+    listeIdQuartiers.addAll(Arrays.asList(codesQuartiers));
+}
 
-// QUARTIERS et MICRO QUARTIERS
-// TODO encore utilisé ?
+//MICRO QUARTIERS
+// List<String> listeIdMicroQuartiers =  new ArrayList<String>();
+// String[] codesMicroQuartiers = getStringParameterValues("microQuartier", ".*");
+// if (Util.notEmpty(codesMicroQuartiers)) {
+//     listeIdMicroQuartiers.addAll(Arrays.asList(codesMicroQuartiers));
+// }
     
     
 // Age de l'enfant
-// N'est plus utilisé
-//String trancheAgeKey = getUntrustedStringParameter("age", "-1");
-//String[] tabTrancheAge = Util.decodeStringArray(trancheAgeKey);
+String trancheAgeKey = getUntrustedStringParameter("age", null);
+String[] tabTrancheAge = Util.decodeStringArray(trancheAgeKey);
 
 
 // LIEU D'EXERCICE / SPECIFICITE /  TYPE D'ACCUEIl
@@ -138,6 +150,9 @@ if ((distance>0 || Util.notEmpty(adresse)) && Util.notEmpty(longitude) && Util.n
 }
 
 
+
+String nomAssmat = getUntrustedStringParameter("nomassmat", "");
+
 %>
 
 
@@ -161,20 +176,20 @@ Boolean isContribPower = AssmatUtil.getMemberIsContribPower(loggedMember);
 
 // Set des Assmat avec dispo
 Set<AssmatSearch> resultSetDispo = new HashSet<AssmatSearch>();
-resultSetDispo = AssmatSearchDAO.getResultSearchDispo(null, codeInsee,null, null, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat);
+resultSetDispo = AssmatSearchDAO.getResultSearchDispo(null, codeInsee,null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
 //resultSetDispo = AssmatSearchDAO.getResultSearchDispo(commune, codeInsee,adresse, codesQuartiers, codesMicroQuartiers, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
 logger.warn("resultSetDispo : " + resultSetDispo.size());
 
 
 // Set des Assmat avec dispo future
 Set<AssmatSearch> resultSetDispoFutur = new HashSet<AssmatSearch>();
-resultSetDispoFutur = AssmatSearchDAO.getResultSearchFutur(null, codeInsee,null, null, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat);
+resultSetDispoFutur = AssmatSearchDAO.getResultSearchFutur(null, codeInsee,null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
 logger.warn("resultSetDispoFutur : " + resultSetDispoFutur.size());
 
 
 //Set des Assmat non dispo
 Set<AssmatSearch> resultSetNonDispoContact = new HashSet<AssmatSearch>();
-resultSetNonDispoContact = AssmatSearchDAO.getResultSearchNonDispos(null, codeInsee,null, null, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat);
+resultSetNonDispoContact = AssmatSearchDAO.getResultSearchNonDispos(null, codeInsee,null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
 logger.warn("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
 
 
@@ -182,26 +197,26 @@ logger.warn("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
 // Set des Assmat avec dispo non renseignées (seulement pour les RAM)
 Set<AssmatSearch> resultSetDispoNonRenseigne = new HashSet<AssmatSearch>();
 if(isRam || isContribPower) {
-  resultSetDispoNonRenseigne = AssmatSearchDAO.getResultSearchDispoNonRenseigne(null, codeInsee, null, null, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat);
+  resultSetDispoNonRenseigne = AssmatSearchDAO.getResultSearchDispoNonRenseigne(null, codeInsee, null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
   logger.warn("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
 }
 
 
 // La date de dispo futur la plus PROCHE (dans le future) pour chaque assmat
-Map<Long, Date> resultDateDispoFutur = AssmatSearchDAO.getResultDispoFutur(null, codeInsee, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat);
+Map<Long, Date> resultDateDispoFutur = AssmatSearchDAO.getResultDispoFutur(null, codeInsee, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
 logger.warn("resultDateDispoFutur : " + resultDateDispoFutur.size());
 
 
 
 // Liste des dispos pour les dispos de la recherche par assmat
-Map<Long, Set<DispoAssmat>> resultDispoRechercheMap = AssmatSearchDAO.getResultDispo(null, codeInsee, null, null, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat, 1);
+Map<Long, Set<DispoAssmat>> resultDispoRechercheMap = AssmatSearchDAO.getResultDispo(null, codeInsee, null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat, 1);
 logger.warn("resultDispoRechercheMap : "+resultDispoRechercheMap.size());
 session.setAttribute("resultDispoRechercheMap", resultDispoRechercheMap);
 
 
 
 // Liste des dispos pour les dispos futures par assmat
-Map<Long, Set<DispoAssmat>> resultDispoFuturMap = AssmatSearchDAO.getResultDispo(null, codeInsee, null, null, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, null, null, dateTime, distance, geoLong, geoLat, 2);
+Map<Long, Set<DispoAssmat>> resultDispoFuturMap = AssmatSearchDAO.getResultDispo(null, codeInsee, null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat, 2);
 logger.warn("resultDispoFuturMap : "+resultDispoFuturMap.size());
 session.setAttribute("resultDispoFuturMap", resultDispoFuturMap);
 
@@ -392,10 +407,14 @@ assmatPointsTriee.putAll(assmatPoints);
 
 
 
+
 // Calcul du relais MAM
 String idCategMam = channel.getProperty("$plugin.assmatplugin.categ.relaiam");
 Category categRAM= channel.getCategory(idCategMam); 
 Set<Place> setPlace =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorCommune(SocleUtils.getCommuneFromCode(codeInsee+""),categRAM));
+
+
+
 
 
 
@@ -425,7 +444,7 @@ paramsMap.put("cityName", new String[]{request.getParameter("commune[text]")});
 paramsMap.put("adresse", new String[]{request.getParameter("adresse[text]")});
 paramsMap.put("codeInsee", new String[]{request.getParameter("commune")});
 paramsMap.put("distance", new String[]{request.getParameter("rayon")});
-paramsMap.put("age", new String[]{"-1"});
+paramsMap.put("age", new String[]{getUntrustedStringParameter("age", null)});
 paramsMap.put("month", new String[]{request.getParameter("mois")});
 
 
@@ -445,7 +464,7 @@ request.setAttribute("assmatPoints", assmatPointsTriee);
 
 // RESULATS DE RECHERCHE
 
-// TODO Nombre de résultata par dsiponibilité : envoyer l'information dans le JSON pour que le javascript mette l'information à jour
+// TODO Nombre de résultats par dsiponibilité : envoyer l'information dans le JSON pour que le javascript mette l'information à jour
 
 
 
@@ -492,6 +511,18 @@ ProfilASSMAT itProfilAM = null;
 
 
 
+<jalios:foreach collection="<%= setPlace %>" name="itEntry" type="Place" ><%
+
+		%><jalios:buffer name="itPubListGabarit"><%  
+			%><jalios:media data="<%= itEntry %>" template="card"/><%
+			%>
+		</jalios:buffer><%
+
+	    jsonArray.add(SocleUtils.publicationToJsonObject(itEntry, itPubListGabarit, itEntry.getTitle(), null)); 
+	    %>
+</jalios:foreach>
+
+
 
 <jalios:foreach collection="<%= assmatResultSet %>" name="itEntry" type="Map.Entry<AssmatSearch, PointAssmat>" max='<%= maxResult %>' skip='<%= (pager - 1) * maxResult  %>'>
 
@@ -514,7 +545,7 @@ if(Util.notEmpty(itProfilAM)){
       
       
   // Ajout du résultat au json
-  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM,  Double.toString(itPoint.getLatitude()), Double.toString(itPoint.getLongitude()), itPoint.getCouleurPoint(), itPubListGabarit, itSearch.getNomAssmat(), null));
+  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM,  Double.toString(itPoint.getLatitude()), Double.toString(itPoint.getLongitude()), itPoint.getCouleurPoint(), itPubListGabarit, itPubListGabarit, null));
 
 }
 %>

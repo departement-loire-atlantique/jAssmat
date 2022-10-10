@@ -27,9 +27,12 @@
     <type name="FormulaireDeContactRAM" />
     <type name="FormulaireDeContactDuneAM" />
     <type name="InscriptionAM" /> 
-    <type name="OuvertureSite" />
+    <type name="OuvertureSite" />   
+    <type name="PortletFacetteAge" />
     <type name="PortletFacetteDispo" />
     <type name="PortletFacetteMois" />
+    <type name="PortletFacetteNomAssmat" />  
+    <type name="PortletFacetteQuartier" />   
     <type name="ProfilASSMAT" />
     <type name="Routage" />
     <type name="SignalerDemenagement" />
@@ -101,6 +104,12 @@
         <label xml:lang="en">Full display 404</label>
         <label xml:lang="fr">Full display 404</label>
       </template>
+    </templates> 
+          
+    <templates type="PortletFacetteAge">
+        <template name="default" file="doPortletFacetteAgeBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
     </templates>    
     
     <templates type="PortletFacetteMois">
@@ -113,7 +122,20 @@
         <template name="default" file="doPortletFacetteDispoBoxDisplay.jsp" usage='box'>
           <label xml:lang="fr">DS44 : gabarit générique simple</label>
         </template>
-    </templates> 
+    </templates>
+    
+    <templates type="PortletFacetteNomAssmat">
+        <template name="default" file="doPortletFacetteNomAssmatBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates>
+    
+    <templates type="PortletFacetteQuartier">
+        <template name="default" file="doPortletFacetteQuartierBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates>
+
     
   </types>
 
