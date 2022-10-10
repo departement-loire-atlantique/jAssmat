@@ -46,10 +46,10 @@ if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
     <div class="ds44-card__section">
         
 <!--         <p class="ds44-cardSelect pa0 ma0"> -->
-<!--             <button class="pas" type="button" aria-describedby="1"><i class="icon icon-star-empty" aria-hidden="true"></i><span class="visually-hidden">Sélection</span></button> -->
+<!--             <button class="pas" type="button" aria-describedby='card_<%= pub.getId()%>'><i class="icon icon-star-empty" aria-hidden="true"></i><span class="visually-hidden">Sélection</span></button> -->
 <!--         </p> -->
         <div class="ds44-innerBoxContainer">
-            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle" id="1"><div href='<%= pub.getDisplayUrl(userLocale)  %>' class="ds44-card__globalLink"><%= mbr.getFullName() %></div></p>
+            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle" id='card_<%= pub.getId()%>'><div href='<%= pub.getDisplayUrl(userLocale)  %>' class="ds44-card__globalLink"><%= mbr.getFullName() %></div></p>
             <hr class="mbs" aria-hidden="true"/>
             
             
