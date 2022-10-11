@@ -1351,9 +1351,7 @@ public class GeneratePdf extends PdfPageEventHelper {
       }
           
       List<AssmatSolis> assmatSolisList = AssmatSearchDAO.getNonInscritResultSearch(paramsMap, loggedMember.getExtraData("extra.Member.jcmsplugin.assmatplugin.idsolis.lieu"));   
-      // le hashKey ne sert plus car il y a toujours une position
-      String hashKey = "3338be694f50c5f338814986cdf0686453a888b84f424d792af4b9202398f392";
-      Set<AssmatSolis> nonInscriteList = new TreeSet<AssmatSolis>(new AssmatSolisDistanceComparator(pointUser, hashKey));  
+      Set<AssmatSolis> nonInscriteList = new TreeSet<AssmatSolis>(new AssmatSolisDistanceComparator(pointUser));  
       Set<ProfilASSMAT> profilAMSet = channel.getAllPublicationSet(ProfilASSMAT.class, Channel.getChannel().getDefaultAdmin());
       // Récupère le numéro de dossier des assmats inscrites sur le site (et les inscrites mais refusant d'etre affiché sur le site)
       List<Integer> numDossierAssmatInscrites = new ArrayList<Integer>();
