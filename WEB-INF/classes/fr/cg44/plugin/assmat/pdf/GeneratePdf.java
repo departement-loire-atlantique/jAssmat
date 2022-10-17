@@ -1142,13 +1142,13 @@ public class GeneratePdf extends PdfPageEventHelper {
 
     // Critères de recherche
     Map<String, String[]> paramsMap = (Map) request.getSession().getAttribute("paramsMap");
-    String commune = paramsMap.get("cityName")[0];
+    //String commune = paramsMap.get("cityName")[0];
     String adress = paramsMap.get("adresse")[0];
-    String adresseVille = "";
-    if (Util.notEmpty(adress)) {
-      adress = " - " + adress;
-      adresseVille = adress;
-    }
+//    String adresseVille = "";
+//    if (Util.notEmpty(adress)) {
+//      adress = " - " + adress;
+//      adresseVille = adress;
+//    }
     
     boolean isGeoSearch = request.getSession().getAttribute("userLocation") != null;
     
@@ -1159,9 +1159,10 @@ public class GeneratePdf extends PdfPageEventHelper {
     
     String distanceParam = paramsMap.get("distance")[0];
     String distance = " - ";
-    if (Util.isEmpty(distanceParam) || "0".equals(distanceParam) || ("-20".equals(distanceParam) && Util.isEmpty(idMicroQuartier)) ||  "-10".equals(distanceParam) && Util.isEmpty(idQuartier)) {
+//    if (Util.isEmpty(distanceParam) || "0".equals(distanceParam) || ("-20".equals(distanceParam) && Util.isEmpty(idMicroQuartier)) ||  "-10".equals(distanceParam) && Util.isEmpty(idQuartier)) {
+    if (Util.isEmpty(idQuartier) && (Util.isEmpty(distanceParam) || "0".equals(distanceParam) )) {
       distance += "Toute la commune";
-    } else if("-10".equals(distanceParam) && Util.notEmpty(idQuartier)) {     
+    } else if(/*"-10".equals(distanceParam) && */ Util.notEmpty(idQuartier)) {     
       ArrayList<String> quartierList = new ArrayList<String>();
       for(String itIdQuartier : idQuartier) {
         quartierList.add(QuartierDAO.getLibQuartier(itIdQuartier));        
@@ -1194,14 +1195,15 @@ public class GeneratePdf extends PdfPageEventHelper {
       }
     }
 
-    Long dateRechercheParam = Long.parseLong(paramsMap.get("month")[0]);
+    Long dateRechercheParam = Util.notEmpty(paramsMap.get("month")[0]) ? Long.parseLong(paramsMap.get("month")[0]) : new Date().getTime();
     Date dateTime = new Date(dateRechercheParam);
     SimpleDateFormat formaterDateRecherche = new SimpleDateFormat("MMMM yyyy");
     String dateRechercheMoisAnnee = formaterDateRecherche.format(dateTime);
     String dateRecherche = " - à partir de " + dateRechercheMoisAnnee;
 
     cell = new PdfPCell();
-    Chunk structureChunk = new Chunk("Résultats pour : " + commune + adress + distance + age + dateRecherche,
+    //Chunk structureChunk = new Chunk("Résultats pour : " + commune + adress + distance + age + dateRecherche, Fonts.TITRE_BLANC);
+    Chunk structureChunk = new Chunk("Résultats pour : " + adress + distance + age + dateRecherche,
         Fonts.TITRE_BLANC);
     cell.addElement(structureChunk);
     cell.setBackgroundColor(new Color(68, 84, 106));

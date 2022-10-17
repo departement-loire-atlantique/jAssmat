@@ -1,0 +1,530 @@
+<!-- 
+Cette JSP permet d'afficher les tableaux de disponibilités d'une assistante maternité.
+Les variables suivantes doivent être indiquées dans la JSP appelant celle-ci :
+    - ProfilASSMAT obj
+    - ProfilManager profilMgr
+    - SelectionEtatDispo (importé dans la JSP)
+ -->
+ 
+<%
+List<Disponibilite> dispoList = profilMgr.getDisponibilitesList(obj.getAuthor(), null);
+
+if(Util.notEmpty(dispoList)){
+  boolean hasInconnu = false;
+  boolean hasNonDispo = false;                   
+  Set<Disponibilite> dispoListImmFutur = new TreeSet<Disponibilite>(new DisponibiliteComparator());         
+  for(Disponibilite itDispo : dispoList) {
+    if((SelectionEtatDispo.IMMEDIATE.getValue().equalsIgnoreCase(itDispo.getEtatDispo())) || (SelectionEtatDispo.FUTURE.getValue().equalsIgnoreCase(itDispo.getEtatDispo())) ){
+      dispoListImmFutur.add(itDispo);
+    }else if(SelectionEtatDispo.INCONNU.getValue().equalsIgnoreCase(itDispo.getEtatDispo())) {
+      hasInconnu = true;
+    }else if(SelectionEtatDispo.NON_DISPO.getValue().equalsIgnoreCase(itDispo.getEtatDispo())) {
+      hasNonDispo = true;
+    }
+  }
+%>
+
+	<jalios:select>
+	<jalios:if predicate="<%= Util.notEmpty(dispoListImmFutur) %>">
+	<%for(Disponibilite dispo : dispoListImmFutur){
+	   // Ne pas afficher les disponibilité spécifique. (celles qui ne peuvent être saisies)
+	   // 0011193: Fiche d'étaillée AM affichage tranche d'âge spécifique
+	   if(!dispo.getSaisieDisponible()) {
+	      continue;
+	   }
+	     
+	   String etatDispo = dispo.getEtatDispo();
+	   
+	   String lundi_avant_ecole1 =           "";
+	   String mardi_avant_ecole1 =           "";
+	   String mercredi_avant_ecole1 =          "";
+	   String jeudi_avant_ecole1 =           "";
+	   String vendredi_avant_ecole1 =          "";
+	   String samedi_avant_ecole1 =          "";
+	   String dimanche_avant_ecole1 =          "";
+	   String lundi_matin1 =               "";
+	   String mardi_matin1 =               "";
+	   String mercredi_matin1 =            "";
+	   String jeudi_matin1 =               "";
+	   String vendredi_matin1 =            "";
+	   String samedi_matin1 =              "";
+	   String dimanche_matin1 =            "";
+	   String lundi_midi1 =              "";
+	   String mardi_midi1 =              "";
+	   String mercredi_midi1 =             "";
+	   String jeudi_midi1 =              "";
+	   String vendredi_midi1 =             "";
+	   String samedi_midi1 =               "";
+	   String dimanche_midi1 =             "";
+	   String lundi_pm1 =                "";
+	   String mardi_pm1 =                "";
+	   String mercredi_pm1 =               "";
+	   String jeudi_pm1 =                "";
+	   String vendredi_pm1 =               "";
+	   String samedi_pm1 =               "";
+	   String dimanche_pm1 =               "";
+	   String lundi_apres_ecole1 =           "";
+	   String mardi_apres_ecole1 =           "";
+	   String mercredi_apres_ecole1 =          "";
+	   String jeudi_apres_ecole1 =           "";
+	   String vendredi_apres_ecole1 =          "";
+	   String samedi_apres_ecole1 =          "";
+	   String dimanche_apres_ecole1 =          "";
+	   String lundi_nuit1 =              "";
+	   String mardi_nuit1 =              "";
+	   String mercredi_nuit1 =             "";
+	   String jeudi_nuit1 =              "";
+	   String vendredi_nuit1 =             "";
+	   String samedi_nuit1 =               "";
+	   String dimanche_nuit1 =             "";
+	   
+	   SelectionEtatDispo etat =  AssmatUtil.SelectionEtatDispo.getEtatDispo(etatDispo);
+	   Semainier s = SemainierUtil.decoded(dispo.getSemainierPlaceDisponible());
+	   
+	   if(Util.notEmpty(s) && Util.notEmpty(etatDispo) && (SelectionEtatDispo.IMMEDIATE.equals(etat) || SelectionEtatDispo.FUTURE.equals(etat)) ){
+	   lundi_avant_ecole1 =          String.valueOf(s.isLundi_avant_ecole());
+	   mardi_avant_ecole1 =          String.valueOf(s.isMardi_avant_ecole());
+	   mercredi_avant_ecole1 =         String.valueOf(s.isMercredi_avant_ecole());
+	   jeudi_avant_ecole1 =          String.valueOf(s.isJeudi_avant_ecole());
+	   vendredi_avant_ecole1 =         String.valueOf(s.isVendredi_avant_ecole());
+	   samedi_avant_ecole1 =           String.valueOf(s.isSamedi_avant_ecole());
+	   dimanche_avant_ecole1 =         String.valueOf(s.isDimanche_avant_ecole());
+	   
+	   lundi_matin1 =              String.valueOf(s.isLundi_matin());
+	   mardi_matin1 =              String.valueOf(s.isMardi_matin());
+	   mercredi_matin1 =             String.valueOf(s.isMercredi_matin());
+	   jeudi_matin1 =              String.valueOf(s.isJeudi_matin());
+	   vendredi_matin1 =             String.valueOf(s.isVendredi_matin());
+	   samedi_matin1 =             String.valueOf(s.isSamedi_matin());
+	   dimanche_matin1 =             String.valueOf(s.isDimanche_matin());
+	   
+	   
+	   lundi_midi1 =               String.valueOf(s.isLundi_midi());
+	   mardi_midi1 =               String.valueOf(s.isMardi_midi());
+	   mercredi_midi1 =            String.valueOf(s.isMercredi_midi());
+	   jeudi_midi1 =               String.valueOf(s.isJeudi_midi());
+	   vendredi_midi1 =            String.valueOf(s.isVendredi_midi());
+	   samedi_midi1 =              String.valueOf(s.isSamedi_midi());
+	   dimanche_midi1 =            String.valueOf(s.isDimanche_midi());
+	   
+	   lundi_pm1 =               String.valueOf(s.isLundi_pm());
+	   mardi_pm1 =               String.valueOf(s.isMardi_pm());
+	   mercredi_pm1 =              String.valueOf(s.isMercredi_pm());
+	   jeudi_pm1 =               String.valueOf(s.isJeudi_pm());
+	   vendredi_pm1 =              String.valueOf(s.isVendredi_pm());
+	   samedi_pm1 =              String.valueOf(s.isSamedi_pm());
+	   dimanche_pm1 =              String.valueOf(s.isDimanche_pm());
+	   
+	   lundi_apres_ecole1 =          String.valueOf(s.isLundi_apres_ecole());
+	   mardi_apres_ecole1 =          String.valueOf(s.isMardi_apres_ecole());
+	   mercredi_apres_ecole1 =         String.valueOf(s.isMercredi_apres_ecole());
+	   jeudi_apres_ecole1 =          String.valueOf(s.isJeudi_apres_ecole());
+	   vendredi_apres_ecole1 =         String.valueOf(s.isVendredi_apres_ecole());
+	   samedi_apres_ecole1 =           String.valueOf(s.isSamedi_apres_ecole());
+	   dimanche_apres_ecole1 =         String.valueOf(s.isDimanche_apres_ecole());
+	   
+	   
+	   lundi_nuit1 =               String.valueOf(s.isLundi_nuit());
+	   mardi_nuit1 =               String.valueOf(s.isMardi_nuit());
+	   mercredi_nuit1 =            String.valueOf(s.isMercredi_nuit());
+	   jeudi_nuit1 =               String.valueOf(s.isJeudi_nuit());
+	   vendredi_nuit1 =            String.valueOf(s.isVendredi_nuit());
+	   samedi_nuit1 =              String.valueOf(s.isSamedi_nuit());
+	   dimanche_nuit1 =            String.valueOf(s.isDimanche_nuit());
+	   
+	   
+	   //Verification des creneau avant ecole
+	   if("true".equalsIgnoreCase(lundi_avant_ecole1)){
+	   lundi_avant_ecole1 ="creneauDispo";
+	   }else{
+	   lundi_avant_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mardi_avant_ecole1)){
+	   mardi_avant_ecole1 ="creneauDispo";
+	   }else{
+	   mardi_avant_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mercredi_avant_ecole1)){
+	   mercredi_avant_ecole1 ="creneauDispo";
+	   }else{
+	   mercredi_avant_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(jeudi_avant_ecole1)){
+	   jeudi_avant_ecole1 ="creneauDispo";
+	   }else{
+	   jeudi_avant_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(vendredi_avant_ecole1)){
+	   vendredi_avant_ecole1 ="creneauDispo";
+	   }else{
+	   vendredi_avant_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(samedi_avant_ecole1)){
+	   samedi_avant_ecole1 ="creneauDispo";
+	   }else{
+	   samedi_avant_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(dimanche_avant_ecole1)){
+	   dimanche_avant_ecole1 ="creneauDispo";
+	   }else{
+	   dimanche_avant_ecole1 ="creneauNonDispo";
+	   }
+	   
+	   
+	   
+	   
+	   //Verification des creneau matin
+	   if("true".equalsIgnoreCase(lundi_matin1)){
+	   lundi_matin1 ="creneauDispo";
+	   }else{
+	   lundi_matin1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mardi_matin1)){
+	   mardi_matin1 ="creneauDispo";
+	   }else{
+	   mardi_matin1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mercredi_matin1)){
+	   mercredi_matin1 ="creneauDispo";
+	   }else{
+	   mercredi_matin1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(jeudi_matin1)){
+	   jeudi_matin1 ="creneauDispo";
+	   }else{
+	   jeudi_matin1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(vendredi_matin1)){
+	   vendredi_matin1 ="creneauDispo";
+	   }else{
+	   vendredi_matin1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(samedi_matin1)){
+	   samedi_matin1 ="creneauDispo";
+	   }else{
+	   samedi_matin1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(dimanche_matin1)){
+	   dimanche_matin1 ="creneauDispo";
+	   }else{
+	   dimanche_matin1 ="creneauNonDispo";
+	   }
+	   
+	   
+	   
+	   
+	   if("true".equalsIgnoreCase(lundi_midi1)){
+	   lundi_midi1 ="creneauDispo";
+	   }else{
+	   lundi_midi1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mardi_midi1)){
+	   mardi_midi1 ="creneauDispo";
+	   }else{
+	   mardi_midi1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mercredi_midi1)){
+	   mercredi_midi1 ="creneauDispo";
+	   }else{
+	   mercredi_midi1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(jeudi_midi1)){
+	   jeudi_midi1 ="creneauDispo";
+	   }else{
+	   jeudi_midi1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(vendredi_midi1)){
+	   vendredi_midi1 ="creneauDispo";
+	   }else{
+	   vendredi_midi1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(samedi_midi1)){
+	   samedi_midi1 ="creneauDispo";
+	   }else{
+	   samedi_midi1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(dimanche_midi1)){
+	   dimanche_midi1 ="creneauDispo";
+	   }else{
+	   dimanche_midi1 ="creneauNonDispo";
+	   }
+	   
+	   
+	   
+	   
+	   
+	   if("true".equalsIgnoreCase(lundi_pm1)){
+	   lundi_pm1 ="creneauDispo";
+	   }else{
+	   lundi_pm1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mardi_pm1)){
+	   mardi_pm1 ="creneauDispo";
+	   }else{
+	   mardi_pm1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mercredi_pm1)){
+	   mercredi_pm1 ="creneauDispo";
+	   }else{
+	   mercredi_pm1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(jeudi_pm1)){
+	   jeudi_pm1 ="creneauDispo";
+	   }else{
+	   jeudi_pm1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(vendredi_pm1)){
+	   vendredi_pm1 ="creneauDispo";
+	   }else{
+	   vendredi_pm1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(samedi_pm1)){
+	   samedi_pm1 ="creneauDispo";
+	   }else{
+	   samedi_pm1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(dimanche_pm1)){
+	   dimanche_pm1 ="creneauDispo";
+	   }else{
+	   dimanche_pm1 ="creneauNonDispo";
+	   }
+	   
+	   
+	   if("true".equalsIgnoreCase(lundi_apres_ecole1)){
+	   lundi_apres_ecole1 ="creneauDispo";
+	   }else{
+	   lundi_apres_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mardi_apres_ecole1)){
+	   mardi_apres_ecole1 ="creneauDispo";
+	   }else{
+	   mardi_apres_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mercredi_apres_ecole1)){
+	   mercredi_apres_ecole1 ="creneauDispo";
+	   }else{
+	   mercredi_apres_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(jeudi_apres_ecole1)){
+	   jeudi_apres_ecole1 ="creneauDispo";
+	   }else{
+	   jeudi_apres_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(vendredi_apres_ecole1)){
+	   vendredi_apres_ecole1 ="creneauDispo";
+	   }else{
+	   vendredi_apres_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(samedi_apres_ecole1)){
+	   samedi_apres_ecole1 ="creneauDispo";
+	   }else{
+	   samedi_apres_ecole1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(dimanche_apres_ecole1)){
+	   dimanche_apres_ecole1 ="creneauDispo";
+	   }else{
+	   dimanche_apres_ecole1 ="creneauNonDispo";
+	   }
+	   
+	   
+	   
+	   if("true".equalsIgnoreCase(lundi_nuit1)){
+	   lundi_nuit1 ="creneauDispo";
+	   }else{
+	   lundi_nuit1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mardi_nuit1)){
+	   mardi_nuit1 ="creneauDispo";
+	   }else{
+	   mardi_nuit1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(mercredi_nuit1)){
+	   mercredi_nuit1 ="creneauDispo";
+	   }else{
+	   mercredi_nuit1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(jeudi_nuit1)){
+	   jeudi_nuit1 ="creneauDispo";
+	   }else{
+	   jeudi_nuit1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(vendredi_nuit1)){
+	   vendredi_nuit1 ="creneauDispo";
+	   }else{
+	   vendredi_nuit1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(samedi_nuit1)){
+	   samedi_nuit1 ="creneauDispo";
+	   }else{
+	   samedi_nuit1 ="creneauNonDispo";
+	   }
+	   if("true".equalsIgnoreCase(dimanche_nuit1)){
+	   dimanche_nuit1 ="creneauDispo";
+	   }else{
+	   dimanche_nuit1 ="creneauNonDispo";
+	   }
+	   
+	   
+	   }
+	   
+      boolean isEmptySemainier = true;
+      if(Util.notEmpty(s)){
+      if (s.isLundi_avant_ecole() || s.isMardi_avant_ecole() || s.isMercredi_avant_ecole() || s.isJeudi_avant_ecole() || s.isVendredi_avant_ecole()
+          || s.isSamedi_avant_ecole() || s.isDimanche_avant_ecole() ||
+          s.isLundi_matin() || s.isMardi_matin() || s.isMercredi_matin() || s.isJeudi_matin() || s.isVendredi_matin() || s.isSamedi_matin()
+          || s.isDimanche_matin() ||
+          s.isLundi_midi() || s.isMardi_midi() || s.isMercredi_midi() || s.isJeudi_midi() || s.isVendredi_midi() || s.isSamedi_midi()
+          || s.isDimanche_midi() ||
+          s.isLundi_pm() || s.isMardi_pm() || s.isMercredi_pm() || s.isJeudi_pm() || s.isVendredi_pm() || s.isSamedi_pm() || s.isDimanche_pm() ||
+          s.isLundi_apres_ecole() || s.isMardi_apres_ecole() || s.isMercredi_apres_ecole() || s.isJeudi_apres_ecole() || s.isVendredi_apres_ecole()
+          || s.isSamedi_apres_ecole() || s.isDimanche_apres_ecole() ||
+          s.isLundi_nuit() || s.isMardi_nuit() || s.isMercredi_nuit() || s.isJeudi_nuit() || s.isVendredi_nuit() || s.isSamedi_nuit()
+          || s.isDimanche_nuit()) {
+              isEmptySemainier = false;
+          }
+      }%>
+
+    <jalios:buffer name="titleDispo">
+      <jalios:if predicate="<%= Util.notEmpty(etatDispo) &&  SelectionEtatDispo.INCONNU.equals(etat) %>">
+            <jalios:if predicate='<%= dispo.getAgrement().contains("dom-") %>'>
+               <%= glp("plugin.assmatplugin.profilassmat.place.domicile.inconnu", dispo.getLibelle()) %>
+            </jalios:if>
+            <jalios:if predicate='<%= dispo.getAgrement().contains("mam-") %>'>
+               <%= glp("plugin.assmatplugin.profilassmat.place.mam.inconnu", dispo.getLibelle()) %>
+            </jalios:if>
+        </jalios:if>
+        
+        <jalios:select>
+            <jalios:if predicate="<%= Util.notEmpty(etatDispo) && (SelectionEtatDispo.IMMEDIATE.equals(etat) 
+                || (SelectionEtatDispo.FUTURE.equals(etat) && new Date().after(dispo.getDateDispoPlaceFuture()))) %>">
+                <jalios:if predicate='<%= dispo.getAgrement().contains("dom-") %>'>
+                    <trsb:glp key="PROFIL-ASSMAT-CONTENT-DISPONIBILITE-DISPO-DISPONIBLE-DOM" parameter='<%= new String[]{dispo.getLibelle()} %>' />  
+                </jalios:if>
+                <jalios:if predicate='<%= dispo.getAgrement().contains("mam-") %>'>
+                    <trsb:glp key="PROFIL-ASSMAT-CONTENT-DISPONIBILITE-DISPO-DISPONIBLE-MAM" parameter='<%= new String[]{dispo.getLibelle()} %>' /> 
+                </jalios:if>
+            </jalios:if>
+            <jalios:if predicate="<%= Util.notEmpty(etatDispo) && SelectionEtatDispo.FUTURE.equals(etat) %>">
+                <jalios:if predicate='<%= dispo.getAgrement().contains("dom-") %>'>
+                    <trsb:glp key="PROFIL-ASSMAT-CONTENT-DISPONIBILITE-DISPO-FUTUR-DOM" parameter='<%= new String[]{dispo.getLibelle(), AssmatUtil.getFutureDispoDateLibelle(dispo.getDateDispoPlaceFuture()) } %>' />    
+                </jalios:if>
+                <jalios:if predicate='<%= dispo.getAgrement().contains("mam-") %>'>
+                    <trsb:glp key="PROFIL-ASSMAT-CONTENT-DISPONIBILITE-DISPO-FUTUR-MAM" parameter='<%= new String[]{dispo.getLibelle(), AssmatUtil.getFutureDispoDateLibelle(dispo.getDateDispoPlaceFuture()) } %>' />  
+                </jalios:if>
+            </jalios:if>
+        </jalios:select>
+        
+        <jalios:if predicate="<%= Util.notEmpty(etatDispo) && SelectionEtatDispo.NON_DISPO.equals(etat) %>">
+           <jalios:if predicate='<%= dispo.getAgrement().contains("dom-") %>'>
+                <trsb:glp key="PROFIL-ASSMAT-CONTENT-DISPONIBILITE-NON-DISPO-DOM" parameter='<%= new String[]{dispo.getLibelle()} %>' />                            
+           </jalios:if>
+           <jalios:if predicate='<%= dispo.getAgrement().contains("mam-") %>'>
+                <trsb:glp key="PROFIL-ASSMAT-CONTENT-DISPONIBILITE-NON-DISPO-MAM" parameter='<%= new String[]{dispo.getLibelle()} %>' />   
+           </jalios:if>
+        </jalios:if>
+      </jalios:buffer>
+
+	<p role="heading" aria-level="2">
+	    <%= titleDispo %>
+	</p>
+	
+	<jalios:if predicate="<%= Util.notEmpty(s) && Util.notEmpty(etatDispo) && (SelectionEtatDispo.IMMEDIATE.equals(etat) || SelectionEtatDispo.FUTURE.equals(etat) )  && !isEmptySemainier%>">
+	
+	<table class="tabDispos">
+	  <caption class="visually-hidden"><%= HtmlUtil.html2text(titleDispo) %></caption>
+	  <tbody>
+	    <tr>
+	      <td>&nbsp;</td>
+	      <th scope="col">L</th>
+	      <th scope="col">M</th>
+	      <th scope="col">M</th>
+	      <th scope="col">J</th>
+	      <th scope="col">V</th>
+	      <th scope="col">S</th>
+	      <th scope="col">D</th>
+	    </tr>
+	    <tr>
+	      <th scope="row">Avant l'école</th>
+	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_avant_ecole1) %>' class="<%= lundi_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_avant_ecole1) %>' class="<%= mardi_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_avant_ecole1) %>' class="<%= mercredi_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_avant_ecole1) %>' class="<%= jeudi_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+jeudi_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_avant_ecole1) %>' class="<%= vendredi_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+vendredi_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_avant_ecole1) %>' class="<%= samedi_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+samedi_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_avant_ecole1) %>' class="<%= dimanche_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+	    </tr>
+	    <tr>
+	      <th scope="row">Matin</th>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_matin1) %>' class="<%= lundi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_matin1) %>' class="<%= mardi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_matin1) %>' class="<%= mercredi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_matin1) %>' class="<%= jeudi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+jeudi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_matin1) %>' class="<%= vendredi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+vendredi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_matin1) %>' class="<%= samedi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+samedi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_matin1) %>' class="<%= dimanche_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_matin1) %>' class="PictoCreneauPrint" alt=""></td>	    </tr>
+	    <tr>
+	      <th scope="row">Midi</th>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_midi1) %>' class="<%= lundi_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_midi1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_midi1) %>' class="<%= mardi_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_midi1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_midi1) %>' class="<%= mercredi_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_midi1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_midi1) %>' class="<%= jeudi_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+jeudi_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_midi1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_midi1) %>' class="<%= vendredi_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+vendredi_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_midi1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_midi1) %>' class="<%= samedi_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+samedi_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_midi1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_midi1) %>' class="<%= dimanche_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_midi1) %>' class="PictoCreneauPrint" alt=""></td>
+	    </tr>
+	    <tr>
+	      <th scope="row">Après midi</th>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_pm1) %>' class="<%= lundi_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_pm1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_pm1) %>' class="<%= mardi_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_pm1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_pm1) %>' class="<%= mercredi_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_pm1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_pm1) %>' class="<%= jeudi_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+jeudi_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_pm1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_pm1) %>' class="<%= vendredi_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+vendredi_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_pm1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_pm1) %>' class="<%= samedi_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+samedi_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_pm1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_pm1) %>' class="<%= dimanche_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_pm1) %>' class="PictoCreneauPrint" alt=""></td>
+	    </tr>
+	    <tr>
+	      <th scope="row">Après l'école</th>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_apres_ecole1) %>' class="<%= lundi_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_apres_ecole1) %>' class="<%= mardi_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_apres_ecole1) %>' class="<%= mercredi_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_apres_ecole1) %>' class="<%= jeudi_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+jeudi_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_apres_ecole1) %>' class="<%= vendredi_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+vendredi_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_apres_ecole1) %>' class="<%= samedi_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+samedi_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_apres_ecole1) %>' class="<%= dimanche_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
+	    </tr>
+	    <tr>
+	      <th scope="row">Nuit</th>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_nuit1) %>' class="<%= lundi_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_nuit1) %>' class="<%= mardi_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_nuit1) %>' class="<%= mercredi_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_nuit1) %>' class="<%= jeudi_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+jeudi_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+jeudi_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_nuit1) %>' class="<%= vendredi_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+vendredi_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+vendredi_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_nuit1) %>' class="<%= samedi_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+samedi_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
+          <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_nuit1) %>' class="<%= dimanche_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
+	    </tr>
+	  </tbody>
+	</table>
+	</jalios:if>
+	<br/>
+  <% } %>
+  </jalios:if>
+  
+  <!--  Si toutes les places sont à non disponibles -->
+  <jalios:if predicate="<%= hasNonDispo && !hasInconnu %>">
+       <li><trsb:glp key="PROFIL-ASSMAT-LIBELLE-AUCUNE-DISPO-HTML" /></li>
+  </jalios:if>
+                
+  <!--  Si toutes les places sont à non renseignées -->
+  <jalios:if predicate="<%= hasInconnu && !hasNonDispo %>">
+       <li><trsb:glp key="PROFIL-ASSMAT-LIBELLE-NON-RENSEIGNE-HTML" /></li>
+  </jalios:if>
+                
+  <!-- Si places inconnus et non renseignées -->
+  <jalios:default>
+       <li><trsb:glp key="PROFIL-ASSMAT-LIBELLE-AUCUNE-DISPO-ET-RENSEIGNE-HTML" /></li>
+  </jalios:default>
+  
+  </jalios:select>
+<%
+}
+%>

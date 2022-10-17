@@ -197,6 +197,7 @@ jcmsplugin.assmatplugin.sms.scheduler.schedule: Planification du déclenchement 
 # Page de contact (formulaire contacte assmat)
 jcmsplugin.assmatplugin.form.requiredText.question: Vous pouvez nous envoyer une question par mail en utilisant le formulaire ci-dessous.
 jcmsplugin.assmatplugin.title.inscriptionAM: Inscription du {0} par {1} - {2}
+jcmsplugin.assmatplugin.form.nom.lbl: Assistant•e maternel•le
 
 jcmsplugin.assmatplugin.telephone-support: Numéro de téléphone du support
 extra.Category.jcmsplugin.assmatplugin.search.mapping: Mapping pour la recherche d'assmat
@@ -330,7 +331,11 @@ plugin.assmatplugin.declaration.pilote.group.id: ID du groupe pilote pour décla
 plugin.assmatplugin.contacter.courriel.error: Le format du champ "Courriel" est incorrect. Veuillez le vérifier. Exemple: contact@mail.fr
 
 
-jcmsplugin.socle.facette.disponibilites.default-label: Disponibilités
+jcmsplugin.assmatplugin.facette.disponibilites.default-label: Disponibilités
+jcmsplugin.assmatplugin.facette.mois.default-label: À partir de
+jcmsplugin.assmatplugin.facette.quartier.default-label: Quartier
+jcmsplugin.assmatplugin.facette.age.default-label: Age de l'enfant
+jcmsplugin.assmatplugin.facette.nom.default-label: Par nom
 
 # ECRAN DE CONNEXION
 
@@ -348,4 +353,9 @@ plugin.assmatplugin.facette.afficher-contenu-champ: Afficher le contenu du champ
 
 # PROFIL ASSMAT
 plugin.assmatplugin.profilassmat.lastupdate: Infos mises à jour le {0}
+plugin.assmatplugin.profilassmat.place.domicile.inconnu: 1 place disponible pour {0} à domicile
+plugin.assmatplugin.profilassmat.place.mam.inconnu: 1 place disponible pour {0} en MAM
+plugin.assmatplugin.profilassmat.place.creneauDispo: Créneau disponible
+plugin.assmatplugin.profilassmat.place.creneauNonDispo: Créneau non disponible
 
+plugin.assmatplugin.profilassmat.distance : {0} km de l'adresse recherchée
