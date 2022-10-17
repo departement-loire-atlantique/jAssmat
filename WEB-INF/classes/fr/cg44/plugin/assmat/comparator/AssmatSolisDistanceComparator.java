@@ -20,14 +20,10 @@ public class AssmatSolisDistanceComparator implements Comparator<AssmatSolis> {
   
   Map<AssmatSearch,PointAssmat> map;
   PointAssmat pointUser;
-  String hashKey;
-  Checksum checksum;
   
   
-  public AssmatSolisDistanceComparator(PointAssmat pointUser, String hashKey) {
-      checksum = new CRC32();
+  public AssmatSolisDistanceComparator(PointAssmat pointUser) {
       this.pointUser = pointUser;
-      this.hashKey = hashKey;
   }
 
   
@@ -51,6 +47,7 @@ public class AssmatSolisDistanceComparator implements Comparator<AssmatSolis> {
     double distance1=0;
     double distance2=0;
     
+    // Il y a toujours un pointUser. L'adresse est toujours renseignée
     if(Util.notEmpty(pointUser) && Util.notEmpty(pointUser.getLatitude()) && Util.notEmpty(pointUser.getLongitude())){
       distance1= AssmatUtil.getDistance(lat1,longi1,(double) pointUser.getLatitude(), (double)pointUser.getLongitude()); 
       distance2= AssmatUtil.getDistance(lat2,longi2,(double) pointUser.getLatitude(), (double)pointUser.getLongitude());
@@ -65,25 +62,7 @@ public class AssmatSolisDistanceComparator implements Comparator<AssmatSolis> {
       }
     }
     
-    // Si l'utilisateur n'a pas activé sa géolocalisation
-    // Alors trie aléatoirement
-    if (Util.isEmpty(pointUser)) { 
-      String assmat1 = am1.getNomAssmat() + am1.getPrenomAssmat() + am1.getJRowId() + hashKey;
-      checksum.reset();
-      checksum.update(assmat1.getBytes(), 0, assmat1.length());
-      Long assmat1hash = checksum.getValue();
-
-      
-      String assmat2 = am2.getNomAssmat() + am2.getPrenomAssmat() + am2.getJRowId() + hashKey;
-      checksum.reset();
-      checksum.update(assmat2.getBytes(), 0, assmat2.length());
-      Long assmat2hash = checksum.getValue();
-      
-      int cmpHash = assmat1hash.compareTo(assmat2hash);
-      return cmpHash; 
-    }
-    
-    return -1;
+    return am1.getIdRam().compareTo(am2.getIdRam());
   }
 
 
