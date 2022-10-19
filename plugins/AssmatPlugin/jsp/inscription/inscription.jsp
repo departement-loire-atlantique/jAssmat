@@ -53,11 +53,10 @@ boolean notfoundCompte= false;
 %>
 <main id="content">
 
-	<div class="formulaireActivation ds44-container-large">
+	<div class="ds44-container-large">
 	   <div class="ds44-inner-container">
 	    <h2><trsb:glp key="IDENT-TITRE"></trsb:glp></h2>
 	
-			<div class="span9">
 				<div class="row-fluid">
 					<div class="ajax-refresh-div">
 						<%@ include
@@ -101,24 +100,22 @@ boolean notfoundCompte= false;
 			//Insscription valide
 			if (!formHandler.isInscriptionOK()) {
 	%>
-	<div class="headstall container-fluid formulaireActivation">
-		<div class="row-fluid">
-			<!-- COLONNE GAUCHE -->
-			<div class="span2 iconEtape">
-				<img alt="etape1"
-					src="plugins/AssmatPlugin/img/icon-activation-form.png" />
-			</div>
-			<!-- FIN COLONNE GAUCHE -->
-			<!-- COLONNE DROITE -->
-			<div class="span10">
-				<div class="row-fluid title">
-				   <h2>Inscription invalide</h2>
+	<main id="content">
+
+    <div class="ds44-container-large">
+       <div class="ds44-inner-container">
+		<div class="container-fluid" >
+			<div class="row-fluid">
+				<div>
+					<div class="row-fluid title">
+					   <h2 class="h2-like"><%= glp("jcmsplugin.assmatplugin.inscription.invalide") %></h2>
+					</div>
 				</div>
-			</div>
-			<div class="span9">
-				<div class="row-fluid">
-					<div class="ajax-refresh-div">
-						<%@ include file='/jcore/doMessageBox.jsp'%>
+				<div>
+					<div class="row-fluid">
+						<div class="ajax-refresh-div">
+							<%@ include file='/jcore/doMessageBox.jsp'%>
+						</div>
 					</div>
 				</div>
 			</div>

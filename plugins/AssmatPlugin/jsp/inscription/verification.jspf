@@ -17,13 +17,7 @@
 <%
 if (step == InscriptionAssmatHandler.VERIFICATION_STEP) {
   
- // TODO RESTORE AssmatSolis assMat = formHandler.getAssmat();
- 
- // TODO REMOVE BELOW
- ProfilASSMAT obj = (ProfilASSMAT) channel.getPublication("160874_ProfilASSMAT");
- SolisManager solisMgr = SolisManager.getInstance(); // REMOVE IMPORT TOO
- AssmatSolis assMat =Util.getFirst(solisMgr.getAssmatSolisByNumAgrement(obj.getNum_agrement()));
- // TODO REMOVE ABOVE
+AssmatSolis assMat = formHandler.getAssmat();
  
 if(Util.notEmpty(assMat)){ 
  SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
@@ -34,9 +28,7 @@ if(Util.notEmpty(assMat)){
  String civiliteAsssmat = formHandler.getCivilite(); 
  String nomAsssmat = formHandler.getNom(); 
  String prenomAsssmat = formHandler.getPrenom(); 
- // TODO RESTORE Date dateAnniv = dateFormatter.parse(formHandler.getDateDeNaissance());
- // TODO REMOVE LINE BELOW
- Date dateAnniv = dateFormatter.parse("12/05/1990");
+ Date dateAnniv = dateFormatter.parse(formHandler.getDateDeNaissance());
  String dateNaissanceAssmat = formatter.format(dateAnniv);
  int numAssmat = formHandler.getNumeroAgrementInteger();
  String datePremierAgrement = "";
@@ -109,19 +101,19 @@ if(Util.notEmpty(assMat.getExerceMam())){
 		
 				<!-- FORMULAIRE A ETAPES -->
 	 		
-		<div class="formulaire">
-							<div class="blocComplet mileu simple">
-									<div class="blocLabel">
-										<p class=""><trsb:glp key="VERIF-IDENTITE" ></trsb:glp></p>
-									</div>
+		<div>
+		  <div class="blocComplet mileu simple">
+			 <div class="blocLabel">
+	           <p class=""><trsb:glp key="VERIF-IDENTITE" ></trsb:glp></p>
+			 </div>
 	
-									<div class="blocChamp blocForm">
-										<span><p><%= civiliteAsssmat %> <%= prenomAsssmat %> <%= nomAsssmat %></p>
-										</span>
-									</div>
-								</div>
+		  <div class="blocChamp blocForm">
+			 <span><p><%= civiliteAsssmat %> <%= prenomAsssmat %> <%= nomAsssmat %></p>
+			 </span>
+		  </div>
+		</div>
 							
-							<%if(Util.notEmpty(dateNaissanceAssmat)){ %>
+		<%if(Util.notEmpty(dateNaissanceAssmat)){ %>
            <div class="blocComplet mileu simple">
                   <div class="blocLabel">
                     <p class=""><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.verif.naissance") %></p>

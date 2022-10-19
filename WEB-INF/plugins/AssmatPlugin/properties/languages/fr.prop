@@ -82,11 +82,16 @@ jcmsplugin.assmatplugin.inscription.error.mail.support:Ce message sera envoyé a
 jcmsplugin.assmatplugin.inscription.error.mail.ua:Ce message sera envoyé automatiquement à votre unité agrément. Vous serez recontactée ensuite pour donner suite à cet échange.
 jcmsplugin.assmatplugin.inscription.error.interdit: Vous n'êtes pas autorisé à créer un compte.
 jcmsplugin.assmatplugin.inscription.error.existedeja: Un compte existe déja pour cet utilisateur
+jcmsplugin.assmatplugin.inscription.invalide: Inscription invalide
+jcmsplugin.assmatplugin.inscription.invalide.contactsupport: Inscription invalide, veuillez contacter le support
+jcmsplugin.assmatplugin.inscription.terminee: Inscription terminée !
+jcmsplugin.assmatplugin.inscription.terminee.lienacces: Vous pouvez maintenant accédez à votre compte <a href="{0}">ici</a>
 jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms à déja été enregistré
 jcmsplugin.assmatplugin.btn.etapesuivante: Etape suivante
 jcmsplugin.assmatplugin.btn.etapeprecedente: Etape précédente
 jcmsplugin.assmatplugin.btn.envoyer: Envoyer
 jcmsplugin.assmatplugin.btn.valider: Valider
+jcmsplugin.assmatplugin.label.aide: Aide :
 
 #Mail d'activation
 jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour
