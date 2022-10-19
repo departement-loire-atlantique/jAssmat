@@ -1,23 +1,8 @@
-<%-- This file was automatically generated. --%>
-<%--
-  @Summary: FormulaireDeContactCommune editor
-  @Category: Generated
-  @Author: JCMS Type Processor
-  @Customizable: True
-  @Requestable: True
---%><%@page import="fr.cg44.plugin.tools.modal.ModalCreator"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
 <%
-%><%@ page contentType="text/html; charset=UTF-8" %><%
 %><%@ include file='/jcore/doInitPage.jsp' %>
-
-
-
-<% String[] formTitles = JcmsUtil.getLanguageArray(channel.getTypeEntry(FormContactAssmat.class).getLabelMap()); 
-boolean validate = false;
-if(Util.notEmpty(request.getParameter("validate"))){
-  validate=true;
-}
-%>
+<% String[] formTitles = JcmsUtil.getLanguageArray(channel.getTypeEntry(FormContactAssmat.class).getLabelMap()); %>
 <jsp:useBean id='formHandler' scope='page' class='generated.EditFormContactAssmatHandler'>
   <jsp:setProperty name='formHandler' property='request' value='<%= request %>'/>
   <jsp:setProperty name='formHandler' property='response' value='<%= response %>'/>
@@ -27,37 +12,40 @@ if(Util.notEmpty(request.getParameter("validate"))){
 </jsp:useBean>
 <%
   if (formHandler.validate()) {
-    String idFormu = channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.assmat");
-    jcmsContext.sendRedirect(channel.getPublication(idFormu).getDisplayUrl(userLocale)+"?validate=true");    
+    jcmsContext.addMsgSession(new JcmsMessage(JcmsMessage.Level.INFO, "Votre message a bien été envoyé"));
     return;
   }
-  boolean formInPortal = jcmsContext.isInFrontOffice(); 
-%>   
-<jalios:if predicate='<%= !formInPortal %>'>
-<%@ include file='/jcore/doHeader.jsp' %>
-</jalios:if>
+
+  boolean hasParam = Util.notEmpty(request.getParameter("mailRAM"));
+  
+  Publication currentPub = (Publication) request.getAttribute(PortalManager.PORTAL_PUBLICATION);
+  String formAction = "plugins/SoclePlugin/jsp/forms/doFormDecodeParams.jsp";
+%> 
+
 <jalios:if predicate='<%= formHandler.isOneSubmit() && formHandler.isSubmitted() %>'>
   <% setWarningMsg(glp("msg.edit.already-one-submit"), request); %>
 </jalios:if>
-<%if(validate){ %>
-<div class="alert alert-block fade in alert-cg alert-info"><button type="button" class="close" data-dismiss="alert"><span class="spr-modal-close"></span></button><h4>Information</h4>
-      <p>Votre message a bien été envoyé</p>
-    </div>	
-<%} %>
-<jalios:if predicate='<%= channel.isDataWriteEnabled() %>'>
 
-  <div class="form-cg <%= ModalCreator.isModalPortal()? "modal-cg":""%>">
-	<div class="form-cg-gray">
-	  <%@ include file='/jcore/doMessageBox.jsp' %>
-	  <%@ include file='/plugins/AssmatPlugin/jsp/contact/form/doEditPubFormHeader.jsp' %>
-	  <jsp:include page="/plugins/AssmatPlugin/jsp/contact/doEditFormulaireDeContactAssmat.jsp" />
-	  <%@ include file='/plugins/CorporateIdentityPlugin/jsp/common/form/doEditPubFormFooter.jsp' %>
-	</div>
-</div>
+<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
-</jalios:if>
-<jalios:if predicate='<%= !formInPortal %>'>
-<%@ include file='/jcore/doFooter.jsp' %>
-</jalios:if>
-<%-- **********4A616C696F73204A434D53 *** SIGNATURE BOUNDARY * DO NOT EDIT ANYTHING BELOW THIS LINE *** --%>
-<%-- MD67fvw13KJY7il+1Uy4Xw== --%>
+<% request.setAttribute("titreFormulaire", "Formulaire de contact"); %>
+<%@ include file='/plugins/SoclePlugin/jsp/forms/doFormHeader.jspf' %>
+
+<form action='<%= formAction %>' method='post' name='editForm' accept-charset="UTF-8"  enctype="multipart/form-data">
+
+    <%
+    request.setAttribute("formHandler", formHandler);
+    %>
+        
+    <jsp:include page="doEditFormulaireDeContactAssmat.jsp" />
+    
+    <input type='hidden' name='redirect' value='<%= currentPub.getDisplayUrl(userLocale) %>' data-technical-field />
+    <input type='hidden' name='ws' value='<%= formHandler.getWorkspace().getId() %>' data-technical-field />
+    <input type='hidden' name='opCreate' value='<%= glp("ui.com.btn.submit") %>' data-technical-field />
+    <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
+    <input type="hidden" name="noSendRedirect" value='true' data-technical-field />
+
+</form>
+
+
+<%@ include file='/plugins/SoclePlugin/jsp/forms/doFormFooter.jspf' %>
