@@ -1,3 +1,4 @@
+<%@page import="fr.trsb.cd44.solis.manager.SolisManager"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="com.jalios.util.ReflectUtil"%>
 <%@page import="java.lang.reflect.Field"%>
@@ -16,7 +17,8 @@
 <%
 if (step == InscriptionAssmatHandler.VERIFICATION_STEP) {
   
- AssmatSolis assMat = formHandler.getAssmat();
+AssmatSolis assMat = formHandler.getAssmat();
+ 
 if(Util.notEmpty(assMat)){ 
  SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
  DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -53,7 +55,7 @@ if(Util.notEmpty(assMat)){
  String dateProchainRenouvellementMAM = "";
  if(Util.notEmpty(formHandler.getDateProchainRenouvellementMAM())) {
   Date date = dateFormatter.parse(formHandler.getDateProchainRenouvellementMAM());
-  dateProchainRenouvellementMAM = formatter.format(date); 
+  dateProchainRenouvellementMAM = formatter.format(date);
  } 
  
  Double latAM = formHandler.getLatAM();
@@ -99,19 +101,19 @@ if(Util.notEmpty(assMat.getExerceMam())){
 		
 				<!-- FORMULAIRE A ETAPES -->
 	 		
-		<div class="formulaire">
-							<div class="blocComplet mileu simple">
-									<div class="blocLabel">
-										<p class=""><trsb:glp key="VERIF-IDENTITE" ></trsb:glp></p>
-									</div>
+		<div>
+		  <div class="blocComplet mileu simple">
+			 <div class="blocLabel">
+	           <p class=""><trsb:glp key="VERIF-IDENTITE" ></trsb:glp></p>
+			 </div>
 	
-									<div class="blocChamp blocForm">
-										<span><p><%= civiliteAsssmat %> <%= prenomAsssmat %> <%= nomAsssmat %></p>
-										</span>
-									</div>
-								</div>
+		  <div class="blocChamp blocForm">
+			 <span><p><%= civiliteAsssmat %> <%= prenomAsssmat %> <%= nomAsssmat %></p>
+			 </span>
+		  </div>
+		</div>
 							
-							<%if(Util.notEmpty(dateNaissanceAssmat)){ %>
+		<%if(Util.notEmpty(dateNaissanceAssmat)){ %>
            <div class="blocComplet mileu simple">
                   <div class="blocLabel">
                     <p class=""><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.verif.naissance") %></p>
@@ -284,17 +286,17 @@ if(Util.notEmpty(assMat.getExerceMam())){
 		                        <% request.removeAttribute("gMapsType"); %>
 		                        <% request.removeAttribute("latitude"); %>
 		                        <% request.removeAttribute("longitude"); %>
-		                        <input type="hidden" id ="latAMTampon" name="latAMTampon" value="<%=latAM%>">
-		                         <input type="hidden" id="longAMTampon" name="longAMTampon" value="<%=longAM%>">
-		                         <input type="hidden" id ="latAM" name="latAM" value="<%=latAM%>">
-                             <input type="hidden" id="longAM" name="longAM" value="<%=longAM%>">
+		                        <input type="hidden" id ="latAMTampon" name="latAMTampon" value="<%=latAM%>" data-technical-field>
+		                         <input type="hidden" id="longAMTampon" name="longAMTampon" value="<%=longAM%>" data-technical-field>
+		                         <input type="hidden" id ="latAM" name="latAM" value="<%=latAM%>" data-technical-field>
+                             <input type="hidden" id="longAM" name="longAM" value="<%=longAM%>" data-technical-field>
 		                      </div>
 		                      <p class="submit submitNewPositionAM hide">
 		                      <label for="submit"> <input type="button" id="submit"
 					                  name="opCreate" value="Valider" class="submitButton">
 					                  <span class="input-box" style="background-color: #aec900"><span
 					                    class="spr-recherche-ok"></span></span>
-					                </label> <input type="hidden" name="noSendRedirect" value="true">
+					                </label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
 						                     
 	                      </p> 
 	                    </div> 
@@ -344,17 +346,17 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	                          <% request.removeAttribute("gMapsType"); %>
 	                          <% request.removeAttribute("latitude"); %>
 	                          <% request.removeAttribute("longitude"); %>
-	                          <input type="hidden" id ="latMAMTampon" name="latMAMTampon" value="<%=latMAM%>">
-                             <input type="hidden" id="longMAMTampon" name="longMAMTampon" value="<%=longMAM%>">
-                             <input type="hidden" id ="latMAM" name="latMAM" value="<%=latMAM%>">
-                             <input type="hidden" id="longMAM" name="longMAM" value="<%=longMAM%>">
+	                          <input type="hidden" id ="latMAMTampon" name="latMAMTampon" value="<%=latMAM%>" data-technical-field>
+                             <input type="hidden" id="longMAMTampon" name="longMAMTampon" value="<%=longMAM%>" data-technical-field>
+                             <input type="hidden" id ="latMAM" name="latMAM" value="<%=latMAM%>" data-technical-field>
+                             <input type="hidden" id="longMAM" name="longMAM" value="<%=longMAM%>" data-technical-field>
 	                        </div>
 	                         <p class="submit submitNewPositionMAM hide">
                           <label for="submit"> <input type="button" id="submit"
                             name="opCreate" value="Valider" class="submitButton">
                             <span class="input-box" style="background-color: #aec900"><span
                               class="spr-recherche-ok"></span></span>
-                          </label> <input type="hidden" name="noSendRedirect" value="true">
+                          </label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
                                 
                         </p> 
                         </div> 
@@ -379,45 +381,48 @@ if(Util.notEmpty(assMat.getExerceMam())){
                        </div>                                             
                    </div>                                                                                   
                 
-            
+                   <p class="submit">
+                       <a class="ds44-btnStd"  data-jalios-action="toggle:show toggle:hide remove:disabled toggle:hide" data-jalios-target=".SignalementErreur|.formulaire|#inputContact|.h3Signale" href="#"><trsb:glp key="VERIF-ERREUR"></trsb:glp></a>
+                   </p>
 
-							<div class="borderDot title-bar-container dotted-portlet"></div>
-							
-         
-							
-							<p class="submit">
-							 <a class="signalerErreur"  data-jalios-action="toggle:show toggle:hide remove:disabled toggle:hide" data-jalios-target=".SignalementErreur|.formulaire|#inputContact|.h3Signale" href="#"><trsb:glp key="VERIF-ERREUR"></trsb:glp></a>
-								<label for="submit"> <input type="submit" id="submit"
-									name="opCreate" value="<trsb:glp key="VERIF-BOUTON" attribute="true"></trsb:glp>" class="submitButton">
-									<span class="input-box" style="background-color: #aec900"><span
-										class="spr-recherche-ok"></span></span>
-								</label> <input type="hidden" name="noSendRedirect" value="true">
-							 <input type="hidden" name="opNext" value="true">
-							</p>
+                   <p class="submit">
+                        <label for="submit"> <input type="submit" id="submit"
+                        name="opCreate" value='<trsb:glp attribute="true" key="VERIF-BOUTON"></trsb:glp>' class="ds44-btnStd">
+                        <span class="input-box" style="background-color: #aec900"><span
+                            class="spr-recherche-ok"></span></span>
+                        </label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+                   </p>
+
+				   <div class="borderDot title-bar-container dotted-portlet"></div>
+
 </div>  
   
 <!-- 	Formulaire pour signaler une erreur -->
 	<div class="SignalementErreur">
 	<h3 class="title-bar-container dotted-portlet"><span class="texte-parametrable text-parametrable"><trsb:glp key="VERIF-ERREUR"></trsb:glp></span></h3>
-		 <div class="blocComplet gauche">
-                <div class="blocLabel blocForm">
-                   <label for="texte"><trsb:glp key="VERIF-ERREUR-TEXTE-INTRO-HTML" ></trsb:glp></label><br><span class="infoContact"><i> <trsb:glp key="VERIF-ERREUR-TEXTE-HTML" ></trsb:glp> </i></span> 
-                </div>
-                
-                <div class="blocChamp blocForm petit">
-                  <textarea rows="10" cols="50" name="texteSignalement" form="formContact" id="textAreaContact"></textarea>
-                </div>
-      </div>
+	
+	<% uuid = UUID.randomUUID().toString(); %>
+    <p aria-level="2" class="h4-like"><trsb:glp key="VERIF-ERREUR-TEXTE-INTRO-HTML" ></trsb:glp></p>
+	<div class="ds44-form__container">
+	   <div class="ds44-posRel">
+	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span>Votre message ici</span></span></label>
+	      <textarea rows="10" cols="50" id="form-element-<%= uuid %>" name="texteSignalement" class="ds44-inpStd" title="Votre message ici"></textarea>
+	   </div>
+	   <div class="ds44-field-information" aria-live="polite">
+            <ul class="ds44-field-information-list ds44-list">
+                <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><trsb:glp key="VERIF-ERREUR-TEXTE-HTML" ></trsb:glp></li>
+            </ul>
+       </div>
+	</div>
+	
+	<div class="ds44-form__container">
+	    <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.valider")%>' data-technical-field>
+	    <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+	    <input type="hidden" disabled="disabled" id="inputContact" name="opContact" value="true" data-technical-field>
+    </div>
               
-              <p class="submit">
-                <label for="submit"> <input type="submit" id="submit"
-                  name="" value="Valider" class="submitButton">
-                  <span class="input-box" style="background-color: #aec900"><span
-                    class="spr-recherche-ok"></span></span>
-                </label> <input type="hidden" name="noSendRedirect" value="true">
-                  <input type="hidden" disabled="disabled" id="inputContact" name="opContact" value="true">
-              </p>
-             <%if(Util.notEmpty(formHandler.getNameUA()) && Util.notEmpty(formHandler.getNumeroTelUA())){ %>
+
+    <%if(Util.notEmpty(formHandler.getNameUA()) && Util.notEmpty(formHandler.getNumeroTelUA())){ %>
 		<div style="margin-top: 70px;">
 		
 		<%

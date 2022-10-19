@@ -40,94 +40,128 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
   }
   
 %>
+<!-- 
+<div class="grid-12-small-1 ds44-grid-valign-center ds44-w98">
+    <div class="col-5-small-1 txtcenter">
+        <p class="h4-like" id="inp-rech" aria-level="2">Recherchez par mots-clés :</p>
+        <form role="search" novalidate="true" data-is-initialized="true" data-component-form-layout-uuid="3a2dc227-68d0-431d-ba47-ccf6ce62b0bc">
+            <div class="ds44-form__container">
+                <div class="ds44-posRel">
+                    <label for="form-element-13012" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder ds44-labelTypePlaceholderLarge"><span>Votre recherche<sup aria-hidden="true">*</sup></span></span></label>
+                    <input type="text" id="form-element-13012" name="form-element-13012" class="ds44-inpLarge" title="Votre recherche - obligatoire" required="" aria-describedby="inp-rech" data-component-inputstandard-uuid="c3adbae8-7e9e-4180-8b59-05524f8cb42f" data-bkp-aria-describedby="inp-rech">
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeXL" aria-hidden="true"></i><span class="visually-hidden">Effacer le contenu saisi dans le champ : Votre recherche</span></button>
+                </div>
+            </div>
+            <button type="submit" class="ds44-btnStd ds44-btn--invert" title="Valider votre recherche par mots-clés">
+            <span class="ds44-btnInnerText">Valider</span><i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+            </button>
+        </form>
+    </div>
+    <div class="col-2-small-1 txtcenter ds44-h100">
+        <div class="ds44-separator ds44-flex-valign-center ds44-flex-align-center ds44-flex-container">
+            <p class="ds44-txtBulle ds44-theme">Ou</p>
+        </div>
+    </div>
+    <div class="col-5-small-1">
+        <h2 class="h4-like" id="titreContenus">Accédez aux contenus les plus recherchés :</h2>
+        <ul class="ds44-list">
+            <li><a href="#" class="ds44-arrowLink" data-component-link-scroll-uuid="dd8381f8-adce-4225-b2d0-bed228a5113e">Inscription à l’animation sportive<i class="icon icon-arrow-right" aria-hidden="true"></i></a></li>
+            <li><a href="#" class="ds44-arrowLink" data-component-link-scroll-uuid="7ba915ac-fa07-48f7-9e64-a3664b3aa30f">Recherche d’assistante maternelle<i class="icon icon-arrow-right" aria-hidden="true"></i></a></li>
+            <li><a href="#" class="ds44-arrowLink" data-component-link-scroll-uuid="6308fe40-8907-43e6-835c-358e085650b3">Demande d’aide au permis de conduire<i class="icon icon-arrow-right" aria-hidden="true"></i></a></li>
+            <li><a href="#" class="ds44-arrowLink" data-component-link-scroll-uuid="e157d59f-3c78-47ce-8d20-2eb075c0e642">Offres d’emplois et stages<i class="icon icon-arrow-right" aria-hidden="true"></i></a></li>
+            <li><a href="#" class="ds44-arrowLink" data-component-link-scroll-uuid="c89c8740-5c34-46a3-bf63-8d61b333a6bf">Inforoutes<i class="icon icon-arrow-right" aria-hidden="true"></i></a></li>
+            <li><a href="#" class="ds44-arrowLink ds44-tmpLastFocus" data-component-link-scroll-uuid="70d2b357-43c7-4de4-bac2-d98459e62670">Marchés publics<i class="icon icon-arrow-right" aria-hidden="true"></i></a></li>
+        </ul>
+    </div>
+</div>
 
+ -->
 
 				<!-- FORMULAIRE A ETAPES -->
-										
-            <div class="blocComplet gauche">
-								<div class="blocLabel blocForm">
-									<label for="email"><trsb:glp key="CONTACTS-EMAIL-HTML" ></trsb:glp></label>
-								</div>
-	
-								<div class="blocChamp blocForm">
-								<input type="text"  name="email" id="email" value="<%=emailAssmat %>" class="fullwidth fullwidthInfo">
-								<button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<trsb:glp attribute="true" key="CONTACTS-EMAIL-BULLE-HTML" ></trsb:glp>" 
-								data-color="<%=dataColor%>">
-								<img alt="?" src="s.gif" class="spr-interrogation">
-								</button>
-	
-								</div>
-							</div>
-							
-						<div class="blocComplet gauche simple">
+			<%-- Email --%>
+			<% uuid = UUID.randomUUID().toString(); %>
+			<div class="ds44-form__container">
+		        <p aria-level="2" class="h4-like">
+		          <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>
+		          <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
+		              <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
+				      <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
+					  </button><span id="label_simpletooltip_<%= uuid %>" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>" aria-hidden="true">
+					  <trsb:glp key="CONTACTS-EMAIL-BULLE-HTML" ></trsb:glp>
+	                  </span>
+	              </span>
+		        </p>
+		        <div class="ds44-posRel">
+		            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span></span></label>
+		            <input type="email" id="form-element-<%= uuid %>" name="email" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+		            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email")) %></span></button>
+		        </div>
+		        <div class="ds44-field-information" aria-live="polite">
+		            <ul class="ds44-field-information-list ds44-list">
+		                <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.socle.form.exemple.email") %></li>
+		            </ul>
+		        </div>
+		    </div>
+			
+			<%--
+			<div class="blocComplet gauche simple">
                 <div class="blocLabel blocForm">
                   <p >et/ou</p>
                 </div>
-  
-                <div class="blocChamp blocForm">
-             
-                </div>
-              </div>	
-							
-           <div class="blocComplet gauche">
-								<div class="blocLabel blocForm">
-									<label for="telephone"><trsb:glp key="CONTACTS-TEL-PORTABLE-HTML" ></trsb:glp></label>
-								</div>
-	
-								<div class="blocChamp blocForm">
-								 <input type="text" name="telephone" id="telephone" value="<%=telAssmat %>" class="fullwidth fullwidthInfo">
-								 <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<trsb:glp attribute="true" key="CONTACTS-TEL-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
-                <img alt="?" src="s.gif" class="spr-interrogation">
-                </button>
-								</div>
-							</div>
-							
-							<div class="blocComplet gauche">
-                  <div class="blocLabel">
-                    <p class=""><trsb:glp key="CONTACTS-PREF-HTML" ></trsb:glp></p>
-                  </div>
-  
-                  <div class="blocChamp multipleRadio civilite blocForm">
-                    <span>
-                        <input <%if(isMail){ %>checked="checked"  <%} %> type="radio" name="typeenvoi" id="emailBox" class="radio" value="mail" style="background: transparent;">
-                        <label for="email"><trsb:glp key="CONTACTS-PREF-EMAIL-HTML" ></trsb:glp></label>
-                    </span>
-                    <span>
-                        <input <%if(!isMail){ %>checked="checked"  <%} %> type="radio" name="typeenvoi" id="tel" class="radio" value="telephone">
-                        <label for="tel"><trsb:glp  key="CONTACTS-PREF-SMS-HTML" ></trsb:glp><br /></label> 
-                    </span>
-                  </div>
-                </div>
-               <div class="exempleMessage">
-		             <p><b><trsb:glp key="CONTACTS-EXEMPLES-HTML-TITLE" ></trsb:glp></b><br>
-		             <i><trsb:glp key="CONTACTS-EXEMPLES-HTML" ></trsb:glp></i></p>
-	             </div> 
-	              
-							<div class="borderDot title-bar-container dotted-portlet"></div>
-                        <p class="submit prev">
-                            <label for="submitprev"> <input type="submit" id="submitprev"
-                                name="opPrevious"
-                                value="<trsb:glp attribute="true" key="IDENT-BOUTON-PREV" ></trsb:glp>"
-                                class="submitButton"> <span class="input-box"
-                                style="background-color: #aec900"><span
-                                    class="spr-recherche-ok"></span></span>
-                            </label> <input type="hidden" name="noSendRedirect" value="true"> 
-                    
-                        </p>   
-							<p class="submit">
-								<label for="submit"> <input type="submit" id="submit"
-									name="opNext" value="<trsb:glp attribute="true" key="CONTACTS-BOUTON" ></trsb:glp>" class="submitButton">
-									<span class="input-box" style="background-color: #aec900"><span
-										class="spr-recherche-ok"></span></span>
-								</label> <input type="hidden" name="noSendRedirect" value="true">
-								<input type="hidden" name="id" value="c_5065">
-					
-							</p>
+           </div>	
+		    --%>
+		    
+		   <%-- Téléphone --%>
+		   <% uuid = UUID.randomUUID().toString(); %>
+		    <div class="ds44-form__container">
+		        <p aria-level="2" class="h4-like">
+		          <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>
+		          <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
+                      <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
+                      <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
+                      </button><span id="label_simpletooltip_<%= uuid %>" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>" aria-hidden="true">
+                      <trsb:glp key="CONTACTS-TEL-BULLE-HTML" ></trsb:glp>
+                      </span>
+                  </span>
+		        </p>
+		        <div class="ds44-posRel">
+		            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %><sup aria-hidden="true">*</sup></span></span></label>
+		            <input type="text" id="form-element-<%= uuid %>" name="telephone" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+		            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile")) %></span></button>
+		        </div>
+		        <div class="ds44-field-information" aria-live="polite">
+		            <ul class="ds44-field-information-list ds44-list">
+		                <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.socle.form.exemple.tel") %></li>
+		            </ul>
+		        </div>
+		    </div>
+		    
+		    <%-- Préférence de type d'envoi --%>
+		    <% uuid = UUID.randomUUID().toString(); %>
+		    <div id="form-element-<%= uuid %>" data-name="radio2" class="ds44-form__radio_container ds44-form__container" data-component-radio-uuid="6e2ee2d4-a2b7-4990-a8f8-c459163d7b8c" title="">
+			    <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.typeenvoi") %><sup aria-hidden="true">*</sup></p>
+			    <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+			    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+			        <input type="radio" required="" name="typeenvoi" value="mail" id="name-radio-form-element-<%= uuid %>-mail" class="ds44-radio" required="" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-bkp-aria-describedby="mandatory-message-form-element-<%= uuid %>"><label id="label-radio-form-element-<%= uuid %>-mail" for="name-radio-form-element-<%= uuid %>-mail" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.mail") %></label>
+			    </div>
+			    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+			        <input type="radio" required="" name="typeenvoi" value="telephone" id="name-radio-form-element-<%= uuid %>-telephone" class="ds44-radio" required="" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-bkp-aria-describedby="mandatory-message-form-element-<%= uuid %>"><label id="label-radio-form-element-<%= uuid %>-telephone" for="name-radio-form-element-<%= uuid %>-telephone" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.sms") %></label>
+			    </div>
+			</div>
 
-
-
-				<!-- FIN FORMULAIRE A ETAPES -->
+            <div>
+		      <p><b><trsb:glp key="CONTACTS-EXEMPLES-HTML-TITLE" ></trsb:glp></b><br>
+		      <i><trsb:glp key="CONTACTS-EXEMPLES-HTML" ></trsb:glp></i></p>
+	        </div> 
+	        
+	        <div class="ds44-form__container">
+	            <input type="submit" name="opPrevious" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%>' data-technical-field>
+                <input type="submit" name="opNext" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field>
+                <input type="hidden" name="noSendRedirect" value="true" data-technical-field> 
+                <input type="hidden" name="id" value="c_5065" data-technical-field>
+            </div>
+            
+			<!-- FIN FORMULAIRE A ETAPES -->
 	
 <!-- FIN -->
 <%} %>

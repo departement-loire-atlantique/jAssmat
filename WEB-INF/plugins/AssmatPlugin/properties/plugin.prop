@@ -176,8 +176,11 @@ jcmsplugin.socle.recherche.export.pdf: /assmat.pdf?type=detail
 media.data-template.default.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCardSimple.jsp
 media.data-template.card.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCard.jsp
 
+# Formats de dates
+jcmsplugin.assmat.format.date.form: yyyy-MM-dd
+jcmsplugin.assmat.format.date.profil: dd/MM/yyyy
+
 # iconographie
 jcmsplugin.assmat.profil.logo.creneauDispo: https://design.loire-atlantique.fr//assets/images/creneauDispo.svg
 jcmsplugin.assmat.profil.logo.creneauNonDispo: https://design.loire-atlantique.fr//assets/images/creneauNonDispo.svg
 media.data-template.card.Place: /plugins/AssmatPlugin/jsp/cards/doPlaceCard.jsp
-

@@ -80,7 +80,7 @@ public class InscriptionAssmatHandler extends EditDataHandler {
 
   protected String prenom;
 
-  protected String dateNaissance;
+  protected String dateDeNaissance;
 
   protected String email;
 
@@ -148,7 +148,8 @@ protected String nameUA;
   protected String dateDernierRenouvellementMAM;
   protected String dateProchainRenouvellementMAM;
 
-
+  private String endTag = "/>";
+  private String endTagTechnicalField = "data-technical-field />";
   
   /**
    * Méthode qui valide le passage à l'étape suivante
@@ -166,8 +167,8 @@ protected String nameUA;
     return super.validateNext();
   }
 
-  /**
-   * Méthode qui retourne le nombre détapes
+  /** 
+   * Méthode qui retourne le nombre détapes 
    */
   public int getFormStepCount() {
     return 5;
@@ -195,12 +196,12 @@ protected String nameUA;
      //Token invalide ou expire
      if(Util.isEmpty(inscription)){
        String errorMsg = JcmsUtil.glp(channel.getCurrentUserLang(), "jcmsplugin.assmatplugin.inscription.error.token.invalide");
-       JcmsContext.setWarningMsg(errorMsg, request);       
+       JcmsContext.setWarningMsg(errorMsg, request);
        return false;
      }else{
        // Si compte déjà créé renvoi sur la page d'accueil du site
        //On passe l'inscription en publiée, ce qui declenche un dataController pour la création des comptes.
-       //inscription.setPstatus(WorkflowConstants.PUBLISHED_PSTATUS);       
+       //inscription.setPstatus(WorkflowConstants.PUBLISHED_PSTATUS);
        if(inscription.getPstatus() == WorkflowConstants.EXPIRED_PSTATUS) {
          sendRedirect(channel.getData(channel.getProperty("jcmsplugin.assmatplugin.general.portal.accueil")));
          return false;
@@ -621,7 +622,7 @@ public AssmatSolis getAssmat() {
 	      civilite = getCivilite();
 	      nom = getNom();
 	      prenom = getPrenom();
-	      dateNaissance = getDateDeNaissance();	      
+	      dateDeNaissance = getDateDeNaissance();
 	    
 	      
 	      if (Util.isEmpty(civilite)) {
@@ -640,11 +641,11 @@ public AssmatSolis getAssmat() {
 	      }  else if (getNumeroAgrementInteger() == NUMERO_AGREMENT_DEFAULT) {
 	        listError.add(new JcmsMessage(JcmsMessage.Level.WARN, AssmatUtil.getMessagePropertiesParameters("NOT-EMPTY",new String[]{"IDENT-NUM-DOSSIER-HTML"})));
          valide = false;
-	      }else if (Util.isEmpty(dateNaissance)) {
+	      }else if (Util.isEmpty(dateDeNaissance)) {
 	        listError.add(new JcmsMessage(JcmsMessage.Level.WARN, AssmatUtil.getMessagePropertiesParameters("NOT-EMPTY",new String[]{"IDENT-DATE-HTML"})));
 	        valide = false;
-	      } else if(Util.notEmpty(dateNaissance)){
-	    	  if(!Pattern.matches("[0-9]{2}/[0-9]{2}/[0-9]{4}", dateNaissance)){
+	      } else if(Util.notEmpty(dateDeNaissance)){
+	    	  if(!Pattern.matches("[0-9]{2}/[0-9]{2}/[0-9]{4}", dateDeNaissance)){
 	    	        listError.add(new JcmsMessage(JcmsMessage.Level.WARN, AssmatUtil.getMessage("INSCRIPTION-FORMATTAGE-DATE-ERROR")));
 	    	        valide = false; 
 	    	  }
@@ -826,15 +827,15 @@ public AssmatSolis getAssmat() {
 
 		List<AssmatSolis> solisList = null;
 
-		if (Util.notEmpty(dateNaissance)) {
+		if (Util.notEmpty(dateDeNaissance)) {
 			Date dateAnniv = null;
 			try {
-				dateAnniv = dateFormatter.parse(dateNaissance);
+				dateAnniv = dateFormatter.parse(dateDeNaissance);
 			} catch (ParseException e) {
 				logger.error("Date de naissance non valide", e);
 			}
 			// On verifie avec le nom et prenom et date de naissance
-			if (Util.notEmpty(nom) && Util.notEmpty(prenom) && Util.notEmpty(dateNaissance) && numeroAgrementInteger != NUMERO_AGREMENT_DEFAULT) { // On verifie avec le nom et prenom et date de naissance et le numero d'agrement
+			if (Util.notEmpty(nom) && Util.notEmpty(prenom) && Util.notEmpty(dateDeNaissance) && numeroAgrementInteger != NUMERO_AGREMENT_DEFAULT) { // On verifie avec le nom et prenom et date de naissance et le numero d'agrement
 				solisList = solisMgr.getAssmatSolisByNameFirstnameDateNaissanceNumAgrement(civilite, nom, prenom, dateAnniv, numeroAgrementInteger);
 			}
 			if (Util.notEmpty(solisList)) {
@@ -849,7 +850,7 @@ public AssmatSolis getAssmat() {
 			nom = assmat.getNomAssmat();
 			prenom = assmat.getPrenomAssmat();
 			if (Util.notEmpty(assmat.getDateNaissAssmat())) {
-				dateNaissance = dateFormatter.format(assmat.getDateNaissAssmat());
+				dateDeNaissance = dateFormatter.format(assmat.getDateNaissAssmat());
 			}
 			numeroAgrementInteger = assmat.getNumDossierAssmat();
 //			numeroAgrement = numeroAgrementInteger.toString();
@@ -899,6 +900,36 @@ public AssmatSolis getAssmat() {
 
 		return assmat;
 	}
+	
+	/**
+	 * Permet d'ajouter "data-technical-field" aux input type="hidden"
+	 * @param fieldName
+	 * @param value
+	 * @return
+	 */
+	private String getHiddenFieldTag(String fieldName, String value) {
+    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
+  }
+	
+	private String getHiddenFieldTag(String fieldName, String[] value) {
+    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
+  }
+  
+	private String getHiddenFieldTag(String fieldName, int value) {
+    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
+  }
+	
+	private String getHiddenFieldTag(String fieldName, Double value) {
+    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
+  }
+	
+	private String getHiddenFieldTag(String fieldName, long value) {
+    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
+  }
+	
+	private String getHiddenFieldTag(String fieldName, boolean value) {
+    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
+  }
 
   /**
    * Persiste les données dans des input type hidden pour permettre le retour
@@ -909,158 +940,158 @@ public AssmatSolis getAssmat() {
   public String getFormStepHiddenFields() {
     StringBuilder sb = new StringBuilder();
 
-    sb.append(getHiddenField("formStep", formStep));
-    sb.append(getHiddenField("inscriptionOK", inscriptionOK));
+    sb.append(getHiddenFieldTag("formStep", formStep));
+    sb.append(getHiddenFieldTag("inscriptionOK", inscriptionOK));
     if (formStep == IDENTIFICATION_STEP) {
-      sb.append(getHiddenField("nbTentativeErrone", nbTentativeErrone));
-      sb.append(getHiddenField("idInscriptionAM", idInscriptionAM));
-      sb.append(getHiddenField("numeroAgrement", numeroAgrementInteger));
-      sb.append(getHiddenField("commune", commune));
-      sb.append(getHiddenField("communeMam", communeMam));
+      sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
+      sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
+      sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
+      sb.append(getHiddenFieldTag("commune", commune));
+      sb.append(getHiddenFieldTag("communeMam", communeMam));
 
       if(nbTentativeErrone>=NB_TENTATIVE_MAX){	// Formulaire de 2e erreur d'identification
-	      sb.append(getHiddenField("nom", nom));
-	      sb.append(getHiddenField("prenom", prenom));
+	      sb.append(getHiddenFieldTag("nom", nom));
+	      sb.append(getHiddenFieldTag("prenom", prenom));
       }
     }
     if (formStep == VERIFICATION_STEP) {
-      sb.append(getHiddenField("nom", nom));
-      sb.append(getHiddenField("civilite", civilite));
-      sb.append(getHiddenField("prenom", prenom));
-      sb.append(getHiddenField("email", email));
-      sb.append(getHiddenField("telephone", telephone));
+      sb.append(getHiddenFieldTag("nom", nom));
+      sb.append(getHiddenFieldTag("civilite", civilite));
+      sb.append(getHiddenFieldTag("prenom", prenom));
+      sb.append(getHiddenFieldTag("email", email));
+      sb.append(getHiddenFieldTag("telephone", telephone));
 
     
       
-      sb.append(getHiddenField("telephoneFixe", telephoneFixe));
-      sb.append(getHiddenField("numeroAgrement", numeroAgrementInteger));
-      sb.append(getHiddenField("commune", commune));
-      sb.append(getHiddenField("communeMam", communeMam));
-      sb.append(getHiddenField("nbTentativeErrone", nbTentativeErrone));
-      sb.append(getHiddenField("dateDeNaissance", dateNaissance));
-      sb.append(getHiddenField("datePremierAgrement", datePremierAgrement));
+      sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
+      sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
+      sb.append(getHiddenFieldTag("commune", commune));
+      sb.append(getHiddenFieldTag("communeMam", communeMam));
+      sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
+      sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
+      sb.append(getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
       
       if(Util.notEmpty(latAM) && Util.notEmpty(longAM) ){
-        sb.append(getHiddenField("latAM", latAM));
-        sb.append(getHiddenField("longAM", longAM));
+        sb.append(getHiddenFieldTag("latAM", latAM));
+        sb.append(getHiddenFieldTag("longAM", longAM));
        }
        if(Util.notEmpty(latMAM) && Util.notEmpty(longMAM) ){
-        sb.append(getHiddenField("latMAM", latMAM));
-        sb.append(getHiddenField("longMAM", longMAM));
+        sb.append(getHiddenFieldTag("latMAM", latMAM));
+        sb.append(getHiddenFieldTag("longMAM", longMAM));
        }
       
-      sb.append(getHiddenField("dateProchainRenouvellement", dateProchainRenouvellement));
-      sb.append(getHiddenField("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
-      sb.append(getHiddenField("dateDernierRenouvellement", dateDernierRenouvellement));
-      sb.append(getHiddenField("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
+      sb.append(getHiddenFieldTag("dateProchainRenouvellement", dateProchainRenouvellement));
+      sb.append(getHiddenFieldTag("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
+      sb.append(getHiddenFieldTag("dateDernierRenouvellement", dateDernierRenouvellement));
+      sb.append(getHiddenFieldTag("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
       
-      sb.append(getHiddenField("idSolis", idSolis));
-      sb.append(getHiddenField("idUa", idUa));
-      sb.append(getHiddenField("idInscriptionAM", idInscriptionAM));
-      sb.append(getHiddenField("numeroTelUA", numeroTelUA));
-      sb.append(getHiddenField("nameUA", nameUA));
+      sb.append(getHiddenFieldTag("idSolis", idSolis));
+      sb.append(getHiddenFieldTag("idUa", idUa));
+      sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
+      sb.append(getHiddenFieldTag("numeroTelUA", numeroTelUA));
+      sb.append(getHiddenFieldTag("nameUA", nameUA));
 
     }
     if (formStep == CONTACT_STEP) {
-      sb.append(getHiddenField("nom", nom));
-      sb.append(getHiddenField("prenom", prenom));
-      sb.append(getHiddenField("email", email));
-      sb.append(getHiddenField("telephone", telephone));
-      sb.append(getHiddenField("telephoneFixe", telephoneFixe));
-      sb.append(getHiddenField("numeroAgrement", numeroAgrementInteger));
-      sb.append(getHiddenField("commune", commune));
-      sb.append(getHiddenField("communeMam", communeMam));
-      sb.append(getHiddenField("nbTentativeErrone", nbTentativeErrone));
-      sb.append(getHiddenField("dateDeNaissance", dateNaissance));
-      sb.append(getHiddenField("civilite", civilite));
-      sb.append(getHiddenField("typeenvoi", typeenvoi));
-      sb.append(getHiddenField("datePremierAgrement", datePremierAgrement));
+      sb.append(getHiddenFieldTag("nom", nom));
+      sb.append(getHiddenFieldTag("prenom", prenom));
+      sb.append(getHiddenFieldTag("email", email));
+      sb.append(getHiddenFieldTag("telephone", telephone));
+      sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
+      sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
+      sb.append(getHiddenFieldTag("commune", commune));
+      sb.append(getHiddenFieldTag("communeMam", communeMam));
+      sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
+      sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
+      sb.append(getHiddenFieldTag("civilite", civilite));
+      sb.append(getHiddenFieldTag("typeenvoi", typeenvoi));
+      sb.append(getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
       
       if(Util.notEmpty(latAM) && Util.notEmpty(longAM) ){
-       sb.append(getHiddenField("latAM", latAM));
-       sb.append(getHiddenField("longAM", longAM));
+       sb.append(getHiddenFieldTag("latAM", latAM));
+       sb.append(getHiddenFieldTag("longAM", longAM));
       }
       if(Util.notEmpty(latMAM) && Util.notEmpty(longMAM) ){
-       sb.append(getHiddenField("latMAM", latMAM));
-       sb.append(getHiddenField("longMAM", longMAM));
+       sb.append(getHiddenFieldTag("latMAM", latMAM));
+       sb.append(getHiddenFieldTag("longMAM", longMAM));
       }
-      sb.append(getHiddenField("dateProchainRenouvellement", dateProchainRenouvellement));
-      sb.append(getHiddenField("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
-      sb.append(getHiddenField("dateDernierRenouvellement", dateDernierRenouvellement));
-      sb.append(getHiddenField("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
+      sb.append(getHiddenFieldTag("dateProchainRenouvellement", dateProchainRenouvellement));
+      sb.append(getHiddenFieldTag("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
+      sb.append(getHiddenFieldTag("dateDernierRenouvellement", dateDernierRenouvellement));
+      sb.append(getHiddenFieldTag("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
       
-      sb.append(getHiddenField("idSolis", idSolis));
-      sb.append(getHiddenField("idUa", idUa));
-      sb.append(getHiddenField("idInscriptionAM", idInscriptionAM));
+      sb.append(getHiddenFieldTag("idSolis", idSolis));
+      sb.append(getHiddenFieldTag("idUa", idUa));
+      sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
 
     }
     if (formStep == LOGIN_STEP) {
-      sb.append(getHiddenField("nom", nom));
-      sb.append(getHiddenField("prenom", prenom));
-      sb.append(getHiddenField("email", email));
-      sb.append(getHiddenField("numeroAgrement", numeroAgrementInteger));
-      sb.append(getHiddenField("commune", commune));
-      sb.append(getHiddenField("communeMam", communeMam));
-      sb.append(getHiddenField("telephone", telephone));
-      sb.append(getHiddenField("telephoneFixe", telephoneFixe));
-      sb.append(getHiddenField("nbTentativeErrone", nbTentativeErrone));
-      sb.append(getHiddenField("dateDeNaissance", dateNaissance));
-      sb.append(getHiddenField("civilite", civilite));
-      sb.append(getHiddenField("typeenvoi", typeenvoi));
-      sb.append(getHiddenField("idInscriptionAM", idInscriptionAM));
-      sb.append(getHiddenField("datePremierAgrement", datePremierAgrement));
+      sb.append(getHiddenFieldTag("nom", nom));
+      sb.append(getHiddenFieldTag("prenom", prenom));
+      sb.append(getHiddenFieldTag("email", email));
+      sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
+      sb.append(getHiddenFieldTag("commune", commune));
+      sb.append(getHiddenFieldTag("communeMam", communeMam));
+      sb.append(getHiddenFieldTag("telephone", telephone));
+      sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
+      sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
+      sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
+      sb.append(getHiddenFieldTag("civilite", civilite));
+      sb.append(getHiddenFieldTag("typeenvoi", typeenvoi));
+      sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
+      sb.append(getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
       
 
       if(Util.notEmpty(latAM) && Util.notEmpty(longAM) ){
-        sb.append(getHiddenField("latAM", latAM));
-        sb.append(getHiddenField("longAM", longAM));
+        sb.append(getHiddenFieldTag("latAM", latAM));
+        sb.append(getHiddenFieldTag("longAM", longAM));
        }
        if(Util.notEmpty(latMAM) && Util.notEmpty(longMAM) ){
-        sb.append(getHiddenField("latMAM", latMAM));
-        sb.append(getHiddenField("longMAM", longMAM));
+        sb.append(getHiddenFieldTag("latMAM", latMAM));
+        sb.append(getHiddenFieldTag("longMAM", longMAM));
        }
-      sb.append(getHiddenField("dateProchainRenouvellement", dateProchainRenouvellement));
-      sb.append(getHiddenField("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
-      sb.append(getHiddenField("dateDernierRenouvellement", dateDernierRenouvellement));
-      sb.append(getHiddenField("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
+      sb.append(getHiddenFieldTag("dateProchainRenouvellement", dateProchainRenouvellement));
+      sb.append(getHiddenFieldTag("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
+      sb.append(getHiddenFieldTag("dateDernierRenouvellement", dateDernierRenouvellement));
+      sb.append(getHiddenFieldTag("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
       
-      sb.append(getHiddenField("idSolis", idSolis));
-      sb.append(getHiddenField("idUa", idUa));
+      sb.append(getHiddenFieldTag("idSolis", idSolis));
+      sb.append(getHiddenFieldTag("idUa", idUa));
 
     }
     if(formStep == CONFIRMATION_STEP){
-      sb.append(getHiddenField("nom", nom));
-      sb.append(getHiddenField("prenom", prenom));
-      sb.append(getHiddenField("email", email));
-      sb.append(getHiddenField("numeroAgrement", numeroAgrementInteger));
-      sb.append(getHiddenField("commune", commune));
-      sb.append(getHiddenField("communeMam", communeMam));
-      sb.append(getHiddenField("telephone", telephone));
-      sb.append(getHiddenField("telephoneFixe", telephoneFixe));
-      sb.append(getHiddenField("nbTentativeErrone", nbTentativeErrone));
-      sb.append(getHiddenField("dateDeNaissance", dateNaissance));
-      sb.append(getHiddenField("civilite", civilite));
-      sb.append(getHiddenField("typeenvoi", typeenvoi));
-      sb.append(getHiddenField("idInscriptionAM", idInscriptionAM));
-      sb.append(getHiddenField("datePremierAgrement", datePremierAgrement));
+      sb.append(getHiddenFieldTag("nom", nom));
+      sb.append(getHiddenFieldTag("prenom", prenom));
+      sb.append(getHiddenFieldTag("email", email));
+      sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
+      sb.append(getHiddenFieldTag("commune", commune));
+      sb.append(getHiddenFieldTag("communeMam", communeMam));
+      sb.append(getHiddenFieldTag("telephone", telephone));
+      sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
+      sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
+      sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
+      sb.append(getHiddenFieldTag("civilite", civilite));
+      sb.append(getHiddenFieldTag("typeenvoi", typeenvoi));
+      sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
+      sb.append(getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
       if(Util.notEmpty(latAM) && Util.notEmpty(longAM) ){
-        sb.append(getHiddenField("latAM", latAM));
-        sb.append(getHiddenField("longAM", longAM));
+        sb.append(getHiddenFieldTag("latAM", latAM));
+        sb.append(getHiddenFieldTag("longAM", longAM));
        }
        if(Util.notEmpty(latMAM) && Util.notEmpty(longMAM) ){
-        sb.append(getHiddenField("latMAM", latMAM));
-        sb.append(getHiddenField("longMAM", longMAM));
+        sb.append(getHiddenFieldTag("latMAM", latMAM));
+        sb.append(getHiddenFieldTag("longMAM", longMAM));
        }
 
       
-      sb.append(getHiddenField("dateProchainRenouvellement", dateProchainRenouvellement));
-      sb.append(getHiddenField("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
-      sb.append(getHiddenField("dateDernierRenouvellement", dateDernierRenouvellement));
-      sb.append(getHiddenField("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
+      sb.append(getHiddenFieldTag("dateProchainRenouvellement", dateProchainRenouvellement));
+      sb.append(getHiddenFieldTag("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
+      sb.append(getHiddenFieldTag("dateDernierRenouvellement", dateDernierRenouvellement));
+      sb.append(getHiddenFieldTag("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
       
-      sb.append(getHiddenField("idSolis", idSolis));
-      sb.append(getHiddenField("idUa", idUa));
-      sb.append(getHiddenField("nbTentativeErroneSMS", nbTentativeErroneSMS));
+      sb.append(getHiddenFieldTag("idSolis", idSolis));
+      sb.append(getHiddenFieldTag("idUa", idUa));
+      sb.append(getHiddenFieldTag("nbTentativeErroneSMS", nbTentativeErroneSMS));
 
     }
 
@@ -1076,46 +1107,46 @@ public AssmatSolis getAssmat() {
   public String getAllFormStepHiddenFields() {
     StringBuilder sb = new StringBuilder();
 
-    sb.append(getHiddenField("formStep", formStep));
+    sb.append(getHiddenFieldTag("formStep", formStep));
     if((formStep ==InscriptionAssmatHandler.IDENTIFICATION_STEP && nbTentativeErrone>=InscriptionAssmatHandler.NB_TENTATIVE_MAX)){
-    	sb.append(getHiddenField("nbTentativeErrone", 0));	
+    	sb.append(getHiddenFieldTag("nbTentativeErrone", 0));	
     } else {
-    sb.append(getHiddenField("nbTentativeErrone", nbTentativeErrone));
+    sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
     }
-    sb.append(getHiddenField("numeroAgrement", numeroAgrementInteger));
-    sb.append(getHiddenField("commune", commune));
-    sb.append(getHiddenField("communeMam", communeMam));
-    sb.append(getHiddenField("nom", nom));
-    sb.append(getHiddenField("prenom", prenom));
-    sb.append(getHiddenField("civilite", civilite));
-    sb.append(getHiddenField("idInscriptionAM", idInscriptionAM));
-    sb.append(getHiddenField("dateDeNaissance", dateNaissance));
-    sb.append(getHiddenField("email", email));
-    sb.append(getHiddenField("telephone", telephone));
-    sb.append(getHiddenField("telephoneFixe", telephoneFixe));
-    sb.append(getHiddenField("telephone", telephone));
-    sb.append(getHiddenField("typeenvoi", typeenvoi));
-    sb.append(getHiddenField("choixLogin", choixLogin));
-    sb.append(getHiddenField("datePremierAgrement", datePremierAgrement));
+    sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
+    sb.append(getHiddenFieldTag("commune", commune));
+    sb.append(getHiddenFieldTag("communeMam", communeMam));
+    sb.append(getHiddenFieldTag("nom", nom));
+    sb.append(getHiddenFieldTag("prenom", prenom));
+    sb.append(getHiddenFieldTag("civilite", civilite));
+    sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
+    sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
+    sb.append(getHiddenFieldTag("email", email));
+    sb.append(getHiddenFieldTag("telephone", telephone));
+    sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
+    sb.append(getHiddenFieldTag("telephone", telephone));
+    sb.append(getHiddenFieldTag("typeenvoi", typeenvoi));
+    sb.append(getHiddenFieldTag("choixLogin", choixLogin));
+    sb.append(getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
     
     if(Util.notEmpty(latAM) && Util.notEmpty(longAM) ){
-      sb.append(getHiddenField("latAM", latAM));
-      sb.append(getHiddenField("longAM", longAM));
+      sb.append(getHiddenFieldTag("latAM", latAM));
+      sb.append(getHiddenFieldTag("longAM", longAM));
      }
      if(Util.notEmpty(latMAM) && Util.notEmpty(longMAM) ){
-      sb.append(getHiddenField("latMAM", latMAM));
-      sb.append(getHiddenField("longMAM", longMAM));
+      sb.append(getHiddenFieldTag("latMAM", latMAM));
+      sb.append(getHiddenFieldTag("longMAM", longMAM));
      }
    
    
-    sb.append(getHiddenField("dateProchainRenouvellement", dateProchainRenouvellement));
-    sb.append(getHiddenField("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
-    sb.append(getHiddenField("dateDernierRenouvellement", dateDernierRenouvellement));
-    sb.append(getHiddenField("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));
+    sb.append(getHiddenFieldTag("dateProchainRenouvellement", dateProchainRenouvellement));
+    sb.append(getHiddenFieldTag("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
+    sb.append(getHiddenFieldTag("dateDernierRenouvellement", dateDernierRenouvellement));
+    sb.append(getHiddenFieldTag("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));
     
-    sb.append(getHiddenField("idSolis", idSolis));
-    sb.append(getHiddenField("idUa", idUa));
-    sb.append(getHiddenField("inscriptionOK", inscriptionOK));
+    sb.append(getHiddenFieldTag("idSolis", idSolis));
+    sb.append(getHiddenFieldTag("idUa", idUa));
+    sb.append(getHiddenFieldTag("inscriptionOK", inscriptionOK));
 
 
     return sb.toString();
@@ -1177,11 +1208,11 @@ public AssmatSolis getAssmat() {
   }
 
   public String getDateDeNaissance() {
-    return dateNaissance;
+    return dateDeNaissance;
   }
 
   public void setDateDeNaissance(String dateDeNaissance) {
-    this.dateNaissance = dateDeNaissance;
+    this.dateDeNaissance = AssmatUtil.convertFormDateToAssmatProfilDate(dateDeNaissance);
   }
 
   public int getNumeroAgrementInteger() {

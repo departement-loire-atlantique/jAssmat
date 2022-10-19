@@ -1565,6 +1565,22 @@ public class AssmatUtil {
    return loggedMember.belongsToGroup(contribGroup)||loggedMember.belongsToGroup(ramGroup)||loggedMember.isAdmin();
  }
  
-	
+ /**
+  * Renvoie un string de date depuis le format yyyy-MM-dd vers dd/MM/yyyy
+  * @param formDateStr
+  * @return
+  */
+	public static String convertFormDateToAssmatProfilDate(String formDateStr) {
+	  if (Util.isEmpty(formDateStr)) return null;
+	  SimpleDateFormat sdf = new SimpleDateFormat(Channel.getChannel().getProperty("jcmsplugin.assmat.format.date.form"));
+	  Date itDate;
+    try {
+      itDate = sdf.parse(formDateStr);
+      sdf = new SimpleDateFormat(Channel.getChannel().getProperty("jcmsplugin.assmat.format.date.profil"));   
+      return sdf.format(itDate);
+    } catch (java.text.ParseException e) {
+      return formDateStr;
+    }
+	}
 
 }

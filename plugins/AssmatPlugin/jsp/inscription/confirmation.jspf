@@ -24,47 +24,44 @@ if(nbtentativeEronneSMS<InscriptionAssmatHandler.NB_TENTATIVE_MAX_SMS){
 if(!isMail){ %>
 				
 				
-							<div class="exempleMessage">
-                 <p>
-                 
-                 <trsb:glp  key="CONFIRM-INTRO2-HTML" parameter="<%=paramMap %>" ></trsb:glp>
-                 </p>
-               </div> 
-							
-            <div class="blocComplet gauche">
-								<div class="blocLabel blocForm blocFormConfirmation">
-									<label for="Nom"><trsb:glp key="CONFIRM-CODE-HTML" ></trsb:glp></label>
-								</div>
-	
-								<div class="blocChamp blocForm blocConfirmation">
-									<input type="text" name="codeConfirmation" id="codeConfirmation"
-										class="fullwidth">
-								</div>
-								
-								<p class="submit submitConfirmation">
-                <label for="submit"> <input type="submit" id="submit"
-                  name="opCreate" value="<trsb:glp attribute="true" key="CONFIRM-BOUTON" ></trsb:glp>" class="submitButton">
-                  <span class="input-box" style="background-color: #aec900"><span
-                    class="spr-recherche-ok"></span></span>
-                </label> <input type="hidden" name="noSendRedirect" value="true">
-                <input type="hidden" name="id" value="c_5065">
-              </p>
-							</div>
+			<div>
+                <p>
+                    <trsb:glp  key="CONFIRM-INTRO2-HTML" parameter="<%=paramMap %>" ></trsb:glp>
+                </p>
+            </div> 
+			
+			<%-- Code de confirmation --%>
+			
+			<% uuid = UUID.randomUUID().toString(); %>
+            <div class="ds44-form__container">
+	            <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation") %><sup aria-hidden="true">*</sup></p>
+	            <div class="ds44-posRel">
+		            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation") %><sup aria-hidden="true">*</sup></span></span></label>
+		            <input type="text" id="form-element-<%= uuid %>" name="codeConfirmation" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation") %> - obligatoire' required="true">
+		            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation")) %></span></button>
+	            </div>
+            </div>
 												
-               <div class="exempleMessage">
-		             <p class="bold"><i>
-		           <trsb:glp key="CONFIRM-NB-HTML" ></trsb:glp></i> </p>
-	             </div> 
+            <div>
+			    <p><i>
+			    <trsb:glp key="CONFIRM-NB-HTML" ></trsb:glp></i> </p>
+	        </div> 
+	        
+	        <div class="ds44-form__container">
+                <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.valide")%>' data-technical-field>
+                <input type="hidden" name="noSendRedirect" value="true" data-technical-field> 
+                <input type="hidden" name="id" value="c_5065" data-technical-field>
+            </div>
 	              
 		<%}else{ %>					
 
-					<div class="exempleMessage">
-            <p><trsb:glp key="CONFIRM2-TEXTE-HTML" ></trsb:glp></p>
-          </div> 
+		    <div>
+                <p><trsb:glp key="CONFIRM2-TEXTE-HTML" ></trsb:glp></p>
+            </div> 
  
  <%-- 0010189: Activation du compte - écran confirmation - texte administrable non éditable  --%>  
  <%-- https://projects.invisionapp.com/d/main#/console/7958952/171030869/comments --%>                    
-<!--                <div class="exempleMessage"> -->
+<!--                <div> -->
 <!--                  <p class="bold"><i><b>NB :</b> -->
 <!--                  Si vous ne parvenez pas à confirmer votre inscription ou si vous ne recevez aucun code par SMS d'ici quelques minutes, merci de contacter notre support par mail ou par télephone : 02 00 00 00 00</i> </p> -->
 <!--                </div>  -->
@@ -77,9 +74,9 @@ if(!isMail){ %>
 
 <%}else{%>
 
-  <div class="exempleMessage">
+  <div>
                  <p>
-                Inscription invalide, veuillez contacter le support</p>
+                <%= glp("jcmsplugin.assmatplugin.inscription.invalide.contactsupport") %></p>
                </div> 
   
  <% 
