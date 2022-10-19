@@ -267,7 +267,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
                         </div>
 
                   
-                  <div class="blocChamp blocForm">    
+                  <%-- <div class="blocChamp blocForm">    
 		                    <jalios:if predicate='<%= exerceDomicile %>'>
 		                     <p class="nobold">
                          <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp><br/>
@@ -321,7 +321,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
                    
                   
                    
-                    <%-- AGREMENT MAISON ASSISTANTES --%>
+                    AGREMENT MAISON ASSISTANTES
                     <jalios:if predicate='<%= exerceMam %>'>
 	                    <span>                                     
 		                    <p class="nobold">
@@ -378,7 +378,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
                     </jalios:if>
                      <p><span class="notBold"><trsb:glp key="TEXTE-CORRECTION-LIEU-HTML" ></trsb:glp></span></p>
                      
-                       </div>                                             
+                       </div>  --%>                                            
                    </div>                                                                                   
                 
                    <p class="submit">
