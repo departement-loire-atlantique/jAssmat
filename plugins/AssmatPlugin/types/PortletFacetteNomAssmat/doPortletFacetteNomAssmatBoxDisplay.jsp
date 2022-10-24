@@ -16,14 +16,18 @@
 
 %>
 
-<div class="ds44-form__container">
-    
-	<div class="ds44-posRel">
-	    <label for="<%= idFormElement %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelChamp %></span></span></label>    
-	    <input type="text" id="<%= idFormElement %>" name="nomassmat<%= idFormElement %>" class="ds44-inpStd" title="Champ standard"  />	    
-	    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= JcmsUtil.glp(userLang, "jcmsplugin.socle.facette.effacer-contenu-champ", labelChamp) %></span></button>
+<jalios:if predicate="<%= !isInEncadre %>">
+
+	<div class="ds44-form__container">
+	    
+		<div class="ds44-posRel">
+		    <label for="<%= idFormElement %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelChamp %></span></span></label>    
+		    <input type="text" id="<%= idFormElement %>" name="nomassmat<%= idFormElement %>" class="ds44-inpStd" title="<%= labelChamp %>"  />	    
+		    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= JcmsUtil.glp(userLang, "jcmsplugin.socle.facette.effacer-contenu-champ", labelChamp) %></span></button>
+		</div>
+	
 	</div>
 
-</div>
+</jalios:if>
 		
 

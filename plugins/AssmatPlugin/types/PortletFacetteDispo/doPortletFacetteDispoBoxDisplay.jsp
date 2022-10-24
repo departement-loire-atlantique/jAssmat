@@ -97,7 +97,7 @@
 		</div>
 		
 		<button type="button" class="ds44-fullWBtn ds44-btnSelect ds44-theme"
-			title="Valider la sélection de : Choix multiple">
+			title='<%= glp("jcmsplugin.socle.facette.cat-lie.valider-selection.label", labelChamp) %>'>
 			<span class="ds44-btnInnerText"><%= JcmsUtil.glp(userLang, "jcmsplugin.socle.valider") %></span><i
 				class="icon icon-long-arrow-right ds44-noLineH" aria-hidden="true"></i>
 		</button>
