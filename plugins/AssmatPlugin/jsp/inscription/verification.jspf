@@ -386,11 +386,12 @@ if(Util.notEmpty(assMat.getExerceMam())){
                    </p>
 
                    <p class="submit">
-                        <label for="submit"> <input type="submit" id="submit"
+                        <label for="submit"> <input type="submit"
                         name="opCreate" value='<trsb:glp attribute="true" key="VERIF-BOUTON"></trsb:glp>' class="ds44-btnStd">
                         <span class="input-box" style="background-color: #aec900"><span
                             class="spr-recherche-ok"></span></span>
                         </label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+                        <input type="hidden" name="opNext" value="true" data-technical-field>
                    </p>
 
 				   <div class="borderDot title-bar-container dotted-portlet"></div>

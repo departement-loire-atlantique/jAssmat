@@ -138,7 +138,7 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
 		    
 		    <%-- Préférence de type d'envoi --%>
 		    <% uuid = UUID.randomUUID().toString(); %>
-		    <div id="form-element-<%= uuid %>" data-name="radio2" class="ds44-form__radio_container ds44-form__container" data-component-radio-uuid="6e2ee2d4-a2b7-4990-a8f8-c459163d7b8c" title="">
+		    <div id="form-element-<%= uuid %>" data-name="typeenvoi" class="ds44-form__radio_container ds44-form__container" data-component-radio-uuid="6e2ee2d4-a2b7-4990-a8f8-c459163d7b8c" title="">
 			    <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.typeenvoi") %><sup aria-hidden="true">*</sup></p>
 			    <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
 			    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
