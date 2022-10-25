@@ -2,7 +2,7 @@
 <%@page import="fr.cg44.plugin.assmat.managers.ProfilManager"%>
 <%@ include file='/jcore/doInitPage.jsp' %><%
 %><%@ include file='/jcore/portal/doPortletParams.jsp' %><%
-%><%@ include file='/types/PortletNavigate/doInitPortletNavigate.jsp'%><%
+%><%@ include file='/types/PortletNavigate/doInitPortletNavigate.jspf'%><%
 %><%@page import="fr.cg44.plugin.tools.navigation.Menu" %>
 <%@ page contentType="text/html; charset=UTF-8"%><%
 
@@ -15,8 +15,6 @@
 
  
  int level = box.getLevels();
-
- String dataColor= ProxyTarget.getMainColor(); 
  
  Publication portalPerso = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.socle.portail.param.id"));
 %>
@@ -92,7 +90,7 @@ ProfilASSMAT profil = (ProfilASSMAT) profilMngr.getProfilASSMAT(channel.getCurre
                            
                            </jalios:select>      
 					<jalios:if predicate="<%= Util.notEmpty(itCatLevel2.getDescription()) %>">     
-						<button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%= encodeForHTMLAttribute(itCatLevel2.getDescription()) %>" data-color="<%= dataColor %>">
+						<button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%= encodeForHTMLAttribute(itCatLevel2.getDescription()) %>">
 							<img alt="?" src="s.gif" class="spr-interrogation">
 						</button>
 					</jalios:if>
@@ -126,7 +124,7 @@ ProfilASSMAT profil = (ProfilASSMAT) profilMngr.getProfilASSMAT(channel.getCurre
                            
                             
         					<jalios:if predicate="<%= Util.notEmpty(itCatLevel3.getDescription()) %>">     
-        						<button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%= encodeForHTMLAttribute(itCatLevel3.getDescription()) %>" data-color="<%= dataColor %>">
+        						<button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%= encodeForHTMLAttribute(itCatLevel3.getDescription()) %>">
         							<img alt="?" src="s.gif" class="spr-interrogation">
         						</button>
         					</jalios:if>

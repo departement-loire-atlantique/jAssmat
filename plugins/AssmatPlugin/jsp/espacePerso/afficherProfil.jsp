@@ -1,6 +1,5 @@
 <%@page import="fr.trsb.cd44.solis.manager.SolisManager"%>
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
-<%@page import="fr.cg44.plugin.tools.googlemaps.proxy.ProxyTarget"%>
 <%@page import="fr.cg44.plugin.assmat.managers.ProfilManager"%>
 <%@ include file='/jcore/doInitPage.jsp' %>
 <%@ include file='/jcore/portal/doPortletParams.jsp' %>
@@ -37,9 +36,9 @@ if(Util.notEmpty(request.getParameter("opUpdate"))) {
 
 
 <%
-String dataColor= ProxyTarget.getMainColor(); 
-
 Boolean visibiliteSite = profil.getVisibiliteSite();
+//UUID unique pour les champs
+String uuid = UUID.randomUUID().toString();
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
@@ -76,30 +75,31 @@ Boolean visibiliteSite = profil.getVisibiliteSite();
       </div>
     </div>
     
+    <p role="heading" aria-level="2" class="h3-like"><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
+    <div id="form-element-<%= uuid %>" data-name="visibiliteSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
+	   <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+	   <div class="ds44-form__container ds44-checkBox-radio_list ">
+	      <input type="radio" <%if(visibiliteSite){ %>  checked="checked" <%} %> name="visibiliteSite" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.yes") %></label>
+	   </div>
+	   <div class="ds44-form__container ds44-checkBox-radio_list ">
+	      <input type="radio" <%if(!visibiliteSite){ %> checked="checked" <%} %> <% if(aide_caf) { %> disabled <%} %> name="visibiliteSite" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.no") %></label>
+	   </div>
+	</div>
+    
     
     <p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML" %>'></trsb:glp></p>  
   
-    <%-- Contribuer dans VISIB-AFF-LEG-HTML et VISIB-REFUS-TEXTE-HTML ? pas de clé dans invision --%>  
+    <%-- Contribuer dans VISIB-AFF-LEG-HTML et VISIB-REFUS-TEXTE-HTML ? pas de clé dans invision --%>
 <!-- 	  <div class="alert alert-block fade in alert-cg"> -->
 <!-- 	    <h4>A savoir !</h4> -->
 <!-- 	    <p>Même sans apparaître dans le moteur de recherche, nous vous invitons à utiliser le site pour réaliser vos démarches en ligne (déclarer un accueil, signaler un changement à l'unité agrément...). Ces fonctionnalités seront disponibles à partir de mars 2017 en vous connectant à votre espace personnel.</p> -->
 <!-- 	  </div> -->
 
-	  
-	  
-    <div class="borderDot title-bar-container dotted-portlet"></div>
-
-    <p class="submit">
-      <label for="submit"> 
-        <input type="submit" id="submit" name="opCreate" 
-          value="<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>" class="submitButton" /> 
-        <span class="input-box" style="background-color: #aec900" />
-          <span class="spr-recherche-ok"></span>
-        </span>
-      </label> 
-      <input type="hidden" name="noSendRedirect" value="true" /> 
-      <input type="hidden" name="opUpdate" value="true" />
-    </p>
+	<div class="ds44-form__container">
+        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+        <input type="hidden" name="opUpdate" value="true" data-technical-field>
+    </div>
     
   </form>
 

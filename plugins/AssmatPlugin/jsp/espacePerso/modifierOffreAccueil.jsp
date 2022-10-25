@@ -31,10 +31,7 @@ if(Util.isEmpty(profil)){
 <%
 if (formHandler.validate()) {
   //return;
-} 
-
-String dataColor= ProxyTarget.getMainColor(); 
-
+}
 
 String accueilTempsPartiel = profil.getAccueilTempsPartiel();
 String accueilPeriscolaire = profil.getAccueilPeriscolaire();

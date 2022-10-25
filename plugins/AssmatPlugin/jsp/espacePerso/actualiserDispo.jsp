@@ -35,9 +35,7 @@ if(Util.isEmpty(profil)){
 <%
 if (formHandler.validate()) {
   //return;
-} 
-
-String dataColor= ProxyTarget.getMainColor(); 
+}
 
 List<Disponibilite> dispos = ProfilManager.getInstance().getDisponibilitesList(loggedMember, null);
 if(Util.notEmpty(dispos)) {

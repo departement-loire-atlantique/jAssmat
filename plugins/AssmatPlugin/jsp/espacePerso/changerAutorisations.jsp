@@ -31,8 +31,6 @@ if(Util.notEmpty(request.getParameter("opUpdate"))) {
 
 
 <%
-String dataColor= ProxyTarget.getMainColor(); 
-
 boolean autorisationSite = profil.getAutorisationSite();
 boolean autorisationCAF = profil.getAutorisationCAF();
 boolean autorisationRelais = profil.getAutorisationRelais();

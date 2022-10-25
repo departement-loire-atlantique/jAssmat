@@ -34,9 +34,6 @@ if (formHandler.validate()) {
   //return;
 } 
 
-String dataColor= ProxyTarget.getMainColor(); 
-
-
 String telephoneFixAssmat = profil.getTelephoneFixe() != null ? profil.getTelephoneFixe() : "" ;
 String visibiliteTelephoneFixe = profil.getVisbiliteTelephoneFixe();
 
