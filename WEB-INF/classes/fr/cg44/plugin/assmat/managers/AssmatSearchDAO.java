@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.axis2.databinding.types.soapencoding.Array;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
@@ -513,7 +512,7 @@ public class AssmatSearchDAO {
 
 	  String groupBy = "assmat_search_id";
 	  // 0011202: recherche par nom d'AM inopérante / La recherche par nom vide par défaut les autres critères pour ne permettre qu'une recherche sur ce critère  
-	  //if(Util.isEmpty(nomAssmat)){
+	  if(Util.isEmpty(nomAssmat)){
 	  
 	    if(Util.notEmpty(trancheAgeKey) && trancheAgeKey.length > 0){
 	     Disjunction disjunctionAge = Restrictions.disjunction();
@@ -524,7 +523,7 @@ public class AssmatSearchDAO {
 	     rechercheDispo.add(disjunctionAge);  
 	    }
 	    groupBy = "assmat_search_id" + " having " + "count(*) >= 1"; // il faut au moins 1 place dans les dispos
-	   //}
+	   }
 
 	  if(DISPO_RECHERCHE == typeDispo){
 	    setDispo(rechercheDispo,dateTime);
@@ -567,6 +566,7 @@ public class AssmatSearchDAO {
 	   return Util.emptyTreeSet();
 	  }
 
+	  // TODO bloque sur la commune recherchée, a voir 
 	  if(codeInsee != 0){
 	   noCritere = setLieu(crit, noCritere, commune, codeInsee, codesQuartier, codeMicroQuartier, lieuDomicile, lieuMam, adresse,lattitude,longitude,distance);
 	  }
