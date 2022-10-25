@@ -55,37 +55,17 @@ String uuid = UUID.randomUUID().toString();
       <h4><%=glp("msg.message-box.warning")%></h4>
       <p></p>
     </div>
-
-    <div class="blocComplet gauche">
-      <div class="blocLabel" style="width: auto; float: none; text-align: left;">
-        <p class=""><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
-      </div>
-
-      <div class="blocChamp multipleRadio afficher-profile blocForm" style="margin-left: 0;">
-        <span>
-          <input type="radio" name="visibiliteSite" id="oui" class="radio" value="true"
-            <%if(visibiliteSite){ %>  checked="checked" <%} %> style="background: transparent; float: none;" />
-          <label for="email"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.oui") %></label>
-        </span>
-        <span style="margin-left: 20px;">
-          <input type="radio" name="visibiliteSite" id="non" class="radio" value="false"
-            <%if(!visibiliteSite){ %> checked="checked" <%} %>  <% if(aide_caf) { %> disabled <%} %>  style="background: transparent; float: none;" />
-          <label for="tel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.non") %><br /></label> 
-        </span>
-      </div>
-    </div>
     
     <p role="heading" aria-level="2" class="h3-like"><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
     <div id="form-element-<%= uuid %>" data-name="visibiliteSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
 	   <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
 	   <div class="ds44-form__container ds44-checkBox-radio_list ">
-	      <input type="radio" <%if(visibiliteSite){ %>  checked="checked" <%} %> name="visibiliteSite" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.yes") %></label>
+	      <input type="radio" <%if(visibiliteSite){ %>  checked="checked" <%} %> name="visibiliteSite" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.oui") %></label>
 	   </div>
 	   <div class="ds44-form__container ds44-checkBox-radio_list ">
-	      <input type="radio" <%if(!visibiliteSite){ %> checked="checked" <%} %> <% if(aide_caf) { %> disabled <%} %> name="visibiliteSite" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.no") %></label>
+	      <input type="radio" <%if(!visibiliteSite){ %> checked="checked" <%} %> <% if(aide_caf) { %> disabled <%} %> name="visibiliteSite" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.non") %></label>
 	   </div>
 	</div>
-    
     
     <p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML" %>'></trsb:glp></p>  
   

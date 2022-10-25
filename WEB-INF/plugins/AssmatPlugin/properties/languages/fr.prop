@@ -166,6 +166,8 @@ jcmsplugin.assmatplugin.espaceperso.monagr:Mon n° de dossier d'agrément :
 jcmsplugin.assmatplugin.espaceperso.monnum:Mon n° de téléphone :
 jcmsplugin.assmatplugin.espaceperso.monmail:Mon e-mail :
 
+jcmsplugin.assmatplugin.espacepro.modifiercoords: Modifier si besoin vos coordonnées
+
 
 # Connexion AM
 plugin.assmatplugin.form.login.am.loginTitle: Connectez-vous
