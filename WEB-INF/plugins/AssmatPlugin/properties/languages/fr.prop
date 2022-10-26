@@ -366,3 +366,5 @@ plugin.assmatplugin.profilassmat.place.creneauDispo: Créneau disponible
 plugin.assmatplugin.profilassmat.place.creneauNonDispo: Créneau non disponible
 
 plugin.assmatplugin.profilassmat.distance : {0} km de l'adresse recherchée
+
+plugin.assmatplugin.profilassmat.form.creneaux: Créneaux horaires
