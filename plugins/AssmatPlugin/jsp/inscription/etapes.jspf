@@ -102,5 +102,5 @@ int nbTentativeStep0 = formHandler.getNbTentativeErrone();
                         </li>
 				    </ol>
 				</nav>
-				   <%=formHandler.getAllFormStepHiddenFields()%>
+				   <%=formHandler.getFormStepHiddenFields()%>
    </form>
