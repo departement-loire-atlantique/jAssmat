@@ -396,12 +396,12 @@ int numeroDossierAssmat = profil.getNum_agrement();
     
       </div>
       <jalios:javascript>
-      
+  <%-- TO TRANSLATE TO JAVA --%>
   <%if(dispoDepannagePlaceDisponible1.equals("false")) { %>
   jQuery( "#precision<%= cptDispo + 1 %>" ).hide();
    <% } %>
    
-  
+  <!--  data-enabled-field-value=".nom-du-container-a-afficher-cacher"  -->
         <% if(Util.notEmpty(etatDispo) && etatDispo.equals(AssmatUtil.SelectionEtatDispo.IMMEDIATE.getValue())) { %>
           jQuery.plugin.AssmatPlugin.toggle('Formulaires<%= cptDispo + 1 %>', 'show');
           jQuery.plugin.AssmatPlugin.toggle('aPartir<%= cptDispo + 1 %>', 'hide');
