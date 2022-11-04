@@ -368,3 +368,18 @@ plugin.assmatplugin.profilassmat.place.creneauNonDispo: Créneau non disponible
 plugin.assmatplugin.profilassmat.distance : {0} km de l'adresse recherchée
 
 plugin.assmatplugin.profilassmat.form.creneaux: Créneaux horaires
+
+# Mois
+
+plugin.assmatplugin.month.0: Janvier
+plugin.assmatplugin.month.1: Février
+plugin.assmatplugin.month.2: Mars
+plugin.assmatplugin.month.3: Avril
+plugin.assmatplugin.month.4: Mais
+plugin.assmatplugin.month.5: Juin
+plugin.assmatplugin.month.6: Juillet
+plugin.assmatplugin.month.7: Août
+plugin.assmatplugin.month.8: Septembre
+plugin.assmatplugin.month.9: Octobre
+plugin.assmatplugin.month.10: Novembre
+plugin.assmatplugin.month.11: Décembre

@@ -2,7 +2,6 @@
 <%@page import="fr.cg44.plugin.assmat.comparator.DisponibiliteComparator"%>
 <%@page import="fr.cg44.plugin.assmat.SemainierUtil"%>
 <%@page import="fr.cg44.plugin.assmat.Semainier"%>
-<%@page import="fr.cg44.plugin.tools.googlemaps.proxy.ProxyTarget"%>
 <%@page import="fr.cg44.plugin.assmat.managers.ProfilManager"%>
 <%@ include file='/jcore/doInitPage.jsp' %>
 <%@ include file='/jcore/portal/doPortletParams.jsp' %>
@@ -20,6 +19,9 @@ if(Util.isEmpty(profil)){
   sendForbidden(request, response);
   return;
 }
+
+//UUID unique pour les champs
+String uuid = UUID.randomUUID().toString();
 %>
 
 <jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.ProfilActualiserDispoHandler'>
@@ -57,12 +59,7 @@ int numeroDossierAssmat = profil.getNum_agrement();
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
 <%@ include file='/jcore/doMessageBox.jsp' %>
 
-<div class="headstall container-fluid formulaireActivation">
-<div class="formActivation form-cg form-espace-perso">
-<div class="form-cg-gray form-cg-white">
-
-  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
-    name="formContact" id="formContact" class="formContact formEspacePerso">
+  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" name="formContact" id="formContact">
 
   
     <div class="alert alert-block alertPass hide  alert-cg">
@@ -70,10 +67,10 @@ int numeroDossierAssmat = profil.getNum_agrement();
       <p></p>
     </div>
       
-    
+    <%-- TODO --%>
     <div class="blocQuestion disponibilite">
   
-      <h3 class="title-bar-container dotted-portlet"><trsb:glp key="DISPO-INTRO-HTML"></trsb:glp></h3>
+      <h3 class="h3-like"><trsb:glp key="DISPO-INTRO-HTML"></trsb:glp></h3>
       <%
       int maxDispo = 10;
       if(dispos != null && dispos.size() < maxDispo){
@@ -213,31 +210,28 @@ int numeroDossierAssmat = profil.getNum_agrement();
         </h4>
         <jalios:select>     
           <jalios:if predicate='<%= dispos.get(cptDispo).getSaisieDisponible() %>'>
-            <div class="choice-dispo">
-              <input type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3Dispo<%= cptDispo + 1 %>" class="radio" value="1"
-                <% if(Util.notEmpty(etatDispo) && etatDispo.equals("1")) { %> checked <% } %>
-                onclick="javascript:jQuery.plugin.AssmatPlugin.toggle('Formulaires<%= cptDispo + 1 %>', 'show');
-                  jQuery.plugin.AssmatPlugin.toggle('aPartir<%= cptDispo + 1 %>', 'hide');
-                  jQuery.plugin.AssmatPlugin.toggle('dispoActuelle<%= cptDispo + 1 %>', 'show');
-                  jQuery.plugin.AssmatPlugin.toggle('dispoActuellePrecisions<%= cptDispo + 1 %>', 'show');
-                  jQuery.plugin.AssmatPlugin.toggle('depannageRemplacement<%= cptDispo + 1 %>', 'show');  
-                  jQuery.plugin.AssmatPlugin.toggle('declaration<%= cptDispo + 1 %>', 'hide');">
-              <label for="categorie3Dispo<%= cptDispo + 1 %>"><trsb:glp key="DISPO-OUI-HTML"></trsb:glp></label>
-              <input type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3DispoFutures<%= cptDispo + 1 %>" class="radio" value="2"
-                <% if(Util.notEmpty(etatDispo) && etatDispo.equals("2")) { %> checked <% } %>
-                onclick="javascript:jQuery.plugin.AssmatPlugin.toggle('Formulaires<%= cptDispo + 1 %>', 'show');
-                  jQuery.plugin.AssmatPlugin.toggle('dispoActuelle<%= cptDispo + 1 %>', 'show');
-                  jQuery.plugin.AssmatPlugin.toggle('dispoActuellePrecisions<%= cptDispo + 1 %>', 'hide');
-                  jQuery.plugin.AssmatPlugin.toggle('aPartir<%= cptDispo + 1 %>', 'show');
-                  jQuery.plugin.AssmatPlugin.toggle('depannageRemplacement<%= cptDispo + 1 %>', 'hide');
-                  jQuery.plugin.AssmatPlugin.toggle('declaration<%= cptDispo + 1 %>', 'show');">
-              <label for="categorie3DispoFutures<%= cptDispo + 1 %>"><trsb:glp key="DISPO-OUI-PLUS-HTML"></trsb:glp></label>
-              <input type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3NoDispo<%= cptDispo + 1 %>" class="radio" value="3"
-                <% if(Util.notEmpty(etatDispo) && etatDispo.equals("3")) { %> checked <% } %>
-                onclick="javascript:jQuery.plugin.AssmatPlugin.toggle('Formulaires<%= cptDispo + 1 %>', 'hide');
-                  jQuery.plugin.AssmatPlugin.toggle('declaration<%= cptDispo + 1 %>', 'show');"> 
-              <label for="categorie3NoDispo<%= cptDispo + 1 %>"><trsb:glp key="DISPO-NON-HTML"></trsb:glp></label>              
-            </div>
+            <% uuid = UUID.randomUUID().toString(); %>
+		    <div id="form-element-<%= uuid %>" data-name="etatDispo<%= cptDispo + 1 %>" class="ds44-form__radio_container ds44-form__container">
+		       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+		       <div class="ds44-form__container ds44-checkBox-radio_list ">
+		          <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("1")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
+		              value="1" id="name-radio-form-element-<%= uuid %>-one" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>"
+		              data-enabled-field-value=".dispo-toggleable-oui-<%= cptDispo + 1 %>"/>
+		          <label id="label-radio-form-element-<%= uuid %>-one" for="name-radio-form-element-<%= uuid %>-one" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-HTML" ></trsb:glp></label>
+		       </div>
+		       <div class="ds44-form__container ds44-checkBox-radio_list ">
+                  <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("2")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
+                      value="2" id="name-radio-form-element-<%= uuid %>-two" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>"
+                      data-enabled-field-value=".dispo-toggleable-oui-plus-<%= cptDispo + 1 %>"/>
+                  <label id="label-radio-form-element-<%= uuid %>-two" for="name-radio-form-element-<%= uuid %>-two" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-PLUS-HTML"></trsb:glp></label>
+               </div>
+               <div class="ds44-form__container ds44-checkBox-radio_list ">
+                  <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("3")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
+                      value="3" id="name-radio-form-element-<%= uuid %>-three" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>"
+                      data-enabled-field-value=".dispo-toggleable-non-<%= cptDispo + 1 %>"/>
+                  <label id="label-radio-form-element-<%= uuid %>-three" for="name-radio-form-element-<%= uuid %>-three" class="ds44-radioLabel"><trsb:glp key="DISPO-NON-HTML"></trsb:glp></label>
+               </div>
+		    </div>
            </jalios:if>
       
            <jalios:default>
@@ -246,56 +240,81 @@ int numeroDossierAssmat = profil.getNum_agrement();
           </jalios:select>
            
           <%-- Par defaut ou si non renseigné coche disponibilité inconnue --%>
-          <input class="hidden" type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3DispoInconnu<%= cptDispo + 1 %>" class="radio" value="0" 
-            <% if(Util.isEmpty(etatDispo) || etatDispo.equals("0")) { %> checked <% } %> />
+          <input class="hidden" type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3DispoInconnu<%= cptDispo + 1 %>" value="0" 
+            <% if(Util.isEmpty(etatDispo) || etatDispo.equals("0")) { %> checked <% } %> data-technical-field/>
         
-          <div id="Formulaires<%= cptDispo + 1 %>" style="clear: both;">
-        
-         
-          <div class="aPartir" id="aPartir<%= cptDispo + 1 %>">
-            <p class="textSelection"><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p>
-            <div class="form-select mois">
-              <span class="input-box" style="background-color: #aec900"><span class="spr-select_arrow"></span></span>
-              <select name="moisDispo<%= cptDispo + 1 %>" id="mois">
-                <option value="00" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("0")) ) { %> selected <% } %>>Janvier</option>
-                <option value="01" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("1")) ) { %> selected <% } %>>Février</option>
-                <option value="02" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("2")) ) { %> selected <% } %>>Mars</option>
-                <option value="03" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("3")) ) { %> selected <% } %>>Avril</option>
-                <option value="04" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("4")) ) { %> selected <% } %>>Mai</option>
-                <option value="05" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("5")) ) { %> selected <% } %>>Juin</option>
-                <option value="06" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("6")) ) { %> selected <% } %>>Juillet</option>
-                <option value="07" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("7")) ) { %> selected <% } %>>Août</option>
-                <option value="08" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("8")) ) { %> selected <% } %>>Septembre</option>
-                <option value="09" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("9")) ) { %> selected <% } %>>Octobre</option>
-                <option value="10" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("10")) ) { %> selected <% } %>>Novembre</option>
-                <option value="11" <% if((Util.notEmpty(moisDispo)  && moisDispo.equals("11")) ) { %> selected <% } %>>Décembre</option>
-              </select>
-            </div>
-            
-            <div class="form-select annee">
-              <span class="input-box" style="background-color: #aec900"><span class="spr-select_arrow"></span></span>
-              <select name="anneeDispo<%= cptDispo + 1 %>" id="annee">
-                <% for(int cptAnnee = Integer.parseInt(anneeActuelle); cptAnnee < Integer.parseInt(anneeActuelle) + 11; cptAnnee++) { %>
-                  <option value="<%=cptAnnee%>" <% if(Util.notEmpty(anneeDispo) && anneeDispo.equals(Integer.toString(cptAnnee))) { %> selected <% } %>><%= cptAnnee %></option>
-                <% } %>
-              </select>
-            </div>
-            
-            <div class="precisions" style="clear: both;">
-              <label for="precisionPlaceFuture<%= cptDispo + 1 %>" class="renseignements labelPrecisions"><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML"></trsb:glp></label>
-              <textarea type="text" name="precisionPlaceFuture<%= cptDispo + 1 %>" class="precisions" ><%= precisionPlaceFuture1 %></textarea>
-            </div>
+          <div id="Formulaires<%= cptDispo + 1 %>" class="dispo-toggleable-oui-<%= cptDispo + 1 %> dispo-toggleable-oui-plus-<%= cptDispo + 1 %>" style="clear: both;"> 
+          
+	          <% uuid = UUID.randomUUID().toString(); %>
+	          <p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p>
+	          <div class="ds44-form__container dispo-toggleable-oui-plus-<%= cptDispo + 1 %>">
+				   <div class="ds44-select__shape ds44-inpStd">
+				      <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.month") %></p>
+				      <div id="form-element-<%= uuid %>" data-name="moisDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
+				      <button type="button" id="button-form-element-<%= uuid %>" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false" title='<%= glp("ui.com.lbl.month") %>'><i class="icon icon-down icon--sizeXL" aria-hidden="true"></i><span id="button-message-form-element-<%= uuid %>" class="visually-hidden"><trsb:glp key="DISPO-OUI-PLUS-DATE" attribute="true"></trsb:glp></span></button>
+				      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeXL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.com.lbl.month")) %></span></button>
+				   </div>
+				   <div class="ds44-select-container hidden">
+				      <div class="ds44-listSelect">
+				         <ul class="ds44-list" role="listbox" id="listbox-form-element-<%= uuid %>" aria-labelledby="button-message-form-element-<%= uuid %>">
+				            <% for (int monthCounter = 0; monthCounter < 12; monthCounter++) { %>
+				            <li class='ds44-select-list_elem<% if(Util.notEmpty(moisDispo) && moisDispo.equals(Integer.toString(monthCounter))) { %> selected_option <% } %>' 
+				            data-value="<%= monthCounter %>" tabindex="0" role="option" 
+				            <% if(Util.notEmpty(moisDispo) && moisDispo.equals(Integer.toString(monthCounter))) { %> aria-selected="true" <% } %>>
+	                           <%= glp("plugin.assmatplugin.month." + monthCounter) %>
+	                        </li>
+	                        <% } %>
+				         </ul>
+				      </div>
+				   </div>
+			  </div>
+			  <% uuid = UUID.randomUUID().toString(); %>
+	          <div class="ds44-form__container dispo-toggleable-oui-plus-<%= cptDispo + 1 %>">
+	               <div class="ds44-select__shape ds44-inpStd">
+	                  <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.year") %></p>
+	                  <div id="form-element-<%= uuid %>" data-name="anneeDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
+	                  <button type="button" id="button-form-element-<%= uuid %>" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false" title='<%= glp("ui.com.lbl.year") %>'><i class="icon icon-down icon--sizeXL" aria-hidden="true"></i><span id="button-message-form-element-<%= uuid %>" class="visually-hidden"><trsb:glp key="DISPO-OUI-PLUS-DATE" attribute="true"></trsb:glp></span></button>
+	                  <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeXL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.com.lbl.year")) %></span></button>
+	               </div>
+	               <div class="ds44-select-container hidden">
+	                  <div class="ds44-listSelect">
+	                     <ul class="ds44-list" role="listbox" id="listbox-form-element-<%= uuid %>" aria-labelledby="button-message-form-element-<%= uuid %>">
+	                        <% for(int cptAnnee = Integer.parseInt(anneeActuelle); cptAnnee < Integer.parseInt(anneeActuelle) + 11; cptAnnee++) { %>
+	                        <li class='ds44-select-list_elem<% if(Util.notEmpty(anneeDispo) && anneeDispo.equals(Integer.toString(cptAnnee))) { %> selected_option <% } %>' 
+	                        data-value="<%= cptAnnee %>" tabindex="0" role="option" 
+	                        <% if(Util.notEmpty(anneeDispo) && anneeDispo.equals(Integer.toString(cptAnnee))) { %> aria-selected="true" <% } %>>
+	                           <%= cptAnnee %>
+	                        </li>
+	                        <% } %>
+	                     </ul>
+	                  </div>
+	               </div>
+	          </div>
+	          <% uuid = UUID.randomUUID().toString(); %>
+	          <p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML"></trsb:glp></p>
+	          <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
+	          <div class="ds44-form__container dispo-toggleable-oui-plus-<%= cptDispo + 1 %>"">
+				   <div class="ds44-posRel">
+				      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
+				      <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionPlaceFuture<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionPlaceFuture1 %></textarea>
+				   </div>
+			  </div>
             
           </div>
     
-    
-    
-          <div id="dispoActuellePrecisions<%= cptDispo + 1 %>" class="precisions" style="clear: both;">
-             <label for="precisionsPlaceDisponible<%= cptDispo + 1 %>" class="renseignements labelPrecisions"><trsb:glp key="DISPO-OUI-PREC-HTML"></trsb:glp></label>
-             <textarea type="text" name="precisionsPlaceDisponible<%= cptDispo + 1 %>" class="precisions" ><%= precisionsPlaceDisponible1 %></textarea>
+          <% uuid = UUID.randomUUID().toString(); %>
+          <div class="dispo-toggleable-oui-<%= cptDispo + 1 %>">
+	          <p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PREC-HTML"></trsb:glp></p>
+	          <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
+	          <div class="ds44-form__container dispo-toggleable-oui-plus-<%= cptDispo + 1 %>"">
+	               <div class="ds44-posRel">
+	                  <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
+	                  <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsPlaceDisponible<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionsPlaceDisponible1 %></textarea>
+	               </div>
+	          </div>
           </div>
     
-          <div id="dispoActuelle<%= cptDispo + 1 %>">
+          <div id="dispoActuelle<%= cptDispo + 1 %>" class="dispo-toggleable-oui-<%= cptDispo + 1 %> dispo-toggleable-oui-plus-<%= cptDispo + 1 %>">
            
     
             <p class="renseignements important"><trsb:glp key="DISPO-OUI-SEM-HTML"></trsb:glp></p>
@@ -312,8 +331,10 @@ int numeroDossierAssmat = profil.getNum_agrement();
                 <th scope="col">D</th>
               </tr>
               <tr>
-                <th scope="row"><trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></th>
-                <td><input type="checkbox" id="lundi_avant_ecole<%= cptDispo + 1 %>" name="lundi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(lundi_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
+                <th scope="row"><trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></th
+                <td class="ds44-checkBox-radio_list inbl">
+                   <input type="checkbox" id="lundi_avant_ecole<%= cptDispo + 1 %>" name="lundi_avant_ecole<%= cptDispo + 1 %>" value="true" class="ds44-checkbox"/><label for="lundi_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="name-lundi_avant_ecole<%= cptDispo + 1 %>"></label>
+                </td>
                 <td><input type="checkbox" id="mardi_avant_ecole<%= cptDispo + 1 %>" name="mardi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(mardi_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
                 <td><input type="checkbox" id="mercredi_avant_ecole<%= cptDispo + 1 %>" name="mercredi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(mercredi_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
                 <td><input type="checkbox" id="jeudi_avant_ecole<%= cptDispo + 1 %>" name="jeudi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(jeudi_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
@@ -372,78 +393,38 @@ int numeroDossierAssmat = profil.getNum_agrement();
                 <td><input type="checkbox" id="dimanche_nuit<%= cptDispo + 1 %>" name="dimanche_nuit<%= cptDispo + 1 %>" value="true" <% if(dimanche_nuit1.equals("true")) { %> checked <% } %> /></td>
               </tr>
             </table>
-    
-                
-            <div id="depannageRemplacement<%= cptDispo + 1 %>" class="depannageRemplacement">
-              <div id="depannageRemplacementInput<%= cptDispo + 1 %>" class="depannageRemplacementInput<%= cptDispo + 1 %>">
-              <p class="important"><trsb:glp key="DISPO-OUI-REMP-HTML"></trsb:glp></p>
-    
-              <input type="radio"  onclick="javascript:jQuery.plugin.AssmatPlugin.toggle('precision<%= cptDispo + 1 %>', 'show');" name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" class="radio" value="true" <% if(dispoDepannagePlaceDisponible1.equals("true")) { %> checked <% } %>>
-              <label for="dispoDepannagePlaceDisponible1"><%= glp("ui.com.lbl.true") %></label>
-              <input onclick="javascript:jQuery.plugin.AssmatPlugin.toggle('precision<%= cptDispo + 1 %>', 'hide');"  type="radio" name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" class="radio" value="false" <% if(dispoDepannagePlaceDisponible1.equals("false")) { %> checked <% } %>>
-              <label for="dispoDepannagePlaceDisponible1"><%= glp("ui.com.lbl.false") %></label>
-              </div>
-              <div id ="precision<%= cptDispo + 1 %>" class="precisions" style="clear: both;">
-                <label for="precisions" class="renseignements labelPrecisions"><trsb:glp key="DISPO-OUI-REMP-PREC-HTML"></trsb:glp></label>
-                <textarea type="text" name="precisionsDepannagePlaceDisponible<%= cptDispo + 1 %>" class="precisions"><%= precisionsDepannagePlaceDisponible1 %></textarea>
-              </div>
+            
+            <p class="h4-like dispo-toggleable-oui-<%= cptDispo + 1 %>" aria-level="2"><trsb:glp key="DISPO-OUI-REMP-HTML"></trsb:glp></p>
+            <div id="form-element-<%= uuid %>" data-name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" class="ds44-form__radio_container ds44-form__container dispo-toggleable-oui-<%= cptDispo + 1 %>">
+            <% uuid = UUID.randomUUID().toString(); %>
+               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+               <div class="ds44-form__container ds44-checkBox-radio_list ">
+                  <input type="radio" name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" value="true" <% if(dispoDepannagePlaceDisponible1.equals("true")) { %> checked <% } %> 
+                  id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-enabled-field-value=".precision<%= cptDispo + 1 %>"/>
+                  <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+               </div>
+               <div class="ds44-form__container ds44-checkBox-radio_list ">
+                  <input type="radio" name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" value="false" <% if(dispoDepannagePlaceDisponible1.equals("false")) { %> checked <% } %> 
+                  id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>"/>
+                  <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+               </div>
             </div>
         
           </div>
         </div>
+        
+        <%-- TODO --%>
     <div style="clar:both"></div>
-        <p class="texte-declaration" id="declaration<%= cptDispo + 1 %>" style="clear: both;"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>
+        <p class="dispo-toggleable-oui-plus-<%= cptDispo + 1 %> dispo-toggleable-non-<%= cptDispo + 1 %>" id="declaration<%= cptDispo + 1 %>" style="clear: both;"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>
     
       </div>
-      <jalios:javascript>
-  <%-- TO TRANSLATE TO JAVA --%>
-  <%if(dispoDepannagePlaceDisponible1.equals("false")) { %>
-  jQuery( "#precision<%= cptDispo + 1 %>" ).hide();
-   <% } %>
-   
-  <!--  data-enabled-field-value=".nom-du-container-a-afficher-cacher"  -->
-        <% if(Util.notEmpty(etatDispo) && etatDispo.equals(AssmatUtil.SelectionEtatDispo.IMMEDIATE.getValue())) { %>
-          jQuery.plugin.AssmatPlugin.toggle('Formulaires<%= cptDispo + 1 %>', 'show');
-          jQuery.plugin.AssmatPlugin.toggle('aPartir<%= cptDispo + 1 %>', 'hide');
-          jQuery.plugin.AssmatPlugin.toggle('dispoActuellePrecisions<%= cptDispo + 1 %>', 'show');
-          jQuery.plugin.AssmatPlugin.toggle('dispoActuelle<%= cptDispo + 1 %>', 'show');
-          jQuery.plugin.AssmatPlugin.toggle('declaration<%= cptDispo + 1 %>', 'hide');      
-        <% } else if(Util.notEmpty(etatDispo) && etatDispo.equals(AssmatUtil.SelectionEtatDispo.FUTURE.getValue())) { %>        
-          jQuery.plugin.AssmatPlugin.toggle('Formulaires<%= cptDispo + 1 %>', 'show');
-          jQuery.plugin.AssmatPlugin.toggle('declaration<%= cptDispo + 1 %>', 'show');
-          jQuery.plugin.AssmatPlugin.toggle('dispoActuellePrecisions<%= cptDispo + 1 %>', 'hide');
-          jQuery.plugin.AssmatPlugin.toggle('declaration<%= cptDispo + 1 %>', 'show');  
-          jQuery.plugin.AssmatPlugin.toggle('depannageRemplacement<%= cptDispo + 1 %>', 'hide');    
-        <% } else if(Util.notEmpty(etatDispo) && etatDispo.equals(AssmatUtil.SelectionEtatDispo.NON_DISPO.getValue())) { %>
-          jQuery.plugin.AssmatPlugin.toggle('Formulaires<%= cptDispo + 1 %>', 'hide');
-          jQuery.plugin.AssmatPlugin.toggle('declaration<%= cptDispo + 1 %>', 'show');
-        <% } %>
-        <% if(Util.notEmpty(etatDispo) && etatDispo.equals(AssmatUtil.SelectionEtatDispo.INCONNU.getValue())) { %>
-          jQuery.plugin.AssmatPlugin.toggle('Formulaires<%= cptDispo + 1 %>', 'hide');
-          jQuery.plugin.AssmatPlugin.toggle('declaration<%= cptDispo + 1 %>', 'hide');
-        <% } %>
-      </jalios:javascript>
       <% } %>         
     </div>
     
-    
-    <div class="borderDot title-bar-container dotted-portlet"></div>
+    <div class="ds44-form__container">
+        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+        <input type="hidden" name="opUpdate" value="true" data-technical-field>
+    </div>
 
-    <p class="submit">
-      <label for="submit"> 
-        <input type="submit" id="submit" name="opCreate" 
-          value="<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>" class="submitButton" /> 
-        <span class="input-box" style="background-color: #aec900" />
-          <span class="spr-recherche-ok"></span>
-        </span>
-      </label> 
-      <input type="hidden" name="noSendRedirect" value="true" /> 
-      <input type="hidden" name="opUpdate" value="true" />
-    </p>
-    
   </form>
-
-
-</div>
-</div>
-</div>

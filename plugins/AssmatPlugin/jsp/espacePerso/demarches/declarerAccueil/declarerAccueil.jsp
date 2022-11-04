@@ -6,7 +6,7 @@
 <%@page import="fr.trsb.cd44.solis.beans.AssmatSolis"%>
 <%@page import="fr.trsb.cd44.solis.manager.SolisManager"%>
 <%@page import="fr.cg44.plugin.assmat.managers.ProfilManager"%>
-<%@page import="fr.cg44.plugin.tools.googlemaps.proxy.ProxyTarget"%>
+
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file='/jcore/doInitPage.jsp'%>
 <%@ include file='/jcore/portal/doPortletParams.jsp'%>

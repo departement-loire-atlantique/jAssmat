@@ -1,6 +1,6 @@
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil.SelectionLogin"%>
-<%@page import="fr.cg44.plugin.tools.googlemaps.proxy.ProxyTarget"%>
+
 <%@page import="fr.cg44.plugin.assmat.managers.ProfilManager"%>
 <%@ include file='/jcore/doInitPage.jsp' %>
 <%@ include file='/jcore/portal/doPortletParams.jsp' %>
