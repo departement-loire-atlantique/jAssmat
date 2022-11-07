@@ -879,7 +879,7 @@ public AssmatSolis getAssmat() {
 			
 			// 0010191: Activation du compte - écran contacts - perte des données saisies
 			if(Util.isEmpty(email)){
-			  //email = assmat.getEmailAssmat();
+			  email = assmat.getEmailAssmat();
 			}
 			if(Util.isEmpty(telephone)){
 			  telephone = assmat.getTelPortable();
