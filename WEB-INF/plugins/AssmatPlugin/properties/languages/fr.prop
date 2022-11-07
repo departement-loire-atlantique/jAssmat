@@ -57,6 +57,8 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.login.motpasseconf: Confirmation d
 jcmsplugin.assmatplugin.inscription.champ.lbl.verification.erreur: Je signale une erreur
 jcmsplugin.assmatplugin.inscription.champ.lbl.telephone: Téléphone
 jcmsplugin.assmatplugin.inscription.champ.lbl.email: E-mail
+jcmsplugin.assmatplugin.inscription.champ.lbl.mdp: Mot de passe
+jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp: Confirmer le mot de passe
 jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage: Votre message ici
 jcmsplugin.assmatplugin.inscription.champ.desc.votremessage: Ce message sera envoyé automatiquement au support du site. Merci de préciser au mieux votre demande.
 jcmsplugin.assmatplugin.inscription.champ.lbl.codepostal: Code postal
@@ -92,6 +94,7 @@ jcmsplugin.assmatplugin.btn.etapeprecedente: Etape précédente
 jcmsplugin.assmatplugin.btn.envoyer: Envoyer
 jcmsplugin.assmatplugin.btn.valider: Valider
 jcmsplugin.assmatplugin.label.aide: Aide :
+jcmsplugin.assmatplugin.label.afficher: Afficher le contenu saisi dans le champ : {0}
 
 #Mail d'activation
 jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour

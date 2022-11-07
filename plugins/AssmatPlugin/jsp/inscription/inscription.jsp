@@ -13,6 +13,7 @@
 	<jsp:setProperty name='formHandler' property="noRedirect" value="true" />
 	<jsp:setProperty name='formHandler' property="civilite" value='<%= getUntrustedStringParameter("civilite[0]", null) %>' />
 	<jsp:setProperty name='formHandler' property="typeenvoi" value='<%= getUntrustedStringParameter("typeenvoi[0]", null) %>' />
+	<jsp:setProperty name='formHandler' property="choixLogin" value='<%= getUntrustedStringParameter("choixLogin[0]", null) %>' />
 	<jsp:setProperty name='formHandler' property='*' />
 </jsp:useBean>
 
