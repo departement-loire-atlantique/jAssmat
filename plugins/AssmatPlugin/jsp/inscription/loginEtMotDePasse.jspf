@@ -65,7 +65,7 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
 	<div class="ds44-form__container">
 	   <div class="ds44-posRel">
 	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp") %><sup aria-hidden="true">*</sup></span></span></label>
-	      <input type="password" id="form-element-<%= uuid %>" name="password" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp") %> - obligatoire' required autocomplete="current-password" aria-describedby="explanation-form-element-<%= uuid %>" />
+	      <input type="password" id="form-element-<%= uuid %>" name="password" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp")) %>' required autocomplete="current-password" aria-describedby="explanation-form-element-<%= uuid %>" />
 	      <button class="ds44-showPassword" type="button">
 	      <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
 	      <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.afficher", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp")) %></span>
@@ -77,7 +77,7 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
 	<div class="ds44-form__container">
 	   <div class="ds44-posRel">
 	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp") %><sup aria-hidden="true">*</sup></span></span></label>
-	      <input type="password" id="form-element-<%= uuid %>" name="passwordConfirm" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp") %> - obligatoire'  required autocomplete="current-password"    />
+	      <input type="password" id="form-element-<%= uuid %>" name="passwordConfirm" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp")) %>'  required autocomplete="current-password"    />
 	      <button class="ds44-showPassword" type="button">
 	      <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
 	      <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.afficher", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp")) %></span>
