@@ -88,6 +88,7 @@ jcmsplugin.assmatplugin.inscription.invalide: Inscription invalide
 jcmsplugin.assmatplugin.inscription.invalide.contactsupport: Inscription invalide, veuillez contacter le support
 jcmsplugin.assmatplugin.inscription.terminee: Inscription terminée !
 jcmsplugin.assmatplugin.inscription.terminee.lienacces: Vous pouvez maintenant accédez à votre compte <a href="{0}">ici</a>
+jcmsplugin.assmatplugin.inscription.votremessage: Votre message ici
 jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms à déja été enregistré
 jcmsplugin.assmatplugin.btn.etapesuivante: Etape suivante
 jcmsplugin.assmatplugin.btn.etapeprecedente: Etape précédente
