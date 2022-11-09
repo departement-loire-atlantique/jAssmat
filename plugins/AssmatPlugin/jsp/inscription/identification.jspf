@@ -65,7 +65,6 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 				            <!-- Nom -->
 				            <% uuid = UUID.randomUUID().toString(); %>
 				            <div class="ds44-form__container">
-				               <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom") %><sup aria-hidden="true">*</sup></p>
 							   <div class="ds44-posRel">
 							      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom") %><sup aria-hidden="true">*</sup></span></span></label>
 							      <input type="text" id="form-element-<%= uuid %>" name="nom" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom")) %>' required="true">
@@ -75,7 +74,6 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 							<!-- Prénom -->
 							<% uuid = UUID.randomUUID().toString(); %>
                             <div class="ds44-form__container">
-                               <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.prenom") %><sup aria-hidden="true">*</sup></p>
                                <div class="ds44-posRel">
                                   <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.prenom") %><sup aria-hidden="true">*</sup></span></span></label>
                                   <input type="text" id="form-element-<%= uuid %>" name="prenom" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.prenom")) %>' required="true">
@@ -85,7 +83,6 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 							<!-- Date de naissance -->
 							<% uuid = UUID.randomUUID().toString(); %>
 							<div class="ds44-form__container">
-							   <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %><sup aria-hidden="true">*</sup></p>
 							   <div class="ds44-posRel">
 							      <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance") %><sup aria-hidden="true">*</sup></span></span></label>
 							      <div data-name="dateDeNaissance" class="ds44-datepicker__shape ds44-inpStd" data-past-dates="true" data-next-year-dates="false" title=""><input id="form-element-<%= uuid %>" required="" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance"))) %>' data-is-date="true" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>"><span>/</span><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance"))) %>' data-is-date="true" required="" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>"><span>/</span><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.naissance"))) %>' data-is-date="true" required="" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>"></div>
@@ -102,7 +99,6 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 							<!-- N° de dossier -->
                             <% uuid = UUID.randomUUID().toString(); %>
                             <div class="ds44-form__container">
-                               <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.agrement") %><sup aria-hidden="true">*</sup></p>
                                <div class="ds44-posRel">
                                   <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.agrement") %><sup aria-hidden="true">*</sup></span></span></label>
                                   <input type="text" id="form-element-<%= uuid %>" name="numeroAgrement" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.agrement")) %>' required="true">

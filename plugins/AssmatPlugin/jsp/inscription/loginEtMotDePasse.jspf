@@ -61,97 +61,39 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
 
 	<p class="h4-like"><trsb:glp key="LOGIN-INTRO-MDP-HTML" ></trsb:glp></p>
 	<p><trsb:glp key="LOGIN-LEGENDE-MDP-HTML" ></trsb:glp></p>
-							
-							
-            <div class="alert alert-block alertPass hide alert-cg alert-warn"><h4><%=glp("msg.message-box.warning")%></h4>
-            <p></p>
-            </div>
-							<div class="blocLabel">
-								<label for="password"><trsb:glp key="LOGIN-MDP-HTML" ></trsb:glp></label> 
-							</div>
-            
-							<div class="blocChamp">
-								<input type="password" name="password" id="password" class="fullwidth fullwidthInfo"> 
-								<button class="cg-tooltip buttonHelp" data-category-id="nfdone" aria-label="<trsb:glp attribute="true" key="LOGIN-MDP-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
-                <img alt="?" src="s.gif" class="spr-interrogation">
-                </button>
-							</div>
-
-							<div class="blocLabel">
-								<label for="confirm"><trsb:glp key="LOGIN-MDP-CONF-HTML" ></trsb:glp></label>
-							</div>
-
-							<div class="blocChamp">
-								<input type="password" name="passwordConfirm" id="passwordConfirm" class="fullwidth fullwidthInfo"> 
-								<button class="cg-tooltip buttonHelp" data-category-id="nofde" aria-label="<trsb:glp attribute="true" key="LOGIN-MDP-CONF-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
-                <img alt="?" src="s.gif" class="spr-interrogation">
-                </button>
-							</div>
-							
-							
-							
-							<div class="blocLabel">
-                <div class="" style="min-height: 1px;"></div>
-              </div>
-              
-              <div class="blocChamp">
-                  <input id="visible-password" type="checkbox" />
-                  <label for="visible-password" style="margin-left: 22px;"> <trsb:glp key="CONNEXION-AM-VISIBLE-PASSWORD" /> </label>
-              </div>
-              
-				
-
-							<div class="borderDot title-bar-container dotted-portlet"></div>
-
-                 <p class="submit prev">
-                            <label for="submitprev"> <input type="submit" id="submitprev"
-                                name="opPrevious"
-                                value="<trsb:glp attribute="true" key="IDENT-BOUTON-PREV" ></trsb:glp>"
-                                class="submitButton" data-technical-field> <span class="input-box"
-                                style="background-color: #aec900"><span
-                                    class="spr-recherche-ok"></span></span>
-                            </label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field> 
-                    
-                        </p> 
-
-							<p class="submit">
-								<label for="submit"> <input type="submit" id="submit"
-									name="opNext" value="<trsb:glp attribute="true" key="LOGIN-BOUTON-HTML" ></trsb:glp>" class="submitButton" data-technical-field>
-									<span class="input-box" style="background-color: #aec900"><span
-										class="spr-recherche-ok"></span></span>
-								</label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-								<input type="hidden" name="id" value="c_5065" data-technical-field>
-							
-							</p>
-
-				
-				<!-- FIN FORMULAIRE A ETAPES -->
-		
-<jalios:javascript>
-
-jQuery( "#formContact" ).submit(function( event ) {     
-    jQuery.plugin.AssmatPlugin.verifyMotDePasse("#password", "<%=AssmatUtil.getMessage("ERROR-MDP-SECURITY") %>");   
- });
-
-jQuery( "#password" ).focusout(function(event) {    
-    jQuery.plugin.AssmatPlugin.verifyMotDePasse("#password",  "<%=AssmatUtil.getMessage("ERROR-MDP-SECURITY") %>");   
- });
- 
- 
-jQuery('#visible-password').change(function () {
-    if(this.checked){
-      document.getElementById('passwordConfirm').type='text';
-      document.getElementById('password').type='text';
-    }else {      
-      document.getElementById('passwordConfirm').type='password';
-      document.getElementById('password').type='password';
-    }    
-});
-
-</jalios:javascript>
-
+	<% uuid = UUID.randomUUID().toString(); %>
+	<div class="ds44-form__container">
+	   <div class="ds44-posRel">
+	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp") %><sup aria-hidden="true">*</sup></span></span></label>
+	      <input type="password" id="form-element-<%= uuid %>" name="password" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp")) %>' required autocomplete="current-password" aria-describedby="explanation-form-element-<%= uuid %>" />
+	      <button class="ds44-showPassword" type="button">
+	      <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
+	      <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.afficher", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp")) %></span>
+	      </button>
+	      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp")) %></span></button>
+	   </div>
+	</div>
+	<% uuid = UUID.randomUUID().toString(); %>
+	<div class="ds44-form__container">
+	   <div class="ds44-posRel">
+	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp") %><sup aria-hidden="true">*</sup></span></span></label>
+	      <input type="password" id="form-element-<%= uuid %>" name="passwordConfirm" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp")) %>'  required autocomplete="current-password"    />
+	      <button class="ds44-showPassword" type="button">
+	      <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
+	      <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.afficher", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp")) %></span>
+	      </button>
+	      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp")) %></span></button>
+	   </div>
+	</div>
+	
+	<div class="ds44-form__container">
+        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%></button>
+        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%></button>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+        <input type="hidden" name="id" value="c_5065" data-technical-field>
+    </div>				
+	
+    <!-- FIN FORMULAIRE A ETAPES -->
 
 <!-- FIN -->
 

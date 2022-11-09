@@ -57,6 +57,8 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.login.motpasseconf: Confirmation d
 jcmsplugin.assmatplugin.inscription.champ.lbl.verification.erreur: Je signale une erreur
 jcmsplugin.assmatplugin.inscription.champ.lbl.telephone: Téléphone
 jcmsplugin.assmatplugin.inscription.champ.lbl.email: E-mail
+jcmsplugin.assmatplugin.inscription.champ.lbl.mdp: Mot de passe
+jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp: Confirmer le mot de passe
 jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage: Votre message ici
 jcmsplugin.assmatplugin.inscription.champ.desc.votremessage: Ce message sera envoyé automatiquement au support du site. Merci de préciser au mieux votre demande.
 jcmsplugin.assmatplugin.inscription.champ.lbl.codepostal: Code postal
@@ -86,12 +88,14 @@ jcmsplugin.assmatplugin.inscription.invalide: Inscription invalide
 jcmsplugin.assmatplugin.inscription.invalide.contactsupport: Inscription invalide, veuillez contacter le support
 jcmsplugin.assmatplugin.inscription.terminee: Inscription terminée !
 jcmsplugin.assmatplugin.inscription.terminee.lienacces: Vous pouvez maintenant accédez à votre compte <a href="{0}">ici</a>
+jcmsplugin.assmatplugin.inscription.votremessage: Votre message ici
 jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms à déja été enregistré
 jcmsplugin.assmatplugin.btn.etapesuivante: Etape suivante
 jcmsplugin.assmatplugin.btn.etapeprecedente: Etape précédente
 jcmsplugin.assmatplugin.btn.envoyer: Envoyer
 jcmsplugin.assmatplugin.btn.valider: Valider
 jcmsplugin.assmatplugin.label.aide: Aide :
+jcmsplugin.assmatplugin.label.afficher: Afficher le contenu saisi dans le champ : {0}
 
 #Mail d'activation
 jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour
@@ -118,6 +122,19 @@ jcmsplugin.assmatplugin.inscription.error.contact.contact.codepostale: Veuillez 
 jcmsplugin.assmatplugin.inscription.error.contact.choix.mdp.confirm: La confirmation du mot de passe est obligatoire
 jcmsplugin.assmatplugin.inscription.error.contact.choix.mdp.error: Le mot de passe de confirmation ne correspond pas au mot de passe saisi
 jcmsplugin.assmatplugin.inscription.error.contact.choix.mdp.invalid: Votre mot de passe n’est pas suffisamment sécurisé. Merci de saisir au moins une lettre en majuscule, au moins une lettre en minuscule et au moins un chiffre
+
+jcmsplugin.assmatplugin.inscription.identification: Identification
+jcmsplugin.assmatplugin.inscription.verification: Vérification
+jcmsplugin.assmatplugin.inscription.contacts: Contacts
+jcmsplugin.assmatplugin.inscription.login-mdp: Login et mot de passe
+jcmsplugin.assmatplugin.inscription.confirmation: Confirmation
+
+jcmsplugin.assmatplugin.form.step.lbl: Étape {0} :
+jcmsplugin.assmatplugin.form.step.current.lbl: Étape {0} : En cours - 
+jcmsplugin.assmatplugin.form.step.done.lbl: Étape {0} : Validée - 
+jcmsplugin.assmatplugin.form.step.title: Étape {0} : - {1}
+jcmsplugin.assmatplugin.form.step.current.title: Étape {0} : En cours - {1}
+jcmsplugin.assmatplugin.form.step.done.title: Étape {0} : Validée - {1}
 
 jcmsplugin.assmatplugin.parametrage.tel.error.valide: Le champ {0} n'est pas un numéro valide
 jcmsplugin.assmatplugin.parametrage.mail.error.valide: Le champ {0} n'est pas un email valide
