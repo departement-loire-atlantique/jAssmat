@@ -988,9 +988,6 @@ public AssmatSolis getAssmat() {
       sb.append(getHiddenFieldTag("nameUA", nameUA));
 
     }
-    if (formStep >= CONTACT_STEP) {
-      
-    }
     if (formStep >= LOGIN_STEP) {
       sb.append(getHiddenFieldTag("typeenvoi", typeenvoi));
       sb.append(getHiddenFieldTag("email", email));
