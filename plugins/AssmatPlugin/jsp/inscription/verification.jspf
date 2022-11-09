@@ -101,87 +101,39 @@ if(Util.notEmpty(assMat.getExerceMam())){
 		
 				<!-- FORMULAIRE A ETAPES -->
 	 		
-		<div>
-		  <div class="blocComplet mileu simple">
-			 <div class="blocLabel">
-	           <p class=""><trsb:glp key="VERIF-IDENTITE" ></trsb:glp></p>
-			 </div>
+	           <p class="h4-like"><trsb:glp key="VERIF-IDENTITE" ></trsb:glp></p>
 	
-		  <div class="blocChamp blocForm">
-			 <span><p><%= civiliteAsssmat %> <%= prenomAsssmat %> <%= nomAsssmat %></p>
-			 </span>
-		  </div>
-		</div>
+		       <p><%= civiliteAsssmat %> <%= prenomAsssmat %> <%= nomAsssmat %></p>
 							
 		<%if(Util.notEmpty(dateNaissanceAssmat)){ %>
-           <div class="blocComplet mileu simple">
-                  <div class="blocLabel">
-                    <p class=""><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.verif.naissance") %></p>
-                  </div>
+                  <p class="h4-like"><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.verif.naissance") %></p>
   
-                  <div class="blocChamp blocForm">
-                    <span><p><%=dateNaissanceAssmat%></p>
-                    </span>
-                  </div>
-                </div>
+                  <p><%=dateNaissanceAssmat%></p>
                 <%} %>
                 
                   <%if(numAssmat != InscriptionAssmatHandler.NUMERO_AGREMENT_DEFAULT){ %>
-                <div class="blocComplet mileu simple">
-                  <div class="blocLabel">
-                    <p class=""><trsb:glp key="VERIF-NUM-DOSSIER" ></trsb:glp></p>
-                  </div>
+                    <p class="h4-like"><trsb:glp key="VERIF-NUM-DOSSIER" ></trsb:glp></p>
   
-                  <div class="blocChamp blocForm">
-                    <span><p><%=numAssmat%></p>
-                    </span>
-                  </div>
-                </div>
+                    <p><%=numAssmat%></p>
                 <% }%>
                 
                 <%if(Util.notEmpty(datePremierAgrement)){ %>
-                <div class="blocComplet mileu simple">
-                  <div class="blocLabel">
-                    <p class=""><trsb:glp key="VERIF-DATE-1ER-AGREMENT" ></trsb:glp></p>
-                  </div>
+                    <p class="h4-like"><trsb:glp key="VERIF-DATE-1ER-AGREMENT" ></trsb:glp></p>
   
-                  <div class="blocChamp blocForm">
-                    <span><p><%= datePremierAgrement%></p>
-                    </span>
-                  </div>
-                </div>
+                    <p><%= datePremierAgrement%></p>
                 <%} %>
 
-        
-                <div class="blocComplet mileu simple">
-                  <div class="blocLabel">
-                    <p class=""><trsb:glp key="VERIF-PERIODE-AGREMENT" ></trsb:glp></p>
-                  </div>
+                    <p class="h4-like"><trsb:glp key="VERIF-PERIODE-AGREMENT" ></trsb:glp></p>
   
-                  <div class="blocChamp blocForm">
-                    <span><p>Du <%= dateDernierRenouvellement %> au <%= dateProchainRenouvellement %></p>
-                    </span>
-                  </div>
-                </div>
-         
+                    <p>Du <%= dateDernierRenouvellement %> au <%= dateProchainRenouvellement %></p>       
       
                 <%-- AGREMENT --%>
-                <div class="blocComplet mileu simple">
-                  <div class="blocLabel">
-                    <p class=""><trsb:glp key="VERIF-AGREMENT" ></trsb:glp></p>
-                  </div>
+                    <p class="h4-like"><trsb:glp key="VERIF-AGREMENT" ></trsb:glp></p>
 
-                  
-                  <div class="blocChamp blocForm">
-                  
-                    
                     <%-- AGREMENT DOMICILE --%>
                     <jalios:if predicate='<%= exerceDomicile %>'>
-	                    <span>                   
-		                    <p class="nobold">
-		                     A <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp><br/>
-		                      
-		                    
+		                    <p class="h4-like">
+		                     À <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp>
 		                    </p>
 		                   
                         <% for(int itPlace=1; itPlace<=8; itPlace++) { %>
@@ -213,16 +165,12 @@ if(Util.notEmpty(assMat.getExerceMam())){
                           <%} %>
                         
                         <%} %>                
-                      </span>
+
 		                     </jalios:if>
 	   
 		                     <jalios:if predicate='<%= exerceMam %>'>
-                      <span>                                     
-                        <p class="nobold">
-                         En <trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp><br/>
-                          
-                          <span>                                     
-     
+                        <p class="h4-like">
+                         En <trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp>
                         </p>
                         
                       
@@ -255,16 +203,9 @@ if(Util.notEmpty(assMat.getExerceMam())){
                           <%} %>
                         
                         <%} %>
-                    
-                      </span>
-                        </p>
                           </jalios:if>
-                     </div>     
-                       </div>   
-                 <div class="blocComplet mileu simple">
-                        <div class="blocLabel">
-                          <p class="nobold"><trsb:glp key="VERIF-LIEU-EXERCICE" ></trsb:glp></p>
-                        </div>
+
+                          <p class="h4-like"><trsb:glp key="VERIF-LIEU-EXERCICE" ></trsb:glp></p>
 
                   
                   <%-- <div class="blocChamp blocForm">    
@@ -381,33 +322,28 @@ if(Util.notEmpty(assMat.getExerceMam())){
                        </div>  --%>                                            
                    </div>                                                                                   
                 
-                   <p class="submit">
-                       <a class="ds44-btnStd"  data-jalios-action="toggle:show toggle:hide remove:disabled toggle:hide" data-jalios-target=".SignalementErreur|.formulaire|#inputContact|.h3Signale" href="#"><trsb:glp key="VERIF-ERREUR"></trsb:glp></a>
-                   </p>
-
-                   <p class="submit">
-                        <label for="submit"> <input type="submit"
-                        name="opCreate" value='<trsb:glp attribute="true" key="VERIF-BOUTON"></trsb:glp>' class="ds44-btnStd">
-                        <span class="input-box" style="background-color: #aec900"><span
-                            class="spr-recherche-ok"></span></span>
-                        </label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-                        <input type="hidden" name="opNext" value="true" data-technical-field>
-                   </p>
-
-				   <div class="borderDot title-bar-container dotted-portlet"></div>
-
+                   <div class="ds44-form__container">
+                       <button type="button-choice" class="ds44-btnStd ds44-bgGray ds44-js-choice-button" data-choice-element-view=".SignalementErreur"
+                       data-choice-element-hide=".verificationBloc"><span class="ds44-btnInnerText"><trsb:glp key="VERIF-ERREUR"></trsb:glp></span></button>
+                   </div>
+                   
+                   <div class="ds44-form__container">
+				        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp attribute="true" key="VERIF-BOUTON"></trsb:glp>' data-technical-field>
+				        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+				        <input type="hidden" name="opNext" value="true" data-technical-field>
+				   </div>
 </div>  
   
 <!-- 	Formulaire pour signaler une erreur -->
-	<div class="SignalementErreur">
+	<div class="SignalementErreur hidden">
 	<h3 class="title-bar-container dotted-portlet"><span class="texte-parametrable text-parametrable"><trsb:glp key="VERIF-ERREUR"></trsb:glp></span></h3>
 	
 	<% uuid = UUID.randomUUID().toString(); %>
     <p aria-level="2" class="h4-like"><trsb:glp key="VERIF-ERREUR-TEXTE-INTRO-HTML" ></trsb:glp></p>
 	<div class="ds44-form__container">
 	   <div class="ds44-posRel">
-	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span>Votre message ici</span></span></label>
-	      <textarea rows="10" cols="50" id="form-element-<%= uuid %>" name="texteSignalement" class="ds44-inpStd" title="Votre message ici"></textarea>
+	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.votremessage") %></span></span></label>
+	      <textarea rows="10" cols="50" id="form-element-<%= uuid %>" name="texteSignalement" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.votremessage")%>'></textarea>
 	   </div>
 	   <div class="ds44-field-information" aria-live="polite">
             <ul class="ds44-field-information-list ds44-list">
