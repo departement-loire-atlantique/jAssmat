@@ -123,7 +123,7 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                 </div>
             </div>
          
-        <p data-enabled-by-field="#name-radio-form-element-<%= uuid %>-true"><trsb:glp key="CONTACT-LEG2-MAIL-HTML"></trsb:glp></p>
+        <p class="hidden" data-enabled-by-field="#name-radio-form-element-<%= uuid %>-true"><trsb:glp key="CONTACT-LEG2-MAIL-HTML"></trsb:glp></p>
 
 	<h3 class="h3-like"><trsb:glp key="CONTACT-DISPO-HTML"></trsb:glp></h3>
 	
@@ -139,10 +139,6 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
        </div>
 
 	<trsb:glp key="CONTACT-DISPO-LEG-HTML"></trsb:glp>
-	<%--
-	<p><%=glp("jcmsplugin.assmatplugin.parametrage.msg.contact.dispo.oui")%></p>
-	<p><%=glp("jcmsplugin.assmatplugin.parametrage.msg.contact.dispo.non")%></p>
- --%>
  
 	<div class="ds44-form__container">
         <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>'><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></button>

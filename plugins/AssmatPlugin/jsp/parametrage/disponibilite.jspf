@@ -381,26 +381,9 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
   <% } %>
 </div>
 
-<div class="borderDot title-bar-container dotted-portlet"></div>
-    <p class="submit prev">
-        <label for="submit"> 
-        <input type="submit" id="submitPrev"
-            name="opPrevious" value='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>' class="submitButton">
-            <span class="input-box" style="background-color: #aec900">
-                <span class="spr-recherche-ok"></span>
-            </span>
-        </label>
-        <input type="hidden" name="noSendRedirect" value="true" />
-        
-    </p>
-    
-<p class="submit">
-  <label for="submit"> <input type="submit" id="submit"
-    name="opNext" value='<trsb:glp key="DISPO-BOUT" attribute="true"></trsb:glp>' class="submitButton"> <span
-    class="input-box" style="background-color: #aec900"> <span
-      class="spr-recherche-ok"></span>
-  </span>
-  </label> <input type="hidden" name="noSendRedirect" value="true" /> <input
-    type="hidden" name="id" value="c_5065" />
-</p>
+<div class="ds44-form__container">
+        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>'><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></button>
+        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp key="DISPO-BOUT" attribute="true"></trsb:glp>'><trsb:glp key="DISPO-BOUT" attribute="true"></trsb:glp></button>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+    </div>
 <% } %>
