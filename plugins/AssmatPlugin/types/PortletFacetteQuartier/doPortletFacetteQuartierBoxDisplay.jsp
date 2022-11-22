@@ -22,6 +22,10 @@
   //Récupération des quartiers de Nantes
   List<Quartier> listQuartiers = QuartierDAO.getAllQuartiersNantes();
   
+
+  String dataEnabledByField="data-enabled-by-field='#form-element-" + rechercheId + obj.getPortletAdresseLiee().getId()  + "'";
+  request.setAttribute("dataEnabledByField", dataEnabledByField);
+  
 %>
 
 <div class="ds44-form__container">
