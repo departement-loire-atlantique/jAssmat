@@ -86,9 +86,6 @@ boolean notfoundCompte= false;
 										file='/plugins/AssmatPlugin/jsp/inscription/confirmation.jspf'%>
 									<!--  Ecriture des champ cachés             -->
 									<%=formHandler.getFormStepHiddenFields()%>
-									<jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
-					    	<input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>"/>
-						</jalios:if> 
 	
 								</form>
 

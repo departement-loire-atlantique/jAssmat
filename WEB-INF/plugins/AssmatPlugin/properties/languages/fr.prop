@@ -63,6 +63,7 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage: Votre message ici
 jcmsplugin.assmatplugin.inscription.champ.desc.votremessage: Ce message sera envoyé automatiquement au support du site. Merci de préciser au mieux votre demande.
 jcmsplugin.assmatplugin.inscription.champ.lbl.codepostal: Code postal
 jcmsplugin.assmatplugin.inscription.champ.lbl.mobile: Téléphone mobile
+jcmsplugin.assmatplugin.inscription.champ.lbl.fixe: Téléphone fixe
 jcmsplugin.assmatplugin.inscription.champ.lbl.typeenvoi: Vous préférez recevoir des messages du Département
 jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation: Code de confirmation
 jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.mail: Par e-mail
@@ -96,6 +97,7 @@ jcmsplugin.assmatplugin.btn.envoyer: Envoyer
 jcmsplugin.assmatplugin.btn.valider: Valider
 jcmsplugin.assmatplugin.label.aide: Aide :
 jcmsplugin.assmatplugin.label.afficher: Afficher le contenu saisi dans le champ : {0}
+jcmsplugin.assmatplugin.label.etou: et/ou
 
 #Mail d'activation
 jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour

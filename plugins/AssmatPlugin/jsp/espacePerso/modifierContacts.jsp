@@ -137,7 +137,7 @@ String uuid = UUID.randomUUID().toString();
                 <p aria-level="2" class="h4-like">
                   <trsb:glp key="CONTACT-LEG-MAIL-HTML"></trsb:glp>
                 </p>
-                <div class="ds44-posRel">
+                <div class="ds44-posRel ds44-mt2">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span></span></label>
                     <input type="email" id="form-element-<%= uuid %>" name="email" value='<%= emailAssmat %>' class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email")) %></span></button>
@@ -151,19 +151,19 @@ String uuid = UUID.randomUUID().toString();
             <% uuid = UUID.randomUUID().toString(); %>
             <div id="form-element-<%= uuid %>" data-name="visibleEmail" class="ds44-form__radio_container ds44-form__container"  data-required="true">
                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list">
                   <input type="radio" <%if(Util.notEmpty(visibiliteAdresseEmail) && "true".equals(visibiliteAdresseEmail) ){ %> checked="checked" <%} %> name="visibleEmail" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-MAIL-OUI-HTML"></trsb:glp></label>
                </div>
                <div class="ds44-form__container ds44-checkBox-radio_list ">
                   <input type="radio" <%if(Util.notEmpty(visibiliteAdresseEmail) && "false".equals(visibiliteAdresseEmail) ){%> checked="checked" <%} %> name="visibleEmail" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-MAIL-NON-HTML"></trsb:glp></label>
                </div>
-            </div>	  
+            </div>
 	  
-	  <h3 class="h3-liket"><trsb:glp key="CONTACT-DISPO-HTML"></trsb:glp></h3>
+	  <h3 class="h3-like"><trsb:glp key="CONTACT-DISPO-HTML"></trsb:glp></h3>
 	  
 	  <%-- afficher disponibilité --%>
 	  <% uuid = UUID.randomUUID().toString(); %>
-	  <trsb:glp key="CONTACT-DISPO-LEG-HTML"></trsb:glp>	  
+	  <trsb:glp key="CONTACT-DISPO-LEG-HTML"></trsb:glp>
 	  <div id="form-element-<%= uuid %>" data-name="afficherContact" class="ds44-form__radio_container ds44-form__container"  data-required="true">
                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
                <div class="ds44-form__container ds44-checkBox-radio_list ">
@@ -174,16 +174,10 @@ String uuid = UUID.randomUUID().toString();
                </div>
             </div>   
 
-    <p class="submit">
-      <label for="submit"> 
-        <input type="submit" id="submit" name="opCreate" 
-          value="<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>" class="submitButton" /> 
-        <span class="input-box" style="background-color: #aec900" />
-          <span class="spr-recherche-ok"></span>
-        </span>
-      </label> 
-      <input type="hidden" name="noSendRedirect" value="true" /> 
-      <input type="hidden" name="opUpdate" value="true" />
-    </p>
+    <div class="ds44-form__container">
+        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
+        <input type="hidden" name="opUpdate" value="true" />
+    </div>
     
   </form>

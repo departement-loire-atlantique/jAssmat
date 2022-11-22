@@ -59,7 +59,7 @@ int numeroDossierAssmat = profil.getNum_agrement();
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
 <%@ include file='/jcore/doMessageBox.jsp' %>
 
-  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" name="formContact" id="formContact">
+  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" name="formContact" id="formContact" data-no-encoding="true">
 
   
     <div class="alert alert-block alertPass hide  alert-cg">
@@ -213,23 +213,22 @@ int numeroDossierAssmat = profil.getNum_agrement();
             <% uuid = UUID.randomUUID().toString(); %>
 		    <div id="form-element-<%= uuid %>" data-name="etatDispo<%= cptDispo + 1 %>" class="ds44-form__radio_container ds44-form__container">
 		       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-		       <div class="ds44-form__container ds44-checkBox-radio_list ">
+		       <div class="ds44-form__container ds44-checkBox-radio_list">
 		          <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("1")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
-		              value="1" id="name-radio-form-element-<%= uuid %>-one" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>"
-		              data-enabled-field-value=".dispo-toggleable-oui-<%= cptDispo + 1 %>"/>
-		          <label id="label-radio-form-element-<%= uuid %>-one" for="name-radio-form-element-<%= uuid %>-one" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-HTML" ></trsb:glp></label>
+		              value="1" id="dispo-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radio"/>
+		          <label id="label-radio-form-element-<%= uuid %>-one" for="dispo-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-HTML" ></trsb:glp></label>
 		       </div>
 		       <div class="ds44-form__container ds44-checkBox-radio_list ">
                   <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("2")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
-                      value="2" id="name-radio-form-element-<%= uuid %>-two" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>"
-                      data-enabled-field-value=".dispo-toggleable-oui-plus-<%= cptDispo + 1 %>"/>
-                  <label id="label-radio-form-element-<%= uuid %>-two" for="name-radio-form-element-<%= uuid %>-two" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-PLUS-HTML"></trsb:glp></label>
+                      value="2" id="dispo-toggleable-oui-plus-<%= cptDispo + 1 %>" class="ds44-radio" 
+                      required aria-describedby="mandatory-message-form-element-<%= uuid %>"/>
+                  <label id="label-radio-form-element-<%= uuid %>-two" for="dispo-toggleable-oui-plus-<%= cptDispo + 1 %>" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-PLUS-HTML"></trsb:glp></label>
                </div>
                <div class="ds44-form__container ds44-checkBox-radio_list ">
                   <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("3")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
-                      value="3" id="name-radio-form-element-<%= uuid %>-three" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>"
-                      data-enabled-field-value=".dispo-toggleable-non-<%= cptDispo + 1 %>"/>
-                  <label id="label-radio-form-element-<%= uuid %>-three" for="name-radio-form-element-<%= uuid %>-three" class="ds44-radioLabel"><trsb:glp key="DISPO-NON-HTML"></trsb:glp></label>
+                      value="3" id="dispo-toggleable-non-<%= cptDispo + 1 %>" class="ds44-radio" 
+                      required aria-describedby="mandatory-message-form-element-<%= uuid %>"/>
+                  <label id="label-radio-form-element-<%= uuid %>-three" for="dispo-toggleable-non-<%= cptDispo + 1 %>" class="ds44-radioLabel"><trsb:glp key="DISPO-NON-HTML"></trsb:glp></label>
                </div>
 		    </div>
            </jalios:if>
@@ -238,16 +237,22 @@ int numeroDossierAssmat = profil.getNum_agrement();
              <p><trsb:glp key="DISPONIBILITES-PAS-DE-SAISIE-HTML"></trsb:glp></p>
            </jalios:default>            
           </jalios:select>
+          
+          <%
+          boolean hideEtaDispo1 = Util.isEmpty(etatDispo) || !(etatDispo.equals("1"));
+          boolean hideEtaDispo2 = Util.isEmpty(etatDispo) || !(etatDispo.equals("2"));
+          boolean hideEtaDispo3 = Util.isEmpty(etatDispo) || !(etatDispo.equals("3"));
+          %>
            
           <%-- Par defaut ou si non renseigné coche disponibilité inconnue --%>
           <input class="hidden" type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3DispoInconnu<%= cptDispo + 1 %>" value="0" 
             <% if(Util.isEmpty(etatDispo) || etatDispo.equals("0")) { %> checked <% } %> data-technical-field/>
         
-          <div id="Formulaires<%= cptDispo + 1 %>" class="dispo-toggleable-oui-<%= cptDispo + 1 %> dispo-toggleable-oui-plus-<%= cptDispo + 1 %>" style="clear: both;"> 
+          <div id="Formulaires<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>' style="clear: both;"> 
           
 	          <% uuid = UUID.randomUUID().toString(); %>
 	          <p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p>
-	          <div class="ds44-form__container dispo-toggleable-oui-plus-<%= cptDispo + 1 %>">
+	          <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
 				   <div class="ds44-select__shape ds44-inpStd">
 				      <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.month") %></p>
 				      <div id="form-element-<%= uuid %>" data-name="moisDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
@@ -269,7 +274,7 @@ int numeroDossierAssmat = profil.getNum_agrement();
 				   </div>
 			  </div>
 			  <% uuid = UUID.randomUUID().toString(); %>
-	          <div class="ds44-form__container dispo-toggleable-oui-plus-<%= cptDispo + 1 %>">
+	          <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
 	               <div class="ds44-select__shape ds44-inpStd">
 	                  <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.year") %></p>
 	                  <div id="form-element-<%= uuid %>" data-name="anneeDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
@@ -291,9 +296,8 @@ int numeroDossierAssmat = profil.getNum_agrement();
 	               </div>
 	          </div>
 	          <% uuid = UUID.randomUUID().toString(); %>
-	          <p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML"></trsb:glp></p>
 	          <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
-	          <div class="ds44-form__container dispo-toggleable-oui-plus-<%= cptDispo + 1 %>"">
+	          <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
 				   <div class="ds44-posRel">
 				      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
 				      <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionPlaceFuture<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionPlaceFuture1 %></textarea>
@@ -303,10 +307,9 @@ int numeroDossierAssmat = profil.getNum_agrement();
           </div>
     
           <% uuid = UUID.randomUUID().toString(); %>
-          <div class="dispo-toggleable-oui-<%= cptDispo + 1 %>">
-	          <p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PREC-HTML"></trsb:glp></p>
+          <div class='<%= hideEtaDispo1 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
 	          <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
-	          <div class="ds44-form__container dispo-toggleable-oui-plus-<%= cptDispo + 1 %>"">
+	          <div class='ds44-form__container<%= hideEtaDispo1 ? " hidden" : "" %>'>
 	               <div class="ds44-posRel">
 	                  <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
 	                  <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsPlaceDisponible<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionsPlaceDisponible1 %></textarea>
@@ -314,7 +317,7 @@ int numeroDossierAssmat = profil.getNum_agrement();
 	          </div>
           </div>
     
-          <div id="dispoActuelle<%= cptDispo + 1 %>" class="dispo-toggleable-oui-<%= cptDispo + 1 %> dispo-toggleable-oui-plus-<%= cptDispo + 1 %>">
+          <div id="dispoActuelle<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>'>
            
     
             <p class="renseignements important"><trsb:glp key="DISPO-OUI-SEM-HTML"></trsb:glp></p>
@@ -394,13 +397,13 @@ int numeroDossierAssmat = profil.getNum_agrement();
               </tr>
             </table>
             
-            <p class="h4-like dispo-toggleable-oui-<%= cptDispo + 1 %>" aria-level="2"><trsb:glp key="DISPO-OUI-REMP-HTML"></trsb:glp></p>
-            <div id="form-element-<%= uuid %>" data-name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" class="ds44-form__radio_container ds44-form__container dispo-toggleable-oui-<%= cptDispo + 1 %>">
+            <p data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> class="h4-like" aria-level="2"><trsb:glp key="DISPO-OUI-REMP-HTML"></trsb:glp></p>
+            <div id="form-element-<%= uuid %>" data-name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" class="ds44-form__radio_container" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
             <% uuid = UUID.randomUUID().toString(); %>
                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
                <div class="ds44-form__container ds44-checkBox-radio_list ">
                   <input type="radio" name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" value="true" <% if(dispoDepannagePlaceDisponible1.equals("true")) { %> checked <% } %> 
-                  id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-enabled-field-value=".precision<%= cptDispo + 1 %>"/>
+                  id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-enabled-by-precision-<%= cptDispo + 1 %>/>
                   <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
                </div>
                <div class="ds44-form__container ds44-checkBox-radio_list ">
@@ -413,9 +416,8 @@ int numeroDossierAssmat = profil.getNum_agrement();
           </div>
         </div>
         
-        <%-- TODO --%>
     <div style="clar:both"></div>
-        <p class="dispo-toggleable-oui-plus-<%= cptDispo + 1 %> dispo-toggleable-non-<%= cptDispo + 1 %>" id="declaration<%= cptDispo + 1 %>" style="clear: both;"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>
+        <p data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-non-<%= cptDispo + 1 %> id="declaration<%= cptDispo + 1 %>" style="clear: both;"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>
     
       </div>
       <% } %>         

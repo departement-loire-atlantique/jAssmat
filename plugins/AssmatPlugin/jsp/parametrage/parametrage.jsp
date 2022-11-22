@@ -57,65 +57,50 @@ int stepCount = formHandler.getFormStepCount();
   jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/common.css");
   jcmsContext.addCSSHeader("plugins/AssmatPlugin/css/plugin.css");
   jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
+  
+  String uuid = UUID.randomUUID().toString();
 %>
 
-<div class="headstall container-fluid formulaireActivation">
-	<div class="row-fluid">
-		<!-- COLONNE GAUCHE -->
-		<div class="span2 iconEtape">
-			<img alt="etape1" src="plugins/AssmatPlugin/img/icon-espace-perso-form.png" />
-		</div>
-		<!-- FIN COLONNE GAUCHE -->
-		<!-- COLONNE DROITE -->
-		<div class="span10 label">
-			<div class="row-fluid title">
-				<div class="label">
-					<h1><%= box.getDisplayTitle(userLang) %></h1>
+<main id="content">
 
-					<div class="menu compte hidden-phone printHide">
+    <div class="ds44-container-large">
+       <div class="ds44-inner-container">
+        <h2><%= box.getDisplayTitle(userLang) %></h2>
+    
+                <div class="row-fluid">
+                    <div class="ajax-refresh-div">
+                        <%@ include
+                            file='/plugins/AssmatPlugin/jsp/parametrage/etapes.jspf'%>
 
-						<span class="profil"><%= loggedMember.getFirstName() %> <%= loggedMember.getName() %></span>
+                                <%@ include file='/jcore/doMessageBox.jsp'%>
+                                <p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
+                                <form method="post"
+                                    action="<%= ServletUtil.getResourcePath(request) %>"
+                                    name="formContact" id="formContact" data-no-encoding="true">
+                                    
+                                    <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/headerTitle.jspf' %>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/visibilite.jspf'%>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/contacts.jspf'%>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/offre.jspf'%>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/disponibilite.jspf'%>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/autorisation.jspf'%>
+	
+		                            <% if (isLogged && HttpUtil.isCSRFEnabled()) { %>
+		                                  <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" />
+                                    <% } %>
+                                    
+                                    <!--  Ecriture des champ cachés             -->
+                                    <%=formHandler.getFormStepHiddenFields()%>
+                                    
+                                    <jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
+			                            <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>"/>
+			                        </jalios:if> 
+                                </form>
+                    </div>
+                </div>
+            </div>
+    </div>
 
-						<div
-							class="sep-visible-desktop dropdown no-separator dropdown-partage accesCompte">
-							<a href="<%= channel.getProperty("jcms.resource.logout") %>"
-								title="Déconnexion" class="compte"><%= glp("plugin.corporateidentity.header.deconnexion") %></a>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-		<div class="span9 label">
-			<div class="row-fluid">
-				<div class="ajax-refresh-div">
-					<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/etapes.jspf'%>
-
-					<div class="formActivation form-cg">
-						<div class="form-cg-gray">
-							<%@ include file='/jcore/doMessageBox.jsp'%>
-							<form method="post" action="<%= ServletUtil.getResourcePath(request) %>" class="formContact">
-				        		<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/headerTitle.jspf' %>
-				        		<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/visibilite.jspf'%>
-								<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/contacts.jspf'%>
-								<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/offre.jspf'%>
-								<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/disponibilite.jspf'%>
-								<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/autorisation.jspf'%>
-
-								<%=formHandler.getFormStepHiddenFields()%>
-                                  <% if (isLogged && HttpUtil.isCSRFEnabled()) { %>
-                                  <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" />
-                                  <% } %>
-							</form>
-						</div>
-					</div>
-					<!--  Ecriture des champ cachés             -->
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <%}else{ %>
 
 <div class="alert alert-block fade in alert-cg"><button type="button" class="close" data-dismiss="alert"><span class="spr-modal-close"></span></button><h4>Attention</h4><p>Aucun profilAM retrouvé pour l'utilisateur <%=loggedMember %></p></div>

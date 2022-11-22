@@ -91,8 +91,8 @@ String uuid = UUID.randomUUID().toString();
                       </span>
                   </span>
                 </p>
-                <div class="ds44-posRel">
-                    <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span></span></label>
+                <div class="ds44-posRel ds44-mt2">
+                    <label for="form-element-<%= uuid %>" class='ds44-formLabel <%= Util.notEmpty(emailAssmat) ? " ds44-moveLabel" : "" %>'><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span></span></label>
                     <input type="email" value="<%= emailAssmat %>" id="form-element-<%= uuid %>" name="email" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email")) %></span></button>
                 </div>
@@ -106,7 +106,7 @@ String uuid = UUID.randomUUID().toString();
     <%-- et/ou TODO DESIGN --%>
     <div class="blocComplet gauche simple">					
       <div class="blocLabel blocForm">
-        <p>et/ou</p>
+        <p><%= glp("jcmsplugin.assmatplugin.label.etou") %></p>
       </div>
     </div>
     
@@ -123,8 +123,8 @@ String uuid = UUID.randomUUID().toString();
                       </span>
                   </span>
                 </p>
-                <div class="ds44-posRel">
-                    <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %><sup aria-hidden="true">*</sup></span></span></label>
+                <div class="ds44-posRel ds44-mt2">
+                    <label for="form-element-<%= uuid %>" class='ds44-formLabel <%= Util.notEmpty(telephoneMobileAssmat) ? " ds44-moveLabel" : "" %>'><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %><sup aria-hidden="true">*</sup></span></span></label>
                     <input type="text" value="<%= telephoneMobileAssmat %>" id="form-element-<%= uuid %>" name="telephone" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile")) %></span></button>
                 </div>

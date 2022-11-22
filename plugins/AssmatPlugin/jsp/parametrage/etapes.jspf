@@ -1,54 +1,142 @@
 <!-- MENU FORMULAIRE A ETAPES -->
-		<%@page import="fr.cg44.plugin.assmat.handler.ParametrageAssmatHandler"%>
-
-		<form method="post" action="<%= ServletUtil.getResourcePath(request) %>" id ="formEtapes" class="formEtapes">
-				<nav class="menuFormulaireEtape">
-				       
-				       
-				          <ul class="menuEtapes triangle">
-				      
-				           
-				            <li <%if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {%> class="current"<%} %> >
-				            
-				            
-				              <label <%if(step>0){ %>class="hasLink"<%} %> for="identification"><%=glp("jcmsplugin.assmatplugin.parametrage.visibilite")%></label>
-				               <%if(step>0){ %>
-				              <input class="noSubmitEven" type="submit" name="formStep" id ="identification" value="0"/>
-				              <%} %>
-				            </li>
-				            
-	                  <li <%if (step == ParametrageAssmatHandler.CONTACTS_STEP) {%> class="current" <%} %>>
-				           <label <%if(step>1){ %>class="hasLink"<%} %> for="verification"><%=glp("jcmsplugin.assmatplugin.parametrage.contacts")%></label>
-				           <%if(step>1){ %>
-                      <input class="noSubmitEven" type="submit" name="formStep" id ="verification" value="1"/>
-                    </li>
-                    <%} %>
-				            
-				            <li <%if (step == ParametrageAssmatHandler.OFFRE_STEP) {%>  class="current"<%} %>>
-				           
-				           <label <%if(step>2){ %>class="hasLink"<%} %> for="contacts"><%=glp("jcmsplugin.assmatplugin.parametrage.offre")%></label>
-				            <%if(step>2){ %>
-                      <input class="noSubmitEven" type="submit" name="formStep" id ="contacts" value="2"/>
-                      <%} %>
-                    </li>
-    
-				            <li <%if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {%>  class="current"<%} %> >
-    
-				            <label <%if(step>3){ %>class="hasLink"<%} %> for="login"><%=glp("jcmsplugin.assmatplugin.parametrage.disponibilite")%></label>
-				              <%if(step>3){ %>
-                      <input class="noSubmitEven" type="submit" name="formStep" id ="login" value="3"/>
-                      <%} %>
-                    </li>
-                    
-                    
-				            <li <%if (step == ParametrageAssmatHandler.AUTORISATION_STEP) {%>  class="current"<%} %> >
-    
-				            <label for="login"><%=glp("jcmsplugin.assmatplugin.parametrage.autorisations")%></label>
-				              <%if(step>3){ %>
-                      <input class="noSubmitEven" type="submit" name="formStep" id ="login" value="4"/>
-                      <%} %>
-                    </li>
-				  </ul>
-				</nav>
-			<%=formHandler.getAllFormStepHiddenFields()%>
-		</form>
+<!-- 
+  Note sur les valeurs des étapes
+  
+  VISIBILITE_STEP = 0
+  CONTACTS_STEP = 1
+  OFFRE_STEP = 2
+  DISPONIBILITE_STEP = 3
+  AUTORISATION_STEP = 4
+ -->
+    <%@page import="fr.cg44.plugin.assmat.handler.ParametrageAssmatHandler"%>
+		
+    <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" id ="formEtapes" class="formEtapes" data-no-encoding="true">
+       
+       <input type='hidden' name='redirect' value='<%= ServletUtil.getResourcePath(request) %>' data-technical-field />
+                  
+                <nav role="navigation" class="ds44-flex-container ds44-fg1 ds44-hiddenPrint">
+                    <ol class="ds44-nav-stepper ds44-fg1 ds44-flex-container ds44-list">
+                        <li class='ds44-nav-step<%= step > 0 ? " liPassed" : ""%><%= step == 0 ? "  aria-current='page'" : ""%>'>
+                            <% String lblBtnStep = glp("jcmsplugin.assmatplugin.parametrage.visibilite"); %>
+                            <jalios:select>
+                                <jalios:if predicate="<%= step > 0 %>">
+                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 1, lblBtnStep) %>'
+                                    data-submit-value="0" data-submit-key="formStep" >
+                                        <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 1) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </button>
+                                </jalios:if>
+                                <jalios:default>
+                                    <div class="active">
+                                        <span class="number" aria-hidden="true">1</span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 1) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </div>
+                                </jalios:default>
+                            </jalios:select>
+                        </li>
+                        <li class='ds44-nav-step<%= step > 1 ? " liPassed" : ""%><%= step == 1 ? "  aria-current='page'" : ""%>'>
+                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.parametrage.contacts"); %>
+                            <jalios:select>
+                                <jalios:if predicate="<%= step > 1 %>">
+                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 2, lblBtnStep) %>'
+                                    data-submit-value="1" data-submit-key="formStep" >
+                                        <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 2) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </button>
+                                </jalios:if>
+                                <jalios:if predicate="<%= step == 1 %>">
+                                    <div class="active">
+                                        <span class="number" aria-hidden="true">2</span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 2) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </div>
+                                </jalios:if>
+                                <jalios:default>
+                                    <div class="inactive">
+                                        <span class="number" aria-hidden="true">2</span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 2) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </div>
+                                </jalios:default>
+                            </jalios:select>
+                        </li>
+                        <li class='ds44-nav-step<%= step > 2 ? " liPassed" : ""%><%= step == 2 ? "  aria-current='page'" : ""%>'>
+                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.parametrage.offre"); %>
+                            <jalios:select>
+                                <jalios:if predicate="<%= step > 2 %>">
+                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 3, lblBtnStep) %>'
+                                    data-submit-value="2" data-submit-key="formStep" >
+                                        <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 3) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </button>
+                                </jalios:if>
+                                <jalios:if predicate="<%= step == 2 %>">
+                                    <div class="active">
+                                        <span class="number" aria-hidden="true">3</span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 3) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </div>
+                                </jalios:if>
+                                <jalios:default>
+                                    <div class="inactive">
+                                        <span class="number" aria-hidden="true">3</span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 1) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </div>
+                                </jalios:default>
+                            </jalios:select>
+                        </li>
+                        <li class='ds44-nav-step<%= step > 3 ? " liPassed" : ""%><%= step == 3 ? "  aria-current='page'" : ""%>'>
+                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.parametrage.disponibilite"); %>
+                            <jalios:select>
+                                <jalios:if predicate="<%= step > 3 %>">
+                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 4, lblBtnStep) %>'
+                                    data-submit-value="3" data-submit-key="formStep" >
+                                        <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 4) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </button>
+                                </jalios:if>
+                                <jalios:if predicate="<%= step == 3 %>">
+                                    <div class="active">
+                                        <span class="number" aria-hidden="true">4</span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 4) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </div>
+                                </jalios:if>
+                                <jalios:default>
+                                    <div class="inactive">
+                                        <span class="number" aria-hidden="true">4</span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 4) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </div>
+                                </jalios:default>
+                            </jalios:select>
+                        </li>
+                        <li class='ds44-nav-step<%= step > 4 ? " liPassed" : ""%><%= step == 4 ? "  aria-current='page'" : ""%>'>
+                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.parametrage.autorisations"); %>
+                            <jalios:select>
+                                <jalios:if predicate="<%= step == 4 %>">
+                                    <div class="active">
+                                        <span class="number" aria-hidden="true">5</span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 5) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </div>
+                                </jalios:if>
+                                <jalios:default>
+                                    <div class="inactive">
+                                        <span class="number" aria-hidden="true">5</span>
+                                        <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 5) %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
+                                    </div>
+                                </jalios:default>
+                            </jalios:select>
+                        </li>
+                    </ol>
+                </nav>
+                   <%=formHandler.getAllFormStepHiddenFields()%>
+   </form>
