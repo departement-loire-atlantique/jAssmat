@@ -10,10 +10,9 @@ String visibiliteTelephonePortable = formHandler.getAvailableVisibiliteTelephone
 String visibiliteAdresseEmail = formHandler.getAvailableVisibiliteAdresseEmail();
 boolean afficherContactUniquementSiD = formHandler.getAvailableAfficherContactUniquementSiD();
 String telephoneMobile = formHandler.getTelephonePortable();
-if(Util.isEmpty(telephoneMobile)){
+if(Util.isEmpty(telephoneMobile) && Util.notEmpty(formHandler.getPublication())){
   telephoneMobile = formHandler.getPublication().getAuthor().getMobile();
 }
-
 
 if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
 	String canalDeCommunication = formHandler.getAvailableCanalDeCommunicationSite();
@@ -35,13 +34,13 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                 </div>
                 
 	            <% uuid = UUID.randomUUID().toString(); %>
-	            <div id="form-element-<%= uuid %>" data-name="visibiliteTelephoneFixe" class="ds44-form__radio_container"  data-required="true">
+	            <div id="form-element-<%= uuid %>" data-name="visbiliteTelephoneFixe" class="ds44-form__radio_container"  data-required="true">
 	               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
 	               <div class="ds44-form__container ds44-checkBox-radio_list ">
-	                  <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "true".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visibiliteTelephoneFixe" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-OUI-HTML"></trsb:glp></label>
+	                  <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "true".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visbiliteTelephoneFixe" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-OUI-HTML"></trsb:glp></label>
 	               </div>
 	               <div class="ds44-form__container ds44-checkBox-radio_list ">
-	                  <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "false".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visibiliteTelephoneFixe" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-NON-HTML"></trsb:glp></label>
+	                  <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "false".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visbiliteTelephoneFixe" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-NON-HTML"></trsb:glp></label>
 	               </div>
 	            </div>
             </div>
@@ -77,7 +76,7 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
             <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %></span></span></label>
-                    <input type="text" id="form-element-<%= uuid %>" name="creneauHorairesDappel" value='<%= Util.notEmpty(formHandler.getAvailableCreneauHorairesDappel())?formHandler.getAvailableCreneauHorairesDappel():"" %>' class="ds44-inpStd" title='<%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %>' required="false">
+                    <input type="text" id="form-element-<%= uuid %>" name="creneauHorairesDappel" value='<%= Util.notEmpty(formHandler.getAvailableCreneauHorairesDappel())?formHandler.getAvailableCreneauHorairesDappel():"" %>' class="ds44-inpStd" title='<%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %>'>
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom")) %></span></button>
                 </div>
             </div>

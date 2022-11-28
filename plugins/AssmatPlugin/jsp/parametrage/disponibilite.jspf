@@ -381,7 +381,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
   <% } %>
 </div>
 
-<div class="ds44-form__container">
+    <div class="ds44-form__container">
         <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>'><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></button>
         <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp key="DISPO-BOUT" attribute="true"></trsb:glp>'><trsb:glp key="DISPO-BOUT" attribute="true"></trsb:glp></button>
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>

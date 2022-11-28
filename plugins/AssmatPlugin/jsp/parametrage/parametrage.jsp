@@ -26,12 +26,19 @@ if(Util.notEmpty(profileAssmat)){
   
 %>
 <jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.ParametrageAssmatHandler'>
+    <jsp:setProperty name='formHandler' property='*' />
 	<jsp:setProperty name='formHandler' property='request' value='<%= request %>' />
 	<jsp:setProperty name='formHandler' property='response' value='<%= response %>' />
-	<jsp:setProperty name='formHandler' property='*' />
 	<jsp:setProperty name='formHandler' property='id' value="<%= profileAssmat.getId() %>" />
+	<jsp:setProperty name='formHandler' property="visbiliteTelephoneFixe" value='<%= new String[]{getUntrustedStringParameter("visbiliteTelephoneFixe[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="visibiliteTelephonePortable" value='<%= new String[]{getUntrustedStringParameter("visibiliteTelephonePortable[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="visibiliteAdresseEmail" value='<%= new String[]{getUntrustedStringParameter("visibiliteAdresseEmail[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="afficherContactUniquementSiD" value='<%= true && Boolean.parseBoolean(getUntrustedStringParameter("afficherContactUniquementSiD[0]", "false")) %>' />
 </jsp:useBean>
 <%
+// champs en radio buttons faute à une non cohésion entre les données requête
+// et le comportement natif code jalios
+
 if (formHandler.validate()) {
    request.setAttribute("modal.redirect", request.getAttribute("workspaceURL")); 
    return; 
@@ -84,17 +91,12 @@ int stepCount = formHandler.getFormStepCount();
 	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/offre.jspf'%>
 	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/disponibilite.jspf'%>
 	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/autorisation.jspf'%>
-	
-		                            <% if (isLogged && HttpUtil.isCSRFEnabled()) { %>
-		                                  <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" />
-                                    <% } %>
                                     
                                     <!--  Ecriture des champ cachés             -->
                                     <%=formHandler.getFormStepHiddenFields()%>
                                     
-                                    <jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
-			                            <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>"/>
-			                        </jalios:if> 
+			                        <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>
+			                        <input type="hidden" name="formStep" value="<%= Util.notEmpty(step) ? step : 0 %>" data-technical-field/>
                                 </form>
                     </div>
                 </div>

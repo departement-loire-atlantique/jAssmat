@@ -35,11 +35,14 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 	public static final int DISPONIBILITE_STEP = 3;
 	public static final int AUTORISATION_STEP = 4;
 
-	// Permet d'afficher un message si la personne ne souhaite pas afficher ces
+  // Permet d'afficher un message si la personne ne souhaite pas afficher ces
 	// informations sur le site
 	protected boolean afficherMessageConfirmationVisibiliteSiteNone = true;
 
 	protected boolean afficherMessageConfirmation = false;
+	
+	private String endTag = "/>";
+  private String endTagTechnicalField = "data-technical-field />";
 
 	/**
 	 * Méthode qui valide le passage à l'étape suivante
@@ -94,7 +97,7 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 					}
 					return false;
 				} else {
-					getPublication().setEtapeDeValidation(formStep);
+					getPublication().setEtapeDeValidation(formStep+1);
 
 					// Affichage du message optionnel
 					if (getAvailableVisibiliteSite()) {
@@ -138,7 +141,7 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 						getPublication().setAfficherContactUniquementSiD(getAvailableAfficherContactUniquementSiD());
 					} 
 
-					getPublication().setEtapeDeValidation(formStep);
+					getPublication().setEtapeDeValidation(formStep+1);
 					if (getPublication().checkUpdate(channel.getDefaultAdmin()).isOK()) {
 						getPublication().performUpdate(channel.getDefaultAdmin());
 					}
@@ -162,7 +165,7 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 					return false;
 				} else {
 					setFields(getPublication());
-					getPublication().setEtapeDeValidation(formStep);
+					getPublication().setEtapeDeValidation(formStep+1);
 					// enregistrement des données avant de passer à l'étapes
 					// suivantes
 					if (getPublication().checkUpdate(channel.getDefaultAdmin()).isOK()) {
@@ -180,7 +183,7 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 				} else {
 					setFields(getPublication());
 					performDispos();
-					getPublication().setEtapeDeValidation(formStep);
+					getPublication().setEtapeDeValidation(formStep+1);
 					if (getPublication().checkUpdate(channel.getDefaultAdmin()).isOK()) {
 						getPublication().performUpdate(channel.getDefaultAdmin());
 					}
@@ -225,7 +228,7 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 
 					}
 					setFields(getPublication());
-					getPublication().setEtapeDeValidation(formStep);
+					getPublication().setEtapeDeValidation(formStep+1);
 					getPublication().setProfilRenseigne(true);
 					if (getPublication().checkUpdate(channel.getDefaultAdmin()).isOK()) {
 						getPublication().performUpdate(channel.getDefaultAdmin());
@@ -326,7 +329,7 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 	public String getFormStepHiddenFields() {
 		StringBuilder stringBuilder = new StringBuilder();
 
-		stringBuilder.append(getHiddenField("formStep", formStep));
+		// stringBuilder.append(getHiddenField("formStep", formStep).replace(endTag, endTagTechnicalField));
 
 		return stringBuilder.toString();
 	}
@@ -4838,6 +4841,9 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
  public void setTelephonePortable(String telephonePortable) {
    this.telephonePortable =  telephonePortable;
   }
+ public void setFormStep(int formStep) {
+   this.formStep = formStep;
+ }
 
  public String getTelephonePortable() {
 		return telephonePortable;
@@ -4947,4 +4953,32 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 		performDisponibilite(idDispo10, etatDispo10, precisionPlaceFuture10, precisionsPlaceDisponible10, moisDispo10, anneeDispo10, lundi_avant_ecole10, mardi_avant_ecole10, mercredi_avant_ecole10, jeudi_avant_ecole10, vendredi_avant_ecole10, samedi_avant_ecole10, dimanche_avant_ecole10, lundi_matin10, mardi_matin10, mercredi_matin10, jeudi_matin10, vendredi_matin10, samedi_matin10, dimanche_matin10, lundi_midi10, mardi_midi10, mercredi_midi10, jeudi_midi10, vendredi_midi10, samedi_midi10,
 				dimanche_midi10, lundi_pm10, mardi_pm10, mercredi_pm10, jeudi_pm10, vendredi_pm10, samedi_pm10, dimanche_pm10, lundi_apres_ecole10, mardi_apres_ecole10, mercredi_apres_ecole10, jeudi_apres_ecole10, vendredi_apres_ecole10, samedi_apres_ecole10, dimanche_apres_ecole10, lundi_nuit10, mardi_nuit10, mercredi_nuit10, jeudi_nuit10, vendredi_nuit10, samedi_nuit10, dimanche_nuit10, dispoDepannagePlaceDisponible10, precisionsDepannagePlaceDisponible10);
 	}
+	
+	// Surcharges
+	@Override
+  public String getAvailableVisbiliteTelephoneFixe() {
+    if (Util.notEmpty(this.visbiliteTelephoneFixe) && !"none".equals(this.visbiliteTelephoneFixe)) {
+      return this.visbiliteTelephoneFixe;
+    } else {
+      return super.getAvailableVisbiliteTelephoneFixe();
+    }
+  }
+	
+	@Override
+  public String getAvailableVisibiliteTelephonePortable() {
+    if (Util.notEmpty(this.visibiliteTelephonePortable) && !"none".equals(this.visibiliteTelephonePortable)) {
+      return this.visibiliteTelephonePortable;
+    } else {
+      return super.getAvailableVisibiliteTelephonePortable();
+    }
+  }
+	
+	@Override
+  public String getAvailableVisibiliteAdresseEmail() {
+    if (Util.notEmpty(this.visibiliteAdresseEmail) && !"none".equals(this.visibiliteAdresseEmail)) {
+      return this.visibiliteAdresseEmail;
+    } else {
+      return super.getAvailableVisibiliteAdresseEmail();
+    }
+  }
 }

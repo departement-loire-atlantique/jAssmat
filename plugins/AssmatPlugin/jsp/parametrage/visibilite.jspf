@@ -44,7 +44,7 @@ if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
 
 	<% if(formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()){ %>
 	<div class="ds44-form__container">
-        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp attribute="true" key="VISIB-BOUTON" ></trsb:glp>' data-technical-field>
+        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp>'><trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp></button>
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
         <input type="hidden" name="id" value="c_5065" data-technical-field>
         <input type="hidden" name="opNext" value="true" data-technical-field>
