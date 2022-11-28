@@ -14,10 +14,12 @@
 %><%@page import="com.google.gson.JsonObject"%><%
 %><%@page import="com.google.gson.JsonArray"%><%
 
+
 request.setAttribute("inFO", Boolean.TRUE);
 
 %><%@ include file='/jcore/doInitPage.jspf' %><%
 %><%@ include file="/jcore/portal/doPortletParams.jspf" %><%
+%><%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%><%
 
 
 response.setContentType("application/json");
@@ -45,7 +47,7 @@ codeInseeString = codeInseeString.substring(0, 5);
 Integer codeInsee =  Integer.parseInt(codeInseeString);
 
 // A partir de
-long time = getLongParameter("mois", -1);
+long time = getLongParameter("mois", new Date().getTime());
 Date dateTime = new Date(time);
 
 
@@ -464,9 +466,6 @@ request.setAttribute("assmatPoints", assmatPointsTriee);
 
 // RESULATS DE RECHERCHE
 
-// TODO Nombre de résultats par dsiponibilité : envoyer l'information dans le JSON pour que le javascript mette l'information à jour
-
-
 
 
 
@@ -478,7 +477,43 @@ logger.warn("assmatResultSet : "+assmatResultSet.size());
 
 
 
+%>
 
+
+
+
+<jalios:buffer name="assmatTuileResult"><%
+
+    %><section class="ds44-card ds44-js-card ds44-card--contact ds44-box ds44-bgGray ds44-cardIsFocus">
+
+        <div class="ds44-card__section">
+
+            <div class="ds44-innerBoxContainer">
+                <p role="heading" aria-level="2" class="h4-like ds44-cardTitle"><%= glp("jcmsplugin.assmatplugin.recherche.am.result.title.2", assmatResultSet.size()) %></p>
+
+                <p class="ds44-docListElem ds44-mt-std">
+                    <i class="icon icon-check ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO" parameter='<%= new String[]{resultSetDispo.size() + ""} %>'  />
+                </p>
+                <p class="ds44-docListElem ds44-mt-std">
+                    <i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO-FUTUR" parameter='<%= new String[]{resultSetDispoFutur.size() + ""} %>' />
+                </p>
+                <p class="ds44-docListElem ds44-mt-std">
+                    <i class="icon icon-visuel ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-NO-DISPO-CONTACT" parameter='<%= new String[]{resultSetNonDispoContact.size() + ""} %>' />
+                </p>
+                <jalios:if predicate="<%= isRam || isContribPower %>">
+                    <p class="ds44-docListElem ds44-mt-std">
+                        <i class="icon icon-visuel ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO-NON-RENSEIGNEES" parameter='<%= new String[]{resultSetDispoNonRenseigne.size() + ""} %>' />
+                    </p>
+                </jalios:if>
+            </div>
+ 
+        </div>
+    </section><%
+
+%></jalios:buffer>
+
+
+<%
 
 
 
@@ -494,7 +529,7 @@ if(hasPager) {
   jsonObject.addProperty("max-result", maxResult);
 }
 
-
+jsonObject.addProperty("html-nb-result", assmatTuileResult); 
 jsonObject.addProperty("nb-result", assmatResultSet.size());
 jsonObject.addProperty("nb-result-per-page", maxResult);
 
@@ -511,16 +546,13 @@ ProfilASSMAT itProfilAM = null;
 
 
 
-<jalios:foreach collection="<%= setPlace %>" name="itEntry" type="Place" ><%
 
-		%><jalios:buffer name="itPubListGabarit"><%  
-			%><jalios:media data="<%= itEntry %>" template="card"/><%
-			%>
-		</jalios:buffer><%
 
-	    jsonArray.add(SocleUtils.publicationToJsonObject(itEntry, itPubListGabarit, itEntry.getTitle(), null)); 
-	    %>
-</jalios:foreach>
+
+
+
+
+
 
 
 

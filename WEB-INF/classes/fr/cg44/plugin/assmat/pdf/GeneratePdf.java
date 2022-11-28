@@ -1,7 +1,6 @@
 package fr.cg44.plugin.assmat.pdf;
 
 import java.awt.Color;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
@@ -59,7 +58,6 @@ import fr.cg44.plugin.assmat.comparator.AssmatSolisDistanceComparator;
 import fr.cg44.plugin.assmat.comparator.DisponibiliteComparator;
 import fr.cg44.plugin.assmat.managers.AssmatSearchDAO;
 import fr.cg44.plugin.assmat.managers.ProfilManager;
-import fr.cg44.plugin.assmat.selector.PlaceSelector;
 import fr.trsb.cd44.solis.beans.AssmatSolis;
 import fr.trsb.cd44.solis.manager.QuartierDAO;
 import fr.trsb.cd44.solis.manager.SolisManager;

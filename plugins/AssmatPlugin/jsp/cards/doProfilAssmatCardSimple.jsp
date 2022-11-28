@@ -18,6 +18,13 @@ if (data == null) {
   return;
 }
 
+PortletRechercheFacettes  boxTmp = (PortletRechercheFacettes) (channel.getPublication(request.getParameter("boxId")));
+Boolean afficherSelect = false;
+if(Util.notEmpty(boxTmp)) {
+  afficherSelect = boxTmp.getAfficherSelection();
+}
+
+
 ProfilASSMAT pub = (ProfilASSMAT) data;
 Member mbr = pub.getAuthor(); 
 SolisManager solisMgr = SolisManager.getInstance();
@@ -42,18 +49,29 @@ if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
 
 %>
 
-<section class="ds44-card ds44-js-card ds44-card--contact ds44-bgGray  ">
+<section class="ds44-card ds44-js-card ds44-card--contact ds44-bgGray">
     <div class="ds44-card__section">
         
-<!--         <p class="ds44-cardSelect pa0 ma0"> -->
-<!--             <button class="pas" type="button" aria-describedby='card_<%= pub.getId()%>'><i class="icon icon-star-empty" aria-hidden="true"></i><span class="visually-hidden">Sélection</span></button> -->
-<!--         </p> -->
-        <div class="ds44-innerBoxContainer">
-            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle" id='card_<%= pub.getId()%>'><div href='<%= pub.getDisplayUrl(userLocale)  %>' class="ds44-card__globalLink"><%= mbr.getFullName() %></div></p>
+        
+        <jalios:if predicate="<%= afficherSelect %>">
+			<p class="ds44-cardSelect pa0 ma0">
+				<button class="pas ds44-js-select-button"
+					data-url="/json/button-return-select-enabled.json"
+					data-titles='{ "enabled": "Désélectionner <%= mbr.getFullName() %>", "disabled": "Sélectionner <%= mbr.getFullName() %>"}'
+					data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}'
+					type="button"
+					aria-describedby='card_<%= pub.getId()%>'>
+					<i class="icon icon-star-empty" data-icon aria-hidden="true"></i> <span
+						class="visually-hidden" data-entitled><%= glp("jcmsplugin.socle.selectionner") %></span>
+				</button>
+			</p>
+        </jalios:if>
+
+		<div class="ds44-innerBoxContainer">
+            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle" id='card_<%= pub.getId()%>'><a href='<%= pub.getDisplayUrl(userLocale)  %>'><%= mbr.getFullName() %></a></p>
             <hr class="mbs" aria-hidden="true"/>
             
-            
-            
+                       
             <!-- Adresse -->                            
             <jalios:if predicate="<%= Util.notEmpty(assmatSolis) %>">
                                
