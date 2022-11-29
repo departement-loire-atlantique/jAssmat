@@ -4954,7 +4954,7 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 				dimanche_midi10, lundi_pm10, mardi_pm10, mercredi_pm10, jeudi_pm10, vendredi_pm10, samedi_pm10, dimanche_pm10, lundi_apres_ecole10, mardi_apres_ecole10, mercredi_apres_ecole10, jeudi_apres_ecole10, vendredi_apres_ecole10, samedi_apres_ecole10, dimanche_apres_ecole10, lundi_nuit10, mardi_nuit10, mercredi_nuit10, jeudi_nuit10, vendredi_nuit10, samedi_nuit10, dimanche_nuit10, dispoDepannagePlaceDisponible10, precisionsDepannagePlaceDisponible10);
 	}
 	
-	// Surcharges
+	// Surcharges car les getters générés empêchent de récupérer les données du formulaire
 	@Override
   public String getAvailableVisbiliteTelephoneFixe() {
     if (Util.notEmpty(this.visbiliteTelephoneFixe) && !"none".equals(this.visbiliteTelephoneFixe)) {
@@ -4979,6 +4979,123 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
       return this.visibiliteAdresseEmail;
     } else {
       return super.getAvailableVisibiliteAdresseEmail();
+    }
+  }
+	
+	@Override
+  public String getAvailableAccueilTempsPartiel() {
+    if (Util.notEmpty(this.accueilTempsPartiel) && !"none".equals(this.accueilTempsPartiel)) {
+      return this.accueilTempsPartiel;
+    } else {
+      return super.getAvailableAccueilTempsPartiel();
+    }
+  }
+	
+	@Override
+  public String getAvailableAccueilPeriscolaire() {
+    if (Util.notEmpty(this.accueilPeriscolaire) && !"none".equals(this.accueilPeriscolaire)) {
+      return this.accueilPeriscolaire;
+    } else {
+      return super.getAvailableAccueilPeriscolaire();
+    }
+  }
+	
+	@Override
+  public String getAvailableAccueilMercredi() {
+    if (Util.notEmpty(this.accueilMercredi) && !"none".equals(this.accueilMercredi)) {
+      return this.accueilMercredi;
+    } else {
+      return super.getAvailableAccueilMercredi();
+    }
+  }
+	
+	@Override
+  public String getAvailableAccueilPendantLesVacancesSco() {
+    if (Util.notEmpty(this.accueilPendantLesVacancesSco) && !"none".equals(this.accueilPendantLesVacancesSco)) {
+      return this.accueilPendantLesVacancesSco;
+    } else {
+      return super.getAvailableAccueilPendantLesVacancesSco();
+    }
+  }
+	
+	@Override
+  public String getAvailableHorairesAtypiques() {
+    if (Util.notEmpty(this.horairesAtypiques) && !"none".equals(this.horairesAtypiques)) {
+      return this.horairesAtypiques;
+    } else {
+      return super.getAvailableHorairesAtypiques();
+    }
+  }
+	
+	@Override
+  public String getAvailableAvant7h() {
+    if (Util.notEmpty(this.avant7h) && !"none".equals(this.avant7h)) {
+      return this.avant7h;
+    } else {
+      return super.getAvailableAvant7h();
+    }
+  }
+	
+	@Override
+  public String getAvailableApres20h() {
+    if (Util.notEmpty(this.apres20h) && !"none".equals(this.apres20h)) {
+      return this.apres20h;
+    } else {
+      return super.getAvailableApres20h();
+    }
+  }
+	
+	@Override
+  public String getAvailableLeSamedi() {
+    if (Util.notEmpty(this.leSamedi) && !"none".equals(this.leSamedi)) {
+      return this.leSamedi;
+    } else {
+      return super.getAvailableLeSamedi();
+    }
+  }
+	
+	@Override
+  public String getAvailableLeDimanche() {
+    if (Util.notEmpty(this.leDimanche) && !"none".equals(this.leDimanche)) {
+      return this.leDimanche;
+    } else {
+      return super.getAvailableLeDimanche();
+    }
+  }
+	
+	@Override
+  public String getAvailableLaNuit() {
+    if (Util.notEmpty(this.laNuit) && !"none".equals(this.laNuit)) {
+      return this.laNuit;
+    } else {
+      return super.getAvailableLaNuit();
+    }
+  }
+	
+	@Override
+  public String getAvailableAccepteDepannage() {
+    if (Util.notEmpty(this.accepteDepannage) && !"none".equals(this.accepteDepannage)) {
+      return this.accepteDepannage;
+    } else {
+      return super.getAvailableAccepteDepannage();
+    }
+  }
+	
+	@Override
+  public String getAvailableAccueilEnfantHandicap() {
+    if (Util.notEmpty(this.accueilEnfantHandicap) && !"none".equals(this.accueilEnfantHandicap)) {
+      return this.accueilEnfantHandicap;
+    } else {
+      return super.getAvailableAccueilEnfantHandicap();
+    }
+  }
+	
+	@Override
+  public String getAvailableLogementAccessible() {
+    if (Util.notEmpty(this.logementAccessible) && !"none".equals(this.logementAccessible)) {
+      return this.logementAccessible;
+    } else {
+      return super.getAvailableLogementAccessible();
     }
   }
 }

@@ -30,10 +30,25 @@ if(Util.notEmpty(profileAssmat)){
 	<jsp:setProperty name='formHandler' property='request' value='<%= request %>' />
 	<jsp:setProperty name='formHandler' property='response' value='<%= response %>' />
 	<jsp:setProperty name='formHandler' property='id' value="<%= profileAssmat.getId() %>" />
+	<%-- Etape contacts --%>
 	<jsp:setProperty name='formHandler' property="visbiliteTelephoneFixe" value='<%= new String[]{getUntrustedStringParameter("visbiliteTelephoneFixe[0]", "none")} %>' />
 	<jsp:setProperty name='formHandler' property="visibiliteTelephonePortable" value='<%= new String[]{getUntrustedStringParameter("visibiliteTelephonePortable[0]", "none")} %>' />
 	<jsp:setProperty name='formHandler' property="visibiliteAdresseEmail" value='<%= new String[]{getUntrustedStringParameter("visibiliteAdresseEmail[0]", "none")} %>' />
 	<jsp:setProperty name='formHandler' property="afficherContactUniquementSiD" value='<%= true && Boolean.parseBoolean(getUntrustedStringParameter("afficherContactUniquementSiD[0]", "false")) %>' />
+	<%-- Etape offres --%>
+	<jsp:setProperty name='formHandler' property="accueilTempsPartiel" value='<%= new String[]{getUntrustedStringParameter("accueilTempsPartiel[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accueilPeriscolaire" value='<%= new String[]{getUntrustedStringParameter("accueilPeriscolaire[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accueilMercredi" value='<%= new String[]{getUntrustedStringParameter("accueilMercredi[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accueilPendantLesVacancesSco" value='<%= new String[]{getUntrustedStringParameter("accueilPendantLesVacancesSco[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="horairesAtypiques" value='<%= new String[]{getUntrustedStringParameter("horairesAtypiques[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="avant7h" value='<%= new String[]{getUntrustedStringParameter("avant7h[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="apres20h" value='<%= new String[]{getUntrustedStringParameter("apres20h[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="leSamedi" value='<%= new String[]{getUntrustedStringParameter("leSamedi[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="leDimanche" value='<%= new String[]{getUntrustedStringParameter("leDimanche[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="laNuit" value='<%= new String[]{getUntrustedStringParameter("laNuit[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accepteDepannage" value='<%= new String[]{getUntrustedStringParameter("accepteDepannage[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accueilEnfantHandicap" value='<%= new String[]{getUntrustedStringParameter("accueilEnfantHandicap[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="logementAccessible" value='<%= new String[]{getUntrustedStringParameter("logementAccessible[0]", "none")} %>' />
 </jsp:useBean>
 <%
 // champs en radio buttons faute à une non cohésion entre les données requête

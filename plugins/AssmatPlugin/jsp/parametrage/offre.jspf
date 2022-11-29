@@ -137,10 +137,10 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
         <div id="form-element-<%= uuid %>" data-name="leSamedi" class="ds44-form__radio_container" data-required="false">
             <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
             <div class="ds44-form__container ds44-checkBox-radio_list ">
-                <input type="radio" <%if(Util.notEmpty(leSamedi) && "true".equals(leSamedi)){ %> checked="checked" <%} %> name="leSamedi" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+                <input type="radio" <%if(Util.notEmpty(leDimanche) && "true".equals(leDimanche)){ %> checked="checked" <%} %> name="leDimanche" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
             </div>
             <div class="ds44-form__container ds44-checkBox-radio_list ">
-                <input type="radio" <%if(Util.notEmpty(leSamedi) && "false".equals(leSamedi)){ %> checked="checked" <%} %> name="leSamedi" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+                <input type="radio" <%if(Util.notEmpty(leDimanche) && "false".equals(leDimanche)){ %> checked="checked" <%} %> name="leDimanche" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
             </div>
         </div>
 	
@@ -174,7 +174,7 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
 	<div class="ds44-form__container<% if((Util.notEmpty(accepteDepannage) && "false".equals(accepteDepannage)) || Util.isEmpty(accepteDepannage)) {%> hidden <% } %>" data-enabled-by-field="#name-radio-form-element-<%= uuid %>-true">
         <div class="ds44-posRel">
             <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.label.precisions") %></span></span></label>
-            <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="form-element-<%= uuid %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage") %>'><% if(Util.notEmpty(precisionsDepannage)){ %><%=precisionsDepannage%><% } %></textarea>
+            <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsDepannage" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage") %>'><% if(Util.notEmpty(precisionsDepannage)){ %><%=precisionsDepannage%><% } %></textarea>
         </div>
     </div>
 </div>
@@ -193,7 +193,7 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
 	<div class="ds44-form__container<% if((Util.notEmpty(accueilEnfantHandicap) && "false".equals(accueilEnfantHandicap)) || Util.isEmpty(accueilEnfantHandicap)) {%> hidden <% } %>" data-enabled-by-field="#name-radio-form-element-<%= uuid %>-true">
         <div class="ds44-posRel">
             <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.label.precisions") %></span></span></label>
-            <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="form-element-<%= uuid %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage") %>'><% if(Util.notEmpty(precisionsEnfantHandicap)){ %><%=precisionsEnfantHandicap%><% } %></textarea>
+            <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsEnfantHandicap" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage") %>'><% if(Util.notEmpty(precisionsEnfantHandicap)){ %><%=precisionsEnfantHandicap%><% } %></textarea>
         </div>
     </div>
 </div>
@@ -213,7 +213,7 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
 	<div class="ds44-form__container<% if((Util.notEmpty(logementAccessible) && "false".equals(logementAccessible)) || Util.isEmpty(logementAccessible)) {%> hidden <% } %>" data-enabled-by-field="#name-radio-form-element-<%= uuid %>-true">
         <div class="ds44-posRel">
             <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.label.precisions") %></span></span></label>
-            <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="form-element-<%= uuid %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage") %>'><% if(Util.notEmpty(precisionsLogementAccessible)){ %><%=precisionsLogementAccessible%><% } %></textarea>
+            <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsLogementAccessible" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.votremessage") %>'><% if(Util.notEmpty(precisionsLogementAccessible)){ %><%=precisionsLogementAccessible%><% } %></textarea>
         </div>
     </div>
 </div>
