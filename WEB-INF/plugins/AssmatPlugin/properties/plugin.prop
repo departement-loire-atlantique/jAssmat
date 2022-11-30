@@ -116,10 +116,10 @@ $plugin.assmatplugin.categ.relaiam: rp1_62675
 
 jcmsplugin.assmatplugin.version-site.socle.boolean: true
 
-jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.popup.color: #AEC900
-jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.futur.popup.color: #f78b00
-jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne.popup.color: #bebebe
-jcmsplugin.assmatplugin.recherche.am.result.recap.am.contact.popup.color: #bebebe
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.popup.color: dispo
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.futur.popup.color: time
+jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne.popup.color: visible
+jcmsplugin.assmatplugin.recherche.am.result.recap.am.contact.popup.color: visible
 
 extra.Member.jcmsplugin.assmatplugin.idsolis.lieu:
 
@@ -181,6 +181,10 @@ jcmsplugin.assmat.format.date.form: yyyy-MM-dd
 jcmsplugin.assmat.format.date.profil: dd/MM/yyyy
 
 # iconographie
-jcmsplugin.assmat.profil.logo.creneauDispo: https://design.loire-atlantique.fr//assets/images/creneauDispo.svg
-jcmsplugin.assmat.profil.logo.creneauNonDispo: https://design.loire-atlantique.fr//assets/images/creneauNonDispo.svg
+jcmsplugin.assmat.profil.logo.creneauDispo: https://design.loire-atlantique.fr/assets/images/creneauDispo.svg
+jcmsplugin.assmat.profil.logo.creneauNonDispo: https://design.loire-atlantique.fr/assets/images/creneauNonDispo.svg
 media.data-template.card.Place: /plugins/AssmatPlugin/jsp/cards/doPlaceCard.jsp
+
+# cartes
+jcmsplugin.socle.recherche.map.icon: [{"dispo":"https://design.loire-atlantique.fr/assets/images/apps/assmat/icones/png/icon-dispo_30x30.png", "time":"https://design.loire-atlantique.fr/assets/images/apps/assmat/icones/png/icon-time_30x30.png", "visible":"https://design.loire-atlantique.fr/assets/images/apps/assmat/icones/png/icon-visible_30x30.png"}]
+

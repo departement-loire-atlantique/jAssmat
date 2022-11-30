@@ -45,7 +45,7 @@ if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
   distance = AssmatUtil.getDistance((double)pointAssmat.getLatitude(),(double) pointAssmat.getLongitude(),(double) pointUser.getLatitude(), (double)pointUser.getLongitude()); 
 }
 
-
+Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier");
 
 %>
 
@@ -55,20 +55,20 @@ if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
         
         <jalios:if predicate="<%= afficherSelect %>">
 			<p class="ds44-cardSelect pa0 ma0">
-				<button class="pas ds44-js-select-button"
-					data-url="/json/button-return-select-enabled.json"
+				<button class='pas ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(pub.getId())) ? "" : "is-select" %>'
+					data-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= pub.getId() %>"
 					data-titles='{ "enabled": "Désélectionner <%= mbr.getFullName() %>", "disabled": "Sélectionner <%= mbr.getFullName() %>"}'
 					data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}'
 					type="button"
 					aria-describedby='card_<%= pub.getId()%>'>
-					<i class="icon icon-star-empty" data-icon aria-hidden="true"></i> <span
+					<i class='icon icon-star-empty' data-icon aria-hidden="true"></i> <span
 						class="visually-hidden" data-entitled><%= glp("jcmsplugin.socle.selectionner") %></span>
 				</button>
 			</p>
         </jalios:if>
 
 		<div class="ds44-innerBoxContainer">
-            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle" id='card_<%= pub.getId()%>'><a href='<%= pub.getDisplayUrl(userLocale)  %>'><%= mbr.getFullName() %></a></p>
+            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle" id='card_<%= pub.getId()%>'><a href='<%= pub.getDisplayUrl(userLocale)  %>' class="ds44-card__globalLink"><%= mbr.getFullName() %></a></p>
             <hr class="mbs" aria-hidden="true"/>
             
                        
