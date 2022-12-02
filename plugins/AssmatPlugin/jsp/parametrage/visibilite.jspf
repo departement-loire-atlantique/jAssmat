@@ -13,40 +13,27 @@ if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
 	%>
 	<%
 
-	if(formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()){ 
-	
+	if(formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()){
 	
 	%>
 		<!-- FORMULAIRE A ETAPES -->
-		<div class="blocComplet ">
-			<div class="blocLabel blocLabelLong">
-				<p class=""><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
-			</div>
-
-			<div class="blocChamp multipleRadio afficher-profile blocForm">
-				<span>
-					<input type="radio" name="visibiliteSite" id="oui" class="radio" value="true"
-						<%if(visibiliteSite || aide_caf){ %>  checked="checked" <%} %> style="background: transparent;" />
-					<label for="email"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.oui") %></label>
-				</span>
-			<% if(!aide_caf) {%>
-				<span>	
-					<input type="radio" name="visibiliteSite" id="non" class="radio" value="false"
-						<%if(!visibiliteSite){ %> checked="checked" <%} %> />
-					<label for="tel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.non") %><br /></label> 
-				</span>
-				<%} %>
-			</div>
-		</div>
-
-		<div class="blocComplet gauche">
-					
+            <% uuid = UUID.randomUUID().toString(); %>
+		    <div id="form-element-<%= uuid %>" data-name="visibiliteSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
+		       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+		       <div class="ds44-form__container ds44-checkBox-radio_list ">
+		          <input type="radio" <%if(visibiliteSite){ %>  checked="checked" <%} %> name="visibiliteSite" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.oui") %></label>
+		       </div>
+		       <div class="ds44-form__container ds44-checkBox-radio_list ">
+		          <input type="radio" <%if(!visibiliteSite){ %> checked="checked" <%} %> <% if(aide_caf) { %> disabled <%} %> name="visibiliteSite" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.non") %></label>
+		       </div>
+		    </div>
+			
 			<p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML" %>'></trsb:glp></p>
-		</div>
+			
 	<% }else{ %>
-		<div class="blocComplet gauche">
+		
 			<p><trsb:glp key="VISIB-REFUS-TEXTE-HTML"></trsb:glp></p>
-		</div>
+
 	<% } %>
 	
 	<%-- Contribuer dans VISIB-AFF-LEG-HTML et VISIB-REFUS-TEXTE-HTML ? pas de clé dans invision --%>
@@ -56,19 +43,12 @@ if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
 	</div>
 
 	<% if(formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()){ %>
-	<div class="borderDot title-bar-container dotted-portlet"></div>
-
-	<p class="submit">
-		<label for="submit"> <input type="submit" id="submit"
-			name="opCreate" value='<trsb:glp attribute="true" key="VISIB-BOUTON" ></trsb:glp>' class="submitButton">
-			<span class="input-box" style="background-color: #aec900">
-				<span class="spr-recherche-ok"></span>
-			</span>
-		</label>
-		<input type="hidden" name="noSendRedirect" value="true" />
-		<input type="hidden" name="id" value="c_5065" />
-		<input type="hidden" name="opNext" value="true" />
-	</p>
+	<div class="ds44-form__container">
+        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp>'><trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp></button>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+        <input type="hidden" name="id" value="c_5065" data-technical-field>
+        <input type="hidden" name="opNext" value="true" data-technical-field>
+    </div>
 	<%} %>
 	<!-- FIN FORMULAIRE A ETAPES -->
 <%} %>

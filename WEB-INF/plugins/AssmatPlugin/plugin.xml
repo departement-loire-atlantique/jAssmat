@@ -136,7 +136,11 @@
         </template>
     </templates>
 
-    
+    <templates type="PortletSelection">
+        <template name="myspace" file="doMySpaceSelection.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit "Mon espace personnel"</label>
+        </template>
+    </templates>
   </types>
 
   <jars>

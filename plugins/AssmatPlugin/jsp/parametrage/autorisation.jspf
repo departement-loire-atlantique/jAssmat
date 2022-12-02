@@ -11,78 +11,55 @@ boolean autorisationRelais =  formHandler.getAvailableAutorisationRelais();
 if (step == ParametrageAssmatHandler.AUTORISATION_STEP) {
   if (!formHandler.getAfficherMessageConfirmation()) {
 %>
-    <div class="info-gauche cell-left">
-      <p><trsb:glp key="AUTOR-DPT-HTML"></trsb:glp></p>
-    </div>
-    <div class="radio-droite cell-right">
-      <input type="radio" name="autorisationSite" id="ouiAutorisationSite" class="radio" value="true"
-        <% if(autorisationSite) { %> checked <% } %>>
-      <label for="ouiAutorisationSite"><trsb:glp key="AUTOR-DPT-OUI-HTML"></trsb:glp></label>
-      <input type="radio" name="autorisationSite" id="nonAutorisationSite" class="radio" value="false"
-        <% if(!autorisationSite) { %> checked <% } %>>
-      <label for="nonAutorisationSite" ><trsb:glp key="AUTOR-DPT-NON-HTML"></trsb:glp></label>
-    </div>
-
-    <div class="borderDot title-bar-container dotted-portlet" style="margin-top: 10px; margin-bottom: 20px;"></div>
-
-    <div class="info-gauche cell-left">
-      <p><trsb:glp key="AUTOR-CAF-HTML"></trsb:glp></p>
-    </div>
-    <div class="radio-droite cell-right">
-      <input type="radio" name="autorisationCAF" id="ouiAutorisationCAF" class="radio" value="true"
-        <% if(autorisationCAF) { %> checked <% } %>>
-      <label for="ouiAutorisationCAF"><trsb:glp key="AUTOR-CAF-OUI-HTML"></trsb:glp></label>
-      <input type="radio" name="autorisationCAF" id="nonAutorisationCAF" class="radio" value="false"
-        <% if(!autorisationCAF){ %> checked <% } %>>
-      <label for="nonAutorisationCAF"><trsb:glp key="AUTOR-CAF-NON-HTML"></trsb:glp></label>
+    <p class="h4-like"><trsb:glp key="AUTOR-DPT-HTML"></trsb:glp></p>
+    <% uuid = UUID.randomUUID().toString(); %>
+    <div id="form-element-<%= uuid %>" data-name="autorisationSite" class="ds44-form__radio_container"  data-required="true">
+        <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+        <div class="ds44-form__container ds44-checkBox-radio_list ">
+            <input type="radio"  <% if(autorisationSite) { %> checked <% } %> name="autorisationSite" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="AUTOR-DPT-OUI-HTML"></trsb:glp></label>
+        </div>
+        <div class="ds44-form__container ds44-checkBox-radio_list ">
+            <input type="radio"  <% if(!autorisationSite){ %> checked <% } %> name="autorisationSite" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="AUTOR-DPT-NON-HTML"></trsb:glp></label>
+        </div>
     </div>
 
-    <div class="borderDot title-bar-container dotted-portlet" style="margin-top: 10px; margin-bottom: 20px;"></div>
-
-    <div class="info-gauche cell-left">
-      <p><trsb:glp key="AUTOR-RAM-HTML"></trsb:glp></p>
+    <p class="h4-like"><trsb:glp key="AUTOR-CAF-HTML"></trsb:glp></p>
+    <% uuid = UUID.randomUUID().toString(); %>
+    <div id="form-element-<%= uuid %>" data-name="autorisationCAF" class="ds44-form__radio_container"  data-required="true">
+        <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+        <div class="ds44-form__container ds44-checkBox-radio_list ">
+            <input type="radio"  <% if(autorisationCAF) { %> checked <% } %> name="autorisationCAF" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="AUTOR-CAF-OUI-HTML"></trsb:glp></label>
+        </div>
+        <div class="ds44-form__container ds44-checkBox-radio_list ">
+            <input type="radio"  <% if(!autorisationCAF){ %> checked <% } %> name="autorisationCAF" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="AUTOR-CAF-NON-HTML"></trsb:glp></label>
+        </div>
     </div>
-    <div class="radio-droite cell-right">
-      <input type="radio" name="autorisationRelais" id="ouiAutorisationRelais" class="radio" value="true"
-        <% if(autorisationRelais)  { %> checked <% } %>>
-      <label for="ouiAutorisationRelais"><trsb:glp key="AUTOR-RAM-OUI-HTML"></trsb:glp></label>
-      <input type="radio" name="autorisationRelais" id="nonAutorisationRelais" class="radio" value="false"
-        <% if(!autorisationRelais)  { %> checked <% } %>>
-      <label for="nonAutorisationRelais"><trsb:glp key="AUTOR-RAM-NON-HTML"></trsb:glp></label>
+
+    <p class="h4-like"><trsb:glp key="AUTOR-RAM-HTML"></trsb:glp></p>
+    <% uuid = UUID.randomUUID().toString(); %>
+    <div id="form-element-<%= uuid %>" data-name="autorisationRelais" class="ds44-form__radio_container"  data-required="true">
+        <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+        <div class="ds44-form__container ds44-checkBox-radio_list ">
+            <input type="radio" <% if(autorisationRelais) { %> checked <% } %> name="autorisationRelais" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="AUTOR-RAM-OUI-HTML"></trsb:glp></label>
+        </div>
+        <div class="ds44-form__container ds44-checkBox-radio_list ">
+            <input type="radio" <% if(!autorisationRelais){ %> checked <% } %> name="autorisationRelais" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="AUTOR-RAM-NON-HTML"></trsb:glp></label>
+        </div>
     </div>
     
-    <div class="alert alert-block fade in alert-cg">
-      <trsb:glp key="AUTOR-LEG-HTML"></trsb:glp>
+    <trsb:glp key="AUTOR-LEG-HTML"></trsb:glp>
+    
+    <div class="ds44-form__container">
+        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>'><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></button>
+        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp key="CONTACT-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="AUTOR-BOUTON" attribute="true"></trsb:glp></button>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
     </div>
-    
-    <div class="borderDot title-bar-container dotted-portlet"></div>
-    <p class="submit prev">
-        <label for="submit"> 
-        <input type="submit" id="submitPrev"
-            name="opPrevious" value='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>' class="submitButton">
-            <span class="input-box" style="background-color: #aec900">
-                <span class="spr-recherche-ok"></span>
-            </span>
-        </label>
-        <input type="hidden" name="noSendRedirect" value="true" />
-        
-    </p>
-        
-    <p class="submit">
-      <label for="submit"> <input type="submit" id="submit" name="opNext" value='<trsb:glp key="AUTOR-BOUTON" attribute="true"></trsb:glp>' class="submitButton">
-        <span class="input-box" style="background-color: #aec900">
-          <span class="spr-recherche-ok"></span>
-        </span>
-      </label>
-      <input type="hidden" name="noSendRedirect" value="true" />
-    
-    </p>
+
   <%  } else { %>
   
-    <h3 class="title-bar-container dotted-portlet"><trsb:glp key="AUTOR-MERCI-INTRO-HTML"></trsb:glp></h3>
+    <h3 class="h3-like"><trsb:glp key="AUTOR-MERCI-INTRO-HTML"></trsb:glp></h3>
     <%
     String canalCommunication = formHandler.getAvailableCanalDeCommunicationSite();
-    
     %>
     <% if("0".equals(canalCommunication)) { %>
       <div>
@@ -94,15 +71,11 @@ if (step == ParametrageAssmatHandler.AUTORISATION_STEP) {
         <p><trsb:glp key="AUTOR-MERCI-MAIL-HTML"></trsb:glp></p>
       </div>
     <% } %>
-  
-    <div class="borderDot title-bar-container dotted-portlet"></div>
-
-    <p class="submit">
-      <label for="submit"> <input type="submit" id="submit" name="opCreate" value='<trsb:glp key="AUTOR-MERCI-BOUT-HTML" attribute="true"></trsb:glp>' class="submitButton next">     
-        <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
-      </label>
-      <input type="hidden" name="noSendRedirect" value="true" />
-      <input type="hidden" name="opFinish" value="true" />
-    </p> 
+    
+    <div class="ds44-form__container">
+        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="AUTOR-MERCI-BOUT-HTML" attribute="true"></trsb:glp>'><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></button>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/>
+        <input type="hidden" name="opFinish" value="true" data-technical-field/>
+    </div>
   <% } %>
 <% } %>

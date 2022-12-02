@@ -17,119 +17,124 @@ int nbTentativeStep0 = formHandler.getNbTentativeErrone();
        
        <input type='hidden' name='redirect' value='<%= ServletUtil.getResourcePath(request) %>' data-technical-field />
 				  
-				<nav role="navigation" class="ds44-flex-container ds44-fg1 ds44-hiddenPrint" aria-label="Menu de pagination : Activez votre compte et définissez votre login et mot de passe">
+				<nav role="navigation" class="ds44-flex-container ds44-fg1 ds44-hiddenPrint">
 				    <ol class="ds44-nav-stepper ds44-fg1 ds44-flex-container ds44-list">
 				        <li class='ds44-nav-step<%= step > 0 ? " liPassed" : ""%><%= step == 0 ? "  aria-current='page'" : ""%>'>
+				        <% String lblBtnStep = glp("jcmsplugin.assmatplugin.inscription.identification"); %>
 				            <jalios:select>
 				                <jalios:if predicate="<%= step > 0 %>">
-					                <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 1, glp("jcmsplugin.assmatplugin.inscription.identification")) %>'
+					                <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 1, lblBtnStep) %>'
 					                data-submit-value="0" data-submit-key="formStep" >
 		                                <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
 		                                <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 1) %></span>
-		                                <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.identification") %></span>
+		                                <span class="text"><%= lblBtnStep %></span>
 		                            </button>
 				                </jalios:if>
 				                <jalios:default>
 				                    <div class="active">
 		                                <span class="number" aria-hidden="true">1</span>
 		                                <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 1) %></span>
-		                                <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.identification") %></span>
+		                                <span class="text"><%= lblBtnStep %></span>
 		                            </div>
 				                </jalios:default>
 				            </jalios:select>
 				        </li>
 				        <li class='ds44-nav-step<%= step > 1 ? " liPassed" : ""%><%= step == 1 ? "  aria-current='page'" : ""%>'>
+				            <% lblBtnStep = glp("jcmsplugin.assmatplugin.inscription.verification"); %>
                             <jalios:select>
                                 <jalios:if predicate="<%= step > 1 %>">
-                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 2, glp("jcmsplugin.assmatplugin.inscription.verification")) %>'
+                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 2, lblBtnStep) %>'
                                     data-submit-value="1" data-submit-key="formStep" >
                                         <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 2) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.verification") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </button>
                                 </jalios:if>
                                 <jalios:if predicate="<%= step == 1 %>">
                                     <div class="active">
                                         <span class="number" aria-hidden="true">2</span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 2) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.verification") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </div>
                                 </jalios:if>
                                 <jalios:default>
                                     <div class="inactive">
                                         <span class="number" aria-hidden="true">2</span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 2) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.verification") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </div>
                                 </jalios:default>
                             </jalios:select>
                         </li>
                         <li class='ds44-nav-step<%= step > 2 ? " liPassed" : ""%><%= step == 2 ? "  aria-current='page'" : ""%>'>
+                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.inscription.contacts"); %>
                             <jalios:select>
                                 <jalios:if predicate="<%= step > 2 %>">
-                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 3, glp("jcmsplugin.assmatplugin.inscription.contacts")) %>'
+                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 3, lblBtnStep) %>'
                                     data-submit-value="2" data-submit-key="formStep" >
                                         <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 3) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.contacts") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </button>
                                 </jalios:if>
                                 <jalios:if predicate="<%= step == 2 %>">
                                     <div class="active">
                                         <span class="number" aria-hidden="true">3</span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 3) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.contacts") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </div>
                                 </jalios:if>
                                 <jalios:default>
                                     <div class="inactive">
                                         <span class="number" aria-hidden="true">3</span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 1) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.contacts") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </div>
                                 </jalios:default>
                             </jalios:select>
                         </li>
                         <li class='ds44-nav-step<%= step > 3 ? " liPassed" : ""%><%= step == 3 ? "  aria-current='page'" : ""%>'>
+                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.inscription.contacts"); %>
                             <jalios:select>
                                 <jalios:if predicate="<%= step > 3 %>">
-                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 4, glp("jcmsplugin.assmatplugin.inscription.login-mdp")) %>'
+                                    <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 4, lblBtnStep) %>'
                                     data-submit-value="3" data-submit-key="formStep" >
                                         <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 4) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.login-mdp") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </button>
                                 </jalios:if>
                                 <jalios:if predicate="<%= step == 3 %>">
                                     <div class="active">
                                         <span class="number" aria-hidden="true">4</span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 4) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.login-mdp") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </div>
                                 </jalios:if>
                                 <jalios:default>
                                     <div class="inactive">
                                         <span class="number" aria-hidden="true">4</span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 4) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.login-mdp") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </div>
                                 </jalios:default>
                             </jalios:select>
                         </li>
                         <li class='ds44-nav-step<%= step > 4 ? " liPassed" : ""%><%= step == 4 ? "  aria-current='page'" : ""%>'>
+                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.inscription.contacts"); %>
                             <jalios:select>
                                 <jalios:if predicate="<%= step == 4 %>">
                                     <div class="active">
                                         <span class="number" aria-hidden="true">5</span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 5) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.confirmation") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </div>
                                 </jalios:if>
                                 <jalios:default>
                                     <div class="inactive">
                                         <span class="number" aria-hidden="true">5</span>
                                         <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 5) %></span>
-                                        <span class="text"><%= glp("jcmsplugin.assmatplugin.inscription.identification") %></span>
+                                        <span class="text"><%= lblBtnStep %></span>
                                     </div>
                                 </jalios:default>
                             </jalios:select>

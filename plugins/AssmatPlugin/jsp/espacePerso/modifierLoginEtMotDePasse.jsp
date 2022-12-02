@@ -1,6 +1,6 @@
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil.SelectionLogin"%>
-<%@page import="fr.cg44.plugin.tools.googlemaps.proxy.ProxyTarget"%>
+
 <%@page import="fr.cg44.plugin.assmat.managers.ProfilManager"%>
 <%@ include file='/jcore/doInitPage.jsp' %>
 <%@ include file='/jcore/portal/doPortletParams.jsp' %>
@@ -38,7 +38,6 @@ if (formHandler.validate()) {
 
   if(Util.notEmpty(profil)){
     
-	  String dataColor= ProxyTarget.getMainColor(); 
    boolean loginMail=false;
    boolean loginTel= false;
    boolean loginAgrement= false;
@@ -87,7 +86,7 @@ if (formHandler.validate()) {
                 <input required="required" type="radio" <%if(SelectionLogin.MAIL.equals(typeLogin)){%> checked="checked" <%} %> name="choixLogin" id="email" class="radio"
                   value="2" style="background: transparent;">
                   <label for="email"><%=glp("jcmsplugin.assmatplugin.espaceperso.monmail") %> <%=emailAssmat%> 
-                   <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<trsb:glp key="HELP-PREFERENCE-LOGIN-MAIL-HTML" attribute="true"></trsb:glp>" data-color="<%=dataColor%>">
+                   <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<trsb:glp key="HELP-PREFERENCE-LOGIN-MAIL-HTML" attribute="true"></trsb:glp>">
                 <img alt="?" src="s.gif" class="spr-interrogation">
                 </button>
                 </label>
@@ -102,8 +101,7 @@ if (formHandler.validate()) {
                   <input
                   type="radio" name="choixLogin" id="tel" class="radio" <%if(SelectionLogin.TELEPHONE.equals(typeLogin)){%> checked="checked" <%} %> value="1"><label
                   for="tel"><%=glp("jcmsplugin.assmatplugin.espaceperso.monnum") %> <%=telephoneMobileAssmat %>
-                    <button class="cg-tooltip buttonHelp" data-category-id="nonez" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-TEL-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
+                    <button class="cg-tooltip buttonHelp" data-category-id="nonez" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-TEL-BULLE-HTML" ></trsb:glp>">
                 <img alt="?" src="s.gif" class="spr-interrogation">
                 </button>   
                   
@@ -112,8 +110,7 @@ if (formHandler.validate()) {
                 <%} %>
                 <input type="radio" name="choixLogin" id="dossier" class="radio"  <%if(SelectionLogin.NUMERO_DOSSIER.equals(typeLogin)){%> checked="checked" <%} %>
                   value="3"><label for="dossier"><%=glp("jcmsplugin.assmatplugin.espaceperso.monagr") %> <%=numeroDossierAssmat %> 
-                  <button class="cg-tooltip buttonHelp" data-category-id="nonea" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-DOSSIER-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
+                  <button class="cg-tooltip buttonHelp" data-category-id="nonea" aria-label="<trsb:glp attribute="true" key="LOGIN-PREF-CONNEXION-DOSSIER-BULLE-HTML" ></trsb:glp>">
                 <img alt="?" src="s.gif" class="spr-interrogation">
                 </button>
                 </label>
@@ -133,8 +130,7 @@ if (formHandler.validate()) {
             
               <div class="blocChamp">
                 <input type="password"  name="password" id="password" class="fullwidth fullwidthInfo"> 
-                <button class="cg-tooltip buttonHelp" data-category-id="nfdone" aria-label="<trsb:glp attribute="true" key="LOGIN-MDP-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
+                <button class="cg-tooltip buttonHelp" data-category-id="nfdone" aria-label="<trsb:glp attribute="true" key="LOGIN-MDP-BULLE-HTML" ></trsb:glp>">
                 <img alt="?" src="s.gif" class="spr-interrogation">
                 </button>
               </div>
@@ -146,8 +142,7 @@ if (formHandler.validate()) {
 
               <div class="blocChamp">
                 <input type="password" name="passwordConfirm" id="passwordConfirm" class="fullwidth fullwidthInfo"> 
-                <button class="cg-tooltip buttonHelp" data-category-id="nofde" aria-label="<trsb:glp attribute="true" key="LOGIN-MDP-CONF-BULLE-HTML" ></trsb:glp>" 
-                data-color="<%=dataColor%>">
+                <button class="cg-tooltip buttonHelp" data-category-id="nofde" aria-label="<trsb:glp attribute="true" key="LOGIN-MDP-CONF-BULLE-HTML" ></trsb:glp>">
                 <img alt="?" src="s.gif" class="spr-interrogation">
                 </button>
               </div>

@@ -1,6 +1,5 @@
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil.SelectionLogin"%>
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
-<%@page import="fr.cg44.plugin.tools.googlemaps.proxy.ProxyTarget"%>
 <%@page import="fr.cg44.plugin.assmat.managers.ProfilManager"%>
 <%@ include file='/jcore/doInitPage.jsp' %>
 <%@ include file='/jcore/portal/doPortletParams.jsp' %>
@@ -33,9 +32,7 @@ if(Util.isEmpty(profil)){
 <%
 if (formHandler.validate()) {
   //return;
-} 
-
-String dataColor= ProxyTarget.getMainColor(); 
+}
 
 String emailAssmat = loggedMember.getEmail() != null ? loggedMember.getEmail() : "" ;
 String telephoneMobileAssmat = profil.getAuthor().getMobile() != null ? profil.getAuthor().getMobile() : "" ;
@@ -45,111 +42,103 @@ int numeroDossierAssmat = profil.getNum_agrement();
 
 boolean isCanalMail = AssmatUtil.SelectionPreferenceReception.MAIL.getValue().equals(canalEnvoi);
 boolean isCanalTel = AssmatUtil.SelectionPreferenceReception.TELEPHONE.getValue().equals(canalEnvoi);
+
+//UUID unique pour les champs
+String uuid = UUID.randomUUID().toString();
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
 <%@ include file='/jcore/doMessageBox.jsp' %>
 
-<div class="headstall container-fluid formulaireActivation">
-<div class="formActivation form-cg form-espace-perso">
-<div class="form-cg-gray form-cg-white">
-
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
-    name="formContact" id="formContact" class="formContact formEspacePerso">
+    name="formContact" id="formContact">
 
-    <p class="info"><trsb:glp key="CONTACTS-EXEMPLES-HTML"></trsb:glp></p>
+    <p class="ds44-field-information-explanation"><trsb:glp key="CONTACTS-EXEMPLES-HTML"></trsb:glp></p>
     <br>
     
-    
-    <div class="blocLabel" style="text-align: left;">
-    <p class=""><trsb:glp key="CONTACTS-PREF-HTML"></trsb:glp></p>
-    </div>
+    <p aria-level="2" class="h4-like"><trsb:glp key="CONTACTS-PREF-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
 
     <%-- Radio box par e-mail ou par SMS --%>
-    <div class="blocChamp multipleRadio civilite">
-      <%-- Par e-mail --%>
-      <span>
-        <input required="required"  <%if(isCanalMail){ %>checked="checked"  <%} %> type="radio" name="choixCanalComm" id="email" class="radio" 
-          value='<%= AssmatUtil.SelectionPreferenceReception.MAIL.getValue() %>' style="background: transparent;" />
-        <label for="email">
-          <trsb:glp key="CONTACTS-PREF-EMAIL-HTML" ></trsb:glp>
-        </label>
-      </span>
-      <%-- Par SMS --%>
-      <span>
-        <input type="radio" <%if(isCanalTel){ %>checked="checked"  <%} %> name="choixCanalComm" id="tel" class="radio" 
-        value='<%= AssmatUtil.SelectionPreferenceReception.TELEPHONE.getValue() %>' />
-        <label for="tel">
-          <trsb:glp  key="CONTACTS-PREF-SMS-HTML" ></trsb:glp><br />
-        </label> 
-      </span>
+    <div id="form-element-<%= uuid %>" data-name="choixCanalComm" class="ds44-form__radio_container ds44-form__container"  data-required="true">
+       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+       <%-- Par e-mail --%>
+       <div class="ds44-form__container ds44-checkBox-radio_list ">
+          <input type="radio" <%if(isCanalMail){ %>checked="checked" <%} %> name="choixCanalComm" value="<%= AssmatUtil.SelectionPreferenceReception.MAIL.getValue() %>" id="name-radio-form-element-<%= uuid %>-mail" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-mail" for="name-radio-form-element-<%= uuid %>-mail" class="ds44-radioLabel"><trsb:glp key="CONTACTS-PREF-EMAIL-HTML" ></trsb:glp></label>
+       </div>
+       <%-- Par SMS --%>
+       <div class="ds44-form__container ds44-checkBox-radio_list ">
+          <input type="radio" <%if(isCanalTel){ %>checked="checked"  <%} %> name="choixCanalComm" value="<%= AssmatUtil.SelectionPreferenceReception.TELEPHONE.getValue() %>" id="name-radio-form-element-<%= uuid %>-tel" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-tel" for="name-radio-form-element-<%= uuid %>-tel" class="ds44-radioLabel"><trsb:glp  key="CONTACTS-PREF-SMS-HTML" ></trsb:glp><br /></label>
+       </div>
     </div>
 
-    <div class="clear"></div>
-		<h3 class="title-bar-container dotted-portlet" style="margin-top: 20px;">Modifier si besoin vos coordonnées</h3>
+    
+    <h3 class="h3-like"><%= glp("jcmsplugin.assmatplugin.espacepro.modifiercoords") %></h3>
 
-    <div class="alert alert-block alertPass hide  alert-cg">
-			<h4><%=glp("msg.message-box.warning")%></h4>
-      <p></p>
+    <div class="alert alert-block">
+	   <h4><%=glp("msg.message-box.warning")%></h4>
     </div>
-        
+    
     <%-- Votre adresse e-mail --%>
-		<div class="blocComplet droit">								
-			<div class="blocLabel blocForm">
-				<label for="email"><trsb:glp key="CONTACTS-EMAIL-HTML"></trsb:glp></label>
-			</div>
-			<div class="blocChamp blocForm">
-				<input type="text" name="email" id="email" value="<%= emailAssmat %>" class="fullwidth fullwidthInfo">
-				<button class="cg-tooltip buttonHelp" data-category-id="none"
-					aria-label="<trsb:glp attribute="true" key="CONTACTS-EMAIL-BULLE-HTML" ></trsb:glp>"
-					data-color="<%=dataColor%>">
-					<img alt="?" src="s.gif" class="spr-interrogation">
-				</button>
-			</div>
-    </div>
+    <% uuid = UUID.randomUUID().toString(); %>
+            <div class="ds44-form__container">
+                <p aria-level="2" class="h4-like">
+                   <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>
+                  <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
+                      <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
+                      <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
+                      </button><span id="label_simpletooltip_<%= uuid %>" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>" aria-hidden="true">
+                      <trsb:glp key="CONTACTS-EMAIL-BULLE-HTML" ></trsb:glp>
+                      </span>
+                  </span>
+                </p>
+                <div class="ds44-posRel ds44-mt2">
+                    <label for="form-element-<%= uuid %>" class='ds44-formLabel <%= Util.notEmpty(emailAssmat) ? " ds44-moveLabel" : "" %>'><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span></span></label>
+                    <input type="email" value="<%= emailAssmat %>" id="form-element-<%= uuid %>" name="email" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email")) %></span></button>
+                </div>
+                <div class="ds44-field-information" aria-live="polite">
+                    <ul class="ds44-field-information-list ds44-list">
+                        <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.socle.form.exemple.email") %></li>
+                    </ul>
+                </div>
+            </div>
 
-    <%-- et/ou --%>
+    <%-- et/ou TODO DESIGN --%>
     <div class="blocComplet gauche simple">					
       <div class="blocLabel blocForm">
-        <p>et/ou</p>
+        <p><%= glp("jcmsplugin.assmatplugin.label.etou") %></p>
       </div>
     </div>
-
-    <%-- Votre téléphone mobile --%>
-    <div class="blocComplet droit">      
-      <div class="blocLabel blocForm">
-        <label for="telephone"><trsb:glp key="CONTACTS-TEL-PORTABLE-HTML"></trsb:glp></label>
-      </div>
-      <div class="blocChamp blocForm">
-        <input type="text" name="telMobile" id="telephone" value="<%= telephoneMobileAssmat %>" class="fullwidth fullwidthInfo" />
-        <button class="cg-tooltip buttonHelp" data-category-id="none"
-					aria-label="<trsb:glp attribute="true" key="CONTACTS-TEL-BULLE-HTML" ></trsb:glp>"
-					data-color="<%=dataColor%>">
-					<img alt="?" src="s.gif" class="spr-interrogation">
-				</button>
-			</div>				
-    </div>
-
-
-
-    <div class="borderDot title-bar-container dotted-portlet"></div>
-
-    <p class="submit">
-      <label for="submit"> 
-        <input type="submit" id="submit" name="opCreate" 
-          value="<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>" class="submitButton" /> 
-		    <span class="input-box" style="background-color: #aec900" />
-          <span class="spr-recherche-ok"></span>
-		    </span>
-		  </label> 
-		  <input type="hidden" name="noSendRedirect" value="true" /> 
-		  <input type="hidden" name="numeroAgrement" value="<%= numeroDossierAssmat %>" /> 
-      <input type="hidden" name="opUpdate" value="true" />
-    </p>
     
-  </form>
-
-
-</div>
-</div>
-</div>
+    <%-- Téléphone --%>
+           <% uuid = UUID.randomUUID().toString(); %>
+            <div class="ds44-form__container">
+                <p aria-level="2" class="h4-like">
+                  <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>
+                  <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
+                      <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
+                      <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
+                      </button><span id="label_simpletooltip_<%= uuid %>" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>" aria-hidden="true">
+                      <trsb:glp key="CONTACTS-TEL-BULLE-HTML" ></trsb:glp>
+                      </span>
+                  </span>
+                </p>
+                <div class="ds44-posRel ds44-mt2">
+                    <label for="form-element-<%= uuid %>" class='ds44-formLabel <%= Util.notEmpty(telephoneMobileAssmat) ? " ds44-moveLabel" : "" %>'><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %><sup aria-hidden="true">*</sup></span></span></label>
+                    <input type="text" value="<%= telephoneMobileAssmat %>" id="form-element-<%= uuid %>" name="telephone" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile")) %></span></button>
+                </div>
+                <div class="ds44-field-information" aria-live="polite">
+                    <ul class="ds44-field-information-list ds44-list">
+                        <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.socle.form.exemple.tel") %></li>
+                    </ul>
+                </div>
+            </div>
+            
+    <div class="ds44-form__container">
+        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
+          <input type="hidden" name="numeroAgrement" value="<%= numeroDossierAssmat %>" data-technical-field/>
+    </div>
+    
+</form>

@@ -26,12 +26,34 @@ if(Util.notEmpty(profileAssmat)){
   
 %>
 <jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.ParametrageAssmatHandler'>
+    <jsp:setProperty name='formHandler' property='*' />
 	<jsp:setProperty name='formHandler' property='request' value='<%= request %>' />
 	<jsp:setProperty name='formHandler' property='response' value='<%= response %>' />
-	<jsp:setProperty name='formHandler' property='*' />
 	<jsp:setProperty name='formHandler' property='id' value="<%= profileAssmat.getId() %>" />
+	<%-- Etape contacts --%>
+	<jsp:setProperty name='formHandler' property="visbiliteTelephoneFixe" value='<%= new String[]{getUntrustedStringParameter("visbiliteTelephoneFixe[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="visibiliteTelephonePortable" value='<%= new String[]{getUntrustedStringParameter("visibiliteTelephonePortable[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="visibiliteAdresseEmail" value='<%= new String[]{getUntrustedStringParameter("visibiliteAdresseEmail[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="afficherContactUniquementSiD" value='<%= true && Boolean.parseBoolean(getUntrustedStringParameter("afficherContactUniquementSiD[0]", "false")) %>' />
+	<%-- Etape offres --%>
+	<jsp:setProperty name='formHandler' property="accueilTempsPartiel" value='<%= new String[]{getUntrustedStringParameter("accueilTempsPartiel[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accueilPeriscolaire" value='<%= new String[]{getUntrustedStringParameter("accueilPeriscolaire[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accueilMercredi" value='<%= new String[]{getUntrustedStringParameter("accueilMercredi[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accueilPendantLesVacancesSco" value='<%= new String[]{getUntrustedStringParameter("accueilPendantLesVacancesSco[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="horairesAtypiques" value='<%= new String[]{getUntrustedStringParameter("horairesAtypiques[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="avant7h" value='<%= new String[]{getUntrustedStringParameter("avant7h[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="apres20h" value='<%= new String[]{getUntrustedStringParameter("apres20h[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="leSamedi" value='<%= new String[]{getUntrustedStringParameter("leSamedi[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="leDimanche" value='<%= new String[]{getUntrustedStringParameter("leDimanche[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="laNuit" value='<%= new String[]{getUntrustedStringParameter("laNuit[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accepteDepannage" value='<%= new String[]{getUntrustedStringParameter("accepteDepannage[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="accueilEnfantHandicap" value='<%= new String[]{getUntrustedStringParameter("accueilEnfantHandicap[0]", "none")} %>' />
+	<jsp:setProperty name='formHandler' property="logementAccessible" value='<%= new String[]{getUntrustedStringParameter("logementAccessible[0]", "none")} %>' />
 </jsp:useBean>
 <%
+// champs en radio buttons faute à une non cohésion entre les données requête
+// et le comportement natif code jalios
+
 if (formHandler.validate()) {
    request.setAttribute("modal.redirect", request.getAttribute("workspaceURL")); 
    return; 
@@ -57,65 +79,45 @@ int stepCount = formHandler.getFormStepCount();
   jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/common.css");
   jcmsContext.addCSSHeader("plugins/AssmatPlugin/css/plugin.css");
   jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
+  
+  String uuid = UUID.randomUUID().toString();
 %>
 
-<div class="headstall container-fluid formulaireActivation">
-	<div class="row-fluid">
-		<!-- COLONNE GAUCHE -->
-		<div class="span2 iconEtape">
-			<img alt="etape1" src="plugins/AssmatPlugin/img/icon-espace-perso-form.png" />
-		</div>
-		<!-- FIN COLONNE GAUCHE -->
-		<!-- COLONNE DROITE -->
-		<div class="span10 label">
-			<div class="row-fluid title">
-				<div class="label">
-					<h1><%= box.getDisplayTitle(userLang) %></h1>
+<main id="content">
 
-					<div class="menu compte hidden-phone printHide">
+    <div class="ds44-container-large">
+       <div class="ds44-inner-container">
+        <h2><%= box.getDisplayTitle(userLang) %></h2>
+    
+                <div class="row-fluid">
+                    <div class="ajax-refresh-div">
+                        <%@ include
+                            file='/plugins/AssmatPlugin/jsp/parametrage/etapes.jspf'%>
 
-						<span class="profil"><%= loggedMember.getFirstName() %> <%= loggedMember.getName() %></span>
+                                <%@ include file='/jcore/doMessageBox.jsp'%>
+                                <p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
+                                <form method="post"
+                                    action="<%= ServletUtil.getResourcePath(request) %>"
+                                    name="formContact" id="formContact" data-no-encoding="true">
+                                    
+                                    <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/headerTitle.jspf' %>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/visibilite.jspf'%>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/contacts.jspf'%>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/offre.jspf'%>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/disponibilite.jspf'%>
+	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/autorisation.jspf'%>
+                                    
+                                    <!--  Ecriture des champ cachés             -->
+                                    <%=formHandler.getFormStepHiddenFields()%>
+                                    
+			                        <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>
+			                        <input type="hidden" name="formStep" value="<%= Util.notEmpty(step) ? step : 0 %>" data-technical-field/>
+                                </form>
+                    </div>
+                </div>
+            </div>
+    </div>
 
-						<div
-							class="sep-visible-desktop dropdown no-separator dropdown-partage accesCompte">
-							<a href="<%= channel.getProperty("jcms.resource.logout") %>"
-								title="Déconnexion" class="compte"><%= glp("plugin.corporateidentity.header.deconnexion") %></a>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-		<div class="span9 label">
-			<div class="row-fluid">
-				<div class="ajax-refresh-div">
-					<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/etapes.jspf'%>
-
-					<div class="formActivation form-cg">
-						<div class="form-cg-gray">
-							<%@ include file='/jcore/doMessageBox.jsp'%>
-							<form method="post" action="<%= ServletUtil.getResourcePath(request) %>" class="formContact">
-				        		<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/headerTitle.jspf' %>
-				        		<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/visibilite.jspf'%>
-								<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/contacts.jspf'%>
-								<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/offre.jspf'%>
-								<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/disponibilite.jspf'%>
-								<%@ include file='/plugins/AssmatPlugin/jsp/parametrage/autorisation.jspf'%>
-
-								<%=formHandler.getFormStepHiddenFields()%>
-                                  <% if (isLogged && HttpUtil.isCSRFEnabled()) { %>
-                                  <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" />
-                                  <% } %>
-							</form>
-						</div>
-					</div>
-					<!--  Ecriture des champ cachés             -->
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <%}else{ %>
 
 <div class="alert alert-block fade in alert-cg"><button type="button" class="close" data-dismiss="alert"><span class="spr-modal-close"></span></button><h4>Attention</h4><p>Aucun profilAM retrouvé pour l'utilisateur <%=loggedMember %></p></div>

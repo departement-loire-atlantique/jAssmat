@@ -1,5 +1,4 @@
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
-<%@page import="fr.cg44.plugin.tools.googlemaps.proxy.ProxyTarget"%>
 <%@page import="fr.cg44.plugin.assmat.managers.ProfilManager"%>
 <%@ include file='/jcore/doInitPage.jsp' %>
 <%@ include file='/jcore/portal/doPortletParams.jsp' %>
@@ -31,19 +30,16 @@ if(Util.notEmpty(request.getParameter("opUpdate"))) {
 
 
 <%
-String dataColor= ProxyTarget.getMainColor(); 
-
 boolean autorisationSite = profil.getAutorisationSite();
 boolean autorisationCAF = profil.getAutorisationCAF();
 boolean autorisationRelais = profil.getAutorisationRelais();
+
+//UUID unique pour les champs
+String uuid = UUID.randomUUID().toString();
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
 <%@ include file='/jcore/doMessageBox.jsp' %>
-
-<div class="headstall container-fluid formulaireActivation">
-<div class="formActivation form-cg form-espace-perso">
-<div class="form-cg-gray form-cg-white">
 
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
     name="formContact" id="formContact" class="formContact formEspacePerso">
@@ -54,71 +50,52 @@ boolean autorisationRelais = profil.getAutorisationRelais();
     </div>
     
     <%-- autorisationSite --%>
-    <div class="info-gauche cell-left">
-      <p><trsb:glp key="AUTOR-DPT-HTML"></trsb:glp></p>
+    <p aria-level="2" class="h4-like"><trsb:glp key="AUTOR-DPT-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
+    <div id="form-element-<%= uuid %>" data-name="autorisationSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
+       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+       <div class="ds44-form__container ds44-checkBox-radio_list ">
+          <input type="radio" <% if(autorisationSite){ %> checked <% } %> name="autorisationSite" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="AUTOR-DPT-OUI-HTML"></trsb:glp></label>
+       </div>
+       <div class="ds44-form__container ds44-checkBox-radio_list ">
+          <input type="radio" <% if(!autorisationSite) { %> checked <% } %> name="autorisationSite" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="AUTOR-DPT-NON-HTML"></trsb:glp><br /></label>
+       </div>
     </div>
-    <div class="radio-droite radio-droite-large cell-right">
-      <input type="radio" name="autorisationSite" id="ouiAutorisationSite" class="radio" value="true"
-        <% if(autorisationSite){ %> checked <% } %>>
-      <label for="ouiAutorisationSite"><trsb:glp key="AUTOR-DPT-OUI-HTML"></trsb:glp></label>
-      <input type="radio" name="autorisationSite" id="nonAutorisationSite" class="radio" value="false"
-        <% if(!autorisationSite) { %> checked <% } %>>
-      <label for="nonAutorisationSite" ><trsb:glp key="AUTOR-DPT-NON-HTML"></trsb:glp></label>
-    </div>
-    
-    <div class="borderDot title-bar-container dotted-portlet" style="margin-top: 10px; margin-bottom: 20px;"></div>
  
     <%-- autorisationCAF --%>
-    <div class="info-gauche cell-left">
-      <p><trsb:glp key="AUTOR-CAF-HTML"></trsb:glp></p>
+    <% uuid = UUID.randomUUID().toString(); %>
+    <p aria-level="2" class="h4-like"><trsb:glp key="AUTOR-CAF-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
+    <div id="form-element-<%= uuid %>" data-name="autorisationCAF" class="ds44-form__radio_container ds44-form__container"  data-required="true">
+       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+       <div class="ds44-form__container ds44-checkBox-radio_list ">
+          <input type="radio" <% if(autorisationCAF){ %> checked <% } %> name="autorisationCAF" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="AUTOR-CAF-OUI-HTML"></trsb:glp></label>
+       </div>
+       <div class="ds44-form__container ds44-checkBox-radio_list ">
+          <input type="radio" <% if(!autorisationCAF) { %> checked <% } %> name="autorisationCAF" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="AUTOR-CAF-NON-HTML"></trsb:glp></label>
+       </div>
     </div>
-    <div class="radio-droite radio-droite-large cell-right">
-      <input type="radio" name="autorisationCAF" id="ouiAutorisationCAF" class="radio" value="true"
-        <% if(autorisationCAF) { %> checked <% } %>>
-      <label for="ouiAutorisationCAF"><trsb:glp key="AUTOR-CAF-OUI-HTML"></trsb:glp></label>
-      <input type="radio" name="autorisationCAF" id="nonAutorisationCAF" class="radio" value="false"
-        <% if(!autorisationCAF) { %> checked <% } %>>
-      <label for="nonAutorisationCAF"><trsb:glp key="AUTOR-CAF-NON-HTML"></trsb:glp></label>
-    </div>
-
-    <div class="borderDot title-bar-container dotted-portlet" style="margin-top: 10px; margin-bottom: 20px;"></div>
     
     <%-- autorisationRelais --%>
-    <div class="info-gauche cell-left">
-      <p><trsb:glp key="AUTOR-RAM-HTML"></trsb:glp></p>
-    </div>
-    <div class="radio-droite radio-droite-large cell-right">
-      <input type="radio" name="autorisationRelais" id="ouiAutorisationRelais" class="radio" value="true"
-        <% if(autorisationRelais) { %> checked <% } %>>
-      <label for="ouiAutorisationRelais"><trsb:glp key="AUTOR-RAM-OUI-HTML"></trsb:glp></label>
-      <input type="radio" name="autorisationRelais" id="nonAutorisationRelais" class="radio" value="false"
-        <% if(!autorisationRelais){ %> checked <% } %>>
-      <label for="nonAutorisationRelais"><trsb:glp key="AUTOR-RAM-NON-HTML"></trsb:glp></label>
+    <% uuid = UUID.randomUUID().toString(); %>
+    <p aria-level="2" class="h4-like"><trsb:glp key="AUTOR-RAM-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
+    <div id="form-element-<%= uuid %>" data-name="autorisationRelais" class="ds44-form__radio_container ds44-form__container"  data-required="true">
+       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+       <div class="ds44-form__container ds44-checkBox-radio_list ">
+          <input type="radio" <% if(autorisationRelais){ %> checked <% } %> name="autorisationRelais" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="AUTOR-RAM-OUI-HTML"></trsb:glp></label>
+       </div>
+       <div class="ds44-form__container ds44-checkBox-radio_list ">
+          <input type="radio" <% if(!autorisationRelais) { %> checked <% } %> name="autorisationRelais" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="AUTOR-RAM-NON-HTML"></trsb:glp></label>
+       </div>
     </div>
     
     <%-- encart --%>      
-    <div class="alert alert-block fade in alert-cg">
+    <div class="alert alert-block">
       <trsb:glp key="AUTOR-LEG-HTML"></trsb:glp>
     </div>
     
-    
-    <div class="borderDot title-bar-container dotted-portlet"></div>
-    
-    <p class="submit">
-      <label for="submit"> 
-        <input type="submit" id="submit" name="opCreate" 
-          value="<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>" class="submitButton" /> 
-        <span class="input-box" style="background-color: #aec900" />
-          <span class="spr-recherche-ok"></span>
-        </span>
-      </label> 
-      <input type="hidden" name="noSendRedirect" value="true" /> 
-      <input type="hidden" name="opUpdate" value="true" />
-    </p>
+    <div class="ds44-form__container">
+        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
+        <input type="hidden" name="opUpdate" value="true" data-technical-field/>
+    </div>
     
   </form>
-
-
-</div>
-</div>
-</div>

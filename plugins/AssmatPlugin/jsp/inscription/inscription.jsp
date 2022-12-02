@@ -8,13 +8,13 @@
 	PortletJsp box = (PortletJsp) portlet;
 %>
 <jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler'>
+    <jsp:setProperty name='formHandler' property='*' />
 	<jsp:setProperty name='formHandler' property='request' value='<%=request%>' />
 	<jsp:setProperty name='formHandler' property='response'	value='<%=response%>' />
 	<jsp:setProperty name='formHandler' property="noRedirect" value="true" />
 	<jsp:setProperty name='formHandler' property="civilite" value='<%= getUntrustedStringParameter("civilite[0]", null) %>' />
 	<jsp:setProperty name='formHandler' property="typeenvoi" value='<%= getUntrustedStringParameter("typeenvoi[0]", null) %>' />
 	<jsp:setProperty name='formHandler' property="choixLogin" value='<%= getUntrustedStringParameter("choixLogin[0]", null) %>' />
-	<jsp:setProperty name='formHandler' property='*' />
 </jsp:useBean>
 
 
@@ -86,9 +86,6 @@ boolean notfoundCompte= false;
 										file='/plugins/AssmatPlugin/jsp/inscription/confirmation.jspf'%>
 									<!--  Ecriture des champ cachés             -->
 									<%=formHandler.getFormStepHiddenFields()%>
-									<jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
-					    	<input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>"/>
-						</jalios:if> 
 	
 								</form>
 
