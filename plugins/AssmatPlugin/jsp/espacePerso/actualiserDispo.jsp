@@ -59,7 +59,7 @@ int numeroDossierAssmat = profil.getNum_agrement();
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
 <%@ include file='/jcore/doMessageBox.jsp' %>
 
-  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" name="formContact" id="formContact" data-no-encoding="true">
+  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" name="formDispos" id="formDispos" data-no-encoding="true">
 
   
     <div class="alert alert-block alertPass hide  alert-cg">
