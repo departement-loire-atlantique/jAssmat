@@ -42,7 +42,7 @@ for (Category cat : rootSet) {
     <ul>
         <jalios:foreach name="itCat" type="Category" collection="<%= rootSet  %>">
             <jalios:if predicate="<%= itCat.canBeReadBy(loggedMember) %>">
-                <li><img src="https://www.loire-atlantique.fr/s.gif" class="bullet spr-puce" alt="">
+                <li><jalios:icon src="s.gif" css="bullet spr-puce" />
                     <jalios:select>
                         <jalios:if predicate="<%= Util.notEmpty(itCat.getDescendantSet()) %>">
 	                        <span><%= itCat %></span>
@@ -53,7 +53,7 @@ for (Category cat : rootSet) {
 		                    <jalios:if predicate="<%= level2Set.size() > 0 %>">
 		                        <ul>
 		                            <jalios:foreach name="itCatLevel2" type="Category" collection="<%= level2Set %>" counter="itLvl2">
-		                                <li><img src="https://www.loire-atlantique.fr/s.gif" class="bullet spr-puce" alt="">
+		                                <li><jalios:icon src="s.gif" css="bullet spr-puce" />
 		                                <jalios:select>
 		                                    <jalios:if predicate="<%= Util.notEmpty(itCatLevel2.getDescendantSet()) %>">
 		                                        <span><%= itCatLevel2 %></span> 
@@ -63,7 +63,7 @@ for (Category cat : rootSet) {
 		                                        %>
 		                                        <ul>
 		                                         <jalios:foreach name="itCatLevel3" type="Category" collection="<%= level3Set %>" counter="itLvl2">
-		                                            <li><img src="https://www.loire-atlantique.fr/s.gif" class="bullet spr-puce" alt="">
+		                                            <li><jalios:icon src="s.gif" css="bullet spr-puce" />
 			                                            <a href="<%=itCatLevel3.getDisplayUrl(userLocale)%>"><%= itCatLevel3 %></a>
 		                                            </li>
 		                                        </jalios:foreach>
