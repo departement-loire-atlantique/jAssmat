@@ -3,7 +3,7 @@
 <%@ include file='/jcore/doInitPage.jsp' %><%
 %><%@ include file='/jcore/portal/doPortletParams.jsp' %><%
 %><%@ include file='/types/PortletNavigate/doInitPortletNavigate.jspf'%><%
-%><%@page import="fr.cg44.plugin.tools.navigation.Menu" %>
+%>
 <%@ page contentType="text/html; charset=UTF-8"%><%
 
   boolean display = rootCategory != null && rootCategory.isNode(loggedMember);
