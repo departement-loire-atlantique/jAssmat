@@ -23,9 +23,9 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
 		    <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe") %></span></span></label>
-                    <input type="text" id="form-element-<%= uuid %>" value='<%= Util.notEmpty(formHandler.getAvailableTelephoneFixe())?formHandler.getAvailableTelephoneFixe():""%>' name="telephoneFixe" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
-                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile")) %></span></button>
-                    <% if("0".equals(canalDeCommunication)) { %><input type="hidden" name="telephonePortable" value='<%=telephoneMobile%>' data-technical-field/><%} %>
+                    <input type="text" id="form-element-<%= uuid %>" value='<%= Util.notEmpty(formHandler.getAvailableTelephoneFixe())?formHandler.getAvailableTelephoneFixe():""%>' name="telephoneFixe" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe")) %></span></button>
+                    <% if("0".equals(canalDeCommunication)) { %><input type="hidden" name="telephoneFixe" value='<%=telephoneMobile%>' data-technical-field/><%} %>
                 </div>
                 <div class="ds44-field-information" aria-live="polite">
                     <ul class="ds44-field-information-list ds44-list">
@@ -77,7 +77,7 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %></span></span></label>
                     <input type="text" id="form-element-<%= uuid %>" name="creneauHorairesDappel" value='<%= Util.notEmpty(formHandler.getAvailableCreneauHorairesDappel())?formHandler.getAvailableCreneauHorairesDappel():"" %>' class="ds44-inpStd" title='<%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %>'>
-                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.nom")) %></span></button>
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("plugin.assmatplugin.profilassmat.form.creneaux")) %></span></button>
                 </div>
             </div>
 
