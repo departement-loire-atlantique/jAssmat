@@ -1,3 +1,8 @@
+<%@page import="fr.cg44.plugin.socle.Point"%>
+<%@page import="fr.cg44.plugin.tools.maps.Geolocation"%>
+<%@page import="com.google.gson.JsonElement"%>
+<%@page import="com.google.gson.JsonParser"%>
+<%@page import="fr.cg44.plugin.socle.ApiUtil"%>
 <%@page import="fr.cg44.plugin.assmat.selector.RelaisMamSelectorCommune"%>
 <%@page import="fr.trsb.cd44.solis.beans.AssmatSolis"%>
 <%@page import="fr.trsb.cd44.solis.manager.SolisManager"%>
@@ -39,11 +44,24 @@ int maxResult = box.getMaxResults();
 
 %><%
 
+//Coordonnées géographiques (commune ou adresse)
+String longitude = getUntrustedStringParameter("longitude","");
+String latitude = getUntrustedStringParameter("latitude","");
 
 // Commune : Code insee
 //Integer codeInsee = getIntParameter("commune", 0);
-String codeInseeString = getStringParameter("adresse", "0", ".*");
-codeInseeString = codeInseeString.substring(0, 5);
+String adressString = getStringParameter("adresse", "0", ".*");
+
+
+if("aroundMe".equals(adressString)) {  
+  JsonParser parserJson = new JsonParser();
+  String jsonString = ApiUtil.getJsonObjectFromApi("https://api-adresse.data.gouv.fr/reverse/?lat=" + latitude + "&lon="+ longitude, null).toString();
+  JsonElement json =   parserJson.parse(jsonString); 
+  adressString = json.getAsJsonObject().get("features").getAsJsonArray().get(0).getAsJsonObject().get("properties").getAsJsonObject().get("citycode").getAsString();
+}
+
+
+String codeInseeString = adressString.substring(0, 5);
 Integer codeInsee =  Integer.parseInt(codeInseeString);
 
 // A partir de
@@ -138,15 +156,13 @@ boolean accueilAtypique = Util.notEmpty(hashMapBooleanChamps.get("accueilAtypiqu
 
 
 
-// Coordonnées géographiques (commune ou adresse)
-String longitude = getUntrustedStringParameter("longitude","");
-String latitude = getUntrustedStringParameter("latitude","");
+
 
 double geoLong = 0.0;
 double geoLat = 0.0;
 
 
-if ((distance>0 || Util.notEmpty(adresse)) && Util.notEmpty(longitude) && Util.notEmpty(latitude)) {
+if ((distance>0 || Util.notEmpty(adresse)) && Util.notEmpty(longitude) && Util.notEmpty(latitude) && (adresse.length() > 5 || distance > 0  )) {
   geoLong = Double.parseDouble(longitude);
   geoLat = Double.parseDouble(latitude);
 }
@@ -234,8 +250,7 @@ if(geoLong!=0.0 && geoLat!=0.0){
 
 
 // Map liant une assmatSearch avec un point (couleur ect ..)
-// TODO
-String hashKey = "TODO";
+String hashKey = Integer.toString((int) (Math.random() * 1000) + 1);
 Map<AssmatSearch,PointAssmat> assmatPoints = new HashMap<AssmatSearch,PointAssmat>();
 TreeMap<AssmatSearch,PointAssmat> assmatPointsTriee = new TreeMap<AssmatSearch,PointAssmat>(new AssmatSearchDistanceComparator(pointGeo, assmatPoints, hashKey, isPresentSearch, resultDispoRechercheMap));
 logger.warn("assmatPointsTriee : " + assmatPointsTriee.size());
@@ -542,18 +557,77 @@ ProfilManager profilMgr = ProfilManager.getInstance();
 ProfilASSMAT itProfilAM = null;
 
 
+
+// Reprise de l'ancien site pour le regroupement des points trop proche en un seul point sur la carte
+
+
+Map<Point,List<ProfilASSMAT>> publicationPoints = new HashMap<Point,List<ProfilASSMAT>>();
+
+// Regroupe les points dans une map avec les profilAssmat correspondants
+for (Map.Entry<AssmatSearch, PointAssmat> entry : assmatResultSet) {
+  
+  AssmatSearch assmat = entry.getKey();
+  PointAssmat point = entry.getValue();
+  
+  if (point.getLatitude() == 0 && point.getLongitude() == 0) {
+    continue;
+  }
+  
+  ProfilASSMAT profilAM = profilMgr.getProfilASSMATbyAssmatSearch(assmat);
+  if (Util.notEmpty(point)) {
+    
+    List<ProfilASSMAT> liste = new ArrayList<ProfilASSMAT>();
+    
+    if (publicationPoints.containsKey(point)) {
+      liste = publicationPoints.get(point);
+    }
+    
+    liste.add(profilAM);
+    publicationPoints.put(point, liste);
+    
+  } 
+}
+
+
+
+List<Point> points = new ArrayList(publicationPoints.keySet());
+ListIterator<Point> itListPoint = points.listIterator();
+List<Point> generalClosenessPoints = new ArrayList<Point>();
+
+// Regroupe les points proches
+ProfilASSMAT profilAM;
+Point point;
+double jLongitude;
+double jLatitude;
+
+
+
+Map<Point, Point> closenessPointMap = new HashMap<Point, Point>(); 
+while (itListPoint.hasNext()) {
+  
+  point = itListPoint.next();
+  if (!generalClosenessPoints.contains(point)) {
+      
+    profilAM = publicationPoints.get(point).get(0);
+    jLongitude = point.getLongitude();
+    jLatitude = point.getLatitude();
+
+    ListIterator<Point> itClosenessPoints = points.listIterator(itListPoint.nextIndex());    
+    List<Point> closenessPoints = Geolocation.getClosenessPoints((Point) point, itClosenessPoints);
+    
+    if(Util.notEmpty(closenessPoints)) {
+      generalClosenessPoints.addAll(closenessPoints);
+      
+      for(Point itSimpleClosenessPoints : closenessPoints) {
+        closenessPointMap.put(itSimpleClosenessPoints, point);
+      }    
+    }   
+  }  
+}
+
+// Fin de reprise regroupement des points proches
+
 %>
-
-
-
-
-
-
-
-
-
-
-
 
 
 <jalios:foreach collection="<%= assmatResultSet %>" name="itEntry" type="Map.Entry<AssmatSearch, PointAssmat>" max='<%= maxResult %>' skip='<%= (pager - 1) * maxResult  %>'>
@@ -573,11 +647,18 @@ if(Util.notEmpty(itProfilAM)){
       %><jalios:media data="<%= itProfilAM %>" /><%
   %>
   </jalios:buffer><%
-      
+     
+  // Changement des coordonnée du point vers le point le plus proche (plusieurs points proches sont fusionné)
+  String itLatitude = Double.toString(itPoint.getLatitude());
+  String itLongitude = Double.toString(itPoint.getLongitude());
+  if(closenessPointMap.containsKey(itPoint)) {
+    itLatitude = Double.toString(closenessPointMap.get(itPoint).getLatitude());
+    itLongitude = Double.toString(closenessPointMap.get(itPoint).getLongitude());
+  }
       
       
   // Ajout du résultat au json
-  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM,  Double.toString(itPoint.getLatitude()), Double.toString(itPoint.getLongitude()), itPoint.getCouleurPoint(), itPubListGabarit, itPubListGabarit, null));
+  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM, itLatitude, itLongitude, itPoint.getCouleurPoint(), itPubListGabarit, itPubListGabarit, null));
 
 }
 %>
