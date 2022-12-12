@@ -1,8 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" 
-%><%@ page import="fr.cg44.plugin.tools.AccessibilityLinks"  
-%><%@ include file='/jcore/doInitPage.jsp' 
-%><%@ include file='/jcore/portal/doPortletParams.jsp'  
-%><% 
+<%@ page contentType="text/html; charset=UTF-8"%> 
+<%@ include file='/jcore/doInitPage.jsp' %>
+<%@ include file='/jcore/portal/doPortletParams.jsp'%>
+<% 
 	PortalJspCollection box = (PortalJspCollection) portlet;
   ServletUtil.backupAttribute(pageContext , "ShowChildPortalElement");
 //Drag and Drop required a custom class wrapper 'dnd-container' and the wrapper ID. They also REQUIRED a DOM ID
@@ -21,7 +20,7 @@
   
 <%@ include file='/types/AbstractCollection/doIncludePortletCollection.jsp'%>
 <jalios:include target="OLD_BROWSER"/>
-<%= AccessibilityLinks.createAccessibilityBlock(AccessibilityLinks.NAVIGATION_ID,AccessibilityLinks.SEARCH_ID, AccessibilityLinks.CONTENT_ID, AccessibilityLinks.FOOTER_ID)%>
+
 <div class="portail">
 
 
@@ -44,7 +43,7 @@
 				String portletsRight=getPortlets(bufferMap, "right", "");
 			
 				%>
-				<div class="span4 block-spacer" id="<%= AccessibilityLinks.CONTENT_ID%>">
+				<div class="span4 block-spacer">
 					<%=getPortlets(bufferMap, "left", "")%>
 				</div><%
 				if(Util.notEmpty(portletsRight)){

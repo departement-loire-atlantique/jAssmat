@@ -1,13 +1,6 @@
-<%
-String title = jcmsContext.getCurrentCategory().getName(userLang);
-if(Util.notEmpty(box.getDisplayTitle(userLang))){
-  title = box.getDisplayTitle(userLang);
-}
-%>
-<div class="headerEspacePerso">
-<h1><%= title %></h1>
-
-
-
-</div>
-<div class="clear"></div>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%--
+2022/12 SGU : vidage du fichier avant sa suppression et suppression des includes pointant dessus
+Devient inutile avec la refonte puisque le titre de la rubrique intègre une autre partie de l'écran
+(utilisation de titleNoBanner.tag, dans une section haute)
+--%>
