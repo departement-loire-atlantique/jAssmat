@@ -337,7 +337,7 @@ jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo: {0} avec des dispo
 jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne: {0} avec des disponibilités non renseignées
 jcmsplugin.assmatplugin.recherche.am.result.recap.am.contact: {0} non disponibles mais acceptant d'être contactées
 
-jcmsplugin.assmatplugin.recherche.am.afficher.selection: Afficher ma sélection ({0})
+jcmsplugin.assmatplugin.recherche.am.afficher.selection: Afficher ma sélection <span data-nb-select="">({0})</span>
 
 jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.popup: Disponible actuellement
 jcmsplugin.assmatplugin.recherche.am.result.recap.futur.dispo.popup: Disponible à partir de {0}
@@ -388,6 +388,14 @@ plugin.assmatplugin.profilassmat.place.creneauNonDispo: Créneau non disponible
 plugin.assmatplugin.profilassmat.distance : {0} km de l'adresse recherchée
 
 plugin.assmatplugin.profilassmat.form.creneaux: Créneaux horaires
+
+plugin.assmatplugin.profilassmat.print: Imprimer
+plugin.assmatplugin.profilassmat.print.full: Imprimer la fiche de : {0}
+
+jcmsplugin.assmatplugin.profilassmat.voir.precedent: Voir la fiche de l'assistante maternelle précédente
+jcmsplugin.assmatplugin.profilassmat.voir.suivant: Voir la fiche de l'assistante maternelle suivante
+jcmsplugin.assmatplugin.profilassmat.fiche.suivante: Fiche suivante
+jcmsplugin.assmatplugin.profilassmat.fiche.precedente: Fiche précédente
 
 # Mois
 
