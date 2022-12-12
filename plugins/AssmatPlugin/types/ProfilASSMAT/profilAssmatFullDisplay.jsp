@@ -129,6 +129,9 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
   boolean logementAccessible = Util.notEmpty(obj.getLogementAccessible()) && "true".equalsIgnoreCase(obj.getLogementAccessible());
   boolean accueilTmpPartiel = Util.notEmpty(obj.getAccueilTempsPartiel()) && "true".equalsIgnoreCase(obj.getAccueilTempsPartiel());
   boolean accueilAccepteRemplacement = Util.notEmpty(obj.getAccepteDepannage()) && "true".equalsIgnoreCase(obj.getAccepteDepannage());
+  
+  Member mbr = obj.getAuthor();
+  Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier");
 %>
 
 <main id="content" role="main">
@@ -139,12 +142,41 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
     
     <%-- bouton Retour a la liste --%>
     <%@ include file="/plugins/SoclePlugin/jsp/facettes/doRetourListe.jspf" %>
+
+    <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) || Util.notEmpty(profilSuivant) %>">
+    <div class="ds44-btnStd--nextPrevPage">
+        <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) %>">
+            <a href="<%= profilPrecedent.getDisplayUrl(userLocale) %>" class="ds44-btnStd ds44-btnStd--prevPage" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.assmatplugin.profilassmat.voir.precedent")) %>'><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.profilassmat.fiche.precedente") %></span></a>
+        </jalios:if>
+        <jalios:if predicate="<%= Util.notEmpty(profilSuivant) %>">
+            <a href="<%= profilSuivant.getDisplayUrl(userLocale) %>" class="ds44-btnStd ds44-btnStd--nextPage" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.assmatplugin.profilassmat.voir.suivant")) %>'><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.profilassmat.fiche.suivante") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></a>
+        </jalios:if>
+    </div>
+    </jalios:if>
     
     <ds:titleSimple pub="<%= obj %>" title="<%= obj.getTitle(userLang) %>" breadcrumb="false"></ds:titleSimple>
     
     <div class="ds44-img50 ds44--l-padding-tb">
             <div class="ds44-inner-container">
                 <div class="ds44-grid12-offset-1">
+                    <div class="ds44-txtRight mbs">
+					   <button class='ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(obj.getId())) ? "" : "is-select" %>'
+		                    data-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= obj.getId() %>"
+		                    data-titles='{ "enabled": "Retirer de ma sélection", "disabled": "Ajouter à ma sélection"}'
+		                    data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}'
+		                    type="button"
+		                    aria-describedby='card_<%= obj.getId()%>'>
+		                    <i class='icon icon-star-empty' data-icon aria-hidden="true"></i> <span data-entitled><%= glp("jcmsplugin.socle.selectionner") %></span>
+		               </button>
+					   <span class="ds44-docListElem mll">
+                            <i class="icon icon-star-empty ds44-docListIco" aria-hidden="true"></i>
+                            <a class="ds44-inlineLink ds44-titleLink" href="#" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.recherche.selection")) %>'><%= glp("jcmsplugin.socle.recherche.ma-selection", (Util.isEmpty(panierSet)) ? "0" : panierSet.size() +"") %></a>
+                       </span>
+					   <span class="ds44-docListElem mll">
+					       <i class="icon icon-print ds44-docListIco" aria-hidden="true"></i>
+                           <a class="ds44-inlineLink ds44-titleLink" onclick="print();" href='#' target="_blank" title='<%= HttpUtil.encodeForHTMLAttribute(glp("plugin.assmatplugin.profilassmat.print.full", assmatSolis.getPrenomAssmat() + " " + assmatSolis.getNomAssmat())) %>'><%= glp("plugin.assmatplugin.profilassmat.print") %></a>
+					   </span>
+					</div>
                     <section class="ds44-box ds44-theme">
                         <div class="ds44-innerBoxContainer">
                             <div class="grid-2-small-1 ds44-grid12-offset-1">
