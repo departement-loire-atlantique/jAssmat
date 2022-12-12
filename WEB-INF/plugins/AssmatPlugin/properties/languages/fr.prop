@@ -1,3 +1,7 @@
+#Commun
+jcmsplugin.assmatplugin.numero-dossier: Numéro de dossier : {0}
+jcmsplugin.assmatplugin.derniere-actualisation.profil: Date de dernière actualisation : {0}
+
 #Page accueil
 jcmsplugin.assmatplugin.accueil.activeprofil: J'active mon profil
 jcmsplugin.assmatplugin.accueil.activecompte: Activez votre compte et définissez votre identifiant (login) et votre mot de passe
@@ -10,8 +14,9 @@ jcmsplugin.assmatplugin.accueil.mdp.oublie: Mot de passe oublié
 jcmsplugin.assmatplugin.accueil.prevenu.ouverture: Je souhaite être prévenue lors de l'ouverture du nouveau site :
 jcmsplugin.assmatplugin.accueil.prevenu.email: par e-mail
 jcmsplugin.assmatplugin.accueil.prevenu.sms: par SMS
-
 jcmsplugin.assmatplugin.accueil.menu.ici: Vous êtes
+jcmsplugin.assmatplugin.accueil.bienvenue: Bonjour {0} {1}
+
 
 #page inscription
 
@@ -216,8 +221,6 @@ jcmsplugin.assmatplugin.sms.login: Login d'identification à la plateforme SMS
 jcmsplugin.assmatplugin.sms.password: Mot de passe d'identification à la plateforme SMS
 jcmsplugin.assmatplugin.sms.custid: Numéro de compte client à la plateforme SMS
 
-
-jcmsplugin.derniere-actualisation.profil: Date de dernière actualisation : {0}
 
 jcmsplugin.assmatplugin.sms.scheduler.schedule: Planification du déclenchement de la mise à jour des statuts des SMS en base
 
