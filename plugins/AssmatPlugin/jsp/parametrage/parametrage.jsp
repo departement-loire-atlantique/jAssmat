@@ -86,7 +86,7 @@ int stepCount = formHandler.getFormStepCount();
 <main id="content">
 
     <div class="ds44-container-large">
-       <div class="ds44-inner-container">
+       <div class="ds44-inner-container ds44-mtb5">
         <h2><%= box.getDisplayTitle(userLang) %></h2>
     
                 <div class="row-fluid">
