@@ -145,7 +145,6 @@ if(Util.notEmpty(agrementRenouvellementMamDate) && Util.notEmpty(assmatSolis.get
 
 <%-- Affichage des déclarations d'accueil --%>
 <jalios:if predicate="<%= isGroupAuthorized && isSwaggerOk %>">
-    <%-- TODO Refonte 2022 / SGU : penser à tester tous les cas --%>
     <%-- 2.3.2.2  Bloc des démarches enregistrées en brouillon --%>  
     <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsBrouillon.jspf'%>
          
