@@ -1,3 +1,8 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
+<%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@page import="fr.cg44.plugin.assmat.util.DemarcheUtil"%>
 <%@page import="io.swagger.client.ApiException"%>
 <%@page import="fr.trsb.cd44.solis.manager.SolisManager"%>
@@ -14,13 +19,9 @@
 <%@ include file='/jcore/doInitPage.jsp' %>
 <%@ include file='/jcore/portal/doPortletParams.jsp' %>
 
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
-
 <%
 PortletJsp box = (PortletJsp) portlet;
-%>
-<%
+
 ProfilManager profilMngr = ProfilManager.getInstance();
 ProfilASSMAT profil = (ProfilASSMAT) profilMngr.getProfilASSMAT(channel.getCurrentLoggedMember());
 
@@ -42,12 +43,6 @@ if(Util.notEmpty(groupAuthorizedId)) {
     isGroupAuthorized = true;
   }
 }
-
-%>
-
-
-
-<%
 
 // Lien pour la déclaration d'accueil (terminer une déclaration ou modifier une déclaration)
 Publication declarationAccueilPortlet = channel.getPublication(channel.getProperty("plugin.assmatplugin.portlet.declararer-accueil.id"));
@@ -74,8 +69,8 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 Set<AccueilDTO> declarationBrouillonList = null; 
 Set<AccueilDTO> declarationEnCoursList = null;
 boolean isSwaggerOk = true;
+
 try {	
-	
 	//liste des declaration à l'état brouillon
 	declarationBrouillonList = new TreeSet<AccueilDTO>(new DeclarationAccueilDateModifComparator());
 	declarationBrouillonList.addAll(DemarcheUtil.getListAccueils(profil.getNum_agrement(), "brouillon"));
@@ -89,193 +84,75 @@ try {
 }
 
 %>
+  
+<%-- chapo --%>
+<p class="ds44-introduction"><trsb:glp key="ACCUEIL-PROFIL-INTRO"></trsb:glp></p>
+	     
+<%-- zone réservée à l’affichage d’une information spécifique --%>
+<ds:box type="alerte" boxClasses="ds44-mb3">
+    <p><trsb:glp key="ACCUEIL-PROFIL_HTML"></trsb:glp></p>
+</ds:box>
 
+<%-- 3.3.2.2 Date de renouvellement de l'agrément -  --%>
+<% 
+Boolean hasRenouvellementDom = false;
+Date agrementRenouvellementDomDate = assmatSolis.getDateProchainRenouvellement();
 
-<div class="headstall container-fluid demarche">
-  
-  <!--  Titre de la page -->
-  <div class="row-fluid">    
-    <div class="span12 label">
-      <div class="row-fluid title">
-        <div class="headerEspacePerso">
-          <h1><trsb:glp key="ASS-ACC-TITRE1-HTML" /></h1>
-        </div>        
-      </div>
-    </div>   
-  </div> 
-  <!-- FIN titre de la page -->
-  
-  
-  <!-- Corps de la page -->
-  <div class="row-fluid">
-	  <div class="span12 label">
-	  
-	  
-	     <!-- présentation de l’espace -->
-	     <p class="titleAccueilPerso"><trsb:glp key="ACCUEIL-PROFIL-INTRO"></trsb:glp></p>
-	     
-	     
-	     <!-- zone réservée à l’affichage d’une information spécifique -->
-	     <div class="alert alert-block fade in alert-cg alert-info">
-			      <p><trsb:glp key="ACCUEIL-PROFIL_HTML"></trsb:glp></p>
-			 </div>
-			 
-			 <!-- 3.3.2.2 Date de renouvellement de l'agrément -  -->
-			 <% 
-			    Boolean hasRenouvellementDom = false;
-		      Date agrementRenouvellementDomDate = assmatSolis.getDateProchainRenouvellement();	
-		      if(Util.notEmpty(agrementRenouvellementDomDate) && Util.notEmpty(assmatSolis.getExerceDomicile()) && assmatSolis.getExerceDomicile()) {
-		        // Ajoute 2 mois à la date de renouvellement
-		        GregorianCalendar calendar = new GregorianCalendar();
-		        calendar.setTime(new Date());
-		        calendar.add(Calendar.MONTH, 2);
-		        if(calendar.getTime().after(agrementRenouvellementDomDate)) {
-		          hasRenouvellementDom = true;
-		        }
-	        }
-		      
-		      Boolean hasRenouvellementMam = false;
-	        Date agrementRenouvellementMamDate = assmatSolis.getDateProchainRenouvellementMam(); 
-	        if(Util.notEmpty(agrementRenouvellementMamDate) && Util.notEmpty(assmatSolis.getExerceMam()) && assmatSolis.getExerceMam()) {
-	          // Ajoute 2 mois à la date de renouvellement
-	          GregorianCalendar calendar = new GregorianCalendar();
-	          calendar.setTime(new Date());
-	          calendar.add(Calendar.MONTH, 2);
-	          if(calendar.getTime().after(agrementRenouvellementMamDate)) {
-	            hasRenouvellementMam = true;
-	          }
-          }
-			 %>
-			 <jalios:if predicate='<%= hasRenouvellementDom || hasRenouvellementMam %>'>
-			   <div class="alert alert-block fade in alert-cg alert-warning">
-				   <%-- Renouvellement Domicile --%>
-				   <jalios:if predicate="<%= hasRenouvellementDom %>">
-					   <% String agrementRenouvellementDomDateString = simpleDateFormat.format(agrementRenouvellementDomDate); %>				 
-			       <p><trsb:glp key="ASS-ACC-ME-PER-DOM-HTML" parameter='<%= new String[]{agrementRenouvellementDomDateString} %>'></trsb:glp></p>		     
-		       </jalios:if>
-		       <%-- Renouvellement MAM --%>
-		       <jalios:if predicate="<%= hasRenouvellementMam %>">
-	           <% String agrementRenouvellementMamDateString = simpleDateFormat.format(agrementRenouvellementMamDate); %>
-	           <p><trsb:glp key="ASS-ACC-ME-PER-MAM-HTML" parameter='<%= new String[]{agrementRenouvellementMamDateString} %>'></trsb:glp></p>
-	         </jalios:if>
-         </div>
-       </jalios:if>
-			 
-			 
-			 <jalios:if predicate="<%= isGroupAuthorized && isSwaggerOk %>">
-			 			 
-				 <!-- 2.3.2.2  Bloc des démarches enregistrées en brouillon -->  
-         <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsBrouillon.jspf'%>
-         
-         <%-- 2.3.2.3 Bloc des accueils en cours --%>
-         <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsEnCours.jspf'%>
-					 					      
-	     </jalios:if>
-	     
-	     
-	     <%--   BLOCK SWAGGER KO --%>
-	     
-	     <jalios:if predicate="<%= !isSwaggerOk %>">
-	       <p><trsb:glp key="SWAGGER-RESP-ERR" /></p>
-	     </jalios:if>
-	     
-	     
-	     <%--   BLOCK MES INTERLOCUTEURS --%>
-	      <%
-            Set<Place> setPlace = new TreeSet<Place>();
-            if(assmatSolis.getIdUa() != null) {
-              Set<Place> setPlaceUA =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorIDSolis(assmatSolis.getIdUa().replace(" ", "_")));           
-              setPlace.addAll(setPlaceUA);
-            }
-            
-            if(assmatSolis.getIdRam() != null) {
-              Set<Place> setPlaceDOM =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorIDSolis("RAM_"+assmatSolis.getIdRam()));           
-              setPlace.addAll(setPlaceDOM);
-            }
-            
-            if(assmatSolis.getIdRamMam() != null) {
-              Set<Place> setPlaceMAM =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorIDSolis("RAM_"+assmatSolis.getIdRamMam()));           
-              setPlace.addAll(setPlaceMAM);
-            }
-            
-            
-           
-           %>
-           
-           <jalios:if predicate="<%= Util.notEmpty(setPlace)  %>">
-           
-             
-             
-             
-             <div class="cadreType cadreBleu prepEntretien" style="width: 50%; margin-top: 35px; border: none;">
-             
-                <h2 style="border-bottom: 2px dotted black"><trsb:glp key="ASS-ACC-INT-TITRE1-HTML" /></h2>
-                    
-                    
-                    <jalios:foreach collection="<%= setPlace %>" name="itPlace" type="Place">
-                      
-     
-                          <div class='blocAdresse <%= itPlace.getSolisId().startsWith("UA") ? "uaAdresse" : ""  %>'>
-                            <div>
-                              <strong><%=itPlace.getTitle() %></strong><br />
-                              
-                              <jalios:wiki><%= AssmatUtil.replaceCharSpaceBR(itPlace.getStreet()) %></jalios:wiki>
-                                             
-                              <%=itPlace.getZipCode() %>  <%= itPlace.getCity() %><br />
-                            </div>
-                           <jalios:if predicate="<%=Util.notEmpty(itPlace.getPhones()) %>">
-                              <div><span class="bold">Tél :</span>
-                                <jalios:foreach name="itTel" type="String" array="<%= itPlace.getPhones()%>">
-                                  <jalios:if predicate="<%= itCounter != 1 %>">
-                                   -
-                                  </jalios:if>                      
-                                  <%= itTel %>                      
-                                </jalios:foreach>
-                              </div>
-                            </jalios:if>
-                           <jalios:if predicate="<%=Util.notEmpty(itPlace.getMails()) %>">
-                            
-                             <jalios:foreach name="itMail" type="String" array="<%= itPlace.getMails()%>">
-                             <%
-                             String mail = itMail;
-                             Category cat = channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.ram"));
-                         if(Util.notEmpty(cat)){
-                         String lien = cat.getDisplayUrl(userLocale) + "?mailRAM=" + encodeForHTML(mail) + "&titleRAM=" + encodeForURL(itPlace.getTitle()); 
-                             %>
-                             <u><a class="gras" href="<%=lien %>">Courriel</a></u>
-                             <%} %>
-                             </jalios:foreach>
-                             
-                          </jalios:if>
-                           <jalios:if predicate="<%=Util.notEmpty(itPlace.getWebsites()) %>">
-                               <div>
-                                 <jalios:foreach name="itSite" type="String" array="<%= itPlace.getWebsites()%>">
-                                    <u><a class="gras" target='_blank' href="<%=itSite%>">Site internet</a></u>
-                                 </jalios:foreach>
-                               </div>
-                            </jalios:if>
-                          </div>  
-                          
-                          <jalios:if predicate="<%= setPlace.size() != itCounter %>">
-                              <div style="border-bottom: 2px dotted black; margin-top: 10px;"> </div>
-                          </jalios:if>
-                          
-                     </jalios:foreach>                      
-                       
-                </div>
-                   
-                   
-                
-           
-           </jalios:if>
-	     
-	     
-	     
-	     
-	  </div>
-  </div>
-  <!-- FIN corps de la page -->
+if(Util.notEmpty(agrementRenouvellementDomDate) && Util.notEmpty(assmatSolis.getExerceDomicile()) && assmatSolis.getExerceDomicile()) {
+  // Ajoute 2 mois à la date de renouvellement
+  GregorianCalendar calendar = new GregorianCalendar();
+  calendar.setTime(new Date());
+  calendar.add(Calendar.MONTH, 2);
+  if(calendar.getTime().after(agrementRenouvellementDomDate)) {
+    hasRenouvellementDom = true;
+    }
+}
     
+Boolean hasRenouvellementMam = false;
+Date agrementRenouvellementMamDate = assmatSolis.getDateProchainRenouvellementMam(); 
 
-</div>
+if(Util.notEmpty(agrementRenouvellementMamDate) && Util.notEmpty(assmatSolis.getExerceMam()) && assmatSolis.getExerceMam()) {
+  // Ajoute 2 mois à la date de renouvellement
+  GregorianCalendar calendar = new GregorianCalendar();
+  calendar.setTime(new Date());
+  calendar.add(Calendar.MONTH, 2);
+  
+  if(calendar.getTime().after(agrementRenouvellementMamDate)) {
+    hasRenouvellementMam = true;
+    }
+}
+%>
 
+<%-- Affichage d'une alerte si agrément arrive bientôt à échéance --%>
+<%-- Renouvellement Domicile --%>
+<jalios:if predicate="<%= hasRenouvellementDom %>">
+    <% String agrementRenouvellementDomDateString = simpleDateFormat.format(agrementRenouvellementDomDate); %>
+    <c:set var="date" value="<%= new String[]{agrementRenouvellementDomDateString} %>" scope="request" />
+    <ds:box type="bordure" boxClasses="mbm">
+        <p><trsb:glp key="ASS-ACC-ME-PER-DOM-HTML" parameter="${date}"></trsb:glp></p>
+    </ds:box>		     
+</jalios:if>
+
+<%-- Renouvellement MAM --%>
+<jalios:if predicate="<%= hasRenouvellementMam %>">
+    <% String agrementRenouvellementMamDateString = simpleDateFormat.format(agrementRenouvellementMamDate); %>
+    <c:set var="date" value="<%=new String[]{agrementRenouvellementMamDateString}%>" scope="request" /> 
+    <ds:box type="bordure">
+        <p><trsb:glp key="ASS-ACC-ME-PER-MAM-HTML" parameter="${date}"></trsb:glp></p>
+    </ds:box>
+</jalios:if>
+
+
+<%-- Affichage des déclarations d'accueil --%>
+<jalios:if predicate="<%= isGroupAuthorized && isSwaggerOk %>">
+    <%-- TODO Refonte 2022 / SGU : penser à tester tous les cas --%>
+    <%-- 2.3.2.2  Bloc des démarches enregistrées en brouillon --%>  
+    <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsBrouillon.jspf'%>
+         
+    <%-- 2.3.2.3 Bloc des accueils en cours --%>
+    <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsEnCours.jspf'%>
+</jalios:if>
+	     
+	     
+<%-- Bloc "Mes interlocuteurs" --%>
+<%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/accueilProfil_Interlocuteurs.jspf'%>
