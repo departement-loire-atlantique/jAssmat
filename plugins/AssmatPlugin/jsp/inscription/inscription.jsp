@@ -5,16 +5,44 @@
 <%-- Formulaire à étape permettant de créer les espaces de covnersation --%>
 
 <%
-	PortletJsp box = (PortletJsp) portlet;
+PortletJsp box = (PortletJsp) portlet;
+
+/* Lors de la soumission du formulaire, c'est la valeur de la case à cocher qui est renvoyée (fieldValue[0])
+   quand on revient sur une page précédente ou sur une page suivante, c'est la valeur du champ caché qui en renvoyé (filedValue)
+   On doit donc tester la valeur de ces 2 paramètres
+*/
+String civiliteParam = null;
+String typeEnvoiParam = null;
+String choixLoginParam = null;
+
+if(Util.notEmpty(request.getParameter("civilite[0]"))){
+  civiliteParam = request.getParameter("civilite[0]");
+}else if(Util.notEmpty(request.getParameter("civilite"))){
+  civiliteParam = request.getParameter("civilite");
+}
+
+if(Util.notEmpty(request.getParameter("typeenvoi[0]"))){
+  typeEnvoiParam = request.getParameter("typeenvoi[0]");
+}else if(Util.notEmpty(request.getParameter("typeenvoi"))){
+  typeEnvoiParam = request.getParameter("typeenvoi");
+}
+
+if(Util.notEmpty(request.getParameter("choixLogin[0]"))){
+  choixLoginParam = request.getParameter("choixLogin[0]");
+}else if(Util.notEmpty(request.getParameter("choixLogin"))){
+  choixLoginParam = request.getParameter("choixLogin");
+}
+
 %>
+
 <jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler'>
     <jsp:setProperty name='formHandler' property='*' />
 	<jsp:setProperty name='formHandler' property='request' value='<%=request%>' />
 	<jsp:setProperty name='formHandler' property='response'	value='<%=response%>' />
 	<jsp:setProperty name='formHandler' property="noRedirect" value="true" />
-	<jsp:setProperty name='formHandler' property="civilite" value='<%= getUntrustedStringParameter("civilite[0]", null) %>' />
-	<jsp:setProperty name='formHandler' property="typeenvoi" value='<%= getUntrustedStringParameter("typeenvoi[0]", null) %>' />
-	<jsp:setProperty name='formHandler' property="choixLogin" value='<%= getUntrustedStringParameter("choixLogin[0]", null) %>' />
+	<jsp:setProperty name='formHandler' property="civilite" value='<%= civiliteParam %>' />
+	<jsp:setProperty name='formHandler' property="typeenvoi" value='<%= typeEnvoiParam %>' />
+	<jsp:setProperty name='formHandler' property="choixLogin" value='<%= choixLoginParam %>' />
 </jsp:useBean>
 
 
@@ -64,7 +92,7 @@ boolean notfoundCompte= false;
 						<%@ include
 							file='/plugins/AssmatPlugin/jsp/inscription/etapes.jspf'%>
 
-								<%@ include file='/jcore/doMessageBox.jsp'%>
+								<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 								<p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
 								<form method="post"
 									action="<%= ServletUtil.getResourcePath(request) %>"
