@@ -1,0 +1,31 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+String nomEnfant = itAccueil.getNomEnfant();
+String prenomEnfant = itAccueil.getPrenomEnfant();
+Integer idDeclaration = itAccueil.getIdDeclaration();
+String dateModifDeclarationString = "";
+if(Util.notEmpty(itAccueil.getDateMaj())) {
+  dateModifDeclarationString = DATE_TIME_FORMAT.print(itAccueil.getDateMaj());
+ } 
+String dateAccueilString = "";
+if(Util.notEmpty(itAccueil.getDateDebutAccueil())) {
+  dateAccueilString = DATE_TIME_FORMAT.print(itAccueil.getDateDebutAccueil());
+ } 
+%>
+<section class="ds44-card ds44-card--noLink ds44-card--contact">
+    <div class="ds44-card__section txtleft">
+        <p role="heading" aria-level="3" class="h4-like ds44-cardTitle"><%= prenomEnfant %> <%= nomEnfant %></p>
+        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
+            <%= glp("jcmsplugin.assmatplugin.declarationaccueil.date-declaration", dateModifDeclarationString)%><br/>
+            <%= glp("jcmsplugin.assmatplugin.declarationaccueil.date-accueil", dateAccueilString)%>
+        </p>
+        <hr class="mbm mtm" aria-hidden="true"/>
+        <ul class="">
+          <li><a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherDeclaration.jsp?idDeclaration=<%= idDeclaration %>" title="<%= glp("jcmsplugin.assmatplugin.declarationaccueil.afficher") %> : <%= prenomEnfant %> <%= nomEnfant %>"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.afficher") %></a></li>
+          <li><a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/annulerDeclaration.jsp?idDeclaration=<%= idDeclaration %>&etat=supprime&redirect=<%= lienRetourModal %>" title="<%= glp("jcmsplugin.assmatplugin.declarationaccueil.supprimer") %> : <%= prenomEnfant %> <%= nomEnfant %>"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.supprimer") %></a></li>
+          <li><a href="<%= lienDeclarationAccueil %>?idModifDeclaration=<%= idDeclaration %>&idModifEnCours=<%= idDeclaration %>" title="<%= glp("jcmsplugin.assmatplugin.declarationaccueil.modifier") %> : <%= prenomEnfant %> <%= nomEnfant %>"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.modifier") %></a></li>
+          <li><a href="<%= lienDeclarationFinAccueil %>?idDeclaration=<%= idDeclaration %>" title="<%= glp("jcmsplugin.assmatplugin.declarationaccueil.finaccueil") %> : <%= prenomEnfant %> <%= nomEnfant %>"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.finaccueil") %></a></li>
+        </ul>
+    </div>
+</section>
+
