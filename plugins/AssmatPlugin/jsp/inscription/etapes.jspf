@@ -94,7 +94,7 @@ int nbTentativeStep0 = formHandler.getNbTentativeErrone();
                             </jalios:select>
                         </li>
                         <li class='ds44-nav-step<%= step > 3 ? " liPassed" : ""%><%= step == 3 ? "  aria-current='page'" : ""%>'>
-                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.inscription.contacts"); %>
+                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.inscription.login-mdp"); %>
                             <jalios:select>
                                 <jalios:if predicate="<%= step > 3 %>">
                                     <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 4, lblBtnStep) %>'
@@ -121,7 +121,7 @@ int nbTentativeStep0 = formHandler.getNbTentativeErrone();
                             </jalios:select>
                         </li>
                         <li class='ds44-nav-step<%= step > 4 ? " liPassed" : ""%><%= step == 4 ? "  aria-current='page'" : ""%>'>
-                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.inscription.contacts"); %>
+                            <% lblBtnStep = glp("jcmsplugin.assmatplugin.inscription.confirmation"); %>
                             <jalios:select>
                                 <jalios:if predicate="<%= step == 4 %>">
                                     <div class="active">

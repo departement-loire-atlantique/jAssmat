@@ -53,7 +53,7 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.contact.paremail: par e-mail
 jcmsplugin.assmatplugin.inscription.champ.lbl.contact.parsms: par sms
 jcmsplugin.assmatplugin.inscription.champ.lbl.contact.msgexemple: Exemples de messages pouvant être envoyés par le Département :
 jcmsplugin.assmatplugin.inscription.champ.lbl.contact.msg: Confirmation de l'activation de votre profil, confirmation lors du changement de mot de passe, accusé de réception d'une d'éclaration d'accueil, accusé de réception d'un changement signalé à l'unité agrément...
-jcmsplugin.assmatplugin.inscription.champ.lbl.login.mail: votre e-mail :
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.mail: votre e-mail : {0}
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.tel: Votre n° de téléphone portable : {0}
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.agrement: Votre n° de dossier d'agrément : {0}
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp: Choisissez votre mot de passe
