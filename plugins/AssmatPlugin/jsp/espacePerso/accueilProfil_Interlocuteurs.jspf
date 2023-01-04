@@ -49,7 +49,7 @@ if(assmatSolis.getIdRamMam() != null) {
                         if(Util.notEmpty(cat)){
                           String lien = cat.getDisplayUrl(userLocale) + "?mailRAM=" + encodeForHTML(mail) + "&titleRAM=" + encodeForURL(itPlace.getTitle()); 
                    %>
-                   <p class="ds44-docListElem mts"><i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i><a href="<%=lien %>" aria-label="Contacter CLIC du Pays d’Ancenis - Bureau Info Aînés par mail : contact@loire-atlantique.fr">Contacter par mail</a></p>
+                   <p class="ds44-docListElem mts"><i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i><a href="<%=lien %>" title='<%= encodeForHTMLAttribute(glp("jcmsplugin.socle.actuedu.contactmail.label", mail)) %>'><%= glp("jcmsplugin.socle.contactmail.label") %></a></p>
                    <%} %>
                    </jalios:foreach>
                    
@@ -57,7 +57,7 @@ if(assmatSolis.getIdRamMam() != null) {
                 
                 <jalios:if predicate="<%=Util.notEmpty(itPlace.getWebsites()) %>">
                     <jalios:foreach name="itSite" type="String" array="<%= itPlace.getWebsites()%>">
-                        <p class="ds44-docListElem mts"><i class="icon icon-link ds44-docListIco" aria-hidden="true"></i><a href="<%=itSite%>" aria-label="Visiter le site web de  : [Nom du lieu] - nouvelle fenêtre" target="_blank">Visiter le site</a></p>
+                        <p class="ds44-docListElem mts"><i class="icon icon-link ds44-docListIco" aria-hidden="true"></i><a href="<%=itSite%>" title='<%= encodeForHTMLAttribute(glp("jcmsplugin.socle.lien.site.nouvelonglet", itSite)) %>' target="_blank"><%= glp("jcmsplugin.socle.ficheaide.visiter-site.label") %></a></p>
                        </jalios:foreach>
                 </jalios:if>                
 		      

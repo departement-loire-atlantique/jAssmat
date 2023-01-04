@@ -203,6 +203,7 @@ jcmsplugin.assmatplugin.declarationaccueil.terminer: Terminer la déclaration
 jcmsplugin.assmatplugin.declarationaccueil.annuler: Annuler la déclaration
 jcmsplugin.assmatplugin.declarationaccueil.date-declaration: Date déclaration : {0} 
 jcmsplugin.assmatplugin.declarationaccueil.date-accueil: Date accueil : {0}
+jcmsplugin.assmatplugin.declarationaccueil.finaccueil: Déclarer une fin d’accueil
 
 
 # Connexion AM
