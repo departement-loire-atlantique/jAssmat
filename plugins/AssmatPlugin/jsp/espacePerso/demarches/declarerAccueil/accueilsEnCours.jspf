@@ -7,13 +7,6 @@
     <h2><trsb:glp key="ASS-ACC-EC-TITRE1-HTML"></trsb:glp></h2>
     
     <p><trsb:glp key="ASS-ACC-EC-T-INFO-HTML" /></p>
-    
-	<%-- Message d'alerte si swagger KO (pas de communication avec le webservice de l'appli "Démarches Assmat" --%>
-	<jalios:if predicate="<%= !isSwaggerOk %>">
-	   <ds:box type="alerte" boxClasses="ds44-mb3">
-            <p><trsb:glp key="SWAGGER-RESP-ERR" /></p>
-        </ds:box>
-	</jalios:if>    
 
     <%-- Planning de l'assmat --%>
     <%-- TODO Refonte 2022 / SGU : lien ou bouton ? --%>

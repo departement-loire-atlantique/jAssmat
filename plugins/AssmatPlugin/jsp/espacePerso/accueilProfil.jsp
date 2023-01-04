@@ -142,6 +142,12 @@ if(Util.notEmpty(agrementRenouvellementMamDate) && Util.notEmpty(assmatSolis.get
     </ds:box>
 </jalios:if>
 
+<%-- Message d'alerte si swagger KO (pas de communication avec le webservice de l'appli "Démarches Assmat" --%>
+<jalios:if predicate="<%= !isSwaggerOk %>">
+    <ds:box type="alerte" boxClasses="ds44-mb3">
+        <p><trsb:glp key="SWAGGER-RESP-ERR" /></p>
+    </ds:box>
+</jalios:if> 
 
 <%-- Affichage des déclarations d'accueil --%>
 <jalios:if predicate="<%= isGroupAuthorized && isSwaggerOk %>">
