@@ -943,11 +943,11 @@ public AssmatSolis getAssmat() {
     sb.append(getHiddenFieldTag("formStep", formStep));
     sb.append(getHiddenFieldTag("inscriptionOK", inscriptionOK));
     if (formStep >= IDENTIFICATION_STEP) {
-      sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
-      sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
-      sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
       sb.append(getHiddenFieldTag("commune", commune));
       sb.append(getHiddenFieldTag("communeMam", communeMam));
+      sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
+      sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
+      sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
 
       if(nbTentativeErrone>=NB_TENTATIVE_MAX){	// Formulaire de 2e erreur d'identification
 	      sb.append(getHiddenFieldTag("nom", nom));
@@ -955,18 +955,14 @@ public AssmatSolis getAssmat() {
       }
     }
     if (formStep >= VERIFICATION_STEP) {
-      sb.append(getHiddenFieldTag("nom", nom));
       sb.append(getHiddenFieldTag("civilite", civilite));
+      sb.append(getHiddenFieldTag("nom", nom));
       sb.append(getHiddenFieldTag("prenom", prenom));
-      sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
       sb.append(getHiddenFieldTag("email", email));
+      sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
       sb.append(getHiddenFieldTag("telephone", telephone));
       sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
       sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
-      
-      sb.append(getHiddenFieldTag("commune", commune));
-      sb.append(getHiddenFieldTag("communeMam", communeMam));
-      sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
       
       sb.append(getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
       

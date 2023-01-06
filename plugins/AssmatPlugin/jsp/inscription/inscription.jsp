@@ -8,12 +8,27 @@
 PortletJsp box = (PortletJsp) portlet;
 
 /* Lors de la soumission du formulaire, c'est la valeur de la case à cocher qui est renvoyée (fieldValue[0])
-   quand on revient sur une page précédente ou sur une page suivante, c'est la valeur du champ caché qui en renvoyé (filedValue)
-   On doit donc tester la valeur de ces 2 paramètres
+   quand on revient sur une page précédente ou sur une page suivante, c'est la valeur du champ caché qui en renvoyé (fieldValue)
+   On doit donc tester la valeur de ces 2 paramètres.
+   
 */
 String civiliteParam = null;
 String typeEnvoiParam = null;
 String choixLoginParam = null;
+String emailParam = null;
+String telephoneParam = null;
+
+if(Util.notEmpty(request.getParameter("emailModifiable"))){
+  emailParam = request.getParameter("emailModifiable");
+}else if(Util.notEmpty(request.getParameter("email"))){
+  emailParam = request.getParameter("email");
+}
+
+if(Util.notEmpty(request.getParameter("telephoneModifiable"))){
+  telephoneParam = request.getParameter("telephoneModifiable");
+}else if(Util.notEmpty(request.getParameter("telephone"))){
+  telephoneParam = request.getParameter("telephone");
+}
 
 if(Util.notEmpty(request.getParameter("civilite[0]"))){
   civiliteParam = request.getParameter("civilite[0]");
@@ -43,6 +58,8 @@ if(Util.notEmpty(request.getParameter("choixLogin[0]"))){
 	<jsp:setProperty name='formHandler' property="civilite" value='<%= civiliteParam %>' />
 	<jsp:setProperty name='formHandler' property="typeenvoi" value='<%= typeEnvoiParam %>' />
 	<jsp:setProperty name='formHandler' property="choixLogin" value='<%= choixLoginParam %>' />
+	<jsp:setProperty name='formHandler' property="email" value='<%= emailParam %>' />
+	<jsp:setProperty name='formHandler' property="telephone" value='<%= telephoneParam %>' />
 </jsp:useBean>
 
 
@@ -94,6 +111,7 @@ boolean notfoundCompte= false;
 
 								<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 								<p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
+								<!-- TEST -->
 								<form method="post"
 									action="<%= ServletUtil.getResourcePath(request) %>"
 									name="formContact" id="formContact" data-no-encoding="true">

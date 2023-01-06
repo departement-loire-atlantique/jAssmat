@@ -347,9 +347,8 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	</div>
 	
 	<div class="ds44-form__container">
-	    <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.valider")%>' data-technical-field>
+	    <input type="submit" name="opContact" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.valider")%>' data-submit-key="opContact" data-submit-value="true" data-technical-field>
 	    <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-	    <input type="hidden" id="inputContact" name="opContact" value="true" data-technical-field>
     </div>
               
 
@@ -376,17 +375,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
 			<p><trsb:glp key="LIBELLE-TEL-UNITE-AGREMENT-HTML" parameter="<%=tabParam %>"></trsb:glp></p>
 		</div>
     <%} %>
-	<%--   
-        <p class="submit">
-             
-               <label for="submit"> <input type="submit" id="submit"
-                 name="opCreate" value="Etape suivante" class="submitButton">
-                 <span class="input-box" style="background-color: #aec900"><span
-                   class="spr-recherche-ok"></span></span>
-               </label> <input type="hidden" name="noSendRedirect" value="true">
-              <input type="hidden" name="opNext" value="true">
-             </p>
-	 --%>
+
 </div>		
 
 <%-- FIN FORMULAIRE A ETAPES --%>
