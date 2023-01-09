@@ -156,7 +156,6 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
 	        <div class="ds44-form__container">
 	            <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%></button>
 	            <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%></button>
-	            <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field>
                 <input type="hidden" name="noSendRedirect" value="true" data-technical-field> 
                 <input type="hidden" name="id" value="c_5065" data-technical-field>
             </div>
