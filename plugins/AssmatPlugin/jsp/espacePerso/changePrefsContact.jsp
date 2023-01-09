@@ -17,6 +17,15 @@ if(Util.isEmpty(profil)){
 	sendForbidden(request, response);
 	return;
 }
+
+String choixCanalCommParam = null;
+
+if(Util.notEmpty(request.getParameter("choixCanalComm[0]"))){
+  choixCanalCommParam = request.getParameter("choixCanalComm[0]");
+}else if(Util.notEmpty(request.getParameter("choixCanalComm"))){
+  choixCanalCommParam = request.getParameter("choixCanalComm");
+}
+
 %>
 
 <jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.ProfilPrefsContactHandler'>
@@ -25,6 +34,7 @@ if(Util.isEmpty(profil)){
   <jsp:setProperty name='formHandler' property="noRedirect" value="true" />
   <jsp:setProperty name='formHandler' property="profil" value='<%= profil %>' />
   <jsp:setProperty name='formHandler' property="member" value='<%= loggedMember %>' />
+  <jsp:setProperty name='formHandler' property="choixCanalComm" value='<%= choixCanalCommParam %>' />
   <jsp:setProperty name='formHandler' property='*' />  
 </jsp:useBean>
 
@@ -48,10 +58,10 @@ String uuid = UUID.randomUUID().toString();
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
-<%@ include file='/jcore/doMessageBox.jsp' %>
+<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
-    name="formContact" id="formContact">
+    name="formContact" id="formContact" data-no-encoding="true">
 
     <p class="ds44-field-information-explanation"><trsb:glp key="CONTACTS-EXEMPLES-HTML"></trsb:glp></p>
     <br>
@@ -82,7 +92,7 @@ String uuid = UUID.randomUUID().toString();
     <% uuid = UUID.randomUUID().toString(); %>
             <div class="ds44-form__container">
                 <p aria-level="2" class="h4-like">
-                   <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>
+                  <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>
                   <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
                       <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
                       <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
@@ -137,8 +147,10 @@ String uuid = UUID.randomUUID().toString();
             
     <div class="ds44-form__container">
         <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
+        <input type="hidden" name="opUpdate" class="ds44-btnStd" value='true' data-technical-field>
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
-          <input type="hidden" name="numeroAgrement" value="<%= numeroDossierAssmat %>" data-technical-field/>
+        <input type="hidden" name="numeroAgrement" value="<%= numeroDossierAssmat %>" data-technical-field/>
+        <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>
     </div>
     
 </form>
