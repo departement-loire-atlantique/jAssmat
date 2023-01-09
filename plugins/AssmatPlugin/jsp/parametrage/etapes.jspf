@@ -16,7 +16,7 @@
                   
                 <nav role="navigation" class="ds44-flex-container ds44-fg1 ds44-hiddenPrint">
                     <ol class="ds44-nav-stepper ds44-fg1 ds44-flex-container ds44-list">
-                        <li class='ds44-nav-step<%= step > 0 ? " liPassed" : ""%><%= step == 0 ? "  aria-current='page'" : ""%>'>
+                        <li class='ds44-nav-step<%= step > 0 ? " liPassed" : ""%>'<%= step == 0 ? "  aria-current='page'" : ""%>>
                             <% String lblBtnStep = glp("jcmsplugin.assmatplugin.parametrage.visibilite"); %>
                             <jalios:select>
                                 <jalios:if predicate="<%= step > 0 %>">
