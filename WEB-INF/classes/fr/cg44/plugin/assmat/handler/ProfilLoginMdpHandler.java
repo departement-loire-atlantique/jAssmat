@@ -82,7 +82,7 @@ public class ProfilLoginMdpHandler extends JcmsFormHandler  {
     }
     // Si le type de login change celui-ci est mit à jour dans le profil AM
     // Le datacontroller sur le profil AM ce charge de mettre le login du membre à jour
-    if(!profil.getTypeLogin().equals(choixLogin)){
+    if(Util.isEmpty(profil.getTypeLogin()) || !profil.getTypeLogin().equals(choixLogin)){
       ProfilASSMAT cloneProfil = (ProfilASSMAT) profil;
       cloneProfil.setTypeLogin(choixLogin);
       cloneProfil.performUpdate(channel.getDefaultAdmin());
