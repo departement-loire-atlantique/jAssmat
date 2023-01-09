@@ -56,7 +56,7 @@
 
 					<div class="ds44-form__container ds44-checkBox-radio_list ">
 						<input type="checkbox" id="name-check-<%= idFormElement %>-1"
-							name="<%= idFormElement %>-1" value="withDispo" class="ds44-checkbox" checked /><label
+							name="<%= idFormElement %>-1" value="withDispo" class="ds44-checkbox" /><label
 							for="name-check-<%= idFormElement %>-1" class="ds44-boxLabel"
 							id="name-check-label-<%= idFormElement %>-1"><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO" /></label>
 					</div>
@@ -66,7 +66,7 @@
 
 					<div class="ds44-form__container ds44-checkBox-radio_list ">
 						<input type="checkbox" id="name-check-<%= idFormElement %>-2"
-							name="<%= idFormElement %>-2" value="withDispoFuture" class="ds44-checkbox" checked /><label
+							name="<%= idFormElement %>-2" value="withDispoFuture" class="ds44-checkbox" /><label
 							for="name-check-<%= idFormElement %>-2" class="ds44-boxLabel"
 							id="name-check-label-<%= idFormElement %>-2"><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO-FUTUR" /></label>
 					</div>

@@ -9,6 +9,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="fr.cg44.plugin.socle.SocleUtils"%>
 <%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
 <%@ include file='/jcore/doInitPage.jspf' %><%
 %><%@ page import="com.jalios.jcms.taglib.card.*" %><%
 %><%@ include file='/jcore/media/mediaTemplateInit.jspf' %><%
@@ -125,6 +126,9 @@ Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier"
 
             <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-date ds44-docListIco" aria-hidden="true"></i><%=pointAssmat.getInfoPoint() %></p>           
 
+             <jalios:if predicate="<%= !pointAssmat.isDomicile() %>">
+                <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-MAM" /></p>
+             </jalios:if>
 
 
             <%    
@@ -135,21 +139,41 @@ Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier"
 		    
 		    <jalios:if predicate="<%= showContactDispo  %>">
 		    
-			    <!-- Tel fixe -->
-			    <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisbiliteTelephoneFixe()) && Util.notEmpty(pub.getTelephoneFixe()) %>">		    		        
-			        <jalios:if predicate="<%= Util.notEmpty(pub.getTelephoneFixe()) %>">			          
-			          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><ds:phone number="<%= pub.getTelephoneFixe() %>" pubTitle="<%= pub.getTelephoneFixe() %>"></ds:phone></p>			          
-			        </jalios:if>		   	                         
-	            </jalios:if>
+		        <!-- Tel fixe -->
+		        <jalios:buffer name="telFix">				    
+				    <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisbiliteTelephoneFixe()) && Util.notEmpty(pub.getTelephoneFixe()) %>">		    		        
+				        <jalios:if predicate="<%= Util.notEmpty(pub.getTelephoneFixe()) %>">			          
+				          <ds:phone number="<%= pub.getTelephoneFixe() %>" pubTitle="<%= pub.getTelephoneFixe() %>"></ds:phone>		          
+				        </jalios:if>		   	                         
+		            </jalios:if>
+	            </jalios:buffer>
 	            
 	            
 	            <jalios:if predicate="<%= Util.notEmpty(pub.getAuthor()) %>">
 	            
-		            <!-- Tel mobile -->
-	                <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisibiliteTelephonePortable()) && Util.notEmpty(pub.getAuthor().getMobile()) %>">
-	                   <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><ds:phone number="<%= pub.getAuthor().getMobile() %>" pubTitle="<%= pub.getAuthor().getMobile() %>"></ds:phone> </p>	                   
+	            
+	                <!-- Tel mobile -->
+	                <jalios:buffer name="telMobile">
+	                    <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisibiliteTelephonePortable()) && Util.notEmpty(pub.getAuthor().getMobile()) %>">
+	                      <ds:phone number="<%= pub.getAuthor().getMobile() %>" pubTitle="<%= pub.getAuthor().getMobile() %>"></ds:phone>                     
+	                    </jalios:if>
+                    </jalios:buffer>
+	            
+
+		            <!-- Teléphones -->            
+	                <jalios:if predicate="<%= Util.notEmpty(telMobile.trim()) || Util.notEmpty(telFix.trim()) %>">
+		                <%	                    
+		                Set<String> telephones = new HashSet<String>();
+		                if(Util.notEmpty(telFix)) 
+		                  telephones.add(telFix.trim());
+		                if(Util.notEmpty(telMobile))
+		                  telephones.add(telMobile.trim());
+	                    %>
+	                  
+	                   <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= String.join(" - ", telephones) %></p>	                   
+	              
 	                </jalios:if>
-	                	                
+	        	                
 	                <!--  Courriel -->
 	                <%  Publication contactPub = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.am")); %>
 	                <jalios:if predicate="<%= AssmatUtil.getBooleanFromString(pub.getVisibiliteAdresseEmail()) && Util.notEmpty(pub.getAuthor().getEmail()) && Util.notEmpty(contactPub) %>">	                   

@@ -1,6 +1,7 @@
 #Commun
 jcmsplugin.assmatplugin.numero-dossier: Numéro de dossier : {0}
 jcmsplugin.assmatplugin.derniere-actualisation.profil: Date de dernière actualisation : {0}
+jcmsplugin.assmatplugin.export-planning: Exporter les plannings
 
 #Page accueil
 jcmsplugin.assmatplugin.accueil.activeprofil: J'active mon profil
@@ -52,7 +53,7 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.contact.paremail: par e-mail
 jcmsplugin.assmatplugin.inscription.champ.lbl.contact.parsms: par sms
 jcmsplugin.assmatplugin.inscription.champ.lbl.contact.msgexemple: Exemples de messages pouvant être envoyés par le Département :
 jcmsplugin.assmatplugin.inscription.champ.lbl.contact.msg: Confirmation de l'activation de votre profil, confirmation lors du changement de mot de passe, accusé de réception d'une d'éclaration d'accueil, accusé de réception d'un changement signalé à l'unité agrément...
-jcmsplugin.assmatplugin.inscription.champ.lbl.login.mail: votre e-mail :
+jcmsplugin.assmatplugin.inscription.champ.lbl.login.mail: votre e-mail : {0}
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.tel: Votre n° de téléphone portable : {0}
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.agrement: Votre n° de dossier d'agrément : {0}
 jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp: Choisissez votre mot de passe
@@ -192,6 +193,17 @@ jcmsplugin.assmatplugin.espaceperso.monnum:Mon n° de téléphone :
 jcmsplugin.assmatplugin.espaceperso.monmail:Mon e-mail :
 
 jcmsplugin.assmatplugin.espacepro.modifiercoords: Modifier si besoin vos coordonnées
+
+# Déclaration d'accueil
+jcmsplugin.assmatplugin.declarationaccueil.nouvelaccueil: Déclarer un nouvel accueil
+jcmsplugin.assmatplugin.declarationaccueil.afficher: Afficher la déclaration
+jcmsplugin.assmatplugin.declarationaccueil.modifier: Modifier la déclaration
+jcmsplugin.assmatplugin.declarationaccueil.supprimer: Supprimer la déclaration
+jcmsplugin.assmatplugin.declarationaccueil.terminer: Terminer la déclaration
+jcmsplugin.assmatplugin.declarationaccueil.annuler: Annuler la déclaration
+jcmsplugin.assmatplugin.declarationaccueil.date-declaration: Date déclaration : {0} 
+jcmsplugin.assmatplugin.declarationaccueil.date-accueil: Date accueil : {0}
+jcmsplugin.assmatplugin.declarationaccueil.finaccueil: Déclarer une fin d’accueil
 
 
 # Connexion AM

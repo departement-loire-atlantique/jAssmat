@@ -76,7 +76,7 @@ String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccue
                                 <div class="ds44-form__container">
                                   <div class="ds44-posRel">
                                      <label for="current-password" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("ui.adm.mail-info.password") %></span></span></label>
-                                     <input type="password" id="current-password" name="JCMS_password" class="ds44-inpStd" autocomplete="current-password" title="null">
+                                     <input type="password" id="current-password" name="JCMS_password" class="ds44-inpStd" autocomplete="current-password" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", passwordText) %>' required>
                                      <button class="ds44-showPassword" type="button">
                                      <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
                                      <span class="visually-hidden"><%= glp("plugin.assmatplugin.facette.afficher-contenu-champ", glp("ui.adm.mail-info.password")) %></span>
@@ -113,7 +113,7 @@ String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccue
                            <h2 class="h4-like ds44-mb-std" id="titreCreerCompte"><%= glp("plugin.assmatplugin.screen.login.noaccount") %></h2>
                            <h3 class="h5-like"><%= glp("plugin.assmatplugin.screen.login.assistantmaternel") %></h3>
                            <p><%= glp("plugin.assmatplugin.screen.login.assistantmaternel.intro") %></p>
-                           <button class="ds44-btnStd ds44-mt2"><span class="ds44-btnInnerText"><%= glp("plugin.assmatplugin.screen.login.enableaccount") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+                           <a class="ds44-btnStd ds44-mt2" href="<%= JcmsUtil.getDisplayUrl(channel.getData(channel.getProperty("jcmsplugin.assmatplugin.socle.jsp.inscription")), userLocale)%>"><span class="ds44-btnInnerText"><%= glp("plugin.assmatplugin.screen.login.enableaccount") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></a>
                         </div>
                      </div>
                   </div>

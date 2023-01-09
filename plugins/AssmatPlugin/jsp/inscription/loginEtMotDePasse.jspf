@@ -9,7 +9,6 @@
 %>
 <%
 if (step == InscriptionAssmatHandler.LOGIN_STEP) {
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/PortletLogin/portletLoginFullDisplay.css");
   String emailAssmat = formHandler.getEmail();
   boolean isEmailChoice=false;
   String choix = formHandler.getTypeenvoi();
@@ -31,17 +30,32 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
         <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.choixLogin") %><sup aria-hidden="true">*</sup></p>
 	    <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
 	    <div class="ds44-form__container ds44-checkBox-radio_list ">
-	        <input type="radio" name="choixLogin" value="tel" id="name-radio-form-element-<%= uuid %>-tel" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" />
-	        <label id="label-radio-form-element-<%= uuid %>-tel" for="name-radio-form-element-<%= uuid %>-tel" class="ds44-radioLabel">
-	        <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.login.tel", telephoneAssmat) %>
+	    
+	       <%if(isEmailChoice && Util.isEmpty(channel.getMemberFromLogin(emailAssmat))){ %>
+	        <input type="radio" name="choixLogin" value="email" id="name-radio-form-element-<%= uuid %>-email" <%if(Util.notEmpty(choix) && isEmailChoice ){%> checked="checked" <%} %> class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" />
+	        <label id="label-radio-form-element-<%= uuid %>-email" for="name-radio-form-element-<%= uuid %>-email" class="ds44-radioLabel">
+	        <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.login.mail", emailAssmat) %>
 	              <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
                       <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
                       <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.aide") %> <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
                       </button><span id="label_simpletooltip_<%= uuid %>" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>" aria-hidden="true">
-                      <trsb:glp key="LOGIN-PREF-CONNEXION-TEL-BULLE-HTML" ></trsb:glp>
+                      <trsb:glp key="LOGIN-PREF-CONNEXION-EMAIL-BULLE-HTML" ></trsb:glp>
                       </span>
                   </span>
 	        </label>
+	        <%} else if(!isEmailChoice && Util.isEmpty(channel.getMemberFromLogin(telephoneAssmat))){ %>
+            <input type="radio" name="choixLogin" value="tel" id="name-radio-form-element-<%= uuid %>-tel" <%if(Util.notEmpty(choix) && !isEmailChoice){%> checked="checked" <%} %> class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" />
+            <label id="label-radio-form-element-<%= uuid %>-tel" for="name-radio-form-element-<%= uuid %>-tel" class="ds44-radioLabel">
+            <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.login.tel", telephoneAssmat) %>
+                  <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
+                      <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
+                      <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.aide") %> <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.tel") %></span>
+                      </button><span id="label_simpletooltip_<%= uuid %>" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>" aria-hidden="true">
+                      <trsb:glp key="LOGIN-PREF-CONNEXION-TEL-BULLE-HTML" ></trsb:glp>
+                      </span>
+                  </span>
+            </label>	        
+	        <%} %>
 	    </div>
 	    <div class="ds44-form__container ds44-checkBox-radio_list ">
 	        <input type="radio" name="choixLogin" value="dossier" id="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" />
@@ -65,7 +79,7 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
 	<div class="ds44-form__container">
 	   <div class="ds44-posRel">
 	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp") %><sup aria-hidden="true">*</sup></span></span></label>
-	      <input type="password" id="form-element-<%= uuid %>" name="password" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp")) %>' required autocomplete="current-password" aria-describedby="explanation-form-element-<%= uuid %>" />
+	      <input type="password" id="form-element-<%= uuid %>" name="password" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp")) %>' autocomplete="current-password" aria-describedby="explanation-form-element-<%= uuid %>" />
 	      <button class="ds44-showPassword" type="button">
 	      <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
 	      <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.afficher", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mdp")) %></span>
@@ -77,7 +91,7 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
 	<div class="ds44-form__container">
 	   <div class="ds44-posRel">
 	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp") %><sup aria-hidden="true">*</sup></span></span></label>
-	      <input type="password" id="form-element-<%= uuid %>" name="passwordConfirm" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp")) %>'  required autocomplete="current-password"    />
+	      <input type="password" id="form-element-<%= uuid %>" name="passwordConfirm" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp")) %>' autocomplete="current-password"    />
 	      <button class="ds44-showPassword" type="button">
 	      <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
 	      <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.afficher", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.confirm.mdp")) %></span>

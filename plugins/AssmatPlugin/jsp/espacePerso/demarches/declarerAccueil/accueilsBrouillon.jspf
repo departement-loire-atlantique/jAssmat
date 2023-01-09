@@ -1,61 +1,43 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
-
               
-<!-- 2.3.2.2  Bloc des démarches enregistrées en brouillon -->      
+<%-- 2.3.2.2  Bloc des démarches enregistrées en brouillon --%>      
 <jalios:if predicate="<%= declarationBrouillonList != null && declarationBrouillonList.size() > 0 %>">      
-    
-      <div class="demarche brouillon">
-      
-          <div class="titre-demarche-brouillon">
-            <img src="plugins/AssmatPlugin/img/icon-accueil-brouillon.png" alt="" style="padding-right: 10px;"/>                      
-            <trsb:glp key="ASS-ACC-BR-TITRE1-HTML"></trsb:glp>
-          </div>
-      
-         <div class="div-responsive">
-         <%-- Iteration sur les demarches d'accueil brouillon --%>
-           <jalios:foreach collection="<%= declarationBrouillonList %>" name="itAccueil" type="AccueilDTO">
-           
-              <%
-               String nomEnfant = itAccueil.getNomEnfant();
-               String prenomEnfant = itAccueil.getPrenomEnfant();
-               Integer idDeclaration = itAccueil.getIdDeclaration();
-               String dateModifDeclarationString = "";
-               if(Util.notEmpty(itAccueil.getDateMaj())) {
-                 dateModifDeclarationString = DATE_TIME_FORMAT.print(itAccueil.getDateMaj());
-                }
-              %>
+
+    <section class="ds44-contenuArticle">
+
+        <h2><trsb:glp key="ASS-ACC-BR-TITRE1-HTML"></trsb:glp></h2>
+        
+        <%-- Iteration sur les demarches d'accueil brouillon --%>
+        <ul class="ds44-mtb3 ds44-multiCol ds44-list">
+            <jalios:foreach collection="<%= declarationBrouillonList %>" name="itAccueil" type="AccueilDTO">
+				<%
+				String nomEnfant = itAccueil.getNomEnfant();
+				String prenomEnfant = itAccueil.getPrenomEnfant();
+				Integer idDeclaration = itAccueil.getIdDeclaration();
+				String dateModifDeclarationString = "";
+				if(Util.notEmpty(itAccueil.getDateMaj())) {
+				  dateModifDeclarationString = DATE_TIME_FORMAT.print(itAccueil.getDateMaj());
+				 }
+				%>
+                <li class="ds44-noCut">
+                    <%-- Tuile déclaration accueil --%>
+                    <section class="ds44-card ds44-card--noLink ds44-card--contact">
+					    <div class="ds44-card__section txtleft">
+					        <p role="heading" aria-level="3" class="h4-like ds44-cardTitle"><trsb:glp key="ASS-ACC-BR-ENF-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>'></trsb:glp></p>
+					        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
+					            <%= glp("jcmsplugin.assmatplugin.declarationaccueil.date-declaration", dateModifDeclarationString)%><br/>
+					        </p>
+					        <hr class="mbm mtm" aria-hidden="true"/>
+					        <ul class="">
+					          <li><a href="<%= lienDeclarationAccueil %>?idModifDeclaration=<%= idDeclaration %>" title="<%= glp("jcmsplugin.assmatplugin.declarationaccueil.terminer") %> : <%= prenomEnfant %> <%= nomEnfant %>"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.terminer") %></a></li>
+					          <li><a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/annulerDeclaration.jsp?idDeclaration=<%= idDeclaration %>&redirect=<%= lienRetourModal %>" title="<%= glp("jcmsplugin.assmatplugin.declarationaccueil.annuler") %> : <%= prenomEnfant %> <%= nomEnfant %>"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.annuler") %></a></li>
+					        </ul>
+					    </div>
+                    </section>
+                </li>
+            </jalios:foreach>
+        </ul> 
+
+    </section>
               
-              <div class="ligne-demarche-brouillon">
-                            
-                  <div class="nom-enfant">
-                    <trsb:glp key="ASS-ACC-BR-ENF-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>'></trsb:glp>
-                  </div>
-                  
-                  <div class="date-modif">
-                    <%= dateModifDeclarationString %>
-                  </div>
-                  
-                  <div class="terminer-declaration">
-                    <%-- Terminer la déclaration d'accueil --%>
-                    <div>
-                        <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
-                        <a href="<%= lienDeclarationAccueil %>?idModifDeclaration=<%= idDeclaration %>">
-                            <trsb:glp key="ASS-ACC-BR-REP-HTML" />                  
-                        </a>
-                    </div>
-                    <%-- Annuler la déclaration d'accueil --%>
-                    <div>
-                        <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
-                        <a class="modal confirm" title='<%= AssmatUtil.getMessage("ASS-ACC-BR-SUPP-VAL-HTML") %>' href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/annulerDeclaration.jsp?idDeclaration=<%= idDeclaration %>&redirect=<%= lienRetourModal %>" >
-                            <trsb:glp key="ASS-ACC-BR-SUPP-HTML" />                  
-                        </a>                    
-                    </div>
-                  </div>
-                
-              </div>
-          
-           </jalios:foreach> 
-         </div>                               
-      </div>              
 </jalios:if>

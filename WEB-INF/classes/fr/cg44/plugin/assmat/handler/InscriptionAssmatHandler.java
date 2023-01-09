@@ -959,6 +959,9 @@ public AssmatSolis getAssmat() {
       sb.append(getHiddenFieldTag("civilite", civilite));
       sb.append(getHiddenFieldTag("prenom", prenom));
       sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
+      sb.append(getHiddenFieldTag("email", email));
+      sb.append(getHiddenFieldTag("telephone", telephone));
+      sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
       sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
       
       sb.append(getHiddenFieldTag("commune", commune));
@@ -990,9 +993,6 @@ public AssmatSolis getAssmat() {
     }
     if (formStep >= LOGIN_STEP) {
       sb.append(getHiddenFieldTag("typeenvoi", typeenvoi));
-      sb.append(getHiddenFieldTag("email", email));
-      sb.append(getHiddenFieldTag("telephone", telephone));
-      sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
     }
     if(formStep >= CONFIRMATION_STEP){
       sb.append(getHiddenFieldTag("nbTentativeErroneSMS", nbTentativeErroneSMS));
