@@ -10,6 +10,8 @@ PortletJsp box = (PortletJsp) portlet;
 /* Lors de la soumission du formulaire, c'est la valeur de la case à cocher qui est renvoyée (fieldValue[0])
    quand on revient sur une page précédente ou sur une page suivante, c'est la valeur du champ caché qui en renvoyé (fieldValue)
    On doit donc tester la valeur de ces 2 paramètres.
+   On doit aussi regarder si le tél/email ont été modifiés. On doit donc tester la valeur des champs cachés
+   du formulaire et des champs visibles.
    
 */
 String civiliteParam = null;
@@ -111,7 +113,7 @@ boolean notfoundCompte= false;
 
 								<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 								<p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
-								<!-- TEST -->
+
 								<form method="post"
 									action="<%= ServletUtil.getResourcePath(request) %>"
 									name="formContact" id="formContact" data-no-encoding="true">
