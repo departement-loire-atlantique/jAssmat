@@ -92,7 +92,7 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
 		        </p>
 		        <div class="ds44-posRel">
 		            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span></span></label>
-		            <input type="email" id="form-element-<%= uuid %>" name="email" value="<%=emailAssmat %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+		            <input type="email" id="form-element-<%= uuid %>" name="emailModifiable" value="<%=emailAssmat %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
 		            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email")) %></span></button>
 		        </div>
 		        <div class="ds44-field-information" aria-live="polite">
@@ -125,7 +125,7 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
 		        </p>
 		        <div class="ds44-posRel">
 		            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %><sup aria-hidden="true">*</sup></span></span></label>
-		            <input type="text" id="form-element-<%= uuid %>" name="telephone" value="<%=telAssmat %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+		            <input type="text" id="form-element-<%= uuid %>" name="telephoneModifiable" value="<%=telAssmat %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
 		            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile")) %></span></button>
 		        </div>
 		        <div class="ds44-field-information" aria-live="polite">
@@ -156,6 +156,7 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
 	        <div class="ds44-form__container">
 	            <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%></button>
 	            <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%></button>
+	            <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field>
                 <input type="hidden" name="noSendRedirect" value="true" data-technical-field> 
                 <input type="hidden" name="id" value="c_5065" data-technical-field>
             </div>

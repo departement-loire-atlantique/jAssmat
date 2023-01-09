@@ -206,10 +206,9 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
     <trsb:glp key="CONTACT-SUPPORT-TEL-HTML"></trsb:glp>
     
     <div class="ds44-form__container">
-	    <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field>
+	    <input type="submit" name="opContact" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-submit-key="opContact" data-submit-value="true" data-technical-field>
 	    <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
 	    <input type="hidden" name="id" value="c_5065" data-technical-field>
-	    <input type="hidden" name="opContact" value="true" data-technical-field>
     </div>
 	
 	<%} %>
