@@ -18,7 +18,6 @@ jcmsplugin.assmatplugin.accueil.prevenu.sms: par SMS
 jcmsplugin.assmatplugin.accueil.menu.ici: Vous êtes
 jcmsplugin.assmatplugin.accueil.bienvenue: Bonjour {0} {1}
 
-
 #page inscription
 
 jcmsplugin.assmatplugin.inscription.activer.compte.avant: Même si vous aviez déjà activé votre compte dans l'ancien site, merci de suivre les étapes suivantes.
@@ -105,8 +104,6 @@ jcmsplugin.assmatplugin.label.aide: Aide :
 jcmsplugin.assmatplugin.label.afficher: Afficher le contenu saisi dans le champ : {0}
 jcmsplugin.assmatplugin.label.etou: et/ou
 jcmsplugin.assmatplugin.label.precisions: Précisions :
-jcmsplugin.assmatplugin.label.exerce.domicile: Exerce à son domicile
-jcmsplugin.assmatplugin.label.exerce.domicile: Exerce en Maison d'assistantes maternelles (MAM)
 
 #Mail d'activation
 jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour
