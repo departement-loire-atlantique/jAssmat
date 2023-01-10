@@ -195,7 +195,10 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                       </p>
                                     </jalios:if>
 							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getExerceDomicile()) && asmmatSolis.getExerceDomicile() %>">
-							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i>A <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"/></p>
+							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-DOM"></trsb:glp></p>
+							        </jalios:if>
+							        <jalios:if predicate='<%=  assmatSolis.getExerceMam() != null && assmatSolis.getExerceMam() %>'>
+							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-MAM"></trsb:glp></p>
 							        </jalios:if>
                                 </div>
                                 <div class="col ds44--xl-padding-l">
@@ -204,9 +207,21 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                     Lien contact
                                     Dernière mise à jour
                                     --%>
-                                    <jalios:if predicate="<%= showContactDispo && Util.notEmpty(obj.getTelephoneFixe()) && AssmatUtil.getBooleanFromString(obj.getVisbiliteTelephoneFixe()) %>">
-							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getTelephoneFixe() %></p>
-							        </jalios:if>
+                                    <%
+                                    boolean hasFixe = showContactDispo && Util.notEmpty(obj.getTelephoneFixe()) && AssmatUtil.getBooleanFromString(obj.getVisbiliteTelephoneFixe());
+                                    boolean hasMobile = showContactDispo && Util.notEmpty(obj.getAuthor().getMobile()) && AssmatUtil.getBooleanFromString(obj.getVisibiliteTelephonePortable());
+                                    %>
+                                    <jalios:select>
+                                        <jalios:if predicate="<%= hasFixe && hasMobile %>">
+                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getAuthor().getMobile() %> - <%= obj.getTelephoneFixe() %></p>
+                                        </jalios:if>
+                                        <jalios:if predicate="<%= hasMobile %>">
+                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getAuthor().getMobile() %></p>
+                                        </jalios:if>
+	                                    <jalios:if predicate="<%= hasFixe %>">
+								          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getTelephoneFixe() %></p>
+								        </jalios:if>
+							        </jalios:select>
 							        <%  Publication contactPub = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.am")); %>
                                     <jalios:if predicate="<%= showContactDispo && AssmatUtil.getBooleanFromString(obj.getVisibiliteAdresseEmail()) && Util.notEmpty(obj.getAuthor().getEmail()) && Util.notEmpty(contactPub) %>">    
                                       <% String lien = contactPub.getDisplayUrl(userLocale) + "?idMAM=" + obj.getAuthor().getId(); %>
