@@ -105,14 +105,9 @@ SimpleDateFormat formater = null;
 formater = new SimpleDateFormat("dd/MM/yyyy");
 
 
-jcmsContext.addCSSHeader("plugins/EServicePlugin/css/portal/portal.css");
 Set<ProfilASSMAT> listeobj = (Set<ProfilASSMAT>) request.getSession().getAttribute("listeobjSelection");
 PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublication("$jcmsplugin.assmatplugin.portail.selection.recherche");
   jcmsContext.addJavaScript("plugins/ToolsPlugin/js/facets/tooltipCategories.js");
-  jcmsContext.addCSSHeader("plugins/EServicePlugin/css/types/AbstractPortletSkinable/titleBarDottedTitleElementBorderBot.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/headstall/model1.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/AbstractPortletSkinable/titleBar.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/common.css");
   
   jcmsContext.addCSSHeader("plugins/AssmatPlugin/css/plugin.css");
   jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
@@ -129,6 +124,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
   boolean logementAccessible = Util.notEmpty(obj.getLogementAccessible()) && "true".equalsIgnoreCase(obj.getLogementAccessible());
   boolean accueilTmpPartiel = Util.notEmpty(obj.getAccueilTempsPartiel()) && "true".equalsIgnoreCase(obj.getAccueilTempsPartiel());
   boolean accueilAccepteRemplacement = Util.notEmpty(obj.getAccepteDepannage()) && "true".equalsIgnoreCase(obj.getAccepteDepannage());
+  boolean accueilEnfantHandicap = Util.notEmpty(obj.getAccueilEnfantHandicap()) && "true".equalsIgnoreCase(obj.getAccueilEnfantHandicap());
   
   Member mbr = obj.getAuthor();
   Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier");
@@ -194,7 +190,10 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                       </p>
                                     </jalios:if>
 							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getExerceDomicile()) && asmmatSolis.getExerceDomicile() %>">
-							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i>A <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"/></p>
+							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><%= glp("jcmsplugin.assmatplugin.label.exerce.domicile") %></p>
+							        </jalios:if>
+							        <jalios:if predicate='<%=  assmatSolis.getExerceMam() != null && assmatSolis.getExerceMam() %>'>
+							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><%= glp("jcmsplugin.assmatplugin.label.exerce.mam") %></p>
 							        </jalios:if>
                                 </div>
                                 <div class="col ds44--xl-padding-l">
@@ -203,9 +202,21 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                     Lien contact
                                     Dernière mise à jour
                                     --%>
-                                    <jalios:if predicate="<%= showContactDispo && Util.notEmpty(obj.getTelephoneFixe()) && AssmatUtil.getBooleanFromString(obj.getVisbiliteTelephoneFixe()) %>">
-							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getTelephoneFixe() %></p>
-							        </jalios:if>
+                                    <%
+                                    boolean hasFixe = showContactDispo && Util.notEmpty(obj.getTelephoneFixe()) && AssmatUtil.getBooleanFromString(obj.getVisbiliteTelephoneFixe());
+                                    boolean hasMobile = showContactDispo && Util.notEmpty(assmatSolis.getTelPortable()) && AssmatUtil.getBooleanFromString(obj.getVisibiliteTelephonePortable());
+                                    %>
+                                    <jalios:select>
+                                        <jalios:if predicate="<%= hasFixe && hasMobile %>">
+                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= assmatSolis.getTelPortable() %> - <%= obj.getTelephoneFixe() %></p>
+                                        </jalios:if>
+                                        <jalios:if predicate="<%= hasMobile %>">
+                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= assmatSolis.getTelPortable() %></p>
+                                        </jalios:if>
+	                                    <jalios:if predicate="<%= hasFixe %>">
+								          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getTelephoneFixe() %></p>
+								        </jalios:if>
+							        </jalios:select>
 							        <%  Publication contactPub = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.am")); %>
                                     <jalios:if predicate="<%= showContactDispo && AssmatUtil.getBooleanFromString(obj.getVisibiliteAdresseEmail()) && Util.notEmpty(obj.getAuthor().getEmail()) && Util.notEmpty(contactPub) %>">    
                                       <% String lien = contactPub.getDisplayUrl(userLocale) + "?idMAM=" + obj.getAuthor().getId(); %>
@@ -237,10 +248,10 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                       <h2 class="h3-like" id="idTitre-list1"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-AGREMENT-HTML" ></trsb:glp> :</h2>
                       <ul class="ds44-uList">
 				        <li><strong><trsb:glp key="PROFIL-ASSMAT-CONTENT-AGREMENT-PREMIER" /></strong><br/><%=formater.format(assmatSolis.getDatePremierAgrement()) %></li>
-				        <li><strong><trsb:glp key="PROFIL-ASSMAT-CONTENT-AGREMENT-TYPE" /></strong>
-				            <jalios:select>
+				        <li><strong><trsb:glp key="PROFIL-ASSMAT-CONTENT-AGREMENT-TYPE" /></strong><br/>
+
 				                <jalios:if predicate='<%= assmatSolis.getExerceDomicile() %>'>
-				                    A <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp>
+				                    À <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp>
 				                    <ul class="ds44-uList">
 				                        <% for(int itPlace=1; itPlace<=8; itPlace++) { %>                               
 				                              <%
@@ -269,7 +280,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 				                              Boolean placeSaisieDisponibilite = (Boolean) ReflectUtil.getFieldValue(assmatSolis, placeSaisieDisponibiliteField);
 				                              %>
 				                                
-				                              <% if(Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("dom-") && placeSaisieDisponibilite ){%>                   
+				                              <% if(Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("dom-") && placeSaisieDisponibilite){%>                   
 				                              <li>
 				                                  <%= glp("jcmsplugin.assmatplugin.inscription.verification.place", placeNbPlaces)%>
 				                                  <%= AssmatUtil.getTitlePlace(placeTrancheAge, placeLibCompl, placeTracheAgeKey) %>
@@ -282,7 +293,6 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 				                <jalios:if predicate='<%=  assmatSolis.getExerceMam() != null && assmatSolis.getExerceMam() %>'>  
 				                   En <trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp>
 				                   <ul class="ds44-uList">
-				                       <li>
 				                         <% for(int itPlace=1; itPlace<=8; itPlace++) { %>                          
 				                              <%
 				                              // agrementTrancheAgeKey
@@ -310,17 +320,15 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 				                              Boolean placeSaisieDisponibilite = (Boolean) ReflectUtil.getFieldValue(assmatSolis, placeSaisieDisponibiliteField);
 				                              %>
 				                            
-				                              <% if(Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("mam-") && placeSaisieDisponibilite){%>                   
+				                              <% if(Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("mam-") && placeSaisieDisponibilite){%>
 				                               <li>
 				                                    <%= glp("jcmsplugin.assmatplugin.inscription.verification.place", placeNbPlaces) %>
 				                                    <%= AssmatUtil.getTitlePlace(placeTrancheAge, placeLibCompl, placeTracheAgeKey) %>
 				                               </li>
 				                              <%} %>                           
-				                         <%} %> 
-				                       </li>
+				                         <%} %>
 				                   </ul>
 				                </jalios:if>
-				            </jalios:select>
 				        </li>
 				      </ul>
                    </div>
@@ -347,8 +355,15 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                              <%} %> 
                              <%if(Util.notEmpty(obj.getAccueilPendantLesVacancesSco()) && "true".equalsIgnoreCase(obj.getAccueilPendantLesVacancesSco())){ %>
                                <li><trsb:glp key="PROFIL-ASSMAT-CONTENT-TYPE-ACCUEIL-VACANCES" /></li>
-                             <%} %> 
-                             <%if(Util.notEmpty(obj.getHorairesAtypiques()) && "true".equalsIgnoreCase(obj.getHorairesAtypiques())){ %>
+                             <%} 
+                             boolean horairesAtypiques = (Util.notEmpty(obj.getHorairesAtypiques()) && "true".equalsIgnoreCase(obj.getHorairesAtypiques()))
+                                 || (Util.notEmpty(obj.getAvant7h()) && "true".equalsIgnoreCase(obj.getAvant7h()))
+                                 || (Util.notEmpty(obj.getApres20h()) && "true".equalsIgnoreCase(obj.getApres20h()))
+                                 || (Util.notEmpty(obj.getLeSamedi()) && "true".equalsIgnoreCase(obj.getLeSamedi()))
+                                 || (Util.notEmpty(obj.getLeDimanche()) && "true".equalsIgnoreCase(obj.getLeDimanche()))
+                                 || (Util.notEmpty(obj.getLaNuit()) && "true".equalsIgnoreCase(obj.getLaNuit()));
+                             %> 
+                             <%if(horairesAtypiques){ %>
                                  <li><trsb:glp key="PROFIL-ASSMAT-CONTENT-TYPE-ACCUEIL-ATYPIQUE" />
                                      <ul class="ds44-uList">
                                          <%if(Util.notEmpty(obj.getAvant7h()) && "true".equalsIgnoreCase(obj.getAvant7h())){ %>
@@ -372,18 +387,27 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                          </ul>
                       </jalios:if>
                    </div>
-                   <jalios:if predicate="<%= logementAccessible && accueilTmpPartiel && accueilAccepteRemplacement %>">
+                   <jalios:if predicate="<%= logementAccessible || accueilTmpPartiel || accueilAccepteRemplacement %>">
 	                   <div class="col mls ds44-mtb3">
 	                      <h2 class="h3-like" id="idTitre-list2"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-SPECIFICITE-HTML" ></trsb:glp> :</h2>
 	                      <jalios:if predicate='<%= logementAccessible %>'>
-	                        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-handicap-moteur ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-ACCESSIBLE" /></p>
+	                        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-handicap-moteur ds44-docListIco" aria-hidden="true"></i>
+	                        <trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-ACCESSIBLE" /><jalios:if predicate="<%= Util.notEmpty(obj.getPrecisionsLogementAccessible()) %>"><br/><%= HtmlUtil.html2text(obj.getPrecisionsLogementAccessible()) %></jalios:if>
+					        </p>
 					      </jalios:if>
-					      <jalios:if predicate='<%= accueilTmpPartiel %>'>
-					        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-PARTIEL" /></p>
-					      </jalios:if>
+					      <jalios:if predicate='<%= accueilEnfantHandicap %>'>
+                            <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
+                               <trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-HANDICAP" /><jalios:if predicate="<%= Util.notEmpty(obj.getPrecisionsEnfantHandicap()) %>"><br/><%= HtmlUtil.html2text(obj.getPrecisionsEnfantHandicap()) %></jalios:if>
+                            </p>
+                          </jalios:if>
 					      <jalios:if predicate='<%= accueilAccepteRemplacement %>'>
-					        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-user ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-REMPLACEMENT" /></p>
+					        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
+					           <trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-REMPLACEMENT" /><jalios:if predicate="<%= Util.notEmpty(obj.getPrecisionsDepannage()) %>"><br/><%= HtmlUtil.html2text(obj.getPrecisionsDepannage()) %></jalios:if>
+					        </p>
 					      </jalios:if>
+                          <jalios:if predicate='<%= accueilTmpPartiel %>'>
+                            <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-SPECIFICITE-PARTIEL" /></p>
+                          </jalios:if>
 	                   </div>
                    </jalios:if>
 				</div>
