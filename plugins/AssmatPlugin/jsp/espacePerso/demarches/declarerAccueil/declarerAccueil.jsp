@@ -63,12 +63,6 @@ if(Util.notEmpty(request.getParameter("idDeclaration"))) {
 
   String token = request.getParameter("token");
 
-  String dataColor= ProxyTarget.getMainColor(); 
-  jcmsContext.addCSSHeader("plugins/EServicePlugin/css/types/AbstractPortletSkinable/titleBarDottedTitleElementBorderBot.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/headstall/model1.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/AbstractPortletSkinable/titleBar.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/common.css");
-  jcmsContext.addCSSHeader("plugins/AssmatPlugin/css/plugin.css");
   jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
   jcmsContext.addJavaScript("plugins/AssmatPlugin/js/comportement.js");
   
@@ -77,10 +71,7 @@ if(Util.notEmpty(request.getParameter("idDeclaration"))) {
   jcmsContext.addJavaScript("plugins/AgendaPlugin/js/pickadatejs/picker.date.js");
   if("fr".equals(userLang)){
     jcmsContext.addJavaScript("plugins/AgendaPlugin/js/pickadatejs/translations/fr_FR.js");
-  }
-  jcmsContext.addCSSHeader("plugins/AgendaPlugin/js/pickadatejs/themes/default.css");
-  jcmsContext.addCSSHeader("plugins/AgendaPlugin/js/pickadatejs/themes/default.date.css");
-  
+  }  
   
   SolisManager solisMgr = SolisManager.getInstance();
   AssmatSolis assmatSolis= null;

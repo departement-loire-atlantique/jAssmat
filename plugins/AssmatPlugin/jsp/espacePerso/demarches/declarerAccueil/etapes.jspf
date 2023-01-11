@@ -1,50 +1,125 @@
 <!-- MENU FORMULAIRE A ETAPES -->
+<!-- 
+    Note sur les valeurs des étapes
+    
+    ENFANT_ACCUEILLI = 0
+    LIEU_ACCUEIL = 1
+    MODALITES = 2
+    PLANNING = 3
+    -->
+    
+    
 <%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-        <%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
-
-       <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" id ="formEtapes" class="formEtapes">
-				<nav class="menuFormulaireEtape">
-				       
-				       
-				          <ul class="menuEtapes triangle">
-				      
-				           
-				            <li <%if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {%> class="current"<%} %> >
-				            
-				            
-				              <label   <%if((step>DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI || (step ==DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI)) && step != DeclarerAccueilAssmatHandler.VALIDATION  ){ %>class="hasLink"<%} %>   for="identification"><trsb:glp key="ASS-DEC-MENU-1-HTML" ></trsb:glp></label>
-				               <%if((step>DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI || (step ==DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI)) && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>
-				              <input type="submit" name="formStep" id ="identification" value="0"/>
-				              <%} %>
-				            </li>
-				            
-	                  <li <%if (step == DeclarerAccueilAssmatHandler.LIEU_ACCUEIL) {%> class="current" <%} %>>
-				           <label   <%if(step>1 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>class="hasLink"<%} %>  for="verification"><trsb:glp key="ASS-DEC-MENU-2-HTML" ></trsb:glp></label>
-				           <%if(step>1 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>
-                      <input type="submit" name="formStep" id ="verification" value="1"/>
-                    </li>
-                    <%} %>
-				            
-				            <li <%if (step == DeclarerAccueilAssmatHandler.MODALITES) {%>  class="current"<%} %>>
-				           
-				           <label  <%if(step>2 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>class="hasLink"<%} %>  for="contacts"><trsb:glp key="ASS-DEC-MENU-3-HTML" ></trsb:glp></label>
-				            <%if(step>2 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>
-                      <input type="submit" name="formStep" id ="contacts" value="2"/>
-                      <%} %>
-                    </li>
-    
-				            <li <%if (step == DeclarerAccueilAssmatHandler.PLANNING || step == DeclarerAccueilAssmatHandler.VALIDATION) {%>  class="current"<%} %> >
-    
-				            <label  <%if(step>3 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>class="hasLink"<%} %>  for="login"><trsb:glp key="ASS-DEC-MENU-4-HTML" ></trsb:glp></label>
-				              <%if(step>3 && step != DeclarerAccueilAssmatHandler.VALIDATION){ %>
-                      <input type="submit" name="formStep" id ="login" value="3"/>
-                      <%} %>
-                    </li>
-
-				          </ul>
-				  </nav>				  
-				  <input type="hidden" value="Etape précédente" name="opPrevious">
-				  <input type="hidden" value="true" name="opChangeStep">
-				   <%=formHandler.getAllFormStepHiddenFields()%>
-   </form>
+<%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
+<form method="post" action="<%= ServletUtil.getResourcePath(request) %>" id ="formEtapes" class="formEtapes" data-no-encoding="true">
+    <input type='hidden' name='redirect' value='<%= ServletUtil.getResourcePath(request) %>' data-technical-field />
+    <nav role="navigation" class="ds44-flex-container ds44-fg1 ds44-hiddenPrint">
+        <ol class="ds44-nav-stepper ds44-fg1 ds44-flex-container ds44-list">
+            <li class='ds44-nav-step<%= step > DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI ? " liPassed" : ""%>'<%= step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI ? "  aria-current='page'" : ""%>>
+                <jalios:buffer name="lblBtnStep">
+                    <trsb:glp key="ASS-DEC-MENU-1-HTML" ></trsb:glp>
+                </jalios:buffer>
+                <jalios:select>
+                    <jalios:if predicate="<%= step > DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI %>">
+                        <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 1, lblBtnStep) %>'
+                            data-submit-value="0" data-submit-key="formStep" >
+                            <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 1) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </button>
+                    </jalios:if>
+                    <jalios:default>
+                        <div class="active">
+                            <span class="number" aria-hidden="true">1</span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 1) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </div>
+                    </jalios:default>
+                </jalios:select>
+            </li>
+            <li class='ds44-nav-step<%= step > DeclarerAccueilAssmatHandler.LIEU_ACCUEIL ? " liPassed" : ""%><%= step == DeclarerAccueilAssmatHandler.LIEU_ACCUEIL ? "  aria-current='page'" : ""%>'>
+                <jalios:buffer name="lblBtnStep">
+                    <trsb:glp key="ASS-DEC-MENU-2-HTML" ></trsb:glp>
+                </jalios:buffer>
+                <jalios:select>
+                    <jalios:if predicate="<%= step > DeclarerAccueilAssmatHandler.LIEU_ACCUEIL && step != DeclarerAccueilAssmatHandler.VALIDATION %>">
+                            <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 2, lblBtnStep) %>'
+                                data-submit-value="1" data-submit-key="formStep" >
+                            <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 2) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </button>
+                    </jalios:if>
+                    <jalios:if predicate="<%= step == DeclarerAccueilAssmatHandler.LIEU_ACCUEIL %>">
+                        <div class="active">
+                            <span class="number" aria-hidden="true">2</span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 2) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </div>
+                    </jalios:if>
+                    <jalios:default>
+                        <div class="inactive">
+                            <span class="number" aria-hidden="true">2</span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 2) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </div>
+                    </jalios:default>
+                </jalios:select>
+            </li>
+            <li class='ds44-nav-step<%= step > DeclarerAccueilAssmatHandler.MODALITES ? " liPassed" : ""%><%= step == DeclarerAccueilAssmatHandler.MODALITES ? "  aria-current='page'" : ""%>'>
+                <jalios:buffer name="lblBtnStep">
+                    <trsb:glp key="ASS-DEC-MENU-3-HTML" ></trsb:glp>
+                </jalios:buffer>
+                <jalios:select>
+                    <jalios:if predicate="<%= step > DeclarerAccueilAssmatHandler.MODALITES && step != DeclarerAccueilAssmatHandler.VALIDATION %>">
+                            <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 3, lblBtnStep) %>'
+                                data-submit-value="2" data-submit-key="formStep" >
+                            <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 3) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </button>
+                    </jalios:if>
+                    <jalios:if predicate="<%= step == DeclarerAccueilAssmatHandler.MODALITES %>">
+                        <div class="active">
+                            <span class="number" aria-hidden="true">3</span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 3) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </div>
+                    </jalios:if>
+                    <jalios:default>
+                        <div class="inactive">
+                            <span class="number" aria-hidden="true">3</span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 3) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </div>
+                    </jalios:default>
+                </jalios:select>
+            </li>
+            <li class='ds44-nav-step<%= step > DeclarerAccueilAssmatHandler.VALIDATION ? " liPassed" : ""%><%= step == DeclarerAccueilAssmatHandler.VALIDATION ? "  aria-current='page'" : ""%>'>
+                <jalios:buffer name="lblBtnStep">
+                    <trsb:glp key="ASS-DEC-MENU-4-HTML" ></trsb:glp>
+                </jalios:buffer>
+                <jalios:select>
+                    <jalios:if predicate="<%= step == DeclarerAccueilAssmatHandler.VALIDATION %>">
+                        <div class="active">
+                            <span class="number" aria-hidden="true">4</span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.current.lbl", 4) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </div>
+                    </jalios:if>
+                    <jalios:default>
+                        <div class="inactive">
+                            <span class="number" aria-hidden="true">4</span>
+                            <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.lbl", 4) %></span>
+                            <span class="text"><%= lblBtnStep %></span>
+                        </div>
+                    </jalios:default>
+                </jalios:select>
+            </li>
+        </ul>
+    </nav>
+    <input type="hidden" value="Etape précédente" name="opPrevious">
+    <input type="hidden" value="true" name="opChangeStep">
+    <%=formHandler.getAllFormStepHiddenFields()%>
+</form>

@@ -105,14 +105,9 @@ SimpleDateFormat formater = null;
 formater = new SimpleDateFormat("dd/MM/yyyy");
 
 
-jcmsContext.addCSSHeader("plugins/EServicePlugin/css/portal/portal.css");
 Set<ProfilASSMAT> listeobj = (Set<ProfilASSMAT>) request.getSession().getAttribute("listeobjSelection");
 PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublication("$jcmsplugin.assmatplugin.portail.selection.recherche");
   jcmsContext.addJavaScript("plugins/ToolsPlugin/js/facets/tooltipCategories.js");
-  jcmsContext.addCSSHeader("plugins/EServicePlugin/css/types/AbstractPortletSkinable/titleBarDottedTitleElementBorderBot.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/headstall/model1.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/AbstractPortletSkinable/titleBar.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/common.css");
   
   jcmsContext.addCSSHeader("plugins/AssmatPlugin/css/plugin.css");
   jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
