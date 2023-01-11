@@ -862,6 +862,8 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
   protected static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormat.forPattern("dd/MM/YYYY");
 
   protected static SolisManager solisMgr = SolisManager.getInstance();
+  
+  private HandlerUtil handlerUtil = HandlerUtil.getInstance();
 
 
   /**
@@ -1698,8 +1700,8 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
   public String getFormStepHiddenFields() {
     StringBuilder sb = new StringBuilder();
     // Champs caché général
-    sb.append(getHiddenField("idDeclaration", declaration.getIdDeclaration() != null ? declaration.getIdDeclaration()+"" : "" ));
-    sb.append(getHiddenField("formStep", formStep));
+    sb.append(handlerUtil.getHiddenFieldTag("idDeclaration", declaration.getIdDeclaration() != null ? declaration.getIdDeclaration()+"" : "" ));
+    sb.append(handlerUtil.getHiddenFieldTag("formStep", formStep));
     // Onglet lieu d'accueil
     if (formStep == ENFANT_ACCUEILLI) {     
       getHiddenFieldLieuAccueil(sb);
@@ -1733,26 +1735,26 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
    * @param sb
    */
   private void getHiddenFieldEnfantAccueilli(StringBuilder sb) {
-    sb.append(getHiddenField("nomEnfant", nomEnfant));
-    sb.append(getHiddenField("prenomEnfant", prenomEnfant));
-    sb.append(getHiddenField("sexeEnfant", sexeEnfant));
-    sb.append(getHiddenField("dateNaissanceEnfant", dateNaissanceEnfant));
-    sb.append(getHiddenField("dateDebutAccueil", dateDebutAccueil));
+    sb.append(handlerUtil.getHiddenFieldTag("nomEnfant", nomEnfant));
+    sb.append(handlerUtil.getHiddenFieldTag("prenomEnfant", prenomEnfant));
+    sb.append(handlerUtil.getHiddenFieldTag("sexeEnfant", sexeEnfant));
+    sb.append(handlerUtil.getHiddenFieldTag("dateNaissanceEnfant", dateNaissanceEnfant));
+    sb.append(handlerUtil.getHiddenFieldTag("dateDebutAccueil", dateDebutAccueil));
     
-    sb.append(getHiddenField("civiliteRepresentant1", civiliteRepresentant1));
-    sb.append(getHiddenField("nomRepresentant1", nomRepresentant1));
-    sb.append(getHiddenField("prenomRepresentant1", prenomRepresentant1));
-    sb.append(getHiddenField("telephoneRepresentant1", telephoneRepresentant1));
-    sb.append(getHiddenField("adresseRepresentant1", adresseRepresentant1));
-    sb.append(getHiddenField("complementRepresentant1", complementRepresentant1));
+    sb.append(handlerUtil.getHiddenFieldTag("civiliteRepresentant1", civiliteRepresentant1));
+    sb.append(handlerUtil.getHiddenFieldTag("nomRepresentant1", nomRepresentant1));
+    sb.append(handlerUtil.getHiddenFieldTag("prenomRepresentant1", prenomRepresentant1));
+    sb.append(handlerUtil.getHiddenFieldTag("telephoneRepresentant1", telephoneRepresentant1));
+    sb.append(handlerUtil.getHiddenFieldTag("adresseRepresentant1", adresseRepresentant1));
+    sb.append(handlerUtil.getHiddenFieldTag("complementRepresentant1", complementRepresentant1));
     
-    sb.append(getHiddenField("nomRepresentant2", nomRepresentant2));
-    sb.append(getHiddenField("prenomRepresentant2", prenomRepresentant2));
-    sb.append(getHiddenField("civiliteRepresentant2", civiliteRepresentant2));
-    sb.append(getHiddenField("telephoneRepresentant2", telephoneRepresentant2));
-    sb.append(getHiddenField("adresseRepresentant2", adresseRepresentant2));
-    sb.append(getHiddenField("complementRepresentant2", complementRepresentant2));
-    sb.append(getHiddenField("saisieAdresseDif", saisieAdresseDif));    
+    sb.append(handlerUtil.getHiddenFieldTag("nomRepresentant2", nomRepresentant2));
+    sb.append(handlerUtil.getHiddenFieldTag("prenomRepresentant2", prenomRepresentant2));
+    sb.append(handlerUtil.getHiddenFieldTag("civiliteRepresentant2", civiliteRepresentant2));
+    sb.append(handlerUtil.getHiddenFieldTag("telephoneRepresentant2", telephoneRepresentant2));
+    sb.append(handlerUtil.getHiddenFieldTag("adresseRepresentant2", adresseRepresentant2));
+    sb.append(handlerUtil.getHiddenFieldTag("complementRepresentant2", complementRepresentant2));
+    sb.append(handlerUtil.getHiddenFieldTag("saisieAdresseDif", saisieAdresseDif));    
   }
   
 
@@ -1761,14 +1763,14 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
    * @param sb
    */
   private void getHiddenFieldLieuAccueil(StringBuilder sb) {        
-    sb.append(getHiddenField("accueilDomicile", accueilDomicile));
-    sb.append(getHiddenField("adresseDomicile", adresseDomicile));
-    sb.append(getHiddenField("communeDomicile", communeDomicile));
-    sb.append(getHiddenField("cpDomicile", cpDomicile));
-    sb.append(getHiddenField("nomMam", nomMam));  
-    sb.append(getHiddenField("adresseMam", adresseMam)); 
-    sb.append(getHiddenField("communeMam", communeMam)); 
-    sb.append(getHiddenField("cpMam", cpMam)); 
+    sb.append(handlerUtil.getHiddenFieldTag("accueilDomicile", accueilDomicile));
+    sb.append(handlerUtil.getHiddenFieldTag("adresseDomicile", adresseDomicile));
+    sb.append(handlerUtil.getHiddenFieldTag("communeDomicile", communeDomicile));
+    sb.append(handlerUtil.getHiddenFieldTag("cpDomicile", cpDomicile));
+    sb.append(handlerUtil.getHiddenFieldTag("nomMam", nomMam));  
+    sb.append(handlerUtil.getHiddenFieldTag("adresseMam", adresseMam)); 
+    sb.append(handlerUtil.getHiddenFieldTag("communeMam", communeMam)); 
+    sb.append(handlerUtil.getHiddenFieldTag("cpMam", cpMam)); 
   }
   
   
@@ -1777,11 +1779,11 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
    * @param sb
    */
   private void getHiddenFieldModalites(StringBuilder sb) {
-    sb.append(getHiddenField("planningRegulier", planningRegulier));
-    sb.append(getHiddenField("uniquementVacances", uniquementVacances));
-    sb.append(getHiddenField("estProvisoire", estProvisoire));
-    sb.append(getHiddenField("dateFinProvisoire", dateFinProvisoire));
-    sb.append(getHiddenField("motifProvisoire", motifProvisoire));
+    sb.append(handlerUtil.getHiddenFieldTag("planningRegulier", planningRegulier));
+    sb.append(handlerUtil.getHiddenFieldTag("uniquementVacances", uniquementVacances));
+    sb.append(handlerUtil.getHiddenFieldTag("estProvisoire", estProvisoire));
+    sb.append(handlerUtil.getHiddenFieldTag("dateFinProvisoire", dateFinProvisoire));
+    sb.append(handlerUtil.getHiddenFieldTag("motifProvisoire", motifProvisoire));
   }
   
 
@@ -1794,7 +1796,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
 //    for(String itJour : JOURS) {     
 //      try {
 //        Boolean val = (Boolean) ReflectUtil.invokeMethod(this, "isRegul"+itJour);
-//        sb.append(getHiddenField("regul"+itJour, val));
+//        sb.append(handlerUtil.getHiddenFieldTag("regul"+itJour, val));
 //      } catch (IllegalAccessException e) {
 //        logger.warn("Impossible de créer le formulaire pour planning", e);
 //      } catch (InvocationTargetException e) {
@@ -1815,9 +1817,9 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
   public String getAllFormStepHiddenFields() {
     StringBuilder sb = new StringBuilder();
     // id de la declaration
-    sb.append(getHiddenField("idModifEnCours", Util.notEmpty(request.getParameter("idModifEnCours")) ? request.getParameter("idModifEnCours") : "" ));
-    sb.append(getHiddenField("idDeclaration", declaration.getIdDeclaration() != null ? declaration.getIdDeclaration()+"" : "" ));
-    sb.append(getHiddenField("formStep", formStep));
+    sb.append(handlerUtil.getHiddenFieldTag("idModifEnCours", Util.notEmpty(request.getParameter("idModifEnCours")) ? request.getParameter("idModifEnCours") : "" ));
+    sb.append(handlerUtil.getHiddenFieldTag("idDeclaration", declaration.getIdDeclaration() != null ? declaration.getIdDeclaration()+"" : "" ));
+    sb.append(handlerUtil.getHiddenFieldTag("formStep", formStep));
     // Enfant accueilli    
     getHiddenFieldEnfantAccueilli(sb);
     // Lieu d'accueil
