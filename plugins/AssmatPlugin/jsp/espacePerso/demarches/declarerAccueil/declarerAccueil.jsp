@@ -93,104 +93,60 @@ if(Util.notEmpty(request.getParameter("idDeclaration"))) {
   Boolean choixSemainesTypes = declarationForm.getPlanningSemainesTypes();
   
   Boolean opFinish = request.getParameter("opFinish") != null;
+  
+  //UUID unique pour les champs
+  String uuid = UUID.randomUUID().toString();
 
 %>
+<jalios:select>
+    <jalios:if predicate="<%= isModif %>">
+        <h2 class="h1-like">
+            <trsb:glp key="ASS-MODDEC-GEN-TITRE-HTML" />
+        </h2>
+    </jalios:if>
+    <jalios:default>
+        <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
+    </jalios:default>
+</jalios:select>
 
+<!-- Ce texte introductif est affiché uniquement sur l’écran du premier onglet -->
+<jalios:if predicate="<%= step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI %>">
+    <jalios:select>
+        <jalios:if predicate="<%= isModif %>">
+            <trsb:glp key="ASS-MODDEC-ENF-TEX-HTML" />
+        </jalios:if>
+        <jalios:default>
+            <trsb:glp key="ASS-DEC-ENF-TEX-HTML" />
+        </jalios:default>
+    </jalios:select>
+</jalios:if>
 
+<%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/etapes.jspf'%>
+<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
-<div class="headstall container-fluid formulaireActivation">
-  <div class="row-fluid">
-    <!-- COLONNE GAUCHE -->
+<form method="post" action="<%=ServletUtil.getResourcePath(request)%>" name="formAccueil" id="formAccueil" data-no-encoding="true">
+
+    <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/enfantAccueilli.jspf'%>
+    <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/lieuAccueil.jspf'%>
+    <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/modalites.jspf'%>
     
-    <!-- FIN COLONNE GAUCHE -->
-    <!-- COLONNE DROITE -->
-    <div class="span12 label">
-      <div class="row-fluid title">
-      
-      
-      
-      <jalios:select>      
-	      <jalios:if predicate="<%= isModif %>">
-			      <div class="headerEspacePerso">
-			        <h1><trsb:glp key="ASS-MODDEC-GEN-TITRE-HTML" /></h1>     
-			      </div>
-			      <div class="clear"></div>
-	      </jalios:if>
-	      <jalios:default>
-	          <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
-	      </jalios:default>
-      </jalios:select>
-      
-      
-      
-      
-      </div>
-    </div>
+    <%if(choixAccueilRegulier != null && choixAccueilRegulier){ %>
+        <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/planning.jspf'%> 
+    <%}else if (choixSemainesTypes != null && choixSemainesTypes) { %>
+        <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/planningVariable.jspf'%> 
+    <%}else { %>
+        <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/planningOccasionnel.jspf'%>                   
+    <%} %>
+              
+    <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/validation.jspf'%>
     
+    <!--  Ecriture des champ cachés  -->
+    <%=formHandler.getFormStepHiddenFields()%>
     
-    <div class="row-fluid">
-    <div class="span12 label">
-      
-        <div class="ajax-refresh-div">
-        
-	        <!-- Ce texte introductif est affiché uniquement sur l’écran du premier onglet -->      
-	        <jalios:if predicate="<%= step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI %>">
-	          <div style="margin-top: 35px;">
-	          
-	             <jalios:select>
-			             <jalios:if predicate="<%= isModif %>">		                 
-			                 <trsb:glp key="ASS-MODDEC-ENF-TEX-HTML" />
-			             </jalios:if>
-			             <jalios:default>
-			                 <trsb:glp key="ASS-DEC-ENF-TEX-HTML" />
-			             </jalios:default>
-	             </jalios:select>
-	             
-	          </div>
-	        </jalios:if>
-        
-          <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/etapes.jspf'%>
-
-          <div class="mesDemarches declarerAccueil form-cg">
-             <div class="saisieDossier enfantaccueilli form-cg-gray form-cg-white">
-              <%@ include file='/jcore/doMessageBox.jsp'%>
-              <form method="post"
-                action="<%=ServletUtil.getResourcePath(request)%>"
-                name="formAccueil" id="formAccueil" class="formAccueil">
-
-                <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/enfantAccueilli.jspf'%> 
-                <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/lieuAccueil.jspf'%>
-                <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/modalites.jspf'%>
-                 
-                <%if(choixAccueilRegulier != null && choixAccueilRegulier){ %>
-                   <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/planning.jspf'%> 
-                <%}else if (choixSemainesTypes != null && choixSemainesTypes) { %>
-                    <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/planningVariable.jspf'%> 
-                <%}else { %>
-                    <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/planningOccasionnel.jspf'%>                   
-                <%} %>                 
-                <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/validation.jspf'%>
-                <!--  Ecriture des champ cachés             -->
-                <%=formHandler.getFormStepHiddenFields()%>
-                
-                  <% String idDeclaration = declarationForm.getIdDeclaration()+""; %>
-                  <input type="hidden" name="idDeclaration" value='<%= Util.notEmpty(idDeclaration) ? idDeclaration : "" %>'/>
-                  
-                  
-                   <input type="hidden" value='<%= Util.notEmpty(request.getParameter("idModifEnCours")) ? request.getParameter("idModifEnCours") : ""  %>' name="idModifEnCours"/>
-                
-                
-                <jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
-			              <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>"/>			            
-                 </jalios:if> 
-
-              </form>
-           
-          </div>
-
-  </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    <% String idDeclaration = declarationForm.getIdDeclaration()+""; %>
+    <input type="hidden" name="idDeclaration" value='<%= Util.notEmpty(idDeclaration) ? idDeclaration : "" %>' data-technical-field/>
+    <input type="hidden" value='<%= Util.notEmpty(request.getParameter("idModifEnCours")) ? request.getParameter("idModifEnCours") : ""  %>' name="idModifEnCours" data-technical-field/>
+    <jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
+        <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>                       
+    </jalios:if>
+</form>

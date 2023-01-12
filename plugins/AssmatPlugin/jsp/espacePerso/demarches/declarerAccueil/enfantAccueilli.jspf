@@ -131,66 +131,156 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
    }  
 %>
 
-
+      <!-- Déclaration de l'enfant -->
 
       <p><trsb:glp key="ASS-DEC-GEN-OBL-HTML" ></trsb:glp></p>
 
-      <div class="blocSaisie">
-        <p class="important"><trsb:glp key="ASS-DEC-ENF-DECL-HTML" ></trsb:glp></p>
-      
-        <label for="nomEnfant" class="gauche"><trsb:glp key="ASS-DEC-ENF-NOM-HTML" ></trsb:glp></label>
-        <input <%= isModif ? "readonly" : "" %> type="text" name="nomEnfant" id="nomEnfant" class="droite" value="<%= nomEnfant %>" >      
-        
-        <label for="prenomEnfant" class="gauche"><trsb:glp key="ASS-DEC-ENF-PRENOM-HTML" ></trsb:glp></label> 
-        <input <%= isModif ? "readonly" : "" %> type="text" name="prenomEnfant" id="prenomEnfant" value="<%=prenomEnfant %>" class="droite"> 
-      
-        <p class="gauche"><trsb:glp key="ASS-DEC-ENF-SEXE-HTML" ></trsb:glp></p>
-        
-        <div class="droite">
-          <input <%= isModif && "Garçon".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> type="radio" name="sexeEnfant" id="sexe" class="radio" <%if("Fille".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> value="Fille" style="background: transparent;">
-          <label for="fille" class="labelRadio">Fille</label>
-  
-          <input <%= isModif && "Fille".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> type="radio" name="sexeEnfant" id="sexe" class="radio" <%if("Garçon".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> value="Garçon" style="background: transparent;">
-          <label for="garçon" class="labelRadio">Garçon</label>
+      <p class="h3-like"><trsb:glp key="ASS-DEC-ENF-DECL-HTML" ></trsb:glp></p>
+
+      <% uuid = UUID.randomUUID().toString(); %>
+      <jalios:buffer name="labelField">
+        <trsb:glp key="ASS-DEC-ENF-NOM-HTML" attribute="true" ></trsb:glp>
+      </jalios:buffer>
+      <div class="ds44-form__container">
+	    <div class="ds44-posRel">
+	        <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+	        <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="nomEnfant" value="<%= nomEnfant %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>'  required />
+	        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+	    </div>
+	  </div>
+	  
+	  <% uuid = UUID.randomUUID().toString(); %>
+      <jalios:buffer name="labelField">
+        <trsb:glp key="ASS-DEC-ENF-PRENOM-HTML" attribute="true" ></trsb:glp>   
+      </jalios:buffer>
+      <div class="ds44-form__container">
+        <div class="ds44-posRel">
+            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+            <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="prenomEnfant" value="<%= prenomEnfant %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>'  required />
+            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
         </div>
-         
-        <label for="dateNaissance" class="gauche"><trsb:glp key="ASS-DEC-ENF-NAISS-HTML" ></trsb:glp>
-        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-NAISS-COMPL-HTML" ></trsb:glp></span>
-        </label> 
-        <input type="String" <%= isModif ? "readonly" : "" %> value="<%= dateNaissanceEnfant %>" name="dateNaissanceEnfant" id="dateNaissance" class="droite">          
-          
-         
-          
-          
-        <label for="dateAccueil" class="gauche"><trsb:glp key="ASS-DEC-ENF-ACC-HTML" ></trsb:glp>
-        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-ACC-COMPL-HTML" ></trsb:glp></span></label> 
-        <input type="string" <%= isModif ? "readonly" : "" %> value="<%= dateDebutAccueil %>" name="dateDebutAccueil" id="dateAccueil" class="droite">
-      
       </div>
-      
-      <div class="blocSaisie">
-        <p class="important"><trsb:glp key="ASS-DEC-ENF-REP1-TITRE-HTML" ></trsb:glp></p>
+
+      <p class="h4-like"><trsb:glp key="ASS-DEC-ENF-SEXE-HTML" ></trsb:glp></p>
         
-        <p class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-CIV-HTML" ></trsb:glp></p>
-        
-        <div class="droite">
-          <input type="radio" <%if("Madame".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> name="civiliteRepresentant1" id="civilite1" class="radio" value="Madame" style="background: transparent;">
-          <label for="fille"  class="labelRadio"><trsb:glp key="ASS-DEC-ENF-REP1-MME-HTML" ></trsb:glp></label>
-  
-          <input type="radio" <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> name="civiliteRepresentant1" id="civilite1" class="radio" value="Monsieur" style="background: transparent;">
-          <label for="garcon" class="labelRadio"><trsb:glp key="ASS-DEC-ENF-REP1-MR-HTML" ></trsb:glp></label>
+        <% uuid = UUID.randomUUID().toString(); %>
+        <div id="form-element-<%= uuid %>" data-name="sexeEnfant" class="ds44-form__radio_container ds44-form__container"  data-required="true">
+		    <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
+		    <div class="ds44-form__container ds44-checkBox-radio_list ">
+		        <input <%= isModif && "Garçon".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Fille".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Fille" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.fille") %></label>
+		    </div>
+		    <div class="ds44-form__container ds44-checkBox-radio_list ">
+		        <input <%= isModif && "Fille".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Garçon".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Garçon" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.garcon") %></label>
+		    </div>
+		</div>
+         
+         <% uuid = UUID.randomUUID().toString(); %>
+         <jalios:buffer name="labelField">
+         <trsb:glp key="ASS-DEC-ENF-NAISS-HTML" attribute="true" ></trsb:glp>
+         </jalios:buffer>
+         <div class="ds44-form__container">
+		    <div class="ds44-posRel">
+		        <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+		        <div data-name="dateNaissanceEnfant" class="ds44-datepicker__shape ds44-inpStd" data-required="true">
+		            <input <%= isModif ? "readonly" : "" %> id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= AssmatUtil.getDayFromDateDdMmYyyy(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		            <span>/</span>
+		            <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= AssmatUtil.getMonthFromDateDdMmYyyy(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		            <span>/</span>
+		            <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", labelField)) %>'  value="<%= AssmatUtil.getYearFromDateDdMmYyyy(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		        </div>
+		        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+		        <span class="ds44-calendar" aria-hidden="true" aria-describedby=""><i class="icon icon-date icon--large" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.date.calendrier.afficher", labelField) %></span></span>
+		        <div  class="vanilla-calendar hidden"></div>
+		    </div>
+		    <div class="ds44-field-information" aria-live="polite">
+		        <ul class="ds44-field-information-list ds44-list">
+		            <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><trsb:glp key="ASS-DEC-ENF-NAISS-COMPL-HTML" attribute="true" ></trsb:glp></li>
+		        </ul>
+		    </div>
+		</div>
+		         
+        <% uuid = UUID.randomUUID().toString(); %>
+         <jalios:buffer name="labelField">
+         <trsb:glp key="ASS-DEC-ENF-ACC-HTML" attribute="true" ></trsb:glp>
+         </jalios:buffer>
+         <div class="ds44-form__container">
+            <div class="ds44-posRel">
+                <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                <div data-name="dateDebutAccueil" class="ds44-datepicker__shape ds44-inpStd" data-required="true">
+                    <input <%= isModif ? "readonly" : "" %> id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= AssmatUtil.getDayFromDateDdMmYyyy(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+                    <span>/</span>
+                    <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= AssmatUtil.getMonthFromDateDdMmYyyy(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+                    <span>/</span>
+                    <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", labelField)) %>'  value="<%= AssmatUtil.getYearFromDateDdMmYyyy(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+                </div>
+                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+                <span class="ds44-calendar" aria-hidden="true" aria-describedby=""><i class="icon icon-date icon--large" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.date.calendrier.afficher", labelField) %></span></span>
+                <div  class="vanilla-calendar hidden"></div>
+            </div>
+            <div class="ds44-field-information" aria-live="polite">
+                <ul class="ds44-field-information-list ds44-list">
+                    <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><trsb:glp key="ASS-DEC-ENF-ACC-COMPL-HTML" attribute="true" ></trsb:glp></li>
+                </ul>
+            </div>
         </div>
         
-        <label for="nomRepresentant1" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-NOM-HTML" ></trsb:glp></label> 
-        <input type="text" value="<%=nomRepresentant1 %>" name="nomRepresentant1" id="nomRepresentant1" class="droite">
-        
-        <label for="prenomRepresentant1" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-PRENOM-HTML" ></trsb:glp></label> 
-        <input type="text" value="<%=prenomRepresentant1 %>" name="prenomRepresentant1" id="prenomRepresentant1" class="droite">    
-        
-        <label for="tel1" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-TEL-HTML" ></trsb:glp>
-        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-REP1-TEL-COMPL-HTML" ></trsb:glp></span></label> 
-        <input type="text" value="<%=telephoneRepresentant1 %>" name="telephoneRepresentant1" id="tel1" class="droite">
+        <!-- Représentant légal 1 -->
       
+        <p class="h3-like"><trsb:glp key="ASS-DEC-ENF-REP1-TITRE-HTML" ></trsb:glp></p>
+        
+        <p class="h4-like"><trsb:glp key="ASS-DEC-ENF-REP1-CIV-HTML" ></trsb:glp></p>
+
+        <% uuid = UUID.randomUUID().toString(); %>
+        <div id="form-element-<%= uuid %>" data-name="civiliteRepresentant1" class="ds44-form__radio_container ds44-form__container"  data-required="true">
+            <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input <%if("Madame".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> type="radio" name="civiliteRepresentant1" value="Madame" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP1-MME-HTML" ></trsb:glp></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> type="radio" name="civiliteRepresentant1" value="Monsieur" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP1-MR-HTML" ></trsb:glp></label>
+            </div>
+        </div>
+        
+        <% uuid = UUID.randomUUID().toString(); %>
+	    <jalios:buffer name="labelField">
+	        <trsb:glp key="ASS-DEC-ENF-REP1-NOM-HTML" attribute="true" ></trsb:glp>   
+	    </jalios:buffer>
+	    <div class="ds44-form__container">
+	        <div class="ds44-posRel">
+	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+	            <input type="text" id="form-element-<%= uuid %>" name="nomRepresentant1" value="<%= prenomEnfant %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>'  required />
+	            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+	        </div>
+	    </div>
+	    
+	    <% uuid = UUID.randomUUID().toString(); %>
+        <jalios:buffer name="labelField">
+            <trsb:glp key="ASS-DEC-ENF-REP1-PRENOM-HTML" attribute="true" ></trsb:glp>   
+        </jalios:buffer>
+        <div class="ds44-form__container">
+            <div class="ds44-posRel">
+                <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                <input type="text" id="form-element-<%= uuid %>" name="prenomRepresentant1" value="<%= prenomEnfant %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>'  required />
+                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+            </div>
+        </div>
+        
+	      <% uuid = UUID.randomUUID().toString(); %>
+	      <jalios:buffer name="labelField">
+	        <trsb:glp key="ASS-DEC-ENF-REP1-TEL-HTML" attribute="true" ></trsb:glp>
+	      </jalios:buffer>
+	      <div class="ds44-form__container">
+	        <div class="ds44-posRel">
+	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+	            <input autocomplete="tel-national" type="text" id="form-element-<%= uuid %>" name="telephoneRepresentant1" value="<%= telephoneRepresentant1 %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>' required />
+	            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+	        </div>
+	        <div class="ds44-field-information" aria-live="polite">
+	            <ul class="ds44-field-information-list ds44-list">
+	                <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><trsb:glp key="ASS-DEC-ENF-REP1-TEL-COMPL-HTML" attribute="true" ></trsb:glp></li>
+	            </ul>
+	        </div>
+	      </div>
         
         <label for="adresse1" class="gauche question"><trsb:glp key="ASS-DEC-ENF-REP1-ADR-HTML" ></trsb:glp><button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-ENF-REP1-INF-HTML") %>" data-color="#AEC900">
               <img alt="?" src="s.gif" class="spr-interrogation">
@@ -203,69 +293,139 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	        </button>
         </div>
         
-        <div class="gauche">
-          <input type="checkbox" <%if(saisieAdresseR1){ %> checked <%} %> data-representant="R1" name="saisieAdresseR1" id="saisieAdresseR1" class="false-input saisieAdresseCheckBox">
-        </div>
-        <div class="intituleExtra">
-          <label for="saisieAdresseR1"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-HTML" /></label>
-        </div>
+        <% uuid = UUID.randomUUID().toString(); %>
+        <div id="form-element-<%= uuid %>" data-name="saisieAdresseR1" class="ds44-form__checkbox_container ds44-form__container" data-required="false">
+		    <div class="ds44-form__container ds44-checkBox-radio_list ">
+		        <input <%= saisieAdresseR1 ? "checked" : "" %> type="checkbox" id="name-check-form-element-<%= uuid %>" name="saisieAdresseR1" value="m" class="ds44-checkbox" /><label for="name-check-form-element-<%= uuid %>" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-HTML" /></label>
+		    </div>
+		</div>
         
-        <div id="blockSaisieAdresseR1" style='display: <%= saisieAdresseR1 ? "block" : "none"  %>'>
-	        <div class="gauche">
-	         &nbsp;
-	        </div>
-	        <div class="intituleExtra">
+        <div data-enabled-by-name-check-form-element-<%= uuid %> class='<%= saisieAdresseR1 ? "hidden" : ""  %>'>
+
+	        <div class="h4-like">
 	          <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-TEXT-HTML" />
 	        </div>
 	        
-	        <label for="voieR1" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" /> </label>       
-	        <input id="voieR1" type="text" name="adresseRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant1) %>" class="droite champLg">
+	          <% uuid = UUID.randomUUID().toString(); %>
+		      <jalios:buffer name="labelField">
+		        <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" attribute="true" ></trsb:glp>
+		      </jalios:buffer>
+		      <div class="ds44-form__container">
+		        <div class="ds44-posRel">
+		            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+		            <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+		            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+		        </div>
+		      </div>
+		      
+		      <% uuid = UUID.randomUUID().toString(); %>
+              <jalios:buffer name="labelField">
+                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" attribute="true" ></trsb:glp>
+              </jalios:buffer>
+              <div class="ds44-form__container">
+                <div class="ds44-posRel">
+                    <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="codePostalRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(codePostalRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+                </div>
+              </div>
 	        
-	        <label for="codePostalR1" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" /> </label>            
-	        <input id="codePostalR1" type="text" name="codePostalRepresentant1" value="<%= codePostalRepresentant1 %>" class="droite" >
-	        
-	        <label for="villeR1" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" /> </label>  
-	        <input id="villeR1" type="text" name="villeRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant1) %>" class="droite" style="margin-bottom: 15px;">
+	          <% uuid = UUID.randomUUID().toString(); %>
+              <jalios:buffer name="labelField">
+                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" attribute="true" ></trsb:glp>
+              </jalios:buffer>
+              <div class="ds44-form__container">
+                <div class="ds44-posRel">
+                    <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="villeRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+                </div>
+              </div>
         </div>
-       
-        <label for="complement1" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP1-CPLM-HTML" ></trsb:glp>
-        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-REP1-CPLM1-HTML" ></trsb:glp></span></label> 
-        <input type="text" value="<%= HttpUtil.encodeForHTMLAttribute(complementRepresentant1) %>" name="complementRepresentant1" id="complement" class="droite champLg">
-     
+
+     <% uuid = UUID.randomUUID().toString(); %>
+      <jalios:buffer name="labelField">
+        <trsb:glp key="ASS-DEC-ENF-REP1-CPLM-HTML" attribute="true" ></trsb:glp>
+      </jalios:buffer>
+      <div class="ds44-form__container">
+        <div class="ds44-posRel">
+            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+            <input type="text" id="form-element-<%= uuid %>" name="complementRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(complementRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+        </div>
+        <div class="ds44-field-information" aria-live="polite">
+            <ul class="ds44-field-information-list ds44-list">
+                <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><trsb:glp key="ASS-DEC-ENF-REP1-CPLM1-HTML" attribute="true" ></trsb:glp></li>
+            </ul>
+        </div>
       </div>
       
-      <div class="blocSaisie">
-        <p class="important"><trsb:glp key="ASS-DEC-ENF-REP2-TITRE-HTML" ></trsb:glp></p>
+      <!-- Représentant légal 2 -->
+      
+        <p class="h3-like"><trsb:glp key="ASS-DEC-ENF-REP2-TITRE-HTML" ></trsb:glp></p>
         
-        <p class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-CIV-HTML" ></trsb:glp></p>
+        <p class="h4-like"><trsb:glp key="ASS-DEC-ENF-REP2-CIV-HTML" ></trsb:glp></p>
         
-        <div class="droite">
-          <input type="radio" <%if("Madame".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> name="civiliteRepresentant2" id="civilite2" class="radio" value="Madame" style="background: transparent;">
-          <label for="fille" class="labelRadio"><trsb:glp key="ASS-DEC-ENF-REP2-MME-HTML" ></trsb:glp></label>
-  
-          <input type="radio" <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> name="civiliteRepresentant2" id="civilite2" class="radio" value="Monsieur" style="background: transparent;">
-          <label for="garcon"  class="labelRadio"><trsb:glp key="ASS-DEC-ENF-REP2-MR-HTML" ></trsb:glp></label>
+        <% uuid = UUID.randomUUID().toString(); %>
+        <div id="form-element-<%= uuid %>" data-name="civiliteRepresentant2" class="ds44-form__radio_container ds44-form__container">
+            <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input <%if("Madame".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> type="radio" name="civiliteRepresentant2" value="Madame" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP2-MME-HTML" ></trsb:glp></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> type="radio" name="civiliteRepresentant2" value="Monsieur" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP2-MR-HTML" ></trsb:glp></label>
+            </div>
         </div>
         
-        <label for="nomRepresentant2" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-NOM-HTML" ></trsb:glp></label>
-        <input type="text" value="<%= nomRepresentant2 %>" name="nomRepresentant2" id="nomRepresentant2" class="droite">
-        
-        <label for="prenomRepresentant2" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-PRENOM-HTML" ></trsb:glp></label> 
-        <input type="text" value="<%= prenomRepresentant2 %>" name="prenomRepresentant2" id="prenomRepresentant2" class="droite">   
-                
-        <div class="gauche">
-          <input type="checkbox" <%if(saisieAdresseDif || saisieAdresseR2){ %> checked <%} %> name="saisieAdresseDif" id="adresseDifferente" class="false-input">
+        <% uuid = UUID.randomUUID().toString(); %>
+        <jalios:buffer name="labelField">
+            <trsb:glp key="ASS-DEC-ENF-REP2-NOM-HTML" attribute="true" ></trsb:glp>   
+        </jalios:buffer>
+        <div class="ds44-form__container">
+            <div class="ds44-posRel">
+                <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                <input type="text" id="form-element-<%= uuid %>" name="nomRepresentant2" value="<%= prenomEnfant %>" class="ds44-inpStd" title='<%= labelField %>' />
+                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+            </div>
         </div>
-        <div class="intituleExtra">
-          <label id="adresseDifferente"><trsb:glp key="ASS-DEC-ENF-REP2-CASE-HTML" ></trsb:glp></label>
+        
+        <% uuid = UUID.randomUUID().toString(); %>
+        <jalios:buffer name="labelField">
+            <trsb:glp key="ASS-DEC-ENF-REP2-PRENOM-HTML" attribute="true" ></trsb:glp>   
+        </jalios:buffer>
+        <div class="ds44-form__container">
+            <div class="ds44-posRel">
+                <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                <input type="text" id="form-element-<%= uuid %>" name="prenomRepresentant2" value="<%= prenomEnfant %>" class="ds44-inpStd" title='<%= labelField %>' />
+                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+            </div>
         </div>
         
-      <div class="blocAdresseDifferente" style='display: <%= saisieAdresseDif || saisieAdresseR2 ? "block" : "none" %>;'>
-	      <label for="tel2" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-TEL-HTML" ></trsb:glp>
-	      <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-REP2-TEL-COMPL-HTML" ></trsb:glp></span></label>
-	      <input type="text" value="<%=telephoneRepresentant2 %>" name="telephoneRepresentant2" id="tel2" class="droite">
-	    
-	    
+        <% uuid = UUID.randomUUID().toString(); %>
+        <div id="form-element-<%= uuid %>" data-name="saisieAdresseDif" class="ds44-form__checkbox_container ds44-form__container" data-required="false">
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input <%= saisieAdresseDif ? "checked" : "" %> type="checkbox" id="name-check-form-element-<%= uuid %>" name="saisieAdresseDif" value="m" class="ds44-checkbox" /><label for="name-check-form-element-<%= uuid %>" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>"><trsb:glp key="ASS-DEC-ENF-REP2-CASE-HTML" /></label>
+            </div>
+        </div>
+        
+      <div data-enabled-by-name-check-form-element-<%= uuid %> class='<%= saisieAdresseDif || saisieAdresseR2 ? "" : "hidden" %>'>
+
+	    <% uuid = UUID.randomUUID().toString(); %>
+          <jalios:buffer name="labelField">
+            <trsb:glp key="ASS-DEC-ENF-REP2-TEL-HTML" attribute="true" ></trsb:glp>
+          </jalios:buffer>
+          <div class="ds44-form__container">
+            <div class="ds44-posRel">
+                <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                <input autocomplete="tel-national" type="text" id="form-element-<%= uuid %>" name="telephoneRepresentant2" value="<%= telephoneRepresentant2 %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>' />
+                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+            </div>
+            <div class="ds44-field-information" aria-live="polite">
+                <ul class="ds44-field-information-list ds44-list">
+                    <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><trsb:glp key="ASS-DEC-ENF-REP2-TEL-COMPL-HTML" attribute="true" ></trsb:glp></li>
+                </ul>
+            </div>
+          </div>
    
     
           <label for="adresse2" class="gauche question"><trsb:glp key="ASS-DEC-ENF-REP2-ADR-HTML" ></trsb:glp><button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-ENF-REP2-INF-HTML") %>" data-color="#AEC900">
@@ -278,47 +438,72 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
                 <img title="Vider le champ" alt="Vider le champ" class="spr-select_cross" src="s.gif">
              </button>
           </div>
-             
-   
-          <div class="gauche">
-          <input type="checkbox" <%if(saisieAdresseR2){ %> checked <%} %> data-representant="R2" name="saisieAdresseR2" id="saisieAdresseR2" class="false-input saisieAdresseCheckBox">
-	        </div>
-	        <div class="intituleExtra">
-	          <label for="saisieAdresseR2"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-HTML" /></label>
-	        </div>
-   
-   
-          <div id="blockSaisieAdresseR2" style='display: <%= saisieAdresseR2 ? "block" : "none"  %>'>
-	          <div class="gauche">
-	           &nbsp;
+ 
+          <% uuid = UUID.randomUUID().toString(); %>
+	      <div id="form-element-<%= uuid %>" data-name="saisieAdresseR2" class="ds44-form__checkbox_container ds44-form__container" data-required="false">
+	          <div class="ds44-form__container ds44-checkBox-radio_list ">
+	              <input <%= saisieAdresseR2 ? "checked" : "" %> type="checkbox" id="name-check-form-element-<%= uuid %>" name="saisieAdresseR2" value="m" class="ds44-checkbox" /><label for="name-check-form-element-<%= uuid %>" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-HTML" /></label>
 	          </div>
-	          <div class="intituleExtra">
-	            <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-TEXT-HTML" />
-	          </div>    
-	             
-	             
-	          <label for="voieR2" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" /> </label>       
-		        <input id="voieR2" type="text" name="adresseRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant2) %>" class="droite champLg">
-		        
-		        <label for="codePostalR2" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" /> </label>            
-		        <input id="codePostalR2" type="text" name="codePostalRepresentant2" value="<%= codePostalRepresentant2 %>" class="droite" >
-		        
-		        <label for="villeR2" class="gauche"> <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" /> </label>  
-		        <input id="villeR2" type="text" name="villeRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant2) %>" class="droite" style="margin-bottom: 15px;">
+	      </div>
+   
+          <div data-enabled-by-name-check-form-element-<%= uuid %> class='<%= saisieAdresseR2 ? "" : "hidden"  %>'>
+
+		      <% uuid = UUID.randomUUID().toString(); %>
+              <jalios:buffer name="labelField">
+                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" attribute="true" ></trsb:glp>
+              </jalios:buffer>
+              <div class="ds44-form__container">
+                <div class="ds44-posRel">
+                    <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+                </div>
+              </div>
+              
+              <% uuid = UUID.randomUUID().toString(); %>
+              <jalios:buffer name="labelField">
+                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" attribute="true" ></trsb:glp>
+              </jalios:buffer>
+              <div class="ds44-form__container">
+                <div class="ds44-posRel">
+                    <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="codePostalRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(codePostalRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+                </div>
+              </div>
+            
+              <% uuid = UUID.randomUUID().toString(); %>
+              <jalios:buffer name="labelField">
+                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" attribute="true" ></trsb:glp>
+              </jalios:buffer>
+              <div class="ds44-form__container">
+                <div class="ds44-posRel">
+                    <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="villeRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+                </div>
+              </div>
           </div>
           
-                    
-	        <label for="complement2" class="gauche"><trsb:glp key="ASS-DEC-ENF-REP2-CPLM-HTML" ></trsb:glp>
-	        <span class="complInfo"><trsb:glp key="ASS-DEC-ENF-REP2-CPLM1-HTML" ></trsb:glp></span></label> 
-	        <input type="text" value="<%= HttpUtil.encodeForHTMLAttribute(complementRepresentant2) %>" name="complementRepresentant2" id="complement" class="droite champLg">
-	      
-	        
+
+		  <% uuid = UUID.randomUUID().toString(); %>
+	      <jalios:buffer name="labelField">
+	        <trsb:glp key="ASS-DEC-ENF-REP2-CPLM-HTML" attribute="true" ></trsb:glp>
+	      </jalios:buffer>
+	      <div class="ds44-form__container">
+	        <div class="ds44-posRel">
+	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+	            <input type="text" id="form-element-<%= uuid %>" name="complementRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(complementRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+	            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+	        </div>
+	        <div class="ds44-field-information" aria-live="polite">
+	            <ul class="ds44-field-information-list ds44-list">
+	                <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><trsb:glp key="ASS-DEC-ENF-REP1-CPLM1-HTML" attribute="true" ></trsb:glp></li>
+	            </ul>
+	        </div>
+	      </div>
         
         </div>
-        
-        
-      </div>
-
 
      <p class="submit prev" style="visibility: hidden;">
           <label for="submitprev"> <input type="submit" id="submitprev"
@@ -328,26 +513,27 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               style="background-color: #aec900"><span
                   class="spr-recherche-ok"></span></span>
           </label> <input type="hidden" name="noSendRedirect" value="true"> 
-  
       </p> 
-
-      <p class="submit enregistrer" style='<%= isModif ? "visibility : hidden" : ""  %>'>
-        <label for="create"> 
-          <input type="submit" id="create" name="opCreate" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML" ></trsb:glp>" class="submitButton">
-          <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
-        </label> 
-        <input type="hidden" name="noSendRedirect" value="true"> 
-        <input type="hidden" name="id" value="c_5065">
-      </p>
-    
-      <p class="submit">
-         <label for="submit"> 
-           <input type="submit" id="submit" name="opNext" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML" ></trsb:glp>" class="submitButton">
-           <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
-         </label> 
-         <input type="hidden" name="noSendRedirect" value="true">
-         <input type="hidden" name="id" value="c_5065">        
-      </p>
+      
+      <jalios:if predicate="<%= !isModif %>">
+        <jalios:buffer name="labelTitle">
+            <trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>
+        </jalios:buffer>
+        <div class="ds44-form__container">
+	        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<%= labelTitle %>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
+	        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+	        <input type="hidden" name="id" value="c_5065" data-technical-field>
+	    </div>  
+      </jalios:if>
+      
+      <jalios:buffer name="labelTitle">
+          <trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>
+      </jalios:buffer>
+      <div class="ds44-form__container">
+          <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<%= labelTitle %>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></button>
+          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+          <input type="hidden" name="id" value="c_5065" data-technical-field>
+      </div>
       
 
       

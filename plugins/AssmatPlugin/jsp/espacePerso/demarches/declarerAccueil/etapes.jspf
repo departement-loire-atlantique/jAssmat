@@ -18,12 +18,11 @@
         <ol class="ds44-nav-stepper ds44-fg1 ds44-flex-container ds44-list">
             <li class='ds44-nav-step<%= step > DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI ? " liPassed" : ""%>'<%= step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI ? "  aria-current='page'" : ""%>>
                 <jalios:buffer name="lblBtnStep">
-                    <trsb:glp key="ASS-DEC-MENU-1-HTML" ></trsb:glp>
+                    <trsb:glp key="ASS-DEC-MENU-1-HTML" attribute="true"></trsb:glp>
                 </jalios:buffer>
                 <jalios:select>
                     <jalios:if predicate="<%= step > DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI %>">
-                        <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 1, lblBtnStep) %>'
-                            data-submit-value="0" data-submit-key="formStep" >
+                        <button class="passed" aria-label='<%= glp("jcmsplugin.assmatplugin.form.step.done.title", 1, lblBtnStep) %>' data-submit-value="0" data-submit-key="formStep" >
                             <span class="number"><i class="icon icon-check" aria-hidden="true"></i></span>
                             <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.form.step.done.lbl", 1) %></span>
                             <span class="text"><%= lblBtnStep %></span>
@@ -40,7 +39,7 @@
             </li>
             <li class='ds44-nav-step<%= step > DeclarerAccueilAssmatHandler.LIEU_ACCUEIL ? " liPassed" : ""%><%= step == DeclarerAccueilAssmatHandler.LIEU_ACCUEIL ? "  aria-current='page'" : ""%>'>
                 <jalios:buffer name="lblBtnStep">
-                    <trsb:glp key="ASS-DEC-MENU-2-HTML" ></trsb:glp>
+                    <trsb:glp key="ASS-DEC-MENU-2-HTML" attribute="true"></trsb:glp>
                 </jalios:buffer>
                 <jalios:select>
                     <jalios:if predicate="<%= step > DeclarerAccueilAssmatHandler.LIEU_ACCUEIL && step != DeclarerAccueilAssmatHandler.VALIDATION %>">
@@ -69,7 +68,7 @@
             </li>
             <li class='ds44-nav-step<%= step > DeclarerAccueilAssmatHandler.MODALITES ? " liPassed" : ""%><%= step == DeclarerAccueilAssmatHandler.MODALITES ? "  aria-current='page'" : ""%>'>
                 <jalios:buffer name="lblBtnStep">
-                    <trsb:glp key="ASS-DEC-MENU-3-HTML" ></trsb:glp>
+                    <trsb:glp key="ASS-DEC-MENU-3-HTML" attribute="true" ></trsb:glp>
                 </jalios:buffer>
                 <jalios:select>
                     <jalios:if predicate="<%= step > DeclarerAccueilAssmatHandler.MODALITES && step != DeclarerAccueilAssmatHandler.VALIDATION %>">
@@ -98,7 +97,7 @@
             </li>
             <li class='ds44-nav-step<%= step > DeclarerAccueilAssmatHandler.VALIDATION ? " liPassed" : ""%><%= step == DeclarerAccueilAssmatHandler.VALIDATION ? "  aria-current='page'" : ""%>'>
                 <jalios:buffer name="lblBtnStep">
-                    <trsb:glp key="ASS-DEC-MENU-4-HTML" ></trsb:glp>
+                    <trsb:glp key="ASS-DEC-MENU-4-HTML" attribute="true" ></trsb:glp>
                 </jalios:buffer>
                 <jalios:select>
                     <jalios:if predicate="<%= step == DeclarerAccueilAssmatHandler.VALIDATION %>">
@@ -119,7 +118,7 @@
             </li>
         </ul>
     </nav>
-    <input type="hidden" value="Etape précédente" name="opPrevious">
-    <input type="hidden" value="true" name="opChangeStep">
+    <input type="hidden" value="true" name="opPrevious" data-technical-field>
+    <input type="hidden" value="true" name="opChangeStep" data-technical-field>
     <%=formHandler.getAllFormStepHiddenFields()%>
 </form>
