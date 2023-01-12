@@ -504,16 +504,6 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	      </div>
         
         </div>
-
-     <p class="submit prev" style="visibility: hidden;">
-          <label for="submitprev"> <input type="submit" id="submitprev"
-              name="opPrevious"
-              value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML" ></trsb:glp>"
-              class="submitButton"> <span class="input-box"
-              style="background-color: #aec900"><span
-                  class="spr-recherche-ok"></span></span>
-          </label> <input type="hidden" name="noSendRedirect" value="true"> 
-      </p> 
       
       <jalios:if predicate="<%= !isModif %>">
         <jalios:buffer name="labelTitle">
@@ -534,8 +524,6 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
           <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
           <input type="hidden" name="id" value="c_5065" data-technical-field>
       </div>
-      
-
       
   <%}%>
 <!-- FIN -->
