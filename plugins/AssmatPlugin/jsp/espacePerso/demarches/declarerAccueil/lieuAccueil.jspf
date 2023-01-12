@@ -25,104 +25,70 @@ if (step == DeclarerAccueilAssmatHandler.LIEU_ACCUEIL) {
   String libelleAccueil = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-ACC-INFO-HTML", parameters);
   
   Boolean accueilDomicile = declarationForm.getAccueilDomicile(); 
-
-  
   
 %>
 
-
-
-      <div class="blocSaisie">
-        <p class="important"><%= libelleAccueil %></p>
+        <p class="h3-like"><%= libelleAccueil %></p>
          
       <%if(assmatSolis.getExerceDomicile() && assmatSolis.getExerceMam() ){  %>
-        <p class="txtDesc"><trsb:glp key="ASS-DEC-ACC-INFO-MAMDOM-HTML" ></trsb:glp></p>
+        <p class="h4-like"><trsb:glp key="ASS-DEC-ACC-INFO-MAMDOM-HTML" ></trsb:glp></p>
       <%} %>
       <%if(assmatSolis.getExerceDomicile() && !assmatSolis.getExerceMam() ){  %>
-        <p class="txtDesc"><trsb:glp key="ASS-DEC-ACC-INFO-DOM-HTML" ></trsb:glp></p>
+        <p class="h4-like"><trsb:glp key="ASS-DEC-ACC-INFO-DOM-HTML" ></trsb:glp></p>
       <%} %>
       <%if(!assmatSolis.getExerceDomicile() && assmatSolis.getExerceMam() ){  %>
-        <p class="txtDesc"><trsb:glp key="ASS-DEC-ACC-INFO-MAM-HTML" ></trsb:glp></p>
+        <p class="h4-like"><trsb:glp key="ASS-DEC-ACC-INFO-MAM-HTML" ></trsb:glp></p>
       <%} %>
       
-      
-      <%if(assmatSolis.getExerceMam()){ %>
-        <div class="gauche">
-         <input type="radio" value="false" class="radio" <%if(!assmatSolis.getExerceDomicile() || (accueilDomicile != null && !accueilDomicile) ){ %> checked <%} %> name="accueilDomicile" id="adresseMAM">
-         
-     
-      </div>
-        <div class="intituleExtra">
-          <label id="adresseMAM"><span><strong><trsb:glp key="ASS-DEC-ACC-MAM-HTML" ></trsb:glp></strong></span><span><%= assmatSolis.getNomMam() %></span><span><%= assmatSolis.getAdresseMam() %></span><span><%= assmatSolis.getCpMam() %> <%=         
+      <% uuid = UUID.randomUUID().toString(); %>
+        <div id="form-element-<%= uuid %>" data-name="accueilDomicile" class="ds44-form__radio_container ds44-form__container" data-required="true">
+            <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
+            <jalios:if predicate="<%= assmatSolis.getExerceMam() %>">
+	            <div class="ds44-form__container ds44-checkBox-radio_list ">
+	                <input <%if(!assmatSolis.getExerceDomicile() || (accueilDomicile != null && !accueilDomicile) ){ %> checked <%} %> required type="radio" name="accueilDomicile" value="false" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><span><strong><trsb:glp key="ASS-DEC-ACC-MAM-HTML" ></trsb:glp></strong></span><span><%= assmatSolis.getNomMam() %></span><span><%= assmatSolis.getAdresseMam() %></span><span><%= assmatSolis.getCpMam() %> <%= assmatSolis.getCommuneMam() %></label>
+	            </div>
+            </jalios:if>
+            <jalios:if predicate="<%= assmatSolis.getExerceDomicile() %>">
+	            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                    <input  <%if(!assmatSolis.getExerceMam() || (accueilDomicile != null && accueilDomicile) ){ %> checked <%} %> required type="radio" name="accueilDomicile" value="true" id="name-radio-form-element-<%= uuid %>-t" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-t" for="name-radio-form-element-<%= uuid %>-t" class="ds44-radioLabel"><span><strong><trsb:glp key="ASS-DEC-ACC-DOM-HTML" ></trsb:glp></strong></span><span><%= assmatSolis.getAdresseDomicile() %></span><span><%= assmatSolis.getCpDomicile() %> <%= assmatSolis.getCommuneDomicile() %></span></label>
+                </div>
+            </jalios:if>
+        </div>
 
-              
-              assmatSolis.getCommuneMam() %><br>
-            <br>
-          </span></label>
-
-        </div>
-      <%} %>
-    <%if(assmatSolis.getExerceDomicile()){ %>
-        <div class="gauche">
-        <input type="radio" value="true" class="radio" <%if(!assmatSolis.getExerceMam() || (accueilDomicile != null && accueilDomicile) ){ %> checked <%} %> name="accueilDomicile" id="adresseMAM">
-         
-       
-         
-         
-        </div>
-        <div class="intituleExtra">
-          <label id="adresseMAM"><span><strong><trsb:glp key="ASS-DEC-ACC-DOM-HTML" ></trsb:glp></strong></span><span><%= assmatSolis.getAdresseDomicile() %></span><span><%= assmatSolis.getCpDomicile() %> <%= assmatSolis.getCommuneDomicile() %></span></label>
-        </div>
-   <%} %>
-        <p class="messageErreur"><trsb:glp key="ASS-DEC-ACC-TEXT-HTML" ></trsb:glp></p>       
+        <p><trsb:glp key="ASS-DEC-ACC-TEXT-HTML" ></trsb:glp></p>       
         
         <!-- Information domicile -->
-        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getAdresseDomicile()) %>' name="adresseDomicile">
-        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCommuneDomicile()) %>' name="communeDomicile">
-        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCpDomicile()) %>' name="cpDomicile">
+        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getAdresseDomicile()) %>' name="adresseDomicile" data-technical-field>
+        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCommuneDomicile()) %>' name="communeDomicile" data-technical-field>
+        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCpDomicile()) %>' name="cpDomicile" data-technical-field>
         
         <!-- Information mam -->
-        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getNomMam()) %>' name="nomMam">
-        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getAdresseMam()) %>' name="adresseMam">
-        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCommuneMam()) %>' name="communeMam">
-        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCpMam()) %>' name="cpMam">
-        
-
-        
+        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getNomMam()) %>' name="nomMam" data-technical-field>
+        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getAdresseMam()) %>' name="adresseMam" data-technical-field>
+        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCommuneMam()) %>' name="communeMam" data-technical-field>
+        <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCpMam()) %>' name="cpMam" data-technical-field>
+ 
+      <div class="ds44-form__container">
+          <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></button>
+          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+          <input type="hidden" name="id" value="c_5065" data-technical-field>
       </div>
  
+      <jalios:if predicate="<%= !isModif %>">
+        <div class="ds44-form__container">
+            <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
+            <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+            <input type="hidden" name="id" value="c_5065" data-technical-field>
+        </div>  
+      </jalios:if>
+      
+      <div class="ds44-form__container">
+          <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></button>
+          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+          <input type="hidden" name="id" value="c_5065" data-technical-field>
+      </div>
 
-      <p class="submit prev">
-          <label for="submitprev"> <input type="submit" id="submitprev"
-              name="opPrevious"
-              value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML" ></trsb:glp>"
-              class="submitButton"> <span class="input-box"
-              style="background-color: #aec900"><span
-                  class="spr-recherche-ok"></span></span>
-          </label> <input type="hidden" name="noSendRedirect" value="true"> 
-  
-      </p> 
-    
- 
-      <p class="submit enregistrer" style='<%= isModif ? "visibility : hidden" : ""  %>'>
-        <label for="create">
-         <input id="create" type="submit" name="opCreate" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML" />" class="submitButton">
-         <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
-        </label> <input type="hidden" name="noSendRedirect" value="true"> 
-      </p>
-    
-      <p class="submit">
-          <label for="submit"> <input type="submit" id="submit"
-            name="opNext" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML" ></trsb:glp>" class="submitButton">
-            <span class="input-box" style="background-color: #aec900"><span
-              class="spr-recherche-ok"></span></span>
-          </label>                
-      </p>
-
-   
-
-				
-				<!-- FIN FORMULAIRE A ETAPES -->
+	   <!-- FIN FORMULAIRE A ETAPES -->
 	<%}%>
 <!-- FIN -->
 

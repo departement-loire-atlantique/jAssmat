@@ -167,10 +167,10 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         <div id="form-element-<%= uuid %>" data-name="sexeEnfant" class="ds44-form__radio_container ds44-form__container"  data-required="true">
 		    <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
 		    <div class="ds44-form__container ds44-checkBox-radio_list ">
-		        <input <%= isModif && "Garçon".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Fille".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Fille" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.fille") %></label>
+		        <input <%= isModif && "Garçon".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Fille".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Fille" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.fille") %></label>
 		    </div>
 		    <div class="ds44-form__container ds44-checkBox-radio_list ">
-		        <input <%= isModif && "Fille".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Garçon".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Garçon" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.garcon") %></label>
+		        <input <%= isModif && "Fille".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Garçon".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Garçon" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.garcon") %></label>
 		    </div>
 		</div>
          
@@ -234,10 +234,10 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         <div id="form-element-<%= uuid %>" data-name="civiliteRepresentant1" class="ds44-form__radio_container ds44-form__container"  data-required="true">
             <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
             <div class="ds44-form__container ds44-checkBox-radio_list ">
-                <input <%if("Madame".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> type="radio" name="civiliteRepresentant1" value="Madame" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP1-MME-HTML" ></trsb:glp></label>
+                <input <%if("Madame".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> type="radio" name="civiliteRepresentant1" value="Madame" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP1-MME-HTML" ></trsb:glp></label>
             </div>
             <div class="ds44-form__container ds44-checkBox-radio_list ">
-                <input <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> type="radio" name="civiliteRepresentant1" value="Monsieur" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP1-MR-HTML" ></trsb:glp></label>
+                <input <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> type="radio" name="civiliteRepresentant1" value="Monsieur" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP1-MR-HTML" ></trsb:glp></label>
             </div>
         </div>
         
@@ -370,10 +370,10 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         <div id="form-element-<%= uuid %>" data-name="civiliteRepresentant2" class="ds44-form__radio_container ds44-form__container">
             <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
             <div class="ds44-form__container ds44-checkBox-radio_list ">
-                <input <%if("Madame".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> type="radio" name="civiliteRepresentant2" value="Madame" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP2-MME-HTML" ></trsb:glp></label>
+                <input <%if("Madame".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> type="radio" name="civiliteRepresentant2" value="Madame" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP2-MME-HTML" ></trsb:glp></label>
             </div>
             <div class="ds44-form__container ds44-checkBox-radio_list ">
-                <input <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> type="radio" name="civiliteRepresentant2" value="Monsieur" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP2-MR-HTML" ></trsb:glp></label>
+                <input <%if("Monsieur".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> type="radio" name="civiliteRepresentant2" value="Monsieur" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP2-MR-HTML" ></trsb:glp></label>
             </div>
         </div>
         
@@ -506,21 +506,15 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         </div>
       
       <jalios:if predicate="<%= !isModif %>">
-        <jalios:buffer name="labelTitle">
-            <trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>
-        </jalios:buffer>
         <div class="ds44-form__container">
-	        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<%= labelTitle %>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
+	        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
 	        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
 	        <input type="hidden" name="id" value="c_5065" data-technical-field>
 	    </div>  
       </jalios:if>
       
-      <jalios:buffer name="labelTitle">
-          <trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>
-      </jalios:buffer>
       <div class="ds44-form__container">
-          <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<%= labelTitle %>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></button>
+          <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></button>
           <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
           <input type="hidden" name="id" value="c_5065" data-technical-field>
       </div>
