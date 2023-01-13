@@ -448,7 +448,7 @@ if(Util.notEmpty(dispoList)){
 	      <th scope="col">D</th>
 	    </tr>
 	    <tr>
-	      <th scope="row">Avant l'�cole</th>
+	      <th scope="row"><%= glp("jcmsplugin.assmatplugin.parametrage.avantecole") %></th>
 	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_avant_ecole1) %>' class="<%= lundi_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
 	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_avant_ecole1) %>' class="<%= mardi_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
 	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_avant_ecole1) %>' class="<%= mercredi_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
@@ -458,7 +458,7 @@ if(Util.notEmpty(dispoList)){
 	      <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_avant_ecole1) %>' class="<%= dimanche_avant_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_avant_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_avant_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
 	    </tr>
 	    <tr>
-	      <th scope="row">Matin</th>
+	      <th scope="row"><%= glp("jcmsplugin.assmatplugin.parametrage.matin") %></th>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_matin1) %>' class="<%= lundi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_matin1) %>' class="<%= mardi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_matin1) %>' class="<%= mercredi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
@@ -467,7 +467,7 @@ if(Util.notEmpty(dispoList)){
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_matin1) %>' class="<%= samedi_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+samedi_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+samedi_matin1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_matin1) %>' class="<%= dimanche_matin1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_matin1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_matin1) %>' class="PictoCreneauPrint" alt=""></td>	    </tr>
 	    <tr>
-	      <th scope="row">Midi</th>
+	      <th scope="row"><%= glp("jcmsplugin.assmatplugin.parametrage.midi") %></th>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_midi1) %>' class="<%= lundi_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_midi1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_midi1) %>' class="<%= mardi_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_midi1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_midi1) %>' class="<%= mercredi_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_midi1) %>' class="PictoCreneauPrint" alt=""></td>
@@ -477,7 +477,7 @@ if(Util.notEmpty(dispoList)){
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_midi1) %>' class="<%= dimanche_midi1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_midi1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_midi1) %>' class="PictoCreneauPrint" alt=""></td>
 	    </tr>
 	    <tr>
-	      <th scope="row">Apr�s midi</th>
+	      <th scope="row"><%= glp("jcmsplugin.assmatplugin.parametrage.apresmidi") %></th>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_pm1) %>' class="<%= lundi_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_pm1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_pm1) %>' class="<%= mardi_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_pm1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_pm1) %>' class="<%= mercredi_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_pm1) %>' class="PictoCreneauPrint" alt=""></td>
@@ -487,7 +487,7 @@ if(Util.notEmpty(dispoList)){
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_pm1) %>' class="<%= dimanche_pm1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_pm1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_pm1) %>' class="PictoCreneauPrint" alt=""></td>
 	    </tr>
 	    <tr>
-	      <th scope="row">Apr�s l'�cole</th>
+	      <th scope="row"><%= glp("jcmsplugin.assmatplugin.parametrage.apresecole") %></th>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_apres_ecole1) %>' class="<%= lundi_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_apres_ecole1) %>' class="<%= mardi_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_apres_ecole1) %>' class="<%= mercredi_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
@@ -497,7 +497,7 @@ if(Util.notEmpty(dispoList)){
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_apres_ecole1) %>' class="<%= dimanche_apres_ecole1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+dimanche_apres_ecole1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+dimanche_apres_ecole1) %>' class="PictoCreneauPrint" alt=""></td>
 	    </tr>
 	    <tr>
-	      <th scope="row">Nuit</th>
+	      <th scope="row"><%= glp("jcmsplugin.assmatplugin.parametrage.nuit") %></th>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_nuit1) %>' class="<%= lundi_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+lundi_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+lundi_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_nuit1) %>' class="<%= mardi_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mardi_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mardi_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
           <td><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_nuit1) %>' class="<%= mercredi_nuit1 %>" alt='<%= glp("plugin.assmatplugin.profilassmat.place."+mercredi_nuit1)%>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo."+mercredi_nuit1) %>' class="PictoCreneauPrint" alt=""></td>
