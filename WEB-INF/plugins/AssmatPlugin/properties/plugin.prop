@@ -40,7 +40,7 @@ jcmsplugin.assmatplugin.socle.confirm.catLoginRedirect: mfo_60353
 jcmsplugin.assmatplugin.socle.categ.accueil.perso: cra_60267
 
 # ID du portail accueil Espace Perso
-jcmsplugin.assmatplugin.socle.portail.param.id:cra_60294
+jcmsplugin.assmatplugin.socle.portail.param.id:cra_103077
 
 # Remplacement du fichier de Login
 jcms.resource.login: plugins/AssmatPlugin/jsp/loginAM.jsp

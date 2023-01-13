@@ -83,7 +83,6 @@ int stepCount = formHandler.getFormStepCount();
   String uuid = UUID.randomUUID().toString();
 %>
 
-<main id="content">
 
     <div class="ds44-container-large">
        <div class="ds44-inner-container ds44-mtb5">
