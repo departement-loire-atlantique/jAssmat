@@ -18,7 +18,6 @@ jcmsplugin.assmatplugin.accueil.prevenu.sms: par SMS
 jcmsplugin.assmatplugin.accueil.menu.ici: Vous êtes
 jcmsplugin.assmatplugin.accueil.bienvenue: Bonjour {0} {1}
 
-
 #page inscription
 
 jcmsplugin.assmatplugin.inscription.activer.compte.avant: Même si vous aviez déjà activé votre compte dans l'ancien site, merci de suivre les étapes suivantes.

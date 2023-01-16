@@ -190,11 +190,13 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                       </p>
                                     </jalios:if>
 							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getExerceDomicile()) && asmmatSolis.getExerceDomicile() %>">
-							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><%= glp("jcmsplugin.assmatplugin.label.exerce.domicile") %></p>
+                      
+							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-DOM"></trsb:glp></p>
 							        </jalios:if>
 							        <jalios:if predicate='<%=  assmatSolis.getExerceMam() != null && assmatSolis.getExerceMam() %>'>
-							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><%= glp("jcmsplugin.assmatplugin.label.exerce.mam") %></p>
-							        </jalios:if>
+							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-MAM"></trsb:glp></p>
+							        
+                      </jalios:if>
                                 </div>
                                 <div class="col ds44--xl-padding-l">
                                     <%--
@@ -204,14 +206,15 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                     --%>
                                     <%
                                     boolean hasFixe = showContactDispo && Util.notEmpty(obj.getTelephoneFixe()) && AssmatUtil.getBooleanFromString(obj.getVisbiliteTelephoneFixe());
-                                    boolean hasMobile = showContactDispo && Util.notEmpty(assmatSolis.getTelPortable()) && AssmatUtil.getBooleanFromString(obj.getVisibiliteTelephonePortable());
+
+                                    boolean hasMobile = showContactDispo && Util.notEmpty(obj.getAuthor().getMobile()) && AssmatUtil.getBooleanFromString(obj.getVisibiliteTelephonePortable());
                                     %>
                                     <jalios:select>
                                         <jalios:if predicate="<%= hasFixe && hasMobile %>">
-                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= assmatSolis.getTelPortable() %> - <%= obj.getTelephoneFixe() %></p>
+                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getAuthor().getMobile() %> - <%= obj.getTelephoneFixe() %></p>
                                         </jalios:if>
                                         <jalios:if predicate="<%= hasMobile %>">
-                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= assmatSolis.getTelPortable() %></p>
+                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getAuthor().getMobile() %></p>
                                         </jalios:if>
 	                                    <jalios:if predicate="<%= hasFixe %>">
 								          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getTelephoneFixe() %></p>
@@ -234,10 +237,13 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
         
         <div class="ds44-inner-container ds44-mtb3">
             <div class="ds44-grid12-offset-2">
-                <h2 class="h2-like ds44-mt3"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-DISPONIBILITE-HTML" ></trsb:glp></h2>
-                <%@include file='/plugins/AssmatPlugin/jsp/include/displayDisponibilites.jspf' %>
+                <h2 class="h2-like ds44-mtb3"><trsb:glp key="PROFIL-ASSMAT-LIBELLE-DISPONIBILITE-HTML" ></trsb:glp></h2>
                 
-                <h2 class="h2-like ds44-mt3"><%= glp("jcmsplugin.socle.titre.endetails") %></h2>
+                <div class="ds44-mtb3">
+                <%@include file='/plugins/AssmatPlugin/jsp/include/displayDisponibilites.jspf' %>
+                </div>
+                
+                <h2 class="h2-like ds44-mtb3"><%= glp("jcmsplugin.socle.titre.endetails") %></h2>
                 <%--
                 Agrément / Formation
                 Type d'accueil / spécificités

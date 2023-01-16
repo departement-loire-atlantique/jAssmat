@@ -56,7 +56,7 @@ Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier"
         
         <jalios:if predicate="<%= afficherSelect %>">
 			<p class="ds44-cardSelect pa0 ma0">
-				<button class='pas ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(pub.getId())) ? "" : "is-select" %>'
+				<button data-select-button-id='<%= "search-result-" + pub.getId() %>' class='pas ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(pub.getId())) ? "" : "is-select" %>'
 					data-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= pub.getId() %>"
 					data-titles='{ "enabled": "Désélectionner <%= mbr.getFullName() %>", "disabled": "Sélectionner <%= mbr.getFullName() %>"}'
 					data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}'
