@@ -80,6 +80,7 @@ if (step == DeclarerAccueilAssmatHandler.MODALITES) {
 		        
 	        <!-- Semaines types -->
 	        <div data-enabled-by-name-radio-form-element-<%= uuid %>-f <%if(!"false".equals(accueilOccasionnel)){ %> class="hidden" <%} %>>
+	            <% uuid = UUID.randomUUID().toString(); %>
 		        <p class="h4-like">
 		          <trsb:glp key="ASS-DEC-MOD-QIRR-HTML"></trsb:glp>
 		          <button type="button" class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_<%= uuid %>">
