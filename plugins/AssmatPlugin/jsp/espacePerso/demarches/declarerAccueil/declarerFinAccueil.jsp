@@ -108,7 +108,9 @@ if (Util.notEmpty(request.getParameter("opFishish"))) {
   if (Util.isEmpty(dateFinAccueilString)) {
     jcmsContext.addMsg(new JcmsMessage(JcmsMessage.Level.WARN, AssmatUtil.getMessage("ASS-DFAC-DATFAC-ERR-HTML")));
   } else {
-
+    // Conversion vers le bon format
+    dateFinAccueilString = AssmatUtil.convertFormDateToAssmatProfilDate(dateFinAccueilString);
+    
     // Erreur si le format de la date est incorrect
     if (!DeclarerAccueilAssmatHandler.isValideDateFormat(dateFinAccueilString)) {
       jcmsContext.addMsg(new JcmsMessage(JcmsMessage.Level.WARN, AssmatUtil.getMessage("ASS-DFAC-DATFAC-FOR-HTML")));
@@ -150,111 +152,98 @@ if (Util.notEmpty(request.getParameter("opFishish"))) {
 
 }
 %>
-
-
-<div class="headstall container-fluid demarche fin-accueil">
   
   <!--  Titre de la page -->
-  <div class="row-fluid">    
-    <div class="span12 label">
-      <div class="row-fluid title">
         <jalios:select>
           <jalios:if predicate="<%= isModifFin %>">
-            <div class="headerEspacePerso">
-              <h1><trsb:glp key="ASS-MODDFAC-TITRE1-HTML"/></h1>
-            </div>
+              <h2><trsb:glp key="ASS-MODDFAC-TITRE1-HTML"/></h1>
           </jalios:if>
           <jalios:default>
             <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
           </jalios:default>
         </jalios:select>
-      </div>
-    </div>   
-  </div> 
   <!-- FIN titre de la page -->
   
   
-  <!-- Corps de la page -->
-  <div class="row-fluid">
-	  <div class="span12 label">
-	  
-	  
 	     <!-- Présentation de l’espace -->
 	     <jalios:if predicate="<%= !isSend %>">	        
 	         <p class="titleAccueilPerso">
-	           <!-- Déclaration de fin : présentation de l’espace -->	           
+	           <!-- Déclaration de fin : présentation de l’espace -->
 	           <jalios:if predicate="<%= isExistDeclaration %>">
 	             <trsb:glp key="ASS-DFAC-TEXT-HTML" />
 	           </jalios:if>
-	           <!-- Modification de fin : présentation de l’espace -->     
-	           <jalios:if predicate="<%= isModifFin %>"> 
+	           <!-- Modification de fin : présentation de l’espace -->
+	           <jalios:if predicate="<%= isModifFin %>">
 	             <trsb:glp key="ASS-MODDFAC-TEXT-HTML" />
-	           </jalios:if>	           
+	           </jalios:if>
 	         </p>      	     	     
-	         <div style="border-bottom: 2px dotted #000000; margin-top: 55px; margin-bottom: 20px;" ></div>	     
 	     </jalios:if>
 	     
 
 	    
-	     <%@ include file='/jcore/doMessageBox.jsp'%>
+	     <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 	    
 	    
 	    
 	    <jalios:if predicate="<%= !isSend && (isExistDeclaration || isModifFin) %>">
 	    
-		     <form action="" method="post" style="margin-left: 55px;">
-			     			     
-			     <p>
-			       <trsb:glp key="ASS-DFAC-INFO-HTML" />
-			     </p>
-			     
-			     <p>
-			       <trsb:glp key="ASS-DFAC-DECL-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant, sexeEnfant} %>'/>
-			     </p>
-			     
-			     <p>
-		         Né le <%= dateNaissanceEnfant %>
-		       </p>
-		       
-		       <p>       
-	            <trsb:glp key="ASS-DFAC-DEBAC-HTML" parameter='<%= new String[]{dateDebutAccueilString} %>'/>
-	         </p>
-	         
-	         
-	         <p>       
-	            <label for="dateFinAccueil"> <trsb:glp key="ASS-DFAC-DATFAC-HTML"/> </label>           
-	            <input type="string" value='<%= Util.notEmpty(dateFinAccueilString) ? dateFinAccueilString : "" %>' name="dateFinAccueil" id="dateFinAccueil">  
-	            <trsb:glp key="ASS-DFAC-DATFAC-EX-HTML"/>               
-	         </p>
-	         
-	         
-	         
-	         <div style="border-bottom: 2px dotted #000000; margin-top: 20px; margin-bottom: 10px;" ></div>
-	         
-	         <div class="submit bouton-valider" style="float: right;">
-	         
-		         <label for="submit"> 
-		           <input type="submit" id="submit" name="opFishish" value="<trsb:glp attribute="true" key="ASS-DFAC-BT-VAL-HTML" />" class="submitButton">
-		           <span class="input-box">
-		               <span class="spr-recherche-ok"></span>
-		           </span>
-		         </label> 
-	                
-	           <input type="hidden" name="idDeclaration" value="<%= declaration.getIdDeclaration() %>">
-	                 
-	         </div>    
-				 
-				 </form>
+		     <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" data-no-encoding="true">
+			    <p>
+			        <trsb:glp key="ASS-DFAC-INFO-HTML" />
+			    </p>
+			    <p>
+			        <trsb:glp key="ASS-DFAC-DECL-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant, sexeEnfant} %>'/>
+			    </p>
+			    <p>
+			        <%= glp("jcmsplugin.assmatplugin.declarationaccueil.nele", dateNaissanceEnfant) %>
+			    </p>
+			    <p>
+			        <trsb:glp key="ASS-DFAC-DEBAC-HTML" parameter='<%= new String[]{dateDebutAccueilString} %>'/>
+			    </p>
+			    <% String uuid = UUID.randomUUID().toString(); %>
+	            <jalios:buffer name="labelField">
+	            <trsb:glp key="ASS-DFAC-DATFAC-HTML" attribute="true"/>
+	            </jalios:buffer>
+	            <div class="ds44-form__container">
+		            <div class="ds44-posRel">
+		                <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
+		                <div data-name="dateFinAccueil" class="ds44-datepicker__shape ds44-inpStd" data-required="true">
+		                    <input id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= AssmatUtil.getDayFromDateDdMmYyyy(dateFinAccueilString) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		                    <span>/</span>
+		                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= AssmatUtil.getMonthFromDateDdMmYyyy(dateFinAccueilString) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		                    <span>/</span>
+		                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", labelField)) %>'  value="<%= AssmatUtil.getYearFromDateDdMmYyyy(dateFinAccueilString) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		                </div>
+		                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
+		                <span class="ds44-calendar" aria-hidden="true" aria-describedby=""><i class="icon icon-date icon--large" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.date.calendrier.afficher", labelField) %></span></span>
+		                <div  class="vanilla-calendar hidden"></div>
+		            </div>
+		            <div class="ds44-field-information" aria-live="polite">
+		                <ul class="ds44-field-information-list ds44-list">
+		                    <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><trsb:glp key="ASS-DFAC-DATFAC-EX-HTML"/></li>
+		                </ul>
+		            </div>
+		        </div>
+
+			    <div class="ds44-form__container">
+			        <input type="submit" class="ds44-btnStd" name="submit" value="<trsb:glp attribute="true" key="ASS-DFAC-BT-VAL-HTML"></trsb:glp>">
+			        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/>
+			        <input type="hidden" name="opFishish" value="true" data-technical-field/>
+			        <input type="hidden" name="idDeclaration" value="<%= declaration.getIdDeclaration() %>" data-technical-field/>
+			        <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>
+			    </div>
+			</form>
+
 			 
 			 
 			 </jalios:if>
 			 
 			 
 			 <jalios:if predicate="<%= !isExistDeclaration && !isModifFin %>">
-			   <p> Déclaration d'accueil non trouvée </p>
+			   <p><%= glp("jcmsplugin.assmatplugin.declarationaccueil.notfound") %></p>
 			 </jalios:if>
 			 
-			 <jalios:if predicate="<%= isSend %>">
+	   <jalios:if predicate="<%= isSend %>">
          <p>
             <jalios:if predicate="<%= isExistDeclaration %>">
               <trsb:glp key="ASS-DFAC-FIN-HTML" />
@@ -265,11 +254,4 @@ if (Util.notEmpty(request.getParameter("opFishish"))) {
          </p>
        </jalios:if>
 			
-	     
-	  </div>
-  </div>
   <!-- FIN corps de la page -->
-    
-
-</div>
-

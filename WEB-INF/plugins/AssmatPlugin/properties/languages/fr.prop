@@ -207,6 +207,9 @@ jcmsplugin.assmatplugin.declarationaccueil.finaccueil: Déclarer une fin d’acc
 jcmsplugin.assmatplugin.declarationaccueil.label.garcon: Garçon
 jcmsplugin.assmatplugin.declarationaccueil.label.fille: Fille
 
+jcmsplugin.assmatplugin.declarationaccueil.notfound: Déclaration d'accueil non trouvée
+jcmsplugin.assmatplugin.declarationaccueil.nele: <strong>Né-e le</strong> {0}
+
 
 # Connexion AM
 plugin.assmatplugin.form.login.am.loginTitle: Connectez-vous
