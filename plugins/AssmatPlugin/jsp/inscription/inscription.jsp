@@ -70,31 +70,25 @@ if(Util.notEmpty(request.getParameter("choixLogin[0]"))){
 String uuid = UUID.randomUUID().toString();
 
 boolean notfoundCompte= false;
-	if (formHandler.validate()) {
-		request.setAttribute("modal.redirect", request.getAttribute("workspaceURL"));
-		String idJspParam = channel.getProperty("jcmsplugin.assmatplugin.socle.jsp.parametrage");
-		Publication jspParam = null;
-		if(Util.notEmpty(idJspParam)){
-		  jspParam = channel.getPublication(idJspParam);
-		  jcmsContext.sendRedirect(jspParam);
-		}
-		
-		return;
+if (formHandler.validate()) {
+	request.setAttribute("modal.redirect", request.getAttribute("workspaceURL"));
+	String idJspParam = channel.getProperty("jcmsplugin.assmatplugin.socle.jsp.parametrage");
+	Publication jspParam = null;
+	if(Util.notEmpty(idJspParam)){
+	  jspParam = channel.getPublication(idJspParam);
+	  jcmsContext.sendRedirect(jspParam);
 	}
 	
-	jcmsContext.addJavaScript("plugins/ToolsPlugin/js/facets/tooltipCategories.js");
-	int step = formHandler.getFormStep();
-	int stepCount = formHandler.getFormStepCount();
+	return;
+}
 
-	String token = request.getParameter("token");
 
-	String dataColor= "#FF0000"; 
-	jcmsContext.addCSSHeader("plugins/EServicePlugin/css/types/AbstractPortletSkinable/titleBarDottedTitleElementBorderBot.css");
-	jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/headstall/model1.css");
-	jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/AbstractPortletSkinable/titleBar.css");
-	jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/common.css");
-	jcmsContext.addCSSHeader("plugins/AssmatPlugin/css/plugin.css");
-	jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
+int step = formHandler.getFormStep();
+int stepCount = formHandler.getFormStepCount();
+
+String token = request.getParameter("token");
+
+
 %>
 
 <%
