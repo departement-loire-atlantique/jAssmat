@@ -167,7 +167,7 @@ if (Util.notEmpty(request.getParameter("opFishish"))) {
   
 	     <!-- Présentation de l’espace -->
 	     <jalios:if predicate="<%= !isSend %>">	        
-	         <p class="titleAccueilPerso">
+	         <p>
 	           <!-- Déclaration de fin : présentation de l’espace -->
 	           <jalios:if predicate="<%= isExistDeclaration %>">
 	             <trsb:glp key="ASS-DFAC-TEXT-HTML" />
