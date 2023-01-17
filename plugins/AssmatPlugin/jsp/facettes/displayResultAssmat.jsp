@@ -276,10 +276,10 @@ resultSetDispoNonRenseigne = AssmatUtil.removeAssmatNonvisible(resultSetDispoNon
 
 
 int nbAssmatTotal = resultSetDispo.size() + resultSetDispoFutur.size() + resultSetNonDispoContact.size() + resultSetDispoNonRenseigne.size();
-logger.warn("resultSetDispo : " + resultSetDispo.size());
-logger.warn("resultSetDispoFutur : " + resultSetDispoFutur.size());
-logger.warn("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
-logger.warn("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
+logger.debug("resultSetDispo : " + resultSetDispo.size());
+logger.debug("resultSetDispoFutur : " + resultSetDispoFutur.size());
+logger.debug("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
+logger.debug("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
 
 
 
