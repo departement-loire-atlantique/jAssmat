@@ -105,14 +105,9 @@ SimpleDateFormat formater = null;
 formater = new SimpleDateFormat("dd/MM/yyyy");
 
 
-jcmsContext.addCSSHeader("plugins/EServicePlugin/css/portal/portal.css");
 Set<ProfilASSMAT> listeobj = (Set<ProfilASSMAT>) request.getSession().getAttribute("listeobjSelection");
 PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublication("$jcmsplugin.assmatplugin.portail.selection.recherche");
   jcmsContext.addJavaScript("plugins/ToolsPlugin/js/facets/tooltipCategories.js");
-  jcmsContext.addCSSHeader("plugins/EServicePlugin/css/types/AbstractPortletSkinable/titleBarDottedTitleElementBorderBot.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/headstall/model1.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/AbstractPortletSkinable/titleBar.css");
-  jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/common.css");
   
   jcmsContext.addCSSHeader("plugins/AssmatPlugin/css/plugin.css");
   jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
@@ -195,11 +190,13 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                       </p>
                                     </jalios:if>
 							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getExerceDomicile()) && asmmatSolis.getExerceDomicile() %>">
-							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-DOM"></trsb:glp></p>
+                      
+							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-DOM"></trsb:glp></p>
 							        </jalios:if>
 							        <jalios:if predicate='<%=  assmatSolis.getExerceMam() != null && assmatSolis.getExerceMam() %>'>
 							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-MAM"></trsb:glp></p>
-							        </jalios:if>
+							        
+                      </jalios:if>
                                 </div>
                                 <div class="col ds44--xl-padding-l">
                                     <%--
@@ -209,6 +206,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                     --%>
                                     <%
                                     boolean hasFixe = showContactDispo && Util.notEmpty(obj.getTelephoneFixe()) && AssmatUtil.getBooleanFromString(obj.getVisbiliteTelephoneFixe());
+
                                     boolean hasMobile = showContactDispo && Util.notEmpty(obj.getAuthor().getMobile()) && AssmatUtil.getBooleanFromString(obj.getVisibiliteTelephonePortable());
                                     %>
                                     <jalios:select>
