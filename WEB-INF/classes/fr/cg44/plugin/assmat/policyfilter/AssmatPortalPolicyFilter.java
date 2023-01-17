@@ -57,11 +57,11 @@ public class AssmatPortalPolicyFilter extends BasicPortalPolicyFilter {
 	
 			ProfilASSMAT profil = ProfilManager.getInstance().getProfilASSMAT(mbr);
 	
-			String idPortalAccueil = channel.getProperty("jcmsplugin.assmatplugin.general.portal.accueil");
 			String idPortal1colonne = channel.getProperty("jcmsplugin.assmatplugin.socle.portal.colonne");
+			
 			if (Util.notEmpty(profil)) {
 				// On redirige vers le portail 1 colonne (gestion du profil)
-				portal = (PortalInterface) channel.getData(idPortalAccueil);
+				portal = (PortalInterface) channel.getData(idPortal1colonne);
 			} 
 			// Le membre n'as pas de profil, on le redirige vers l'accueil
 		

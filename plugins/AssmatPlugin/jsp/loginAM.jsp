@@ -27,6 +27,11 @@ Category currentCategory = PortalManager.getDisplayContext(channel.getCurrentJcm
 
 String redirectUrl = Util.getString(getValidHttpUrl("redirect"), ServletUtil.getBaseUrl(request) + "index.jsp");
 String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccueilAssmat")) ? request.getParameter("redirectAccueilAssmat") : "";
+
+Publication portalPerso = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.socle.portail.param.id"));
+if (Util.notEmpty(portalPerso)){
+  redirectUrl = portalPerso.getDisplayUrl(userLocale);
+}
 %>
 
 <main role="main" id="content">
@@ -41,7 +46,7 @@ String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccue
                   <div class="ds44-innerBoxContainer">
                      <div class="grid-12-small-1">
                         <div class="col-5-small-1">
-                           <form novalidate="true" data-is-initialized="true" action="<%= channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.general.categ.accueil")).getDisplayUrl(userLocale) %>" method="post" name="login">
+                           <form novalidate="true" data-is-initialized="true" action="<%= redirectUrl %>" method="post" name="login">
                               <h2 class="h4-like ds44-mb-std"><%= glp("plugin.assmatplugin.screen.login.alreadyhaveaccount") %></h2>
                               <%= glp("plugin.assmatplugin.screen.login.assistantmaternel.desc.html") %>
                               <div>
