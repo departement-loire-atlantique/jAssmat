@@ -23,6 +23,7 @@ import com.jalios.jcms.authentication.handlers.SessionAuthenticationHandler;
 import com.jalios.jcms.context.JcmsMessage;
 import com.jalios.jcms.db.HibernateUtil;
 import com.jalios.jcms.dbmember.DBMember;
+import com.jalios.jcms.handler.EditMemberHandler;
 import com.jalios.jcms.handler.JcmsFormHandler;
 import com.jalios.jcms.i18n.I18nUtil;
 import com.jalios.jcms.mail.MailMessage;
@@ -184,8 +185,8 @@ public class ResetPasswordAssmatHandler extends JcmsFormHandler {
 	        addMsgSession(new JcmsMessage("ui.fo.resetpass.request.form.validation-email-sent", JcmsMessage.Level.INFO, glp("ui.fo.resetpass.request.form.validation-email-sent", new Object[0])));
 	        EMAIL_TO_LAST_REQUEST_DATE_MAP.put(getEmail(), new Date());
 	        
-	        isResetRequestFormDisplayed = false;
-	        getSession().setAttribute(DISPLAY_REQUEST_FORM_SESSION_ATTRIBUTE, Boolean.FALSE);
+	        isResetRequestFormDisplayed = true;
+	        getSession().setAttribute(DISPLAY_REQUEST_FORM_SESSION_ATTRIBUTE, isResetRequestFormDisplayed);
     	}
     	
     	if(Util.notEmpty(telephone)){
@@ -273,6 +274,9 @@ public class ResetPasswordAssmatHandler extends JcmsFormHandler {
         if (!password1.equals(password2)) {
             addMsgSession(new JcmsMessage("ui.fo.resetpass.reset.form.invalid-password", JcmsMessage.Level.WARN, glp("ui.fo.resetpass.reset.form.invalid-password", new Object[0])));
             return false;
+        }
+        if (!EditMemberHandler.validatePasswordsRules(this, mbr.getLogin(), password1)) {
+          return false;
         }
         return true;
     }
