@@ -33,9 +33,6 @@ jcmsplugin.assmatplugin.socle.jsp.parametrage: cra_60296
 # ID de la jsp inscription
 jcmsplugin.assmatplugin.socle.jsp.inscription: cra_60266
 
-# ID de la jsp oubli de mot de passe
-jcmsplugin.assmatplugin.socle.jsp.oubliMotDePasse: asm_269262
-
 # ID de la catégorie de confirmation d'inscription
 jcmsplugin.assmatplugin.socle.confirm.catLoginRedirect: mfo_60353
 
