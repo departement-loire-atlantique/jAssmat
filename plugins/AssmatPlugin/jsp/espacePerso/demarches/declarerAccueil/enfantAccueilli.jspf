@@ -285,19 +285,30 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	            </ul>
 	        </div>
 	      </div>
+	      
+	    <% 
+	    uuid = UUID.randomUUID().toString(); 
+	    String uuidAdresse1 = "address_search_"+uuid;
+	    %>
+	    <jalios:buffer name="adress1Label">
+	       <trsb:glp key="ASS-DEC-ENF-REP1-ADR-HTML" attribute="true"></trsb:glp>
+	    </jalios:buffer>
+	    <div class="ds44-form__container">
+		    <div class="ds44-posRel">
+		        <label for="address_search_<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= adress1Label %></span></span></label>
+		        <input data-disabled-by-name-check-form-element-<%= uuid %>_checkbox type="text" id="address_search_<%= uuid %>" name="address_search_<%= uuid %>" class="ds44-inpStd ds44-js-field-address" 
+		          role="combobox" aria-autocomplete="list" autocomplete="off" aria-expanded="false" data-limit-char="3" data-url="https://api-adresse.data.gouv.fr/search/?limit=5&citycode=44109" 
+		          title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", adress1Label) %>' data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete="" required />
+		          <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", adress1Label) %></span></button>
+		        <div class="ds44-autocomp-container hidden">
+		            <div class="ds44-autocomp-list">
+		                <ul class="ds44-list" role="listbox"></ul>
+		            </div>
+		        </div>
+		    </div>
+		</div>
         
-        <label for="adresse1" class="gauche question"><trsb:glp key="ASS-DEC-ENF-REP1-ADR-HTML" ></trsb:glp><button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-ENF-REP1-INF-HTML") %>" data-color="#AEC900">
-              <img alt="?" src="s.gif" class="spr-interrogation">
-            </button>
-        </label>
-        <div class="droite" style="width: 61%; position: relative;">
-	        <input type="text" data-representant="R1" id="adresseAutoCompleteRepresentantR1" <%= Util.notEmpty(codePostalRepresentant1) || saisieAdresseR2 ? "disabled" : "" %> value='<%= HttpUtil.encodeForHTMLAttribute(adresseAutoCompleteRepresentant1) %>' name="adresseAutoCompleteRepresentant1" class="typeahead adresseAutoCompleteRepresentant" style="padding-right: 42px !important; width:100% !important;" data-jalios-ajax-refresh-url="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/acAdresse.jsp?representant=R1" >
-	        <button data-representant="R1" id="clearAdressRepresentantR1" title="Vider le champ" type="button" class="resetCross clearAdressRepresentant" style='position: absolute; right: 0; <%= Util.notEmpty(codePostalRepresentant1) && !saisieAdresseR1 ? "" : "display: none;"  %>'>
-	            <img title="Vider le champ" alt="Vider le champ" class="spr-select_cross" src="s.gif">
-	        </button>
-        </div>
-        
-        <% uuid = UUID.randomUUID().toString(); %>
+        <% uuid = uuid + "_checkbox"; %>
         <div id="form-element-<%= uuid %>" data-name="saisieAdresseR1" class="ds44-form__checkbox_container ds44-form__container" data-required="false">
 		    <div class="ds44-form__container ds44-checkBox-radio_list ">
 		        <input <%= saisieAdresseR1 ? "checked" : "" %> type="checkbox" id="name-check-form-element-<%= uuid %>" name="saisieAdresseR1" value="m" class="ds44-checkbox" /><label for="name-check-form-element-<%= uuid %>" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-HTML" /></label>
@@ -317,7 +328,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 		      <div class="ds44-form__container">
 		        <div class="ds44-posRel">
 		            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-		            <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+		            <input data-<%= uuidAdresse1 %>="libelle" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
 		            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
 		        </div>
 		      </div>
@@ -329,7 +340,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="codePostalRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(codePostalRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <input data-<%= uuidAdresse1 %>="postcode" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="codePostalRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(codePostalRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>
@@ -341,7 +352,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="villeRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <input data-<%= uuidAdresse1 %>="city" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="villeRepresentant1" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>
@@ -432,18 +443,29 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
           </div>
    
     
-          <label for="adresse2" class="gauche question"><trsb:glp key="ASS-DEC-ENF-REP2-ADR-HTML" ></trsb:glp><button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-ENF-REP2-INF-HTML") %>" data-color="#AEC900">
-              <img alt="?" src="s.gif" class="spr-interrogation">
-            </button>
-          </label> 
-          <div class="droite" style="width: 61%; position: relative;">
-             <input data-representant="R2" type="text" id="adresseAutoCompleteRepresentantR2" <%= Util.notEmpty(codePostalRepresentant2) || saisieAdresseR2 ? "disabled" : "" %> value='<%= HttpUtil.encodeForHTMLAttribute(adresseAutoCompleteRepresentant2) %>'  name="adresseAutoCompleteRepresentant2" class="typeahead adresseAutoCompleteRepresentant" style="padding-right: 42px !important; width:100% !important;" data-jalios-ajax-refresh-url="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/acAdresse.jsp?representant=R2" >
-             <button data-representant="R2" id="clearAdressRepresentantR2" title="Vider le champ" type="button" class="resetCross clearAdressRepresentant" style='position: absolute; right: 0; <%= Util.notEmpty(codePostalRepresentant2) && !saisieAdresseR2 ? "" : "display: none;"  %>'>
-                <img title="Vider le champ" alt="Vider le champ" class="spr-select_cross" src="s.gif">
-             </button>
+          <% 
+          uuid = UUID.randomUUID().toString(); 
+          String uuidAdresse2 = "address_search_"+uuid;
+          %>
+          <jalios:buffer name="adress2Label">
+           <trsb:glp key="ASS-DEC-ENF-REP2-ADR-HTML" attribute="true"></trsb:glp>
+          </jalios:buffer>
+          <div class="ds44-form__container">
+            <div class="ds44-posRel">
+                <label for="address_search_<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= adress2Label %></span></span></label>
+                <input data-disabled-by-name-check-form-element-<%= uuid %>_checkbox type="text" id="address_search_<%= uuid %>" name="address_search_<%= uuid %>" class="ds44-inpStd ds44-js-field-address" 
+                role="combobox" aria-autocomplete="list" autocomplete="off" aria-expanded="false" data-limit-char="3" data-url="https://api-adresse.data.gouv.fr/search/?limit=5&citycode=44109" 
+                title="<%= adress2Label %>" data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete="" />
+                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", adress2Label) %></span></button>
+                <div class="ds44-autocomp-container hidden">
+                    <div class="ds44-autocomp-list">
+                        <ul class="ds44-list" role="listbox"></ul>
+                    </div>
+                </div>
+            </div>
           </div>
  
-          <% uuid = UUID.randomUUID().toString(); %>
+          <% uuid = uuid + "_checkbox"; %>
 	      <div id="form-element-<%= uuid %>" data-name="saisieAdresseR2" class="ds44-form__checkbox_container ds44-form__container" data-required="false">
 	          <div class="ds44-form__container ds44-checkBox-radio_list ">
 	              <input <%= saisieAdresseR2 ? "checked" : "" %> type="checkbox" id="name-check-form-element-<%= uuid %>" name="saisieAdresseR2" value="m" class="ds44-checkbox" /><label for="name-check-form-element-<%= uuid %>" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-HTML" /></label>
@@ -459,7 +481,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <input data-<%=uuidAdresse2%>="libelle" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>
@@ -471,7 +493,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="codePostalRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(codePostalRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <input data-<%=uuidAdresse2%>="postcode" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="codePostalRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(codePostalRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>
@@ -483,7 +505,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                    <input <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="villeRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <input data-<%=uuidAdresse2%>="city" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="villeRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>
