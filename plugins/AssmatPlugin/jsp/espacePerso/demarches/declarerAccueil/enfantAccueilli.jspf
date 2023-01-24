@@ -493,14 +493,14 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
       
       <jalios:if predicate="<%= !isModif %>">
         <div class="ds44-form__container">
-	        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
+	        <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
 	        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
 	        <input type="hidden" name="id" value="c_5065" data-technical-field>
 	    </div>
       </jalios:if>
       
       <div class="ds44-form__container">
-          <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></button>
+          <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></button>
           <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
           <input type="hidden" name="id" value="c_5065" data-technical-field>
       </div>

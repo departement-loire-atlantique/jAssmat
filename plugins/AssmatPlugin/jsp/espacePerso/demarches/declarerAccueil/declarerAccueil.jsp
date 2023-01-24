@@ -27,36 +27,11 @@
 
   DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormat.forPattern("dd/MM/YYYY");
   
-  // Récupération des paramètres en checkbox
-  String civiliteRepresentant1Value = "";
-  if(Util.notEmpty(request.getParameter("civiliteRepresentant1[0]"))){
-    civiliteRepresentant1Value = request.getParameter("civiliteRepresentant1[0]");
-  }else if(Util.notEmpty(request.getParameter("civiliteRepresentant1"))){
-    civiliteRepresentant1Value = request.getParameter("civiliteRepresentant1");
-  }
-  
-  String civiliteRepresentant2Value = "";
-  if(Util.notEmpty(request.getParameter("civiliteRepresentant2[0]"))){
-    civiliteRepresentant2Value = request.getParameter("civiliteRepresentant2[0]");
-  }else if(Util.notEmpty(request.getParameter("civiliteRepresentant2"))){
-    civiliteRepresentant2Value = request.getParameter("civiliteRepresentant2");
-  }
-  
-  String sexeEnfantValue= "";
-  if(Util.notEmpty(request.getParameter("sexeEnfant[0]"))){
-    sexeEnfantValue= request.getParameter("sexeEnfant[0]");
-  }else if(Util.notEmpty(request.getParameter("sexeEnfant"))){
-    sexeEnfantValue= request.getParameter("sexeEnfant");
-  }
-
 %>
 <jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler'>
   <jsp:setProperty name='formHandler' property='request' value='<%=request%>' />
   <jsp:setProperty name='formHandler' property='response' value='<%=response%>' />
   <jsp:setProperty name='formHandler' property="noRedirect" value="true" />
-  <jsp:setProperty name='formHandler' property='sexeEnfant' value='<%=sexeEnfantValue%>' />
-  <jsp:setProperty name='formHandler' property='civiliteRepresentant1' value='<%=civiliteRepresentant1Value%>' />
-  <jsp:setProperty name='formHandler' property='civiliteRepresentant2' value='<%=civiliteRepresentant2Value%>' />
   <jsp:setProperty name='formHandler' property='*' />
 </jsp:useBean>
 
@@ -64,7 +39,7 @@
 <%
 // si il existe un id de declaration alors récupérer la declaration en session (Si session expirée alors récupérer du web service)
 // modification en cours d'un déclaration courante (pas de idDeclaration indique une nouvelle declaration)
-if(Util.notEmpty(request.getParameter("idDeclaration"))) {
+if(Util.notEmpty(request.getParameter("idDeclaration")) && request.getParameter("idDeclaration") != "null") {
   if (session.getAttribute("declaration") == null) {
     Integer idDecla = HttpUtil.getIntParameter(request, "idDeclaration", 0);
     DeclarationAccueilDTO declarationExpireSession = DemarcheUtil.getDeclarationAccueilById(idDecla);
