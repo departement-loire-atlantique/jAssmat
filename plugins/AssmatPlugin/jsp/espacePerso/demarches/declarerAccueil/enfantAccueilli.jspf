@@ -138,9 +138,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
       <p class="h3-like"><trsb:glp key="ASS-DEC-ENF-DECL-HTML" ></trsb:glp></p>
 
       <% uuid = UUID.randomUUID().toString(); %>
-      <jalios:buffer name="labelField">
-        <trsb:glp key="ASS-DEC-ENF-NOM-HTML" attribute="true" ></trsb:glp>
-      </jalios:buffer>
+      <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-NOM-HTML" attribute="true" ></trsb:glp></jalios:buffer>
       <div class="ds44-form__container">
 	    <div class="ds44-posRel">
 	        <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -150,9 +148,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	  </div>
 	  
 	  <% uuid = UUID.randomUUID().toString(); %>
-      <jalios:buffer name="labelField">
-        <trsb:glp key="ASS-DEC-ENF-PRENOM-HTML" attribute="true" ></trsb:glp>   
-      </jalios:buffer>
+      <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-PRENOM-HTML" attribute="true" ></trsb:glp></jalios:buffer>
       <div class="ds44-form__container">
         <div class="ds44-posRel">
             <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -175,9 +171,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 		</div>
          
          <% uuid = UUID.randomUUID().toString(); %>
-         <jalios:buffer name="labelField">
-         <trsb:glp key="ASS-DEC-ENF-NAISS-HTML" attribute="true" ></trsb:glp>
-         </jalios:buffer>
+         <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-NAISS-HTML" attribute="true" ></trsb:glp></jalios:buffer>
          <div class="ds44-form__container">
 		    <div class="ds44-posRel">
 		        <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -202,9 +196,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 		</div>
 		         
         <% uuid = UUID.randomUUID().toString(); %>
-         <jalios:buffer name="labelField">
-         <trsb:glp key="ASS-DEC-ENF-ACC-HTML" attribute="true" ></trsb:glp>
-         </jalios:buffer>
+         <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-ACC-HTML" attribute="true" ></trsb:glp></jalios:buffer>
          <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -246,9 +238,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         </div>
         
         <% uuid = UUID.randomUUID().toString(); %>
-	    <jalios:buffer name="labelField">
-	        <trsb:glp key="ASS-DEC-ENF-REP1-NOM-HTML" attribute="true" ></trsb:glp>   
-	    </jalios:buffer>
+	    <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP1-NOM-HTML" attribute="true" ></trsb:glp></jalios:buffer>
 	    <div class="ds44-form__container">
 	        <div class="ds44-posRel">
 	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -258,9 +248,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	    </div>
 	    
 	    <% uuid = UUID.randomUUID().toString(); %>
-        <jalios:buffer name="labelField">
-            <trsb:glp key="ASS-DEC-ENF-REP1-PRENOM-HTML" attribute="true" ></trsb:glp>   
-        </jalios:buffer>
+        <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP1-PRENOM-HTML" attribute="true" ></trsb:glp></jalios:buffer>
         <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -270,9 +258,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         </div>
         
 	      <% uuid = UUID.randomUUID().toString(); %>
-	      <jalios:buffer name="labelField">
-	        <trsb:glp key="ASS-DEC-ENF-REP1-TEL-HTML" attribute="true" ></trsb:glp>
-	      </jalios:buffer>
+	      <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP1-TEL-HTML" attribute="true" ></trsb:glp></jalios:buffer>
 	      <div class="ds44-form__container">
 	        <div class="ds44-posRel">
 	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -290,9 +276,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	    uuid = UUID.randomUUID().toString(); 
 	    String uuidAdresse1 = "address_search_"+uuid;
 	    %>
-	    <jalios:buffer name="adress1Label">
-	       <trsb:glp key="ASS-DEC-ENF-REP1-ADR-HTML" attribute="true"></trsb:glp>
-	    </jalios:buffer>
+	    <jalios:buffer name="adress1Label"><trsb:glp key="ASS-DEC-ENF-REP1-ADR-HTML" attribute="true"></trsb:glp></jalios:buffer>
 	    <div class="ds44-form__container">
 		    <div class="ds44-posRel">
 		        <label for="address_search_<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= adress1Label %></span></span></label>
@@ -322,9 +306,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	        </div>
 	        
 	          <% uuid = UUID.randomUUID().toString(); %>
-		      <jalios:buffer name="labelField">
-		        <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" attribute="true" ></trsb:glp>
-		      </jalios:buffer>
+		      <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" attribute="true" ></trsb:glp></jalios:buffer>
 		      <div class="ds44-form__container">
 		        <div class="ds44-posRel">
 		            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -334,9 +316,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 		      </div>
 		      
 		      <% uuid = UUID.randomUUID().toString(); %>
-              <jalios:buffer name="labelField">
-                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" attribute="true" ></trsb:glp>
-              </jalios:buffer>
+              <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" attribute="true" ></trsb:glp></jalios:buffer>
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -346,9 +326,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               </div>
 	        
 	          <% uuid = UUID.randomUUID().toString(); %>
-              <jalios:buffer name="labelField">
-                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" attribute="true" ></trsb:glp>
-              </jalios:buffer>
+              <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" attribute="true" ></trsb:glp></jalios:buffer>
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -359,9 +337,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         </div>
 
      <% uuid = UUID.randomUUID().toString(); %>
-      <jalios:buffer name="labelField">
-        <trsb:glp key="ASS-DEC-ENF-REP1-CPLM-HTML" attribute="true" ></trsb:glp>
-      </jalios:buffer>
+      <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP1-CPLM-HTML" attribute="true" ></trsb:glp></jalios:buffer>
       <div class="ds44-form__container">
         <div class="ds44-posRel">
             <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -393,9 +369,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         </div>
         
         <% uuid = UUID.randomUUID().toString(); %>
-        <jalios:buffer name="labelField">
-            <trsb:glp key="ASS-DEC-ENF-REP2-NOM-HTML" attribute="true" ></trsb:glp>   
-        </jalios:buffer>
+        <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP2-NOM-HTML" attribute="true" ></trsb:glp></jalios:buffer>
         <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -405,9 +379,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         </div>
         
         <% uuid = UUID.randomUUID().toString(); %>
-        <jalios:buffer name="labelField">
-            <trsb:glp key="ASS-DEC-ENF-REP2-PRENOM-HTML" attribute="true" ></trsb:glp>   
-        </jalios:buffer>
+        <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP2-PRENOM-HTML" attribute="true" ></trsb:glp></jalios:buffer>
         <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -426,9 +398,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
       <div data-enabled-by-name-check-form-element-<%= uuid %> class='<%= saisieAdresseDif || saisieAdresseR2 ? "" : "hidden" %>'>
 
 	    <% uuid = UUID.randomUUID().toString(); %>
-          <jalios:buffer name="labelField">
-            <trsb:glp key="ASS-DEC-ENF-REP2-TEL-HTML" attribute="true" ></trsb:glp>
-          </jalios:buffer>
+          <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP2-TEL-HTML" attribute="true" ></trsb:glp></jalios:buffer>
           <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -447,9 +417,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
           uuid = UUID.randomUUID().toString(); 
           String uuidAdresse2 = "address_search_"+uuid;
           %>
-          <jalios:buffer name="adress2Label">
-           <trsb:glp key="ASS-DEC-ENF-REP2-ADR-HTML" attribute="true"></trsb:glp>
-          </jalios:buffer>
+          <jalios:buffer name="adress2Label"><trsb:glp key="ASS-DEC-ENF-REP2-ADR-HTML" attribute="true"></trsb:glp></jalios:buffer>
           <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="address_search_<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= adress2Label %></span></span></label>
@@ -475,9 +443,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
           <div data-enabled-by-name-check-form-element-<%= uuid %> class='<%= saisieAdresseR2 ? "" : "hidden"  %>'>
 
 		      <% uuid = UUID.randomUUID().toString(); %>
-              <jalios:buffer name="labelField">
-                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" attribute="true" ></trsb:glp>
-              </jalios:buffer>
+              <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-LIB-HTML" attribute="true" ></trsb:glp></jalios:buffer>
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -487,9 +453,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               </div>
               
               <% uuid = UUID.randomUUID().toString(); %>
-              <jalios:buffer name="labelField">
-                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" attribute="true" ></trsb:glp>
-              </jalios:buffer>
+              <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-CP-HTML" attribute="true" ></trsb:glp></jalios:buffer>
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -499,9 +463,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               </div>
             
               <% uuid = UUID.randomUUID().toString(); %>
-              <jalios:buffer name="labelField">
-                <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" attribute="true" ></trsb:glp>
-              </jalios:buffer>
+              <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-VILLE-HTML" attribute="true" ></trsb:glp></jalios:buffer>
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -513,9 +475,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
           
 
 		  <% uuid = UUID.randomUUID().toString(); %>
-	      <jalios:buffer name="labelField">
-	        <trsb:glp key="ASS-DEC-ENF-REP2-CPLM-HTML" attribute="true" ></trsb:glp>
-	      </jalios:buffer>
+	      <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-REP2-CPLM-HTML" attribute="true" ></trsb:glp></jalios:buffer>
 	      <div class="ds44-form__container">
 	        <div class="ds44-posRel">
 	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
@@ -536,7 +496,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
 	        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
 	        <input type="hidden" name="id" value="c_5065" data-technical-field>
-	    </div>  
+	    </div>
       </jalios:if>
       
       <div class="ds44-form__container">

@@ -130,9 +130,7 @@ if (step == DeclarerAccueilAssmatHandler.MODALITES) {
         
        
         <div data-enabled-by-name-radio-form-element-<%= uuid %>-t <%if(!"true".equals(estProvisoire)){ %>  class="hidden" <%} %>>
-          <jalios:buffer name="titleLabelField">
-          <trsb:glp key="ASS-DEC-MOD-DFI-HTML" attribute="true" ></trsb:glp>
-          </jalios:buffer>
+          <jalios:buffer name="titleLabelField"><trsb:glp key="ASS-DEC-MOD-DFI-HTML" attribute="true" ></trsb:glp></jalios:buffer>
           <p class="h4-like"><trsb:glp key="ASS-DEC-MOD-DFI-HTML" ></trsb:glp></p>
           <% uuid = UUID.randomUUID().toString(); %>
           <div class="ds44-form__container">
@@ -152,9 +150,7 @@ if (step == DeclarerAccueilAssmatHandler.MODALITES) {
           </div>
           
           <% uuid = UUID.randomUUID().toString(); %>
-          <jalios:buffer name="titleLabelField">
-          <trsb:glp key="ASS-DEC-MOD-MOT-HTML" attribute="true" ></trsb:glp>
-          </jalios:buffer>
+          <jalios:buffer name="titleLabelField"><trsb:glp key="ASS-DEC-MOD-MOT-HTML" attribute="true" ></trsb:glp></jalios:buffer>
           <div class="ds44-form__container">
 	        <div class="ds44-posRel">
 	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= titleLabelField %></span></span></label>

@@ -26,12 +26,37 @@
   PortletJsp box = (PortletJsp) portlet;
 
   DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormat.forPattern("dd/MM/YYYY");
+  
+  // Récupération des paramètres en checkbox
+  String civiliteRepresentant1Value = "";
+  if(Util.notEmpty(request.getParameter("civiliteRepresentant1[0]"))){
+    civiliteRepresentant1Value = request.getParameter("civiliteRepresentant1[0]");
+  }else if(Util.notEmpty(request.getParameter("civiliteRepresentant1"))){
+    civiliteRepresentant1Value = request.getParameter("civiliteRepresentant1");
+  }
+  
+  String civiliteRepresentant2Value = "";
+  if(Util.notEmpty(request.getParameter("civiliteRepresentant2[0]"))){
+    civiliteRepresentant2Value = request.getParameter("civiliteRepresentant2[0]");
+  }else if(Util.notEmpty(request.getParameter("civiliteRepresentant2"))){
+    civiliteRepresentant2Value = request.getParameter("civiliteRepresentant2");
+  }
+  
+  String sexeEnfantValue= "";
+  if(Util.notEmpty(request.getParameter("sexeEnfant[0]"))){
+    sexeEnfantValue= request.getParameter("sexeEnfant[0]");
+  }else if(Util.notEmpty(request.getParameter("sexeEnfant"))){
+    sexeEnfantValue= request.getParameter("sexeEnfant");
+  }
 
 %>
 <jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler'>
   <jsp:setProperty name='formHandler' property='request' value='<%=request%>' />
   <jsp:setProperty name='formHandler' property='response' value='<%=response%>' />
   <jsp:setProperty name='formHandler' property="noRedirect" value="true" />
+  <jsp:setProperty name='formHandler' property='sexeEnfant' value='<%=sexeEnfantValue%>' />
+  <jsp:setProperty name='formHandler' property='civiliteRepresentant1' value='<%=civiliteRepresentant1Value%>' />
+  <jsp:setProperty name='formHandler' property='civiliteRepresentant2' value='<%=civiliteRepresentant2Value%>' />
   <jsp:setProperty name='formHandler' property='*' />
 </jsp:useBean>
 
@@ -144,7 +169,9 @@ if(Util.notEmpty(request.getParameter("idDeclaration"))) {
     <%=formHandler.getFormStepHiddenFields()%>
     
     <% String idDeclaration = declarationForm.getIdDeclaration()+""; %>
-    <input type="hidden" name="idDeclaration" value='<%= Util.notEmpty(idDeclaration) ? idDeclaration : "" %>' data-technical-field/>
+    <jalios:if predicate="<%= Util.notEmpty(idDeclaration) %>">
+        <input type="hidden" name="idDeclaration" value='<%= idDeclaration %>' data-technical-field/>
+    </jalios:if>
     <input type="hidden" value='<%= Util.notEmpty(request.getParameter("idModifEnCours")) ? request.getParameter("idModifEnCours") : ""  %>' name="idModifEnCours" data-technical-field/>
     <jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
         <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>                       
