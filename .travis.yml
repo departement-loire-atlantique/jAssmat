@@ -14,10 +14,10 @@ addons:
 
 before_script:
 - echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-- docker pull asfram/jplatformbuild:10sp3
+- docker pull asfram/jplatformbuild:10sp5
 
 script:
-- docker run -v ${TRAVIS_BUILD_DIR}:/root/source --name buildimage -t asfram/jplatformbuild:10sp3
+- docker run -v ${TRAVIS_BUILD_DIR}:/root/source --name buildimage -t asfram/jplatformbuild:10sp5
 - docker cp buildimage:/root/dist .
 - export CODE_VERSION=`git describe`
 - sonar-scanner -Dsonar.projectVersion=$CODE_VERSION
