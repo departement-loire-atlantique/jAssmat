@@ -71,7 +71,7 @@ String uuid = UUID.randomUUID().toString();
 	            <div class="ds44-posRel">
 	                <label for="password" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= passwordLabel %><sup aria-hidden="true">*</sup></span></span></label>
 	                
-	                <input type="password" id="password" name="password1" pattern="[A-Za-z]{9}" value="" class="ds44-inpStd" title="<%= encodeForHTMLAttribute(glp("jcmsplugin.socle.facette.champ-obligatoire.title", passwordLabel)) %>" required autocomplete="current-password" aria-describedby="explanation-password" />
+	                <input type="password" id="password" name="password1" value="" class="ds44-inpStd" title="<%= encodeForHTMLAttribute(glp("jcmsplugin.socle.facette.champ-obligatoire.title", passwordLabel)) %>" required autocomplete="current-password" />
 	                
 	                <button class="ds44-showPassword" type="button">
 	                    <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
@@ -90,7 +90,7 @@ String uuid = UUID.randomUUID().toString();
 	            <div class="ds44-posRel">
 	                <label for="password_verif" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= confirmPasswordLabel %><sup aria-hidden="true">*</sup></span></span></label>
 	            
-	                <input type="password" id="password_verif" name="password2" pattern="[A-Za-z]{9}" value="" class="ds44-inpStd" title="<%= encodeForHTMLAttribute(glp("jcmsplugin.socle.facette.champ-obligatoire.title", confirmPasswordLabel)) %>" data-field-compare="#password" required autocomplete="current-password" />
+	                <input type="password" id="password_verif" name="password2" value="" class="ds44-inpStd" title="<%= encodeForHTMLAttribute(glp("jcmsplugin.socle.facette.champ-obligatoire.title", confirmPasswordLabel)) %>" data-field-compare="#password" required autocomplete="current-password" />
 	            
 	                <button class="ds44-showPassword" type="button">
 	                    <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
