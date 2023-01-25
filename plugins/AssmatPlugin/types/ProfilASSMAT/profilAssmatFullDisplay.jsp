@@ -25,6 +25,9 @@
 ProfilASSMAT obj = (ProfilASSMAT) request.getAttribute(PortalManager.PORTAL_PUBLICATION);
 SolisManager solisMgr = SolisManager.getInstance();
 AssmatSolis asmmatSolis =Util.getFirst(solisMgr.getAssmatSolisByNumAgrement(obj.getNum_agrement()));
+//Changer le titre de la page
+jcmsContext.setPageTitle(asmmatSolis.getPrenomAssmat() + " " + asmmatSolis.getNomAssmat());
+
 PointAssmat pointAssmat = new PointAssmat(String.valueOf(obj.getLatitudeAssmat()),String.valueOf(obj.getLongitudeAssmat()), "#AEC900", "Avec des disponibilités");
 
 PointAssmat pointUser =(PointAssmat) session.getAttribute("userLocation");
@@ -150,7 +153,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
     </div>
     </jalios:if>
     
-    <ds:titleSimple pub="<%= obj %>" title="<%= obj.getTitle(userLang) %>" breadcrumb="false"></ds:titleSimple>
+    <ds:titleSimple pub="<%= obj %>" title='<%= asmmatSolis.getPrenomAssmat() + " " + asmmatSolis.getNomAssmat() %>' breadcrumb="false"></ds:titleSimple>
     
     <div class="ds44-img50 ds44--l-padding-tb">
             <div class="ds44-inner-container">

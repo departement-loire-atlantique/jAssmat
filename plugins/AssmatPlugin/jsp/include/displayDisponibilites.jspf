@@ -509,8 +509,8 @@ if(Util.notEmpty(dispoList)){
 	  </tbody>
 	</table>
 	<div class="mtm ds44-mb3">
-	    <p><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo.creneauDispo") %>' class="creneauDispo mrs" alt="Cr�neau disponible"><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo.creneauDispo") %>' class="PictoCreneauPrint" alt="">Cr�neau disponible</p>
-	    <p class="ds44-noMrg"><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo.creneauNonDispo") %>' class="creneauNonDispo mrs" alt="Cr�neau non disponible"><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo.creneauNonDispo") %>' class="PictoCreneauPrint" alt="">Cr�neau non disponible</p>
+	    <p><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo.creneauDispo") %>' class="creneauDispo mrs" alt='<%= glp("plugin.assmatplugin.profilassmat.place.creneauDispo") %>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo.creneauDispo") %>' class="PictoCreneauPrint" alt=""><%= glp("plugin.assmatplugin.profilassmat.place.creneauDispo") %></p>
+	    <p class="ds44-noMrg"><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo.creneauNonDispo") %>' class="creneauNonDispo mrs" alt='<%= glp("plugin.assmatplugin.profilassmat.place.creneauNonDispo") %>'><img src='<%= channel.getProperty("jcmsplugin.assmat.profil.logo.creneauNonDispo") %>' class="PictoCreneauPrint" alt=""><%= glp("plugin.assmatplugin.profilassmat.place.creneauNonDispo") %></p>
     </div>
 	</jalios:if>
 	<br/>
