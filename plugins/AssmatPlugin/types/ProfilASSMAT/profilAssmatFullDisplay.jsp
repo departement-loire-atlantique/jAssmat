@@ -193,10 +193,9 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                       
 							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-DOM"></trsb:glp></p>
 							        </jalios:if>
-							        <jalios:if predicate='<%=  assmatSolis.getExerceMam() != null && assmatSolis.getExerceMam() %>'>
-							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-MAM"></trsb:glp></p>
-							        
-                      </jalios:if>
+							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getAdresseDomicile()) && asmmatSolis.getExerceDomicile() %>">
+                                      <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=assmatSolis.getAdresseDomicile() %><br /><%= Util.notEmpty(assmatSolis.getCpDomicile()) ? " " + assmatSolis.getCpDomicile() : "" %><%= Util.notEmpty(assmatSolis.getCommuneDomicile()) ? " " + assmatSolis.getCommuneDomicile() : "" %></p>
+                                    </jalios:if>
                                 </div>
                                 <div class="col ds44--xl-padding-l">
                                     <%--
