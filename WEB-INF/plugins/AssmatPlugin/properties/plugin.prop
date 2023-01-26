@@ -44,8 +44,11 @@ jcmsplugin.assmatplugin.socle.categ.accueil.perso: cra_60267
 jcmsplugin.assmatplugin.socle.portail.param.id:cra_103077
 
 # Remplacement du fichier de Login
-jcms.resource.login: plugins/AssmatPlugin/jsp/loginAM.jsp
-jcms.resource.mail-password: plugins/AssmatPlugin/jsp/login/mailPassword.jsp
+#jcms.resource.login: plugins/AssmatPlugin/jsp/loginAM.jsp
+jcms.resource.login: 44/connexion/asm_268823
+
+#jcms.resource.mail-password: plugins/AssmatPlugin/jsp/login/mailPassword.jsp
+jcms.resource.mail-password: 44/mot-de-passe-oublie/p1_103987
 
 # Catégorie pour le plan du site
 jcmsplugin.assmatplugin.navigation.principale: local_56368

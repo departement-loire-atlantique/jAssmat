@@ -1,274 +1,199 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
+<%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
+<%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%>
 <%--
   @Summary: "Password Reset Request" form to ask for a new password, when the site is private
---%><%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
-<%
+--%>
+
+<% PortletJsp portlet = (PortletJsp)request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
 %><%@ include file='/jcore/doInitPage.jsp' %><%
-%><%@page import="fr.cg44.plugin.tools.modal.ModalCreator"%><%
-%><%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%><%
-  jcmsContext.addCSSHeader("css/jalios/ux/jalios-login.css");
-      
-  jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
+
  // Keep doHeader.jsp before handler, it is required for proper redirection (prevent double submit)
-%><%@ include file='/jcore/doHeader.jsp' %><%
-%><jsp:useBean id="formHandler" scope="request" class="fr.cg44.plugin.assmat.handler.ResetPasswordAssmatHandler"><%
-  %><jsp:setProperty name="formHandler" property="request"  value="<%= request %>"/><%
-  %><jsp:setProperty name="formHandler" property="response" value="<%= response %>"/><%
-  %><jsp:setProperty name="formHandler" property="*" /><%
-%></jsp:useBean><% 
+%><%@ include file='/jcore/doHeader.jsp' %>
 
+<jsp:useBean id="formHandler" scope="request" class="fr.cg44.plugin.assmat.handler.ResetPasswordAssmatHandler">
+    <jsp:setProperty name="formHandler" property="request"  value="<%= request %>"/>
+    <jsp:setProperty name="formHandler" property="response" value="<%= response %>"/>
+    <jsp:setProperty name="formHandler" property="*" />
+</jsp:useBean>
+<%
+//UUID unique pour les champs
+String uuid = UUID.randomUUID().toString();
 
-String password = request.getParameter("password1");
-Boolean isValidePassword = true;
-//V�rifie que le mot de passe remplie bien les pr�requis de s�curit�
-if(!AssmatUtil.checkPassword(password) && Util.notEmpty(password)){
-  jcmsContext.addMsg(new JcmsMessage(com.jalios.jcms.context.JcmsMessage.Level.WARN , AssmatUtil.getMessage("PASSWORD-ERROR")));
-  isValidePassword = false;
-}
-boolean validate = formHandler.validate();
-logger.warn("validate : " +validate);
-logger.warn(channel.getSecuredBaseUrl(request));
-logger.warn(ResourceHelper.getLogin());
-logger.warn(channel.getUrl());
-  if (isValidePassword && validate && Util.isEmpty(password)) {
-	logger.warn("isValidePassword && validate && Util.isEmpty(password)...");
-    sendRedirect(channel.getUrl()+ResourceHelper.getLogin()+"?portal="+getDataIdParameter("portal"));
-    return;
-  }
-  if (isValidePassword && validate && !Util.isEmpty(password)) {
-	logger.warn("isValidePassword && validate && !Util.isEmpty(password)...");
-    sendRedirect(channel.getUrl());
-    return;
-  }
-  request.setAttribute("mailSubAdminMenu", "true");
-  if (formHandler.isResetRequestFormDisplayed()) {
-    request.setAttribute("title", glp("jcmsplugin.assmatplugin.ui.fo.resetpass.request.title"));    
-  } else if (formHandler.isResetFormDisplayed()) {
-    request.setAttribute("title", glp("ui.fo.resetpass.reset.title"));   
-  }
-  
-//CSS
- jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/PortletLogin/portletLoginFullDisplay.css");
- jcmsContext.addCSSHeader("plugins/AssmatPlugin/css/plugin.css");
-  
 %>
-<div class="mail-password">
 
-<%@ include file='/jcore/doMessageBox.jsp' %>
+<main role="main" id="content">
+    <div class="ds44-container-large">
+    <ds:titleNoImage title='<%= encodeForHTMLAttribute(glp("jcmsplugin.assmatplugin.ui.fo.resetpass.request.title")) %>' breadcrumb="true"></ds:titleNoImage>
 
+    <div class="ds44-img50 ds44--xxl-padding-tb">
+        <div class="ds44-inner-container">
+            <div class="ds44-grid12-offset-1">
+                <section class="ds44-box ds44-theme">
+                    <div class="ds44-innerBoxContainer">
 
 
 <%-- Password reset REQUEST --%>
-<%
-if (formHandler.isResetRequestFormDisplayed()) { 
-  
-  String inputIdEmail = "email";
-  String inputIdTelephone = "telephone";
-  Category currentCategory = PortalManager.getDisplayContext(channel.getCurrentJcmsContext()).getCurrentCategory();
-  Data reqPortal = getDataParameter("portal");
-  
-  // Url de redirection
-  // Si on est dans une cat�gorie, on reste sur cette cat�gorie 
-  String redirectUrl = Util.getString(getValidHttpUrl("redirect"), ServletUtil.getBaseUrl(request) + "index.jsp");
- 
-  if(ModalCreator.isModalPortal()) {
-    Category cat = channel.getCategory(channel.getProperty("plugin.corporateidentity.form.portalLoginRedirect", null));
-    if(Util.notEmpty(cat)) {
-      redirectUrl = ServletUtil.getBaseUrl(request) + cat.getDisplayUrl(channel.getCurrentUserLocale());
-      }
-  } else {
-    if(Util.notEmpty(currentCategory)) {
-      redirectUrl = ServletUtil.getBaseUrl(request) + currentCategory.getDisplayUrl(channel.getCurrentUserLocale());
-    }
- }
-  
- 
-%>
-<div class="forget-password form-cg <%= (ModalCreator.isModalPortal())? "modal-portal":"" %>">
-  <div class="form-cg-gray">
-    <h2><%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.request.title") %></h2>
-									
-			<form action="<%= channel.getSecuredBaseUrl(request) %><%= ResourceHelper.getMailPassword() %>?portal=<%= getDataIdParameter("portal") %>" method="post" name="requestResetForm"><%
-			  %><input type="hidden" name="portal" value="<%= getDataIdParameter("portal") %>" /><%
-        %><!--<input type="hidden" name="jsp" value="<%= ResourceHelper.getLogin() %>" />--><%
-			  %><!--<input type="hidden" name="jsp" value="<%=encodeForHTMLAttribute(redirectUrl) %>" />--><%
-			  %><!-- <input type="hidden" name="redirect" value="<%= encodeForHTMLAttribute(redirectUrl) %>" /> --><%
+<jalios:select>
+
+    <jalios:if predicate="<%= formHandler.isResetFormDisplayed() %>">
+    
+       <%
+       request.setAttribute("title", glp("ui.fo.resetpass.reset.title"));
+       
+       if (formHandler.validate()) {
+         sendRedirect(channel.getUrl());
+         return;
+       }
+       %>
+       
+        <form action="<%= ServletUtil.getResourcePath(request) %>" method="post" name="resetForm" data-no-encoding="true">
+	        
+	        <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
+	        
+	        <input type="hidden" name="portal" value="<%= getDataIdParameter("portal") %>" data-technical-field/>
+	        <input type="hidden" name="jsp" value="<%= ResourceHelper.getMailPassword() %>" data-technical-field/>
+	        <input type="hidden" name="passwordResetToken" value="<%= encodeForHTMLAttribute(formHandler.getPasswordResetToken()) %>" data-technical-field/>
+	         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+	
+	        <jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
+	            <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCurrentCSRFToken(request) %>" data-technical-field/>
+	        </jalios:if>    
+	    
+	        <h2><%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.reset.title") %></h2>
+	
+	        <p><%= glp("ui.fo.resetpass.reset.txt", encodeForHTML(formHandler.getMember().getFullName()), encodeForHTML(formHandler.getMember().getLogin())) %></p>
+	        
+	        <%-- Password ------------------------------------------------------------ --%>
+	        <% String passwordLabel = glp("ui.fo.login.lbl.passwd"); %>
+	        <div class="ds44-form__container">
+	            <div class="ds44-posRel">
+	                <label for="password" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= passwordLabel %><sup aria-hidden="true">*</sup></span></span></label>
+	                
+	                <input type="password" id="password" name="password1" value="" class="ds44-inpStd" title="<%= encodeForHTMLAttribute(glp("jcmsplugin.socle.facette.champ-obligatoire.title", passwordLabel)) %>" required autocomplete="current-password" />
+	                
+	                <button class="ds44-showPassword" type="button">
+	                    <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
+	                    <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.afficher", passwordLabel) %></span>
+	                </button>
+	        
+	                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", passwordLabel) %></span>
+	                </button>
+	            </div>
+	        
+	        </div>
+	        
+	        <%-- Confirm Password ------------------------------------------------------------ --%>     
+	        <% String confirmPasswordLabel = glp("ui.fo.resetpass.reset.password2.placeholder"); %>
+	        <div class="ds44-form__container">
+	            <div class="ds44-posRel">
+	                <label for="password_verif" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= confirmPasswordLabel %><sup aria-hidden="true">*</sup></span></span></label>
+	            
+	                <input type="password" id="password_verif" name="password2" value="" class="ds44-inpStd" title="<%= encodeForHTMLAttribute(glp("jcmsplugin.socle.facette.champ-obligatoire.title", confirmPasswordLabel)) %>" data-field-compare="#password" required autocomplete="current-password" />
+	            
+	                <button class="ds44-showPassword" type="button">
+	                    <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
+	                    <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.afficher", confirmPasswordLabel) %></span>
+	                </button>
+	        
+	                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", confirmPasswordLabel) %></span></button>
+	        
+	            </div>
+	        
+	        </div>      
+	
+	        
+	        <button class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opReset" title='<%= glp("jcmsplugin.socle.valider")%>'>
+	            <span class="ds44-btnInnerText"><%= glp("jcmsplugin.socle.valider")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+	        </button>
+	    
+	    </form>       
+    </jalios:if>
+    
+    <jalios:default>
+    
+       <%
+       request.setAttribute("title", glp("jcmsplugin.assmatplugin.ui.fo.resetpass.request.title"));
+       
+       if (formHandler.validate()) {
+           sendRedirect(channel.getUrl()+ResourceHelper.getLogin());
+           return;
+       }
+       %>    
+
+		<p><%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.request.txt") %></p>
+		                        
+		<form action="<%= ServletUtil.getResourcePath(request) %>" method="post" name="requestResetForm" data-no-encoding="true">
+		    <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
+			<%
+			uuid = UUID.randomUUID().toString();
+			String emailAssmat = formHandler.getEmail();
+			if(Util.isEmpty(emailAssmat)) emailAssmat = "";
+			%>
 			
+			<%-- email ------------------------------------------------------------ --%>
+	        <% String emailLabel = glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email"); %>
+			<div class="ds44-form__container">
+			    <div class="ds44-posRel">
+			        <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= emailLabel %></span></span></label>
+			        <input type="email" id="form-element-<%= uuid %>" name="email" value="<%=emailAssmat %>" class="ds44-inpStd" title='<%= encodeForHTMLAttribute(emailLabel) %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+			        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", emailLabel) %></span></button>
+			    </div>
+			    <div class="ds44-field-information" aria-live="polite">
+			        <ul class="ds44-field-information-list ds44-list">
+			            <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.socle.form.exemple.email") %></li>
+			        </ul>
+			    </div>
+			</div>
+			
+			<%
+			uuid = UUID.randomUUID().toString();
+			String telAssmat = formHandler.getTelephone();
+			if(Util.isEmpty(telAssmat)) telAssmat = "";                        
+			%>
+			
+			<%-- Téléphone ------------------------------------------------------------ --%>
+	        <% String telephoneLabel = glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile"); %>
+			<div class="ds44-form__container">
+			    <div class="ds44-posRel">
+			        <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= telephoneLabel %></span></span></label>
+			        <input type="text" id="form-element-<%= uuid %>" name="telephone" value="<%= telAssmat %>" class="ds44-inpStd" title='<%= encodeForHTMLAttribute(telephoneLabel) %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+			        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", telephoneLabel) %></span></button>
+			    </div>
+			    
+			    <div class="ds44-field-information" aria-live="polite">
+			        <ul class="ds44-field-information-list ds44-list">
+			            <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.socle.form.exemple.tel") %></li>
+			        </ul>
+			    </div>
+			</div>
+			
+			<input type="hidden" name="portal" value="<%= getDataIdParameter("portal") %>" data-technical-field/>
 			  
-			%><jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
-		    	<input type="hidden" name="csrftoken" value="<%= HttpUtil.getCurrentCSRFToken(request) %>"/>
-			</jalios:if><%	
-			  
-        %><div><p><%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.request.txt") %></p></div><%
-				 %><div class="e-mail row-fluid">
-	          
-		        <div class="label span5"><%
-						 %><label for="<%= inputIdEmail %>"><%= glp("ui.fo.resetpass.request.email.label") %></label><%
-						 %><span><%= glp("plugin.corporateidentity.form.login.subtitle") %></span><%
-					%></div><%
-					
-					%><div class="input cg-input span7"><%
-					  String value = formHandler.getEmail();
-					  if(Util.isEmpty(value)) value = "";
-					   
-					  %><input class="formTextfield" type="text"  value="<%= value %>" name="<%= inputIdEmail %>" id="<%= inputIdEmail %>" /><%
-					 
-					%></div>
-					</div>
-					
-					<div class="e-mail row-fluid">
-           
-            <div class="label span5"><%
-                     %><label for="<%= inputIdEmail %>"><%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.request.phone.label") %></label><%
-                     %><span><%= glp("jcmsplugin.assmatplugin.form.login.subtitle.tel") %></span><%
-                %></div><%
-                
-                %><div class="input cg-input span7"><%
-                  String telephone = formHandler.getTelephone();
-                  if(Util.isEmpty(telephone)) telephone = "";
-                   
-                  %><input class="formTextfield" type="text" value="<%= telephone %>" name="<%= inputIdTelephone %>" id="<%= inputIdTelephone %>" /><%
-                 
-                %></div>
-        </div>
-					
-		    <%
-		    
-        %><div class="submit"><%
-           %><%@ include file='/plugins/CorporateIdentityPlugin/jsp/style/getBackgroundStyle.jspf' %>
-           <label for="opRequestReset">
-           	<input type="submit" id="opRequestReset" name="opRequestReset" value="<%= glp("plugin.tools.form.validate") %>" class='submitButton'/>
-           	<span class="input-box" <%= backgroundStyle %>><span class="spr-recherche-ok"></span></span>
-           </label>
+			<jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
+			    <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCurrentCSRFToken(request) %>" data-technical-field/>
+			</jalios:if>    
+			
+			<button class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opRequestReset" title='<%= glp("jcmsplugin.socle.valider")%>'>
+			    <span class="ds44-btnInnerText"><%= glp("jcmsplugin.socle.valider")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+			</button>
+		
+		
+		</form> 
+		
+
+    </jalios:default>
+
+
+</jalios:select>
+
          </div>
-         
-         <div class="clear"></div>
-		    
-			</form><%
-  %></div>
-  </div><%
-}
 
-%>
-
-<%-- Password RESET --%>
-<%
-if (formHandler.isResetFormDisplayed()) {
-
-  String inputIdPassword1 = "ResetPasswordPwd1Input";
-  String inputWidgetPassword1CustomAttribute = "id=\"" + inputIdPassword1 + "\" autocomplete=\"off\"";
-  String inputWidgetPassword2CustomAttribute = "autocomplete=\"off\"";
-  
-%>
-<form action="<%= channel.getSecuredBaseUrl(request) %><%= ServletUtil.getResourcePath(request) %>" method="post" name="resetForm" class="form-cg-gray">
-  <input type="hidden" name="portal" value="<%= getDataIdParameter("portal") %>" />
-  <input type="hidden" name="jsp" value="<%= ResourceHelper.getMailPassword() %>" />
-  <input type="hidden" name="passwordResetToken" value="<%= encodeForHTMLAttribute(formHandler.getPasswordResetToken()) %>" />
-	<jalios:if predicate="<%= HttpUtil.isCSRFEnabled() %>">
-		<input type="hidden" name="csrftoken" value="<%= HttpUtil.getCurrentCSRFToken(request) %>"/>
-	</jalios:if>	
-  <div class="box tint login  contact boxBordure boxResetLoginAssmat form-cg" style="margin: 0 auto;">
-  
-    <div class="box-body form-cg-gray">
-      <h3 class="br txt-center"><% /* %>Login<% */ %><%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.reset.title") %></h3>
-      <p><%= glp("ui.fo.resetpass.reset.txt", encodeForHTML(formHandler.getMember().getFullName()), encodeForHTML(formHandler.getMember().getLogin())) %></p>
-      
-      <div class="alert alert-block alertPass hide  alert-cg">
-        <h4><%=glp("msg.message-box.warning")%></h4>
-        <p></p>
-      </div>
-      
-      <table class='peer'>
-        <tr> 
-          <td class="formLabel">
-            <label style="color:black;" class="labelBlack" for="<%= inputIdPassword1 %>"><% /* %>E-mail<% */ %><%= glp("ui.fo.resetpass.reset.password1.label") %></label>
-          </td>
-          <td> 
-            <jalios:widget  editor          ='<%= AbstractWidget.UI_EDITOR_PASSWORD %>'
-                            widgetName      ='<%= "password1" %>'
-                            formName        ='<%= "resetForm" %>'
-                            placeholder     ='<%= glp("ui.fo.resetpass.reset.password1.placeholder") %>'
-                            customAttributes='<%= inputWidgetPassword1CustomAttribute %>'
-                            printLabel      ='<%= false %>'
-                            size            ='<%= 30 %>'
-                             css="cg-input"
-            />
-          </td>
-        </tr>
-        <tr> 
-          <td class="formLabel">
-            
-          </td>
-          <td> 
-            <jalios:widget  editor          ='<%= AbstractWidget.UI_EDITOR_PASSWORD %>'
-                            widgetName      ='<%= "password2" %>'
-                            formName        ='<%= "resetForm" %>'
-                            placeholder     ='<%= glp("ui.fo.resetpass.reset.password2.placeholder") %>'
-                            customAttributes='<%= inputWidgetPassword2CustomAttribute %>'
-                            printLabel      ='<%= false %>'
-                            size            ='<%= 30 %>'
-                            css="cg-input"
-            />
-          </td>
-        </tr>
-        
-        
-        <tr>
-          <td>                           
-          </td>
-          <td>           
-             <div class="blocLabel">
-                <div class="" style="min-height: 1px;"></div>
-              </div>
-              
-              <div class="visible-password">
-                  <input id="visible-password" type="checkbox" />
-                  <label for="visible-password" style="font-weight: normal; font-size: 14px;"><span style="position: relative; top: -4px;"><trsb:glp key="CONNEXION-AM-VISIBLE-PASSWORD" /></span> </label>
-              </div>
-          </td>
-        </tr>
-        
-        
-        <tr> 
-          <td colspan="2" class="txt-right"> 
-            <p class="submit">
-              <label for="submit"> 
-                <input type="submit" id="submit" name="opReset" value="<%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.valide") %>" class="submitButton"> 
-               <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
-              </label> 
-          <input type="hidden" name="noSendRedirect" value="true"> 
-        </p>
-            
-            
-          </td>
-        </tr>
-      </table>
+                </section>
+            </div>
+        </div>
     </div>
-   
-  </div>
-
-</form>
-<%
-} // isResetFormDisplayed
-%>
 </div>
 
-
-<jalios:javascript>
-
-jQuery( "#ResetPasswordPwd1Input" ).focusout(function(event) {  
-    jQuery.plugin.AssmatPlugin.verifyMotDePasse("#ResetPasswordPwd1Input", "<%=AssmatUtil.getMessage("ERROR-MDP-SECURITY") %>");   
- });
- 
- jQuery('#visible-password').change(function () {
-    if(this.checked){
-      document.body.querySelector('input[name="password1"]').type='text';
-      document.body.querySelector('input[name="password2"]').type='text';
-    }else {      
-      document.body.querySelector('input[name="password1"]').type='password';
-      document.body.querySelector('input[name="password2"]').type='password';
-    }    
-});
- 
-</jalios:javascript>
-
-<%@ include file='/jcore/doFooter.jsp' %>
+</main>
