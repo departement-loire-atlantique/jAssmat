@@ -275,9 +275,11 @@ public class ResetPasswordAssmatHandler extends JcmsFormHandler {
             addMsgSession(new JcmsMessage("ui.fo.resetpass.reset.form.invalid-password", JcmsMessage.Level.WARN, glp("ui.fo.resetpass.reset.form.invalid-password", new Object[0])));
             return false;
         }
-        if (!EditMemberHandler.validatePasswordsRules(this, mbr.getLogin(), password1)) {
-          return false;
+        if (!AssmatUtil.checkPassword(password1)) {
+            addMsg(new JcmsMessage(JcmsMessage.Level.WARN, glp("plugin.assmatplugin.pwd.regex.label")));
+            return false;
         }
+        
         return true;
     }
 
