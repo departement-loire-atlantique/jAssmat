@@ -61,7 +61,7 @@ public class ChangePasswordRAMHandler extends JcmsFormHandler {
           return false;
       }
         if (!AssmatUtil.checkPassword(newpassword)) {
-          addMsgSession(new JcmsMessage(JcmsMessage.Level.WARN, glp("plugin.assmatplugin.pwd.regex.label")));
+          addMsgSession(new JcmsMessage(JcmsMessage.Level.WARN, glp("jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp.isntru")));
           return false;
         }
         

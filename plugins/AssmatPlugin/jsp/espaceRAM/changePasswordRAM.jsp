@@ -61,7 +61,9 @@ if (formHandler.validate()) {
     
 <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 <form action="<%= ServletUtil.getResourcePath(request) %>" method="post" name="resetForm" data-no-encoding="true">
-
+    
+    <p><strong><%= glp("jcmsplugin.assmatplugin.espaceperso.motdepasscomporte") %></strong></p>
+     
     <%-- Password ------------------------------------------------------------ --%>
     <% String passwordLabel = AssmatUtil.getMessage("ESPACE-RAM-MOT-DE-PASSE"); %>
     <div class="ds44-form__container">

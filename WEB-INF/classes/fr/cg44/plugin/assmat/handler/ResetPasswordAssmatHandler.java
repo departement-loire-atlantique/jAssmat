@@ -276,7 +276,7 @@ public class ResetPasswordAssmatHandler extends JcmsFormHandler {
             return false;
         }
         if (!AssmatUtil.checkPassword(password1)) {
-            addMsg(new JcmsMessage(JcmsMessage.Level.WARN, glp("plugin.assmatplugin.pwd.regex.label")));
+            addMsg(new JcmsMessage(JcmsMessage.Level.WARN, glp("jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp.isntru")));
             return false;
         }
         

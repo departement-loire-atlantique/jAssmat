@@ -64,9 +64,11 @@ String uuid = UUID.randomUUID().toString();
 	        <h2><%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.reset.title") %></h2>
 	
 	        <p><%= glp("ui.fo.resetpass.reset.txt", encodeForHTML(formHandler.getMember().getFullName()), encodeForHTML(formHandler.getMember().getLogin())) %></p>
+	        <p><strong><%= glp("jcmsplugin.assmatplugin.espaceperso.motdepasscomporte") %></strong></p>
 	        
 	        <%-- Password ------------------------------------------------------------ --%>
 	        <% String passwordLabel = glp("ui.fo.login.lbl.passwd"); %>
+	        <% uuid = UUID.randomUUID().toString(); %>
 	        <div class="ds44-form__container">
 	            <div class="ds44-posRel">
 	                <label for="password" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= passwordLabel %><sup aria-hidden="true">*</sup></span></span></label>
@@ -78,10 +80,8 @@ String uuid = UUID.randomUUID().toString();
 	                    <span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.label.afficher", passwordLabel) %></span>
 	                </button>
 	        
-	                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", passwordLabel) %></span>
-	                </button>
+	                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", passwordLabel) %></span></button>
 	            </div>
-	        
 	        </div>
 	        
 	        <%-- Confirm Password ------------------------------------------------------------ --%>     
@@ -98,12 +98,9 @@ String uuid = UUID.randomUUID().toString();
 	                </button>
 	        
 	                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", confirmPasswordLabel) %></span></button>
-	        
 	            </div>
-	        
 	        </div>      
 	
-	        
 	        <button class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opReset" title='<%= glp("jcmsplugin.socle.valider")%>'>
 	            <span class="ds44-btnInnerText"><%= glp("jcmsplugin.socle.valider")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i>
 	        </button>

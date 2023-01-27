@@ -268,9 +268,6 @@ ui.fo.resetpass.request.phone.label: Téléphone
 jcmsplugin.assmatplugin.form.resetpass.password-updated:<p>Votre mot de passe à bien été mis à jour.</p><p>Un email de confirmation a été envoyé</p>
 jcmsplugin.assmatplugin.form.resetpass.lien-retour-label : Retour vers la rubrique "Relais petite enfance"
 
-# label ci-dessous à mettre en cohérence avec la regex décrite dans plugin.prop (si elle évolue)
-plugin.assmatplugin.pwd.regex.label : Votre nouveau mot de passe doit contenir au moins 8 caractères
-
 plugin.corporateidentity.form.login.phone.subtitle: (Mobile)
 
 jcmsplugin.assmatplugin.tableau-bord.sms.identifiant: Identifiant du message
