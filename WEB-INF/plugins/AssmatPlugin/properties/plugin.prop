@@ -183,6 +183,8 @@ member.password-min-length: 8
 
 jcmsplugin.socle.recherche.export.pdf: /assmat.pdf?type=detail
 
+jcmsplugin.socle.infolocale.enabled: false
+
 #  Médias / cards
 media.data-template.default.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCardSimple.jsp
 media.data-template.card.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCard.jsp
