@@ -2,6 +2,7 @@
 jcmsplugin.assmatplugin.numero-dossier: Numéro de dossier : {0}
 jcmsplugin.assmatplugin.derniere-actualisation.profil: Date de dernière actualisation : {0}
 jcmsplugin.assmatplugin.export-planning: Exporter les plannings
+jcmsplugin.assmatplugin.planning: Planning
 
 #Page accueil
 jcmsplugin.assmatplugin.accueil.activeprofil: J'active mon profil
