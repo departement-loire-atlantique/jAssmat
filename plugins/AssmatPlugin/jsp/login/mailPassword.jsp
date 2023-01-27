@@ -86,7 +86,6 @@ String uuid = UUID.randomUUID().toString();
 	        
 	        <%-- Confirm Password ------------------------------------------------------------ --%>     
 	        <% String confirmPasswordLabel = glp("ui.fo.resetpass.reset.password2.placeholder"); %>
-	        <% uuid = UUID.randomUUID().toString(); %>
 	        <div class="ds44-form__container">
 	            <div class="ds44-posRel">
 	                <label for="password_verif" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= confirmPasswordLabel %><sup aria-hidden="true">*</sup></span></span></label>
