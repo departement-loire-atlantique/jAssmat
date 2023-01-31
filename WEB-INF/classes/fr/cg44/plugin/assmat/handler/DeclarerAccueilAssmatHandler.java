@@ -917,7 +917,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
 
     //si il existe un id de declaration pour modifier une declaration en cours ou terminer une déclaration en brouillon (idModifDeclaration)
     //alors récupérer la declaration a modifier et la seter dans le formhandler 
-    //(seulement si num_agrement de la declaration correspond au num_dossier de l'assmat)   
+    //(seulement si num_agrement de la declaration correspond au num_dossier de l'assmat)
     if(Util.notEmpty(idModifDeclarationString)) { 
       Integer idModifDeclaration = Integer.parseInt(request.getParameter("idModifDeclaration"));
       // Récupère la declaration depuis le web-service            
@@ -970,7 +970,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
     if(opPrevious) {
       try {
         declaration = DemarcheUtil.getDeclarationAccueilById(declaration.getIdDeclaration());
-        request.getSession().setAttribute("declaration", declaration);     
+        request.getSession().setAttribute("declaration", declaration);
       } catch (ApiException e) {
         logger.warn("Impossible de revenir a l'état précédent pour la déclaration", e);
       }
@@ -1378,7 +1378,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
   }
 
 
-  private void checkPlanning(List<JcmsMessage> listError) {    
+  private void checkPlanning(List<JcmsMessage> listError) {
     // Planning occasionnel
     if(declaration.getAccueilOccasionnel() != null && declaration.getAccueilOccasionnel()){    
       checkPrecision(listError, AssmatUtil.getMessage("ASS-DEC-AOCC-PRE-OBL-HTML"), AssmatUtil.getMessage("ASS-DEC-AOCC-PRE-ERR-HTML"));
@@ -1700,27 +1700,25 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
   public String getFormStepHiddenFields() {
     StringBuilder sb = new StringBuilder();
     // Champs caché général
-    sb.append(handlerUtil.getHiddenFieldTag("idDeclaration", declaration.getIdDeclaration() != null ? declaration.getIdDeclaration()+"" : "" ));
+    // sb.append(handlerUtil.getHiddenFieldTag("idDeclaration", declaration.getIdDeclaration() != null ? declaration.getIdDeclaration()+"" : "" ));
     sb.append(handlerUtil.getHiddenFieldTag("formStep", formStep));
     // Onglet lieu d'accueil
+    /*
     if (formStep == ENFANT_ACCUEILLI) {     
       getHiddenFieldLieuAccueil(sb);
       getHiddenFieldModalites(sb);
       getHiddenFieldPlanning(sb);
+    } */
     // Onglet enfant accueilli
-    } else if (formStep == LIEU_ACCUEIL) {
-      getHiddenFieldEnfantAccueilli(sb); 
-      getHiddenFieldModalites(sb);
-      getHiddenFieldPlanning(sb);
+    if (formStep >= LIEU_ACCUEIL) {
+      getHiddenFieldEnfantAccueilli(sb);
+    }
     // Onglet modalités 
-    } else if (formStep == MODALITES) {
-      getHiddenFieldEnfantAccueilli(sb); 
+    if (formStep >= MODALITES) {
       getHiddenFieldLieuAccueil(sb);
-      getHiddenFieldPlanning(sb);
+    }
     // Onglet planning
-    } else if (formStep == PLANNING) {
-      getHiddenFieldEnfantAccueilli(sb); 
-      getHiddenFieldLieuAccueil(sb);
+    if (formStep >= PLANNING) {
       getHiddenFieldModalites(sb);
     }
     return sb.toString();
@@ -1731,7 +1729,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
 
 
   /**
-   * Champs cachés pour l'enfant accueilli 
+   * Champs cachés pour l'enfant accueilli
    * @param sb
    */
   private void getHiddenFieldEnfantAccueilli(StringBuilder sb) {
@@ -1767,10 +1765,10 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
     sb.append(handlerUtil.getHiddenFieldTag("adresseDomicile", adresseDomicile));
     sb.append(handlerUtil.getHiddenFieldTag("communeDomicile", communeDomicile));
     sb.append(handlerUtil.getHiddenFieldTag("cpDomicile", cpDomicile));
-    sb.append(handlerUtil.getHiddenFieldTag("nomMam", nomMam));  
-    sb.append(handlerUtil.getHiddenFieldTag("adresseMam", adresseMam)); 
-    sb.append(handlerUtil.getHiddenFieldTag("communeMam", communeMam)); 
-    sb.append(handlerUtil.getHiddenFieldTag("cpMam", cpMam)); 
+    sb.append(handlerUtil.getHiddenFieldTag("nomMam", nomMam));
+    sb.append(handlerUtil.getHiddenFieldTag("adresseMam", adresseMam));
+    sb.append(handlerUtil.getHiddenFieldTag("communeMam", communeMam));
+    sb.append(handlerUtil.getHiddenFieldTag("cpMam", cpMam));
   }
   
   

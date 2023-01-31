@@ -39,7 +39,7 @@
 <%
 // si il existe un id de declaration alors récupérer la declaration en session (Si session expirée alors récupérer du web service)
 // modification en cours d'un déclaration courante (pas de idDeclaration indique une nouvelle declaration)
-if(Util.notEmpty(request.getParameter("idDeclaration")) && request.getParameter("idDeclaration") != "null") {
+if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter("idDeclaration").equals("null")) {
   if (session.getAttribute("declaration") == null) {
     Integer idDecla = HttpUtil.getIntParameter(request, "idDeclaration", 0);
     DeclarationAccueilDTO declarationExpireSession = DemarcheUtil.getDeclarationAccueilById(idDecla);
@@ -124,7 +124,7 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && request.getParameter(
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/etapes.jspf'%>
 <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
-<form method="post" action="<%=ServletUtil.getResourcePath(request)%>" name="formAccueil" id="formAccueil" data-no-encoding="true">
+<form method="post" action="<%=ServletUtil.getResourcePath(request)%>" name="formAccueil" id="formAccueil">
 
     <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/enfantAccueilli.jspf'%>
     <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/lieuAccueil.jspf'%>

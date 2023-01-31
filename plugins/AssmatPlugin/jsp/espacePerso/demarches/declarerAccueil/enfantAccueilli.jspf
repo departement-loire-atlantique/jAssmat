@@ -280,7 +280,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	    <div class="ds44-form__container">
 		    <div class="ds44-posRel">
 		        <label for="address_search_<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= adress1Label %></span></span></label>
-		        <input data-disabled-by-name-check-form-element-<%= uuid %>_checkbox type="text" id="address_search_<%= uuid %>" name="address_search_<%= uuid %>" class="ds44-inpStd ds44-js-field-address" 
+		        <input data-disabled-by-name-check-form-element-<%= uuid %>_checkbox type="text" id="address_search_<%= uuid %>" name="address_search" class="ds44-inpStd ds44-js-field-address" 
 		          role="combobox" aria-autocomplete="list" autocomplete="off" aria-expanded="false" data-limit-char="3" data-url="https://api-adresse.data.gouv.fr/search/?limit=5&citycode=44109" 
 		          title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", adress1Label) %>' data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete="" required />
 		          <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", adress1Label) %></span></button>
@@ -447,7 +447,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                    <input data-<%=uuidAdresse2%>="libelle" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <input data-<%=uuidAdresse2%>="libelle" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant2) %>" class="ds44-inpStd" title='<%= labelField %>' />
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>
@@ -457,7 +457,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                    <input data-<%=uuidAdresse2%>="postcode" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="codePostalRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(codePostalRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <input data-<%=uuidAdresse2%>="postcode" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="codePostalRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(codePostalRepresentant2) %>" class="ds44-inpStd" title='<%= labelField %>' />
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>
@@ -467,7 +467,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                    <input data-<%=uuidAdresse2%>="city" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="villeRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <input data-<%=uuidAdresse2%>="city" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="villeRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(villeRepresentant2) %>" class="ds44-inpStd" title='<%= labelField %>' />
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>
@@ -479,7 +479,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	      <div class="ds44-form__container">
 	        <div class="ds44-posRel">
 	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-	            <input type="text" id="form-element-<%= uuid %>" name="complementRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(complementRepresentant1) %>" class="ds44-inpStd" title='<%= labelField %>' />
+	            <input type="text" id="form-element-<%= uuid %>" name="complementRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(complementRepresentant2) %>" class="ds44-inpStd" title='<%= labelField %>' />
 	            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
 	        </div>
 	        <div class="ds44-field-information" aria-live="polite">
@@ -488,27 +488,19 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	            </ul>
 	        </div>
 	      </div>
-        
         </div>
       
       <jalios:if predicate="<%= !isModif %>">
         <div class="ds44-form__container">
-	        <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
-	        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-	        <input type="hidden" name="id" value="c_5065" data-technical-field>
+	        <button type="submit" data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML" attribute="true" ></trsb:glp></button>
 	    </div>
       </jalios:if>
       
       <div class="ds44-form__container">
-          <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></button>
+          <button type="submit" data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML" attribute="true" ></trsb:glp></button>
           <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
           <input type="hidden" name="id" value="c_5065" data-technical-field>
       </div>
       
   <%}%>
 <!-- FIN -->
-
-
-
-
-
