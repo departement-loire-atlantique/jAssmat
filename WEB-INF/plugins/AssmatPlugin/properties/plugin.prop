@@ -16,7 +16,8 @@ jcmsplugin.assmatplugin.socle.portal.accueil: cra_60260
 jcmsplugin.assmatplugin.general.portal.accueil: c_5004
 
 # ID du portail 1 colonne
-jcmsplugin.assmatplugin.socle.portal.colonne: cra_60262
+#jcmsplugin.assmatplugin.socle.portal.colonne: cra_60262
+jcmsplugin.assmatplugin.socle.portal.colonne: asm_268702
 
 # ID de la catégorie Gestion du profil
 jcmsplugin.assmatplugin.socle.categ.gestion: cra_60248
@@ -43,8 +44,11 @@ jcmsplugin.assmatplugin.socle.categ.accueil.perso: cra_60267
 jcmsplugin.assmatplugin.socle.portail.param.id:cra_103077
 
 # Remplacement du fichier de Login
-jcms.resource.login: plugins/AssmatPlugin/jsp/loginAM.jsp
-jcms.resource.mail-password: plugins/AssmatPlugin/jsp/login/mailPassword.jsp
+#jcms.resource.login: plugins/AssmatPlugin/jsp/loginAM.jsp
+jcms.resource.login: 44/connexion/asm_268823
+
+#jcms.resource.mail-password: plugins/AssmatPlugin/jsp/login/mailPassword.jsp
+jcms.resource.mail-password: 44/mot-de-passe-oublie/p1_103987
 
 # Catégorie pour le plan du site
 jcmsplugin.assmatplugin.navigation.principale: local_56368
@@ -170,7 +174,16 @@ sentry.public.key:
 jcmsplugin.socle.recherche.accueil.jsp.display: plugins/AssmatPlugin/jsp/facettes/displayResultAssmat.jsp 
 hibernate.cfg.postgresql.prop.hibernate.connection.datasource: 
 plugin.assmatplugin.pwd.regex: ^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$
+
+# Page carrefour des Relais, après authentification par Portlet Login
+$jcmsplugin.socle.login.redirect.pub: asm_269038
+
+# surcharge taille pwd (on passe à 8 au lieu de 9 en standard pour être cohérent avec la regex ci-dessus)
+member.password-min-length: 8
+
 jcmsplugin.socle.recherche.export.pdf: /assmat.pdf?type=detail
+
+jcmsplugin.socle.infolocale.enabled: false
 
 #  Médias / cards
 media.data-template.default.ProfilASSMAT: /plugins/AssmatPlugin/jsp/cards/doProfilAssmatCardSimple.jsp

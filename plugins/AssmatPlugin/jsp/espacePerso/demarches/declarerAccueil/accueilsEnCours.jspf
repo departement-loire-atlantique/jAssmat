@@ -4,20 +4,19 @@
 
 <section class="ds44-contenuArticle">
 
-    <h2><trsb:glp key="ASS-ACC-EC-TITRE1-HTML"></trsb:glp></h2>
+    <div class="ds44-flex ds44-fsb ds44-mb2">
+        <div>
+            <h2><trsb:glp key="ASS-ACC-EC-TITRE1-HTML"></trsb:glp></h2>
+        </div>
+        <jalios:if predicate="<%= Util.notEmpty(declarationEnCoursList) %>">
+	        <button class="ds44-btnStd">
+	          <span class="ds44-btnInnerText"><a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherPlanning.jsp"><%= glp("jcmsplugin.assmatplugin.planning") %></a></span>
+	          <i class="icon icon-date" aria-hidden="true"></i>
+	        </button>
+        </jalios:if>
+    </div>
     
     <p><trsb:glp key="ASS-ACC-EC-T-INFO-HTML" /></p>
-
-    <%-- Planning de l'assmat --%>
-    <%-- TODO Refonte 2022 / SGU : lien ou bouton ? --%>
-    <jalios:if predicate="<%= Util.notEmpty(declarationEnCoursList) %>">
-        <p>
-            <i class="icon icon-date" aria-hidden="true"></i>
-            <span class="ds44-iconInnerText">
-                <a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherPlanning.jsp"><%= glp("jcmsplugin.assmatplugin.export-planning") %></a>
-            </span>
-        </p>
-    </jalios:if> 
    
     <%-- Message si aucune délaration en cours --%>
     <jalios:if predicate="<%= Util.isEmpty(declarationEnCoursList) %>"> 
