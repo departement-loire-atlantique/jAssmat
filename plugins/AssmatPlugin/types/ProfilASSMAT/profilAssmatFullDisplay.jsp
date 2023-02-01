@@ -285,8 +285,8 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 
 				                <jalios:if predicate='<%= assmatSolis.getExerceDomicile() %>'>
 				                    À <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp>
-				                    <ul class="ds44-uList">
-				                        <% for(int itPlace=1; itPlace<=8; itPlace++) { %>
+				                    <ul class="ds44-uList<% if (assmatSolis.getExerceMam() != null && assmatSolis.getExerceMam()) { %> ds44-mb1<% } %>">
+				                        <% for(int itPlace=1; itPlace<=8; itPlace++) { %>                               
 				                              <%
 				                              // agrementTrancheAgeKey
 				                              Field agrementTracheAgeKeyField = ReflectUtil.getField(assmatSolis.getClass(), "place"+itPlace+"AgrementTrancheAgeKey");
