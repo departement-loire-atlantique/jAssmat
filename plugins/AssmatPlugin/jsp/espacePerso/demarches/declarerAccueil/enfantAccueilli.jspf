@@ -1,3 +1,4 @@
+<%@page import="fr.cg44.plugin.socle.SocleUtils"%>
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
 <%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
 <%@page import="fr.cg44.plugin.assmat.handler.InscriptionAssmatHandler"%>
@@ -176,11 +177,11 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 		    <div class="ds44-posRel">
 		        <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
 		        <div data-name="dateNaissanceEnfant" class="ds44-datepicker__shape ds44-inpStd" data-required="true">
-		            <input <%= isModif ? "readonly" : "" %> id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= AssmatUtil.getDayFromDateDdMmYyyy(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		            <input <%= isModif ? "readonly" : "" %> id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= SocleUtils.getDayFromDate(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
 		            <span>/</span>
-		            <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= AssmatUtil.getMonthFromDateDdMmYyyy(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		            <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= SocleUtils.getMonthFromDate(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
 		            <span>/</span>
-		            <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", labelField)) %>'  value="<%= AssmatUtil.getYearFromDateDdMmYyyy(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		            <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", labelField)) %>'  value="<%= SocleUtils.getYearFromDate(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
 		        </div>
 		        <jalios:if predicate="<%= !isModif %>">
 			        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
@@ -201,11 +202,11 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
                 <div data-name="dateDebutAccueil" class="ds44-datepicker__shape ds44-inpStd" data-required="true">
-                    <input <%= isModif ? "readonly" : "" %> id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= AssmatUtil.getDayFromDateDdMmYyyy(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+                    <input <%= isModif ? "readonly" : "" %> id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= SocleUtils.getDayFromDate(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
                     <span>/</span>
-                    <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= AssmatUtil.getMonthFromDateDdMmYyyy(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+                    <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= SocleUtils.getMonthFromDate(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
                     <span>/</span>
-                    <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", labelField)) %>'  value="<%= AssmatUtil.getYearFromDateDdMmYyyy(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+                    <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", labelField)) %>'  value="<%= SocleUtils.getYearFromDate(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
                 </div>
                 <jalios:if predicate="<%= !isModif %>">
 	                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>

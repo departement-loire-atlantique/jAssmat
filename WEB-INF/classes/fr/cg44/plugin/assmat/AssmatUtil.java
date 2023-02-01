@@ -1584,56 +1584,5 @@ public class AssmatUtil {
       return formDateStr;
     }
 	}
-	
-	/**
-   * Renvoie le jour dans une date de format dd/MM/yyyy
-   * @param date
-   * @return
-   */
-  public static String getDayFromDateDdMmYyyy(String date) {
-    if (Util.isEmpty(date)) return "";
-    SimpleDateFormat sdf = new SimpleDateFormat(ddMmYyyyFormat);
-    SimpleDateFormat sdfResult = new SimpleDateFormat("dd");
-    try {
-      return sdfResult.format(sdf.parse(date));
-    } catch (Exception e) {
-      logger.error("Error in getDayFromDateDdMmYyyy : " + e.getMessage());
-      return "";
-    }
-  }
-  
-  /**
-   * Renvoie le mois dans une date de format dd/MM/yyyy
-   * @param date
-   * @return
-   */
-  public static String getMonthFromDateDdMmYyyy(String date) {
-    if (Util.isEmpty(date)) return "";
-    SimpleDateFormat sdf = new SimpleDateFormat(ddMmYyyyFormat);
-    SimpleDateFormat sdfResult = new SimpleDateFormat("MM");
-    try {
-      return sdfResult.format(sdf.parse(date));
-    } catch (Exception e) {
-      logger.error("Error in getDayFromDateDdMmYyyy : " + e.getMessage());
-      return "";
-    }
-  }
-  
-  /**
-   * Renvoie l'année dans une date de format dd/MM/yyyy
-   * @param date
-   * @return
-   */
-  public static String getYearFromDateDdMmYyyy(String date) {
-    if (Util.isEmpty(date)) return "";
-    SimpleDateFormat sdf = new SimpleDateFormat(ddMmYyyyFormat);
-    SimpleDateFormat sdfResult = new SimpleDateFormat("yyyy");
-    try {
-      return sdfResult.format(sdf.parse(date));
-    } catch (Exception e) {
-      logger.error("Error in getDayFromDateDdMmYyyy : " + e.getMessage());
-      return "";
-    }
-  }
 
 }

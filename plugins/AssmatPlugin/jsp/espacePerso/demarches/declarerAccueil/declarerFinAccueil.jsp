@@ -1,3 +1,4 @@
+<%@page import="fr.cg44.plugin.socle.SocleUtils"%>
 <%@page import="fr.cg44.plugin.assmat.util.DemarcheUtil"%>
 <%@page import="io.swagger.client.ApiException"%>
 <%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
@@ -208,11 +209,11 @@ if (Util.notEmpty(request.getParameter("opFishish"))) {
 		            <div class="ds44-posRel">
 		                <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
 		                <div data-name="dateFinAccueil" class="ds44-datepicker__shape ds44-inpStd" data-required="true">
-		                    <input id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= AssmatUtil.getDayFromDateDdMmYyyy(dateFinAccueilString) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		                    <input id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= SocleUtils.getDayFromDate(dateFinAccueilString) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
 		                    <span>/</span>
-		                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= AssmatUtil.getMonthFromDateDdMmYyyy(dateFinAccueilString) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= SocleUtils.getMonthFromDate(dateFinAccueilString) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
 		                    <span>/</span>
-		                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", labelField)) %>'  value="<%= AssmatUtil.getYearFromDateDdMmYyyy(dateFinAccueilString) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
+		                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", labelField)) %>'  value="<%= SocleUtils.getYearFromDate(dateFinAccueilString) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
 		                </div>
 		                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
 		                <span class="ds44-calendar" aria-hidden="true" aria-describedby=""><i class="icon icon-date icon--large" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.date.calendrier.afficher", labelField) %></span></span>
