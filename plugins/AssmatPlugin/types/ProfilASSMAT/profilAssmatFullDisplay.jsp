@@ -213,13 +213,13 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                     %>
                                     <jalios:select>
                                         <jalios:if predicate="<%= hasFixe && hasMobile %>">
-                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getAuthor().getMobile() %> - <%= obj.getTelephoneFixe() %></p>
+                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><ds:phone number="<%= obj.getAuthor().getMobile() %>" pubTitle="<%= obj.getAuthor().getMobile() %>"></ds:phone> - <ds:phone number="<%= obj.getTelephoneFixe() %>" pubTitle="<%= obj.getTelephoneFixe() %>"></ds:phone></p>
                                         </jalios:if>
                                         <jalios:if predicate="<%= hasMobile %>">
-                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getAuthor().getMobile() %></p>
+                                          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><ds:phone number="<%= obj.getAuthor().getMobile() %>" pubTitle="<%= obj.getAuthor().getMobile() %>"></ds:phone></p>
                                         </jalios:if>
 	                                    <jalios:if predicate="<%= hasFixe %>">
-								          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><%= obj.getTelephoneFixe() %></p>
+								          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><ds:phone number="<%= obj.getTelephoneFixe() %>" pubTitle="<%= obj.getTelephoneFixe() %>"></ds:phone></p>
 								        </jalios:if>
 							        </jalios:select>
 							        <%  Publication contactPub = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.am")); %>
@@ -260,7 +260,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 
 				                <jalios:if predicate='<%= assmatSolis.getExerceDomicile() %>'>
 				                    À <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp>
-				                    <ul class="ds44-uList">
+				                    <ul class="ds44-uList<% if (assmatSolis.getExerceMam() != null && assmatSolis.getExerceMam()) { %> ds44-mb1<% } %>">
 				                        <% for(int itPlace=1; itPlace<=8; itPlace++) { %>                               
 				                              <%
 				                              // agrementTrancheAgeKey
@@ -388,7 +388,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                          <%} %>
                                          <%if(Util.notEmpty(obj.getLaNuit()) && "true".equalsIgnoreCase(obj.getLaNuit())){ %>
                                             <li><trsb:glp key="PROFIL-ASSMAT-CONTENT-TYPE-ACCUEIL-ATYPIQUE-NUIT" /></li>
-                                         <%} %>            
+                                         <%} %>
                                      </ul>
                                  </li>
                              <%} %>          
