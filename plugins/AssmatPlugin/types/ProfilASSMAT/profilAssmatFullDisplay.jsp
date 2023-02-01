@@ -122,7 +122,10 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 
   Double longitude = obj.getLongitudeAssmat();
   Double latitude = obj.getLatitudeAssmat();
+  Double longitudeMam = obj.getLongitudeMAM();
+  Double latitudeMam = obj.getLatitudeMAM();
   String localisation = Util.notEmpty(longitude) && Util.notEmpty(latitude) ? SocleUtils.formatOpenStreetMapLink(latitude.toString(), longitude.toString()) : null;
+  String localisationMam = Util.notEmpty(longitudeMam) && Util.notEmpty(latitudeMam) ? SocleUtils.formatOpenStreetMapLink(latitudeMam.toString(), longitudeMam.toString()) : null;
   
   boolean logementAccessible = Util.notEmpty(obj.getLogementAccessible()) && "true".equalsIgnoreCase(obj.getLogementAccessible());
   boolean accueilTmpPartiel = Util.notEmpty(obj.getAccueilTempsPartiel()) && "true".equalsIgnoreCase(obj.getAccueilTempsPartiel());
@@ -138,66 +141,88 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 <jalios:include target="SOCLE_ALERTE"/>
 
     <article class="ds44-container-large">
-    
-    <%-- bouton Retour a la liste --%>
-    <%@ include file="/plugins/SoclePlugin/jsp/facettes/doRetourListe.jspf" %>
-
-    <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) || Util.notEmpty(profilSuivant) %>">
-    <div class="ds44-btnStd--nextPrevPage">
-        <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) %>">
-            <a href="<%= profilPrecedent.getDisplayUrl(userLocale) %>" class="ds44-btnStd ds44-btnStd--prevPage" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.assmatplugin.profilassmat.voir.precedent")) %>'><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.profilassmat.fiche.precedente") %></span></a>
-        </jalios:if>
-        <jalios:if predicate="<%= Util.notEmpty(profilSuivant) %>">
-            <a href="<%= profilSuivant.getDisplayUrl(userLocale) %>" class="ds44-btnStd ds44-btnStd--nextPage" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.assmatplugin.profilassmat.voir.suivant")) %>'><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.profilassmat.fiche.suivante") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></a>
-        </jalios:if>
-    </div>
-    </jalios:if>
-    
-    <ds:titleSimple pub="<%= obj %>" title='<%= asmmatSolis.getPrenomAssmat() + " " + asmmatSolis.getNomAssmat() %>' breadcrumb="false"></ds:titleSimple>
-    
-    <div class="ds44-img50 ds44--l-padding-tb">
+        <div class="ds44-lightBG ds44-posRel">
+        
+            <ds:titleSimple pub="<%= obj %>" title='<%= asmmatSolis.getPrenomAssmat() + " " + asmmatSolis.getNomAssmat() %>' breadcrumb="false"></ds:titleSimple>
+            
+            <!--  Bouton retour liste -->
+	        <p class="ds44-noMrg">
+	            <%@ include file="/plugins/SoclePlugin/jsp/facettes/doRetourListe.jspf" %>
+	        </p>
+	        <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) || Util.notEmpty(profilSuivant) %>">
+	           <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) || Util.notEmpty(profilSuivant) %>">
+			   <nav class="ds44-btnStd--nextPrevPage" role="navigation" aria-label="Navigation parmi les fiches des assistantes maternelles">
+			       <ul class="ds44-flex-container ds44-list">
+			       <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) %>">
+			           <li class="mrs">
+			               <a href="<%= profilPrecedent.getDisplayUrl(userLocale) %>" class="ds44-btnStd ds44-btnStd--prevPage" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.assmatplugin.profilassmat.voir.precedent")) %>'><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.profilassmat.fiche.precedente") %></span></a>
+			           </li>
+			       </jalios:if>
+			       <jalios:if predicate="<%= Util.notEmpty(profilSuivant) %>">
+			           <li>
+			               <a href="<%= profilSuivant.getDisplayUrl(userLocale) %>" class="ds44-btnStd ds44-btnStd--nextPage" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.assmatplugin.profilassmat.voir.suivant")) %>'><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.profilassmat.fiche.suivante") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></a>
+			           </li>
+			       </jalios:if>
+			       </ul>
+			   </nav>
+               </jalios:if>
+	        </jalios:if>
+        </div>
+        
+        <div class="ds44-img50 ds44--l-padding-b">
             <div class="ds44-inner-container">
                 <div class="ds44-grid12-offset-1">
                     <div class="ds44-txtRight mbs">
-					   <button class='ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(obj.getId())) ? "" : "is-select" %>'
-		                    data-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= obj.getId() %>"
-		                    data-titles='{ "enabled": "Retirer de ma sélection", "disabled": "Ajouter à ma sélection"}'
-		                    data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}'
-		                    type="button"
-		                    aria-describedby='card_<%= obj.getId()%>'>
-		                    <i class='icon icon-star-empty' data-icon aria-hidden="true"></i> <span data-entitled><%= glp("jcmsplugin.socle.selectionner") %></span>
-		               </button>
-					   <span class="ds44-docListElem mll">
+                       <button class='ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(obj.getId())) ? "" : "is-select" %>'
+                            data-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= obj.getId() %>"
+                            data-titles='{ "enabled": "Retirer de ma sélection", "disabled": "Ajouter à ma sélection"}'
+                            data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}'
+                            type="button"
+                            aria-describedby='card_<%= obj.getId()%>'>
+                            <i class='icon icon-star-empty' data-icon aria-hidden="true"></i> <span data-entitled><%= glp("jcmsplugin.socle.selectionner") %></span>
+                       </button>
+                       <span class="ds44-docListElem mll">
                             <i class="icon icon-star-empty ds44-docListIco" aria-hidden="true"></i>
                             <a class="ds44-inlineLink ds44-titleLink" href="#" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.recherche.selection")) %>'><%= glp("jcmsplugin.socle.recherche.ma-selection", (Util.isEmpty(panierSet)) ? "0" : panierSet.size() +"") %></a>
                        </span>
-					   <span class="ds44-docListElem mll">
-					       <i class="icon icon-print ds44-docListIco" aria-hidden="true"></i>
+                       <span class="ds44-docListElem mll">
+                           <i class="icon icon-print ds44-docListIco" aria-hidden="true"></i>
                            <a class="ds44-inlineLink ds44-titleLink" onclick="print();" href='#' target="_blank" title='<%= HttpUtil.encodeForHTMLAttribute(glp("plugin.assmatplugin.profilassmat.print.full", assmatSolis.getPrenomAssmat() + " " + assmatSolis.getNomAssmat())) %>'><%= glp("plugin.assmatplugin.profilassmat.print") %></a>
-					   </span>
-					</div>
+                       </span>
+                    </div>
                     <section class="ds44-box ds44-theme">
                         <div class="ds44-innerBoxContainer">
                             <div class="grid-2-small-1 ds44-grid12-offset-1">
                                 <div class="col">
+                                    <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getExerceMam()) && asmmatSolis.getExerceMam() %>">
+                                    <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-MAM"></trsb:glp></p>
+                                    </jalios:if>
                                     <jalios:if predicate="<%= Util.notEmpty(assmatSolis.getAdresseMam()) && Util.notEmpty(assmatSolis.getCpMam()) && Util.notEmpty(assmatSolis.getCommuneMam()) %>">
-							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=assmatSolis.getAdresseMam() %><br /> <%=assmatSolis.getCpMam() %> <%=assmatSolis.getCommuneMam() %></p>
+							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><jalios:if predicate="<%= Util.notEmpty(assmatSolis.getNomMam())%>"><strong><%=assmatSolis.getNomMam() %></strong><br/></jalios:if><%=assmatSolis.getAdresseMam() %><br /> <%=assmatSolis.getCpMam() %> <%=assmatSolis.getCommuneMam() %></p>
 							        </jalios:if>
-							        <jalios:if predicate="<%= Util.notEmpty(localisation) %>">
+							        <jalios:if predicate="<%= Util.notEmpty(localisationMam) %>">
                                       <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-map ds44-docListIco" aria-hidden="true"></i>
-					                    <a href='<%= localisation%>' 
-					                        title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.ficheaide.localiser-carte.label")+" : " + obj.getTitle(userLang) + " " + glp("jcmsplugin.socle.accessibily.newTabLabel"))%>' 
-					                        target="_blank">
-					                        <%= glp("jcmsplugin.socle.ficheaide.localiser-carte.label") %> 
-					                    </a>
+                                        <a href='<%= localisationMam%>' 
+                                            title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.ficheaide.localiser-carte.label")+" : " + obj.getTitle(userLang) + " " + glp("jcmsplugin.socle.accessibily.newTabLabel"))%>' 
+                                            target="_blank">
+                                            <%= glp("jcmsplugin.socle.ficheaide.localiser-carte.label") %>
+                                        </a>
                                       </p>
                                     </jalios:if>
 							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getExerceDomicile()) && asmmatSolis.getExerceDomicile() %>">
-                      
-							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-DOM"></trsb:glp></p>
-							        </jalios:if>
+                                    <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-DOM"></trsb:glp></p>
+                                    </jalios:if>
 							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getAdresseDomicile()) && asmmatSolis.getExerceDomicile() %>">
                                       <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=assmatSolis.getAdresseDomicile() %><br /><%= Util.notEmpty(assmatSolis.getCpDomicile()) ? " " + assmatSolis.getCpDomicile() : "" %><%= Util.notEmpty(assmatSolis.getCommuneDomicile()) ? " " + assmatSolis.getCommuneDomicile() : "" %></p>
+                                    </jalios:if>
+							        <jalios:if predicate="<%= Util.notEmpty(localisation) %>">
+                                      <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-map ds44-docListIco" aria-hidden="true"></i>
+                                        <a href='<%= localisation%>' 
+                                            title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.ficheaide.localiser-carte.label")+" : " + obj.getTitle(userLang) + " " + glp("jcmsplugin.socle.accessibily.newTabLabel"))%>' 
+                                            target="_blank">
+                                            <%= glp("jcmsplugin.socle.ficheaide.localiser-carte.label") %> 
+                                        </a>
+                                      </p>
                                     </jalios:if>
                                 </div>
                                 <div class="col ds44--xl-padding-l">
@@ -227,8 +252,8 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                       <% String lien = contactPub.getDisplayUrl(userLocale) + "?idMAM=" + obj.getAuthor().getId(); %>
                                       <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i><a href="<%= lien %>" aria-label='<%= glp("jcmsplugin.socle.contactmail.label") %> <%= obj.getAuthor().getFullName() %>'><%= glp("jcmsplugin.socle.contactmail.label") %></a></p>
                                     </jalios:if>
-							        <%-- mise à jour --%>
-							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><%= glp("plugin.assmatplugin.profilassmat.lastupdate", formater.format(obj.getMdate())) %></p>
+                                    <%-- mise à jour --%>
+                                    <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><%= glp("plugin.assmatplugin.profilassmat.lastupdate", formater.format(obj.getMdate())) %></p>
                                 </div>
                             </div>
                         </div>
@@ -293,7 +318,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 				                                  <%= glp("jcmsplugin.assmatplugin.inscription.verification.place", placeNbPlaces)%>
 				                                  <%= AssmatUtil.getTitlePlace(placeTrancheAge, placeLibCompl, placeTracheAgeKey) %>
 				                              </li>
-				                              <%} %>                                
+				                              <%} %>
 				                         <%} %> 
 				                    </ul>
 				                </jalios:if>
