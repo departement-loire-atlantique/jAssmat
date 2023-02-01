@@ -129,11 +129,12 @@ if(Util.notEmpty(dispoTab)) {
       withDispoNonRenseigne = true;
     }
   }
-  // Si aucune dispo de cochée alors afficher avec diso et dispo future
+  // Si aucune dispo de cochée alors tout cocher
 } else {
   withDispo = true;
   withDispoFuture = true;
   withNonDispo = true;
+  withDispoNonRenseigne = true;
 }
 
 
@@ -274,11 +275,11 @@ resultSetDispoNonRenseigne = AssmatUtil.removeAssmatNonvisible(resultSetDispoNon
 
 
 
-int nbAssmatTotal = resultSetDispo.size() + resultSetDispoFutur.size() + resultSetNonDispoContact.size() ; //+ resultSetDispoNonRenseigne.size();
-logger.warn("resultSetDispo : " + resultSetDispo.size());
-logger.warn("resultSetDispoFutur : " + resultSetDispoFutur.size());
-logger.warn("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
-logger.warn("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
+int nbAssmatTotal = resultSetDispo.size() + resultSetDispoFutur.size() + resultSetNonDispoContact.size() + resultSetDispoNonRenseigne.size();
+logger.debug("resultSetDispo : " + resultSetDispo.size());
+logger.debug("resultSetDispoFutur : " + resultSetDispoFutur.size());
+logger.debug("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
+logger.debug("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
 
 
 
@@ -506,16 +507,22 @@ logger.warn("assmatResultSet : "+assmatResultSet.size());
             <div class="ds44-innerBoxContainer">
                 <p role="heading" aria-level="2" class="h4-like ds44-cardTitle"><%= glp("jcmsplugin.assmatplugin.recherche.am.result.title.2", assmatResultSet.size()) %></p>
 
-                <p class="ds44-docListElem ds44-mt-std">
-                    <i class="icon icon-check ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO" parameter='<%= new String[]{resultSetDispo.size() + ""} %>'  />
-                </p>
-                <p class="ds44-docListElem ds44-mt-std">
-                    <i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO-FUTUR" parameter='<%= new String[]{resultSetDispoFutur.size() + ""} %>' />
-                </p>
-                <p class="ds44-docListElem ds44-mt-std">
-                    <i class="icon icon-visuel ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-NO-DISPO-CONTACT" parameter='<%= new String[]{resultSetNonDispoContact.size() + ""} %>' />
-                </p>
-                <jalios:if predicate="<%= isRam || isContribPower %>">
+                <jalios:if predicate="<%= withDispo %>">
+	                <p class="ds44-docListElem ds44-mt-std">
+	                    <i class="icon icon-check ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO" parameter='<%= new String[]{resultSetDispo.size() + ""} %>'  />
+	                </p>
+                </jalios:if>
+                <jalios:if predicate="<%= withDispoFuture %>">
+	                <p class="ds44-docListElem ds44-mt-std">
+	                    <i class="icon icon-time ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO-FUTUR" parameter='<%= new String[]{resultSetDispoFutur.size() + ""} %>' />
+	                </p>
+                </jalios:if>
+                <jalios:if predicate="<%= withNonDispo %>">
+	                <p class="ds44-docListElem ds44-mt-std">
+	                    <i class="icon icon-visuel ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-NO-DISPO-CONTACT" parameter='<%= new String[]{resultSetNonDispoContact.size() + ""} %>' />
+	                </p>
+                </jalios:if>
+                <jalios:if predicate="<%= withDispoNonRenseigne && (isRam || isContribPower) %>">
                     <p class="ds44-docListElem ds44-mt-std">
                         <i class="icon icon-visuel ds44-docListIco" aria-hidden="true"></i><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO-NON-RENSEIGNEES" parameter='<%= new String[]{resultSetDispoNonRenseigne.size() + ""} %>' />
                     </p>
@@ -626,6 +633,10 @@ while (itListPoint.hasNext()) {
 }
 
 // Fin de reprise regroupement des points proches
+
+// Spécifique facettes - indicateur lien de retour
+
+session.setAttribute("isSearchFacetLink", true);
 
 %>
 

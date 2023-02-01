@@ -1,38 +1,17 @@
 package fr.cg44.plugin.assmat.handler;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
-import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
 import com.jalios.jcms.ControllerStatus;
-import com.jalios.jcms.HttpUtil;
 import com.jalios.jcms.JcmsUtil;
 import com.jalios.jcms.Member;
-import com.jalios.jcms.ResourceHelper;
-import com.jalios.jcms.authentication.handlers.SessionAuthenticationHandler;
 import com.jalios.jcms.context.JcmsMessage;
-import com.jalios.jcms.db.HibernateUtil;
-import com.jalios.jcms.dbmember.DBMember;
 import com.jalios.jcms.handler.JcmsFormHandler;
-import com.jalios.jcms.i18n.I18nUtil;
-import com.jalios.jcms.mail.MailMessage;
-import com.jalios.util.BCrypt;
-import com.jalios.util.DateUtil;
-import com.jalios.util.ServletUtil;
 import com.jalios.util.Util;
 
 import fr.cg44.plugin.assmat.AssmatUtil;
-import fr.cg44.plugin.assmat.managers.SmsDAO;
 
 public class ChangePasswordRAMHandler extends JcmsFormHandler {
    
@@ -42,7 +21,6 @@ public class ChangePasswordRAMHandler extends JcmsFormHandler {
     private String password;
     private String newpassword;
     private String confirmnewpassword;
-    
 
     private static final Logger logger = Logger.getLogger(ChangePasswordRAMHandler.class);
     
@@ -82,7 +60,11 @@ public class ChangePasswordRAMHandler extends JcmsFormHandler {
           addMsgSession(new JcmsMessage(JcmsMessage.Level.WARN, "Le mot de passe de confirmation est incorrect"));
           return false;
       }
-  
+        if (!AssmatUtil.checkPassword(newpassword)) {
+          addMsgSession(new JcmsMessage(JcmsMessage.Level.WARN, glp("jcmsplugin.assmatplugin.inscription.champ.lbl.login.mdp.isntru")));
+          return false;
+        }
+        
         return true;
     }
 
@@ -101,23 +83,21 @@ public class ChangePasswordRAMHandler extends JcmsFormHandler {
 		ControllerStatus status = memberClone.checkUpdate(channel.getDefaultAdmin()); 
 		if(status.isOK()){
 			memberClone.performUpdate(channel.getDefaultAdmin());
-// Envoi du mail d'activation
-   String subject = "Changement de mot de passe de votre compte sur le site assmat.loire-atlantique.fr";
-   //String from = "assmat@loire-atlantique.fr";
-   String from = AssmatUtil.getDefaultEmail(); 
-   // On met a jour les membres liés au contenu
+			// Envoi du mail d'activation
+			String subject = "Changement de mot de passe de votre compte sur le site assmat.loire-atlantique.fr";
 
-   
-  
-
-   StringBuilder stbd = new StringBuilder();
-   stbd.append("Bonjour" + "\n");
-   stbd.append("Votre mot de passe a bien été modifié." + "\n");
-
-
-   AssmatUtil.sendMail(memberClone.getEmail(), subject, stbd.toString(), from);
+			// String from = "assmat@loire-atlantique.fr";
+			String from = AssmatUtil.getDefaultEmail(); 
 			
+			// On met a jour les membres liés au contenu
+			StringBuilder stbd = new StringBuilder();
+			stbd.append("Bonjour" + "\n");
+			stbd.append("Votre mot de passe a bien été modifié." + "\n");
+
+			AssmatUtil.sendMail(memberClone.getEmail(), subject, stbd.toString(), from);
 			
+			addMsgSession(new JcmsMessage(JcmsMessage.Level.WARN, JcmsUtil.glpd("jcmsplugin.assmatplugin.form.resetpass.password-updated")));
+		   
 			return true;
 		} else {
 			logger.error("Impossible de mettre à jour le membre <"+memberClone.getFullName()+"> <"+member.getId()+"> / " + status.getMessage(userLang) );

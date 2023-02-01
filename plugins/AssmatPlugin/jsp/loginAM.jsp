@@ -7,26 +7,17 @@
 %><%@ include file='/front/doFullDisplay.jspf' %><%
 
 request.setAttribute("title", glp("ui.fo.login.title"));
-Data reqPortal = getDataParameter("portal");
-String loginPortalId = reqPortal != null ? reqPortal.getId() : ((Data)request.getAttribute("Portal")).getId();
-
-// We assume this JSP is not embedded twice in a page.  
-String inputIdLogin    = "FrontLoginInputLogin";
-String inputIdPassword = "FrontLoginInputPassword";
-String inputIdMemorize = "FrontLoginInputMemorize";
-String inputWidgetLoginCustomAttribute = "id=\"" + inputIdLogin + "\"";
-String inputWidgetPasswordCustomAttribute = "id=\"" + inputIdPassword + "\"";
 
 // Labels
 String loginText = glp("jcmsplugin.socle.identifiant");
 String passwordText = glp("ui.fo.login.lbl.passwd");
-String buttonText = glp("jcmsplugin.socle.valider");
 
-// Récupération de la catégorie courante
-Category currentCategory = PortalManager.getDisplayContext(channel.getCurrentJcmsContext()).getCurrentCategory();
+// Lien "oubli de mot de passe"
+String urlOubliMotDePasse = channel.getSecuredBaseUrl(request) + channel.getProperty("jcms.resource.mail-password");
 
-String redirectUrl = Util.getString(getValidHttpUrl("redirect"), ServletUtil.getBaseUrl(request) + "index.jsp");
-String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccueilAssmat")) ? request.getParameter("redirectAccueilAssmat") : "";
+// Après authentification réussie, renvoie vers l'espace perso des assmat
+Publication portalPerso = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.socle.portail.param.id"));
+String redirectUrl = Util.notEmpty(portalPerso) ? portalPerso.getDisplayUrl(userLocale) : ServletUtil.getBaseUrl(request); 
 %>
 
 <main role="main" id="content">
@@ -41,9 +32,10 @@ String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccue
                   <div class="ds44-innerBoxContainer">
                      <div class="grid-12-small-1">
                         <div class="col-5-small-1">
-                           <form novalidate="true" data-is-initialized="true" action="<%= channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.general.categ.accueil")).getDisplayUrl(userLocale) %>" method="post" name="login">
+                           <form novalidate="true" data-is-initialized="true" action="<%= ServletUtil.getResourcePath(request) %>" method="post" name="login">
                               <h2 class="h4-like ds44-mb-std"><%= glp("plugin.assmatplugin.screen.login.alreadyhaveaccount") %></h2>
                               <%= glp("plugin.assmatplugin.screen.login.assistantmaternel.desc.html") %>
+                              <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
                               <div>
                                  <div class="ds44-form__container">
                                     <div class="ds44-posRel">
@@ -53,25 +45,7 @@ String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccue
                                     </div>
                                  </div>
                               </div>
-                              <%--
-                              
-                               --%>
-                               <%--
-                              <div>
-                                 <div class="ds44-form__container">
-                                    <div class="ds44-posRel">
-                                       <label for="current-password" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("ui.adm.mail-info.password") %></span></span></label>
-                                       <input type="password" id="current-password" name="JCMS_password" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("ui.fo.login.lbl.passwd")) %>' size="14" required autocomplete="current-password"><button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", passwordText) %></span></button>
-                                       <label for="password" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= passwordText %></span></span></label>
-                                       <button class="ds44-showPassword" type="button">
-                                       <i class="icon icon-visuel icon--sizeL" aria-hidden="true"></i>
-                                       <span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.afficher-contenu-champ", glp("ui.adm.mail-info.password")) %></span>
-                                       </button>
-                                       <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.adm.mail-info.password")) %></span></button>
-                                    </div>
-                                 </div>
-                              </div>
-                              --%>
+
                               <div>
                                 <div class="ds44-form__container">
                                   <div class="ds44-posRel">
@@ -94,9 +68,10 @@ String redirectAccueilAssmat = Util.notEmpty(request.getParameter("redirectAccue
                                  </div>
                               </div>
                               <button class="ds44-btnStd ds44-btn--invert ds44-bntALeft ds44-mtb1" title='<%= glp("plugin.assmatplugin.screen.login.connecter") %>'>
-                              <span class="ds44-btnInnerText"><%= glp("plugin.assmatplugin.screen.login.seconnecter") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+                                <span class="ds44-btnInnerText"><%= glp("plugin.assmatplugin.screen.login.seconnecter") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i>
                               </button>
-                              <p class="ds44-noMrg"><a href="plugins/AssmatPlugin/jsp/login/mailPassword.jsp?portal=<%= loginPortalId %>"><%= glp("jcmsplugin.assmatplugin.accueil.mdp.oublie") %></a></p>
+                              <p class="ds44-noMrg"><a href="<%=urlOubliMotDePasse%>"><%= glp("jcmsplugin.assmatplugin.accueil.mdp.oublie") %></a></p>
+                              
                               
                               <input type='hidden' name="redirectUrl" value='<%= redirectUrl %>' data-technical-field/>
                               <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>

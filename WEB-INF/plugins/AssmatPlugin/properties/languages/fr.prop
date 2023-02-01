@@ -2,6 +2,7 @@
 jcmsplugin.assmatplugin.numero-dossier: Numéro de dossier : {0}
 jcmsplugin.assmatplugin.derniere-actualisation.profil: Date de dernière actualisation : {0}
 jcmsplugin.assmatplugin.export-planning: Exporter les plannings
+jcmsplugin.assmatplugin.planning: Planning
 
 #Page accueil
 jcmsplugin.assmatplugin.accueil.activeprofil: J'active mon profil
@@ -17,7 +18,6 @@ jcmsplugin.assmatplugin.accueil.prevenu.email: par e-mail
 jcmsplugin.assmatplugin.accueil.prevenu.sms: par SMS
 jcmsplugin.assmatplugin.accueil.menu.ici: Vous êtes
 jcmsplugin.assmatplugin.accueil.bienvenue: Bonjour {0} {1}
-
 
 #page inscription
 
@@ -80,7 +80,7 @@ jcmsplugin.assmatplugin.inscription.champ.lbl.verification.confirmer: Je confirm
 jcmsplugin.assmatplugin.inscription.error.contact.mail.envoye: Votre mail à bien été envoyé
 jcmsplugin.assmatplugin.inscription.error.signal.mail.subjet:[Signalement d'une erreur dans un profil ASSMAT]
 jcmsplugin.assmatplugin.inscription.error.profil.mail.subjet:[Profil ASSMAT introuvable]
-jcmsplugin.assmatplugin.inscription.error.contact.error.envoi: Pour des raisons technique, votre mail n'a pas pu êtres envoyé.
+jcmsplugin.assmatplugin.inscription.error.contact.error.envoi: Pour des raisons technique, votre mail n'a pas pu être envoyé.
 jcmsplugin.assmatplugin.inscription.error.identification.error.echoue:Désolé, cette nouvelle tentative a echoué
 jcmsplugin.assmatplugin.inscription.error.token.invalide: La durée d'activation de votre compte à expirée, vous devrez recommencer la procédure d'activation.
 jcmsplugin.assmatplugin.inscription.error.code.confirmation: Veuillez renseigner votre code de confirmation
@@ -154,6 +154,13 @@ jcmsplugin.assmatplugin.parametrage.contacts: Contacts à afficher
 jcmsplugin.assmatplugin.parametrage.offre: Offre d'accueil
 jcmsplugin.assmatplugin.parametrage.disponibilite: Disponibilité
 jcmsplugin.assmatplugin.parametrage.autorisations: Autorisations
+
+jcmsplugin.assmatplugin.parametrage.avantecole: Avant l'école
+jcmsplugin.assmatplugin.parametrage.matin: Matin
+jcmsplugin.assmatplugin.parametrage.midi: Midi
+jcmsplugin.assmatplugin.parametrage.apresmidi: Après-midi
+jcmsplugin.assmatplugin.parametrage.apresecole: Après l'école
+jcmsplugin.assmatplugin.parametrage.nuit: Nuit
 
 jcmsplugin.assmatplugin.parametrage.visibilite.active: Merci d'avoir activé votre compte. Encore quelques étapes pour décrire votre offre et vos disponibilités.
 jcmsplugin.assmatplugin.parametrage.contacts.active: Pour être contactée par les parents, souhaitez-vous addicher sur le site ?
@@ -263,8 +270,10 @@ ui.fo.resetpass.request.form.missing-email-telephone: Veuillez spécifier l'adre
 ui.fo.resetpass.request.form.invalid-telephone: Le numéro de téléphone que vous avez spécifié est invalide.
 ui.fo.resetpass.request.form.request-already-done-phone: Une demande de changement de mot de passe a déjà été effectuée il y a moins de {0} pour ce numéro de téléphone. <br/>Veuillez attendre que le SMS vous parvienne.
 ui.fo.resetpass.phone.no-matching-member.content-text: Nous sommes désolés mais aucun compte correspondant à ce numéro de téléphone n'a pu être trouvé.
-
 ui.fo.resetpass.request.phone.label: Téléphone
+jcmsplugin.assmatplugin.form.resetpass.password-updated:<p>Votre mot de passe à bien été mis à jour.</p><p>Un email de confirmation a été envoyé</p>
+jcmsplugin.assmatplugin.form.resetpass.lien-retour-label : Retour vers la rubrique "Relais petite enfance"
+
 plugin.corporateidentity.form.login.phone.subtitle: (Mobile)
 
 jcmsplugin.assmatplugin.tableau-bord.sms.identifiant: Identifiant du message
