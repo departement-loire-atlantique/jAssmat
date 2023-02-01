@@ -122,7 +122,10 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 
   Double longitude = obj.getLongitudeAssmat();
   Double latitude = obj.getLatitudeAssmat();
+  Double longitudeMam = obj.getLongitudeMAM();
+  Double latitudeMam = obj.getLatitudeMAM();
   String localisation = Util.notEmpty(longitude) && Util.notEmpty(latitude) ? SocleUtils.formatOpenStreetMapLink(latitude.toString(), longitude.toString()) : null;
+  String localisationMam = Util.notEmpty(longitudeMam) && Util.notEmpty(latitudeMam) ? SocleUtils.formatOpenStreetMapLink(latitudeMam.toString(), longitudeMam.toString()) : null;
   
   boolean logementAccessible = Util.notEmpty(obj.getLogementAccessible()) && "true".equalsIgnoreCase(obj.getLogementAccessible());
   boolean accueilTmpPartiel = Util.notEmpty(obj.getAccueilTempsPartiel()) && "true".equalsIgnoreCase(obj.getAccueilTempsPartiel());
@@ -180,9 +183,27 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                         <div class="ds44-innerBoxContainer">
                             <div class="grid-2-small-1 ds44-grid12-offset-1">
                                 <div class="col">
+                                    <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getExerceMam()) && asmmatSolis.getExerceMam() %>">
+                                    <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-MAM"></trsb:glp></p>
+                                    </jalios:if>
                                     <jalios:if predicate="<%= Util.notEmpty(assmatSolis.getAdresseMam()) && Util.notEmpty(assmatSolis.getCpMam()) && Util.notEmpty(assmatSolis.getCommuneMam()) %>">
-							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=assmatSolis.getAdresseMam() %><br /> <%=assmatSolis.getCpMam() %> <%=assmatSolis.getCommuneMam() %></p>
+							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><jalios:if predicate="<%= Util.notEmpty(assmatSolis.getNomMam())%>"><strong><%=assmatSolis.getNomMam() %></strong><br/></jalios:if><%=assmatSolis.getAdresseMam() %><br /> <%=assmatSolis.getCpMam() %> <%=assmatSolis.getCommuneMam() %></p>
 							        </jalios:if>
+							        <jalios:if predicate="<%= Util.notEmpty(localisationMam) %>">
+                                      <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-map ds44-docListIco" aria-hidden="true"></i>
+                                        <a href='<%= localisationMam%>' 
+                                            title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.ficheaide.localiser-carte.label")+" : " + obj.getTitle(userLang) + " " + glp("jcmsplugin.socle.accessibily.newTabLabel"))%>' 
+                                            target="_blank">
+                                            <%= glp("jcmsplugin.socle.ficheaide.localiser-carte.label") %>
+                                        </a>
+                                      </p>
+                                    </jalios:if>
+							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getExerceDomicile()) && asmmatSolis.getExerceDomicile() %>">
+                                    <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-DOM"></trsb:glp></p>
+                                    </jalios:if>
+							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getAdresseDomicile()) && asmmatSolis.getExerceDomicile() %>">
+                                      <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=assmatSolis.getAdresseDomicile() %><br /><%= Util.notEmpty(assmatSolis.getCpDomicile()) ? " " + assmatSolis.getCpDomicile() : "" %><%= Util.notEmpty(assmatSolis.getCommuneDomicile()) ? " " + assmatSolis.getCommuneDomicile() : "" %></p>
+                                    </jalios:if>
 							        <jalios:if predicate="<%= Util.notEmpty(localisation) %>">
                                       <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-map ds44-docListIco" aria-hidden="true"></i>
 					                    <a href='<%= localisation%>' 
@@ -191,13 +212,6 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 					                        <%= glp("jcmsplugin.socle.ficheaide.localiser-carte.label") %> 
 					                    </a>
                                       </p>
-                                    </jalios:if>
-							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getExerceDomicile()) && asmmatSolis.getExerceDomicile() %>">
-                      
-							        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-DOM"></trsb:glp></p>
-							        </jalios:if>
-							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getAdresseDomicile()) && asmmatSolis.getExerceDomicile() %>">
-                                      <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=assmatSolis.getAdresseDomicile() %><br /><%= Util.notEmpty(assmatSolis.getCpDomicile()) ? " " + assmatSolis.getCpDomicile() : "" %><%= Util.notEmpty(assmatSolis.getCommuneDomicile()) ? " " + assmatSolis.getCommuneDomicile() : "" %></p>
                                     </jalios:if>
                                 </div>
                                 <div class="col ds44--xl-padding-l">
@@ -261,7 +275,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 				                <jalios:if predicate='<%= assmatSolis.getExerceDomicile() %>'>
 				                    À <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp>
 				                    <ul class="ds44-uList">
-				                        <% for(int itPlace=1; itPlace<=8; itPlace++) { %>                               
+				                        <% for(int itPlace=1; itPlace<=8; itPlace++) { %>
 				                              <%
 				                              // agrementTrancheAgeKey
 				                              Field agrementTracheAgeKeyField = ReflectUtil.getField(assmatSolis.getClass(), "place"+itPlace+"AgrementTrancheAgeKey");
