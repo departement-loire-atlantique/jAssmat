@@ -14,10 +14,6 @@ if(!AssmatUtil.isMemberRAM(loggedMember)){
   return;
 }
   
-String idPortalRAM = channel.getProperty("plugin.assmatplugin.portal.ram.id");
-String idPortalSyndicat = channel.getProperty("plugin.assmatplugin.portal.asso.id");
-String idCurrentPortal = portal.getId();
-  
 //On recupere les RAM du membre 
 Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorIDSolis(loggedMember.getExtraData("extra.Member.jcmsplugin.assmatplugin.idsolis.lieu")));
 
