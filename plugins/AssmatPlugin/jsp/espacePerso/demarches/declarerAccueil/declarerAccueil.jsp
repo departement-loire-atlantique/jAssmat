@@ -57,21 +57,11 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter
   if (formHandler.validate()) {   
     return;
   }
-  jcmsContext.addJavaScript("plugins/ToolsPlugin/js/facets/tooltipCategories.js");
+
   int step = formHandler.getFormStep();
   int stepCount = formHandler.getFormStepCount();
 
   String token = request.getParameter("token");
-
-  jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
-  jcmsContext.addJavaScript("plugins/AssmatPlugin/js/comportement.js");
-  
-  jcmsContext.addJavaScript("plugins/AgendaPlugin/js/pickadatejs/legacy.js");
-  jcmsContext.addJavaScript("plugins/AgendaPlugin/js/pickadatejs/picker.js");
-  jcmsContext.addJavaScript("plugins/AgendaPlugin/js/pickadatejs/picker.date.js");
-  if("fr".equals(userLang)){
-    jcmsContext.addJavaScript("plugins/AgendaPlugin/js/pickadatejs/translations/fr_FR.js");
-  }  
   
   SolisManager solisMgr = SolisManager.getInstance();
   AssmatSolis assmatSolis= null;
