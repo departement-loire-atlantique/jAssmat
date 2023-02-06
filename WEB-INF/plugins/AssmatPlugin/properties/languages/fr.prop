@@ -393,8 +393,8 @@ jcmsplugin.assmatplugin.facette.nom.default-label: Par nom
 plugin.assmatplugin.screen.login.title: Connexion à votre compte
 plugin.assmatplugin.screen.login.alreadyhaveaccount: J’ai déjà un compte
 plugin.assmatplugin.screen.login.noaccount: Je n'ai pas encore de compte
-plugin.assmatplugin.screen.login.assistantmaternel.desc.html: <p>Cet espace est réservé aux assistantes et assistants maternel agréés par le Département.</p>\
-<p>Si vous avez oublié votre identifiant (choisi au moment de votre insription), essayez avec votre numéro de dossier d'agrément présent sur votre attestation.</p>
+plugin.assmatplugin.screen.login.assistantmaternel.desc.html: <p>Cet espace est réservé aux assistantes et assistants maternels agréés par le Département.</p>\
+<p>Si vous avez oublié votre identifiant (choisi au moment de votre inscription), essayez avec votre numéro de dossier d'agrément présent sur votre attestation.</p>
 plugin.assmatplugin.screen.login.seconnecter: Se connecter
 plugin.assmatplugin.screen.login.assistantmaternel: Vous êtes assistant·e maternelle
 plugin.assmatplugin.screen.login.assistantmaternel.intro: La création d’un compte sur le site assmat vous permet de réaliser vos déclarations d’accueil en ligne et d’afficher ou non vos disponibilités pour les parents.
