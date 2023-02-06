@@ -200,7 +200,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                                     <jalios:if predicate="<%= Util.notEmpty(assmatSolis.getAdresseMam()) && Util.notEmpty(assmatSolis.getCpMam()) && Util.notEmpty(assmatSolis.getCommuneMam()) %>">
 							          <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><jalios:if predicate="<%= Util.notEmpty(assmatSolis.getNomMam())%>"><strong><%=assmatSolis.getNomMam() %></strong><br/></jalios:if><%=assmatSolis.getAdresseMam() %><br /> <%=assmatSolis.getCpMam() %> <%=assmatSolis.getCommuneMam() %></p>
 							        </jalios:if>
-							        <jalios:if predicate="<%= Util.notEmpty(localisationMam) %>">
+							        <jalios:if predicate="<%= Util.notEmpty(localisationMam) && Util.notEmpty(asmmatSolis.getExerceMam()) && asmmatSolis.getExerceMam() %>">
                                       <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-map ds44-docListIco" aria-hidden="true"></i>
                                         <a href='<%= localisationMam%>' 
                                             title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.ficheaide.localiser-carte.label")+" : " + obj.getTitle(userLang) + " " + glp("jcmsplugin.socle.accessibily.newTabLabel"))%>' 
@@ -215,7 +215,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
 							        <jalios:if predicate="<%= Util.notEmpty(asmmatSolis.getAdresseDomicile()) && asmmatSolis.getExerceDomicile() %>">
                                       <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=assmatSolis.getAdresseDomicile() %><br /><%= Util.notEmpty(assmatSolis.getCpDomicile()) ? " " + assmatSolis.getCpDomicile() : "" %><%= Util.notEmpty(assmatSolis.getCommuneDomicile()) ? " " + assmatSolis.getCommuneDomicile() : "" %></p>
                                     </jalios:if>
-							        <jalios:if predicate="<%= Util.notEmpty(localisation) %>">
+							        <jalios:if predicate="<%= Util.notEmpty(localisation) && Util.notEmpty(asmmatSolis.getExerceDomicile()) && asmmatSolis.getExerceDomicile() %>">
                                       <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-map ds44-docListIco" aria-hidden="true"></i>
                                         <a href='<%= localisation%>' 
                                             title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.ficheaide.localiser-carte.label")+" : " + obj.getTitle(userLang) + " " + glp("jcmsplugin.socle.accessibily.newTabLabel"))%>' 
