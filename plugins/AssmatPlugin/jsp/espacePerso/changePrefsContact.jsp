@@ -135,7 +135,7 @@ String uuid = UUID.randomUUID().toString();
                 </p>
                 <div class="ds44-posRel ds44-mt2">
                     <label for="form-element-<%= uuid %>" class='ds44-formLabel <%= Util.notEmpty(telephoneMobileAssmat) ? " ds44-moveLabel" : "" %>'><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %><sup aria-hidden="true">*</sup></span></span></label>
-                    <input type="text" value="<%= telephoneMobileAssmat %>" id="form-element-<%= uuid %>" name="telephone" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
+                    <input type="text" value="<%= telephoneMobileAssmat %>" id="form-element-<%= uuid %>" name="telMobile" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile")) %></span></button>
                 </div>
                 <div class="ds44-field-information" aria-live="polite">
@@ -146,11 +146,11 @@ String uuid = UUID.randomUUID().toString();
             </div>
             
     <div class="ds44-form__container">
-        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
-        <input type="hidden" name="opUpdate" class="ds44-btnStd" value='true' data-technical-field>
+        <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
+        <input type="hidden" name="opUpdate" value="true" />
+        <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
         <input type="hidden" name="numeroAgrement" value="<%= numeroDossierAssmat %>" data-technical-field/>
-        <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>
     </div>
     
 </form>
