@@ -634,6 +634,10 @@ while (itListPoint.hasNext()) {
 
 // Fin de reprise regroupement des points proches
 
+// Spécifique facettes - indicateur lien de retour
+
+session.setAttribute("isSearchFacetLink", true);
+
 %>
 
 
