@@ -251,7 +251,7 @@ int numeroDossierAssmat = profil.getNum_agrement();
           <div id="Formulaires<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>' style="clear: both;"> 
           
 	          <% uuid = UUID.randomUUID().toString(); %>
-	          <p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p>
+	          <div data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>><p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p></div>
 	          <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
 				   <div class="ds44-select__shape ds44-inpStd">
 				      <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.month") %></p>
@@ -318,82 +318,78 @@ int numeroDossierAssmat = profil.getNum_agrement();
           </div>
     
           <div id="dispoActuelle<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>'>
-           
-    
-            <p class="renseignements important"><trsb:glp key="DISPO-OUI-SEM-HTML"></trsb:glp></p>
-    
-            <table class="semainier" id="tableauSemainier<%= cptDispo + 1 %>">
+               
+            <table class="tabDispos tabDispos_checkbox mbm" id="tableauSemainier<%= cptDispo + 1 %>">
+              <caption role="heading" aria-level="2"><trsb:glp key="DISPO-OUI-SEM-HTML"></trsb:glp></caption>
               <tr>
-                <th scope="col"></th>
-                <th scope="col">L</th>
-                <th scope="col">M</th>
-                <th scope="col">M</th>
-                <th scope="col">J</th>
-                <th scope="col">V</th>
-                <th scope="col">S</th>
-                <th scope="col">D</th>
-              </tr>
+	            <td> </td>
+	            <th scope="col" aria-label="Lundi">L</th>
+	            <th scope="col" aria-label="Mardi">M</th>
+	            <th scope="col" aria-label="Mercredi">M</th>
+	            <th scope="col" aria-label="Jeudi">J</th>
+	            <th scope="col" aria-label="Vendredi">V</th>
+	            <th scope="col" aria-label="Samedi">S</th>
+	            <th scope="col" aria-label="Dimanche">D</th>
+	          </tr>
               <tr>
-                <th scope="row"><trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></th
-                <td class="ds44-checkBox-radio_list inbl">
-                   <input type="checkbox" id="lundi_avant_ecole<%= cptDispo + 1 %>" name="lundi_avant_ecole<%= cptDispo + 1 %>" value="true" class="ds44-checkbox"/><label for="lundi_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="name-lundi_avant_ecole<%= cptDispo + 1 %>"></label>
-                </td>
-                <td><input type="checkbox" id="mardi_avant_ecole<%= cptDispo + 1 %>" name="mardi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(mardi_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mercredi_avant_ecole<%= cptDispo + 1 %>" name="mercredi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(mercredi_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="jeudi_avant_ecole<%= cptDispo + 1 %>" name="jeudi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(jeudi_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="vendredi_avant_ecole<%= cptDispo + 1 %>" name="vendredi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(vendredi_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="samedi_avant_ecole<%= cptDispo + 1 %>" name="samedi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(samedi_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="dimanche_avant_ecole<%= cptDispo + 1 %>" name="dimanche_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(dimanche_avant_ecole1.equals("true")) { %> checked <% } %> /></td>
+                <th scope="row"><trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></th>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="lundi_avant_ecole<%= cptDispo + 1 %>" name="lundi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(lundi_avant_ecole1.equals("true")) { %> checked <% } %> /><label for="lundi_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-lundi_avant_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.1") %> - <trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mardi_avant_ecole<%= cptDispo + 1 %>" name="mardi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(mardi_avant_ecole1.equals("true")) { %> checked <% } %> /><label for="mardi_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mardi_avant_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.2") %> - <trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mercredi_avant_ecole<%= cptDispo + 1 %>" name="mercredi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(mercredi_avant_ecole1.equals("true")) { %> checked <% } %> /><label for="mercredi_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mercredi_avant_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.3") %> - <trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="jeudi_avant_ecole<%= cptDispo + 1 %>" name="jeudi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(jeudi_avant_ecole1.equals("true")) { %> checked <% } %> /><label for="jeudi_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-jeudi_avant_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.4") %> - <trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="vendredi_avant_ecole<%= cptDispo + 1 %>" name="vendredi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(vendredi_avant_ecole1.equals("true")) { %> checked <% } %> /><label for="vendredi_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-vendredi_avant_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.5") %> - <trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="samedi_avant_ecole<%= cptDispo + 1 %>" name="samedi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(samedi_avant_ecole1.equals("true")) { %> checked <% } %> /><label for="samedi_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-samedi_avant_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.6") %> - <trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="dimanche_avant_ecole<%= cptDispo + 1 %>" name="dimanche_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(dimanche_avant_ecole1.equals("true")) { %> checked <% } %> /><label for="dimanche_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-dimanche_avant_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.7") %> - <trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></label></div></td>
               </tr>
               <tr>
                 <th scope="row"><trsb:glp key="DISPO-OUI-SEM-MAT"></trsb:glp></th>
-                <td><input type="checkbox" id="lundi_matin<%= cptDispo + 1 %>" name="lundi_matin<%= cptDispo + 1 %>" value="true" <% if(lundi_matin1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mardi_matin<%= cptDispo + 1 %>" name="mardi_matin<%= cptDispo + 1 %>" value="true" <% if(mardi_matin1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mercredi_matin<%= cptDispo + 1 %>" name="mercredi_matin<%= cptDispo + 1 %>" value="true" <% if(mercredi_matin1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="jeudi_matin<%= cptDispo + 1 %>" name="jeudi_matin<%= cptDispo + 1 %>" value="true" <% if(jeudi_matin1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="vendredi_matin<%= cptDispo + 1 %>" name="vendredi_matin<%= cptDispo + 1 %>" value="true" <% if(vendredi_matin1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="samedi_matin<%= cptDispo + 1 %>" name="samedi_matin<%= cptDispo + 1 %>" value="true" <% if(samedi_matin1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="dimanche_matin<%= cptDispo + 1 %>" name="dimanche_matin<%= cptDispo + 1 %>" value="true" <% if(dimanche_matin1.equals("true")) { %> checked <% } %> /></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="lundi_matin<%= cptDispo + 1 %>" name="lundi_matin<%= cptDispo + 1 %>" value="true" <% if(lundi_matin1.equals("true")) { %> checked <% } %> /><label for="lundi_matin<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-lundi_matin<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.1") %> - <trsb:glp key="DISPO-OUI-SEM-MAT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mardi_matin<%= cptDispo + 1 %>" name="mardi_matin<%= cptDispo + 1 %>" value="true" <% if(mardi_matin1.equals("true")) { %> checked <% } %> /><label for="mardi_matin<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mardi_matin<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.2") %> - <trsb:glp key="DISPO-OUI-SEM-MAT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mercredi_matin<%= cptDispo + 1 %>" name="mercredi_matin<%= cptDispo + 1 %>" value="true" <% if(mercredi_matin1.equals("true")) { %> checked <% } %> /><label for="mercredi_matin<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mercredi_matin<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.3") %> - <trsb:glp key="DISPO-OUI-SEM-MAT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="jeudi_matin<%= cptDispo + 1 %>" name="jeudi_matin<%= cptDispo + 1 %>" value="true" <% if(jeudi_matin1.equals("true")) { %> checked <% } %> /><label for="jeudi_matin<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-jeudi_matin<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.4") %> - <trsb:glp key="DISPO-OUI-SEM-MAT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="vendredi_matin<%= cptDispo + 1 %>" name="vendredi_matin<%= cptDispo + 1 %>" value="true" <% if(vendredi_matin1.equals("true")) { %> checked <% } %> /><label for="vendredi_matin<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-vendredi_matin<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.5") %> - <trsb:glp key="DISPO-OUI-SEM-MAT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="samedi_matin<%= cptDispo + 1 %>" name="samedi_matin<%= cptDispo + 1 %>" value="true" <% if(samedi_matin1.equals("true")) { %> checked <% } %> /><label for="samedi_matin<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-samedi_matin<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.6") %> - <trsb:glp key="DISPO-OUI-SEM-MAT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="dimanche_matin<%= cptDispo + 1 %>" name="dimanche_matin<%= cptDispo + 1 %>" value="true" <% if(dimanche_matin1.equals("true")) { %> checked <% } %> /><label for="dimanche_matin<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-dimanche_matin<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.7") %> - <trsb:glp key="DISPO-OUI-SEM-MAT"></trsb:glp></label></div></td>
               </tr>
               <tr>
                 <th scope="row"><trsb:glp key="DISPO-OUI-SEM-MIDI"></trsb:glp></th>
-                <td><input type="checkbox" id="lundi_midi<%= cptDispo + 1 %>" name="lundi_midi<%= cptDispo + 1 %>" value="true" <% if(lundi_midi1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mardi_midi<%= cptDispo + 1 %>" name="mardi_midi<%= cptDispo + 1 %>" value="true" <% if(mardi_midi1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mercredi_midi<%= cptDispo + 1 %>" name="mercredi_midi<%= cptDispo + 1 %>" value="true" <% if(mercredi_midi1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="jeudi_midi<%= cptDispo + 1 %>" name="jeudi_midi<%= cptDispo + 1 %>" value="true" <% if(jeudi_midi1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="vendredi_midi<%= cptDispo + 1 %>" name="vendredi_midi<%= cptDispo + 1 %>" value="true" <% if(vendredi_midi1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="samedi_midi<%= cptDispo + 1 %>" name="samedi_midi<%= cptDispo + 1 %>" value="true" <% if(samedi_midi1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="dimanche_midi<%= cptDispo + 1 %>" name="dimanche_midi<%= cptDispo + 1 %>" value="true" <% if(dimanche_midi1.equals("true")) { %> checked <% } %> /></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="lundi_midi<%= cptDispo + 1 %>" name="lundi_midi<%= cptDispo + 1 %>" value="true" <% if(lundi_midi1.equals("true")) { %> checked <% } %> /><label for="lundi_midi<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-lundi_midi<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.1") %> - <trsb:glp key="DISPO-OUI-SEM-MIDI"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mardi_midi<%= cptDispo + 1 %>" name="mardi_midi<%= cptDispo + 1 %>" value="true" <% if(mardi_midi1.equals("true")) { %> checked <% } %> /><label for="mardi_midi<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mardi_midi<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.2") %> - <trsb:glp key="DISPO-OUI-SEM-MIDI"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mercredi_midi<%= cptDispo + 1 %>" name="mercredi_midi<%= cptDispo + 1 %>" value="true" <% if(mercredi_midi1.equals("true")) { %> checked <% } %> /><label for="mercredi_midi<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mercredi_midi<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.3") %> - <trsb:glp key="DISPO-OUI-SEM-MIDI"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="jeudi_midi<%= cptDispo + 1 %>" name="jeudi_midi<%= cptDispo + 1 %>" value="true" <% if(jeudi_midi1.equals("true")) { %> checked <% } %> /><label for="jeudi_midi<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-jeudi_midi<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.4") %> - <trsb:glp key="DISPO-OUI-SEM-MIDI"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="vendredi_midi<%= cptDispo + 1 %>" name="vendredi_midi<%= cptDispo + 1 %>" value="true" <% if(vendredi_midi1.equals("true")) { %> checked <% } %> /><label for="vendredi_midi<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-vendredi_midi<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.5") %> - <trsb:glp key="DISPO-OUI-SEM-MIDI"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="samedi_midi<%= cptDispo + 1 %>" name="samedi_midi<%= cptDispo + 1 %>" value="true" <% if(samedi_midi1.equals("true")) { %> checked <% } %> /><label for="samedi_midi<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-samedi_midi<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.6") %> - <trsb:glp key="DISPO-OUI-SEM-MIDI"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="dimanche_midi<%= cptDispo + 1 %>" name="dimanche_midi<%= cptDispo + 1 %>" value="true" <% if(dimanche_midi1.equals("true")) { %> checked <% } %> /><label for="dimanche_midi<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-dimanche_midi<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.7") %> - <trsb:glp key="DISPO-OUI-SEM-MIDI"></trsb:glp></label></div></td>
               </tr>
               <tr>
                 <th scope="row"><trsb:glp key="DISPO-OUI-SEM-APM"></trsb:glp></th>
-                <td><input type="checkbox" id="lundi_pm<%= cptDispo + 1 %>" name="lundi_pm<%= cptDispo + 1 %>" value="true" <% if(lundi_pm1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mardi_pm<%= cptDispo + 1 %>" name="mardi_pm<%= cptDispo + 1 %>" value="true" <% if(mardi_pm1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mercredi_pm<%= cptDispo + 1 %>" name="mercredi_pm<%= cptDispo + 1 %>" value="true" <% if(mercredi_pm1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="jeudi_pm<%= cptDispo + 1 %>" name="jeudi_pm<%= cptDispo + 1 %>" value="true" <% if(jeudi_pm1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="vendredi_pm<%= cptDispo + 1 %>" name="vendredi_pm<%= cptDispo + 1 %>" value="true" <% if(vendredi_pm1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="samedi_pm<%= cptDispo + 1 %>" name="samedi_pm<%= cptDispo + 1 %>" value="true" <% if(samedi_pm1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="dimanche_pm<%= cptDispo + 1 %>" name="dimanche_pm<%= cptDispo + 1 %>" value="true" <% if(dimanche_pm1.equals("true")) { %> checked <% } %> /></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="lundi_pm<%= cptDispo + 1 %>" name="lundi_pm<%= cptDispo + 1 %>" value="true" <% if(lundi_pm1.equals("true")) { %> checked <% } %> /><label for="lundi_pm<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-lundi_pm<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.1") %> - <trsb:glp key="DISPO-OUI-SEM-APM"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mardi_pm<%= cptDispo + 1 %>" name="mardi_pm<%= cptDispo + 1 %>" value="true" <% if(mardi_pm1.equals("true")) { %> checked <% } %> /><label for="mardi_pm<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mardi_pm<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.2") %> - <trsb:glp key="DISPO-OUI-SEM-APM"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mercredi_pm<%= cptDispo + 1 %>" name="mercredi_pm<%= cptDispo + 1 %>" value="true" <% if(mercredi_pm1.equals("true")) { %> checked <% } %> /><label for="mercredi_pm<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mercredi_pm<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.3") %> - <trsb:glp key="DISPO-OUI-SEM-APM"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="jeudi_pm<%= cptDispo + 1 %>" name="jeudi_pm<%= cptDispo + 1 %>" value="true" <% if(jeudi_pm1.equals("true")) { %> checked <% } %> /><label for="jeudi_pm<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-jeudi_pm<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.4") %> - <trsb:glp key="DISPO-OUI-SEM-APM"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="vendredi_pm<%= cptDispo + 1 %>" name="vendredi_pm<%= cptDispo + 1 %>" value="true" <% if(vendredi_pm1.equals("true")) { %> checked <% } %> /><label for="vendredi_pm<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-vendredi_pm<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.5") %> - <trsb:glp key="DISPO-OUI-SEM-APM"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="samedi_pm<%= cptDispo + 1 %>" name="samedi_pm<%= cptDispo + 1 %>" value="true" <% if(samedi_pm1.equals("true")) { %> checked <% } %> /><label for="samedi_pm<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-samedi_pm<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.6") %> - <trsb:glp key="DISPO-OUI-SEM-APM"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="dimanche_pm<%= cptDispo + 1 %>" name="dimanche_pm<%= cptDispo + 1 %>" value="true" <% if(dimanche_pm1.equals("true")) { %> checked <% } %> /><label for="dimanche_pm<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-dimanche_pm<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.7") %> - <trsb:glp key="DISPO-OUI-SEM-APM"></trsb:glp></label></div></td>
               </tr>
               <tr>
                 <th scope="row"><trsb:glp key="DISPO-OUI-SEM-APEC"></trsb:glp></th>
-                <td><input type="checkbox" id="lundi_apres_ecole<%= cptDispo + 1 %>" name="lundi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(lundi_apres_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mardi_apres_ecole<%= cptDispo + 1 %>" name="mardi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(mardi_apres_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mercredi_apres_ecole<%= cptDispo + 1 %>" name="mercredi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(mercredi_apres_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="jeudi_apres_ecole<%= cptDispo + 1 %>" name="jeudi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(jeudi_apres_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="vendredi_apres_ecole<%= cptDispo + 1 %>" name="vendredi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(vendredi_apres_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="samedi_apres_ecole<%= cptDispo + 1 %>" name="samedi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(samedi_apres_ecole1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="dimanche_apres_ecole<%= cptDispo + 1 %>" name="dimanche_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(dimanche_apres_ecole1.equals("true")) { %> checked <% } %> /></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="lundi_apres_ecole<%= cptDispo + 1 %>" name="lundi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(lundi_apres_ecole1.equals("true")) { %> checked <% } %> /><label for="lundi_apres_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-lundi_apres_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.1") %> - <trsb:glp key="DISPO-OUI-SEM-APEC"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mardi_apres_ecole<%= cptDispo + 1 %>" name="mardi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(mardi_apres_ecole1.equals("true")) { %> checked <% } %> /><label for="mardi_apres_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mardi_apres_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.2") %> - <trsb:glp key="DISPO-OUI-SEM-APEC"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mercredi_apres_ecole<%= cptDispo + 1 %>" name="mercredi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(mercredi_apres_ecole1.equals("true")) { %> checked <% } %> /><label for="mercredi_apres_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mercredi_apres_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.3") %> - <trsb:glp key="DISPO-OUI-SEM-APEC"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="jeudi_apres_ecole<%= cptDispo + 1 %>" name="jeudi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(jeudi_apres_ecole1.equals("true")) { %> checked <% } %> /><label for="jeudi_apres_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-jeudi_apres_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.4") %> - <trsb:glp key="DISPO-OUI-SEM-APEC"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="vendredi_apres_ecole<%= cptDispo + 1 %>" name="vendredi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(vendredi_apres_ecole1.equals("true")) { %> checked <% } %> /><label for="vendredi_apres_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-vendredi_apres_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.5") %> - <trsb:glp key="DISPO-OUI-SEM-APEC"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="samedi_apres_ecole<%= cptDispo + 1 %>" name="samedi_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(samedi_apres_ecole1.equals("true")) { %> checked <% } %> /><label for="samedi_apres_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-samedi_apres_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.6") %> - <trsb:glp key="DISPO-OUI-SEM-APEC"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="dimanche_apres_ecole<%= cptDispo + 1 %>" name="dimanche_apres_ecole<%= cptDispo + 1 %>" value="true" <% if(dimanche_apres_ecole1.equals("true")) { %> checked <% } %> /><label for="dimanche_apres_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-dimanche_apres_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.7") %> - <trsb:glp key="DISPO-OUI-SEM-APEC"></trsb:glp></label></div></td>
               </tr>
               <tr>
                 <th scope="row"><trsb:glp key="DISPO-OUI-SEM-NUIT"></trsb:glp></th>
-                <td><input type="checkbox" id="lundi_nuit<%= cptDispo + 1 %>" name="lundi_nuit<%= cptDispo + 1 %>" value="true" <% if(lundi_nuit1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mardi_nuit<%= cptDispo + 1 %>" name="mardi_nuit<%= cptDispo + 1 %>" value="true" <% if(mardi_nuit1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="mercredi_nuit<%= cptDispo + 1 %>" name="mercredi_nuit<%= cptDispo + 1 %>" value="true" <% if(mercredi_nuit1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="jeudi_nuit<%= cptDispo + 1 %>" name="jeudi_nuit<%= cptDispo + 1 %>" value="true" <% if(jeudi_nuit1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="vendredi_nuit<%= cptDispo + 1 %>" name="vendredi_nuit<%= cptDispo + 1 %>" value="true" <% if(vendredi_nuit1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="samedi_nuit<%= cptDispo + 1 %>" name="samedi_nuit<%= cptDispo + 1 %>" value="true" <% if(samedi_nuit1.equals("true")) { %> checked <% } %> /></td>
-                <td><input type="checkbox" id="dimanche_nuit<%= cptDispo + 1 %>" name="dimanche_nuit<%= cptDispo + 1 %>" value="true" <% if(dimanche_nuit1.equals("true")) { %> checked <% } %> /></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="lundi_nuit<%= cptDispo + 1 %>" name="lundi_nuit<%= cptDispo + 1 %>" value="true" <% if(lundi_nuit1.equals("true")) { %> checked <% } %> /><label for="lundi_nuit<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-lundi_nuit<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.1") %> - <trsb:glp key="DISPO-OUI-SEM-NUIT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mardi_nuit<%= cptDispo + 1 %>" name="mardi_nuit<%= cptDispo + 1 %>" value="true" <% if(mardi_nuit1.equals("true")) { %> checked <% } %> /><label for="mardi_nuit<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mardi_nuit<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.2") %> - <trsb:glp key="DISPO-OUI-SEM-NUIT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="mercredi_nuit<%= cptDispo + 1 %>" name="mercredi_nuit<%= cptDispo + 1 %>" value="true" <% if(mercredi_nuit1.equals("true")) { %> checked <% } %> /><label for="mercredi_nuit<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-mercredi_nuit<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.3") %> - <trsb:glp key="DISPO-OUI-SEM-NUIT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="jeudi_nuit<%= cptDispo + 1 %>" name="jeudi_nuit<%= cptDispo + 1 %>" value="true" <% if(jeudi_nuit1.equals("true")) { %> checked <% } %> /><label for="jeudi_nuit<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-jeudi_nuit<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.4") %> - <trsb:glp key="DISPO-OUI-SEM-NUIT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="vendredi_nuit<%= cptDispo + 1 %>" name="vendredi_nuit<%= cptDispo + 1 %>" value="true" <% if(vendredi_nuit1.equals("true")) { %> checked <% } %> /><label for="vendredi_nuit<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-vendredi_nuit<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.5") %> - <trsb:glp key="DISPO-OUI-SEM-NUIT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="samedi_nuit<%= cptDispo + 1 %>" name="samedi_nuit<%= cptDispo + 1 %>" value="true" <% if(samedi_nuit1.equals("true")) { %> checked <% } %> /><label for="samedi_nuit<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-samedi_nuit<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.6") %> - <trsb:glp key="DISPO-OUI-SEM-NUIT"></trsb:glp></label></div></td>
+                <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="dimanche_nuit<%= cptDispo + 1 %>" name="dimanche_nuit<%= cptDispo + 1 %>" value="true" <% if(dimanche_nuit1.equals("true")) { %> checked <% } %> /><label for="dimanche_nuit<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-dimanche_nuit<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.7") %> - <trsb:glp key="DISPO-OUI-SEM-NUIT"></trsb:glp></label></div></td>
               </tr>
             </table>
             
@@ -415,18 +411,17 @@ int numeroDossierAssmat = profil.getNum_agrement();
         
           </div>
         </div>
-        
-    <div style="clar:both"></div>
-        <p data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-non-<%= cptDispo + 1 %> id="declaration<%= cptDispo + 1 %>" style="clear: both;"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>
-    
+        <div class="mbm">
+            <p data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-non-<%= cptDispo + 1 %> id="declaration<%= cptDispo + 1 %>"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>
+        </div>
       </div>
-      <% } %>         
+      <% } %>
+      
+      <div class="ds44-form__container">
+        <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
+        <input type="hidden" name="opUpdate" value="true" />
+        <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
+      </div>       
     </div>
-    
-    <div class="ds44-form__container">
-        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
-        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-        <input type="hidden" name="opUpdate" value="true" data-technical-field>
-    </div>
-
   </form>
