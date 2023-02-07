@@ -54,7 +54,7 @@ String uuid = UUID.randomUUID().toString();
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
-<%@ include file='/jcore/doMessageBox.jsp' %>
+<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
     name="formContact" id="formContact">

@@ -57,14 +57,13 @@ int numeroDossierAssmat = profil.getNum_agrement();
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
-<%@ include file='/jcore/doMessageBox.jsp' %>
+<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
-  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" name="formDispos" id="formDispos" data-no-encoding="true">
+  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" name="formDispos" id="formDispos">
 
   
     <div class="alert alert-block alertPass hide  alert-cg">
       <h4><%=glp("msg.message-box.warning")%></h4>
-      <p></p>
     </div>
       
     <%-- TODO --%>
@@ -245,8 +244,7 @@ int numeroDossierAssmat = profil.getNum_agrement();
           %>
            
           <%-- Par defaut ou si non renseigné coche disponibilité inconnue --%>
-          <input class="hidden" type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3DispoInconnu<%= cptDispo + 1 %>" value="0" 
-            <% if(Util.isEmpty(etatDispo) || etatDispo.equals("0")) { %> checked <% } %> data-technical-field/>
+          <input class="hidden" type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3DispoInconnu<%= cptDispo + 1 %>" value="0"<% if(Util.isEmpty(etatDispo) || etatDispo.equals("0")) { %> checked <% } %> data-technical-field/>
         
           <div id="Formulaires<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>' style="clear: both;"> 
           
@@ -414,8 +412,9 @@ int numeroDossierAssmat = profil.getNum_agrement();
         <div class="mbm">
             <p data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-non-<%= cptDispo + 1 %> id="declaration<%= cptDispo + 1 %>"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>
         </div>
+        <% } %>
       </div>
-      <% } %>
+      
       
       <div class="ds44-form__container">
         <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
@@ -423,5 +422,5 @@ int numeroDossierAssmat = profil.getNum_agrement();
         <input type="hidden" name="opUpdate" value="true" />
         <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
       </div>       
-    </div>
+    
   </form>

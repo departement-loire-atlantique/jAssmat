@@ -42,14 +42,14 @@ String uuid = UUID.randomUUID().toString();
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
-<%@ include file='/jcore/doMessageBox.jsp' %>
+<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
 <div class="headstall container-fluid formulaireActivation">
 <div class="formActivation form-cg form-espace-perso">
 <div class="form-cg-gray form-cg-white">
 
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
-    name="formContact" id="formContact" class="formContact formEspacePerso">
+    name="formContact" id="formContact">
 
     <div class="alert alert-block alertPass hide  alert-cg">
       <h4><%=glp("msg.message-box.warning")%></h4>
@@ -76,9 +76,10 @@ String uuid = UUID.randomUUID().toString();
 <!-- 	  </div> -->
 
 	<div class="ds44-form__container">
-        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
-        <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-        <input type="hidden" name="opUpdate" value="true" data-technical-field>
+        <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
+        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
+        <input type="hidden" name="opUpdate" value="true" />
+        <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
     </div>
     
   </form>
