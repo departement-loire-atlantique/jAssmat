@@ -1,3 +1,4 @@
+<%@page import="fr.cg44.plugin.socle.SocleUtils"%>
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
 <%@page import="fr.cg44.plugin.assmat.handler.DeclarerAccueilAssmatHandler"%>
 <%@page import="com.jalios.util.Util"%>
@@ -36,128 +37,156 @@ if (step == DeclarerAccueilAssmatHandler.MODALITES) {
   String motifProvisoire = Util.notEmpty(formHandler.getDeclaration().getMotifProvisoire()) ? formHandler.getDeclaration().getMotifProvisoire() : "";
  
 %>
-
-      <div class="blocSaisie">
         
         <!-- planning régulier ou variable -->
-        <p class="important"><trsb:glp key="ASS-DEC-MOD-Q1-HTML"></trsb:glp></p>
-     
-        <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore complètement chargée.'); return false;}" type="radio" value ="true" <%if("true".equals(planningRegulier)){ %> checked <%} %> class="radio" name="planningRegulier" id="accueilRegulier">
-        <label for="accueilRegulier" class="question">
-          <trsb:glp key="ASS-DEC-MOD-PLREG-HTML" ></trsb:glp>
-        </label>  
-        <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-PREG-INFO-HTML") %>" data-color="#AEC900">
-            <img alt="?" src="s.gif" class="spr-interrogation">
-        </button>
-               
-        <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore complètement chargée.'); return false;}" type="radio" value ="false"  <%if("false".equals(planningRegulier)){ %> checked <%} %> class="radio" name="planningRegulier" id="accueilVarible">
-        <label for="accueilVarible" class="question"><trsb:glp key="ASS-DEC-MOD-PLV-HTML" ></trsb:glp>
-            <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-PLV-INF-HTML") %>" data-color="#AEC900">
-              <img alt="?" src="s.gif" class="spr-interrogation">
-            </button>
-        </label>
+        <p class="h4-like"><trsb:glp key="ASS-DEC-MOD-Q1-HTML"></trsb:glp></p>
+
+        <% uuid = UUID.randomUUID().toString(); %>
+        <div id="form-element-<%= uuid %>" data-name="planningRegulier" class="ds44-form__radio_container ds44-form__container">
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input <%if("true".equals(planningRegulier)){ %> checked <%} %> type="radio" name="planningRegulier" value="true" id="name-radio-form-element-<%= uuid %>-t" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-t" for="name-radio-form-element-<%= uuid %>-t" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-MOD-PLREG-HTML" ></trsb:glp></label>
+                <button type="button" class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_<%= uuid %>-t">
+                    <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden"><%=AssmatUtil.getMessage("ASS-DEC-MOD-PREG-INFO-HTML") %></span>
+                </button>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input <%if("false".equals(planningRegulier)){ %> checked <%} %> type="radio" name="planningRegulier" value="false" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-MOD-PLV-HTML" ></trsb:glp></label>
+                <button type="button" class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_<%= uuid %>-f">
+                    <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden"><%=AssmatUtil.getMessage("ASS-DEC-MOD-PLV-INF-HTML") %></span>
+                </button>
+            </div>
+            <p id="tooltip-case_<%= uuid %>-t" class="hidden"><%=AssmatUtil.getMessage("ASS-DEC-MOD-PREG-INFO-HTML") %></p>
+            <p id="tooltip-case_<%= uuid %>-f" class="hidden"><%=AssmatUtil.getMessage("ASS-DEC-MOD-PLV-INF-HTML") %></p>
+        </div>
         
-        
-        <div class="accueilOcca-semaineType" <%if(!"false".equals(planningRegulier)){ %>  style="display: none;" <%} %>>       
+        <div data-enabled-by-name-radio-form-element-<%= uuid %>-f <%if(!"false".equals(planningRegulier)){ %>  class="hidden" <%} %>>
 	        
 	        <!-- Accueil occasionnel -->
-	        <div class="accueil-occasionnel">
-		        <p class="important">&nbsp;</p>
-		        <p class="important">
-		          <trsb:glp key="ASS-DEC-MOD-QAOCC-HTML"></trsb:glp>
-			        <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-AOCC-INFO-HTML") %>" data-color="#AEC900">
-	              <img alt="?" src="s.gif" class="spr-interrogation">
-	            </button>
-		        </p>
-		     
-		        <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore complètement chargée.'); return false;}" type="radio" value="true" <%if("true".equals(accueilOccasionnel)){ %> checked <%} %> class="radio" name="accueilOccasionnel" id="OuiOcca">
-		        <label for="OuiOcca">Oui</label>
-		        
-		        <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore complètement chargée.'); return false;}" type="radio" value="false" <%if("false".equals(accueilOccasionnel)){ %> checked <%} %> class="radio" name="accueilOccasionnel" id="NonOcca">
-		        <label for="NonOcca">Non</label>
+	        <% uuid = UUID.randomUUID().toString(); %>
+	        <div id="form-element-<%= uuid %>" data-name="accueilOccasionnel" class="ds44-form__radio_container ds44-form__container">
+	            <p class="h4-like">
+	               <trsb:glp key="ASS-DEC-MOD-QAOCC-HTML"></trsb:glp>
+	               <button type="button" class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_<%= uuid %>">
+                        <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden"><%=AssmatUtil.getMessage("ASS-DEC-MOD-AOCC-INFO-HTML") %></span>
+                    </button>
+	            </p>
+	            <div class="ds44-form__container ds44-checkBox-radio_list ">
+	                <input <%if("true".equals(accueilOccasionnel)){ %> checked <%} %> type="radio" name="accueilOccasionnel" value="true" id="name-radio-form-element-<%= uuid %>-t" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-t" for="name-radio-form-element-<%= uuid %>-t" class="ds44-radioLabel"><%= glp("ui.com.lbl.yes") %></label>
+	            </div>
+	            <div class="ds44-form__container ds44-checkBox-radio_list ">
+	                <input <%if("false".equals(accueilOccasionnel)){ %> checked <%} %> type="radio" name="accueilOccasionnel" value="false" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><%= glp("ui.com.lbl.no") %></label>
+	            </div>
+	            <p id="tooltip-case_<%= uuid %>" class="hidden"><%=AssmatUtil.getMessage("ASS-DEC-MOD-AOCC-INFO-HTML") %></p>
 	        </div>
-	        
-	        <!-- Semaines types -->
-	        <div class="semaine-type" <%if(!"false".equals(accueilOccasionnel)){ %>  style="display: none;" <%} %>>
-		        <p class="important">&nbsp;</p>
-		        <p class="important">
-		          <trsb:glp key="ASS-DEC-MOD-QIRR-HTML"></trsb:glp>
-		          <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-PIRR-INFO-HTML") %>" data-color="#AEC900">
-                <img alt="?" src="s.gif" class="spr-interrogation">
-              </button>
-		        </p>
-		     
-		        <input type="radio" value="true" <%if("true".equals(planningSemainesTypes)){ %> checked <%} %> class="radio" name="planningSemainesTypes" id="ouiSemaineType">
-		        <label for="ouiSemaineType">Oui</label>
 		        
-		        <input type="radio" value="false" <%if("false".equals(planningSemainesTypes)){ %> checked <%} %> class="radio" name="planningSemainesTypes" id="nonSemaineType">
-		        <label for="nonSemaineType">Non</label>
+	        <!-- Semaines types -->
+	        <div data-enabled-by-name-radio-form-element-<%= uuid %>-f <%if(!"false".equals(accueilOccasionnel)){ %> class="hidden" <%} %>>
+	            <% uuid = UUID.randomUUID().toString(); %>
+		        <p class="h4-like">
+		          <trsb:glp key="ASS-DEC-MOD-QIRR-HTML"></trsb:glp>
+		          <button type="button" class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_<%= uuid %>">
+                      <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden"><%=AssmatUtil.getMessage("ASS-DEC-MOD-PIRR-INFO-HTML") %></span>
+                  </button>
+		        </p>
+		        <div id="form-element-<%= uuid %>" data-name="planningSemainesTypes" class="ds44-form__radio_container ds44-form__container">
+			        <div class="ds44-form__container ds44-checkBox-radio_list ">
+	                    <input <%if("true".equals(planningSemainesTypes)){ %> checked <%} %> type="radio" name="planningSemainesTypes" value="true" id="name-radio-form-element-<%= uuid %>-t" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-t" for="name-radio-form-element-<%= uuid %>-t" class="ds44-radioLabel"><%= glp("ui.com.lbl.yes") %></label>
+	                </div>
+	                <div class="ds44-form__container ds44-checkBox-radio_list ">
+	                    <input <%if("false".equals(planningSemainesTypes)){ %> checked <%} %> type="radio" name="planningSemainesTypes" value="false" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><%= glp("ui.com.lbl.no") %></label>
+	                </div>
+			        
+			        <p id="tooltip-case_<%= uuid %>" class="hidden"><%=AssmatUtil.getMessage("ASS-DEC-MOD-PIRR-INFO-HTML") %></p>
+		        </div>
 	        </div>
         </div>
         
         <!-- Uniquement pendant les vacances -->
-        <p class="important">&nbsp;</p>
-        <p class="important"><trsb:glp key="ASS-DEC-MOD-Q2-HTML" ></trsb:glp></p>
-     
-        <input type="radio" value="true" <%if("true".equals(uniquementVacances)){ %> checked <%} %> class="radio" name="uniquementVacances" id="ouiCacancesScolaires">
-        <label for="ouiCacancesScolaires">Oui</label>
-        
-        <input type="radio" value="false" <%if("false".equals(uniquementVacances)){ %> checked <%} %> class="radio" name="uniquementVacances" id="nonVacancesScolaires">
-        <label for="nonVacancesScolaires">Non</label>
+        <p class="h4-like"><trsb:glp key="ASS-DEC-MOD-Q2-HTML" ></trsb:glp></p>
+
+        <% uuid = UUID.randomUUID().toString(); %>
+        <div id="form-element-<%= uuid %>" data-name="uniquementVacances" class="ds44-form__radio_container ds44-form__container">
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input  <%if("true".equals(uniquementVacances)){ %> checked <%} %> type="radio" name="uniquementVacances" value="true" id="name-radio-form-element-<%= uuid %>-t" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-t" for="name-radio-form-element-<%= uuid %>-t" class="ds44-radioLabel"><%= glp("ui.com.lbl.yes") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input <%if("false".equals(uniquementVacances)){ %> checked <%} %> type="radio" name="uniquementVacances" value="false" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><%= glp("ui.com.lbl.no") %></label>
+            </div>
+        </div>
         
         
         <!-- Accueil provisoire -->
-        <p class="important">&nbsp;</p>
-        <p class="important"><trsb:glp key="ASS-DEC-MOD-Q3-HTML" ></trsb:glp></p>
+        <p class="h4-like"><trsb:glp key="ASS-DEC-MOD-Q3-HTML" ></trsb:glp></p>
         <p><trsb:glp key="ASS-DEC-MOD-Q3-INF-HTML" /></p>
         
-        <input type="radio" value="true"  class="radio" <%if("true".equals(estProvisoire)){ %> checked <%} %> name="estProvisoire" id="accueilProvisoireOui" />
-        <label for="accueilProvisoireOui">Oui</label>
-        
-        <input type="radio" value="false"  <%if("false".equals(estProvisoire)){ %> checked <%} %> class="radio" name="estProvisoire" id="accueilProvisoireNon" />
-        <label for="accueilProvisoireNon">Non</label>
+        <% uuid = UUID.randomUUID().toString(); %>
+        <div id="form-element-<%= uuid %>" data-name="estProvisoire" class="ds44-form__radio_container ds44-form__container">
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input  <%if("true".equals(estProvisoire)){ %> checked <%} %> type="radio" name="estProvisoire" value="true" id="name-radio-form-element-<%= uuid %>-t" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-t" for="name-radio-form-element-<%= uuid %>-t" class="ds44-radioLabel"><%= glp("ui.com.lbl.yes") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list ">
+                <input <%if("false".equals(estProvisoire)){ %> checked <%} %> type="radio" name="estProvisoire" value="false" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><%= glp("ui.com.lbl.no") %></label>
+            </div>
+        </div>
         
        
-        <div class="accueilProvisoire" <%if(!"true".equals(estProvisoire)){ %>  style="display: none;" <%} %>>
-
-          <label for="dateFin" class="gauche"><trsb:glp key="ASS-DEC-MOD-DFI-HTML" ></trsb:glp></label> 
-          <input type="string" value="<%= dateFinProvisoire %>" name="dateFinProvisoire" id="dateFin" class="droite">                    
-  
-          <label for="motif" class="gauche"><trsb:glp key="ASS-DEC-MOD-MOT-HTML" ></trsb:glp>
-          <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-MOD-MOT-INF-HTML") %>" data-color="#AEC900">
-              <img alt="?" src="s.gif" class="spr-interrogation">
-            </button></label> 
-          <input type="text" name="motifProvisoire" value="<%= motifProvisoire %>" id="motif" class="droite">      
-        </div> 
-        
+        <div data-enabled-by-name-radio-form-element-<%= uuid %>-t <%if(!"true".equals(estProvisoire)){ %>  class="hidden" <%} %>>
+          <jalios:buffer name="titleLabelField"><trsb:glp key="ASS-DEC-MOD-DFI-HTML" attribute="true" ></trsb:glp></jalios:buffer>
+          <p class="h4-like"><trsb:glp key="ASS-DEC-MOD-DFI-HTML" ></trsb:glp></p>
+          <% uuid = UUID.randomUUID().toString(); %>
+          <div class="ds44-form__container">
+            <div class="ds44-posRel">
+                <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= titleLabelField %></span></span></label>
+                <div data-name="dateFinProvisoire" class="ds44-datepicker__shape ds44-inpStd">
+                    <input id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", titleLabelField)) %>' value="<%= SocleUtils.getDayFromDate(dateFinProvisoire) %>" data-is-date="true" aria-describedby="explanation-form-element-<%= uuid %>">
+                    <span>/</span>
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", titleLabelField)) %>'  value="<%= SocleUtils.getMonthFromDate(dateFinProvisoire) %>" data-is-date="true" aria-describedby="explanation-form-element-<%= uuid %>">
+                    <span>/</span>
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.annee", titleLabelField)) %>'  value="<%= SocleUtils.getYearFromDate(dateFinProvisoire) %>" data-is-date="true" aria-describedby="explanation-form-element-<%= uuid %>">
+                </div>
+                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", titleLabelField) %></span></button>
+                <span class="ds44-calendar" aria-hidden="true" aria-describedby=""><i class="icon icon-date icon--large" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.date.calendrier.afficher", titleLabelField) %></span></span>
+                <div  class="vanilla-calendar hidden"></div>
+            </div>
+          </div>
+          
+          <% uuid = UUID.randomUUID().toString(); %>
+          <jalios:buffer name="titleLabelField"><trsb:glp key="ASS-DEC-MOD-MOT-HTML" attribute="true" ></trsb:glp></jalios:buffer>
+          <div class="ds44-form__container">
+	        <div class="ds44-posRel">
+	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= titleLabelField %></span></span></label>
+	            <input type="text" id="form-element-<%= uuid %>" name="motifProvisoire" value="<%= motifProvisoire %>" class="ds44-inpStd" title='<%= titleLabelField %>' required />
+	            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", titleLabelField) %></span></button>
+	        </div>
+	        <div class="ds44-field-information" aria-live="polite">
+                <ul class="ds44-field-information-list ds44-list">
+                    <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%=AssmatUtil.getMessage("ASS-DEC-MOD-MOT-INF-HTML") %></li>
+                </ul>
+            </div>
+	      </div>
+        </div>
       </div>
       
 
-      
-     <p class="submit prev">
-         <label for="submitprev"> <input type="submit" id="submitprev"
-             name="opPrevious"
-             value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML" ></trsb:glp>"
-             class="submitButton"> <span class="input-box"
-             style="background-color: #aec900"><span
-                 class="spr-recherche-ok"></span></span>
-         </label> <input type="hidden" name="noSendRedirect" value="true">  
-     </p> 
-    
+      <div class="ds44-form__container">
+          <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></button>
+          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+          <input type="hidden" name="id" value="c_5065" data-technical-field>
+      </div>
  
-      <p class="submit enregistrer" style='<%= isModif ? "visibility : hidden" : ""  %>'>
-        <label for="create"> <input id="create" type="submit" name="opCreate" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML" ></trsb:glp>" class="submitButton">
-          <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
-        </label> <input type="hidden" name="noSendRedirect" value="true"> 
-      </p>
-    
-      <p class="submit">
-          <label for="submit"> <input type="submit" id="submit"
-            name="opNext" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML" ></trsb:glp>" class="submitButton">
-            <span class="input-box" style="background-color: #aec900"><span
-              class="spr-recherche-ok"></span></span>
-          </label>           
-      </p>
+      <jalios:if predicate="<%= !isModif %>">
+        <div class="ds44-form__container">
+            <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML" attribute="true" ></trsb:glp></button>
+            <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+            <input type="hidden" name="id" value="c_5065" data-technical-field>
+        </div>  
+      </jalios:if>
+      
+      <div class="ds44-form__container">
+          <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML" attribute="true" ></trsb:glp></button>
+          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+          <input type="hidden" name="id" value="c_5065" data-technical-field>
+      </div>
 
 	<%}%>
 <!-- FIN -->
