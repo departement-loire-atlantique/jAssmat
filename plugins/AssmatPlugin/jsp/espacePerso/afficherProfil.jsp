@@ -42,14 +42,14 @@ String uuid = UUID.randomUUID().toString();
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
-<%@ include file='/jcore/doMessageBox.jsp' %>
+<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
 <div class="headstall container-fluid formulaireActivation">
 <div class="formActivation form-cg form-espace-perso">
 <div class="form-cg-gray form-cg-white">
 
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
-    name="formContact" id="formContact" class="formContact formEspacePerso">
+    name="formContact" id="formContact">
 
     <div class="alert alert-block alertPass hide  alert-cg">
       <h4><%=glp("msg.message-box.warning")%></h4>
