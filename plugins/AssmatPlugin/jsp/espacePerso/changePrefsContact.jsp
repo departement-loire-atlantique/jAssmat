@@ -84,10 +84,6 @@ String uuid = UUID.randomUUID().toString();
     
     <h3 class="h3-like"><%= glp("jcmsplugin.assmatplugin.espacepro.modifiercoords") %></h3>
 
-    <div class="alert alert-block">
-	   <h4><%=glp("msg.message-box.warning")%></h4>
-    </div>
-    
     <%-- Votre adresse e-mail --%>
     <% uuid = UUID.randomUUID().toString(); %>
             <div class="ds44-form__container">
