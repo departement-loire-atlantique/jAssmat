@@ -271,7 +271,7 @@ ui.fo.resetpass.request.form.invalid-telephone: Le numéro de téléphone que vo
 ui.fo.resetpass.request.form.request-already-done-phone: Une demande de changement de mot de passe a déjà été effectuée il y a moins de {0} pour ce numéro de téléphone. <br/>Veuillez attendre que le SMS vous parvienne.
 ui.fo.resetpass.phone.no-matching-member.content-text: Nous sommes désolés mais aucun compte correspondant à ce numéro de téléphone n'a pu être trouvé.
 ui.fo.resetpass.request.phone.label: Téléphone
-jcmsplugin.assmatplugin.form.resetpass.password-updated:<p>Votre mot de passe à bien été mis à jour.</p><p>Un email de confirmation a été envoyé</p>
+jcmsplugin.assmatplugin.form.resetpass.password-updated:<p>Votre mot de passe a bien été mis à jour.</p><p>Un email de confirmation a été envoyé.</p>
 jcmsplugin.assmatplugin.form.resetpass.lien-retour-label : Retour vers la rubrique "Relais petite enfance"
 
 plugin.corporateidentity.form.login.phone.subtitle: (Mobile)
