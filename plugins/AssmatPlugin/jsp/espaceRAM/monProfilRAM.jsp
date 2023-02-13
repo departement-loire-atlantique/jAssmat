@@ -100,7 +100,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 				</jalios:if>
 				
 				<li><a href="<%=publi.getDisplayUrl(userLocale) %>?portal=<%=idPortalRAM%>"><trsb:glp key="ESPACE-RAM-CHANGE-PASS-MEMBER" ></trsb:glp></a></li>
-				<li><a href="front/logout.jsp"><trsb:glp key="ESPACE-RAM-DECONNEXION-MEMBER" ></trsb:glp></a></li>
+				<li><a href="front/logout.jsp?redirect=<%=HttpUtil.encodeForURL(ServletUtil.getUrl(request))%>"><trsb:glp key="ESPACE-RAM-DECONNEXION-MEMBER" ></trsb:glp></a></li>
 			</ul>
 			
         </div>
