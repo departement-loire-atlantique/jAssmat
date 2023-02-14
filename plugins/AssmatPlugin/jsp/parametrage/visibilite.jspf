@@ -17,6 +17,10 @@ if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
 	
 	%>
 		<!-- FORMULAIRE A ETAPES -->
+		
+		              <p class=""><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
+		
+		
             <% uuid = UUID.randomUUID().toString(); %>
 		    <div id="form-element-<%= uuid %>" data-name="visibiliteSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
 		       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
@@ -43,8 +47,14 @@ if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
 	</div>
 
 	<% if(formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()){ %>
-	<div class="ds44-form__container">
-        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp>'><trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp></button>
+	<div class="ds44-form__container ds44-txtRight">
+<%--         <button class="ds44-btnStd" data-send-native data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp>'><trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp></button> --%>
+       
+       
+      
+        <button data-send-native data-submit-value="true" data-submit-key="opCreate" class="ds44-btnStd ds44-btn--invert" title="Étape suivante : [étape XX/XX] - [NomDeLetape]"><span class="ds44-btnInnerText"><trsb:glp attribute="true" key="VISIB-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+       
+       
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
         <input type="hidden" name="id" value="c_5065" data-technical-field>
         <input type="hidden" name="opNext" value="true" data-technical-field>

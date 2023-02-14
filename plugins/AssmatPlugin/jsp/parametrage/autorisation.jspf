@@ -49,9 +49,12 @@ if (step == ParametrageAssmatHandler.AUTORISATION_STEP) {
     
     <trsb:glp key="AUTOR-LEG-HTML"></trsb:glp>
     
-    <div class="ds44-form__container">
-        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>'><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></button>
-        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp key="CONTACT-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="AUTOR-BOUTON" attribute="true"></trsb:glp></button>
+    <div class="ds44-flex ds44-fsb">
+               
+        <button data-send-native name="opPrevious" value="true" data-form-no-validate data-submit-value="true" data-submit-key="opPrevious" class="ds44-btnStd ds44-btn--invert" title="Étape précédente : [étape XX/XX] - [NomDeLetape]"><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></span></button>
+        <button data-send-native data-submit-value="true" name="opNext" value="true" data-submit-key="opNext" class="ds44-btnStd ds44-btn--invert" title="Étape suivante : [étape XX/XX] - [NomDeLetape]"><span class="ds44-btnInnerText"><trsb:glp key="AUTOR-BOUTON" attribute="true"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+               
+        
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
     </div>
 
@@ -73,7 +76,7 @@ if (step == ParametrageAssmatHandler.AUTORISATION_STEP) {
     <% } %>
     
     <div class="ds44-form__container">
-        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="AUTOR-MERCI-BOUT-HTML" attribute="true"></trsb:glp>'><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></button>
+        <button class="ds44-btnStd" data-send-native name="opCreate" value="true" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="AUTOR-MERCI-BOUT-HTML" attribute="true"></trsb:glp>'><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></button>
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field/>
         <input type="hidden" name="opFinish" value="true" data-technical-field/>
     </div>
