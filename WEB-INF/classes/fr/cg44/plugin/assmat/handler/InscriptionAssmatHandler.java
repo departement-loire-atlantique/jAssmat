@@ -1,7 +1,6 @@
 package fr.cg44.plugin.assmat.handler;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -148,8 +147,7 @@ protected String nameUA;
   protected String dateDernierRenouvellementMAM;
   protected String dateProchainRenouvellementMAM;
 
-  private String endTag = "/>";
-  private String endTagTechnicalField = "data-technical-field />";
+  private HandlerUtil handlerUtil = HandlerUtil.getInstance();
   
   /**
    * Méthode qui valide le passage à l'étape suivante
@@ -900,36 +898,6 @@ public AssmatSolis getAssmat() {
 
 		return assmat;
 	}
-	
-	/**
-	 * Permet d'ajouter "data-technical-field" aux input type="hidden"
-	 * @param fieldName
-	 * @param value
-	 * @return
-	 */
-	private String getHiddenFieldTag(String fieldName, String value) {
-    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
-  }
-	
-	private String getHiddenFieldTag(String fieldName, String[] value) {
-    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
-  }
-  
-	private String getHiddenFieldTag(String fieldName, int value) {
-    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
-  }
-	
-	private String getHiddenFieldTag(String fieldName, Double value) {
-    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
-  }
-	
-	private String getHiddenFieldTag(String fieldName, long value) {
-    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
-  }
-	
-	private String getHiddenFieldTag(String fieldName, boolean value) {
-    return getHiddenField(fieldName, value).replace(endTag, endTagTechnicalField);
-  }
 
   /**
    * Persiste les données dans des input type hidden pour permettre le retour
@@ -940,58 +908,58 @@ public AssmatSolis getAssmat() {
   public String getFormStepHiddenFields() {
     StringBuilder sb = new StringBuilder();
 
-    sb.append(getHiddenFieldTag("formStep", formStep));
-    sb.append(getHiddenFieldTag("inscriptionOK", inscriptionOK));
+    sb.append(handlerUtil.getHiddenFieldTag("formStep", formStep));
+    sb.append(handlerUtil.getHiddenFieldTag("inscriptionOK", inscriptionOK));
     if (formStep >= IDENTIFICATION_STEP) {
-      sb.append(getHiddenFieldTag("commune", commune));
-      sb.append(getHiddenFieldTag("communeMam", communeMam));
-      sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
-      sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
-      sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
+      sb.append(handlerUtil.getHiddenFieldTag("commune", commune));
+      sb.append(handlerUtil.getHiddenFieldTag("communeMam", communeMam));
+      sb.append(handlerUtil.getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
+      sb.append(handlerUtil.getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
+      sb.append(handlerUtil.getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
 
       if(nbTentativeErrone>=NB_TENTATIVE_MAX){	// Formulaire de 2e erreur d'identification
-	      sb.append(getHiddenFieldTag("nom", nom));
-	      sb.append(getHiddenFieldTag("prenom", prenom));
+	      sb.append(handlerUtil.getHiddenFieldTag("nom", nom));
+	      sb.append(handlerUtil.getHiddenFieldTag("prenom", prenom));
       }
     }
     if (formStep >= VERIFICATION_STEP) {
-      sb.append(getHiddenFieldTag("civilite", civilite));
-      sb.append(getHiddenFieldTag("nom", nom));
-      sb.append(getHiddenFieldTag("prenom", prenom));
-      sb.append(getHiddenFieldTag("email", email));
-      sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
-      sb.append(getHiddenFieldTag("telephone", telephone));
-      sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
-      sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
+      sb.append(handlerUtil.getHiddenFieldTag("civilite", civilite));
+      sb.append(handlerUtil.getHiddenFieldTag("nom", nom));
+      sb.append(handlerUtil.getHiddenFieldTag("prenom", prenom));
+      sb.append(handlerUtil.getHiddenFieldTag("email", email));
+      sb.append(handlerUtil.getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
+      sb.append(handlerUtil.getHiddenFieldTag("telephone", telephone));
+      sb.append(handlerUtil.getHiddenFieldTag("telephoneFixe", telephoneFixe));
+      sb.append(handlerUtil.getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
       
-      sb.append(getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
+      sb.append(handlerUtil.getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
       
       if(Util.notEmpty(latAM) && Util.notEmpty(longAM) ){
-        sb.append(getHiddenFieldTag("latAM", latAM));
-        sb.append(getHiddenFieldTag("longAM", longAM));
+        sb.append(handlerUtil.getHiddenFieldTag("latAM", latAM));
+        sb.append(handlerUtil.getHiddenFieldTag("longAM", longAM));
        }
        if(Util.notEmpty(latMAM) && Util.notEmpty(longMAM) ){
-        sb.append(getHiddenFieldTag("latMAM", latMAM));
-        sb.append(getHiddenFieldTag("longMAM", longMAM));
+        sb.append(handlerUtil.getHiddenFieldTag("latMAM", latMAM));
+        sb.append(handlerUtil.getHiddenFieldTag("longMAM", longMAM));
        }
       
-      sb.append(getHiddenFieldTag("dateProchainRenouvellement", dateProchainRenouvellement));
-      sb.append(getHiddenFieldTag("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
-      sb.append(getHiddenFieldTag("dateDernierRenouvellement", dateDernierRenouvellement));
-      sb.append(getHiddenFieldTag("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
+      sb.append(handlerUtil.getHiddenFieldTag("dateProchainRenouvellement", dateProchainRenouvellement));
+      sb.append(handlerUtil.getHiddenFieldTag("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
+      sb.append(handlerUtil.getHiddenFieldTag("dateDernierRenouvellement", dateDernierRenouvellement));
+      sb.append(handlerUtil.getHiddenFieldTag("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));      
       
-      sb.append(getHiddenFieldTag("idSolis", idSolis));
-      sb.append(getHiddenFieldTag("idUa", idUa));
-      sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
-      sb.append(getHiddenFieldTag("numeroTelUA", numeroTelUA));
-      sb.append(getHiddenFieldTag("nameUA", nameUA));
+      sb.append(handlerUtil.getHiddenFieldTag("idSolis", idSolis));
+      sb.append(handlerUtil.getHiddenFieldTag("idUa", idUa));
+      sb.append(handlerUtil.getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
+      sb.append(handlerUtil.getHiddenFieldTag("numeroTelUA", numeroTelUA));
+      sb.append(handlerUtil.getHiddenFieldTag("nameUA", nameUA));
 
     }
     if (formStep >= LOGIN_STEP) {
-      sb.append(getHiddenFieldTag("typeenvoi", typeenvoi));
+      sb.append(handlerUtil.getHiddenFieldTag("typeenvoi", typeenvoi));
     }
     if(formStep >= CONFIRMATION_STEP){
-      sb.append(getHiddenFieldTag("nbTentativeErroneSMS", nbTentativeErroneSMS));
+      sb.append(handlerUtil.getHiddenFieldTag("nbTentativeErroneSMS", nbTentativeErroneSMS));
     }
 
     return sb.toString();
@@ -1006,46 +974,46 @@ public AssmatSolis getAssmat() {
   public String getAllFormStepHiddenFields() {
     StringBuilder sb = new StringBuilder();
 
-    sb.append(getHiddenFieldTag("formStep", formStep));
+    sb.append(handlerUtil.getHiddenFieldTag("formStep", formStep));
     if((formStep ==InscriptionAssmatHandler.IDENTIFICATION_STEP && nbTentativeErrone>=InscriptionAssmatHandler.NB_TENTATIVE_MAX)){
-    	sb.append(getHiddenFieldTag("nbTentativeErrone", 0));	
+    	sb.append(handlerUtil.getHiddenFieldTag("nbTentativeErrone", 0));	
     } else {
-    sb.append(getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
+    sb.append(handlerUtil.getHiddenFieldTag("nbTentativeErrone", nbTentativeErrone));
     }
-    sb.append(getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
-    sb.append(getHiddenFieldTag("commune", commune));
-    sb.append(getHiddenFieldTag("communeMam", communeMam));
-    sb.append(getHiddenFieldTag("nom", nom));
-    sb.append(getHiddenFieldTag("prenom", prenom));
-    sb.append(getHiddenFieldTag("civilite", civilite));
-    sb.append(getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
-    sb.append(getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
-    sb.append(getHiddenFieldTag("email", email));
-    sb.append(getHiddenFieldTag("telephone", telephone));
-    sb.append(getHiddenFieldTag("telephoneFixe", telephoneFixe));
-    sb.append(getHiddenFieldTag("telephone", telephone));
-    sb.append(getHiddenFieldTag("typeenvoi", typeenvoi));
-    sb.append(getHiddenFieldTag("choixLogin", choixLogin));
-    sb.append(getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
+    sb.append(handlerUtil.getHiddenFieldTag("numeroAgrement", numeroAgrementInteger));
+    sb.append(handlerUtil.getHiddenFieldTag("commune", commune));
+    sb.append(handlerUtil.getHiddenFieldTag("communeMam", communeMam));
+    sb.append(handlerUtil.getHiddenFieldTag("nom", nom));
+    sb.append(handlerUtil.getHiddenFieldTag("prenom", prenom));
+    sb.append(handlerUtil.getHiddenFieldTag("civilite", civilite));
+    sb.append(handlerUtil.getHiddenFieldTag("idInscriptionAM", idInscriptionAM));
+    sb.append(handlerUtil.getHiddenFieldTag("dateDeNaissance", dateDeNaissance));
+    sb.append(handlerUtil.getHiddenFieldTag("email", email));
+    sb.append(handlerUtil.getHiddenFieldTag("telephone", telephone));
+    sb.append(handlerUtil.getHiddenFieldTag("telephoneFixe", telephoneFixe));
+    sb.append(handlerUtil.getHiddenFieldTag("telephone", telephone));
+    sb.append(handlerUtil.getHiddenFieldTag("typeenvoi", typeenvoi));
+    sb.append(handlerUtil.getHiddenFieldTag("choixLogin", choixLogin));
+    sb.append(handlerUtil.getHiddenFieldTag("datePremierAgrement", datePremierAgrement));
     
     if(Util.notEmpty(latAM) && Util.notEmpty(longAM) ){
-      sb.append(getHiddenFieldTag("latAM", latAM));
-      sb.append(getHiddenFieldTag("longAM", longAM));
+      sb.append(handlerUtil.getHiddenFieldTag("latAM", latAM));
+      sb.append(handlerUtil.getHiddenFieldTag("longAM", longAM));
      }
      if(Util.notEmpty(latMAM) && Util.notEmpty(longMAM) ){
-      sb.append(getHiddenFieldTag("latMAM", latMAM));
-      sb.append(getHiddenFieldTag("longMAM", longMAM));
+      sb.append(handlerUtil.getHiddenFieldTag("latMAM", latMAM));
+      sb.append(handlerUtil.getHiddenFieldTag("longMAM", longMAM));
      }
    
    
-    sb.append(getHiddenFieldTag("dateProchainRenouvellement", dateProchainRenouvellement));
-    sb.append(getHiddenFieldTag("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
-    sb.append(getHiddenFieldTag("dateDernierRenouvellement", dateDernierRenouvellement));
-    sb.append(getHiddenFieldTag("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));
+    sb.append(handlerUtil.getHiddenFieldTag("dateProchainRenouvellement", dateProchainRenouvellement));
+    sb.append(handlerUtil.getHiddenFieldTag("dateProchainRenouvellementMAM", dateProchainRenouvellementMAM));
+    sb.append(handlerUtil.getHiddenFieldTag("dateDernierRenouvellement", dateDernierRenouvellement));
+    sb.append(handlerUtil.getHiddenFieldTag("dateDernierRenouvellementMAM", dateDernierRenouvellementMAM));
     
-    sb.append(getHiddenFieldTag("idSolis", idSolis));
-    sb.append(getHiddenFieldTag("idUa", idUa));
-    sb.append(getHiddenFieldTag("inscriptionOK", inscriptionOK));
+    sb.append(handlerUtil.getHiddenFieldTag("idSolis", idSolis));
+    sb.append(handlerUtil.getHiddenFieldTag("idUa", idUa));
+    sb.append(handlerUtil.getHiddenFieldTag("inscriptionOK", inscriptionOK));
 
 
     return sb.toString();
@@ -1053,7 +1021,6 @@ public AssmatSolis getAssmat() {
 
   @Override
   public Class<? extends Data> getDataClass() {
-
     return null;
   }
 

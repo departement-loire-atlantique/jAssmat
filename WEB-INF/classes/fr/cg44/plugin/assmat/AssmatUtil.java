@@ -89,6 +89,8 @@ public class AssmatUtil {
 	private static final Group groupASSO = Channel.getChannel().getGroup(idGroupeASSO);
 	
 	private static final boolean synchroOK = Channel.getChannel().getBooleanProperty("jcmsplugin.assmatplugin.synchroAM", true);
+	
+	private static String ddMmYyyyFormat = "dd/MM/yyyy";
 
 	// valueList="true|false|none" labelList="Oui|Non|Aucun"
 	public static enum Selection {

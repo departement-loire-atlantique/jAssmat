@@ -40,9 +40,6 @@ public class ParametrageAssmatHandler extends EditProfilASSMATHandler {
 	protected boolean afficherMessageConfirmationVisibiliteSiteNone = true;
 
 	protected boolean afficherMessageConfirmation = false;
-	
-	private String endTag = "/>";
-  private String endTagTechnicalField = "data-technical-field />";
 
 	/**
 	 * Méthode qui valide le passage à l'étape suivante
