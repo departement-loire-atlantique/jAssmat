@@ -25,7 +25,6 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe") %></span></span></label>
                     <input type="text" id="form-element-<%= uuid %>" value='<%= Util.notEmpty(formHandler.getAvailableTelephoneFixe())?formHandler.getAvailableTelephoneFixe():""%>' name="telephoneFixe" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe")) %></span></button>
-                    <% if("0".equals(canalDeCommunication)) { %><input type="hidden" name="telephoneFixe" value='<%=telephoneMobile%>' data-technical-field/><%} %>
                 </div>
                 <div class="ds44-field-information" aria-live="polite">
                     <ul class="ds44-field-information-list ds44-list">
@@ -52,6 +51,7 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %></span></span></label>
                     <input type="text" id="form-element-<%= uuid %>"<% if("0".equals(canalDeCommunication)) { %> disabled <% } %>value='<%= telephoneMobile %>' name="telephonePortable" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile")) %></span></button>
+                    <% if("0".equals(canalDeCommunication)) { %><input type="hidden" name="telephonePortable" value='<%=telephoneMobile%>'/><%} %>                   
                 </div>
                 <div class="ds44-field-information" aria-live="polite">
                     <ul class="ds44-field-information-list ds44-list">
@@ -97,9 +97,10 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span></span></label>
                     <input type="text"<% if("1".equals(canalDeCommunication)) { %> disabled <% } %>id="form-element-<%= uuid %>" value='<%=Util.notEmpty(formHandler.getAdresseMail())?formHandler.getAdresseMail():""%>' name="adresseMail" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email")) %></span></button>
-                    <jalios:if predicate="">
-                        <input type="hidden" name="adresseMail" value='<%=Util.notEmpty(formHandler.getAdresseMail())?formHandler.getAdresseMail():""%>' data-technical-field/>
-                    </jalios:if>
+<!--                     <jalios:if predicate=""> -->
+<%--                         <input type="hidden" name="adresseMail" value='<%=Util.notEmpty(formHandler.getAdresseMail())?formHandler.getAdresseMail():""%>' data-technical-field/> --%>
+<!--                     </jalios:if> -->
+                         <% if("1".equals(canalDeCommunication)) { %><input type="hidden" name="adresseMail" value='<%=Util.notEmpty(formHandler.getAdresseMail())?formHandler.getAdresseMail():""%>'/><%} %>                       
                 </div>
                 <div class="ds44-field-information" aria-live="polite">
                     <ul class="ds44-field-information-list ds44-list">
@@ -139,10 +140,14 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
 
 	<trsb:glp key="CONTACT-DISPO-LEG-HTML"></trsb:glp>
  
-	<div class="ds44-form__container">
-        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp>'><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></button>
-        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp key="CONTACT-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="CONTACT-BOUTON-HTML" attribute="true"></trsb:glp></button>
+	<div class="ds44-flex ds44-fsb">
+                 
+        <button data-send-native name="opPrevious" value="true" data-form-no-validate data-submit-value="true" data-submit-key="opPrevious" class="ds44-btnStd ds44-btn--invert" title="Étape précédente : [étape XX/XX] - [NomDeLetape]"><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></span></button>
+        <button data-send-native data-submit-value="true" name="opNext" value="true" data-submit-key="opNext" class="ds44-btnStd ds44-btn--invert" title="Étape suivante : [étape XX/XX] - [NomDeLetape]"><span class="ds44-btnInnerText"><trsb:glp key="CONTACT-BOUTON-HTML" attribute="true"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+        
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+      
+        
     </div>	
 	
 	<!-- FIN FORMULAIRE A ETAPES -->
