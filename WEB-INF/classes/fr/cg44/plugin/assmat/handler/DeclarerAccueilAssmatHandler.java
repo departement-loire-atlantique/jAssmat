@@ -901,7 +901,18 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
    */
   @Override
   public boolean processAction() throws IOException {
-
+    
+    // Précaution : modifier le format de dates yyyy/MM/dd soumis
+    // vers le format dd/MM/yyyy final
+    if (Util.notEmpty(dateNaissanceEnfant)) {
+      this.setDateNaissanceEnfant(AssmatUtil.convertFormDateToAssmatProfilDate(dateNaissanceEnfant));
+    }
+    if (Util.notEmpty(dateDebutAccueil)) {
+      this.setDateDebutAccueil(AssmatUtil.convertFormDateToAssmatProfilDate(dateDebutAccueil));
+    }
+    if (Util.notEmpty(dateFinProvisoire)) {
+      this.setDateFinProvisoire( AssmatUtil.convertFormDateToAssmatProfilDate(dateFinProvisoire));
+    }
    
     // Récuprère le numéro de dossier par rapport au membre connecté
     Member mbr = Channel.getChannel().getCurrentLoggedMember();
@@ -1168,8 +1179,8 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
       declaration.setDateFinProvisoire(date);
     }else {
       declaration.setDateFinProvisoire(null);
-    }     
-    declaration.setMotifProvisoire(motifProvisoire);    
+    }
+    declaration.setMotifProvisoire(motifProvisoire);
   }
 
   /**
