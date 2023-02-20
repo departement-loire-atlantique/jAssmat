@@ -295,7 +295,7 @@ boolean noMonthIsCurrentMonth = false;
           <%-- Par defaut ou si non renseigné coche disponibilité inconnue --%>
           <input class="hidden" type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3DispoInconnu<%= cptDispo + 1 %>" value="0"<% if(Util.isEmpty(etatDispo) || etatDispo.equals("0")) { %> checked <% } %> data-technical-field/>
         
-          <div id="Formulaires<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>' style="clear: both;"> 
+          <div id="Formulaires<%= cptDispo + 1 %>" data-fields-no-reset="" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>' style="clear: both;"> 
           
               <% uuid = UUID.randomUUID().toString(); %>
               <div data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>><p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p></div>
