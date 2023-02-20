@@ -45,15 +45,20 @@ if(Util.notEmpty(dispos)) {
 }
 
 String anneeActuelle = "2017";
+String moisActuel = "2";
 Calendar cal = Calendar.getInstance();
 if(Util.notEmpty(cal)){
   cal.setTime(new Date());
   anneeActuelle = String.valueOf(cal.get(Calendar.YEAR));
+  moisActuel = String.valueOf(cal.get(Calendar.MONTH));
 }
 
 
 
-int numeroDossierAssmat = profil.getNum_agrement(); 
+int numeroDossierAssmat = profil.getNum_agrement();
+
+boolean noYearIsCurrentYear = false;
+boolean noMonthIsCurrentMonth = false;
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
@@ -61,15 +66,10 @@ int numeroDossierAssmat = profil.getNum_agrement();
 
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" name="formDispos" id="formDispos">
 
-  
-    <div class="alert alert-block alertPass hide  alert-cg">
-      <h4><%=glp("msg.message-box.warning")%></h4>
-    </div>
-      
     <%-- TODO --%>
     <div class="blocQuestion disponibilite">
   
-      <h3 class="h3-like"><trsb:glp key="DISPO-INTRO-HTML"></trsb:glp></h3>
+      <h3 class="h4-like"><trsb:glp key="DISPO-INTRO-HTML"></trsb:glp></h3>
       <%
       int maxDispo = 10;
       if(dispos != null && dispos.size() < maxDispo){
@@ -80,7 +80,7 @@ int numeroDossierAssmat = profil.getNum_agrement();
       }
       for(int cptDispo = 0; cptDispo < maxDispo; cptDispo++){
         Disponibilite d = dispos.get(cptDispo);
-        String etatDispo = "";              
+        String etatDispo = "";
         if(Util.notEmpty(d.getEtatDispo())){
           etatDispo = d.getEtatDispo();
         }
@@ -210,14 +210,14 @@ int numeroDossierAssmat = profil.getNum_agrement();
         <jalios:select>     
           <jalios:if predicate='<%= dispos.get(cptDispo).getSaisieDisponible() %>'>
             <% uuid = UUID.randomUUID().toString(); %>
-		    <div id="form-element-<%= uuid %>" data-name="etatDispo<%= cptDispo + 1 %>" class="ds44-form__radio_container ds44-form__container">
-		       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-		       <div class="ds44-form__container ds44-checkBox-radio_list">
-		          <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("1")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
-		              value="1" id="dispo-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radio"/>
-		          <label id="label-radio-form-element-<%= uuid %>-one" for="dispo-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-HTML" ></trsb:glp></label>
-		       </div>
-		       <div class="ds44-form__container ds44-checkBox-radio_list ">
+            <div id="form-element-<%= uuid %>" data-name="etatDispo<%= cptDispo + 1 %>" class="ds44-form__radio_container ds44-form__container">
+               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+               <div class="ds44-form__container ds44-checkBox-radio_list">
+                  <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("1")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
+                      value="1" id="dispo-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radio"/>
+                  <label id="label-radio-form-element-<%= uuid %>-one" for="dispo-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-HTML" ></trsb:glp></label>
+               </div>
+               <div class="ds44-form__container ds44-checkBox-radio_list ">
                   <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("2")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
                       value="2" id="dispo-toggleable-oui-plus-<%= cptDispo + 1 %>" class="ds44-radio" 
                       required aria-describedby="mandatory-message-form-element-<%= uuid %>"/>
@@ -229,18 +229,67 @@ int numeroDossierAssmat = profil.getNum_agrement();
                       required aria-describedby="mandatory-message-form-element-<%= uuid %>"/>
                   <label id="label-radio-form-element-<%= uuid %>-three" for="dispo-toggleable-non-<%= cptDispo + 1 %>" class="ds44-radioLabel"><trsb:glp key="DISPO-NON-HTML"></trsb:glp></label>
                </div>
-		    </div>
+            </div>
            </jalios:if>
       
            <jalios:default>
              <p><trsb:glp key="DISPONIBILITES-PAS-DE-SAISIE-HTML"></trsb:glp></p>
-           </jalios:default>            
+           </jalios:default>
           </jalios:select>
           
           <%
           boolean hideEtaDispo1 = Util.isEmpty(etatDispo) || !(etatDispo.equals("1"));
           boolean hideEtaDispo2 = Util.isEmpty(etatDispo) || !(etatDispo.equals("2"));
           boolean hideEtaDispo3 = Util.isEmpty(etatDispo) || !(etatDispo.equals("3"));
+          
+          String moisCourantDispo = "";
+          String anneeCouranteDispo = "";
+          // récupération de la donnée actuelle. Si vide, il faut forcer une valeur par défaut
+          switch(cptDispo) {
+          case 0:
+            moisCourantDispo = formHandler.getMoisDispo1();
+            anneeCouranteDispo = formHandler.getAnneeDispo1();
+            break;
+          case 1:
+            moisCourantDispo = formHandler.getMoisDispo2();
+            anneeCouranteDispo = formHandler.getAnneeDispo2();
+            break;
+          case 2:
+            moisCourantDispo = formHandler.getMoisDispo3();
+            anneeCouranteDispo = formHandler.getAnneeDispo3();
+            break;
+          case 3:
+            moisCourantDispo = formHandler.getMoisDispo4();
+            anneeCouranteDispo = formHandler.getAnneeDispo4();
+            break;
+          case 4:
+            moisCourantDispo = formHandler.getMoisDispo5();
+            anneeCouranteDispo = formHandler.getAnneeDispo5();
+            break;
+          case 5:
+            moisCourantDispo = formHandler.getMoisDispo6();
+            anneeCouranteDispo = formHandler.getAnneeDispo6();
+            break;
+          case 6:
+            moisCourantDispo = formHandler.getMoisDispo7();
+            anneeCouranteDispo = formHandler.getAnneeDispo7();
+            break;
+          case 7:
+            moisCourantDispo = formHandler.getMoisDispo8();
+            anneeCouranteDispo = formHandler.getAnneeDispo8();
+            break;
+          case 8:
+            moisCourantDispo = formHandler.getMoisDispo9();
+            anneeCouranteDispo = formHandler.getAnneeDispo9();
+            break;
+          case 9:
+            moisCourantDispo = formHandler.getMoisDispo10();
+            anneeCouranteDispo = formHandler.getAnneeDispo10();
+            break;
+          }
+          
+          if (Util.isEmpty(moisCourantDispo)) moisCourantDispo = "";
+          if (Util.isEmpty(anneeCouranteDispo)) anneeCouranteDispo = "";
           %>
            
           <%-- Par defaut ou si non renseigné coche disponibilité inconnue --%>
@@ -248,71 +297,76 @@ int numeroDossierAssmat = profil.getNum_agrement();
         
           <div id="Formulaires<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>' style="clear: both;"> 
           
-	          <% uuid = UUID.randomUUID().toString(); %>
-	          <div data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>><p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p></div>
-	          <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
-				   <div class="ds44-select__shape ds44-inpStd">
-				      <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.month") %></p>
-				      <div id="form-element-<%= uuid %>" data-name="moisDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
-				      <button type="button" id="button-form-element-<%= uuid %>" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false" title='<%= glp("ui.com.lbl.month") %>'><i class="icon icon-down icon--sizeXL" aria-hidden="true"></i><span id="button-message-form-element-<%= uuid %>" class="visually-hidden"><trsb:glp key="DISPO-OUI-PLUS-DATE" attribute="true"></trsb:glp></span></button>
-				      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeXL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.com.lbl.month")) %></span></button>
-				   </div>
-				   <div class="ds44-select-container hidden">
-				      <div class="ds44-listSelect">
-				         <ul class="ds44-list" role="listbox" id="listbox-form-element-<%= uuid %>" aria-labelledby="button-message-form-element-<%= uuid %>">
-				            <% for (int monthCounter = 0; monthCounter < 12; monthCounter++) { %>
-				            <li class='ds44-select-list_elem<% if(Util.notEmpty(moisDispo) && moisDispo.equals(Integer.toString(monthCounter))) { %> selected_option <% } %>' 
-				            data-value="<%= monthCounter %>" tabindex="0" role="option" 
-				            <% if(Util.notEmpty(moisDispo) && moisDispo.equals(Integer.toString(monthCounter))) { %> aria-selected="true" <% } %>>
-	                           <%= glp("plugin.assmatplugin.month." + monthCounter) %>
-	                        </li>
-	                        <% } %>
-				         </ul>
-				      </div>
-				   </div>
-			  </div>
-			  <% uuid = UUID.randomUUID().toString(); %>
-	          <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
-	               <div class="ds44-select__shape ds44-inpStd">
-	                  <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.year") %></p>
-	                  <div id="form-element-<%= uuid %>" data-name="anneeDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
-	                  <button type="button" id="button-form-element-<%= uuid %>" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false" title='<%= glp("ui.com.lbl.year") %>'><i class="icon icon-down icon--sizeXL" aria-hidden="true"></i><span id="button-message-form-element-<%= uuid %>" class="visually-hidden"><trsb:glp key="DISPO-OUI-PLUS-DATE" attribute="true"></trsb:glp></span></button>
-	                  <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeXL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.com.lbl.year")) %></span></button>
-	               </div>
-	               <div class="ds44-select-container hidden">
-	                  <div class="ds44-listSelect">
-	                     <ul class="ds44-list" role="listbox" id="listbox-form-element-<%= uuid %>" aria-labelledby="button-message-form-element-<%= uuid %>">
-	                        <% for(int cptAnnee = Integer.parseInt(anneeActuelle); cptAnnee < Integer.parseInt(anneeActuelle) + 11; cptAnnee++) { %>
-	                        <li class='ds44-select-list_elem<% if(Util.notEmpty(anneeDispo) && anneeDispo.equals(Integer.toString(cptAnnee))) { %> selected_option <% } %>' 
-	                        data-value="<%= cptAnnee %>" tabindex="0" role="option" 
-	                        <% if(Util.notEmpty(anneeDispo) && anneeDispo.equals(Integer.toString(cptAnnee))) { %> aria-selected="true" <% } %>>
-	                           <%= cptAnnee %>
-	                        </li>
-	                        <% } %>
-	                     </ul>
-	                  </div>
-	               </div>
-	          </div>
-	          <% uuid = UUID.randomUUID().toString(); %>
-	          <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
-	          <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
-				   <div class="ds44-posRel">
-				      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
-				      <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionPlaceFuture<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionPlaceFuture1 %></textarea>
-				   </div>
-			  </div>
+              <% uuid = UUID.randomUUID().toString(); %>
+              <div data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>><p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p></div>
+              <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
+                   <div class="ds44-select__shape ds44-inpStd">
+                      <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.month") %></p>
+                      <div id="form-element-<%= uuid %>" data-name="moisDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
+                      <button type="button" id="button-form-element-<%= uuid %>" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false" title='<%= glp("ui.com.lbl.month") %>'><i class="icon icon-down icon--sizeXL" aria-hidden="true"></i><span id="button-message-form-element-<%= uuid %>" class="visually-hidden"><trsb:glp key="DISPO-OUI-PLUS-DATE" attribute="true"></trsb:glp></span></button>
+                      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeXL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.com.lbl.month")) %></span></button>
+                   </div>
+                   <div class="ds44-select-container hidden">
+                      <div class="ds44-listSelect">
+                         <ul class="ds44-list" role="listbox" id="listbox-form-element-<%= uuid %>" aria-labelledby="button-message-form-element-<%= uuid %>">
+                            <% for (int monthCounter = 0; monthCounter < 12; monthCounter++) { 
+                              noMonthIsCurrentMonth = Util.isEmpty(moisCourantDispo) && monthCounter == Integer.parseInt(moisActuel);
+                            %>
+                            <li class='ds44-select-list_elem<% if((Util.notEmpty(moisCourantDispo) && moisCourantDispo.equals(Integer.toString(monthCounter))) || noMonthIsCurrentMonth) { %> selected_option <% } %>' 
+                            data-value="<%= monthCounter %>" tabindex="0" role="option" 
+                            <% if((Util.notEmpty(moisCourantDispo) && moisCourantDispo.equals(Integer.toString(monthCounter))) || noMonthIsCurrentMonth) { %> aria-selected="true" <% } %>>
+                               <%= glp("plugin.assmatplugin.month." + monthCounter) %>
+                            </li>
+                            <% } %>
+                         </ul>
+                      </div>
+                   </div>
+              </div>
+              <% uuid = UUID.randomUUID().toString(); %>
+              <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
+                   <div class="ds44-select__shape ds44-inpStd">
+                      <p class="ds44-selectLabel" aria-hidden="true"><%= glp("jcmsplugin.assmatplugin.parametrage.annee") %></p>
+                      <div id="form-element-<%= uuid %>" data-name="anneeDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
+                      <button type="button" id="button-form-element-<%= uuid %>" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false" title='<%= glp("ui.com.lbl.year") %>'><i class="icon icon-down icon--sizeXL" aria-hidden="true"></i><span id="button-message-form-element-<%= uuid %>" class="visually-hidden"><trsb:glp key="DISPO-OUI-PLUS-DATE" attribute="true"></trsb:glp></span></button>
+                      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeXL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("ui.com.lbl.year")) %></span></button>
+                   </div>
+                   <div class="ds44-select-container hidden">
+                      <div class="ds44-listSelect">
+                         <ul class="ds44-list" role="listbox" id="listbox-form-element-<%= uuid %>" aria-labelledby="button-message-form-element-<%= uuid %>">
+                            <% for(int cptAnnee = Integer.parseInt(anneeActuelle); cptAnnee < Integer.parseInt(anneeActuelle) + 11; cptAnnee++) { 
+                            noYearIsCurrentYear = Util.isEmpty(anneeCouranteDispo) && cptAnnee == Integer.parseInt(anneeActuelle);
+                            %>
+                            <li class='ds44-select-list_elem<% if((Util.notEmpty(anneeCouranteDispo) && anneeCouranteDispo.equals(Integer.toString(cptAnnee))) || noYearIsCurrentYear) { %> selected_option <% } %>' 
+                            data-value="<%= cptAnnee %>" tabindex="0" role="option" 
+                            <% if((Util.notEmpty(anneeCouranteDispo) && anneeCouranteDispo.equals(Integer.toString(cptAnnee))) || noYearIsCurrentYear) { %> aria-selected="true" <% } %>>
+                               <%= cptAnnee %>
+                            </li>
+                            <% } %>
+                         </ul>
+                      </div>
+                   </div>
+              </div>
+              
+              <% uuid = UUID.randomUUID().toString(); %>
+              <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
+              <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
+                   <div class="ds44-posRel">
+                      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
+                      <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionPlaceFuture<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionPlaceFuture1 %></textarea>
+                   </div>
+              </div>
             
           </div>
     
           <% uuid = UUID.randomUUID().toString(); %>
           <div class='<%= hideEtaDispo1 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
-	          <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
-	          <div class='ds44-form__container<%= hideEtaDispo1 ? " hidden" : "" %>'>
-	               <div class="ds44-posRel">
-	                  <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
-	                  <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsPlaceDisponible<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionsPlaceDisponible1 %></textarea>
-	               </div>
-	          </div>
+              <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
+              <div class='ds44-form__container<%= hideEtaDispo1 ? " hidden" : "" %>'>
+                   <div class="ds44-posRel">
+                      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
+                      <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsPlaceDisponible<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionsPlaceDisponible1 %></textarea>
+                   </div>
+              </div>
           </div>
     
           <div id="dispoActuelle<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>'>
@@ -320,15 +374,15 @@ int numeroDossierAssmat = profil.getNum_agrement();
             <table class="tabDispos tabDispos_checkbox mbm" id="tableauSemainier<%= cptDispo + 1 %>">
               <caption role="heading" aria-level="2"><trsb:glp key="DISPO-OUI-SEM-HTML"></trsb:glp></caption>
               <tr>
-	            <td> </td>
-	            <th scope="col" aria-label="Lundi">L</th>
-	            <th scope="col" aria-label="Mardi">M</th>
-	            <th scope="col" aria-label="Mercredi">M</th>
-	            <th scope="col" aria-label="Jeudi">J</th>
-	            <th scope="col" aria-label="Vendredi">V</th>
-	            <th scope="col" aria-label="Samedi">S</th>
-	            <th scope="col" aria-label="Dimanche">D</th>
-	          </tr>
+                <td> </td>
+                <th scope="col" aria-label="Lundi">L</th>
+                <th scope="col" aria-label="Mardi">M</th>
+                <th scope="col" aria-label="Mercredi">M</th>
+                <th scope="col" aria-label="Jeudi">J</th>
+                <th scope="col" aria-label="Vendredi">V</th>
+                <th scope="col" aria-label="Samedi">S</th>
+                <th scope="col" aria-label="Dimanche">D</th>
+              </tr>
               <tr>
                 <th scope="row"><trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></th>
                 <td><div class="ds44-form__container ds44-checkBox-radio_list "><input type="checkbox" class="ds44-checkbox" id="lundi_avant_ecole<%= cptDispo + 1 %>" name="lundi_avant_ecole<%= cptDispo + 1 %>" value="true" <% if(lundi_avant_ecole1.equals("true")) { %> checked <% } %> /><label for="lundi_avant_ecole<%= cptDispo + 1 %>" class="ds44-boxLabel" id="label-lundi_avant_ecole<%= cptDispo + 1 %>"><%= glp("jcmsplugin.socle.infolocale.label.day.1") %> - <trsb:glp key="DISPO-OUI-SEM-AV"></trsb:glp></label></div></td>
@@ -395,12 +449,12 @@ int numeroDossierAssmat = profil.getNum_agrement();
             <div id="form-element-<%= uuid %>" data-name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" class="ds44-form__radio_container" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
             <% uuid = UUID.randomUUID().toString(); %>
                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list">
                   <input type="radio" name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" value="true" <% if(dispoDepannagePlaceDisponible1.equals("true")) { %> checked <% } %> 
                   id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" data-enabled-by-precision-<%= cptDispo + 1 %>/>
                   <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
                </div>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list">
                   <input type="radio" name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" value="false" <% if(dispoDepannagePlaceDisponible1.equals("false")) { %> checked <% } %> 
                   id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>"/>
                   <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
