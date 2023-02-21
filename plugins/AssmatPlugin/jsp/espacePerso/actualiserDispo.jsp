@@ -355,18 +355,18 @@ boolean noMonthIsCurrentMonth = false;
                       <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionPlaceFuture<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionPlaceFuture1 %></textarea>
                    </div>
               </div>
+              
+              <% uuid = UUID.randomUUID().toString(); %>
+	          <div class='<%= hideEtaDispo1 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
+	              <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
+	              <div class='ds44-form__container'>
+	                   <div class="ds44-posRel">
+	                      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
+	                      <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsPlaceDisponible<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionsPlaceDisponible1 %></textarea>
+	                   </div>
+	              </div>
+	          </div>
             
-          </div>
-    
-          <% uuid = UUID.randomUUID().toString(); %>
-          <div class='<%= hideEtaDispo1 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
-              <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
-              <div class='ds44-form__container<%= hideEtaDispo1 ? " hidden" : "" %>'>
-                   <div class="ds44-posRel">
-                      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
-                      <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsPlaceDisponible<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionsPlaceDisponible1 %></textarea>
-                   </div>
-              </div>
           </div>
     
           <div id="dispoActuelle<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>'>
