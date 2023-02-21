@@ -197,19 +197,19 @@ Boolean isContribPower = AssmatUtil.getMemberIsContribPower(loggedMember);
 Set<AssmatSearch> resultSetDispo = new HashSet<AssmatSearch>();
 resultSetDispo = AssmatSearchDAO.getResultSearchDispo(null, codeInsee,null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
 //resultSetDispo = AssmatSearchDAO.getResultSearchDispo(commune, codeInsee,adresse, codesQuartiers, codesMicroQuartiers, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
-logger.warn("resultSetDispo : " + resultSetDispo.size());
+logger.trace("resultSetDispo : " + resultSetDispo.size());
 
 
 // Set des Assmat avec dispo future
 Set<AssmatSearch> resultSetDispoFutur = new HashSet<AssmatSearch>();
 resultSetDispoFutur = AssmatSearchDAO.getResultSearchFutur(null, codeInsee,null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
-logger.warn("resultSetDispoFutur : " + resultSetDispoFutur.size());
+logger.trace("resultSetDispoFutur : " + resultSetDispoFutur.size());
 
 
 //Set des Assmat non dispo
 Set<AssmatSearch> resultSetNonDispoContact = new HashSet<AssmatSearch>();
 resultSetNonDispoContact = AssmatSearchDAO.getResultSearchNonDispos(null, codeInsee,null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
-logger.warn("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
+logger.trace("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
 
 
 
@@ -217,26 +217,26 @@ logger.warn("resultSetNonDispoContact : " + resultSetNonDispoContact.size());
 Set<AssmatSearch> resultSetDispoNonRenseigne = new HashSet<AssmatSearch>();
 if(isRam || isContribPower) {
   resultSetDispoNonRenseigne = AssmatSearchDAO.getResultSearchDispoNonRenseigne(null, codeInsee, null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
-  logger.warn("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
+  logger.trace("resultSetDispoNonRenseigne : " + resultSetDispoNonRenseigne.size());
 }
 
 
 // La date de dispo futur la plus PROCHE (dans le future) pour chaque assmat
 Map<Long, Date> resultDateDispoFutur = AssmatSearchDAO.getResultDispoFutur(null, codeInsee, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat);
-logger.warn("resultDateDispoFutur : " + resultDateDispoFutur.size());
+logger.trace("resultDateDispoFutur : " + resultDateDispoFutur.size());
 
 
 
 // Liste des dispos pour les dispos de la recherche par assmat
 Map<Long, Set<DispoAssmat>> resultDispoRechercheMap = AssmatSearchDAO.getResultDispo(null, codeInsee, null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat, 1);
-logger.warn("resultDispoRechercheMap : "+resultDispoRechercheMap.size());
+logger.trace("resultDispoRechercheMap : "+resultDispoRechercheMap.size());
 session.setAttribute("resultDispoRechercheMap", resultDispoRechercheMap);
 
 
 
 // Liste des dispos pour les dispos futures par assmat
 Map<Long, Set<DispoAssmat>> resultDispoFuturMap = AssmatSearchDAO.getResultDispo(null, codeInsee, null, codesQuartiers, null, lieuDomicile, lieuMam, accueilPerisco, accueilMercredi, accueilVacances, accueilAvant7h, accueilApres20h, accueilSamedi, accueilDimanche, accueilNuit, specHandicape, specPartiel, specDepannages, accueilAtypique, nomAssmat, tabTrancheAge, dateTime, distance, geoLong, geoLat, 2);
-logger.warn("resultDispoFuturMap : "+resultDispoFuturMap.size());
+logger.trace("resultDispoFuturMap : "+resultDispoFuturMap.size());
 session.setAttribute("resultDispoFuturMap", resultDispoFuturMap);
 
 
@@ -254,7 +254,7 @@ if(geoLong!=0.0 && geoLat!=0.0){
 String hashKey = Integer.toString((int) (Math.random() * 1000) + 1);
 Map<AssmatSearch,PointAssmat> assmatPoints = new HashMap<AssmatSearch,PointAssmat>();
 TreeMap<AssmatSearch,PointAssmat> assmatPointsTriee = new TreeMap<AssmatSearch,PointAssmat>(new AssmatSearchDistanceComparator(pointGeo, assmatPoints, hashKey, isPresentSearch, resultDispoRechercheMap));
-logger.warn("assmatPointsTriee : " + assmatPointsTriee.size());
+logger.trace("assmatPointsTriee : " + assmatPointsTriee.size());
 
 
 
@@ -298,7 +298,7 @@ Set<Publication> setProfilAM = new TreeSet<Publication>();
 //Les assmat dispo
 if(withDispo){
 	for(AssmatSearch amSearch :resultSetDispo ){ 
-// 	  logger.warn("amSearch  / "+amSearch.getNomAssmat());
+// 	  logger.trace("amSearch  / "+amSearch.getNomAssmat());
 	  profilAMsearch = (ProfilASSMAT) channel.getPublication(amSearch.getDbprofilId());
 	  if(Util.notEmpty(profilAMsearch)){      
 	    if(profilAMsearch.getVisibiliteSite()){
@@ -438,7 +438,7 @@ Set<Place> setPlace =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataS
 
 
 
-logger.warn("Relais : " + setPlace);
+logger.trace("Relais : " + setPlace);
 
 
 
@@ -489,7 +489,7 @@ request.setAttribute("assmatPoints", assmatPointsTriee);
 
 
 Set<Map.Entry<AssmatSearch,PointAssmat>> assmatResultSet = assmatPointsTriee.entrySet();
-logger.warn("assmatResultSet : "+assmatResultSet.size());
+logger.trace("assmatResultSet : "+assmatResultSet.size());
 
 
 
