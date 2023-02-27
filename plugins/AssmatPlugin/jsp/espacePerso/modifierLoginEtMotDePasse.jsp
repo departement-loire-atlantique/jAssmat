@@ -19,14 +19,6 @@ if(Util.isEmpty(profil)){
 	return;
 }
 
-String choixLoginParam = null;
-
-if(Util.notEmpty(request.getParameter("choixLogin[0]"))){
-  choixLoginParam = request.getParameter("choixLogin[0]");
-}else if(Util.notEmpty(request.getParameter("choixLogin"))){
-  choixLoginParam = request.getParameter("choixLogin");
-}
-
 %>
 <jsp:useBean id='formHandler' scope='page' class='fr.cg44.plugin.assmat.handler.ProfilLoginMdpHandler'>
   <jsp:setProperty name='formHandler' property='request' value='<%= request %>'/>
@@ -34,7 +26,6 @@ if(Util.notEmpty(request.getParameter("choixLogin[0]"))){
   <jsp:setProperty name='formHandler' property="noRedirect" value="true" />
   <jsp:setProperty name='formHandler' property="profil" value='<%= profil %>' />
   <jsp:setProperty name='formHandler' property="member" value='<%= loggedMember %>' />
-  <jsp:setProperty name='formHandler' property="choixLogin" value='<%= choixLoginParam %>' />
   <jsp:setProperty name='formHandler' property='*' />
 </jsp:useBean>
 
@@ -75,42 +66,44 @@ if (formHandler.validate()) {
             <%} %>
             
             <p class="info"><%=glp("jcmsplugin.assmatplugin.espaceperso.declaremail") %></p>
-            <br>
-            <p class="info"><b><%=glp("jcmsplugin.assmatplugin.espaceperso.declarelog") %></b></p>
-            <br>
-
-            <p class=""><trsb:glp key="LIBELLE-PRERENCE-UTILISATION-LOGIN-HTML" ></trsb:glp></p>
-            
-              <% 
-                Member mbrMailFind = channel.getMemberFromLogin(emailAssmat);
-                Member mbrMobileFind = channel.getMemberFromLogin(telephoneMobileAssmat); 
-                String uuid = UUID.randomUUID().toString();
-              %>
-    
-              <div id="form-element-<%= uuid %>" data-name="choixLogin" class="ds44-form__radio_container ds44-form__container" data-required="true">
-               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-               <jalios:if predicate="<%= Util.notEmpty(emailAssmat) && ( Util.isEmpty(mbrMailFind) || JcmsUtil.isSameId(mbrMailFind, loggedMember))%>">
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
-                  <input <%if(SelectionLogin.MAIL.equals(typeLogin)){%> checked="checked" <%} %> type="radio" name="choixLogin" value="2" id="name-radio-form-element-<%= uuid %>-mail" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" />
-                  <label id="label-radio-form-element-<%= uuid %>-mail" for="name-radio-form-element-<%= uuid %>-mail" class="ds44-radioLabel">
-                    <%=glp("jcmsplugin.assmatplugin.espaceperso.monmail") %> <%=emailAssmat%>
-                  </label>
-               </div>
-               </jalios:if>
-               <jalios:if predicate="<%= Util.notEmpty(telephoneMobileAssmat) &&  ( Util.isEmpty(mbrMobileFind) || JcmsUtil.isSameId(mbrMobileFind, loggedMember)) %>">
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
-                  <input <%if(SelectionLogin.TELEPHONE.equals(typeLogin)){%> checked="checked" <%} %> type="radio" name="choixLogin" value="1" id="name-radio-form-element-<%= uuid %>-tel" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" />
-                  <label id="label-radio-form-element-<%= uuid %>-tel" for="name-radio-form-element-<%= uuid %>-tel" class="ds44-radioLabel">
-                  <%=glp("jcmsplugin.assmatplugin.espaceperso.monnum") %> <%=telephoneMobileAssmat %>
-                  </label>
-               </div>
-               </jalios:if>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
-                  <input <%if(SelectionLogin.NUMERO_DOSSIER.equals(typeLogin)){%> checked="checked" <%} %> type="radio" name="choixLogin" value="3" id="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radio"  aria-describedby="mandatory-message-form-element-<%= uuid %>" />
-                  <label id="label-radio-form-element-<%= uuid %>-dossier" for="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radioLabel">
-                  <%=glp("jcmsplugin.assmatplugin.espaceperso.monagr") %> <%=numeroDossierAssmat %> 
-                  </label>
-               </div>
+            <p class="info ds44-mt2"><b><%=glp("jcmsplugin.assmatplugin.espaceperso.declarelog") %></b></p>
+            <% String uuid = UUID.randomUUID().toString(); %>
+                <div id="form-element-<%= uuid %>" data-name="choixLogin" class="ds44-form__radio_container ds44-form__container" data-required="true">
+                  <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+                  <div class="ds44-flex">
+	                  <div class="ds44-fg1 ds44-txtRight ds44-mt1">
+	                    <p class=""><trsb:glp key="LIBELLE-PRERENCE-UTILISATION-LOGIN-HTML" ></trsb:glp></p>
+	                  </div>
+		              <% 
+		                Member mbrMailFind = channel.getMemberFromLogin(emailAssmat);
+		                Member mbrMobileFind = channel.getMemberFromLogin(telephoneMobileAssmat);
+		              %>
+		              
+		              <div class="ds44-ml-std ds44-fg3">
+		               <jalios:if predicate="<%= Util.notEmpty(emailAssmat) && ( Util.isEmpty(mbrMailFind) || JcmsUtil.isSameId(mbrMailFind, loggedMember))%>">
+		               <div class="ds44-form__container ds44-checkBox-radio_list ">
+		                  <input <%if(SelectionLogin.MAIL.equals(typeLogin)){%> checked="checked" <%} %> type="radio" name="choixLogin" value="2" id="name-radio-form-element-<%= uuid %>-mail" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" />
+		                  <label id="label-radio-form-element-<%= uuid %>-mail" for="name-radio-form-element-<%= uuid %>-mail" class="ds44-radioLabel">
+		                    <%=glp("jcmsplugin.assmatplugin.espaceperso.monmail") %> <%=emailAssmat%>
+		                  </label>
+		               </div>
+		               </jalios:if>
+		               <jalios:if predicate="<%= Util.notEmpty(telephoneMobileAssmat) &&  ( Util.isEmpty(mbrMobileFind) || JcmsUtil.isSameId(mbrMobileFind, loggedMember)) %>">
+		               <div class="ds44-form__container ds44-checkBox-radio_list ">
+		                  <input <%if(SelectionLogin.TELEPHONE.equals(typeLogin)){%> checked="checked" <%} %> type="radio" name="choixLogin" value="1" id="name-radio-form-element-<%= uuid %>-tel" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" />
+		                  <label id="label-radio-form-element-<%= uuid %>-tel" for="name-radio-form-element-<%= uuid %>-tel" class="ds44-radioLabel">
+		                  <%=glp("jcmsplugin.assmatplugin.espaceperso.monnum") %> <%=telephoneMobileAssmat %>
+		                  </label>
+		               </div>
+		               </jalios:if>
+		               <div class="ds44-form__container ds44-checkBox-radio_list ">
+		                  <input <%if(SelectionLogin.NUMERO_DOSSIER.equals(typeLogin)){%> checked="checked" <%} %> type="radio" name="choixLogin" value="3" id="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radio"  aria-describedby="mandatory-message-form-element-<%= uuid %>" />
+		                  <label id="label-radio-form-element-<%= uuid %>-dossier" for="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radioLabel">
+		                  <%=glp("jcmsplugin.assmatplugin.espaceperso.monagr") %> <%=numeroDossierAssmat %> 
+		                  </label>
+		               </div>
+		             </div>
+	             </div>
              </div>
 
               <h3 class="title-bar-container dotted-portlet"><%=glp("jcmsplugin.assmatplugin.espaceperso.modifmdp") %></h3>
@@ -140,7 +133,7 @@ if (formHandler.validate()) {
 			</div>
 			
 			<div class="ds44-form__container">
-		        <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>' data-technical-field>
+		        <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
 		        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
 		        <input type="hidden" name="numeroAgrement" value="<%=numeroDossierAssmat %>" data-technical-field/>
 		        <input type="hidden" name="opUpdate" value="true" data-technical-field/>
