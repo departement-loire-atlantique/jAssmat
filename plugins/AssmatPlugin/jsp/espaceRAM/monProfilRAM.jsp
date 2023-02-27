@@ -22,7 +22,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 
 <jalios:if predicate="<%=Util.notEmpty(setPlace) %>">
 
-	<section class="ds44-box ds44-bgGray">
+	<section class="ds44-box ds44-theme">
 	    <div class="ds44-innerBoxContainer">
 	        <p role="heading" aria-level="2" class="ds44-box-heading"><trsb:glp key="ESPACE-RAM-MON-PROFIL" ></trsb:glp></p>
 	        
@@ -100,7 +100,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 				</jalios:if>
 				
 				<li><a href="<%=publi.getDisplayUrl(userLocale) %>?portal=<%=idPortalRAM%>"><trsb:glp key="ESPACE-RAM-CHANGE-PASS-MEMBER" ></trsb:glp></a></li>
-				<li><a href="front/logout.jsp"><trsb:glp key="ESPACE-RAM-DECONNEXION-MEMBER" ></trsb:glp></a></li>
+				<li><a href="front/logout.jsp?redirect=<%=HttpUtil.encodeForURL(ServletUtil.getUrl(request))%>"><trsb:glp key="ESPACE-RAM-DECONNEXION-MEMBER" ></trsb:glp></a></li>
 			</ul>
 			
         </div>

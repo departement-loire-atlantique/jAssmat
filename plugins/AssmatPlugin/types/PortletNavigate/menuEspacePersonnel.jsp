@@ -35,6 +35,12 @@ rootSet.addAll(rootCategory.getChildrenSet());
             <%
             TreeSet level2Set = new TreeSet<Category>(Category.getOrderComparator(userLang));
             level2Set.addAll(itCat.getChildrenSet());
+            for (Iterator<Category> iter = level2Set.iterator(); iter.hasNext();) {
+              Category itCatIter = iter.next();
+              if (!itCatIter.canBeReadBy(loggedMember)) {
+                iter.remove();
+              }
+            }
             %>
 			<jalios:if predicate="<%= level2Set.size() > 0 %>">
                 <ul>
@@ -47,6 +53,12 @@ rootSet.addAll(rootCategory.getChildrenSet());
 								    <%
 								    TreeSet level3Set = new TreeSet<Category>(Category.getOrderComparator(userLang));
 	                                level3Set.addAll(itCatLevel2.getChildrenSet());
+	                                for (Iterator<Category> iter = level3Set.iterator(); iter.hasNext();) {
+	                                  Category itCatIter = iter.next();
+	                                  if (!itCatIter.canBeReadBy(loggedMember)) {
+	                                    iter.remove();
+	                                  }
+	                                }
                                     %>
 									<ul>
 										<jalios:foreach name="itCatLevel3" type="Category" collection="<%= level3Set %>" counter="itLvl2">

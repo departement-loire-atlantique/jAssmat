@@ -57,7 +57,7 @@ String uuid = UUID.randomUUID().toString();
 %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
-<%@ include file='/jcore/doMessageBox.jsp' %>
+<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
 <div class="headstall container-fluid formulaireActivation">
 <div class="formActivation form-cg form-espace-perso">
