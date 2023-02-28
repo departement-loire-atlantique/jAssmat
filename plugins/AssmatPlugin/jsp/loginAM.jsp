@@ -73,7 +73,7 @@ String redirectUrl = Util.notEmpty(portalPerso) ? portalPerso.getDisplayUrl(user
                               <p class="ds44-noMrg"><a href="<%=urlOubliMotDePasse%>"><%= glp("jcmsplugin.assmatplugin.accueil.mdp.oublie") %></a></p>
                               
                               
-                              <input type='hidden' name="redirectUrl" value='<%= redirectUrl %>' data-technical-field/>
+                              <input type='hidden' name="redirect" value='<%= redirectUrl %>' data-technical-field/>
                               <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
 
                               <jalios:if predicate="<%= !channel.getAuthMgr().isShowingPersistentOption() %>">
