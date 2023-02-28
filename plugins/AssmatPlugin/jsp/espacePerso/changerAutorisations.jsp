@@ -43,11 +43,6 @@ String uuid = UUID.randomUUID().toString();
 
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
     name="formContact" id="formContact" class="formContact formEspacePerso">
-
-    <div class="alert alert-block alertPass hide  alert-cg">
-      <h4><%=glp("msg.message-box.warning")%></h4>
-      <p></p>
-    </div>
     
     <%-- autorisationSite --%>
     <p aria-level="2" class="h4-like"><trsb:glp key="AUTOR-DPT-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
@@ -93,7 +88,7 @@ String uuid = UUID.randomUUID().toString();
     </div>
     
     <div class="ds44-form__container">
-        <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
+        <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
         <input type="hidden" name="opUpdate" value="true" />
         <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
