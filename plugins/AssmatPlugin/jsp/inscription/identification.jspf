@@ -61,8 +61,8 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 						<%}%>
 						    <!-- Civilité -->
 				            <div id="form-element-<%= uuid %>" data-name="civilite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
-				               <p aria-level="2" class="h4-like"><trsb:glp key="IDENT-CIV-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
-							   <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>							   
+				               <p><trsb:glp key="IDENT-CIV-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
+<%-- 							   <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>							    --%>
 							   <div class="ds44-form__container ds44-checkBox-radio_list inbl">
 							      <input type="radio" name="civilite" value="mme" id="name-radio-form-element-<%= uuid %>-mme" <%if(Util.notEmpty(civilite) && isMme ){ %>  checked="checked" <%} %> class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-mme" for="name-radio-form-element-<%= uuid %>-mme" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.civilite.mme") %></label>
 							   </div>		   
@@ -128,7 +128,7 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 <!-- 	              <div class="noteForm"> -->
 <%-- 	                <span><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.noteagre") %></span> --%>
 <!-- 	              </div> -->
-                        <div class="ds44-form__container">
+                        <div class="ds44-form__container ds44-txtRight">
                             <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
                             <input type="hidden" name="opNext" value="true" data-technical-field>
 <%-- 	                        <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field> --%>

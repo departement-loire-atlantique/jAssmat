@@ -100,108 +100,145 @@ if(Util.notEmpty(assMat.getExerceMam())){
 
 		
 <!-- FORMULAIRE A ETAPES -->
-	 		
-<p class="h4-like"><trsb:glp key="VERIF-IDENTITE" ></trsb:glp></p>
-<p><%= civiliteAsssmat %> <%= prenomAsssmat %> <%= nomAsssmat %></p>
+<div class="ds44-flex ds44-medium-flex-col mbm">	 		
+<p class=" fl w40 ds44-mobile-w100"><trsb:glp key="VERIF-IDENTITE" ></trsb:glp></p>
+<p class=" fl w55 ds44-mobile-w100 u-bold"><%= civiliteAsssmat %> <%= prenomAsssmat %> <%= nomAsssmat %></p>
+</div>	
 							
 <%if(Util.notEmpty(dateNaissanceAssmat)){ %>
-    <p class="h4-like"><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.verif.naissance") %></p>
-    <p><%=dateNaissanceAssmat%></p>
+    <div class="ds44-flex ds44-medium-flex-col mbm">
+	    <p class="fl w40 ds44-mobile-w100"><%=glp("jcmsplugin.assmatplugin.inscription.champ.lbl.verif.naissance") %></p>
+	    <p class="fl w55 ds44-mobile-w100 u-bold"><%=dateNaissanceAssmat%></p>
+    </div>
 <%} %>
                 
 <%if(numAssmat != InscriptionAssmatHandler.NUMERO_AGREMENT_DEFAULT){ %>
-    <p class="h4-like"><trsb:glp key="VERIF-NUM-DOSSIER" ></trsb:glp></p>
-    <p><%=numAssmat%></p>
+    <div class="ds44-flex ds44-medium-flex-col mbm">
+        <p class="fl w40 ds44-mobile-w100"><trsb:glp key="VERIF-NUM-DOSSIER" ></trsb:glp></p>
+        <p class="fl w55 ds44-mobile-w100 u-bold"><%=numAssmat%></p>
+    </div>
 <% }%>
                 
 <%if(Util.notEmpty(datePremierAgrement)){ %>
-    <p class="h4-like"><trsb:glp key="VERIF-DATE-1ER-AGREMENT" ></trsb:glp></p>
-    <p><%= datePremierAgrement%></p>
+    <div class="ds44-flex ds44-medium-flex-col mbm">
+	    <p class="fl w40 ds44-mobile-w100"><trsb:glp key="VERIF-DATE-1ER-AGREMENT" ></trsb:glp></p>
+	    <p class="fl w55 ds44-mobile-w100 u-bold"><%= datePremierAgrement%></p>
+    </div>
 <%} %>
 
-<p class="h4-like"><trsb:glp key="VERIF-PERIODE-AGREMENT" ></trsb:glp></p>
-<p>Du <%= dateDernierRenouvellement %> au <%= dateProchainRenouvellement %></p>       
+<div class="ds44-flex ds44-medium-flex-col mbm">
+    <p class="fl w40 ds44-mobile-w100"><trsb:glp key="VERIF-PERIODE-AGREMENT" ></trsb:glp></p>
+    <p class="fl w55 ds44-mobile-w100 u-bold">Du <%= dateDernierRenouvellement %> au <%= dateProchainRenouvellement %></p>       
+</div> 
       
 <%-- AGREMENT --%>
+<div class="ds44-flex ds44-medium-flex-col mbm">
 
-<p class="h4-like"><trsb:glp key="VERIF-AGREMENT" ></trsb:glp></p>
+	<p class="fl w40 ds44-mobile-w100"><trsb:glp key="VERIF-AGREMENT" ></trsb:glp></p>
+	
+	<%-- AGREMENT DOMICILE --%>	
+	<jalios:if predicate='<%= exerceDomicile %>'>
+	  <div class="fl w55 ds44-mobile-w100">
+	    <p class="">À <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp></p>
+			                   
+	    <% for(int itPlace=1; itPlace<=8; itPlace++) { %>
+	                        
+	        <%
+	        // agrementTrancheAgeKey
+	        Field agrementTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"AgrementTrancheAgeKey");
+	        String agremenTracheAgeKey = (String) ReflectUtil.getFieldValue(assMat, agrementTracheAgeKeyField);
+	                          
+	        // placeTracheAgeKey
+	        Field placeTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"TrancheAgeKey");
+	        Integer placeTracheAgeKey = (Integer) ReflectUtil.getFieldValue(assMat, placeTracheAgeKeyField);    
+	                          
+	        // PlaceNbPlaces
+	        Field placeNbPlacesField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"NbPlaces");
+	        Integer placeNbPlaces = (Integer) ReflectUtil.getFieldValue(assMat, placeNbPlacesField);
+	    
+	        // placeTrancheAge
+	        Field placeTrancheAgeField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"TrancheAge");
+	        String placeTrancheAge = (String) ReflectUtil.getFieldValue(assMat, placeTrancheAgeField);
+	    
+	        // PlaceLibCompl
+	        Field placeLibComplField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"LibCompl");
+	        String placeLibCompl = (String) ReflectUtil.getFieldValue(assMat, placeLibComplField);
+	        %>
+	                        
+	        <% if(Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("dom-")){%>                   
+	            <p class="u-bold"> <%=JcmsUtil.glp(channel.getCurrentUserLang(), "jcmsplugin.assmatplugin.inscription.verification.place", placeNbPlaces)%> <%= AssmatUtil.getTitlePlace(placeTrancheAge, placeLibCompl, placeTracheAgeKey) %></p>
+	        <%} %>
+	                        
+	    <%} %>                
+	  </div>
+	</jalios:if>
+	
+	
+	<%-- AGREMENT MAM --%> 
+	<jalios:if predicate='<%= exerceMam %>'>
+		<p class="">
+			En
+			<trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp>
+		</p>
+		<% for(int itPlace=1; itPlace<=8; itPlace++) { %>
+	
+	        <%
+	        // agrementTrancheAgeKey
+	        Field agrementTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "AgrementTrancheAgeKey");
+	        String agremenTracheAgeKey = (String) ReflectUtil.getFieldValue(assMat, agrementTracheAgeKeyField);
+	
+	        // placeTracheAgeKey
+	        Field placeTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "TrancheAgeKey");
+	        Integer placeTracheAgeKey = (Integer) ReflectUtil.getFieldValue(assMat, placeTracheAgeKeyField);
+	
+	        // PlaceNbPlaces
+	        Field placeNbPlacesField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "NbPlaces");
+	        Integer placeNbPlaces = (Integer) ReflectUtil.getFieldValue(assMat, placeNbPlacesField);
+	
+	        // placeTrancheAge
+	        Field placeTrancheAgeField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "TrancheAge");
+	        String placeTrancheAge = (String) ReflectUtil.getFieldValue(assMat, placeTrancheAgeField);
+	
+	        // PlaceLibCompl
+	        Field placeLibComplField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "LibCompl");
+	        String placeLibCompl = (String) ReflectUtil.getFieldValue(assMat, placeLibComplField);
+		   %>
+	
+		   <% if (Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("mam-")) { %>
+		       <p class="u-bold">
+			      <%=JcmsUtil.glp(channel.getCurrentUserLang(), "jcmsplugin.assmatplugin.inscription.verification.place", placeNbPlaces)%>
+			      <%=AssmatUtil.getTitlePlace(placeTrancheAge, placeLibCompl, placeTracheAgeKey)%></p>
+		   <%}%>
+	
+	    <%}%>
+	</jalios:if>
+	
+</div>
 
-<%-- AGREMENT DOMICILE --%>
 
-<jalios:if predicate='<%= exerceDomicile %>'>
-    <p class="h4-like">À <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp></p>
-		                   
-    <% for(int itPlace=1; itPlace<=8; itPlace++) { %>
-                        
-        <%
-        // agrementTrancheAgeKey
-        Field agrementTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"AgrementTrancheAgeKey");
-        String agremenTracheAgeKey = (String) ReflectUtil.getFieldValue(assMat, agrementTracheAgeKeyField);
-                          
-        // placeTracheAgeKey
-        Field placeTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"TrancheAgeKey");
-        Integer placeTracheAgeKey = (Integer) ReflectUtil.getFieldValue(assMat, placeTracheAgeKeyField);    
-                          
-        // PlaceNbPlaces
-        Field placeNbPlacesField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"NbPlaces");
-        Integer placeNbPlaces = (Integer) ReflectUtil.getFieldValue(assMat, placeNbPlacesField);
-    
-        // placeTrancheAge
-        Field placeTrancheAgeField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"TrancheAge");
-        String placeTrancheAge = (String) ReflectUtil.getFieldValue(assMat, placeTrancheAgeField);
-    
-        // PlaceLibCompl
-        Field placeLibComplField = ReflectUtil.getField(assMat.getClass(), "place"+itPlace+"LibCompl");
-        String placeLibCompl = (String) ReflectUtil.getFieldValue(assMat, placeLibComplField);
-        %>
-                        
-        <% if(Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("dom-")){%>                   
-            <p class="bold"> <%=JcmsUtil.glp(channel.getCurrentUserLang(), "jcmsplugin.assmatplugin.inscription.verification.place", placeNbPlaces)%> <%= AssmatUtil.getTitlePlace(placeTrancheAge, placeLibCompl, placeTracheAgeKey) %></p>
-        <%} %>
-                        
-    <%} %>                
 
-</jalios:if>
+<div class="ds44-flex ds44-medium-flex-col mbm">
 
-<jalios:if predicate='<%= exerceMam %>'>
-	<p class="h4-like">
-		En
-		<trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp>
-	</p>
-	<% for(int itPlace=1; itPlace<=8; itPlace++) { %>
+	<p class="fl w40 ds44-mobile-w100"><trsb:glp key="VERIF-LIEU-EXERCICE" ></trsb:glp></p>
+	<div class="fl w55 ds44-mobile-w100"> 
+	
+		<jalios:if predicate='<%= exerceDomicile %>'>
+		
+			 <p>
+			  <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp><br/>       
+			   <span>                                     
+			 </p>
+			 
+			 
+			 <%if(Util.notEmpty(exerceDomicileLbl)){%>      
+			   <p class="u-bold"><%= exerceDomicileLbl %></p>
+			 <%} %>
+		  
+		</jalios:if>
+	     
+	</div>
+</div>
 
-        <%
-        // agrementTrancheAgeKey
-        Field agrementTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "AgrementTrancheAgeKey");
-        String agremenTracheAgeKey = (String) ReflectUtil.getFieldValue(assMat, agrementTracheAgeKeyField);
-
-        // placeTracheAgeKey
-        Field placeTracheAgeKeyField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "TrancheAgeKey");
-        Integer placeTracheAgeKey = (Integer) ReflectUtil.getFieldValue(assMat, placeTracheAgeKeyField);
-
-        // PlaceNbPlaces
-        Field placeNbPlacesField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "NbPlaces");
-        Integer placeNbPlaces = (Integer) ReflectUtil.getFieldValue(assMat, placeNbPlacesField);
-
-        // placeTrancheAge
-        Field placeTrancheAgeField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "TrancheAge");
-        String placeTrancheAge = (String) ReflectUtil.getFieldValue(assMat, placeTrancheAgeField);
-
-        // PlaceLibCompl
-        Field placeLibComplField = ReflectUtil.getField(assMat.getClass(), "place" + itPlace + "LibCompl");
-        String placeLibCompl = (String) ReflectUtil.getFieldValue(assMat, placeLibComplField);
-	   %>
-
-	   <% if (Util.notEmpty(agremenTracheAgeKey) && agremenTracheAgeKey.contains("mam-")) { %>
-	       <p class="bold">
-		      <%=JcmsUtil.glp(channel.getCurrentUserLang(), "jcmsplugin.assmatplugin.inscription.verification.place", placeNbPlaces)%>
-		      <%=AssmatUtil.getTitlePlace(placeTrancheAge, placeLibCompl, placeTracheAgeKey)%></p>
-	   <%}%>
-
-    <%}%>
-</jalios:if>
-
-<p class="h4-like"><trsb:glp key="VERIF-LIEU-EXERCICE" ></trsb:glp></p>
 
 <%-- <div class="blocChamp blocForm">    
     <jalios:if predicate='<%= exerceDomicile %>'>

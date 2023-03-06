@@ -236,11 +236,11 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
           <input class="hidden" type="radio" name="etatDispo<%= cptDispo + 1 %>" id="categorie3DispoInconnu<%= cptDispo + 1 %>" value="0" 
             <% if(Util.isEmpty(etatDispo) || etatDispo.equals("0")) { %> checked <% } %> data-technical-field/>
         
-          <div id="Formulaires<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>' style="clear: both;"> 
+          <div id="Formulaires<%= cptDispo + 1 %>" data-fields-no-reset data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>' style="clear: both;"> 
           
               <% uuid = UUID.randomUUID().toString(); %>
-              <p aria-level="2" class="h4-like"><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p>
-              <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
+              <p aria-level="2" class="h4-like hidden" data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p>
+              <div  class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
                    <div class="ds44-select__shape ds44-inpStd">
                       <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.month") %></p>
                       <div id="form-element-<%= uuid %>" data-name="moisDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
@@ -262,7 +262,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
                    </div>
               </div>
               <% uuid = UUID.randomUUID().toString(); %>
-              <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
+              <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
                    <div class="ds44-select__shape ds44-inpStd">
                       <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.year") %></p>
                       <div id="form-element-<%= uuid %>" data-name="anneeDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
@@ -285,7 +285,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
               </div>
               <% uuid = UUID.randomUUID().toString(); %>
               <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
-              <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
+              <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
                    <div class="ds44-posRel">
                       <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PLUS-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
                       <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionPlaceFuture<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionPlaceFuture1 %></textarea>
@@ -295,9 +295,9 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
           </div>
     
           <% uuid = UUID.randomUUID().toString(); %>
-          <div class='<%= hideEtaDispo1 ? " hidden" : "" %>' data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
+          <div class='<%= hideEtaDispo1 ? " hidden" : "" %>' data-fields-no-reset data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
               <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
-              <div class='ds44-form__container<%= hideEtaDispo1 ? " hidden" : "" %>'>
+              <div class='ds44-form__container'>
                    <div class="ds44-posRel">
                       <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
                       <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsPlaceDisponible<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionsPlaceDisponible1 %></textarea>
@@ -305,7 +305,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
               </div>
           </div>
     
-            <div id="dispoActuelle<%= cptDispo + 1 %>" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>'>
+            <div id="dispoActuelle<%= cptDispo + 1 %>" data-fields-no-reset data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>'>
            
      
             <p role="heading" aria-level="2"><trsb:glp key="DISPO-OUI-SEM-HTML"></trsb:glp></p>
@@ -395,7 +395,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
               </tr>
             </table>
             
-            <p data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> class="h4-like" aria-level="2"><trsb:glp key="DISPO-OUI-REMP-HTML"></trsb:glp></p>
+            <p data-fields-no-reset data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> class="h4-like" aria-level="2"><trsb:glp key="DISPO-OUI-REMP-HTML"></trsb:glp></p>
             <div id="form-element-<%= uuid %>" data-name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" class="ds44-form__radio_container" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
             <% uuid = UUID.randomUUID().toString(); %>
                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
@@ -414,11 +414,13 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
           </div>
         </div>
         
-      <div style="clar:both"></div>
-        <p data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-non-<%= cptDispo + 1 %> id="declaration<%= cptDispo + 1 %>" style="clear: both;"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>  
-      </div>
+        <div style="clar:both"></div>
+        <p data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-non-<%= cptDispo + 1 %> id="declaration<%= cptDispo + 1 %>" style="clear: both;"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>  
+     
+
       <% } %>
-</div>
+ 
+    </div>
 
     <div class="ds44-flex ds44-fsb">
         

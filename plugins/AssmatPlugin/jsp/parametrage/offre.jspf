@@ -29,7 +29,10 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
 <div class="blocQuestion">
 <h3><trsb:glp key="OFFRE-TYPE-HTML"></trsb:glp></h3>
 
-<div class="blocSelection">
+
+<div class="ds44-flex">
+
+<div class="blocSelection ds44-fg1 ds44-w100">
 	<p><trsb:glp key="OFFRE-PARTIEL-HTML"></trsb:glp></p>
 	<% uuid = UUID.randomUUID().toString(); %>
     <div id="form-element-<%= uuid %>" data-name="accueilTempsPartiel" class="ds44-form__radio_container" data-required="false">
@@ -80,7 +83,7 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
 
 </div>
 
-<div class="blocSelection2">
+<div class="blocSelection2 ds44-fg1 ds44-w100">
 	<p><trsb:glp key="OFFRE-ATYP-HTML"></trsb:glp></p>
 	<% uuid = UUID.randomUUID().toString(); %>
     <div id="form-element-<%= uuid %>" data-name="horairesAtypiques" class="ds44-form__radio_container" data-required="false">
@@ -157,7 +160,11 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
         </div>
 	</span>
 </div>
+
 </div>
+
+</div>
+
 <div class="blocQuestion reponseBooleenne">
 	<h3><trsb:glp key="OFFRE-URG-HTML"></trsb:glp></h3>
 	<% uuid = UUID.randomUUID().toString(); %>
