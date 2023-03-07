@@ -58,7 +58,7 @@
 						<input type="checkbox" id="name-check-<%= idFormElement %>-1"
 							name="<%= idFormElement %>-1" value="withDispo" class="ds44-checkbox" /><label
 							for="name-check-<%= idFormElement %>-1" class="ds44-boxLabel"
-							id="name-check-label-<%= idFormElement %>-1"><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO" /></label>
+							id="name-check-label-<%= idFormElement %>-1"><%= glp("jcmsplugin.assmatplugin.recherche.am.result.with-dispo") %></label>
 					</div>
 				</li>
 				
@@ -68,7 +68,7 @@
 						<input type="checkbox" id="name-check-<%= idFormElement %>-2"
 							name="<%= idFormElement %>-2" value="withDispoFuture" class="ds44-checkbox" /><label
 							for="name-check-<%= idFormElement %>-2" class="ds44-boxLabel"
-							id="name-check-label-<%= idFormElement %>-2"><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO-FUTUR" /></label>
+							id="name-check-label-<%= idFormElement %>-2"><%= glp("jcmsplugin.assmatplugin.recherche.am.result.with-dispo-futur") %></label>
 					</div>
 				</li>
 				
@@ -77,7 +77,7 @@
 						<input type="checkbox" id="name-check-<%= idFormElement %>-3"
 							name="<%= idFormElement %>-3" value="withNonDispo" class="ds44-checkbox" /><label
 							for="name-check-<%= idFormElement %>-3" class="ds44-boxLabel"
-							id="name-check-label-<%= idFormElement %>-3"><trsb:glp key="RECHERCHE-AM-FILTER-NO-DISPO-CONTACT" /></label>
+							id="name-check-label-<%= idFormElement %>-3"><%= glp("jcmsplugin.assmatplugin.recherche.am.result.no-dispo-contact") %></label>
 					</div>
 
 				</li>
@@ -88,7 +88,7 @@
 							<input type="checkbox" id="name-check-<%= idFormElement %>-4"
 								name="<%= idFormElement %>-4" value="withDispoNonRenseigne" class="ds44-checkbox" /><label
 								for="name-check-<%= idFormElement %>-4" class="ds44-boxLabel"
-								id="name-check-label-<%= idFormElement %>-4"><trsb:glp key="RECHERCHE-AM-FILTER-WITH-DISPO-NON-RENSEIGNEES" /></label>
+								id="name-check-label-<%= idFormElement %>-4"><%= glp("jcmsplugin.assmatplugin.recherche.am.result.dispo-non-renseignees") %></label>
 						</div>
 					</li>
 				</jalios:if>

@@ -368,6 +368,14 @@ jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo: {0} avec des dispo
 jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne: {0} avec des disponibilités non renseignées
 jcmsplugin.assmatplugin.recherche.am.result.recap.am.contact: {0} non disponibles mais acceptant d'être contactées
 
+
+jcmsplugin.assmatplugin.recherche.am.result.with-dispo : Avec des disponibilités
+jcmsplugin.assmatplugin.recherche.am.result.with-dispo-futur : Avec des disponibilités futures
+jcmsplugin.assmatplugin.recherche.am.result.no-dispo-contact : Sans disponibilité mais souhaitant apparaître sur le site
+jcmsplugin.assmatplugin.recherche.am.result.dispo-non-renseignees : Avec des disponibilités non renseignées
+
+
+
 jcmsplugin.assmatplugin.recherche.am.afficher.selection: Afficher ma sélection <span data-nb-select="">({0})</span>
 
 jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.popup: Disponible actuellement
