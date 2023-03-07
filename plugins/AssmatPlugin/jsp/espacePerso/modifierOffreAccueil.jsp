@@ -63,7 +63,7 @@ String uuid = UUID.randomUUID().toString();
 <div class="formActivation form-cg form-espace-perso">
 <div class="form-cg-gray form-cg-white">
 
-  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
+  <form method="post" action="<%= ServletUtil.getResourcePath(request) %>"
     name="formContact" id="formContact" class="formContact formEspacePerso">
 
   
@@ -73,7 +73,7 @@ String uuid = UUID.randomUUID().toString();
     </div>
   
   
-    <h3 class="title-bar-container dotted-portlet"><trsb:glp key="OFFRE-INTRO-HTML"></trsb:glp></h3>
+    <div class="ds44-introduction"><trsb:glp key="OFFRE-INTRO-HTML"></trsb:glp></h3>
     
         
     <div class="blocQuestion">
@@ -81,170 +81,173 @@ String uuid = UUID.randomUUID().toString();
       <%-- Accueil --%>
       <h3><trsb:glp key="OFFRE-TYPE-HTML"></trsb:glp></h3>  
 	    
-	    
-	    <%-- Accueil partie GAUCHE --%>
-	    <div class="blocSelection">
-	          <p><trsb:glp key="OFFRE-PARTIEL-HTML"></trsb:glp></p>
-	          <div id="form-element-<%= uuid %>" data-name="accueilTempsPartiel" class="ds44-form__radio_container ds44-form__container" data-required="false">
-			      <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-			         <input type="radio" name="accueilTempsPartiel" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
-			         <%if(Util.notEmpty(accueilTempsPartiel) && "true".equals(accueilTempsPartiel)){ %> checked <%} %>/>
-			         <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-			      </div>
-			      <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="accueilTempsPartiel" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(accueilTempsPartiel) && "false".equals(accueilTempsPartiel)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-			  </div>
-			  
-			  <% uuid = UUID.randomUUID().toString(); %>
-			  <p><trsb:glp key="OFFRE-PERISCO-HTML"></trsb:glp></p>
-			  <div id="form-element-<%= uuid %>" data-name="accueilPeriscolaire" class="ds44-form__radio_container ds44-form__container"  data-required="false">
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="accueilPeriscolaire" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
-                     <%if(Util.notEmpty(accueilPeriscolaire) && "true".equals(accueilPeriscolaire)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-                  </div>
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="accueilPeriscolaire" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(accueilPeriscolaire) && "false".equals(accueilPeriscolaire)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-              </div>
-			
-			  <% uuid = UUID.randomUUID().toString(); %>
-			  <p><trsb:glp key="OFFRE-MERC-HTML"></trsb:glp></p>
-			  <div id="form-element-<%= uuid %>" data-name="accueilMercredi" class="ds44-form__radio_container ds44-form__container"  data-required="false">
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="accueilMercredi" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
-                     <%if(Util.notEmpty(accueilMercredi) && "true".equals(accueilMercredi)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-                  </div>
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="accueilMercredi" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(accueilMercredi) && "false".equals(accueilMercredi)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-              </div>
-			
-			  <% uuid = UUID.randomUUID().toString(); %>
-			  <p><trsb:glp key="OFFRE-VAC-HTML"></trsb:glp></p>
-			  <div id="form-element-<%= uuid %>" data-name="accueilPendantLesVacancesSco" class="ds44-form__radio_container ds44-form__container"  data-required="false">
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="accueilPendantLesVacancesSco" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
-                     <%if(Util.notEmpty(accueilPendantLesVacancesSco) && "true".equals(accueilPendantLesVacancesSco)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-                  </div>
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="accueilPendantLesVacancesSco" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(accueilPendantLesVacancesSco) && "false".equals(accueilPendantLesVacancesSco)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-              </div>
-	    </div>
-	    
-	    
-	    <%-- Accueil partie DROITE --%>
-	    <div class="blocSelection2">
-	          <% uuid = UUID.randomUUID().toString(); %>
-			  <p><trsb:glp key="OFFRE-ATYP-HTML"></trsb:glp></p>
-			  <div id="form-element-<%= uuid %>" data-name="horairesAtypiques" class="ds44-form__radio_container ds44-form__container"  data-required="false">
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="horairesAtypiques" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" data-enabled-field-value=".toggle-precisezAtypiques"
-                     <%if(Util.notEmpty(horairesAtypiques) && "true".equals(horairesAtypiques)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-                  </div>
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="horairesAtypiques" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(horairesAtypiques) && "false".equals(horairesAtypiques)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-              </div>
-			
-			  <span id="precisezAtypiques" class='toggle-precisezAtypiques<% if((Util.notEmpty(horairesAtypiques) && "false".equals(horairesAtypiques)) || Util.isEmpty(horairesAtypiques)) { %> hidden<% } %>'>
-			    <h3 class="h3-like"><trsb:glp key="OFFRE-ATYP-PLUS-HTML"></trsb:glp></h3>
-			    
-			    <% uuid = UUID.randomUUID().toString(); %>
-			    <p><trsb:glp key="OFFRE-ATYP-AV7-HTML"></trsb:glp></p>
-			    <div id="form-element-<%= uuid %>" data-name="avant7h" class="ds44-form__radio_container ds44-form__container"  data-required="false">
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="avant7h" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
-                     <%if(Util.notEmpty(avant7h) && "true".equals(avant7h)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-                  </div>
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="avant7h" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(avant7h) && "false".equals(avant7h)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-                </div>
-			  
-			    <% uuid = UUID.randomUUID().toString(); %>
-			    <p><trsb:glp key="OFFRE-ATYP-AP20-HTML"></trsb:glp></p>
-			    <div id="form-element-<%= uuid %>" data-name="apres20h" class="ds44-form__radio_container ds44-form__container"  data-required="false">
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="apres20h" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
-                     <%if(Util.notEmpty(apres20h) && "true".equals(apres20h)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-                  </div>
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="apres20h" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(apres20h) && "false".equals(apres20h)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-                </div>
-			  
-			    <% uuid = UUID.randomUUID().toString(); %>
-			    <p><trsb:glp key="OFFRE-ATYP-SAM-HTML"></trsb:glp></p>
-			    <div id="form-element-<%= uuid %>" data-name="leSamedi" class="ds44-form__radio_container ds44-form__container"  data-required="false">
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="leSamedi" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
-                     <%if(Util.notEmpty(leSamedi) && "true".equals(leSamedi)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-                  </div>
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="leSamedi" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(leSamedi) && "false".equals(leSamedi)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-                </div>
-			  
-			    <% uuid = UUID.randomUUID().toString(); %>
-			    <p><trsb:glp key="OFFRE-ATYP-DIM-HTML"></trsb:glp></p>
-			    <div id="form-element-<%= uuid %>" data-name="leDimanche" class="ds44-form__radio_container ds44-form__container"  data-required="false">
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="leSamedi" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
-                     <%if(Util.notEmpty(leDimanche) && "true".equals(leDimanche)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-                  </div>
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="leSamedi" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(leDimanche) && "false".equals(leDimanche)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-                </div>
-			  
-			    <% uuid = UUID.randomUUID().toString(); %>
-			    <p><trsb:glp key="OFFRE-ATYP-NUIT-HTML"></trsb:glp></p>
-			    <div id="form-element-<%= uuid %>" data-name="laNuit" class="ds44-form__radio_container ds44-form__container"  data-required="false">
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="laNuit" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
-                     <%if(Util.notEmpty(laNuit) && "true".equals(laNuit)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
-                  </div>
-                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-                     <input type="radio" name="laNuit" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
-                     <%if(Util.notEmpty(laNuit) && "false".equals(laNuit)){ %> checked <%} %>/>
-                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
-                  </div>
-                </div>
-			  </span>
-
-	  </div> 
+	    <div class="ds44-flex ds44-form__container">
+		    <%-- Accueil partie GAUCHE --%>
+		    <div class="blocSelection ds44-fg1 ds44-w100">
+		          <p><trsb:glp key="OFFRE-PARTIEL-HTML"></trsb:glp></p>
+		          <div id="form-element-<%= uuid %>" data-name="accueilTempsPartiel" class="ds44-form__radio_container ds44-form__container ds44-noMrgt" data-required="false">
+				      <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+				         <input type="radio" name="accueilTempsPartiel" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+				         <%if(Util.notEmpty(accueilTempsPartiel) && "true".equals(accueilTempsPartiel)){ %> checked <%} %>/>
+				         <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+				      </div>
+				      <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                     <input type="radio" name="accueilTempsPartiel" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+	                     <%if(Util.notEmpty(accueilTempsPartiel) && "false".equals(accueilTempsPartiel)){ %> checked <%} %>/>
+	                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+	                  </div>
+				  </div>
+				  
+				  <% uuid = UUID.randomUUID().toString(); %>
+				  <p><trsb:glp key="OFFRE-PERISCO-HTML"></trsb:glp></p>
+				  <div id="form-element-<%= uuid %>" data-name="accueilPeriscolaire" class="ds44-form__radio_container ds44-form__container ds44-noMrgt"  data-required="false">
+	                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                     <input type="radio" name="accueilPeriscolaire" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+	                     <%if(Util.notEmpty(accueilPeriscolaire) && "true".equals(accueilPeriscolaire)){ %> checked <%} %>/>
+	                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+	                  </div>
+	                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                     <input type="radio" name="accueilPeriscolaire" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+	                     <%if(Util.notEmpty(accueilPeriscolaire) && "false".equals(accueilPeriscolaire)){ %> checked <%} %>/>
+	                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+	                  </div>
+	              </div>
+				
+				  <% uuid = UUID.randomUUID().toString(); %>
+				  <p><trsb:glp key="OFFRE-MERC-HTML"></trsb:glp></p>
+				  <div id="form-element-<%= uuid %>" data-name="accueilMercredi" class="ds44-form__radio_container ds44-form__container ds44-noMrgt"  data-required="false">
+	                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                     <input type="radio" name="accueilMercredi" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+	                     <%if(Util.notEmpty(accueilMercredi) && "true".equals(accueilMercredi)){ %> checked <%} %>/>
+	                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+	                  </div>
+	                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                     <input type="radio" name="accueilMercredi" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+	                     <%if(Util.notEmpty(accueilMercredi) && "false".equals(accueilMercredi)){ %> checked <%} %>/>
+	                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+	                  </div>
+	              </div>
+				
+				  <% uuid = UUID.randomUUID().toString(); %>
+				  <p><trsb:glp key="OFFRE-VAC-HTML"></trsb:glp></p>
+				  <div id="form-element-<%= uuid %>" data-name="accueilPendantLesVacancesSco" class="ds44-form__radio_container ds44-form__container ds44-noMrgt"  data-required="false">
+	                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                     <input type="radio" name="accueilPendantLesVacancesSco" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+	                     <%if(Util.notEmpty(accueilPendantLesVacancesSco) && "true".equals(accueilPendantLesVacancesSco)){ %> checked <%} %>/>
+	                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+	                  </div>
+	                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                     <input type="radio" name="accueilPendantLesVacancesSco" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+	                     <%if(Util.notEmpty(accueilPendantLesVacancesSco) && "false".equals(accueilPendantLesVacancesSco)){ %> checked <%} %>/>
+	                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+	                  </div>
+	              </div>
+		    </div>
+		    
+		    
+		    <%-- Accueil partie DROITE --%>
+		    <div class="blocSelection2 ds44-fg1 ds44-w100">
+		          <% uuid = UUID.randomUUID().toString(); %>
+				  <p><trsb:glp key="OFFRE-ATYP-HTML"></trsb:glp></p>
+				  <div id="form-element-<%= uuid %>" data-name="horairesAtypiques" class="ds44-form__radio_container ds44-form__container ds44-noMrgt"  data-required="false">
+	                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                     <input type="radio" name="horairesAtypiques" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+	                     <%if(Util.notEmpty(horairesAtypiques) && "true".equals(horairesAtypiques)){ %> checked <%} %>/>
+	                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+	                  </div>
+	                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                     <input type="radio" name="horairesAtypiques" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+	                     <%if(Util.notEmpty(horairesAtypiques) && "false".equals(horairesAtypiques)){ %> checked <%} %>/>
+	                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+	                  </div>
+	              </div>
+				
+				  <%-- Horaires atypiques --%>
+				  <div data-enabled-by-name-radio-form-element-<%= uuid %>-true class='<% if((Util.notEmpty(horairesAtypiques) && "false".equals(horairesAtypiques)) || Util.isEmpty(horairesAtypiques)) { %> hidden<% } %>'>
+					  <span id="precisezAtypiques">
+					    <h3 class="h3-like"><trsb:glp key="OFFRE-ATYP-PLUS-HTML"></trsb:glp></h3>
+					    
+					    <% uuid = UUID.randomUUID().toString(); %>
+					    <p><trsb:glp key="OFFRE-ATYP-AV7-HTML"></trsb:glp></p>
+					    <div id="form-element-<%= uuid %>" data-name="avant7h" class="ds44-form__radio_container ds44-form__container ds44-noMrgt"  data-required="false">
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="avant7h" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+		                     <%if(Util.notEmpty(avant7h) && "true".equals(avant7h)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+		                  </div>
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="avant7h" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+		                     <%if(Util.notEmpty(avant7h) && "false".equals(avant7h)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+		                  </div>
+		                </div>
+					  
+					    <% uuid = UUID.randomUUID().toString(); %>
+					    <p><trsb:glp key="OFFRE-ATYP-AP20-HTML"></trsb:glp></p>
+					    <div id="form-element-<%= uuid %>" data-name="apres20h" class="ds44-form__radio_container ds44-form__container ds44-noMrgt"  data-required="false">
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="apres20h" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+		                     <%if(Util.notEmpty(apres20h) && "true".equals(apres20h)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+		                  </div>
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="apres20h" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+		                     <%if(Util.notEmpty(apres20h) && "false".equals(apres20h)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+		                  </div>
+		                </div>
+					  
+					    <% uuid = UUID.randomUUID().toString(); %>
+					    <p><trsb:glp key="OFFRE-ATYP-SAM-HTML"></trsb:glp></p>
+					    <div id="form-element-<%= uuid %>" data-name="leSamedi" class="ds44-form__radio_container ds44-form__container ds44-noMrgt"  data-required="false">
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="leSamedi" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+		                     <%if(Util.notEmpty(leSamedi) && "true".equals(leSamedi)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+		                  </div>
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="leSamedi" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+		                     <%if(Util.notEmpty(leSamedi) && "false".equals(leSamedi)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+		                  </div>
+		                </div>
+					  
+					    <% uuid = UUID.randomUUID().toString(); %>
+					    <p><trsb:glp key="OFFRE-ATYP-DIM-HTML"></trsb:glp></p>
+					    <div id="form-element-<%= uuid %>" data-name="leDimanche" class="ds44-form__radio_container ds44-form__container ds44-noMrgt"  data-required="false">
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="leSamedi" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+		                     <%if(Util.notEmpty(leDimanche) && "true".equals(leDimanche)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+		                  </div>
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="leSamedi" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+		                     <%if(Util.notEmpty(leDimanche) && "false".equals(leDimanche)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+		                  </div>
+		                </div>
+					  
+					    <% uuid = UUID.randomUUID().toString(); %>
+					    <p><trsb:glp key="OFFRE-ATYP-NUIT-HTML"></trsb:glp></p>
+					    <div id="form-element-<%= uuid %>" data-name="laNuit" class="ds44-form__radio_container ds44-form__container ds44-noMrgt"  data-required="false">
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="laNuit" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"
+		                     <%if(Util.notEmpty(laNuit) && "true".equals(laNuit)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+		                  </div>
+		                  <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+		                     <input type="radio" name="laNuit" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"
+		                     <%if(Util.notEmpty(laNuit) && "false".equals(laNuit)){ %> checked <%} %>/>
+		                     <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
+		                  </div>
+		                </div>
+					  </span>
+	              </div>
+		  </div> 
+	  </div>
     
     <%-- URGENCE ou REMPLACEMENT--%>
-    <div class="blocQuestion reponseBooleenne">	  
+    <div class="blocQuestion reponseBooleenne">
 		  <% uuid = UUID.randomUUID().toString(); %>
           <p class="h3-like"><trsb:glp key="OFFRE-URG-HTML"></trsb:glp></p>
           <div id="form-element-<%= uuid %>" data-name="accepteDepannage" class="ds44-form__radio_container ds44-form__container"  data-required="false">
