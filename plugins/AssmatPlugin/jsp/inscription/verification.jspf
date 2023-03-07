@@ -353,20 +353,26 @@ if(Util.notEmpty(assMat.getExerceMam())){
    
      </div>  --%>                                            
                                                                                   
-                
-<div class="ds44-form__container">
-    <button type="button-choice" class="ds44-btnStd ds44-bgGray ds44-js-choice-button" data-choice-element-view=".SignalementErreur"
-    data-choice-element-hide=".verificationBloc"><span class="ds44-btnInnerText"><trsb:glp key="VERIF-ERREUR"></trsb:glp></span></button>
-</div>
-                   
-<div class="ds44-form__container">
-    <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp attribute="true" key="VERIF-BOUTON"></trsb:glp>' data-technical-field>
+ 
+ <div class="ds44-flex ds44-fsb"> 
+ 
+        <button type="button-choice" class="ds44-btnStd  ds44-js-choice-button" data-choice-element-view=".SignalementErreur"
+        data-choice-element-hide=".verificationBloc"><span class="ds44-btnInnerText"><trsb:glp key="VERIF-ERREUR"></trsb:glp></span></button>
+
+      
+  
+  
+
+    <button name="opCreate" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><trsb:glp key="VERIF-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+
+
+<%--     <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp attribute="true" key="VERIF-BOUTON"></trsb:glp>' data-technical-field> --%>
     <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
     <input type="hidden" name="opNext" value="true" data-technical-field>
 </div>
   
 <%-- 	Formulaire pour signaler une erreur --%>
-<div class="SignalementErreur hidden">
+<div class="SignalementErreur mtl hidden">
     <h3 class="title-bar-container dotted-portlet"><span class="texte-parametrable text-parametrable"><trsb:glp key="VERIF-ERREUR"></trsb:glp></span></h3>
 	
 	<% uuid = UUID.randomUUID().toString(); %>
@@ -384,13 +390,13 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	</div>
 	
 	<div class="ds44-form__container">
-	    <input type="submit" name="opContact" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.valider")%>' data-submit-key="opContact" data-submit-value="true" data-technical-field>
+	    <input type="submit" name="opContact" class="ds44-btnStd ds44-btn--invert" value='<%= glp("jcmsplugin.assmatplugin.btn.valider")%>' data-submit-key="opContact" data-submit-value="true" data-technical-field>
 	    <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
     </div>
               
 
     <%if(Util.notEmpty(formHandler.getNameUA()) && Util.notEmpty(formHandler.getNumeroTelUA())){ %>
-		<div style="margin-top: 70px;">
+		<div class="mtm">
 		
 		<%
 		String parameterUA="";

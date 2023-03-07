@@ -97,8 +97,8 @@ jcmsplugin.assmatplugin.inscription.terminee: Inscription terminée !
 jcmsplugin.assmatplugin.inscription.terminee.lienacces: Vous pouvez maintenant accédez à votre compte <a href="{0}">ici</a>
 jcmsplugin.assmatplugin.inscription.votremessage: Votre message ici
 jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms à déja été enregistré
-jcmsplugin.assmatplugin.btn.etapesuivante: Etape suivante
-jcmsplugin.assmatplugin.btn.etapeprecedente: Etape précédente
+jcmsplugin.assmatplugin.btn.etapesuivante: Étape suivante
+jcmsplugin.assmatplugin.btn.etapeprecedente: Étape précédente
 jcmsplugin.assmatplugin.btn.envoyer: Envoyer
 jcmsplugin.assmatplugin.btn.valider: Valider
 jcmsplugin.assmatplugin.label.aide: Aide :
