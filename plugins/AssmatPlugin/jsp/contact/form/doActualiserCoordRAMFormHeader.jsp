@@ -19,7 +19,7 @@
 	    formAction = currentCategory.getDisplayUrl(userLocale);
 	  } else {
 	    formAction = "types/" + Util.getClassShortName(formHandler.getPublicationClass()) +"/editForm" + Util.getClassShortName(formHandler.getPublicationClass()) + ".jsp";
-	  } 
+	  }
   }
   
   
@@ -35,14 +35,9 @@
 <% request.setAttribute("formGroupSet", __groupSet); %>
 
 <% int formElementCount  = 0; %>
-<form class="personal-form" action='<%= formAction %>' method='post' name='editForm' accept-charset="UTF-8"  enctype="multipart/form-data">
-<div>
-    <div class="box-area form-area" style="margin-left: auto; margin-right: auto;">
-      <p class="form-required-text bold"><trsb:glp key="MESSAGE-INTRO-FORMULAIRE-ACTUALISER_COORD_RAM" ></trsb:glp></p>
-      <p class="form-required-text"><%= glp("plugin.tools.form.requiredText") %></p>
-            
+<form method="post" action="<%=formAction%>" name="formAccueil" id="formAccueil" data-no-encoding="true" class="form-layout">
 
-
+    <p role="heading" aria-level="2" class="h3-like"><trsb:glp key="MESSAGE-INTRO-FORMULAIRE-ACTUALISER_COORD_RAM" ></trsb:glp></p>
 
 <% request.setAttribute("formElementCount", new Integer(formElementCount)); %>
 <% request.setAttribute("formHandler", formHandler); %>
