@@ -16,13 +16,12 @@ if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
 	if(formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()){
 	
 	%>
-		<!-- FORMULAIRE A ETAPES -->
-		
-		              <p class=""><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
-		
+		<!-- FORMULAIRE A ETAPES -->	
 		
             <% uuid = UUID.randomUUID().toString(); %>
 		    <div id="form-element-<%= uuid %>" data-name="visibiliteSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
+                   <p class="h4-like"><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
+
 <%-- 		       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
 		       <div class="ds44-form__container ds44-checkBox-radio_list ">
 		          <input type="radio" <%if(visibiliteSite){ %>  checked="checked" <%} %> name="visibiliteSite" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.oui") %></label>
@@ -41,7 +40,7 @@ if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
 	<% } %>
 	
 	<%-- Contribuer dans VISIB-AFF-LEG-HTML et VISIB-REFUS-TEXTE-HTML ? pas de clé dans invision --%>
-	<div class="alert alert-block fade in alert-cg">
+	<div class="ds44-msg-container information">
 		<h4><trsb:glp key="HTML-A-SAVOIR"></trsb:glp></h4>		
 		<p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML-SAVOIR" %>'></trsb:glp></p>
 	</div>

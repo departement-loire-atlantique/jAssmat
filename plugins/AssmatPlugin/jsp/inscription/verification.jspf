@@ -390,7 +390,11 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	</div>
 	
 	<div class="ds44-form__container">
-	    <input type="submit" name="opContact" class="ds44-btnStd ds44-btn--invert" value='<%= glp("jcmsplugin.assmatplugin.btn.valider")%>' data-submit-key="opContact" data-submit-value="true" data-technical-field>
+<%-- 	    <input type="submit" name="opContact" class="ds44-btnStd ds44-btn--invert" value='<%= glp("jcmsplugin.assmatplugin.btn.valider")%>' data-submit-key="opContact" data-submit-value="true" data-technical-field> --%>
+	    
+	    <button name="opContact" data-submit-key="opContact" data-submit-value="true" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.btn.valider")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+	    
+	    
 	    <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
     </div>
               

@@ -58,6 +58,7 @@ int stepCount = formHandler.getFormStepCount();
   String uuid = UUID.randomUUID().toString();
 %>
 
+<main id="content">
 
     <div class="ds44-container-large">
        <div class="ds44-inner-container ds44-mtb5">
@@ -68,11 +69,13 @@ int stepCount = formHandler.getFormStepCount();
                         <%@ include
                             file='/plugins/AssmatPlugin/jsp/parametrage/etapes.jspf'%>
 
-                                <%@ include file='/jcore/doMessageBox.jsp'%>
-                                <p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
-                                <form method="post"
+                                
+                                <form class="ds44-grid12-offset-2" method="post"
                                     action="<%= ServletUtil.getResourcePath(request) %>"
                                     name="formContact" id="formContact" data-no-encoding="true">
+                                                                     
+                                    <%@ include file='/jcore/doMessageBox.jsp'%>
+                                    <p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
                                     
                                     <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/headerTitle.jspf' %>
 	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/visibilite.jspf'%>
@@ -97,3 +100,5 @@ int stepCount = formHandler.getFormStepCount();
 <div class="alert alert-block fade in alert-cg"><button type="button" class="close" data-dismiss="alert"><span class="spr-modal-close"></span></button><h4>Attention</h4><p>Aucun profilAM retrouvé pour l'utilisateur <%=loggedMember %></p></div>
 
 <%} %>
+
+</main>

@@ -18,9 +18,12 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
 	String canalDeCommunication = formHandler.getAvailableCanalDeCommunicationSite();
 %>
 
-		<p class="h4-like"><trsb:glp key="CONTACT-TEL-HTML"></trsb:glp></p>
+<!-- 		<p class="h4-like"><trsb:glp key="CONTACT-TEL-HTML"></trsb:glp></p> -->
 		    <% uuid = UUID.randomUUID().toString(); %>
 		    <div class="ds44-form__container">
+		    
+<div class="w50 u-fl">
+		    
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe") %></span></span></label>
                     <input type="text" id="form-element-<%= uuid %>" value='<%= Util.notEmpty(formHandler.getAvailableTelephoneFixe())?formHandler.getAvailableTelephoneFixe():""%>' name="telephoneFixe" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
@@ -32,8 +35,13 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                     </ul>
                 </div>
                 
+</div>
+
+
+<div class="w50 u-fl">
+                
 	            <% uuid = UUID.randomUUID().toString(); %>
-	            <div id="form-element-<%= uuid %>" data-name="visbiliteTelephoneFixe" class="ds44-form__radio_container"  data-required="true">
+	            <div style="margin-left: 30px;" id="form-element-<%= uuid %>" data-name="visbiliteTelephoneFixe" class="ds44-form__radio_container"  data-required="true">
 <%-- 	               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
 	               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
 	                  <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "true".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visbiliteTelephoneFixe" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-OUI-HTML"></trsb:glp></label>
@@ -43,10 +51,19 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
 	               </div>
 	            </div>
             </div>
+            
+</div>
 
-	<p class="h4-like"><trsb:glp key="CONTACT-MOB-HTML"></trsb:glp></p>
+
+<div class="u-clear"></div>
+
+
+<!-- 	<p class="h4-like"><trsb:glp key="CONTACT-MOB-HTML"></trsb:glp></p> -->
             <% uuid = UUID.randomUUID().toString(); %>
             <div class="ds44-form__container">
+            
+<div class="w50 u-fl ">
+
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %></span></span></label>
                     <input type="text" id="form-element-<%= uuid %>"<% if("0".equals(canalDeCommunication)) { %> disabled <% } %>value='<%= telephoneMobile %>' name="telephonePortable" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
@@ -58,9 +75,14 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                         <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.socle.form.exemple.tel") %></li>
                     </ul>
                 </div>
-                
+ 
+</div> 
+
+
+<div class="w50 u-fl">
+               
                 <% uuid = UUID.randomUUID().toString(); %>
-                <div id="form-element-<%= uuid %>" data-name="visibiliteTelephonePortable" class="ds44-form__radio_container"  data-required="true">
+                <div style="margin-left: 30px;" id="form-element-<%= uuid %>" data-name="visibiliteTelephonePortable" class="ds44-form__radio_container"  data-required="true">
 <%--                    <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
                    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                       <input type="radio" <%if(Util.notEmpty(visibiliteTelephonePortable) && "true".equals(visibiliteTelephonePortable) ){ %> checked="checked" <%} %> name="visibiliteTelephonePortable" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-MOB-OUI-HTML"></trsb:glp></label>
@@ -70,6 +92,10 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                    </div>
                 </div>
             </div>
+            
+</div>
+
+<div class="u-clear"></div>
             
             <% uuid = UUID.randomUUID().toString(); %>
             <p class="h4-like"><trsb:glp key="CONTACT-TEL-HOR-HTML"></trsb:glp></p>
@@ -90,9 +116,13 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
 
 		<p><trsb:glp key="CONTACT-LEG-MAIL-HTML"></trsb:glp></p>
 
-	    <p class="h4-like"><trsb:glp key="CONTACT-MAIL-HTML"></trsb:glp></p>
+<!-- 	    <p class="h4-like"><trsb:glp key="CONTACT-MAIL-HTML"></trsb:glp></p> -->
 	    <% uuid = UUID.randomUUID().toString(); %>
             <div class="ds44-form__container">
+            
+            
+<div class="w55 u-fl">
+
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span></span></label>
                     <input type="text"<% if("1".equals(canalDeCommunication)) { %> disabled <% } %>id="form-element-<%= uuid %>" value='<%=Util.notEmpty(formHandler.getAdresseMail())?formHandler.getAdresseMail():""%>' name="adresseMail" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
@@ -108,8 +138,13 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                     </ul>
                 </div>
                 
+</div>
+
+
+<div class="w45 u-fl">
+                
                 <% uuid = UUID.randomUUID().toString(); %>
-                <div id="form-element-<%= uuid %>" data-name="visibiliteAdresseEmail" class="ds44-form__radio_container"  data-required="true">
+                <div style="margin-left: 30px;" id="form-element-<%= uuid %>" data-name="visibiliteAdresseEmail" class="ds44-form__radio_container"  data-required="true">
 <%--                    <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
                    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                       <input type="radio" name="visibiliteAdresseEmail" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>"
@@ -121,7 +156,12 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                       <label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-MAIL-NON-HTML"></trsb:glp></label>
                    </div>
                 </div>
+</div>                
             </div>
+            
+
+<div class="u-clear"></div>
+
          
         <p class="hidden" data-enabled-by-field="#name-radio-form-element-<%= uuid %>-true"><trsb:glp key="CONTACT-LEG2-MAIL-HTML"></trsb:glp></p>
 
@@ -138,7 +178,9 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
             </div>
        </div>
 
-	<trsb:glp key="CONTACT-DISPO-LEG-HTML"></trsb:glp>
+    <div class="mbl">
+	   <trsb:glp key="CONTACT-DISPO-LEG-HTML"></trsb:glp>
+	</div>
  
 	<div class="ds44-flex ds44-fsb">
                  

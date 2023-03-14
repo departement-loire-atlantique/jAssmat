@@ -97,7 +97,7 @@ String token = request.getParameter("token");
 <main id="content">
 
 	<div class="ds44-container-large">
-	   <div class="ds44-inner-container ds44-mtb3">
+	   <div class="ds44-inner-container ds44-mtb5">
 	    <h2><trsb:glp key="IDENT-TITRE"></trsb:glp></h2>
 	
 				<div class="row-fluid">
