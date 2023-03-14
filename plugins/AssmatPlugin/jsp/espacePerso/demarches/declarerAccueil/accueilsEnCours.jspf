@@ -38,10 +38,10 @@
         <li class="ds44-noCut">
             <section class="ds44-card ds44-card--noLink ds44-card--contact ds44-card--border">
                 <div class="ds44-card__section txtleft">
-                    <button class="ds44-btnStd ds44-btn--invert">
+                    <a href='<%= channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.socle.categ.declare.accueil")).getDisplayUrl(userLocale) %>' class="ds44-btnStd ds44-btn--invert">
                         <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.nouvelaccueil") %></span>
                         <i class="icon icon-plus" aria-hidden="true"></i>
-                    </button>
+                    </a>
                 </div>
             </section>
         </li>
