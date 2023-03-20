@@ -145,6 +145,8 @@ jcmsplugin.assmatplugin.form.step.title: Étape {0} : - {1}
 jcmsplugin.assmatplugin.form.step.current.title: Étape {0} : En cours - {1}
 jcmsplugin.assmatplugin.form.step.done.title: Étape {0} : Validée - {1}
 
+jcmsplugin.assmatplugin.form.lbl.assistantematernelle.prefix: Assistant•e maternel•le : {0}
+
 jcmsplugin.assmatplugin.parametrage.tel.error.valide: Le champ {0} n'est pas un numéro valide
 jcmsplugin.assmatplugin.parametrage.mail.error.valide: Le champ {0} n'est pas un email valide
 
