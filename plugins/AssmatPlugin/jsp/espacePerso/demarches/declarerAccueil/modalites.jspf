@@ -155,7 +155,7 @@ if (step == DeclarerAccueilAssmatHandler.MODALITES) {
           <div class="ds44-form__container">
 	        <div class="ds44-posRel">
 	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= titleLabelField %></span></span></label>
-	            <input type="text" id="form-element-<%= uuid %>" name="motifProvisoire" value="<%= motifProvisoire %>" class="ds44-inpStd" title='<%= titleLabelField %>' required />
+	            <input type="text" id="form-element-<%= uuid %>" name="motifProvisoire" value="<%= motifProvisoire %>" class="ds44-inpStd" title='<%= titleLabelField %>' />
 	            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", titleLabelField) %></span></button>
 	        </div>
 	        <div class="ds44-field-information" aria-live="polite">
@@ -165,7 +165,7 @@ if (step == DeclarerAccueilAssmatHandler.MODALITES) {
             </div>
 	      </div>
         </div>
-      </div>
+      
       
 
       <div class="ds44-form__container">

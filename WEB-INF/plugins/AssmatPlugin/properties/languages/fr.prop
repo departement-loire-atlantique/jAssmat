@@ -273,7 +273,7 @@ ui.fo.resetpass.request.form.invalid-telephone: Le numéro de téléphone que vo
 ui.fo.resetpass.request.form.request-already-done-phone: Une demande de changement de mot de passe a déjà été effectuée il y a moins de {0} pour ce numéro de téléphone. <br/>Veuillez attendre que le SMS vous parvienne.
 ui.fo.resetpass.phone.no-matching-member.content-text: Nous sommes désolés mais aucun compte correspondant à ce numéro de téléphone n'a pu être trouvé.
 ui.fo.resetpass.request.phone.label: Téléphone
-jcmsplugin.assmatplugin.form.resetpass.password-updated:<p>Votre mot de passe à bien été mis à jour.</p><p>Un email de confirmation a été envoyé</p>
+jcmsplugin.assmatplugin.form.resetpass.password-updated:<p>Votre mot de passe a bien été mis à jour.</p><p>Un email de confirmation a été envoyé.</p>
 jcmsplugin.assmatplugin.form.resetpass.lien-retour-label : Retour vers la rubrique "Relais petite enfance"
 
 plugin.corporateidentity.form.login.phone.subtitle: (Mobile)
@@ -367,6 +367,14 @@ jcmsplugin.assmatplugin.recherche.am.result.title.2: {0,choice,0#0 assistante ma
 jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo: {0} avec des disponibilités
 jcmsplugin.assmatplugin.recherche.am.result.recap.avec.dispo.non.renseigne: {0} avec des disponibilités non renseignées
 jcmsplugin.assmatplugin.recherche.am.result.recap.am.contact: {0} non disponibles mais acceptant d'être contactées
+
+
+jcmsplugin.assmatplugin.recherche.am.result.with-dispo : Avec des disponibilités
+jcmsplugin.assmatplugin.recherche.am.result.with-dispo-futur : Avec des disponibilités futures
+jcmsplugin.assmatplugin.recherche.am.result.no-dispo-contact : Sans disponibilité mais souhaitant apparaître sur le site
+jcmsplugin.assmatplugin.recherche.am.result.dispo-non-renseignees : Avec des disponibilités non renseignées
+
+
 
 jcmsplugin.assmatplugin.recherche.am.afficher.selection: Afficher ma sélection <span data-nb-select="">({0})</span>
 

@@ -114,7 +114,7 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/etapes.jspf'%>
 <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
-<form method="post" action="<%=ServletUtil.getResourcePath(request)%>" name="formAccueil" id="formAccueil">
+<form method="post" action="<%=ServletUtil.getResourcePath(request)%>" name="formAccueil" id="formAccueil" data-no-encoding="true">
 
     <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/enfantAccueilli.jspf'%>
     <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/lieuAccueil.jspf'%>

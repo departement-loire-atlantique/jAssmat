@@ -91,8 +91,9 @@ public class ChangePasswordRAMHandler extends JcmsFormHandler {
 			
 			// On met a jour les membres liés au contenu
 			StringBuilder stbd = new StringBuilder();
-			stbd.append("Bonjour" + "\n");
-			stbd.append("Votre mot de passe a bien été modifié." + "\n");
+			stbd.append("Bonjour" + "\n\n");
+			stbd.append("Votre mot de passe a bien été modifié." + "\n\n");
+			stbd.append("À bientôt sur le site assmat : <a href=\"https://assmat.loire-atlantique.fr\" target=\"_blank\">https://assmat.loire-atlantique.fr</a>");
 
 			AssmatUtil.sendMail(memberClone.getEmail(), subject, stbd.toString(), from);
 			
