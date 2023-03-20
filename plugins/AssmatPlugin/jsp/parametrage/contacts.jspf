@@ -50,9 +50,9 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
 	                  <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "false".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visbiliteTelephoneFixe" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-NON-HTML"></trsb:glp></label>
 	               </div>
 	            </div>
-            </div>
-            
 </div>
+            
+           </div>
 
 
 <div class="u-clear"></div>

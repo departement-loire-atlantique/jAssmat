@@ -137,8 +137,12 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	<p class="fl w40 ds44-mobile-w100"><trsb:glp key="VERIF-AGREMENT" ></trsb:glp></p>
 	
 	<%-- AGREMENT DOMICILE --%>	
+	
+	
+	<div class="fl w55 ds44-mobile-w100">
+	
 	<jalios:if predicate='<%= exerceDomicile %>'>
-	  <div class="fl w55 ds44-mobile-w100">
+	 
 	    <p class="">À <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp></p>
 			                   
 	    <% for(int itPlace=1; itPlace<=8; itPlace++) { %>
@@ -170,7 +174,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	        <%} %>
 	                        
 	    <%} %>                
-	  </div>
+	  
 	</jalios:if>
 	
 	
@@ -213,6 +217,8 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	    <%}%>
 	</jalios:if>
 	
+	</div>
+	
 </div>
 
 
@@ -235,6 +241,24 @@ if(Util.notEmpty(assMat.getExerceMam())){
 			 <%} %>
 		  
 		</jalios:if>
+		
+		   
+		   
+	   <jalios:if predicate='<%= exerceMam %>'>
+        
+             <p>
+              <trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp><br/>       
+               <span>                                     
+             </p>           
+             
+             <%if(Util.notEmpty(exerceMamLbl)){%>      
+               <p class="u-bold"><%= exerceMamLbl %></p>
+             <%} %>
+          
+        </jalios:if>
+		
+		
+		
 	     
 	</div>
 </div>
