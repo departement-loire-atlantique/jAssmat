@@ -58,12 +58,6 @@ String uuid = UUID.randomUUID().toString();
 
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
     name="formContact" id="formContact">
-
-  
-    <div class="alert alert-block">
-      <h4><%=glp("msg.message-box.warning")%></h4>
-      <p></p>
-    </div>
   
     <p aria-level="3" class="h4-like"><trsb:glp key="CONTACT-INTROTEL-HTML"></trsb:glp></p>
    
@@ -132,9 +126,9 @@ String uuid = UUID.randomUUID().toString();
     <h3 class="h3-like"><trsb:glp key="CONTACT-INTROMAIL-HTML"></trsb:glp></h3>
     
     <%-- email --%>
-    <% uuid = UUID.randomUUID().toString(); %>
+            <% uuid = UUID.randomUUID().toString(); %>
             <div class="ds44-form__container">
-                <p aria-level="2" class="h4-like">
+                <p aria-level="2">
                   <trsb:glp key="CONTACT-LEG-MAIL-HTML"></trsb:glp>
                 </p>
                 <div class="ds44-posRel ds44-mt2">
