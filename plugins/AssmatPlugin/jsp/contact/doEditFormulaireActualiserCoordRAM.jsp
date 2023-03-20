@@ -23,27 +23,22 @@
 <% if (formHandler.isFieldEdition("message")) { %>
 <%-- Message ------------------------------------------------------------ --%>
   <% String messageValues = formHandler.getAvailableMessage(); %>
-  
-  
-<tr class='message'>
-  <td>
-  	<div class='message'><% 
-	  TypeFieldEntry messageTFE = channel.getTypeFieldEntry(formHandler.getPublicationClass(), "message", true);
-	  String messageLabel = messageTFE.getLabel(userLang);
-	  boolean isRequired = messageTFE.isRequired(); %>
-      <label class="block" for="message"><%= messageLabel %><%= isRequired? "<span class=\"required\"></span>":"" %></label>
-      <textarea cols="80" rows="5" name="message" id="message"><%= Util.notEmpty(messageValues)? messageValues:"" %></textarea>
-  	</div>
-  </td>
-</tr>
+
+<% String uuid = UUID.randomUUID().toString(); %>
+<div class="ds44-form__container">
+   <div class="ds44-posRel">
+      <label for="form-element-91325" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span>Votre message ici<sup aria-hidden="true">*</sup></span></span></label>
+      <textarea rows="5" cols="1" id="form-element-91325" name="message" class="ds44-inpStd" title="Votre message ici - obligatoire"  required  ></textarea>
+   </div>
+</div>
 <%
 Member realLoggedMember = (Member) request.getAttribute("realLoggedMember");
 if(realLoggedMember == null) {
   realLoggedMember = loggedMember;
 }
 %>
-<input type="hidden" name="nom"  value="<%= realLoggedMember.getName() %>" />
-<input type="hidden" name="prenom"  value="<%= realLoggedMember.getFirstName() %>" />
+<input type="hidden" name="nom"  value="<%= realLoggedMember.getName() %>" data-technical-field/>
+<input type="hidden" name="prenom"  value="<%= realLoggedMember.getFirstName() %>" data-technical-field/>
 
 <% 
 String email ="";
@@ -54,7 +49,7 @@ if(Util.notEmpty(uniteAgrement)){
 }
 %>
 
-<input type="hidden" name="couriel"  value="<%=email%>" />
+<input type="hidden" name="couriel"  value="<%=email%>"  data-technical-field/>
 <% } %>
 
 <% request.setAttribute("formElementCount", new Integer(formElementCount)); %>
@@ -65,4 +60,3 @@ if(Util.notEmpty(uniteAgrement)){
 <%
   ServletUtil.restoreAttribute(pageContext , "classBeingProcessed");
 %>
-<div class="clear"></div>

@@ -77,7 +77,8 @@ jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.sms: Par SMS
 jcmsplugin.assmatplugin.inscription.champ.lbl.choixLogin: Pour vous connecter au site vous préférez utiliser :
 jcmsplugin.assmatplugin.inscription.verification.place: {0} {0,choice,0#places|1#place|2#places}
 jcmsplugin.assmatplugin.inscription.champ.lbl.verification.confirmer: Je confirme ces informations
-jcmsplugin.assmatplugin.inscription.error.contact.mail.envoye: Votre mail à bien été envoyé
+jcmsplugin.assmatplugin.inscription.error.contact.mail.envoye: Votre mail a bien été envoyé
+jcmsplugin.assmatplugin.inscription.error.contact.message.envoye: Votre message a bien été envoyé
 jcmsplugin.assmatplugin.inscription.error.signal.mail.subjet:[Signalement d'une erreur dans un profil ASSMAT]
 jcmsplugin.assmatplugin.inscription.error.profil.mail.subjet:[Profil ASSMAT introuvable]
 jcmsplugin.assmatplugin.inscription.error.contact.error.envoi: Pour des raisons technique, votre mail n'a pas pu être envoyé.
@@ -144,6 +145,8 @@ jcmsplugin.assmatplugin.form.step.done.lbl: Étape {0} : Validée -
 jcmsplugin.assmatplugin.form.step.title: Étape {0} : - {1}
 jcmsplugin.assmatplugin.form.step.current.title: Étape {0} : En cours - {1}
 jcmsplugin.assmatplugin.form.step.done.title: Étape {0} : Validée - {1}
+
+jcmsplugin.assmatplugin.form.lbl.assistantematernelle.prefix: Assistant•e maternel•le : {0}
 
 jcmsplugin.assmatplugin.parametrage.tel.error.valide: Le champ {0} n'est pas un numéro valide
 jcmsplugin.assmatplugin.parametrage.mail.error.valide: Le champ {0} n'est pas un email valide
