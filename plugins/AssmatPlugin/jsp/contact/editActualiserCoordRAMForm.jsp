@@ -43,6 +43,7 @@ if(Util.notEmpty(request.getParameter("validate"))){
 	  <jsp:include page="/plugins/AssmatPlugin/jsp/contact/doEditFormulaireActualiserCoordRAM.jsp" />
 	  <input type='hidden' name='redirect' value='<%= ServletUtil.getResourcePath(request) %>' data-technical-field/>  
       <input type="hidden" name="noSendRedirect" value="true" data-technical-field/>
+      <input type="hidden" name="validate" value="true" data-technical-field/>
       
       <div class="ds44-form__container">
           <button type="submit" data-send-native class="ds44-btnStd" title='envoyer'>Envoyer</button>
