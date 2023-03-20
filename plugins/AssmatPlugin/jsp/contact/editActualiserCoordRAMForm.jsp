@@ -31,9 +31,9 @@ if(Util.notEmpty(request.getParameter("validate"))){
 <div class="ds44-msg-container information" aria-live="polite">
     <p class="ds44-message-text">
         <i class="icon icon-check icon--sizeM" aria-hidden="true"></i>
-        <span class="ds44-iconInnerText">Information</span>
+        <span class="ds44-iconInnerText"><%= glp("ui.com.lbl.infos") %></span>
     </p>
-    <p>Votre message a bien été envoyé.</p>
+    <p><%= glp("jcmsplugin.assmatplugin.inscription.error.contact.message.envoye") %></p>
 </div>
 <%} %>
 <jalios:if predicate='<%= channel.isDataWriteEnabled() %>'>
@@ -46,7 +46,7 @@ if(Util.notEmpty(request.getParameter("validate"))){
       <input type="hidden" name="validate" value="true" data-technical-field/>
       
       <div class="ds44-form__container">
-          <button type="submit" data-send-native class="ds44-btnStd" title='envoyer'>Envoyer</button>
+          <button type="submit" data-send-native class="ds44-btnStd" title='<%= glp("jcmsplugin.assmatplugin.btn.envoyer") %>'><%= glp("jcmsplugin.assmatplugin.btn.envoyer") %></button>
       </div>
       
       </form>
