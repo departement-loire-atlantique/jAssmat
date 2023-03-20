@@ -44,17 +44,8 @@ String uuid = UUID.randomUUID().toString();
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
 <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
-<div class="headstall container-fluid formulaireActivation">
-<div class="formActivation form-cg form-espace-perso">
-<div class="form-cg-gray form-cg-white">
-
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
     name="formContact" id="formContact">
-
-    <div class="alert alert-block alertPass hide  alert-cg">
-      <h4><%=glp("msg.message-box.warning")%></h4>
-      <p></p>
-    </div>
     
     <p role="heading" aria-level="2" class="h3-like"><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
     <div id="form-element-<%= uuid %>" data-name="visibiliteSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
@@ -83,8 +74,3 @@ String uuid = UUID.randomUUID().toString();
     </div>
     
   </form>
-
-
-</div>
-</div>
-</div>
