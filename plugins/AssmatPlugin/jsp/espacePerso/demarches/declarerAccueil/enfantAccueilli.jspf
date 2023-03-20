@@ -300,7 +300,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 		    </div>
 		</div>
         
-        <div data-enabled-by-name-check-form-element-<%= uuid %> class='<%= saisieAdresseR1 ? "hidden" : ""  %>'>
+        <div data-enabled-by-name-check-form-element-<%= uuid %> class='<%= saisieAdresseR1 ? "" : "hidden"  %>'>
 
 	        <div class="h4-like">
 	          <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-TEXT-HTML" />

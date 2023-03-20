@@ -1,5 +1,2 @@
 <%@ include file='/jcore/doInitPage.jsp' %>
-
-<li>
-  <img src="images/jalios/icons/files/csv.gif" class="icon" alt="" /><a href="plugins/AssmatPlugin/jsp/exportCsv/exportMemberAmCsv.jsp">Export csv des données profil AM et membre</a>
-</li>
+<a class="list-group-item modal" href="plugins/AssmatPlugin/jsp/exportCsv/exportMemberAmCsv.jsp"><img src="s.gif" class="jalios-icon pull-left page-excel ss_sprite ss_page_excel" alt="" /> Export csv des données profil AM et membre</a>
