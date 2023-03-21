@@ -228,8 +228,8 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
 
     <div class="ds44-flex ds44-fsb mtl">
                      
-        <button data-send-native name="opPrevious" value="true" data-form-no-validate data-submit-value="true" data-submit-key="opPrevious" class="ds44-btnStd ds44-btn--invert" title="Étape précédente : [étape XX/XX] - [NomDeLetape]"><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></span></button>
-        <button data-send-native data-submit-value="true" name="opNext" value="true" data-submit-key="opNext" class="ds44-btnStd ds44-btn--invert" title="Étape suivante : [étape XX/XX] - [NomDeLetape]"><span class="ds44-btnInnerText"><trsb:glp key="OFFRE-BOUTON" attribute="true"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+        <button data-send-native name="opPrevious" value="true" data-form-no-validate data-submit-value="true" data-submit-key="opPrevious" class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.label.etape.prev", new String[]{"2/5", glp("jcmsplugin.assmatplugin.parametrage.contacts")}) %>"><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></span></button>
+        <button data-send-native data-submit-value="true" name="opNext" value="true" data-submit-key="opNext" class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.label.etape.prev", new String[]{"4/5", glp("jcmsplugin.assmatplugin.parametrage.disponibilite")}) %>"><span class="ds44-btnInnerText"><trsb:glp key="OFFRE-BOUTON" attribute="true"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
         
              
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>

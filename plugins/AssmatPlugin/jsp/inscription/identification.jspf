@@ -134,7 +134,7 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 <%-- 	                        <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field> --%>
                         
                         
-                            <button name="opCreate" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+                            <button name="opCreate" class="ds44-btnStd ds44-btn--invert"  title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"2/5", glp("jcmsplugin.assmatplugin.inscription.verification")}) %>" data-technical-field><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
                         
                         
                         </div>

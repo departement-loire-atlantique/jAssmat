@@ -274,7 +274,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
   
   
 
-    <button name="opCreate" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><trsb:glp key="VERIF-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+    <button name="opCreate" class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"3/5", glp("jcmsplugin.assmatplugin.inscription.contacts")}) %>" data-technical-field><span class="ds44-btnInnerText"><trsb:glp key="VERIF-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
 
 
 <%--     <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp attribute="true" key="VERIF-BOUTON"></trsb:glp>' data-technical-field> --%>
@@ -303,7 +303,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	<div class="ds44-form__container">
 <%-- 	    <input type="submit" name="opContact" class="ds44-btnStd ds44-btn--invert" value='<%= glp("jcmsplugin.assmatplugin.btn.valider")%>' data-submit-key="opContact" data-submit-value="true" data-technical-field> --%>
 	    
-	    <button name="opContact" data-submit-key="opContact" data-submit-value="true" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.btn.valider")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+	    <button name="opContact" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"3/5", glp("jcmsplugin.assmatplugin.inscription.contacts")}) %>" data-submit-key="opContact" data-submit-value="true" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.btn.valider")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
 	    
 	    
 	    <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
