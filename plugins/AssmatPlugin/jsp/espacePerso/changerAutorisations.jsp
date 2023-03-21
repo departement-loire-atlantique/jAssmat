@@ -48,10 +48,10 @@ String uuid = UUID.randomUUID().toString();
     <p aria-level="2" class="h4-like"><trsb:glp key="AUTOR-DPT-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
     <div id="form-element-<%= uuid %>" data-name="autorisationSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
        <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-       <div class="ds44-form__container ds44-checkBox-radio_list ">
+       <div class="ds44-form__container ds44-checkBox-radio_list inbl">
           <input type="radio" <% if(autorisationSite){ %> checked <% } %> name="autorisationSite" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="AUTOR-DPT-OUI-HTML"></trsb:glp></label>
        </div>
-       <div class="ds44-form__container ds44-checkBox-radio_list ">
+       <div class="ds44-form__container ds44-checkBox-radio_list inbl">
           <input type="radio" <% if(!autorisationSite) { %> checked <% } %> name="autorisationSite" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="AUTOR-DPT-NON-HTML"></trsb:glp><br /></label>
        </div>
     </div>
@@ -61,10 +61,10 @@ String uuid = UUID.randomUUID().toString();
     <p aria-level="2" class="h4-like"><trsb:glp key="AUTOR-CAF-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
     <div id="form-element-<%= uuid %>" data-name="autorisationCAF" class="ds44-form__radio_container ds44-form__container"  data-required="true">
        <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-       <div class="ds44-form__container ds44-checkBox-radio_list ">
+       <div class="ds44-form__container ds44-checkBox-radio_list inbl">
           <input type="radio" <% if(autorisationCAF){ %> checked <% } %> name="autorisationCAF" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="AUTOR-CAF-OUI-HTML"></trsb:glp></label>
        </div>
-       <div class="ds44-form__container ds44-checkBox-radio_list ">
+       <div class="ds44-form__container ds44-checkBox-radio_list inbl">
           <input type="radio" <% if(!autorisationCAF) { %> checked <% } %> name="autorisationCAF" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="AUTOR-CAF-NON-HTML"></trsb:glp></label>
        </div>
     </div>
@@ -74,10 +74,10 @@ String uuid = UUID.randomUUID().toString();
     <p aria-level="2" class="h4-like"><trsb:glp key="AUTOR-RAM-HTML"></trsb:glp><sup aria-hidden="true">*</sup></p>
     <div id="form-element-<%= uuid %>" data-name="autorisationRelais" class="ds44-form__radio_container ds44-form__container"  data-required="true">
        <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-       <div class="ds44-form__container ds44-checkBox-radio_list ">
+       <div class="ds44-form__container ds44-checkBox-radio_list inbl">
           <input type="radio" <% if(autorisationRelais){ %> checked <% } %> name="autorisationRelais" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="AUTOR-RAM-OUI-HTML"></trsb:glp></label>
        </div>
-       <div class="ds44-form__container ds44-checkBox-radio_list ">
+       <div class="ds44-form__container ds44-checkBox-radio_list inbl">
           <input type="radio" <% if(!autorisationRelais) { %> checked <% } %> name="autorisationRelais" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="AUTOR-RAM-NON-HTML"></trsb:glp></label>
        </div>
     </div>

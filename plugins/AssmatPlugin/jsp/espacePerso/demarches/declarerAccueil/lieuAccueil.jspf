@@ -28,29 +28,29 @@ if (step == DeclarerAccueilAssmatHandler.LIEU_ACCUEIL) {
   
 %>
 
-        <p class="h3-like"><%= libelleAccueil %></p>
+        <p class="h4-like"><%= libelleAccueil %></p>
          
       <%if(assmatSolis.getExerceDomicile() && assmatSolis.getExerceMam() ){  %>
-        <p class="h4-like"><trsb:glp key="ASS-DEC-ACC-INFO-MAMDOM-HTML" ></trsb:glp></p>
+        <p><trsb:glp key="ASS-DEC-ACC-INFO-MAMDOM-HTML" ></trsb:glp></p>
       <%} %>
       <%if(assmatSolis.getExerceDomicile() && !assmatSolis.getExerceMam() ){  %>
-        <p class="h4-like"><trsb:glp key="ASS-DEC-ACC-INFO-DOM-HTML" ></trsb:glp></p>
+        <p><trsb:glp key="ASS-DEC-ACC-INFO-DOM-HTML" ></trsb:glp></p>
       <%} %>
       <%if(!assmatSolis.getExerceDomicile() && assmatSolis.getExerceMam() ){  %>
-        <p class="h4-like"><trsb:glp key="ASS-DEC-ACC-INFO-MAM-HTML" ></trsb:glp></p>
+        <p><trsb:glp key="ASS-DEC-ACC-INFO-MAM-HTML" ></trsb:glp></p>
       <%} %>
       
       <% uuid = UUID.randomUUID().toString(); %>
         <div id="form-element-<%= uuid %>" data-name="accueilDomicile" class="ds44-form__radio_container ds44-form__container" data-required="true">
             <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
             <jalios:if predicate="<%= assmatSolis.getExerceMam() %>">
-	            <div class="ds44-form__container ds44-checkBox-radio_list ">
-	                <input <%if(!assmatSolis.getExerceDomicile() || (accueilDomicile != null && !accueilDomicile) ){ %> checked <%} %> required type="radio" name="accueilDomicile" value="false" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><span><strong><trsb:glp key="ASS-DEC-ACC-MAM-HTML" ></trsb:glp></strong></span><span><%= assmatSolis.getNomMam() %></span><span><%= assmatSolis.getAdresseMam() %></span><span><%= assmatSolis.getCpMam() %> <%= assmatSolis.getCommuneMam() %></label>
+	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	                <input <%if(!assmatSolis.getExerceDomicile() || (accueilDomicile != null && !accueilDomicile) ){ %> checked <%} %> required type="radio" name="accueilDomicile" value="false" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><span><strong><trsb:glp key="ASS-DEC-ACC-MAM-HTML" ></trsb:glp></strong></span><br/><span><%= assmatSolis.getNomMam() %></span><br/><span><%= assmatSolis.getAdresseMam() %></span><br/><span><%= assmatSolis.getCpMam() %> <%= assmatSolis.getCommuneMam() %></label>
 	            </div>
             </jalios:if>
             <jalios:if predicate="<%= assmatSolis.getExerceDomicile() %>">
-	            <div class="ds44-form__container ds44-checkBox-radio_list ">
-                    <input  <%if(!assmatSolis.getExerceMam() || (accueilDomicile != null && accueilDomicile) ){ %> checked <%} %> required type="radio" name="accueilDomicile" value="true" id="name-radio-form-element-<%= uuid %>-t" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-t" for="name-radio-form-element-<%= uuid %>-t" class="ds44-radioLabel"><span><strong><trsb:glp key="ASS-DEC-ACC-DOM-HTML" ></trsb:glp></strong></span><span><%= assmatSolis.getAdresseDomicile() %></span><span><%= assmatSolis.getCpDomicile() %> <%= assmatSolis.getCommuneDomicile() %></span></label>
+	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                    <input  <%if(!assmatSolis.getExerceMam() || (accueilDomicile != null && accueilDomicile) ){ %> checked <%} %> required type="radio" name="accueilDomicile" value="true" id="name-radio-form-element-<%= uuid %>-t" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-t" for="name-radio-form-element-<%= uuid %>-t" class="ds44-radioLabel"><span><strong><trsb:glp key="ASS-DEC-ACC-DOM-HTML" ></trsb:glp></strong></span><br/><span><%= assmatSolis.getAdresseDomicile() %></span><br/><span><%= assmatSolis.getCpDomicile() %> <%= assmatSolis.getCommuneDomicile() %></span></label>
                 </div>
             </jalios:if>
         </div>
@@ -67,25 +67,27 @@ if (step == DeclarerAccueilAssmatHandler.LIEU_ACCUEIL) {
         <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getAdresseMam()) %>' name="adresseMam" data-technical-field>
         <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCommuneMam()) %>' name="communeMam" data-technical-field>
         <input type="hidden" value='<%= HttpUtil.encodeForHTMLAttribute(assmatSolis.getCpMam()) %>' name="cpMam" data-technical-field>
- 
-      <div class="ds44-form__container">
-          <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></button>
-          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-          <input type="hidden" name="id" value="c_5065" data-technical-field>
-      </div>
- 
-      <jalios:if predicate="<%= !isModif %>">
-        <div class="ds44-form__container">
-            <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
-            <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-            <input type="hidden" name="id" value="c_5065" data-technical-field>
-        </div>  
-      </jalios:if>
       
-      <div class="ds44-form__container">
-          <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></button>
-          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-          <input type="hidden" name="id" value="c_5065" data-technical-field>
+      <div class="ds44-flex ds44-fsb">
+	      <div class="ds44-form__container">
+	          <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></button>
+	          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+	          <input type="hidden" name="id" value="c_5065" data-technical-field>
+	      </div>
+	 
+	      <jalios:if predicate="<%= !isModif %>">
+	        <div class="ds44-form__container">
+	            <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
+	            <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+	            <input type="hidden" name="id" value="c_5065" data-technical-field>
+	        </div>  
+	      </jalios:if>
+	      
+	      <div class="ds44-form__container">
+	          <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></button>
+	          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+	          <input type="hidden" name="id" value="c_5065" data-technical-field>
+	      </div>
       </div>
 
 	   <!-- FIN FORMULAIRE A ETAPES -->
