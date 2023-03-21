@@ -56,10 +56,11 @@ int stepCount = formHandler.getFormStepCount();
 
   
   String uuid = UUID.randomUUID().toString();
+  
+  boolean showRequiredLbl = !formHandler.getAfficherMessageConfirmation() && formHandler.getAfficherMessageConfirmationVisibiliteSiteNone();
 %>
 
 <main id="content">
-
     <div class="ds44-container-large">
        <div class="ds44-inner-container ds44-mtb5">
         <h2><%= box.getDisplayTitle(userLang) %></h2>
@@ -75,7 +76,9 @@ int stepCount = formHandler.getFormStepCount();
                                     name="formContact" id="formContact" data-no-encoding="true">
                                                                      
                                     <%@ include file='/jcore/doMessageBox.jsp'%>
-                                    <p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
+                                    <% if(showRequiredLbl) {%> 
+                                        <p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
+                                    <%}%>
                                     
                                     <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/headerTitle.jspf' %>
 	                                <%@ include file='/plugins/AssmatPlugin/jsp/parametrage/visibilite.jspf'%>

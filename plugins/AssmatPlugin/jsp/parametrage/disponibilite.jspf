@@ -185,9 +185,9 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
           nuit = new String[]{lundi_nuit1,mardi_nuit1,mercredi_nuit1,jeudi_nuit1, vendredi_nuit1, samedi_nuit1, dimanche_nuit1};
           
         }%>
-      <div class="categorie">
+      <div class="categorie mtl">
         <input type="hidden" name="idDispo<%= cptDispo + 1 %>" value="<%=dispos.get(cptDispo).getId()%>" />
-        <h4 class="categorie title-bar-container dotted-portlet">
+        <h4 class="categorie title-bar-container dotted-portlet">        
           <jalios:if predicate='<%= dispos.get(cptDispo).getAgrement().contains("dom-") %>'>
             À domicile : 
           </jalios:if>
@@ -196,23 +196,24 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
           </jalios:if>
             1 place <%= AssmatUtil.getTitlePlace(dispos.get(cptDispo).getLibelle(), dispos.get(cptDispo).getLibelleComplementaire(), dispos.get(cptDispo).getTrancheDage()) %></p>      
         </h4>
+         <hr/>
         <jalios:select>     
           <jalios:if predicate='<%= dispos.get(cptDispo).getSaisieDisponible() %>'>
             <% uuid = UUID.randomUUID().toString(); %>
             <div id="form-element-<%= uuid %>" data-name="etatDispo<%= cptDispo + 1 %>" class="ds44-form__radio_container ds44-form__container">
-               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-               <div class="ds44-form__container ds44-checkBox-radio_list">
+<%--                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("1")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
                       value="1" id="dispo-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radio"/>
                   <label id="label-radio-form-element-<%= uuid %>-one" for="dispo-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-HTML" ></trsb:glp></label>
                </div>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("2")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
                       value="2" id="dispo-toggleable-oui-plus-<%= cptDispo + 1 %>" class="ds44-radio" 
                       required aria-describedby="mandatory-message-form-element-<%= uuid %>"/>
                   <label id="label-radio-form-element-<%= uuid %>-two" for="dispo-toggleable-oui-plus-<%= cptDispo + 1 %>" class="ds44-radioLabel"><trsb:glp key="DISPO-OUI-PLUS-HTML"></trsb:glp></label>
                </div>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <% if(Util.notEmpty(etatDispo) && etatDispo.equals("3")) { %> checked <% } %> name="etatDispo<%= cptDispo + 1 %>" 
                       value="3" id="dispo-toggleable-non-<%= cptDispo + 1 %>" class="ds44-radio" 
                       required aria-describedby="mandatory-message-form-element-<%= uuid %>"/>
@@ -262,7 +263,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
                    </div>
               </div>
               <% uuid = UUID.randomUUID().toString(); %>
-              <div class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
+              <div class='ds44-form__container hidden' data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
                    <div class="ds44-select__shape ds44-inpStd">
                       <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.year") %></p>
                       <div id="form-element-<%= uuid %>" data-name="anneeDispo<%= cptDispo + 1 %>" class="ds44-js-select-standard ds44-selectDisplay"></div>
@@ -395,37 +396,51 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
               </tr>
             </table>
             
-            <p data-fields-no-reset data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> class="h4-like" aria-level="2"><trsb:glp key="DISPO-OUI-REMP-HTML"></trsb:glp></p>
+            <p role="heading" data-fields-no-reset data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> class="" aria-level="2"><trsb:glp key="DISPO-OUI-REMP-HTML"></trsb:glp></p>
             <div id="form-element-<%= uuid %>" data-name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" class="ds44-form__radio_container" data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %>>
             <% uuid = UUID.randomUUID().toString(); %>
-               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+<%--                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" value="true" <% if(dispoDepannagePlaceDisponible1.equals("true")) { %> checked <% } %> 
-                  id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" />
-                  <label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
+                  id="remplacement-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" />
+                  <label id="lbl-remplacement-toggleable-oui-<%= cptDispo + 1 %>" for="remplacement-toggleable-oui-<%= cptDispo + 1 %>" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
                </div>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" name="dispoDepannagePlaceDisponible<%= cptDispo + 1 %>" value="false" <% if(dispoDepannagePlaceDisponible1.equals("false")) { %> checked <% } %> 
                   id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>"/>
                   <label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
                </div>
             </div>
+            
+            
+            <% uuid = UUID.randomUUID().toString(); %>
+            <div class='<%= hideEtaDispo1 ? " hidden" : "hidden" %>' data-fields-no-reset data-enabled-by-remplacement-toggleable-oui-<%= cptDispo + 1 %>>
+              <jalios:buffer name="precisionsLbl"><trsb:glp key="DISPO-OUI-PREC-HTML" attribute="true"></trsb:glp></jalios:buffer>
+              <div class='ds44-form__container'>
+                   <div class="ds44-posRel">
+                      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="DISPO-OUI-REMP-PREC-HTML" attribute="true"></trsb:glp></span></span></label>
+                      <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precisionsDepannagePlaceDisponible<%= cptDispo + 1 %>" class="ds44-inpStd" title="<%= precisionsLbl %>"><%= precisionsDepannagePlaceDisponible1 %></textarea>
+                   </div>
+              </div>
+            </div>
+            
+            
         
           </div>
         </div>
         
         <div style="clar:both"></div>
-        <p data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-non-<%= cptDispo + 1 %> id="declaration<%= cptDispo + 1 %>" style="clear: both;"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>  
+        <p class="hidden" data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-non-<%= cptDispo + 1 %> id="declaration<%= cptDispo + 1 %>" style="clear: both;"><trsb:glp key="DISPO-OUI-PLUS-LEG-HTML"></trsb:glp></p>  
      
 
       <% } %>
  
     </div>
 
-    <div class="ds44-flex ds44-fsb">
+    <div class="ds44-flex ds44-fsb mtl">
         
-        <button data-send-native name="opPrevious" value="true" data-form-no-validate data-submit-value="true" data-submit-key="opPrevious" class="ds44-btnStd ds44-btn--invert" title="Étape précédente : [étape XX/XX] - [NomDeLetape]"><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></span></button>
-        <button data-send-native data-submit-value="true" name="opNext" value="true" data-submit-key="opNext" class="ds44-btnStd ds44-btn--invert" title="Étape suivante : [étape XX/XX] - [NomDeLetape]"><span class="ds44-btnInnerText"><trsb:glp key="DISPO-BOUT" attribute="true"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+        <button data-send-native name="opPrevious" value="true" data-form-no-validate data-submit-value="true" data-submit-key="opPrevious" class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.label.etape.prev", new String[]{"3/5", glp("jcmsplugin.assmatplugin.parametrage.offre")}) %>"><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON-PREV" attribute="true"></trsb:glp></span></button>
+        <button data-send-native data-submit-value="true" name="opNext" value="true" data-submit-key="opNext" class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"5/5", glp("jcmsplugin.assmatplugin.parametrage.autorisations")}) %>"><span class="ds44-btnInnerText"><trsb:glp key="DISPO-BOUT" attribute="true"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
         
             
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>       

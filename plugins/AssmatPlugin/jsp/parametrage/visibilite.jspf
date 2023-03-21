@@ -17,7 +17,6 @@ if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
 	
 	%>
 		<!-- FORMULAIRE A ETAPES -->	
-		
             <% uuid = UUID.randomUUID().toString(); %>
 		    <div id="form-element-<%= uuid %>" data-name="visibiliteSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
                    <p class="h4-like"><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
@@ -34,24 +33,29 @@ if (step == ParametrageAssmatHandler.VISIBILITE_STEP) {
 			<p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML" %>'></trsb:glp></p>
 			
 	<% }else{ %>
-		
 			<p><trsb:glp key="VISIB-REFUS-TEXTE-HTML"></trsb:glp></p>
 
 	<% } %>
 	
 	<%-- Contribuer dans VISIB-AFF-LEG-HTML et VISIB-REFUS-TEXTE-HTML ? pas de clé dans invision --%>
-	<div class="ds44-msg-container information">
-		<h4><trsb:glp key="HTML-A-SAVOIR"></trsb:glp></h4>		
-		<p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML-SAVOIR" %>'></trsb:glp></p>
-	</div>
+<!-- 	<div class="ds44-msg-container information"> -->
+<!-- 		<h4><trsb:glp key="HTML-A-SAVOIR"></trsb:glp></h4>		 -->
+<%-- 		<p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML-SAVOIR" %>'></trsb:glp></p> --%>
+<!-- 	</div> -->
+	
+	<div class="ds44-box ds44-theme ds44-mb3 mts">
+	    <div class="ds44-innerBoxContainer">
+	        <h4><trsb:glp key="HTML-A-SAVOIR"></trsb:glp></h4>      
+	        <p><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-LEG-HTML-SAVOIR" %>'></trsb:glp></p>
+        </div>
+    </div>
 
 	<% if(formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()){ %>
 	<div class="ds44-form__container ds44-txtRight">
 <%--         <button class="ds44-btnStd" data-send-native data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp>'><trsb:glp key="VISIB-BOUTON" attribute="true"></trsb:glp></button> --%>
        
-       
-      
-        <button data-send-native data-submit-value="true" data-submit-key="opCreate" class="ds44-btnStd ds44-btn--invert" title="Étape suivante : [étape XX/XX] - [NomDeLetape]"><span class="ds44-btnInnerText"><trsb:glp attribute="true" key="VISIB-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+            
+        <button data-send-native data-submit-value="true" data-submit-key="opCreate" class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"2/5", glp("jcmsplugin.assmatplugin.parametrage.contacts")}) %>"><span class="ds44-btnInnerText"><trsb:glp attribute="true" key="VISIB-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
        
        
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>

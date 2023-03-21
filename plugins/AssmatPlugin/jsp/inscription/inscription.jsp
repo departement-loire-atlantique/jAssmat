@@ -88,6 +88,8 @@ int stepCount = formHandler.getFormStepCount();
 
 String token = request.getParameter("token");
 
+boolean showRequiredLbl = !(step == InscriptionAssmatHandler.CONFIRMATION_STEP);
+
 
 %>
 
@@ -110,8 +112,11 @@ String token = request.getParameter("token");
 									name="formContact" id="formContact" data-no-encoding="true">
 									
 									<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
-                                    <p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
 									
+									<% if(showRequiredLbl) { %>
+                                        <p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
+									<% } %>
+		                            
 		                            <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
 		                            
 									<%@ include

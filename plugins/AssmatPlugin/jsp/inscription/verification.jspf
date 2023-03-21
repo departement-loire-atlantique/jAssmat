@@ -137,8 +137,12 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	<p class="fl w40 ds44-mobile-w100"><trsb:glp key="VERIF-AGREMENT" ></trsb:glp></p>
 	
 	<%-- AGREMENT DOMICILE --%>	
+	
+	
+	<div class="fl w55 ds44-mobile-w100">
+	
 	<jalios:if predicate='<%= exerceDomicile %>'>
-	  <div class="fl w55 ds44-mobile-w100">
+	 
 	    <p class="">À <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp></p>
 			                   
 	    <% for(int itPlace=1; itPlace<=8; itPlace++) { %>
@@ -170,7 +174,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	        <%} %>
 	                        
 	    <%} %>                
-	  </div>
+	  
 	</jalios:if>
 	
 	
@@ -213,6 +217,8 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	    <%}%>
 	</jalios:if>
 	
+	</div>
+	
 </div>
 
 
@@ -235,126 +241,31 @@ if(Util.notEmpty(assMat.getExerceMam())){
 			 <%} %>
 		  
 		</jalios:if>
+		
+		   
+		   
+	   <jalios:if predicate='<%= exerceMam %>'>
+        
+             <p>
+              <trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp><br/>       
+               <span>                                     
+             </p>           
+             
+             <%if(Util.notEmpty(exerceMamLbl)){%>      
+               <p class="u-bold"><%= exerceMamLbl %></p>
+             <%} %>
+          
+        </jalios:if>
+		
+		
+		
 	     
 	</div>
 </div>
 
-
-<%-- <div class="blocChamp blocForm">    
-    <jalios:if predicate='<%= exerceDomicile %>'>
-     <p class="nobold">
-       <trsb:glp key="VERIF-LIEU-EXERCICE-DOM"></trsb:glp><br/>
-        
-        <span>                                     
-
-      </p>
-   <%if(Util.notEmpty(exerceDomicileLbl)){%> 
-    <div class="blocCarte" style="margin-bottom: 30px;">                                   
-      <p><span class=""><%= exerceDomicileLbl %></span></p>     
-      <div class="carto">
-      <% request.setAttribute("gMapsType", "large"); %>
-      <% request.setAttribute("latitude", new BigDecimal(latAM)); %>
-      <% request.setAttribute("longitude",new BigDecimal(longAM)); %>
-        <jsp:include page='/plugins/AssmatPlugin/jsp/inscription/map/mapDisplay.jsp?idMap=dom' />
-        <% request.removeAttribute("gMapsType"); %>
-        <% request.removeAttribute("latitude"); %>
-        <% request.removeAttribute("longitude"); %>
-        <input type="hidden" id ="latAMTampon" name="latAMTampon" value="<%=latAM%>" data-technical-field>
-         <input type="hidden" id="longAMTampon" name="longAMTampon" value="<%=longAM%>" data-technical-field>
-         <input type="hidden" id ="latAM" name="latAM" value="<%=latAM%>" data-technical-field>
-           <input type="hidden" id="longAM" name="longAM" value="<%=longAM%>" data-technical-field>
-      </div>
-      <p class="submit submitNewPositionAM hide">
-      <label for="submit"> <input type="button" id="submit"
-     name="opCreate" value="Valider" class="submitButton">
-     <span class="input-box" style="background-color: #aec900"><span
-       class="spr-recherche-ok"></span></span>
-   </label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-         
-     </p> 
-   </div> 
-     <jalios:javascript>
-     
-     jQuery( ".submitNewPositionAM" ).click(function(event) {
-        document.getElementById("latAM").value =  document.getElementById("latAMTampon").value;
-        document.getElementById("longAM").value =  document.getElementById("longAMTampon").value;
-        jQuery( ".submitNewPositionAM" ).hide();
-       
-        
-      });
-     
-     </jalios:javascript>
-     
-     
-     
-     
-   <%                    
-   }%>                                                  
-  </jalios:if>
+                                                    
  
-
- 
-  AGREMENT MAISON ASSISTANTES
-  <jalios:if predicate='<%= exerceMam %>'>
-   <span>                                     
-    <p class="nobold">
-     <trsb:glp key="VERIF-LIEU-EXERCICE-MAM"></trsb:glp><br/>
-      
-
-    </p>
-
-   </span>
- 
-
-   <%if(Util.notEmpty(exerceMamLbl)){%> 
-    <div class="blocCarte">                                   
-       <p><span></span><span class=""><%= exerceMamLbl %></span></p>
-     
-      
-       <div class="carto">
-         <% request.setAttribute("gMapsType", "large"); %>
-         <% request.setAttribute("latitude",new BigDecimal(latMAM)); %>
-         <% request.setAttribute("longitude",new BigDecimal(longMAM)); %>
-         <jsp:include page='/plugins/AssmatPlugin/jsp/inscription/map/mapDisplay.jsp?idMap=mam' />
-         <% request.removeAttribute("gMapsType"); %>
-         <% request.removeAttribute("latitude"); %>
-         <% request.removeAttribute("longitude"); %>
-         <input type="hidden" id ="latMAMTampon" name="latMAMTampon" value="<%=latMAM%>" data-technical-field>
-           <input type="hidden" id="longMAMTampon" name="longMAMTampon" value="<%=longMAM%>" data-technical-field>
-           <input type="hidden" id ="latMAM" name="latMAM" value="<%=latMAM%>" data-technical-field>
-           <input type="hidden" id="longMAM" name="longMAM" value="<%=longMAM%>" data-technical-field>
-       </div>
-        <p class="submit submitNewPositionMAM hide">
-        <label for="submit"> <input type="button" id="submit"
-          name="opCreate" value="Valider" class="submitButton">
-          <span class="input-box" style="background-color: #aec900"><span
-            class="spr-recherche-ok"></span></span>
-        </label> <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-              
-      </p> 
-      </div> 
-        <jalios:javascript>
-      
-      jQuery( ".submitNewPositionMAM" ).click(function(event) {
-        document.getElementById("latMAM").value =  document.getElementById("latMAMTampon").value;
-        document.getElementById("longMAM").value =  document.getElementById("longMAMTampon").value;
-        jQuery( ".submitNewPositionMAM" ).hide();
-        
-        
-      });
-      
-      </jalios:javascript>
-       
-     
-   <%                    
-   }%>  
-  </jalios:if>
-   <p><span class="notBold"><trsb:glp key="TEXTE-CORRECTION-LIEU-HTML" ></trsb:glp></span></p>
-   
-     </div>  --%>                                            
-                                                                                  
- 
- <div class="ds44-flex ds44-fsb"> 
+ <div class="ds44-flex ds44-fsb mtl"> 
  
         <button type="button-choice" class="ds44-btnStd  ds44-js-choice-button" data-choice-element-view=".SignalementErreur"
         data-choice-element-hide=".verificationBloc"><span class="ds44-btnInnerText"><trsb:glp key="VERIF-ERREUR"></trsb:glp></span></button>
@@ -363,7 +274,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
   
   
 
-    <button name="opCreate" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><trsb:glp key="VERIF-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+    <button name="opCreate" class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"3/5", glp("jcmsplugin.assmatplugin.inscription.contacts")}) %>" data-technical-field><span class="ds44-btnInnerText"><trsb:glp key="VERIF-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
 
 
 <%--     <input type="submit" name="opCreate" class="ds44-btnStd" value='<trsb:glp attribute="true" key="VERIF-BOUTON"></trsb:glp>' data-technical-field> --%>
@@ -392,7 +303,7 @@ if(Util.notEmpty(assMat.getExerceMam())){
 	<div class="ds44-form__container">
 <%-- 	    <input type="submit" name="opContact" class="ds44-btnStd ds44-btn--invert" value='<%= glp("jcmsplugin.assmatplugin.btn.valider")%>' data-submit-key="opContact" data-submit-value="true" data-technical-field> --%>
 	    
-	    <button name="opContact" data-submit-key="opContact" data-submit-value="true" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.btn.valider")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+	    <button name="opContact" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"3/5", glp("jcmsplugin.assmatplugin.inscription.contacts")}) %>" data-submit-key="opContact" data-submit-value="true" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.btn.valider")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
 	    
 	    
 	    <input type="hidden" name="noSendRedirect" value="true" data-technical-field>

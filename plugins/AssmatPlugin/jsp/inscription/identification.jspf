@@ -134,7 +134,7 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 <%-- 	                        <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-technical-field> --%>
                         
                         
-                            <button name="opCreate" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+                            <button name="opCreate" class="ds44-btnStd ds44-btn--invert"  title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"2/5", glp("jcmsplugin.assmatplugin.inscription.verification")}) %>" data-technical-field><span class="ds44-btnInnerText"><trsb:glp key="IDENT-BOUTON" ></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
                         
                         
                         </div>
@@ -209,13 +209,11 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
 
     <trsb:glp key="CONTACT-SUPPORT-TEL-HTML"></trsb:glp>
     
-    <div class="ds44-form__container">
+    <div class="ds44-form__container ds44-txtRight">
 <%-- 	    <input type="submit" name="opContact" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>' data-submit-key="opContact" data-submit-value="true" data-technical-field> --%>
 
 
-           <button name="opContact" class="ds44-btnStd ds44-btn--invert" data-technical-field><span class="ds44-btnInnerText"><%=  glp("jcmsplugin.socle.envoyer") %></span><i class="icon icon-check" aria-hidden="true"></i></button>
-
-
+        <button name="opContact" class="ds44-btnStd ds44-btn--invert" data-submit-key="opContact" data-submit-value="true" data-technical-field><span class="ds44-btnInnerText"><%=  glp("jcmsplugin.socle.envoyer") %></span><i class="icon icon-check" aria-hidden="true"></i></button>
 
 	    <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
 	    <input type="hidden" name="id" value="c_5065" data-technical-field>
