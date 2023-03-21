@@ -78,10 +78,10 @@ String uuid = UUID.randomUUID().toString();
             <% uuid = UUID.randomUUID().toString(); %>
             <div id="form-element-<%= uuid %>" data-name="visibleFixMobile" class="ds44-form__radio_container ds44-form__container"  data-required="true">
                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "true".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visibleFixMobile" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-OUI-HTML"></trsb:glp></label>
                </div>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "false".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visibleFixMobile" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-NON-HTML"></trsb:glp></label>
                </div>
             </div>
@@ -104,10 +104,10 @@ String uuid = UUID.randomUUID().toString();
             <% uuid = UUID.randomUUID().toString(); %>
             <div id="form-element-<%= uuid %>" data-name="visibleTelMobile" class="ds44-form__radio_container ds44-form__container"  data-required="true">
 		       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-		       <div class="ds44-form__container ds44-checkBox-radio_list ">
+		       <div class="ds44-form__container ds44-checkBox-radio_list inbl">
 		          <input type="radio" <%if(Util.notEmpty(visibiliteTelephonePortable) && "true".equals(visibiliteTelephonePortable) ){ %> checked="checked" <%} %> name="visibleTelMobile" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-MOB-OUI-HTML"></trsb:glp></label>
 		       </div>
-		       <div class="ds44-form__container ds44-checkBox-radio_list ">
+		       <div class="ds44-form__container ds44-checkBox-radio_list inbl">
 		          <input type="radio" <%if(Util.notEmpty(visibiliteTelephonePortable) && "false".equals(visibiliteTelephonePortable) ){%> checked="checked" <%} %> name="visibleTelMobile" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-MOB-NON-HTML"></trsb:glp></label>
 		       </div>
 		    </div>
@@ -145,10 +145,10 @@ String uuid = UUID.randomUUID().toString();
             <% uuid = UUID.randomUUID().toString(); %>
             <div id="form-element-<%= uuid %>" data-name="visibleEmail" class="ds44-form__radio_container ds44-form__container"  data-required="true">
                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-               <div class="ds44-form__container ds44-checkBox-radio_list">
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <%if(Util.notEmpty(visibiliteAdresseEmail) && "true".equals(visibiliteAdresseEmail) ){ %> checked="checked" <%} %> name="visibleEmail" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-MAIL-OUI-HTML"></trsb:glp></label>
                </div>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <%if(Util.notEmpty(visibiliteAdresseEmail) && "false".equals(visibiliteAdresseEmail) ){%> checked="checked" <%} %> name="visibleEmail" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-MAIL-NON-HTML"></trsb:glp></label>
                </div>
             </div>
@@ -160,10 +160,10 @@ String uuid = UUID.randomUUID().toString();
 	  <trsb:glp key="CONTACT-DISPO-LEG-HTML"></trsb:glp>
 	  <div id="form-element-<%= uuid %>" data-name="afficherContact" class="ds44-form__radio_container ds44-form__container"  data-required="true">
                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <%if(afficherContactUniquementSiD){ %>  checked="checked" <%} %> name="afficherContact" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-DISPO-OUI-HTML"></trsb:glp></label>
                </div>
-               <div class="ds44-form__container ds44-checkBox-radio_list ">
+               <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <%if(!afficherContactUniquementSiD){ %> checked="checked" <%} %> name="afficherContact" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-DISPO-NON-HTML"></trsb:glp></label>
                </div>
             </div>   
