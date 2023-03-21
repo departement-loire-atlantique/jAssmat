@@ -98,14 +98,16 @@ jcmsplugin.assmatplugin.inscription.terminee: Inscription terminée !
 jcmsplugin.assmatplugin.inscription.terminee.lienacces: Vous pouvez maintenant accédez à votre compte <a href="{0}">ici</a>
 jcmsplugin.assmatplugin.inscription.votremessage: Votre message ici
 jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms à déja été enregistré
-jcmsplugin.assmatplugin.btn.etapesuivante: Etape suivante
-jcmsplugin.assmatplugin.btn.etapeprecedente: Etape précédente
+jcmsplugin.assmatplugin.btn.etapesuivante: Étape suivante
+jcmsplugin.assmatplugin.btn.etapeprecedente: Étape précédente
 jcmsplugin.assmatplugin.btn.envoyer: Envoyer
 jcmsplugin.assmatplugin.btn.valider: Valider
 jcmsplugin.assmatplugin.label.aide: Aide :
 jcmsplugin.assmatplugin.label.afficher: Afficher le contenu saisi dans le champ : {0}
 jcmsplugin.assmatplugin.label.etou: et/ou
 jcmsplugin.assmatplugin.label.precisions: Précisions :
+jcmsplugin.assmatplugin.label.etape.next : Étape suivante : étape {0} - {1}
+jcmsplugin.assmatplugin.label.etape.prev : Étape précédente : étape {0} - {1}
 
 #Mail d'activation
 jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour

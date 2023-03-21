@@ -28,7 +28,7 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
     <% uuid = UUID.randomUUID().toString(); %>
     <div id="form-element-<%= uuid %>" data-name="choixLogin" class="ds44-form__radio_container ds44-form__container" data-required="true">
         <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.choixLogin") %><sup aria-hidden="true">*</sup></p>
-	    <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+<%-- 	    <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
 	    <div class="ds44-form__container ds44-checkBox-radio_list ">
 	    
 	       <%if(isEmailChoice && Util.isEmpty(channel.getMemberFromLogin(emailAssmat))){ %>
@@ -100,9 +100,14 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
 	   </div>
 	</div>
 	
-	<div class="ds44-form__container">
-        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%></button>
-        <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%></button>
+	<div class="ds44-flex ds44-fsb">
+<%--         <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%></button> --%>
+<%--         <button class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>'><%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%></button> --%>
+       
+       
+             <button class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.label.etape.prev", new String[]{"3/5", glp("jcmsplugin.assmatplugin.inscription.contacts")}) %>" data-submit-value="true" data-submit-key="opPrevious" title='<%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%>'><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.btn.etapeprecedente")%></span></button>
+             <button class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"5/5", glp("jcmsplugin.assmatplugin.inscription.confirmation")}) %>" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%>'><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.btn.etapesuivante")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+       
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
         <input type="hidden" name="id" value="c_5065" data-technical-field>
     </div>				

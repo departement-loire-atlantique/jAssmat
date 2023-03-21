@@ -47,7 +47,7 @@
 } %>
 
 <%if (step == InscriptionAssmatHandler.VERIFICATION_STEP) {%>
-    <h3 class="h3-like"><trsb:glp key="VERIF-INTRO-HTML" ></trsb:glp></h3>
+    <h3 class="h3-like ds44-mb3"><trsb:glp key="VERIF-INTRO-HTML" ></trsb:glp></h3>
 <%} %>
 
 <%if (step == InscriptionAssmatHandler.CONTACT_STEP) {%>
