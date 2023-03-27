@@ -141,6 +141,11 @@ jcmsplugin.assmatplugin.inscription.contacts: Contacts
 jcmsplugin.assmatplugin.inscription.login-mdp: Login et mot de passe
 jcmsplugin.assmatplugin.inscription.confirmation: Confirmation
 
+jcmsplugin.assmatplugin.declaration.enfant-accueilli: Enfant accueilli
+jcmsplugin.assmatplugin.declaration.lieu-accueil: Lieu d'accueil
+jcmsplugin.assmatplugin.declaration.modalites: Modalités
+jcmsplugin.assmatplugin.declaration.planning: Planning
+
 jcmsplugin.assmatplugin.form.step.lbl: Étape {0} :
 jcmsplugin.assmatplugin.form.step.current.lbl: Étape {0} : En cours - 
 jcmsplugin.assmatplugin.form.step.done.lbl: Étape {0} : Validée - 
