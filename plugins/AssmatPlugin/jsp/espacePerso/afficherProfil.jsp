@@ -67,7 +67,7 @@ String uuid = UUID.randomUUID().toString();
 <!-- 	  </div> -->
 
 	<div class="ds44-form__container">
-        <button data-send-native class="ds44-btnStd ds44-btn--inverted" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
+        <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
         <input type="hidden" name="opUpdate" value="true" />
         <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
