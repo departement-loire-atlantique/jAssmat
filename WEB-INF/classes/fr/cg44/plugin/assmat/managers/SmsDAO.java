@@ -11,6 +11,7 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import org.hibernate.criterion.Restrictions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.select.Evaluator.IsEmpty;
 
 import com.jalios.jcms.Channel;
 import com.jalios.jcms.HttpUtil;
@@ -143,30 +145,36 @@ public class SmsDAO {
   public void send(String numTel, String subject, String content, String resumeContent, String login, String idProfil, boolean newSms, String idSms){    
     String jeton;
     String last_error_code = "";
-    String strategy = "sms";   
-    try {
-      jeton = getJeton();
-      String idGroup = getIdGroupe(jeton); 
-      String idDiffusion = SmsDAO.diffusionSMS(jeton, idGroup, subject, content, numTel);
-            
-      //Si c'est un nouveau sms et non un sms que l'on renvoie)
-      if(newSms){
-        afterSendSms(login, numTel, subject, resumeContent, content, strategy, idDiffusion, last_error_code, idProfil, DEFAUT_STATUT);
-      }else if(Util.notEmpty(idSms)) {
-        updateIdDiffusionByIdBase(idSms, idDiffusion);
-        updateSMSbyIdBase(idSms, DEFAUT_STATUT);
-        updateErrorCodeSMSByIdBase(idSms, last_error_code);
-      }                 
-    } catch (Exception e) {
-      if(newSms){
-        last_error_code = DEFAUT_ERROR_CODE;
-        // On stocke le sms en base avec le statut par defaut
-        afterSendSms(login, numTel, subject, resumeContent, content, strategy, idSms, last_error_code, idProfil, DEFAUT_STATUT);    
-        logger.error(e.getMessage(),e);
-      } else {
-    	  logger.warn("Impossible de reSend le SMS " + idSms, e);
+    String strategy = "sms";  
+    String telWhiteList[] = Channel.getChannel().getStringArrayProperty("jcmsplugin.assmatplugin.sms.white-list", new String[] {});
+    
+    if(Util.isEmpty(telWhiteList) || (telWhiteList != null && Arrays.stream(telWhiteList).anyMatch(numTel::equals))) {    
+      try {
+        jeton = getJeton();
+        String idGroup = getIdGroupe(jeton);      
+        String idDiffusion = SmsDAO.diffusionSMS(jeton, idGroup, subject, content, numTel);
+              
+        //Si c'est un nouveau sms et non un sms que l'on renvoie)
+        if(newSms){
+          afterSendSms(login, numTel, subject, resumeContent, content, strategy, idDiffusion, last_error_code, idProfil, DEFAUT_STATUT);
+        }else if(Util.notEmpty(idSms)) {
+          updateIdDiffusionByIdBase(idSms, idDiffusion);
+          updateSMSbyIdBase(idSms, DEFAUT_STATUT);
+          updateErrorCodeSMSByIdBase(idSms, last_error_code);
+        }                 
+      } catch (Exception e) {
+        if(newSms){
+          last_error_code = DEFAUT_ERROR_CODE;
+          // On stocke le sms en base avec le statut par defaut
+          afterSendSms(login, numTel, subject, resumeContent, content, strategy, idSms, last_error_code, idProfil, DEFAUT_STATUT);    
+          logger.error(e.getMessage(),e);
+        } else {
+      	  logger.warn("Impossible de reSend le SMS " + idSms, e);
+        }
       }
-    }   
+    } else {
+      logger.error("Impossible d'envoyer le SMS au numéro " + numTel + " car celui ci n'est pas autorisé dans la liste blanche des SMS");
+    }
   }
   
   
@@ -525,7 +533,7 @@ public class SmsDAO {
    * @throws Exception
    */
   public static String getJeton() throws Exception {
-	String urlapi = Channel.getChannel().getProperty("jcmsplugin.assmatplugin.sms.url");
+    String urlapi = Channel.getChannel().getProperty("jcmsplugin.assmatplugin.sms.url");
     String login = HttpUtil.encodeForURL(Channel.getChannel().getProperty("jcmsplugin.assmatplugin.sms.login"));
     String password = HttpUtil.encodeForURL(Channel.getChannel().getProperty("jcmsplugin.assmatplugin.sms.password"));
     String authentificationEndpoint = Channel.getChannel().getProperty("jcmsplugin.assmatplugin.sms.url.endpoint.authentification");    

@@ -66,7 +66,8 @@ jcmsplugin.assmatplugin.sms.url.endpoint.diffusionrequests: /api/v1.1/groups/[id
 jcmsplugin.assmatplugin.sms.url.endpoint.diffusions: /api/v1.1/diffusions
 jcmsplugin.assmatplugin.sms.login: 
 jcmsplugin.assmatplugin.sms.password: 
-jcmsplugin.assmatplugin.sms.custid:  
+jcmsplugin.assmatplugin.sms.custid: 
+jcmsplugin.assmatplugin.sms.white-list: 
 
 jcmsplugin.assmatplugin.sms.scheduler.schedule: * * * * * *
 
