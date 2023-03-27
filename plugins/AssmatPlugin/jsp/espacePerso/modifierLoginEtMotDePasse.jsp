@@ -86,21 +86,42 @@ if (formHandler.validate()) {
 		                  <label id="label-radio-form-element-<%= uuid %>-mail" for="name-radio-form-element-<%= uuid %>-mail" class="ds44-radioLabel">
 		                    <%=glp("jcmsplugin.assmatplugin.espaceperso.monmail") %> <%=emailAssmat%>
 		                  </label>
+		                  <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>-mail-aide">
+                              <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>-mail-aide" data-hashtooltip-id="<%= uuid %>-mail-aide" aria-describedby="label_simpletooltip_<%= uuid %>-mail-aide">
+                              <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%=glp("jcmsplugin.assmatplugin.espaceperso.monmail") %> <%=emailAssmat%></span>
+                              </button><span id="label_simpletooltip_<%= uuid %>-mail-aide" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>-mail-aide" aria-hidden="true">
+                              <trsb:glp key="HELP-PREFERENCE-LOGIN-MAIL-HTML" ></trsb:glp>
+                              </span>
+                          </span>
 		               </div>
 		               </jalios:if>
 		               <jalios:if predicate="<%= Util.notEmpty(telephoneMobileAssmat) &&  ( Util.isEmpty(mbrMobileFind) || JcmsUtil.isSameId(mbrMobileFind, loggedMember)) %>">
 		               <div class="ds44-form__container ds44-checkBox-radio_list ">
 		                  <input <%if(SelectionLogin.TELEPHONE.equals(typeLogin)){%> checked="checked" <%} %> type="radio" name="choixLogin" value="1" id="name-radio-form-element-<%= uuid %>-tel" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" />
 		                  <label id="label-radio-form-element-<%= uuid %>-tel" for="name-radio-form-element-<%= uuid %>-tel" class="ds44-radioLabel">
-		                  <%=glp("jcmsplugin.assmatplugin.espaceperso.monnum") %> <%=telephoneMobileAssmat %>
+		                      <%=glp("jcmsplugin.assmatplugin.espaceperso.monnum") %> <%=telephoneMobileAssmat %>
 		                  </label>
+		                  <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>-tel-aide">
+                              <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>-tel-aide" data-hashtooltip-id="<%= uuid %>-tel-aide" aria-describedby="label_simpletooltip_<%= uuid %>-tel-aide">
+                              <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%=glp("jcmsplugin.assmatplugin.espaceperso.monnum") %> <%=telephoneMobileAssmat %></span>
+                              </button><span id="label_simpletooltip_<%= uuid %>-tel-aide" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>-tel-aide" aria-hidden="true">
+                              <trsb:glp key="LOGIN-PREF-CONNEXION-TEL-BULLE-HTML" ></trsb:glp>
+                              </span>
+                          </span>
 		               </div>
 		               </jalios:if>
 		               <div class="ds44-form__container ds44-checkBox-radio_list ">
 		                  <input <%if(SelectionLogin.NUMERO_DOSSIER.equals(typeLogin)){%> checked="checked" <%} %> type="radio" name="choixLogin" value="3" id="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radio"  aria-describedby="mandatory-message-form-element-<%= uuid %>" />
 		                  <label id="label-radio-form-element-<%= uuid %>-dossier" for="name-radio-form-element-<%= uuid %>-dossier" class="ds44-radioLabel">
-		                  <%=glp("jcmsplugin.assmatplugin.espaceperso.monagr") %> <%=numeroDossierAssmat %> 
+		                      <%=glp("jcmsplugin.assmatplugin.espaceperso.monagr") %> <%=numeroDossierAssmat %> 
 		                  </label>
+		                  <span class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>-dossier-aide">
+                              <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>-dossier-aide" data-hashtooltip-id="<%= uuid %>-dossier-aide" aria-describedby="label_simpletooltip_<%= uuid %>-dossier-aide">
+                              <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%=glp("jcmsplugin.assmatplugin.espaceperso.monagr") %> <%=numeroDossierAssmat %></span>
+                              </button><span id="label_simpletooltip_<%= uuid %>-dossier-aide" class="simpletooltip js-simple-tooltip bottom" role="tooltip" data-hashtooltip-id="<%= uuid %>-dossier-aide" aria-hidden="true">
+                              <trsb:glp key="LOGIN-PREF-CONNEXION-DOSSIER-BULLE-HTML" ></trsb:glp>
+                              </span>
+                          </span>
 		               </div>
 		             </div>
 	             </div>
@@ -133,7 +154,7 @@ if (formHandler.validate()) {
 			</div>
 			
 			<div class="ds44-form__container">
-		        <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
+		        <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
 		        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
 		        <input type="hidden" name="numeroAgrement" value="<%=numeroDossierAssmat %>" data-technical-field/>
 		        <input type="hidden" name="opUpdate" value="true" data-technical-field/>
