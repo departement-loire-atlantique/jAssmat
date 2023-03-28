@@ -846,7 +846,7 @@ public class AssmatUtil {
 			StringBuilder stbd = new StringBuilder();
 
 			if(Util.notEmpty(solis.getNomMam()))
-				stbd.append(solis.getNomMam() + " ");
+				stbd.append(solis.getNomMam() + " <br/> ");
 
 			if(Util.notEmpty(solis.getAdresseMam()))
 				stbd.append(solis.getAdresseMam() + " ");

@@ -429,7 +429,7 @@ assmatPointsTriee.putAll(assmatPoints);
 // Calcul du relais MAM
 String idCategMam = channel.getProperty("$plugin.assmatplugin.categ.relaiam");
 Category categRAM= channel.getCategory(idCategMam); 
-Set<Place> setPlace =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorCommune(SocleUtils.getCommuneFromCode(codeInsee+""),categRAM));
+Set<FicheLieu> setPlace =(Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new RelaisMamSelectorCommune(SocleUtils.getCommuneFromCode(codeInsee+""),categRAM));
 
 
 
@@ -540,6 +540,7 @@ logger.trace("assmatResultSet : "+assmatResultSet.size());
 
 
 JsonArray jsonArray = new JsonArray();
+JsonArray jsonArrayModal = new JsonArray();
 JsonObject jsonObject = new JsonObject();
 
 
@@ -557,7 +558,7 @@ jsonObject.addProperty("nb-result-per-page", maxResult);
 
 
 jsonObject.add("result", jsonArray);
-
+jsonObject.add("result-modal", jsonArrayModal);
 
 
 ProfilManager profilMgr = ProfilManager.getInstance();
@@ -673,11 +674,24 @@ if(Util.notEmpty(itProfilAM)){
 
 }
 %>
+
 	
 </jalios:foreach>
 
 
+<jalios:foreach name="itRelais" type="FicheLieu" collection="<%= setPlace %>"><%
 
+  %><jalios:buffer name="itPubListGabarit"><%  
+      %><jalios:media data="<%= itRelais %>" /><%
+  %>
+  </jalios:buffer><%
+  
+  
+ //Ajout du résultat modal au json 
+ jsonArrayModal.add(SocleUtils.publicationToJsonObject(itRelais, null, null, null, itPubListGabarit, null, null));
+
+%>  
+</jalios:foreach>
 
 
 
