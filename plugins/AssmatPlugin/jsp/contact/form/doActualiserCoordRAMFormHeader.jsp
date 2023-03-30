@@ -24,8 +24,8 @@
   
   
   Member realLoggedMember = loggedMember;
-  request.setAttribute("loggedMember", formHandler.getAvailableAuthor());
-  request.setAttribute("realLoggedMember", realLoggedMember);
+  //request.setAttribute("loggedMember", formHandler.getAvailableAuthor());
+  //request.setAttribute("realLoggedMember", realLoggedMember);
 %>
 
 <%-- -- FORM -------------------------------------------- --%>
@@ -37,7 +37,7 @@
 <% int formElementCount  = 0; %>
 <form method="post" action="<%=formAction%>" name="formAccueil" id="formAccueil" data-no-encoding="true" class="form-layout">
 
-    <p role="heading" aria-level="2" class="h3-like"><trsb:glp key="MESSAGE-INTRO-FORMULAIRE-ACTUALISER_COORD_RAM" ></trsb:glp></p>
+    <p role="heading" aria-level="2"><trsb:glp key="MESSAGE-INTRO-FORMULAIRE-ACTUALISER_COORD_RAM" ></trsb:glp></p>
 
 <% request.setAttribute("formElementCount", new Integer(formElementCount)); %>
 <% request.setAttribute("formHandler", formHandler); %>
