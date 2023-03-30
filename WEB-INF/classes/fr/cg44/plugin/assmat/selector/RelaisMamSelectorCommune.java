@@ -1,10 +1,9 @@
 package fr.cg44.plugin.assmat.selector;
 
 import generated.City;
-import generated.Place;
+import generated.FicheLieu;
 
 import com.jalios.jcms.Category;
-import com.jalios.jcms.Channel;
 import com.jalios.jcms.Data;
 import com.jalios.jcms.DataSelector;
 import com.jalios.util.Util;
@@ -38,10 +37,10 @@ public class RelaisMamSelectorCommune implements DataSelector
 
 		
 		if(Util.notEmpty(city)){
-			if (data instanceof Place) {
-			  Place place = (Place) data;
-				if(place.getCity() == city || Util.arrayContains(place.getCities(), city)){
-				  if(Util.arrayContains(place.getCategories(), categ))
+			if (data instanceof FicheLieu) {
+			  FicheLieu ficheLieu = (FicheLieu) data;
+				if(ficheLieu.getCommune() == city || Util.arrayContains(ficheLieu.getCommunes(), city)){
+				  if(Util.arrayContains(ficheLieu.getCategories(), categ))
 					selected = true;
 				}
 			}

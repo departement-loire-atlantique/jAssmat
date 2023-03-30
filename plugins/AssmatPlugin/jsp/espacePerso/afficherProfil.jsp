@@ -44,25 +44,16 @@ String uuid = UUID.randomUUID().toString();
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
 <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
-<div class="headstall container-fluid formulaireActivation">
-<div class="formActivation form-cg form-espace-perso">
-<div class="form-cg-gray form-cg-white">
-
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
     name="formContact" id="formContact">
-
-    <div class="alert alert-block alertPass hide  alert-cg">
-      <h4><%=glp("msg.message-box.warning")%></h4>
-      <p></p>
-    </div>
     
     <p role="heading" aria-level="2" class="h3-like"><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "AFF-HTML" %>'></trsb:glp></p>
     <div id="form-element-<%= uuid %>" data-name="visibiliteSite" class="ds44-form__radio_container ds44-form__container"  data-required="true">
 	   <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
-	   <div class="ds44-form__container ds44-checkBox-radio_list ">
+	   <div class="ds44-form__container ds44-checkBox-radio_list inbl">
 	      <input type="radio" <%if(visibiliteSite){ %>  checked="checked" <%} %> name="visibiliteSite" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.oui") %></label>
 	   </div>
-	   <div class="ds44-form__container ds44-checkBox-radio_list ">
+	   <div class="ds44-form__container ds44-checkBox-radio_list inbl">
 	      <input type="radio" <%if(!visibiliteSite){ %> checked="checked" <%} %> <% if(aide_caf) { %> disabled <%} %> name="visibiliteSite" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.parametrage.champ.afficher-profile.non") %></label>
 	   </div>
 	</div>
@@ -76,15 +67,10 @@ String uuid = UUID.randomUUID().toString();
 <!-- 	  </div> -->
 
 	<div class="ds44-form__container">
-        <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
+        <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp>'><trsb:glp key="SAVE-BOUTON-HTML" attribute="true"></trsb:glp></button>
         <input type="hidden" name="noSendRedirect" value="true" data-technical-field/> 
         <input type="hidden" name="opUpdate" value="true" />
         <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
     </div>
     
   </form>
-
-
-</div>
-</div>
-</div>

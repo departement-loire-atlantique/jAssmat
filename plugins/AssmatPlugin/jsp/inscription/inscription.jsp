@@ -88,6 +88,8 @@ int stepCount = formHandler.getFormStepCount();
 
 String token = request.getParameter("token");
 
+boolean showRequiredLbl = !(step == InscriptionAssmatHandler.CONFIRMATION_STEP);
+
 
 %>
 
@@ -97,21 +99,24 @@ String token = request.getParameter("token");
 <main id="content">
 
 	<div class="ds44-container-large">
-	   <div class="ds44-inner-container">
+	   <div class="ds44-inner-container ds44-mtb5">
 	    <h2><trsb:glp key="IDENT-TITRE"></trsb:glp></h2>
 	
 				<div class="row-fluid">
-					<div class="ajax-refresh-div">
-						<%@ include
-							file='/plugins/AssmatPlugin/jsp/inscription/etapes.jspf'%>
+					
+						<%@ include file='/plugins/AssmatPlugin/jsp/inscription/etapes.jspf'%>
 
-								<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
-								<p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
-
-								<form method="post"
+								
+								<form class="ds44-grid12-offset-2" method="post"
 									action="<%= ServletUtil.getResourcePath(request) %>"
 									name="formContact" id="formContact" data-no-encoding="true">
 									
+									<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
+									
+									<% if(showRequiredLbl) { %>
+                                        <p><%= glp("jcmsplugin.socle.facette.champs-obligatoires") %></p>
+									<% } %>
+		                            
 		                            <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
 		                            
 									<%@ include
@@ -131,7 +136,10 @@ String token = request.getParameter("token");
 	
 								</form>
 
-					</div>
+					
+					
+					
+					
 				</div>
 			</div>
 	</div>

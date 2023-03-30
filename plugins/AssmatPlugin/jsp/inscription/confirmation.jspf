@@ -34,7 +34,7 @@ if(!isMail){ %>
 			
 			<% uuid = UUID.randomUUID().toString(); %>
             <div class="ds44-form__container">
-	            <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation") %><sup aria-hidden="true">*</sup></p>
+<%-- 	            <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation") %><sup aria-hidden="true">*</sup></p> --%>
 	            <div class="ds44-posRel">
 		            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation") %><sup aria-hidden="true">*</sup></span></span></label>
 		            <input type="text" id="form-element-<%= uuid %>" name="codeConfirmation" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.codeconfirmation") %> - obligatoire' required="true">
@@ -47,8 +47,12 @@ if(!isMail){ %>
 			    <trsb:glp key="CONFIRM-NB-HTML" ></trsb:glp></i> </p>
 	        </div> 
 	        
-	        <div class="ds44-form__container">
-                <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.valide")%>' data-technical-field>
+	        <div class="ds44-form__container ds44-txtRight">
+<%--                 <input type="submit" name="opCreate" class="ds44-btnStd" value='<%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.valide")%>' data-technical-field> --%>
+               
+                <button class="ds44-btnStd ds44-btn--invert" title="<%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.valide") %>"  data-submit-value="true" data-submit-key="opCreate"><span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.ui.fo.resetpass.valide")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+               
+               
                 <input type="hidden" name="noSendRedirect" value="true" data-technical-field> 
                 <input type="hidden" name="id" value="c_5065" data-technical-field>
             </div>

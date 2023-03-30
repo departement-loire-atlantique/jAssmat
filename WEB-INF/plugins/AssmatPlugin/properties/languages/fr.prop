@@ -19,6 +19,12 @@ jcmsplugin.assmatplugin.accueil.prevenu.sms: par SMS
 jcmsplugin.assmatplugin.accueil.menu.ici: Vous êtes
 jcmsplugin.assmatplugin.accueil.bienvenue: Bonjour {0} {1}
 
+#modal relais
+jcmsplugin.socle.modal.button.lbl: Besoin d’aide ? Contacter votre relais
+jcmsplugin.socle.modal.title: Contacter votre relais
+jcmsplugin.socle.modal.description: Contactez le relais assistantes maternelles (RAM) ou relais petite enfance de votre secteur avant toute démarche (recherche, accueil de l’enfant, contrat de travail, rémunération, aides de la CAF…).
+
+
 #page inscription
 
 jcmsplugin.assmatplugin.inscription.activer.compte.avant: Même si vous aviez déjà activé votre compte dans l'ancien site, merci de suivre les étapes suivantes.
@@ -98,14 +104,16 @@ jcmsplugin.assmatplugin.inscription.terminee: Inscription terminée !
 jcmsplugin.assmatplugin.inscription.terminee.lienacces: Vous pouvez maintenant accédez à votre compte <a href="{0}">ici</a>
 jcmsplugin.assmatplugin.inscription.votremessage: Votre message ici
 jcmsplugin.assmatplugin.prevenir.assmatplugin.error: Votre inscription par sms à déja été enregistré
-jcmsplugin.assmatplugin.btn.etapesuivante: Etape suivante
-jcmsplugin.assmatplugin.btn.etapeprecedente: Etape précédente
+jcmsplugin.assmatplugin.btn.etapesuivante: Étape suivante
+jcmsplugin.assmatplugin.btn.etapeprecedente: Étape précédente
 jcmsplugin.assmatplugin.btn.envoyer: Envoyer
 jcmsplugin.assmatplugin.btn.valider: Valider
 jcmsplugin.assmatplugin.label.aide: Aide :
 jcmsplugin.assmatplugin.label.afficher: Afficher le contenu saisi dans le champ : {0}
 jcmsplugin.assmatplugin.label.etou: et/ou
 jcmsplugin.assmatplugin.label.precisions: Précisions :
+jcmsplugin.assmatplugin.label.etape.next : Étape suivante : étape {0} - {1}
+jcmsplugin.assmatplugin.label.etape.prev : Étape précédente : étape {0} - {1}
 
 #Mail d'activation
 jcmsplugin.assmatplugin.activation.mail.lbl.bonjour: Bonjour
@@ -139,12 +147,19 @@ jcmsplugin.assmatplugin.inscription.contacts: Contacts
 jcmsplugin.assmatplugin.inscription.login-mdp: Login et mot de passe
 jcmsplugin.assmatplugin.inscription.confirmation: Confirmation
 
+jcmsplugin.assmatplugin.declaration.enfant-accueilli: Enfant accueilli
+jcmsplugin.assmatplugin.declaration.lieu-accueil: Lieu d'accueil
+jcmsplugin.assmatplugin.declaration.modalites: Modalités
+jcmsplugin.assmatplugin.declaration.planning: Planning
+
 jcmsplugin.assmatplugin.form.step.lbl: Étape {0} :
 jcmsplugin.assmatplugin.form.step.current.lbl: Étape {0} : En cours - 
 jcmsplugin.assmatplugin.form.step.done.lbl: Étape {0} : Validée - 
 jcmsplugin.assmatplugin.form.step.title: Étape {0} : - {1}
 jcmsplugin.assmatplugin.form.step.current.title: Étape {0} : En cours - {1}
 jcmsplugin.assmatplugin.form.step.done.title: Étape {0} : Validée - {1}
+
+jcmsplugin.assmatplugin.form.lbl.assistantematernelle.prefix: Assistant•e maternel•le : {0}
 
 jcmsplugin.assmatplugin.parametrage.tel.error.valide: Le champ {0} n'est pas un numéro valide
 jcmsplugin.assmatplugin.parametrage.mail.error.valide: Le champ {0} n'est pas un email valide
@@ -247,6 +262,7 @@ jcmsplugin.assmatplugin.sms.url.endpoint.diffusions: Endpoint pour suivre l'avan
 jcmsplugin.assmatplugin.sms.login: Login d'identification à la plateforme SMS
 jcmsplugin.assmatplugin.sms.password: Mot de passe d'identification à la plateforme SMS
 jcmsplugin.assmatplugin.sms.custid: Numéro de compte client à la plateforme SMS
+jcmsplugin.assmatplugin.sms.white-list: Liste blanche des numéros de tel pour les SMS
 
 
 jcmsplugin.assmatplugin.sms.scheduler.schedule: Planification du déclenchement de la mise à jour des statuts des SMS en base

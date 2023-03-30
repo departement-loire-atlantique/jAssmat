@@ -43,6 +43,9 @@ jcmsplugin.assmatplugin.socle.categ.accueil.perso: cra_60267
 # ID du portail accueil Espace Perso
 jcmsplugin.assmatplugin.socle.portail.param.id:cra_103077
 
+# ID de la catégorie déclaration d'accueil
+jcmsplugin.assmatplugin.socle.categ.declare.accueil: cra_60283
+
 # Remplacement du fichier de Login
 #jcms.resource.login: plugins/AssmatPlugin/jsp/loginAM.jsp
 jcms.resource.login: 44/connexion/asm_268823
@@ -63,7 +66,8 @@ jcmsplugin.assmatplugin.sms.url.endpoint.diffusionrequests: /api/v1.1/groups/[id
 jcmsplugin.assmatplugin.sms.url.endpoint.diffusions: /api/v1.1/diffusions
 jcmsplugin.assmatplugin.sms.login: 
 jcmsplugin.assmatplugin.sms.password: 
-jcmsplugin.assmatplugin.sms.custid:  
+jcmsplugin.assmatplugin.sms.custid: 
+jcmsplugin.assmatplugin.sms.white-list: 
 
 jcmsplugin.assmatplugin.sms.scheduler.schedule: * * * * * *
 

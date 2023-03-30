@@ -14,7 +14,7 @@
        
        <input type='hidden' name='redirect' value='<%= ServletUtil.getResourcePath(request) %>' data-technical-field />
                   
-                <nav role="navigation" class="ds44-flex-container ds44-fg1 ds44-hiddenPrint">
+                <nav role="navigation" class="ds44-flex-container ds44-fg1 ds44-hiddenPrint mbm">
                     <ol class="ds44-nav-stepper ds44-fg1 ds44-flex-container ds44-list">
                         <li class='ds44-nav-step<%= step > 0 ? " liPassed" : ""%>'<%= step == 0 ? "  aria-current='page'" : ""%>>
                             <% String lblBtnStep = glp("jcmsplugin.assmatplugin.parametrage.visibilite"); %>

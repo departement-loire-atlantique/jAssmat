@@ -167,25 +167,26 @@ if (step == DeclarerAccueilAssmatHandler.MODALITES) {
         </div>
       
       
-
-      <div class="ds44-form__container">
-          <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opPrevious" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></button>
-          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-          <input type="hidden" name="id" value="c_5065" data-technical-field>
-      </div>
- 
-      <jalios:if predicate="<%= !isModif %>">
-        <div class="ds44-form__container">
-            <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML" attribute="true" ></trsb:glp></button>
-            <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-            <input type="hidden" name="id" value="c_5065" data-technical-field>
-        </div>  
-      </jalios:if>
-      
-      <div class="ds44-form__container">
-          <button data-send-native class="ds44-btnStd" data-submit-value="true" data-submit-key="opNext" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML" attribute="true" ></trsb:glp></button>
-          <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
-          <input type="hidden" name="id" value="c_5065" data-technical-field>
+      <div class="ds44-flex ds44-fsb">
+          <div class="ds44-form__container">
+              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opPrevious" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"2/4", glp("jcmsplugin.assmatplugin.declaration.lieu-accueil")}) %>"><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></span></button>
+              <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+              <input type="hidden" name="id" value="c_5065" data-technical-field>
+          </div>
+     
+          <jalios:if predicate="<%= !isModif %>">
+            <div class="ds44-form__container">
+                <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
+                <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+                <input type="hidden" name="id" value="c_5065" data-technical-field>
+            </div>  
+          </jalios:if>
+          
+          <div class="ds44-form__container">
+              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"4/4", glp("jcmsplugin.assmatplugin.declaration.planning")}) %>'><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+              <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+              <input type="hidden" name="id" value="c_5065" data-technical-field>
+          </div>
       </div>
 
 	<%}%>
