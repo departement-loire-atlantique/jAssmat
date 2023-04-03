@@ -16,7 +16,7 @@
 	  formAction = forcedRedirect;
   }else{
 	  if (formInPortal) {
-	    formAction = currentCategory.getDisplayUrl(userLocale);
+	    formAction = ServletUtil.getResourcePath(request);
 	  } else {
 	    formAction = "types/" + Util.getClassShortName(formHandler.getPublicationClass()) +"/editForm" + Util.getClassShortName(formHandler.getPublicationClass()) + ".jsp";
 	  }
@@ -33,9 +33,8 @@
 <% request.setAttribute("formMemberSet", __memberSet); %>
 <jalios:query name='__groupSet' dataset='<%= channel.getDataSet(Group.class) %>' comparator='<%= Group.getNameComparator() %>'/>
 <% request.setAttribute("formGroupSet", __groupSet); %>
-
 <% int formElementCount  = 0; %>
-<form method="post" action="<%=formAction%>" name="formAccueil" id="formAccueil" data-no-encoding="true" class="form-layout">
+<form method="POST" action="<%=formAction%>" name="formAccueil" id="formAccueil">
 
     <p role="heading" aria-level="2"><trsb:glp key="MESSAGE-INTRO-FORMULAIRE-ACTUALISER_COORD_RAM" ></trsb:glp></p>
 
