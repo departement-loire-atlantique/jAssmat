@@ -453,6 +453,23 @@ jcmsplugin.assmatplugin.profilassmat.voir.suivant: Voir la fiche de l'assistante
 jcmsplugin.assmatplugin.profilassmat.fiche.suivante: Fiche suivante
 jcmsplugin.assmatplugin.profilassmat.fiche.precedente: Fiche précédente
 
+# Jour
+plugin.assmatplugin.days: Jours
+plugin.assmatplugin.day.0: Lundi
+plugin.assmatplugin.day.1: Mardi
+plugin.assmatplugin.day.2: Mercredi
+plugin.assmatplugin.day.3: Jeudi
+plugin.assmatplugin.day.4: Vendredi
+plugin.assmatplugin.day.5: Samedi
+plugin.assmatplugin.day.6: Dimanche
+plugin.assmatplugin.day.technical.0: monday
+plugin.assmatplugin.day.technical.1: tuesday
+plugin.assmatplugin.day.technical.2: wednesday
+plugin.assmatplugin.day.technical.3: thursday
+plugin.assmatplugin.day.technical.4: friday
+plugin.assmatplugin.day.technical.5: saturday
+plugin.assmatplugin.day.technical.6: sunday
+
 # Mois
 
 plugin.assmatplugin.month.0: Janvier
@@ -467,3 +484,19 @@ plugin.assmatplugin.month.8: Septembre
 plugin.assmatplugin.month.9: Octobre
 plugin.assmatplugin.month.10: Novembre
 plugin.assmatplugin.month.11: Décembre
+
+# Planning
+jcmsplugin.assmatplugin.planning.copier-coller: Copier et coller la dernière ligne
+jcmsplugin.assmatplugin.planning.creneau: Créneau {0}
+jcmsplugin.assmatplugin.planning.h-debut: H de début
+jcmsplugin.assmatplugin.planning.h-fin: H de fin
+jcmsplugin.assmatplugin.planning.creneau-jour-debut: Créneau {0} du {1} heure de début
+jcmsplugin.assmatplugin.planning.creneau-jour-debut-heure: Créneau {0} du {1} heure de début : Heure (ex. 14)
+jcmsplugin.assmatplugin.planning.creneau-jour-debut-minute: Créneau {0} du {1} heure de début : Minutes (ex. 05)
+jcmsplugin.assmatplugin.planning.creneau-jour-fin: Créneau {0} du {1} heure de fin
+jcmsplugin.assmatplugin.planning.creneau-jour-fin-heure: Créneau {0} du {1} heure de fin : Heure (ex. 14)
+jcmsplugin.assmatplugin.planning.creneau-jour-fin-minute: Créneau {0} du {1} heure de fin : Minutes (ex. 05)
+jcmsplugin.assmatplugin.planning.ajouter-creneau: Ajouter un créneau
+jcmsplugin.assmatplugin.planning.suppr-creneau: Supprimer un créneau
+jcmsplugin.assmatplugin.planning.aide.title: Aide : plages horaires
+jcmsplugin.assmatplugin.planning.aide.content: Si vous gardez l’enfant sur plusieurs plages horaires dans la même journée, ajouter des créneaux pour saisir toutes les plages horaires. Vous pouvez saisir jusqu’à trois créneaux.

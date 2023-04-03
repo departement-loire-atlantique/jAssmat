@@ -152,20 +152,108 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
   
 %>
 
+
+<!-- NEW BLOC START -->
+
+<jalios:select>
+    <jalios:if predicate='<%= !estProvisoireBool || Util.isEmpty(dateFinAccueil) %>'>
+        <p><trsb:glp key="ASS-DEC-PL-Z1-QUE-BASE-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>' ></trsb:glp></p>          
+    </jalios:if>            
+    <jalios:default>
+        <p class="h4-like"><%=libelleTexteAccueil %></p>
+    </jalios:default>        
+</jalios:select>
+
+<div class="ds44-planning" data-limit-max="3" data-limit-min="1">
+    <div class="content-button">
+        <button class="ds44-btnStd ds44-btn--invert" data-planning-action="copy-paste">
+        <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.planning.copier-coller") %></span>
+        </button>
+    </div>
+    <div class="ds44-planing-table-button">
+        <table class="ds44-planning-table">
+            <thead>
+                <tr class="first" data-row-name="th-first">
+                    <th></th>
+                    <th colspan="2" data-col-key="1" data-value-key="planning_1"><%= glp("jcmsplugin.assmatplugin.planning.creneau") %></th>
+                </tr>
+                <tr class="second" data-row-name="th-second">
+                    <th><%= glp("plugin.assmatplugin.days") %></th>
+                    <th class="value" data-col-key="1" data-value-key="start"><%= glp("jcmsplugin.assmatplugin.planning.h-debut") %></th>
+                    <th class="value" data-col-key="1" data-value-key="end"><%= glp("jcmsplugin.assmatplugin.planning.h-fin") %></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-first-line></tr>
+                <% for (int dayNumber = 0; dayNumber < 5; dayNumber++) { %>
+                <%
+                // La liste des horraires pour le jour de la boucle (itJour)
+                    ArrayList<CreneauHorraire> horraireList = creneauMap.get(glp("plugin.assmatplugin.day."+dayNumber));
+                %>
+                <tr data-row-name="<%= glp("plugin.assmatplugin.day.technical."+dayNumber) %>">
+                    <td class="day"><%= glp("plugin.assmatplugin.day."+dayNumber) %></td>
+                    <td class="value" data-col-key="1" data-value-key="start">
+                        <div class="ds44-form__container">
+                            <div class="ds44-posRel">
+                                <label for="planning_1_<%= glp("plugin.assmatplugin.day.technical."+dayNumber) %>_start" class="ds44-formLabel ds44-time"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.planning.creneau-jour-debut", "1", glp("plugin.assmatplugin.day."+dayNumber)) %><sup aria-hidden="true">*</sup></span></span></label>
+                                <div data-name="planning[1][<%= glp("plugin.assmatplugin.day.technical."+dayNumber) %>][start]" class="ds44-time__shape ds44-inpStd"  data-required="true">
+                                    <input id="planning_1_<%= glp("plugin.assmatplugin.day.technical."+dayNumber) %>_start" type="text" inputmode="numeric" pattern="([01]?[0-9]{1}|2[0-3]{1})" maxlength="2" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.planning.creneau-jour-debut-heure", "1", glp("plugin.assmatplugin.day."+dayNumber))) %>" value="<%= horraireList != null && horraireList.size() > 0 ? horraireList.get(0).getDebut() : "" %>"  required  >
+                                    <span>:</span>
+                                    <input type="text" inputmode="numeric" pattern="[0-5]{1}[0-9]{1}" maxlength="2" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.planning.creneau-jour-debut-minutes", "1", glp("plugin.assmatplugin.day."+dayNumber))) %>"  value=""  required  >
+                                </div>
+                                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.planning.creneau-jour-debut", "1", glp("plugin.assmatplugin.day."+dayNumber))) %></button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="value" data-col-key="1" data-value-key="end">
+                        <div class="ds44-form__container">
+                            <div class="ds44-posRel">
+                                <label for="planning_1_<%= glp("plugin.assmatplugin.day.technical."+dayNumber) %>_end" class="ds44-formLabel ds44-time"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.planning.creneau-jour-fin", "1", glp("plugin.assmatplugin.day."+dayNumber)) %><sup aria-hidden="true">*</sup></span></span></label>
+                                <div data-name="planning[1][<%= glp("plugin.assmatplugin.day.technical."+dayNumber) %>][end]" class="ds44-time__shape ds44-inpStd"  data-required="true">
+                                    <input id="planning_1_<%= glp("plugin.assmatplugin.day.technical."+dayNumber) %>_end" type="text" inputmode="numeric" pattern="([01]?[0-9]{1}|2[0-3]{1})" maxlength="2" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.planning.creneau-jour-fin-heure", "1", glp("plugin.assmatplugin.day."+dayNumber))) %>" value="<%= horraireList != null && horraireList.size() > 0 ? horraireList.get(0).getFin() : "" %>"  required  >
+                                    <span>:</span>
+                                    <input type="text" inputmode="numeric" pattern="[0-5]{1}[0-9]{1}" maxlength="2" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.planning.creneau-jour-fin-minutes", "1", glp("plugin.assmatplugin.day."+dayNumber))) %>"  value=""  required  >
+                                </div>
+                                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.planning.creneau-jour-fin", "1", glp("plugin.assmatplugin.day."+dayNumber))) %></button>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- TODO créneaux 2 et 3 -->
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <div class="content-button">
+            <button class="ds44-btnStd ds44-btn--invert" data-planning-action="add">
+            <i class="icon icon-plus" aria-hidden="true"></i>
+            <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.planning.ajouter-creneau") %></span>
+            </button>
+            <button type="button" class="js-simple-tooltip button" data-simpletooltip-content-id="tooltips-planning">
+            <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.planning.aide.title") %></span>
+            </button>
+            <p id="tooltips-planning" class="hidden">
+                <%= glp("jcmsplugin.assmatplugin.planning.aide.content") %>
+            </p>
+        </div>
+    </div>
+    <div class="content-button">
+        <button class="ds44-btnStd ds44-btn--invert" data-planning-action="remove">
+        <i class="icon icon-cross" aria-hidden="true"></i>
+        <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.planning.suppr-creneau") %></span>
+        </button>
+    </div>
+</div>
+
+<!-- TODO TABLEAU VAC -->
+
+
+<!-- NEW BLOC END -->
+
       <!-- BLOC SAISIE -->
       <div class="semaine1">
       <div class="blocSaisie semaine">
 
       <div class="semaineBlock">
-
-        <jalios:select>
-		        <jalios:if predicate='<%= !estProvisoireBool || Util.isEmpty(dateFinAccueil) %>'>
-		            <p class="important"><trsb:glp key="ASS-DEC-PL-Z1-QUE-BASE-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>' ></trsb:glp></p>          
-		        </jalios:if>	        
-			      <jalios:default>
-		            <p class="important"><%=libelleTexteAccueil %></p>
-		        </jalios:default>        
-        </jalios:select>
 
         <!-- Jour d'accueil régulier -->
 	      <jalios:foreach array="<%= DeclarerAccueilAssmatHandler.JOURS %>" name="itJour" type="String">
@@ -176,9 +264,6 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 	          <label><%= itJour %></label>
 	        </div>	          	    
 	      </jalios:foreach>
-	   
-   
-
         
         <div class="renseignementPlanning" style='display: <%= Util.arrayContains(joursCheckTab, true) ? "" : "none" %> ;'>
           <p><strong><%= libelleAccueil %></strong>
