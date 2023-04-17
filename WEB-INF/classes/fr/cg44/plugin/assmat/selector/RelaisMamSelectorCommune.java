@@ -38,9 +38,9 @@ public class RelaisMamSelectorCommune implements DataSelector
 		
 		if(Util.notEmpty(city)){
 			if (data instanceof FicheLieu) {
-			  FicheLieu ficheLieu = (FicheLieu) data;
-				if(ficheLieu.getCommune() == city || Util.arrayContains(ficheLieu.getCommunes(), city)){
-				  if(Util.arrayContains(ficheLieu.getCategories(), categ))
+			  FicheLieu place = (FicheLieu) data;
+				if(place.getCity() == city || Util.arrayContains(place.getCities(), city)){
+				  if(Util.arrayContains(place.getCategories(), categ))
 					selected = true;
 				}
 			}

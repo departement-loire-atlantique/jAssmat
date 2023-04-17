@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import generated.Place;
+import generated.FicheLieu;
 
 import com.jalios.jcms.Data;
 import com.jalios.jcms.DataSelector;
@@ -34,8 +34,8 @@ public class PlaceSelector implements DataSelector
 	  boolean selected= false;
 
    if(Util.notEmpty(idUa)){
-     if (data instanceof Place) {
-       Place place = (Place) data;
+     if (data instanceof FicheLieu) {
+       FicheLieu place = (FicheLieu) data;
        if(Util.notEmpty(place)){
          
          List<String> listIdSolis = new ArrayList<String>();

@@ -15,7 +15,7 @@
 if(Util.notEmpty(loggedMember)){
  if(AssmatUtil.isMemberASSO(loggedMember)){
   
-Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorIDSolis(loggedMember.getExtraData("extra.Member.jcmsplugin.assmatplugin.idsolis.lieu")));
+Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new RelaisMamSelectorIDSolis(loggedMember.getExtraData("extra.Member.jcmsplugin.assmatplugin.idsolis.lieu")));
 String idPortailRAM = channel.getProperty("plugin.assmatplugin.portal.ram.id");
 
 %>
@@ -67,7 +67,7 @@ Publication publi = channel.getPublication(idPortletPass);
 Category categUA = channel.getCategory(channel.getProperty("plugin.assmatplugin.categorie.unite.agrement.id"));
 
 //On recupere la premiere fiche lieu (appartenance du membre)
-Place firstPlace = Util.getFirst(setPlace);
+FicheLieu firstPlace = Util.getFirst(setPlace);
 
 //On créer un set de commune
 List<City> cityList = new ArrayList<City>();
@@ -81,8 +81,8 @@ City[] tabCity = firstPlace.getCities();
 if(Util.notEmpty(tabCity)){
 cityList.addAll(Arrays.asList(tabCity));
 }
-Set<Place> setPlaceUA = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new UniteAgrementSelectorCommune(cityList, categUA));
-Place uniteAgrement = null;
+Set<FicheLieu> setPlaceUA = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new UniteAgrementSelectorCommune(cityList, categUA));
+FicheLieu uniteAgrement = null;
 if(Util.notEmpty(setPlaceUA)){
   uniteAgrement = Util.getFirst(setPlaceUA);
 }

@@ -3,7 +3,7 @@ package fr.cg44.plugin.assmat.selector;
 import java.util.List;
 
 import generated.City;
-import generated.Place;
+import generated.FicheLieu;
 
 import com.jalios.jcms.Category;
 import com.jalios.jcms.Channel;
@@ -38,8 +38,8 @@ public class UniteAgrementSelectorCommune implements DataSelector
 	public boolean isSelected(Data data) {
 		boolean selected= false;	
 		if(Util.notEmpty(city)){
-			if (data instanceof Place) {
-			  Place place = (Place) data;
+			if (data instanceof FicheLieu) {
+			  FicheLieu place = (FicheLieu) data;
 				if(city.contains(place.getCity())|| Util.arrayContains(place.getCities(), city)){
 				  if(Util.arrayContains(place.getCategories(), categ))
 					selected = true;

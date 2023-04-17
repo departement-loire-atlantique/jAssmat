@@ -15,7 +15,7 @@ if(!AssmatUtil.isMemberRAM(loggedMember)){
 }
   
 //On recupere les RAM du membre 
-Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorIDSolis(loggedMember.getExtraData("extra.Member.jcmsplugin.assmatplugin.idsolis.lieu")));
+Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new RelaisMamSelectorIDSolis(loggedMember.getExtraData("extra.Member.jcmsplugin.assmatplugin.idsolis.lieu")));
 
 %>
 
@@ -41,11 +41,11 @@ Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllData
 	  cityList.addAll(Arrays.asList(tabCity));
     }
   
-	Set<Place> setPlaceUA = null;
+	Set<FicheLieu> setPlaceUA = null;
 	Integer idRam = Integer.parseInt(loggedMember.getExtraData("extra.Member.jcmsplugin.assmatplugin.idsolis.lieu").replaceAll("RAM_", "")); 
 	String idSolisUa = "UA_" + AssmatSearchDAO.getCorresRamUa(idRam) ;
 	
-	setPlaceUA = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorIDSolis(idSolisUa));
+	setPlaceUA = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new RelaisMamSelectorIDSolis(idSolisUa));
 	  
 	%>
 	
@@ -53,7 +53,7 @@ Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllData
 	    <div class="ds44-innerBoxContainer">
 	        <p role="heading" aria-level="2" class="ds44-box-heading"><trsb:glp key="ESPACE-RAM-MES-INTERLOCUTEURS" ></trsb:glp></p>
 	        
-	        <jalios:foreach name="place" type="Place" collection="<%=setPlaceUA %>">
+	        <jalios:foreach name="place" type="FicheLieu" collection="<%=setPlaceUA %>">
 		
 	            <p><trsb:glp key="ESPACE-RAM-A-UNITE-AGREMENT" ></trsb:glp></p>
 				

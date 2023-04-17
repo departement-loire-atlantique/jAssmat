@@ -62,7 +62,7 @@ import fr.trsb.cd44.solis.beans.AssmatSolis;
 import fr.trsb.cd44.solis.manager.QuartierDAO;
 import fr.trsb.cd44.solis.manager.SolisManager;
 import generated.Disponibilite;
-import generated.Place;
+import generated.FicheLieu;
 import generated.ProfilASSMAT;
 
 /**
@@ -1082,12 +1082,12 @@ public class GeneratePdf extends PdfPageEventHelper {
     // Pied de page
     // ---------------------------------------------
     final String mention;      
-    Set<Place> setPlace = (Set<Place>) request.getSession().getAttribute("relais");
+    Set<FicheLieu> setPlace = (Set<FicheLieu>) request.getSession().getAttribute("relais");
     
     
     // Affiche le relais de la recherche si un relais (avec l'adresse)
     if (Util.notEmpty(setPlace) && setPlace.size() == 1) {
-      Place ramPlace = Util.getFirst(setPlace);
+      FicheLieu ramPlace = Util.getFirst(setPlace);
       String nomRelais = ramPlace.getTitle();
       String adresseRam = " - " + ramPlace.getStreet().replaceAll("[\r\n]+", " ") + " "
         + ramPlace.getZipCode() + " " + ramPlace.getCity().getTitle();
@@ -1097,7 +1097,7 @@ public class GeneratePdf extends PdfPageEventHelper {
     }else if(Util.notEmpty(setPlace) && setPlace.size() > 1) {
     	// Affiche les  relais de la recherche si plusieurs relais (sans l'adresse)
     	String mentionsRelais = "";
-    	for(Place itPlace : setPlace){
+    	for(FicheLieu itPlace : setPlace){
     		String telRam = Util.notEmpty(Util.getFirst(itPlace.getPhones())) ? " - Tél : " + Util.getFirst(itPlace.getPhones()) : "";
     		mentionsRelais +=  itPlace.getTitle() +  telRam + " // ";
     	}

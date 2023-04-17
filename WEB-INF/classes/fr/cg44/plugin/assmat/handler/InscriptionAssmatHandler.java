@@ -35,7 +35,7 @@ import fr.cg44.plugin.assmat.selector.PlaceSelector;
 import fr.trsb.cd44.solis.beans.AssmatSolis;
 import fr.trsb.cd44.solis.manager.SolisManager;
 import generated.InscriptionAM;
-import generated.Place;
+import generated.FicheLieu;
 import generated.ProfilASSMAT;
 import generated.Routage;
 
@@ -886,10 +886,10 @@ public AssmatSolis getAssmat() {
 			  telephoneFixe = assmat.getTelPrincipal();
 			}
 			if (Util.notEmpty(idUa)) {
-				Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getPublicationSet(Place.class, channel.getDefaultAdmin()), new PlaceSelector(idUa));
+				Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getPublicationSet(FicheLieu.class, channel.getDefaultAdmin()), new PlaceSelector(idUa));
 				if (Util.notEmpty(setPlace)) {
 					// On recuepre le premier lieu
-					Place place = Util.getFirst(setPlace);
+				  FicheLieu place = Util.getFirst(setPlace);
 					numeroTelUA = place.getPhones();
 					nameUA = place.getTitle();
 				}
@@ -1433,13 +1433,13 @@ public Double getLatMAM() {
 			logger.error("L'ASSMAT " + nom + " " + prenom + "n'est lié(e) à aucun idSolis en base de données");
 		} else {
 			// On recupere les fiches lieux
-			Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getPublicationSet(Place.class, channel.getDefaultAdmin()), new PlaceSelector(idUa));
+			Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getPublicationSet(FicheLieu.class, channel.getDefaultAdmin()), new PlaceSelector(idUa));
 			if (Util.isEmpty(setPlace)) {
 				logger.error("Impossible d’afficher les données UA pour l’AM" + nom + " " + prenom + ", ID fiche" + idSolis);
 				sendDefaultMailRoutage();
 			} else {
 				// On recuepre le premier lieu
-				Place place = Util.getFirst(setPlace);
+			  FicheLieu place = Util.getFirst(setPlace);
 				String[] emailContact = place.getMails();
 				if (Util.notEmpty(emailContact)) {
 					sendMailErrorInformation(emailContact);

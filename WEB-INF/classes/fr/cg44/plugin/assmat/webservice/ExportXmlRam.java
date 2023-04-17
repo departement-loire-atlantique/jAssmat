@@ -1,7 +1,7 @@
 package fr.cg44.plugin.assmat.webservice;
 
 import fr.cg44.plugin.assmat.selector.PlaceCategSelector;
-import generated.Place;
+import generated.FicheLieu;
 
 import java.io.StringWriter;
 import java.util.Set;
@@ -40,7 +40,7 @@ public class ExportXmlRam extends DataRestResource {
 
   private static final Logger logger = Logger.getLogger(ExportXmlRam.class);
 
-  private Set<Place> placeSet;
+  private Set<FicheLieu> placeSet;
 
   public ExportXmlRam(Context context, Request request, Response response) {
     super(context, request, response);
@@ -58,7 +58,7 @@ public class ExportXmlRam extends DataRestResource {
     
 // String token = "djI7al8yOzE1MjU1MTI0NzY2MTQ7R0VULDs7OyQyYSQwNCRpU2hrcWd2OUxPVjJpdVBYSmJ5WTZlZFM1SGJJWERveVpEaWFETjdPZi83T2ZZSExmQ3kwUw==";
     
-    placeSet = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new PlaceCategSelector(idCategRAM));
+    placeSet = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new PlaceCategSelector(idCategRAM));
     if(Util.notEmpty(placeSet)){
        getXmlRepresentation(placeSet); 
     }
@@ -88,7 +88,7 @@ public class ExportXmlRam extends DataRestResource {
         Element rootElement = doc.createElement("relais");
         
         doc.appendChild(rootElement);
-        for(Place itPlace: placeSet){
+        for(FicheLieu itPlace: placeSet){
           if(Util.notEmpty(itPlace.getSolisId())){
             Element firstname = doc.createElement("id_ram");
             firstname.appendChild(doc.createTextNode(itPlace.getSolisId()));
@@ -119,7 +119,7 @@ public class ExportXmlRam extends DataRestResource {
   }
 
 
-  protected void getXmlRepresentation(Set<Place> placeSet) {   
+  protected void getXmlRepresentation(Set<FicheLieu> placeSet) {   
     
     
     DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -137,7 +137,7 @@ public class ExportXmlRam extends DataRestResource {
     Element rootElement = doc.createElement("relais");
     
     doc.appendChild(rootElement);
-    for(Place itPlace: placeSet){
+    for(FicheLieu itPlace: placeSet){
      Element firstname = doc.createElement("id_ram");
      firstname.appendChild(doc.createTextNode(itPlace.getSolisId()));
      rootElement.appendChild(firstname);

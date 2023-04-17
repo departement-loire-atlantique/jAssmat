@@ -1,7 +1,7 @@
 <%@page import="fr.cg44.plugin.tools.modal.ModalGenerator"%><%
 %><%@ include file='/jcore/doInitPage.jsp' %><%
 %><%@ include file='/jcore/portal/doPortletParams.jsp' %><%
-%><% Place obj = (Place) request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
+%><% FicheLieu obj = (FicheLieu) request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
 %><%
 // Type d'info-bulle
 String classic = "classic";

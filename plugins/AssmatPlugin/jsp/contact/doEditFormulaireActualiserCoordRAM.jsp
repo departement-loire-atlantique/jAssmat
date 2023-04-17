@@ -13,7 +13,7 @@
   request.setAttribute("classBeingProcessed", FormulaireDeContactActualiserCoo.class);
   
   String idUa= request.getParameter("idUA");
-  Place uniteAgrement = (Place) channel.getPublication(idUa);
+  FicheLieu uniteAgrement = (FicheLieu) channel.getPublication(idUa);
   
 %>
 

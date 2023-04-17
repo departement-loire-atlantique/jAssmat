@@ -17,7 +17,7 @@
 if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
   String idPortalRAM = channel.getProperty("jcmsplugin.assmatplugin.socle.portal.colonne");
    
-  Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllPublicationSet(Place.class, loggedMember), new RelaisMamSelectorIDSolis(loggedMember.getExtraData("extra.Member.jcmsplugin.assmatplugin.idsolis.lieu")));
+  Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllPublicationSet(FicheLieu.class, loggedMember), new RelaisMamSelectorIDSolis(loggedMember.getExtraData("extra.Member.jcmsplugin.assmatplugin.idsolis.lieu")));
 %>
 
 <jalios:if predicate="<%=Util.notEmpty(setPlace) %>">
@@ -26,7 +26,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 	    <div class="ds44-innerBoxContainer">
 	        <p role="heading" aria-level="2" class="ds44-box-heading"><trsb:glp key="ESPACE-RAM-MON-PROFIL" ></trsb:glp></p>
 	        
-	        <jalios:foreach name="place" type="Place" collection="<%=setPlace %>">
+	        <jalios:foreach name="place" type="FicheLieu" collection="<%=setPlace %>">
 	
 	            <jalios:if predicate="<%=Util.notEmpty(place.getTitle()) %>">
 	                <p class="ds44-docListElem mtm"><strong><i class="icon icon-user ds44-docListIco" aria-hidden="true"></i><%=place.getTitle() %></strong></p>
@@ -71,7 +71,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 			Category categUA = channel.getCategory(channel.getProperty("plugin.assmatplugin.categorie.unite.agrement.id"));
 			
 			//On recupere la premiere fiche lieu (appartenance du membre)
-			Place firstPlace = Util.getFirst(setPlace);
+			FicheLieu firstPlace = Util.getFirst(setPlace);
 			
 			//On créer un set de commune
 			List<City> cityList = new ArrayList<City>();
@@ -84,7 +84,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 			if(Util.notEmpty(tabCity)){
 			cityList.addAll(Arrays.asList(tabCity));
 			}
-			Set<Place> setPlaceUA = (Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new UniteAgrementSelectorCommune(cityList, categUA));
+			Set<FicheLieu> setPlaceUA = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new UniteAgrementSelectorCommune(cityList, categUA));
 			Place uniteAgrement = null;
 			if(Util.notEmpty(setPlaceUA)){
 			  uniteAgrement = Util.getFirst(setPlaceUA);

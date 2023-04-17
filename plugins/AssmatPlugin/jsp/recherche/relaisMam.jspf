@@ -9,7 +9,7 @@
  
  String idCategMam = channel.getProperty("$plugin.assmatplugin.categ.relaiam");
 Category categRAM= channel.getCategory(idCategMam); 
-Set<Place> setPlace =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorCommune(city,categRAM));
+Set<FicheLieu> setPlace =(Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new RelaisMamSelectorCommune(city,categRAM));
 
 // 0011728: Affichage relais dans recherche AM sur Nantes 
 if(Util.notEmpty(selectPlace)) {
@@ -17,14 +17,14 @@ if(Util.notEmpty(selectPlace)) {
   setPlace.addAll(selectPlace);
 }
 session.setAttribute("relais", setPlace);
-List<Place> setPointRelais = new ArrayList<Place>();
+List<FicheLieu> setPointRelais = new ArrayList<FicheLieu>();
 %>
 <div class="title-bar-container dotted-title dotted-portlet Outter PortletWYSIWYG ID_r1_58309 dnd-header ajax-refresh-div Portlet PortletSkinable Inner  containerRelais">
 <trsb:glp key="INFORMATION-RESULTAT-RECHERCHE-AM-COL-RELAIS" />
 
 <%if(Util.notEmpty(setPlace)){%>
 <div class="relaisMAM">
-<jalios:foreach name="itPlace" type="Place" collection="<%=setPlace %>">
+<jalios:foreach name="itPlace" type="FicheLieu" collection="<%=setPlace %>">
 <div class="relais">
   <div class="left">
     <img src="plugins/ToolsPlugin/images/googlemaps/markers/drop/drop_44bedf.png" />

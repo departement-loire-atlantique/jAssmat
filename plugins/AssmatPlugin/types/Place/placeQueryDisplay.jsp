@@ -3,7 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %><%
 %><%@ include file='/jcore/doInitPage.jsp' %><% 
 
-   Place obj = (Place) request.getAttribute(PortalManager.PORTAL_PUBLICATION); 
+FicheLieu obj = (FicheLieu) request.getAttribute(PortalManager.PORTAL_PUBLICATION); 
    
    jcmsContext.addCSSHeader("plugins/CorporateIdentityPlugin/css/types/Place/placeQueryDisplay.css");
    

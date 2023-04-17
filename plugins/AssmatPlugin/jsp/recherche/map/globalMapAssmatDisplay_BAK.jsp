@@ -171,10 +171,10 @@ Map< AssmatSearch, PointAssmat> nonTrieAssmatPoints = (Map<AssmatSearch, PointAs
                  
                  
                  <%
-                List<Place> listRelais =(List<Place>) request.getAttribute("listPointRelais"); 
+                List<FicheLieu> listRelais =(List<FicheLieu>) request.getAttribute("listPointRelais"); 
                  
                  if(Util.notEmpty(listRelais)){
-                   for(Place itPlace : listRelais){ %>
+                   for(FicheLieu itPlace : listRelais){ %>
                 <!--  DEBUT BOUCLE -->
                         var latLngRelais = new google.maps.LatLng(<%= itPlace.getExtraData("extra.Place.plugin.tools.geolocation.latitude") %>, <%= itPlace.getExtraData("extra.Place.plugin.tools.geolocation.longitude") %>);
 			               <%
