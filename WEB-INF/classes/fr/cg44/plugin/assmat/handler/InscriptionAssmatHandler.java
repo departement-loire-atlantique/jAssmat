@@ -890,7 +890,7 @@ public AssmatSolis getAssmat() {
 				if (Util.notEmpty(setPlace)) {
 					// On recuepre le premier lieu
 				  FicheLieu place = Util.getFirst(setPlace);
-					numeroTelUA = place.getPhones();
+					numeroTelUA = place.getTelephone();
 					nameUA = place.getTitle();
 				}
 			}
@@ -1440,7 +1440,7 @@ public Double getLatMAM() {
 			} else {
 				// On recuepre le premier lieu
 			  FicheLieu place = Util.getFirst(setPlace);
-				String[] emailContact = place.getMails();
+				String[] emailContact = place.getEmail();
 				if (Util.notEmpty(emailContact)) {
 					sendMailErrorInformation(emailContact);
 				} else {

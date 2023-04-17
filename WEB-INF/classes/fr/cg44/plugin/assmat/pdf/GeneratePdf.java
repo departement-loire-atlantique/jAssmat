@@ -1089,16 +1089,16 @@ public class GeneratePdf extends PdfPageEventHelper {
     if (Util.notEmpty(setPlace) && setPlace.size() == 1) {
       FicheLieu ramPlace = Util.getFirst(setPlace);
       String nomRelais = ramPlace.getTitle();
-      String adresseRam = " - " + ramPlace.getStreet().replaceAll("[\r\n]+", " ") + " "
-        + ramPlace.getZipCode() + " " + ramPlace.getCity().getTitle();
-      String telRam = Util.notEmpty(Util.getFirst(ramPlace.getPhones())) ? " - Tél : " + Util.getFirst(ramPlace.getPhones()) : "";
-      String emailRam = " - " + Util.getFirst(ramPlace.getMails());
+      String adresseRam = " - " + ramPlace.getLibelleDeVoie().replaceAll("[\r\n]+", " ") + " "
+        + ramPlace.getCodePostal() + " " + ramPlace.getCommune().getTitle();
+      String telRam = Util.notEmpty(Util.getFirst(ramPlace.getTelephone())) ? " - Tél : " + Util.getFirst(ramPlace.getTelephone()) : "";
+      String emailRam = " - " + Util.getFirst(ramPlace.getEmail());
       mention = nomRelais + adresseRam + telRam + emailRam;  
     }else if(Util.notEmpty(setPlace) && setPlace.size() > 1) {
     	// Affiche les  relais de la recherche si plusieurs relais (sans l'adresse)
     	String mentionsRelais = "";
     	for(FicheLieu itPlace : setPlace){
-    		String telRam = Util.notEmpty(Util.getFirst(itPlace.getPhones())) ? " - Tél : " + Util.getFirst(itPlace.getPhones()) : "";
+    		String telRam = Util.notEmpty(Util.getFirst(itPlace.getTelephone())) ? " - Tél : " + Util.getFirst(itPlace.getTelephone()) : "";
     		mentionsRelais +=  itPlace.getTitle() +  telRam + " // ";
     	}
     	mention = mentionsRelais.substring(0, mentionsRelais.length() - 3);

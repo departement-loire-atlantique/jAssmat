@@ -83,7 +83,7 @@ public class LoginAuthenticationHandler extends AuthenticationHandler {
             FicheLieu ua = Util.getFirst(resultUaSet) ;
             if(Util.notEmpty(ua)) {
               uaName = ua.getTitle();
-              uaTel = Util.getFirst(ua.getPhones());
+              uaTel = Util.getFirst(ua.getTelephone());
             }
           }
           

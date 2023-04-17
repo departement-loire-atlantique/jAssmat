@@ -40,7 +40,7 @@ public class UniteAgrementSelectorCommune implements DataSelector
 		if(Util.notEmpty(city)){
 			if (data instanceof FicheLieu) {
 			  FicheLieu place = (FicheLieu) data;
-				if(city.contains(place.getCity())|| Util.arrayContains(place.getCities(), city)){
+				if(city.contains(place.getCommune())|| Util.arrayContains(place.getCommunes(), city)){
 				  if(Util.arrayContains(place.getCategories(), categ))
 					selected = true;
 				}

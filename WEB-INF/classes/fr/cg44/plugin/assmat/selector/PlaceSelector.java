@@ -39,7 +39,7 @@ public class PlaceSelector implements DataSelector
        if(Util.notEmpty(place)){
          
          List<String> listIdSolis = new ArrayList<String>();
-         String idSolisId = place.getSolisId();
+         String idSolisId = place.getIdSolis();
          if(Util.notEmpty(idSolisId)) {
            String[] idSolisTab = idSolisId.split(" ");
            listIdSolis = Arrays.asList(idSolisTab);
