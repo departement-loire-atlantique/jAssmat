@@ -89,9 +89,9 @@ public class ExportXmlRam extends DataRestResource {
         
         doc.appendChild(rootElement);
         for(FicheLieu itPlace: placeSet){
-          if(Util.notEmpty(itPlace.getIdSolid())){
+          if(Util.notEmpty(itPlace.getIdSolis())){
             Element firstname = doc.createElement("id_ram");
-            firstname.appendChild(doc.createTextNode(itPlace.getIdSolid));
+            firstname.appendChild(doc.createTextNode(itPlace.getIdSolis()));
             rootElement.appendChild(firstname);
           }
         }     
@@ -139,7 +139,7 @@ public class ExportXmlRam extends DataRestResource {
     doc.appendChild(rootElement);
     for(FicheLieu itPlace: placeSet){
      Element firstname = doc.createElement("id_ram");
-     firstname.appendChild(doc.createTextNode(itPlace.getIdSolid));
+     firstname.appendChild(doc.createTextNode(itPlace.getIdSolis()));
      rootElement.appendChild(firstname);
     }
   }
