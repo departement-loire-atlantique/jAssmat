@@ -11,17 +11,17 @@ FicheLieu obj = (FicheLieu) request.getAttribute(PortalManager.PORTAL_PUBLICATIO
 %><div class="place-box-display-container">
   <div class="header">
     <h2><%= obj.getTitle() %><jalios:edit pub="<%= obj %>" /></h2>
-    <jalios:if predicate="<%= Util.notEmpty(obj.getCity()) %>"><p <%= backgroundStyle %>><%= obj.getCity().getTitle() %></p></jalios:if>
+    <jalios:if predicate="<%= Util.notEmpty(obj.getCommune()) %>"><p <%= backgroundStyle %>><%= obj.getCommune().getTitle() %></p></jalios:if>
   </div>
   <div class="row-fluid content">
     <div class="span6">
       <jalios:if predicate="<%= Util.notEmpty(obj.getServiceOrHubOrUnit()) %>"><p><%= obj.getServiceOrHubOrUnit() %><jalios:edit pub="<%= obj %>" fields="serviceOrHubOrUnit"/></p></jalios:if><%
       %><jalios:if predicate="<%= Util.notEmpty(obj.getStreet()) %>"><p class="pre"><%= obj.getStreet().trim() %><jalios:edit pub="<%= obj %>" fields="street"/></p></jalios:if><%
       %><jalios:if predicate="<%= Util.notEmpty(obj.getPostalBox()) %>"><p><%= obj.getPostalBox() %><jalios:edit pub="<%= obj %>" fields="postalBox"/></p></jalios:if><%
-      %><jalios:if predicate="<%= Util.notEmpty(obj.getZipCode()) || Util.notEmpty(obj.getCity()) %>"><%
+      %><jalios:if predicate="<%= Util.notEmpty(obj.getLibelleDeVoie()) || Util.notEmpty(obj.getCommune()) %>"><%
         %><p>
-            <jalios:if predicate="<%= Util.notEmpty(obj.getZipCode())  %>"><%= obj.getZipCode() %><jalios:edit pub="<%= obj %>" fields="zipCode"/></jalios:if>
-            <jalios:if predicate="<%= Util.notEmpty(obj.getCity())  %>"><%= obj.getCity().getTitle() %><jalios:edit pub="<%= obj %>" fields="city"/></jalios:if>
+            <jalios:if predicate="<%= Util.notEmpty(obj.getLibelleDeVoie())  %>"><%= obj.getLibelleDeVoie() %><jalios:edit pub="<%= obj %>" fields="zipCode"/></jalios:if>
+            <jalios:if predicate="<%= Util.notEmpty(obj.getCommune())  %>"><%= obj.getCommune().getTitle() %><jalios:edit pub="<%= obj %>" fields="city"/></jalios:if>
         </p>
       </jalios:if>
       <%@include file="/plugins/AssmatPlugin/jsp/common/doContact.jspf" %><%

@@ -69,7 +69,7 @@ if(Util.notEmpty(codeInsee)){
         if(city.isImported()){
         	cityIdImport=city.getImportId();  
         }
-        communeCode = city.getZipCode();
+        communeCode = city.getLibelleDeVoie();
         kml = city.getExtraData("extra.City.plugin.tools.geolocation.kml");
     } catch (UnknowCityException e){
            logger.warn("La commune <"+commune+"> <"+codeInsee+"> n'a pas été trouvé.");

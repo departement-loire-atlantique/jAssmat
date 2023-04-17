@@ -61,19 +61,19 @@ if(classicWithImage.equals(tooltipType)){
   %><jalios:if predicate="<%= Util.notEmpty(obj.getPostalBox()) %>"><p><%= obj.getPostalBox() %></p></jalios:if><%
   
   //Ville et code postal
-  %><jalios:if predicate="<%= Util.notEmpty(obj.getZipCode()) || Util.notEmpty(obj.getCity()) %>"><%
+  %><jalios:if predicate="<%= Util.notEmpty(obj.getLibelleDeVoie()) || Util.notEmpty(obj.getCommune()) %>"><%
   %><p><%
-    %><jalios:if predicate="<%= Util.notEmpty(obj.getZipCode()) %>"><%= obj.getZipCode() %></jalios:if><%
-    %><jalios:if predicate="<%= Util.notEmpty(obj.getCity()) && Util.notEmpty(obj.getZipCode()) %>"> </jalios:if><%
-    %><jalios:if predicate="<%= Util.notEmpty(obj.getCity()) %>"><%= obj.getCity().getTitle() %></jalios:if><%
+    %><jalios:if predicate="<%= Util.notEmpty(obj.getLibelleDeVoie()) %>"><%= obj.getLibelleDeVoie() %></jalios:if><%
+    %><jalios:if predicate="<%= Util.notEmpty(obj.getCommune()) && Util.notEmpty(obj.getLibelleDeVoie()) %>"> </jalios:if><%
+    %><jalios:if predicate="<%= Util.notEmpty(obj.getCommune()) %>"><%= obj.getCommune().getTitle() %></jalios:if><%
   %></p><%
   %></jalios:if><%
   
   //Phones
-  %><jalios:if predicate="<%= Util.notEmpty(obj.getPhones()) %>"><%
+  %><jalios:if predicate="<%= Util.notEmpty(obj.getTelephone()) %>"><%
 	  %><p><%
 	     if(departmentCloseToYou.equals(tooltipType)) { %><%= glp("plugin.corporateidentity.common.tel") %><% }
-	     %><jalios:foreach name="itPhone" type="String" array="<%= obj.getPhones() %>"><%= (itCounter > 1)?" - ":""%><%= itPhone %></jalios:foreach><%
+	     %><jalios:foreach name="itPhone" type="String" array="<%= obj.getTelephone() %>"><%= (itCounter > 1)?" - ":""%><%= itPhone %></jalios:foreach><%
 	  %></p><%
   %></jalios:if><%
   
@@ -86,8 +86,8 @@ if(classicWithImage.equals(tooltipType)){
   %></jalios:if><%
       
   //Mails
-  %><jalios:if predicate="<%= Util.notEmpty(obj.getMails()) %>"><%
-    String[] list = obj.getMails();
+  %><jalios:if predicate="<%= Util.notEmpty(obj.getEmail()) %>"><%
+    String[] list = obj.getEmail();
     %><p><%
        %><jalios:foreach name="itMail" type="String" array="<%= list %>"><%
           String mail = itMail;
@@ -101,8 +101,8 @@ if(classicWithImage.equals(tooltipType)){
   %></jalios:if><%
 
 	// website
-	%><jalios:if predicate="<%= Util.notEmpty(obj.getWebsites()) %>"><%
-	String[] websites = obj.getWebsites();
+	%><jalios:if predicate="<%= Util.notEmpty(obj.getSiteInternet()) %>"><%
+	String[] websites = obj.getSiteInternet();
 	%><p><%
 	   %><jalios:foreach name="itWebsite" type="String" array="<%= websites %>"><%
 	      %><%= (itCounter > 1)? " - ":"" %><a href="<%= itWebsite %>">Site internet</a><%

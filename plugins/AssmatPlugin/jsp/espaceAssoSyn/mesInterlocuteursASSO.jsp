@@ -34,7 +34,7 @@ FicheLieu firstPlace = Util.getFirst(setPlace);
 List<City> cityList = new ArrayList<City>();
 
 
-cityList.add(firstPlace.getCity());
+cityList.add(firstPlace.getCommune());
 
 //On récupere les communes "autres"
 
@@ -54,24 +54,24 @@ Set<FicheLieu> setPlaceUA = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.
 <jalios:if predicate="<%=Util.notEmpty(place.getTitle()) %>">
   <p class="name"><%=place.getTitle() %></p>
 </jalios:if>
-<jalios:if predicate="<%=Util.notEmpty(place.getStreet()) %>">
-<p class="street"><%=place.getStreet() %><br>
-<%=place.getZipCode() %> <%=place.getCity() %></p>
+<jalios:if predicate="<%=Util.notEmpty(place.getLibelleDeVoie()) %>">
+<p class="street"><%=place.getLibelleDeVoie() %><br>
+<%=place.getCodePostal() %> <%=place.getCommune() %></p>
 </jalios:if>
-<jalios:if predicate="<%= Util.notEmpty(place.getPhones() ) %>"><%
+<jalios:if predicate="<%= Util.notEmpty(place.getTelephone() ) %>"><%
  %><div class="phone"><%
     %><div><span class="bold"><%= glp("plugin.corporateidentity.common.tel") %></span> <%
       %><%
-        %><jalios:foreach name="itPhone" type="String" array="<%= place.getPhones()  %>"><%= (itCounter > 1)?" - ":""%><%= itPhone %></jalios:foreach><%
+        %><jalios:foreach name="itPhone" type="String" array="<%= place.getTelephone()  %>"><%= (itCounter > 1)?" - ":""%><%= itPhone %></jalios:foreach><%
       %><%
  %></div></div><%
 %></jalios:if>
 
-<jalios:if predicate="<%= Util.notEmpty(place.getMails()) %>"><%
+<jalios:if predicate="<%= Util.notEmpty(place.getEmail()) %>"><%
 %><div class="mail"><%
    %><%
      %><p><%
-       %><jalios:foreach name="itMail" type="String" array="<%= place.getMails() %>"><%
+       %><jalios:foreach name="itMail" type="String" array="<%= place.getEmail() %>"><%
            %><%= (itCounter > 1)? " - ":"" %><a href="mailto:<%= itMail %>"><%= itMail %></a><%
        %></jalios:foreach><%
      %></p><%

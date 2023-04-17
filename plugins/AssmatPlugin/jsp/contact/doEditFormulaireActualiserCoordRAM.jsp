@@ -43,8 +43,8 @@ if(realLoggedMember == null) {
 <% 
 String email ="";
 if(Util.notEmpty(uniteAgrement)){
-  if(Util.notEmpty(uniteAgrement.getMails())){
-    email =Util.getFirst(uniteAgrement.getMails());
+  if(Util.notEmpty(uniteAgrement.getEmail())){
+    email =Util.getFirst(uniteAgrement.getEmail());
   }
 }
 %>

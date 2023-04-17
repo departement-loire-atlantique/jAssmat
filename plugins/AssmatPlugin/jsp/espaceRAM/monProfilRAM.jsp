@@ -32,27 +32,27 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 	                <p class="ds44-docListElem mtm"><strong><i class="icon icon-user ds44-docListIco" aria-hidden="true"></i><%=place.getTitle() %></strong></p>
 	            </jalios:if>
 	            
-				<jalios:if predicate="<%=Util.notEmpty(place.getStreet()) %>">
-	                <div class="ds44-docListElem mtm"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=place.getStreet() %><br /> <%=place.getZipCode() %> <%=place.getCity() %></div>
+				<jalios:if predicate="<%=Util.notEmpty(place.getLibelleDeVoie()) %>">
+	                <div class="ds44-docListElem mtm"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=place.getLibelleDeVoie() %><br /> <%=place.getLibelleDeVoie() %> <%=place.getCommune() %></div>
 				</jalios:if>
 				
-				<jalios:if predicate="<%= Util.notEmpty(place.getPhones() ) %>">
+				<jalios:if predicate="<%= Util.notEmpty(place.getTelephone() ) %>">
 	                <p class="ds44-docListElem mtm"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i>
-	                    <jalios:foreach name="itPhone" type="String" array="<%= place.getPhones()  %>"><%= (itCounter > 1)?" - ":""%><%= itPhone %></jalios:foreach>
+	                    <jalios:foreach name="itPhone" type="String" array="<%= place.getTelephone()  %>"><%= (itCounter > 1)?" - ":""%><%= itPhone %></jalios:foreach>
 	                </p>
 				</jalios:if>
 				
-				<jalios:if predicate="<%= Util.notEmpty(place.getMails()) %>">
+				<jalios:if predicate="<%= Util.notEmpty(place.getEmail()) %>">
 	    			<p class="ds44-docListElem mtm"><i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i>
-				       <jalios:foreach name="itMail" type="String" array="<%= place.getMails() %>">
+				       <jalios:foreach name="itMail" type="String" array="<%= place.getEmail() %>">
 				           <%= (itCounter > 1)? " - ":"" %><a href="mailto:<%= itMail %>" aria-label='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.ficheaide.contacter-x-par-mail.label", place.getTitle(), itMail))%>'><%= itMail %></a>
 				      </jalios:foreach>
 	                </p>
 				</jalios:if>
 				
-				<jalios:if predicate="<%= Util.notEmpty(place.getWebsites()) %>">
+				<jalios:if predicate="<%= Util.notEmpty(placegetSiteInternets()) %>">
 	                <p class="ds44-docListElem mtm"><i class="icon icon-link ds44-docListIco" aria-hidden="true"></i>
-	                    <jalios:foreach name="itSite" type="String" array="<%= place.getWebsites() %>"><%= (itCounter > 1)? " - ":"" %>
+	                    <jalios:foreach name="itSite" type="String" array="<%= place.getSiteInternet() %>"><%= (itCounter > 1)? " - ":"" %>
 	                        <a href="<%= itSite %>" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.lien.site.nouvelonglet", itSite)) %>' target="_blank"><%= itSite %></a>
 	                    </jalios:foreach>
 				     </p>
@@ -76,7 +76,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 			//On créer un set de commune
 			List<City> cityList = new ArrayList<City>();
 			
-			cityList.add(firstPlace.getCity());
+			cityList.add(firstPlace.getCommune());
 			
 			//On récupere les communes "autres"
 			

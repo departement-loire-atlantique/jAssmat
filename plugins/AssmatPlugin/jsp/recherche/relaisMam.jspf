@@ -31,21 +31,21 @@ List<FicheLieu> setPointRelais = new ArrayList<FicheLieu>();
   </div>
 <div class="right">
   <p class="gras"> <%=itPlace.getTitle() %></p>
-  <jalios:if predicate="<%=Util.notEmpty(itPlace.getStreet())%>">
- <jalios:wiki> <%=itPlace.getStreet() %></jalios:wiki>
+  <jalios:if predicate="<%=Util.notEmpty(itPlace.getLibelleDeVoie())%>">
+ <jalios:wiki> <%=itPlace.getLibelleDeVoie() %></jalios:wiki>
   </jalios:if>
   
     <!-- Ticket 0011217 -->
-     <p> <%=itPlace.getZipCode() %> <%=itPlace.getCity() %></p>
+     <p> <%=itPlace.getLibelleDeVoie() %> <%=itPlace.getCommune() %></p>
 
-   <jalios:if predicate="<%=Util.notEmpty(itPlace.getPhones()) %>">
+   <jalios:if predicate="<%=Util.notEmpty(itPlace.getTelephone()) %>">
      <p><span class="gras">Tél :</span>
-     <%= StringUtils.join(itPlace.getPhones(), " - ") %>
+     <%= StringUtils.join(itPlace.getTelephone(), " - ") %>
      </p>
   </jalios:if>
-   <jalios:if predicate="<%=Util.notEmpty(itPlace.getMails()) %>">
+   <jalios:if predicate="<%=Util.notEmpty(itPlace.getEmail()) %>">
      <p>
-     <jalios:foreach name="itMail" type="String" array="<%= itPlace.getMails()%>">
+     <jalios:foreach name="itMail" type="String" array="<%= itPlace.getEmail()%>">
      <%
      String mail = itMail;
      Category cat = channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.ram"));
@@ -57,9 +57,9 @@ List<FicheLieu> setPointRelais = new ArrayList<FicheLieu>();
      </jalios:foreach>
      </p>
   </jalios:if>
-  <jalios:if predicate="<%=Util.notEmpty(itPlace.getWebsites()) %>">
+  <jalios:if predicate="<%=Util.notEmpty(itPlace.getSiteInternet()) %>">
      <p>
-     <jalios:foreach name="itSite" type="String" array="<%= itPlace.getWebsites()%>">
+     <jalios:foreach name="itSite" type="String" array="<%= itPlace.getSiteInternet()%>">
      <u><a class="gras" href="<%=itSite%>">Site internet</a></u>
      </jalios:foreach>
      </p>
