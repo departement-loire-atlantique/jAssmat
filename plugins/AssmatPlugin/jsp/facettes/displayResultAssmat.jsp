@@ -670,7 +670,7 @@ if(Util.notEmpty(itProfilAM)){
       
       
   // Ajout du résultat au json
-  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM, itLatitude, itLongitude, itPoint.getCouleurPoint(), itPubListGabarit, itPubListGabarit, null));
+  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM, "_"+itPoint.isDomicile() , itLatitude, itLongitude, itPoint.getCouleurPoint(), itPubListGabarit, itPubListGabarit, null));
 
 }
 %>
