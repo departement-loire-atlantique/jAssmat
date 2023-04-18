@@ -33,7 +33,6 @@ PortletRechercheFacettes  boxTmp = (PortletRechercheFacettes) (channel.getPublic
 PortletRechercheFacettes box = new PortletRechercheFacettes(boxTmp);
 
 
-
 // Pager
 boolean hasPager = box.getPager();
 Integer pager = getIntParameter("page", 1);
@@ -448,7 +447,7 @@ logger.trace("Relais : " + setPlace);
 
 // Mise en session pour l'export en PDF
 session.removeAttribute("isSelection"); 
-session.setAttribute("urlRecherche", ServletUtil.getUrl(request));
+//session.setAttribute("urlRecherche", ServletUtil.getUrl(request));
 session.setAttribute("assmatPoints", assmatPointsTriee);
 if(loggedMember != null){
   session.setAttribute("logMemberId", loggedMember.getId());

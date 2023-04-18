@@ -13,6 +13,12 @@ Set<ProfilASSMAT>    panierSet   = JcmsUtil.idCollectionToDataTreeSet(panier, Pr
 request.getSession().setAttribute("listeProfilAMSelection", panierSet);
 String              urlAction   = ServletUtil.getResourcePath(request) + "?id=" + portlet.getId();
 ProfilManager profilMgr = ProfilManager.getInstance();
+
+
+if(Util.notEmpty(panierSet)){
+  session.setAttribute("isSelection", "true"); 
+}
+
 %>
 <main role="main" id="content">
 <article class="ds44-container-large">
