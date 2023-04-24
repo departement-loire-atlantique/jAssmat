@@ -239,6 +239,10 @@ if(Util.notEmpty(assMat.getExerceMam())){
 			 <%if(Util.notEmpty(exerceDomicileLbl)){%>      
 			   <p class="u-bold"><%= exerceDomicileLbl %></p>
 			 <%} %>
+			 
+			 
+            <input type="hidden" id ="latAM" name="latAM" value="<%=latAM%>" data-technical-field>
+            <input type="hidden" id="longAM" name="longAM" value="<%=longAM%>" data-technical-field>
 		  
 		</jalios:if>
 		
@@ -254,6 +258,10 @@ if(Util.notEmpty(assMat.getExerceMam())){
              <%if(Util.notEmpty(exerceMamLbl)){%>      
                <p class="u-bold"><%= exerceMamLbl %></p>
              <%} %>
+
+
+             <input type="hidden" id ="latMAM" name="latMAM" value="<%=latMAM%>" data-technical-field>
+             <input type="hidden" id="longMAM" name="longMAM" value="<%=longMAM%>" data-technical-field>
           
         </jalios:if>
 		

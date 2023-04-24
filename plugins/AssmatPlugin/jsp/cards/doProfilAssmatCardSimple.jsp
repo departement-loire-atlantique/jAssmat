@@ -39,7 +39,9 @@ NumberFormat nf = new DecimalFormat("0.#");
 PointAssmat pointUser = (PointAssmat) request.getAttribute("userLocation");
 PointAssmat pointAssmat = (PointAssmat) request.getAttribute("point");
 
-boolean isDomicile = pointAssmat.isDomicile();
+Boolean favoris = Util.notEmpty(request.getAttribute("favoris")) ? (Boolean)request.getAttribute("favoris") : false ;
+
+boolean isDomicile = pointAssmat != null && pointAssmat.isDomicile();
 double distance = -1;
 
 if(Util.notEmpty(pointAssmat) && Util.notEmpty(pointUser)){
@@ -50,7 +52,7 @@ Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier"
 
 %>
 
-<section class="ds44-card ds44-js-card ds44-card--contact ds44-bgGray">
+<section class='<%= favoris ? "" : "ds44-card ds44-js-card ds44-card--contact ds44-bgGray"  %>'>
     <div class="ds44-card__section">
         
         
@@ -68,7 +70,7 @@ Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier"
 			</p>
         </jalios:if>
 
-		<div class="ds44-innerBoxContainer">
+		<div class='<%= favoris ? "" : "ds44-innerBoxContainer" %>'>
             <p role="heading" aria-level="2" class="h4-like ds44-cardTitle" id='card_<%= pub.getId()%>'><a href='<%= pub.getDisplayUrl(userLocale)  %>' class="ds44-card__globalLink"><%= mbr.getFullName() %></a></p>
             <hr class="mbs" aria-hidden="true"/>
             
@@ -123,10 +125,11 @@ Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier"
 
             </jalios:if>
             
-
-            <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-date ds44-docListIco" aria-hidden="true"></i><%=pointAssmat.getInfoPoint() %></p>           
-
-             <jalios:if predicate="<%= !pointAssmat.isDomicile() %>">
+            <jalios:if predicate="<%= Util.notEmpty(pointAssmat) && Util.notEmpty(pointAssmat.getInfoPoint()) %>">
+                <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-date ds44-docListIco" aria-hidden="true"></i><%=pointAssmat.getInfoPoint() %></p>           
+            </jalios:if>
+            
+             <jalios:if predicate="<%= Util.notEmpty(pointAssmat) && !pointAssmat.isDomicile() %>">
                 <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i><trsb:glp key="PROFIL-ASSMAT-CONTENT-COORD-EXERCE-MAM" /></p>
              </jalios:if>
 
@@ -185,6 +188,8 @@ Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier"
             
             </jalios:if>
         </div>
-        <i class="icon icon-arrow-right ds44-cardArrow" aria-hidden="true"></i>
+        <jalios:if predicate="<%= !favoris %>">
+            <i class="icon icon-arrow-right ds44-cardArrow" aria-hidden="true"></i>
+        </jalios:if>
     </div>
 </section>

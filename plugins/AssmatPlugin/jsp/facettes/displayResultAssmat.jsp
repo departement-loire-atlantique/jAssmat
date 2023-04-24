@@ -33,7 +33,6 @@ PortletRechercheFacettes  boxTmp = (PortletRechercheFacettes) (channel.getPublic
 PortletRechercheFacettes box = new PortletRechercheFacettes(boxTmp);
 
 
-
 // Pager
 boolean hasPager = box.getPager();
 Integer pager = getIntParameter("page", 1);
@@ -448,7 +447,7 @@ logger.trace("Relais : " + setPlace);
 
 // Mise en session pour l'export en PDF
 session.removeAttribute("isSelection"); 
-session.setAttribute("urlRecherche", ServletUtil.getUrl(request));
+//session.setAttribute("urlRecherche", ServletUtil.getUrl(request));
 session.setAttribute("assmatPoints", assmatPointsTriee);
 if(loggedMember != null){
   session.setAttribute("logMemberId", loggedMember.getId());
@@ -670,7 +669,7 @@ if(Util.notEmpty(itProfilAM)){
       
       
   // Ajout du résultat au json
-  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM, itLatitude, itLongitude, itPoint.getCouleurPoint(), itPubListGabarit, itPubListGabarit, null));
+  jsonArray.add(SocleUtils.publicationToJsonObject(itProfilAM, "_"+itPoint.isDomicile() , itLatitude, itLongitude, itPoint.getCouleurPoint(), itPubListGabarit, itPubListGabarit, null));
 
 }
 %>
