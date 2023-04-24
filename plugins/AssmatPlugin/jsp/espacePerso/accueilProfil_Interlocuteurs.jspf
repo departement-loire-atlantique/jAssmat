@@ -34,8 +34,8 @@ if(assmatSolis.getIdRamMam() != null) {
 	                    <jalios:foreach name="itTel" type="String" array="<%= itPlace.getPhones()%>">
 					        <jalios:if predicate="<%= itCounter != 1 %>">
 					            -
-					        </jalios:if>                      
-					        <%= itTel %>                      
+					        </jalios:if>
+					        <%= itTel %>
 					    </jalios:foreach>
 				    </p>
                 </jalios:if>
