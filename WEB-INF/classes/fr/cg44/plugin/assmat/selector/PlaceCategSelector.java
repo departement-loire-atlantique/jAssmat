@@ -1,6 +1,6 @@
 package fr.cg44.plugin.assmat.selector;
 
-import generated.Place;
+import generated.FicheLieu;
 
 import com.jalios.jcms.Category;
 import com.jalios.jcms.Channel;
@@ -32,8 +32,8 @@ public class PlaceCategSelector implements DataSelector
 		boolean selected= false;
 		if(Util.notEmpty(idCateg)){
 		  Category categRAM = Channel.getChannel().getCategory(idCateg);
-			if (data instanceof Place) {
-				Place place = (Place) data;
+			if (data instanceof FicheLieu) {
+			  FicheLieu place = (FicheLieu) data;
 				if(Util.notEmpty( place.getCategorySet())){
 				  if( place.getCategorySet().contains(categRAM)){
 				    selected = true;

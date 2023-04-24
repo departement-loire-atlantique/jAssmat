@@ -27,7 +27,7 @@ ArrayList<Properties> propList = AssmatUtil.getPropertiesFromDepartementAdresse(
     </jalios:if>
     
     <jalios:foreach collection="<%= propList %>" name="itProp" type="Properties">    
-      <li class='<%= itCounter == 1 ? "active" : ""  %>' ><a class="adresseAutocompleteR1" data-cityPostCode="<%= itProp.getPostcode() %>" data-cityName="<%= itProp.getCity() %>" data-street="<%= itProp.getName() %>"> <%= itProp.getLabel() %></a></li>    
+      <li class='<%= itCounter == 1 ? "active" : ""  %>' ><a class="adresseAutocompleteR1" data-cityPostCode="<%= itProp.getPostcode() %>" data-cityName="<%= itProp.getCommune() %>" data-street="<%= itProp.getName() %>"> <%= itProp.getLabel() %></a></li>    
     </jalios:foreach>
     
   </ul>

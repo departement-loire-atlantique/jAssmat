@@ -61,7 +61,7 @@ String cityId = "";
 if(Util.notEmpty(codeInsee)){
     try {
         city =(City) cityManager.getCityByCode(String.valueOf(codeInsee), City.class);
-        communeCode = city.getZipCode();
+        communeCode = city.getCodePostal();
         kml = city.getExtraData("extra.City.plugin.tools.geolocation.kml");
     } catch (UnknowCityException e){
            logger.warn("La commune <"+commune+"> <"+codeInsee+"> n'a pas été trouvé.");
@@ -171,10 +171,10 @@ Map< AssmatSearch, PointAssmat> nonTrieAssmatPoints = (Map<AssmatSearch, PointAs
                  
                  
                  <%
-                List<Place> listRelais =(List<Place>) request.getAttribute("listPointRelais"); 
+                List<FicheLieu> listRelais =(List<FicheLieu>) request.getAttribute("listPointRelais"); 
                  
                  if(Util.notEmpty(listRelais)){
-                   for(Place itPlace : listRelais){ %>
+                   for(FicheLieu itPlace : listRelais){ %>
                 <!--  DEBUT BOUCLE -->
                         var latLngRelais = new google.maps.LatLng(<%= itPlace.getExtraData("extra.Place.plugin.tools.geolocation.latitude") %>, <%= itPlace.getExtraData("extra.Place.plugin.tools.geolocation.longitude") %>);
 			               <%

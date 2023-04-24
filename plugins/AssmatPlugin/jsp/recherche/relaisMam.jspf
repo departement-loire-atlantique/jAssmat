@@ -9,7 +9,7 @@
  
  String idCategMam = channel.getProperty("$plugin.assmatplugin.categ.relaiam");
 Category categRAM= channel.getCategory(idCategMam); 
-Set<Place> setPlace =(Set<Place>) JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorCommune(city,categRAM));
+Set<FicheLieu> setPlace =(Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new RelaisMamSelectorCommune(city,categRAM));
 
 // 0011728: Affichage relais dans recherche AM sur Nantes 
 if(Util.notEmpty(selectPlace)) {
@@ -17,35 +17,35 @@ if(Util.notEmpty(selectPlace)) {
   setPlace.addAll(selectPlace);
 }
 session.setAttribute("relais", setPlace);
-List<Place> setPointRelais = new ArrayList<Place>();
+List<FicheLieu> setPointRelais = new ArrayList<FicheLieu>();
 %>
 <div class="title-bar-container dotted-title dotted-portlet Outter PortletWYSIWYG ID_r1_58309 dnd-header ajax-refresh-div Portlet PortletSkinable Inner  containerRelais">
 <trsb:glp key="INFORMATION-RESULTAT-RECHERCHE-AM-COL-RELAIS" />
 
 <%if(Util.notEmpty(setPlace)){%>
 <div class="relaisMAM">
-<jalios:foreach name="itPlace" type="Place" collection="<%=setPlace %>">
+<jalios:foreach name="itPlace" type="FicheLieu" collection="<%=setPlace %>">
 <div class="relais">
   <div class="left">
     <img src="plugins/ToolsPlugin/images/googlemaps/markers/drop/drop_44bedf.png" />
   </div>
 <div class="right">
   <p class="gras"> <%=itPlace.getTitle() %></p>
-  <jalios:if predicate="<%=Util.notEmpty(itPlace.getStreet())%>">
- <jalios:wiki> <%=itPlace.getStreet() %></jalios:wiki>
+  <jalios:if predicate="<%=Util.notEmpty(itPlace.getLibelleDeVoie())%>">
+ <jalios:wiki> <%=itPlace.getLibelleDeVoie() %></jalios:wiki>
   </jalios:if>
   
     <!-- Ticket 0011217 -->
-     <p> <%=itPlace.getZipCode() %> <%=itPlace.getCity() %></p>
+     <p> <%=itPlace.getCodePostal() %> <%=itPlace.getCommune() %></p>
 
-   <jalios:if predicate="<%=Util.notEmpty(itPlace.getPhones()) %>">
+   <jalios:if predicate="<%=Util.notEmpty(itPlace.getTelephone()) %>">
      <p><span class="gras">Tél :</span>
-     <%= StringUtils.join(itPlace.getPhones(), " - ") %>
+     <%= StringUtils.join(itPlace.getTelephone(), " - ") %>
      </p>
   </jalios:if>
-   <jalios:if predicate="<%=Util.notEmpty(itPlace.getMails()) %>">
+   <jalios:if predicate="<%=Util.notEmpty(itPlace.getEmail()) %>">
      <p>
-     <jalios:foreach name="itMail" type="String" array="<%= itPlace.getMails()%>">
+     <jalios:foreach name="itMail" type="String" array="<%= itPlace.getEmail()%>">
      <%
      String mail = itMail;
      Category cat = channel.getCategory(channel.getProperty("jcmsplugin.assmatplugin.formulaire.contact.ram"));
@@ -57,9 +57,9 @@ List<Place> setPointRelais = new ArrayList<Place>();
      </jalios:foreach>
      </p>
   </jalios:if>
-  <jalios:if predicate="<%=Util.notEmpty(itPlace.getWebsites()) %>">
+  <jalios:if predicate="<%=Util.notEmpty(itPlace.getSiteInternet()) %>">
      <p>
-     <jalios:foreach name="itSite" type="String" array="<%= itPlace.getWebsites()%>">
+     <jalios:foreach name="itSite" type="String" array="<%= itPlace.getSiteInternet()%>">
      <u><a class="gras" href="<%=itSite%>">Site internet</a></u>
      </jalios:foreach>
      </p>

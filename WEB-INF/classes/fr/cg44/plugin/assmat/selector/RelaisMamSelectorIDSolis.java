@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import generated.Place;
+import generated.FicheLieu;
 
 import com.jalios.jcms.Data;
 import com.jalios.jcms.DataSelector;
 import com.jalios.util.Util;
 
 /**
- * Ce sélecteur permet de ne choisir que les contenus de type Place qui correspondent a l'ID solis passé en parametre
+ * Ce sélecteur permet de ne choisir que les contenus de type FicheLieu qui correspondent a l'ID solis passé en parametre
  */
 public class RelaisMamSelectorIDSolis implements DataSelector
 {
@@ -37,12 +37,12 @@ public class RelaisMamSelectorIDSolis implements DataSelector
     boolean selected= false;
 
     if(Util.notEmpty(idSolis)){
-      if (data instanceof Place) {
-        Place place = (Place) data;
+      if (data instanceof FicheLieu) {
+        FicheLieu place = (FicheLieu) data;
         if(Util.notEmpty(place)){
           
           List<String> listIdSolis = new ArrayList<String>();
-          String idSolisId = place.getSolisId();
+          String idSolisId = place.getIdSolis();
           if(Util.notEmpty(idSolisId)) {
             String[] idSolisTab = idSolisId.split(" ");
             listIdSolis = Arrays.asList(idSolisTab);

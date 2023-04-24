@@ -69,7 +69,7 @@ if(Util.notEmpty(codeInsee)){
         if(city.isImported()){
         	cityIdImport=city.getImportId();  
         }
-        communeCode = city.getZipCode();
+        communeCode = city.getCodePostal();
         kml = city.getExtraData("extra.City.plugin.tools.geolocation.kml");
     } catch (UnknowCityException e){
            logger.warn("La commune <"+commune+"> <"+codeInsee+"> n'a pas été trouvé.");
@@ -151,10 +151,10 @@ String boxText = "";
              jcmsContext.setTemplateUsage("geolocationInfoWindowResult");
              request.setAttribute("publication", publication);
              if(publication.getTemplate("geolocationInfoWindow").equals("geolocationInfoWindow.default")){
-                List<Place> listRelais =(List<Place>) request.getAttribute("listPointRelais"); 
+                List<FicheLieu> listRelais =(List<FicheLieu>) request.getAttribute("listPointRelais"); 
 
                  if(Util.notEmpty(listRelais)){
-                   for(Place itPlace : listRelais){ %>
+                   for(FicheLieu itPlace : listRelais){ %>
                 <!--  DEBUT BOUCLE -->
 			               <%
 			               String type = fr.cg44.plugin.tools.googlemaps.proxy.Proxy.getMarkerPublication(itPlace, box); %><%

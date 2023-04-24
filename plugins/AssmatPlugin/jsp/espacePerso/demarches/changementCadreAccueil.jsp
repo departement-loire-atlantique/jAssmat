@@ -38,7 +38,7 @@ if (formHandler.validate()) {
 
 AssmatSolis solisAssmat = Util.getFirst(SolisManager.getInstance().getAssmatSolisByNumAgrement(profil.getNum_agrement()));
 String idUa = solisAssmat.getIdUa();
-Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getPublicationSet(Place.class, channel.getDefaultAdmin()), new PlaceSelector(idUa));
+Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getPublicationSet(FicheLieu.class, channel.getDefaultAdmin()), new PlaceSelector(idUa));
 
 
 %>
@@ -70,7 +70,7 @@ Set<Place> setPlace = (Set<Place>) JcmsUtil.applyDataSelector(channel.getPublica
       <div class="listeInfos uniteAgrement">
 				<p class="important">Cette information sera transmise à votre
 					unité d'agrément</p>
-				<jalios:foreach collection="<%= setPlace %>" name="itPlace" type="Place">
+				<jalios:foreach collection="<%= setPlace %>" name="itPlace" type="FicheLieu">
 				  <p> <%= itPlace.getTitle() %> </p>
 				</jalios:foreach>
 			</div>
