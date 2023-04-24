@@ -32,7 +32,7 @@ String selection = getPortlet(bufferMap,"selection");
                 
                 <%-- Colonne de droite (affichée systématiquement même si portlets vides) --%>
                 <div class="col-1 grid-offset"></div>
-                <aside class="col-4 asideCards">
+                <aside class="col-4 asideCards ds44-mt2">
                     <jalios:if predicate='<%= Util.notEmpty(getPortlets(bufferMap, "right")) %>'>
                         <jalios:foreach name="itBuffer" array='<%= getPortlets(bufferMap, "right") %>' type="String">
                         

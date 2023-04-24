@@ -27,26 +27,17 @@ if(Util.notEmpty(request.getParameter("validate"))){
 <jalios:if predicate='<%= formHandler.isOneSubmit() && formHandler.isSubmitted() %>'>
   <% setWarningMsg(glp("msg.edit.already-one-submit"), request); %>
 </jalios:if>
-<%if(validate){ %>
-<div class="ds44-msg-container information" aria-live="polite">
-    <p class="ds44-message-text">
-        <i class="icon icon-check icon--sizeM" aria-hidden="true"></i>
-        <span class="ds44-iconInnerText"><%= glp("ui.com.lbl.infos") %></span>
-    </p>
-    <p><%= glp("jcmsplugin.assmatplugin.inscription.error.contact.message.envoye") %></p>
-</div>
-<%} %>
+<%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 <jalios:if predicate='<%= channel.isDataWriteEnabled() %>'>
 
 	  <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 	  <%@ include file='/plugins/AssmatPlugin/jsp/contact/form/doActualiserCoordRAMFormHeader.jsp' %>
 	  <jsp:include page="/plugins/AssmatPlugin/jsp/contact/doEditFormulaireActualiserCoordRAM.jsp" />
-	  <input type='hidden' name='redirect' value='<%= ServletUtil.getResourcePath(request) %>' data-technical-field/>  
       <input type="hidden" name="noSendRedirect" value="true" data-technical-field/>
-      <input type="hidden" name="validate" value="true" data-technical-field/>
+      <input type="hidden" name="redirect" value="<%= HttpUtil.encodeForHTML(ServletUtil.getResourcePath(request)) %>" data-technical-field/>
       
       <div class="ds44-form__container">
-          <button type="submit" data-send-native class="ds44-btnStd" title='<%= glp("jcmsplugin.assmatplugin.btn.envoyer") %>'><%= glp("jcmsplugin.assmatplugin.btn.envoyer") %></button>
+          <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opCreate" title='<%= glp("jcmsplugin.assmatplugin.btn.envoyer") %>'><%= glp("jcmsplugin.assmatplugin.btn.envoyer") %></button>
       </div>
       
       </form>
