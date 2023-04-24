@@ -109,7 +109,7 @@ String uuid = UUID.randomUUID().toString();
 		        </div>
 		    </div>
 		    <div class="w10 u-fl">
-		        <span style="margin-left: 10px;" class="simpletooltip_container h4-like" data-hashtooltip-id="<%= uuid %>">
+		        <span style="margin-left: 10px;" class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
 		            <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
 		            <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
 		            </button>
@@ -142,7 +142,7 @@ String uuid = UUID.randomUUID().toString();
 		        </div>
 		    </div>
 		    <div class="w10 u-fl">
-		        <span style="margin-left: 10px;" class="simpletooltip_container h4-like" data-hashtooltip-id="<%= uuid %>">
+		        <span style="margin-left: 10px;" class="simpletooltip_container" data-hashtooltip-id="<%= uuid %>">
 		            <button type="button" class="js-simple-tooltip button" data-is-initialized="true" data-simpletooltip-content-id="tooltip-case_<%= uuid %>" data-hashtooltip-id="<%= uuid %>" aria-describedby="label_simpletooltip_<%= uuid %>">
 		            <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : <%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span>
 		            </button>
