@@ -242,6 +242,8 @@
 
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationHandler" />
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationDossierHandler" />
+    
+    <policyfilter   class="fr.cg44.plugin.assmat.alert.AssmatAlert" />
 		
   </plugincomponents>
     
