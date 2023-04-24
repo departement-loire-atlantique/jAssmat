@@ -41,8 +41,10 @@ Date dateModifDispo = profilMgr.getDateModifDispo(obj.getAuthor());
 TreeMap<AssmatSearch,PointAssmat> assmatPoints =(TreeMap<AssmatSearch,PointAssmat>) session.getAttribute("assmatPoints");
 
 //Si on vient de la recherche on retourne sur la recherche, sinon sur la selection
-String urlRecherche =(String) session.getAttribute("urlRecherche");
+String urlRecherche = (String) session.getAttribute("urlRecherche");
 String urlRetour = urlRecherche;
+
+
 
 double distanceMam = -1;
 double distanceDom = -1;
@@ -134,6 +136,12 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
   
   Member mbr = obj.getAuthor();
   Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier");
+
+  String panierLink = "#";
+  Category panierCat = channel.getCategory("$id.jcmsplugin.socle.selection.page.cat");
+  if(Util.notEmpty(panierCat)) {
+    panierLink = panierCat.getDisplayUrl(userLocale);
+  }
   
   Set<FicheLieu> setPlace = new TreeSet<FicheLieu>();
   
@@ -160,7 +168,19 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
             
             <!--  Bouton retour liste -->
 	        <p class="ds44-noMrg">
+	        	        
+	            <%
+	            if(isSelection) {
+	              request.setAttribute("libelle", AssmatUtil.getMessage("PROFIL-ASSMAT-LIBELLE-RETOUR-SELECTION-HTML", false));
+	              request.setAttribute("urlRetour", panierLink);
+	            } else {
+	              request.setAttribute("urlRetour", urlRetour);	              
+	            }
+	            %>
+	        
 	            <%@ include file="/plugins/SoclePlugin/jsp/facettes/doRetourListe.jspf" %>
+	            
+	                        
 	        </p>
 	        <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) || Util.notEmpty(profilSuivant) %>">
 	           <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) || Util.notEmpty(profilSuivant) %>">
@@ -196,7 +216,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                        </button>
                        <span class="ds44-docListElem mll">
                             <i class="icon icon-star-empty ds44-docListIco" aria-hidden="true"></i>
-                            <a class="ds44-inlineLink ds44-titleLink" href="#" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.recherche.selection")) %>'><%= glp("jcmsplugin.socle.recherche.ma-selection", (Util.isEmpty(panierSet)) ? "0" : panierSet.size() +"") %></a>
+                            <a class="ds44-inlineLink ds44-titleLink" href="<%= panierLink %>" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.recherche.selection")) %>'><%= glp("jcmsplugin.socle.recherche.ma-selection", (Util.isEmpty(panierSet)) ? "0" : panierSet.size() +"") %></a>
                        </span>
                        <span class="ds44-docListElem mll">
                            <i class="icon icon-print ds44-docListIco" aria-hidden="true"></i>
