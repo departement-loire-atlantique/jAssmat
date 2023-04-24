@@ -118,7 +118,7 @@ if (step == InscriptionAssmatHandler.IDENTIFICATION_STEP) {
                                </div>
                                <div class="ds44-field-information" aria-live="polite">
 							        <ul class="ds44-field-information-list ds44-list">
-							            <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.assmatplugin.inscription.champ.desc.agrement") %></li>
+							            <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><trsb:glp key="IDENT-NUM-DOSSIER-NB-HTML"></trsb:glp></li>
 							        </ul>
 							   </div>
                             </div>
