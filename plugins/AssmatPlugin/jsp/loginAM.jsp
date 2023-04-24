@@ -17,7 +17,17 @@ String urlOubliMotDePasse = channel.getSecuredBaseUrl(request) + channel.getProp
 
 // Après authentification réussie, renvoie vers l'espace perso des assmat
 Publication portalPerso = channel.getPublication(channel.getProperty("jcmsplugin.assmatplugin.socle.portail.param.id"));
-String redirectUrl = Util.notEmpty(portalPerso) ? portalPerso.getDisplayUrl(userLocale) : ServletUtil.getBaseUrl(request); 
+String redirectUrl = Util.getString(getValidHttpUrl("redirect"), ServletUtil.getBaseUrl(request) + "index.jsp");
+String redirectAccueilAssmat = Util.notEmpty(portalPerso) ? portalPerso.getDisplayUrl(userLocale) : ServletUtil.getBaseUrl(request); 
+if (isLogged) {
+  Group assmatGrp = channel.getGroup(channel.getProperty("jcmsplugin.assmatplugin.groupe.assistante_maternelle"));
+  if (loggedMember.belongsToGroup(assmatGrp)) {
+    sendRedirect(redirectAccueilAssmat);
+  } else {
+    sendRedirect(redirectUrl);
+  }
+  return;
+}
 %>
 
 <main role="main" id="content">
@@ -73,7 +83,7 @@ String redirectUrl = Util.notEmpty(portalPerso) ? portalPerso.getDisplayUrl(user
                               <p class="ds44-noMrg"><a href="<%=urlOubliMotDePasse%>"><%= glp("jcmsplugin.assmatplugin.accueil.mdp.oublie") %></a></p>
                               
                               
-                              <input type='hidden' name="redirect" value='<%= redirectUrl %>' data-technical-field/>
+                              <input type='hidden' name="redirect" value='<%= ServletUtil.getResourcePath(request) %>' data-technical-field/>
                               <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
 
                               <jalios:if predicate="<%= !channel.getAuthMgr().isShowingPersistentOption() %>">
