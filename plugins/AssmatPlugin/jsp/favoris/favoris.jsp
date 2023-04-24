@@ -31,20 +31,20 @@ if(Util.notEmpty(panierSet)){
             <jalios:if predicate="<%= Util.notEmpty(panierSet) && panierSet.size() > 0 %>">
             <div class="grid-12-medium-1 grid-12-small-1" >
                 <article class="col-7 ds44-contenuDossier">
-                    <h2 class="h4-like ds44-mb2">Vous avez sélectionné 5 assistant·es maternel·les</h2>
+                    <h2 class="h4-like ds44-mb2"><%= glp("jcmsplugin.assmatplugin.favoris.selection", panierSet.size()) %></h2>
                         <div class="ds44-txtRight">
 	                        <button type="submit" class="modal confirm" >
 	                            <i class="icon icon-cross" aria-hidden="true"></i>
-	                            <span class="ds44-btnInnerText">Tout retirer de ma sélection</span>
+	                            <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.favoris.tout-retirer") %></span>
 	                        </button>                        
                         </div>
                         <table class="selection ds44-mt2">
-                            <caption class="visually-hidden">Vous avez sélectionné 5 assistant·es maternel·les</caption>
+                            <caption class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.favoris.selection", panierSet.size()) %></caption>
 
                             <thead>
                                 <tr>
-                                    <th scope="col">Votre liste</th>
-                                    <th scope="col">Action</th>         
+                                    <th scope="col"><%= glp("jcmsplugin.assmatplugin.favoris.liste") %></th>
+                                    <th scope="col"><%= glp("jcmsplugin.assmatplugin.favoris.action") %></th>         
                                 </tr>
                             </thead>
 
@@ -92,7 +92,7 @@ if(Util.notEmpty(panierSet)){
 	                               
 	                               
 	                               <td>
-	                                  <button><i class="icon icon-cross" aria-hidden="true"></i><span class="visually-hidden">Retirer de la sélection : [Nom du parent]</span></button>
+	                                  <button><i class="icon icon-cross" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.favoris.retirer", itProfilAM.getAuthor().getFullName()) %></span></button>
 	                               </td>
 	                               
 	                               
@@ -120,11 +120,11 @@ if(Util.notEmpty(panierSet)){
 						        }
                                 %>
                             
-                                <h2 class="h4-like ds44-mb2">Ma sélection</h2>                               
+                                <h2 class="h4-like ds44-mb2"><%= glp("jcmsplugin.socle.recherche.selection") %></h2>                               
                                 <ul class="ds44-list">
 	                                <li class="ds44-docListElem">
 	                                    <i class="icon icon-pdf ds44-docListIco" aria-hidden="true"></i>
-	                                    <a href="<%= lienSelect %>" data-link-has-select="" target="_blank" title="PDF">Afficher ma sélection en tableau</a>
+	                                    <a href="<%= lienSelect %>" data-link-has-select="" target="_blank" title="PDF"><%= glp("jcmsplugin.assmatplugin.favoris.afficher-tableau") %></a>
 	                                </li>   
                                 </ul>                                                            
                             </div>
@@ -134,7 +134,7 @@ if(Util.notEmpty(panierSet)){
                 </div>
                 </jalios:if>
                 <jalios:default>
-                    Pas de sélection
+                    <%= glp("jcmsplugin.assmatplugin.favoris.pas-selection") %>
                 </jalios:default>
                 </jalios:select>
             </div>
