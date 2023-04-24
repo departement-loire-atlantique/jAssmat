@@ -61,10 +61,10 @@ if(classicWithImage.equals(tooltipType)){
   %><jalios:if predicate="<%= Util.notEmpty(obj.getPostalBox()) %>"><p><%= obj.getPostalBox() %></p></jalios:if><%
   
   //Ville et code postal
-  %><jalios:if predicate="<%= Util.notEmpty(obj.getLibelleDeVoie()) || Util.notEmpty(obj.getCommune()) %>"><%
+  %><jalios:if predicate="<%= Util.notEmpty(obj.getCodePostal()) || Util.notEmpty(obj.getCommune()) %>"><%
   %><p><%
-    %><jalios:if predicate="<%= Util.notEmpty(obj.getLibelleDeVoie()) %>"><%= obj.getLibelleDeVoie() %></jalios:if><%
-    %><jalios:if predicate="<%= Util.notEmpty(obj.getCommune()) && Util.notEmpty(obj.getLibelleDeVoie()) %>"> </jalios:if><%
+    %><jalios:if predicate="<%= Util.notEmpty(obj.getCodePostal()) %>"><%= obj.getCodePostal() %></jalios:if><%
+    %><jalios:if predicate="<%= Util.notEmpty(obj.getCommune()) && Util.notEmpty(obj.getCodePostal()) %>"> </jalios:if><%
     %><jalios:if predicate="<%= Util.notEmpty(obj.getCommune()) %>"><%= obj.getCommune().getTitle() %></jalios:if><%
   %></p><%
   %></jalios:if><%

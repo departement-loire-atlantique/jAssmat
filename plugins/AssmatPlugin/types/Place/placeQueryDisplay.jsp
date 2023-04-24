@@ -20,7 +20,7 @@ FicheLieu obj = (FicheLieu) request.getAttribute(PortalManager.PORTAL_PUBLICATIO
       %><jalios:if predicate="<%= Util.notEmpty(obj.getPostalBox()) %>"><p><%= obj.getPostalBox() %><jalios:edit pub="<%= obj %>" fields="postalBox"/></p></jalios:if><%
       %><jalios:if predicate="<%= Util.notEmpty(obj.getLibelleDeVoie()) || Util.notEmpty(obj.getCommune()) %>"><%
         %><p>
-            <jalios:if predicate="<%= Util.notEmpty(obj.getLibelleDeVoie())  %>"><%= obj.getLibelleDeVoie() %><jalios:edit pub="<%= obj %>" fields="zipCode"/></jalios:if>
+            <jalios:if predicate="<%= Util.notEmpty(obj.getCodePostal())  %>"><%= obj.getCodePostal() %><jalios:edit pub="<%= obj %>" fields="zipCode"/></jalios:if>
             <jalios:if predicate="<%= Util.notEmpty(obj.getCommune())  %>"><%= obj.getCommune().getTitle() %><jalios:edit pub="<%= obj %>" fields="city"/></jalios:if>
         </p>
       </jalios:if>

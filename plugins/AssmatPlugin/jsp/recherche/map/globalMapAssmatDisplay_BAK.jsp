@@ -61,7 +61,7 @@ String cityId = "";
 if(Util.notEmpty(codeInsee)){
     try {
         city =(City) cityManager.getCityByCode(String.valueOf(codeInsee), City.class);
-        communeCode = city.getLibelleDeVoie();
+        communeCode = city.getCodePostal();
         kml = city.getExtraData("extra.City.plugin.tools.geolocation.kml");
     } catch (UnknowCityException e){
            logger.warn("La commune <"+commune+"> <"+codeInsee+"> n'a pas été trouvé.");

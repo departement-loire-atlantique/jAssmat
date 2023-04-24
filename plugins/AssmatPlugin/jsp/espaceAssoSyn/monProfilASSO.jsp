@@ -30,7 +30,7 @@ String idPortailRAM = channel.getProperty("plugin.assmatplugin.portal.ram.id");
 </jalios:if>
 <jalios:if predicate="<%=Util.notEmpty(place.getLibelleDeVoie()) %>">
 <p class="street"><%=place.getLibelleDeVoie() %><br>
-<%=place.getLibelleDeVoie() %> <%=place.getCommune() %></p>
+<%=place.getCodePostal() %> <%=place.getCommune() %></p>
 </jalios:if>
 <jalios:if predicate="<%= Util.notEmpty(place.getTelephone() ) %>"><%
  %><div class="phone"><%

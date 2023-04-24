@@ -27,7 +27,7 @@ if(assmatSolis.getIdRamMam() != null) {
         <jalios:foreach collection="<%= setPlace %>" name="itPlace" type="FicheLieu">  
 		    <div class="col col-6 <%= itCounter %2 > 0 ? "ds44-mb3" : "ds44-medToXlarge-pl3" %>">
                 <p role="heading" aria-level="3" class="h4-like"><%=itPlace.getTitle() %></p>
-                <div class="ds44-docListElem mts"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%= itPlace.getLibelleDeVoie() %> <%=itPlace.getLibelleDeVoie() %> <%= itPlace.getCommune() %></div>
+                <div class="ds44-docListElem mts"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%= itPlace.getLibelleDeVoie() %> <%=itPlace.getCodePostal() %> <%= itPlace.getCommune() %></div>
 		      
 				<jalios:if predicate="<%=Util.notEmpty(itPlace.getTelephone()) %>">
 				    <p class="ds44-docListElem mts"><i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i>

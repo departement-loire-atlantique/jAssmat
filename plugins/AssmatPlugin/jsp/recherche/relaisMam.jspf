@@ -36,7 +36,7 @@ List<FicheLieu> setPointRelais = new ArrayList<FicheLieu>();
   </jalios:if>
   
     <!-- Ticket 0011217 -->
-     <p> <%=itPlace.getLibelleDeVoie() %> <%=itPlace.getCommune() %></p>
+     <p> <%=itPlace.getCodePostal() %> <%=itPlace.getCommune() %></p>
 
    <jalios:if predicate="<%=Util.notEmpty(itPlace.getTelephone()) %>">
      <p><span class="gras">Tél :</span>

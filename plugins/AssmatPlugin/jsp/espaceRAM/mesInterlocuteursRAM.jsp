@@ -62,7 +62,7 @@ Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.ge
 				</jalios:if>
 	
 	            <jalios:if predicate="<%=Util.notEmpty(place.getLibelleDeVoie()) %>">
-	                <div class="ds44-docListElem mtm"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=place.getLibelleDeVoie() %><br /> <%=place.getLibelleDeVoie() %> <%=place.getCommune() %></div>
+	                <div class="ds44-docListElem mtm"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><%=place.getLibelleDeVoie() %><br /> <%=place.getCodePostal() %> <%=place.getCommune() %></div>
 	            </jalios:if>
 	                			
 	            <jalios:if predicate="<%= Util.notEmpty(place.getTelephone() ) %>">
