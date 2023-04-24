@@ -36,7 +36,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
    String codePostalRepresentant1= formHandler.getDeclaration().getCpRepresentant1();
    String villeRepresentant1= formHandler.getDeclaration().getCommuneRepresentant1();
    String complementRepresentant1= formHandler.getDeclaration().getComplAdresseRepresentant1();  
-   Boolean saisieAdresseR1 = formHandler.getSaisieAdresseR1() != null ? formHandler.getSaisieAdresseR1() : false;
+   Boolean saisieAdresseR1 = formHandler.getSaisieAdresseR1() != null ? formHandler.getSaisieAdresseR1() : false || Util.notEmpty(adresseRepresentant1);
    
    String civiliteRepresentant2= formHandler.getDeclaration().getCiviliteRepresentant2();
    String nomRepresentant2= formHandler.getDeclaration().getNomRepresentant2(); 
@@ -46,7 +46,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
    String codePostalRepresentant2= formHandler.getDeclaration().getCpRepresentant2();
    String villeRepresentant2= formHandler.getDeclaration().getCommuneRepresentant2();
    String complementRepresentant2= formHandler.getDeclaration().getComplAdresseRepresentant2();
-   Boolean saisieAdresseR2 = formHandler.getSaisieAdresseR2() != null ? formHandler.getSaisieAdresseR2() : false;
+   Boolean saisieAdresseR2 = formHandler.getSaisieAdresseR2() != null ? formHandler.getSaisieAdresseR2() : false || Util.notEmpty(adresseRepresentant2);
   
    
    boolean saisieAdresseDif= Util.notEmpty(telephoneRepresentant2) || Util.notEmpty(adresseRepresentant2) || Util.notEmpty(complementRepresentant2); 
@@ -157,7 +157,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
             <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
         </div>
       </div>
-
+      
         <% uuid = UUID.randomUUID().toString(); %>
         <div id="form-element-<%= uuid %>" data-name="sexeEnfant" class="ds44-form__radio_container ds44-form__container"  data-required="true">
 		    <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
@@ -174,7 +174,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
          <div class="ds44-form__container">
 		    <div class="ds44-posRel">
 		        <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-		        <div data-name="dateNaissanceEnfant" class="ds44-datepicker__shape ds44-inpStd" data-required="true">
+		        <div data-name="dateNaissanceEnfant" class="ds44-datepicker__shape ds44-inpStd" data-required="true" data-next-dates="false" data-calendar-next-dates="false">
 		            <input <%= isModif ? "readonly" : "" %> id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= SocleUtils.getDayFromDate(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
 		            <span>/</span>
 		            <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= SocleUtils.getMonthFromDate(dateNaissanceEnfant) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
@@ -184,7 +184,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 		        <jalios:if predicate="<%= !isModif %>">
 			        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
 			        <span class="ds44-calendar" aria-hidden="true" aria-describedby=""><i class="icon icon-date icon--large" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.date.calendrier.afficher", labelField) %></span></span>
-			        <div  class="vanilla-calendar hidden"></div>
+			        <div  class="vanilla-calendar hidden" data-next-dates="false" data-calendar-next-dates="false"></div>
 		        </jalios:if>
 		    </div>
 		    <div class="ds44-field-information" aria-live="polite">
@@ -199,7 +199,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
          <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel ds44-datepicker"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                <div data-name="dateDebutAccueil" class="ds44-datepicker__shape ds44-inpStd" data-required="true">
+                <div data-name="dateDebutAccueil" class="ds44-datepicker__shape ds44-inpStd" data-next-dates="false" data-calendar-next-dates="false">
                     <input <%= isModif ? "readonly" : "" %> id="form-element-<%= uuid %>" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.jour", labelField)) %>' value="<%= SocleUtils.getDayFromDate(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
                     <span>/</span>
                     <input <%= isModif ? "readonly" : "" %> type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.socle.facette.date.exemple.mois", labelField)) %>'  value="<%= SocleUtils.getMonthFromDate(dateDebutAccueil) %>" data-is-date="true"  required  aria-describedby="explanation-form-element-<%= uuid %>">
@@ -209,7 +209,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
                 <jalios:if predicate="<%= !isModif %>">
 	                <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
 	                <span class="ds44-calendar" aria-hidden="true" aria-describedby=""><i class="icon icon-date icon--large" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.date.calendrier.afficher", labelField) %></span></span>
-	                <div  class="vanilla-calendar hidden"></div>
+	                <div  class="vanilla-calendar hidden" data-next-dates="false" data-calendar-next-dates="false"></div>
                 </jalios:if>
             </div>
             <div class="ds44-field-information" aria-live="polite">
@@ -243,7 +243,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	    <div class="ds44-form__container">
 	        <div class="ds44-posRel">
 	            <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-	            <input type="text" id="form-element-<%= uuid %>" name="nomRepresentant1" value="<%= prenomEnfant %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>'  required />
+	            <input type="text" id="form-element-<%= uuid %>" name="nomRepresentant1" value="<%= nomRepresentant1 %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>'  required />
 	            <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
 	        </div>
 	    </div>
@@ -253,7 +253,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                <input type="text" id="form-element-<%= uuid %>" name="prenomRepresentant1" value="<%= prenomEnfant %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>'  required />
+                <input type="text" id="form-element-<%= uuid %>" name="prenomRepresentant1" value="<%= prenomRepresentant1 %>" class="ds44-inpStd" title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", labelField) %>'  required />
                 <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
             </div>
         </div>
@@ -282,8 +282,10 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 		    <div class="ds44-posRel">
 		        <label for="address_search_<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= adress1Label %></span></span></label>
 		        <input data-disabled-by-name-check-form-element-<%= uuid %>_checkbox type="text" id="address_search_<%= uuid %>" name="address_search" class="ds44-inpStd ds44-js-field-address" 
-		          role="combobox" aria-autocomplete="list" autocomplete="off" aria-expanded="false" data-limit-char="3" data-url="https://api-adresse.data.gouv.fr/search/?limit=5&prefix=44" 
-		          title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", adress1Label) %>' data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete="" required />
+		          role="combobox" aria-autocomplete="list" autocomplete="off" aria-expanded="false" data-limit-char="3" data-url="https://api-adresse.data.gouv.fr/search/?limit=5" 
+		          title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", adress1Label) %>' value="<%= adresseRepresentant1 %> <%= codePostalRepresentant1 %> <%= villeRepresentant1 %>" 
+		          data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete="" required 
+		          <%= saisieAdresseR1 ? "disabled" : "" %>/>
 		          <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", adress1Label) %></span></button>
 		        <div class="ds44-autocomp-container hidden">
 		            <div class="ds44-autocomp-list">
@@ -376,7 +378,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                <input type="text" id="form-element-<%= uuid %>" name="nomRepresentant2" value="<%= prenomEnfant %>" class="ds44-inpStd" title='<%= labelField %>' />
+                <input type="text" id="form-element-<%= uuid %>" name="nomRepresentant2" value="<%= nomRepresentant2 %>" class="ds44-inpStd" title='<%= labelField %>' />
                 <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
             </div>
         </div>
@@ -386,7 +388,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         <div class="ds44-form__container">
             <div class="ds44-posRel">
                 <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                <input type="text" id="form-element-<%= uuid %>" name="prenomRepresentant2" value="<%= prenomEnfant %>" class="ds44-inpStd" title='<%= labelField %>' />
+                <input type="text" id="form-element-<%= uuid %>" name="prenomRepresentant2" value="<%= prenomRepresentant2 %>" class="ds44-inpStd" title='<%= labelField %>' />
                 <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
             </div>
         </div>
@@ -425,7 +427,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
             <div class="ds44-posRel">
                 <label for="address_search_<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= adress2Label %></span></span></label>
                 <input data-disabled-by-name-check-form-element-<%= uuid %>_checkbox type="text" id="address_search_<%= uuid %>" name="address_search_<%= uuid %>" class="ds44-inpStd ds44-js-field-address" 
-                role="combobox" aria-autocomplete="list" autocomplete="off" aria-expanded="false" data-limit-char="3" data-url="https://api-adresse.data.gouv.fr/search/?limit=5&citycode=44109" 
+                role="combobox" aria-autocomplete="list" autocomplete="off" aria-expanded="false" data-limit-char="3" data-url="https://api-adresse.data.gouv.fr/search/?limit=5" 
                 title="<%= adress2Label %>" data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete="" />
                 <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", adress2Label) %></span></button>
                 <div class="ds44-autocomp-container hidden">
@@ -450,7 +452,8 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
               <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
-                    <input data-<%=uuidAdresse2%>="libelle" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant2" value="<%= HttpUtil.encodeForHTMLAttribute(adresseRepresentant2) %>" class="ds44-inpStd" title='<%= labelField %>' />
+                    <input data-<%=uuidAdresse2%>="libelle" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant2" 
+                    value="<%= adresseRepresentant2 %> <%= codePostalRepresentant2 %> <%= villeRepresentant2 %>"  class="ds44-inpStd" title='<%= labelField %>' <%= saisieAdresseR2 ? "disabled" : "" %>/>
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>
