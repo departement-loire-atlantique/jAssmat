@@ -495,7 +495,7 @@ plugin.assmatplugin.month.10: Novembre
 plugin.assmatplugin.month.11: Décembre
 
 # Planning
-jcmsplugin.assmatplugin.planning.copier-coller: Copier et coller la dernière ligne
+jcmsplugin.assmatplugin.planning.copier-coller: Copier et coller la première ligne
 jcmsplugin.assmatplugin.planning.creneau: Créneau {0}
 jcmsplugin.assmatplugin.planning.h-debut: H de début
 jcmsplugin.assmatplugin.planning.h-fin: H de fin
@@ -509,3 +509,5 @@ jcmsplugin.assmatplugin.planning.ajouter-creneau: Ajouter un créneau
 jcmsplugin.assmatplugin.planning.suppr-creneau: Supprimer un créneau
 jcmsplugin.assmatplugin.planning.aide.title: Aide : plages horaires
 jcmsplugin.assmatplugin.planning.aide.content: Si vous gardez l’enfant sur plusieurs plages horaires dans la même journée, ajouter des créneaux pour saisir toutes les plages horaires. Vous pouvez saisir jusqu’à trois créneaux.
+jcmsplugin.assmatplugin.planning.precisions: Autres précisions
+jcmsplugin.assmatplugin.planning.joursAccueil: Choisissez les jours d'accueils *
