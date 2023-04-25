@@ -41,8 +41,10 @@ Date dateModifDispo = profilMgr.getDateModifDispo(obj.getAuthor());
 TreeMap<AssmatSearch,PointAssmat> assmatPoints =(TreeMap<AssmatSearch,PointAssmat>) session.getAttribute("assmatPoints");
 
 //Si on vient de la recherche on retourne sur la recherche, sinon sur la selection
-String urlRecherche =(String) session.getAttribute("urlRecherche");
+String urlRecherche = (String) session.getAttribute("urlRecherche");
 String urlRetour = urlRecherche;
+
+
 
 double distanceMam = -1;
 double distanceDom = -1;
@@ -134,6 +136,25 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
   
   Member mbr = obj.getAuthor();
   Set<String> panierSet = (Set<String>) request.getSession().getAttribute("panier");
+
+  String panierLink = "#";
+  Category panierCat = channel.getCategory("$id.jcmsplugin.socle.selection.page.cat");
+  if(Util.notEmpty(panierCat)) {
+    panierLink = panierCat.getDisplayUrl(userLocale);
+  }
+  
+  Set<FicheLieu> setPlace = new TreeSet<FicheLieu>();
+  
+  // Exrece Domicile
+  if(asmmatSolis.getIdRam() != null) {
+    Set<FicheLieu> setPlaceDOM =(Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new RelaisMamSelectorIDSolis("RAM_"+asmmatSolis.getIdRam()));           
+    setPlace.addAll(setPlaceDOM);
+  }
+  // Exrece MAM
+  if(asmmatSolis.getIdRamMam() != null) {
+    Set<FicheLieu> setPlaceMAM =(Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new RelaisMamSelectorIDSolis("RAM_"+asmmatSolis.getIdRamMam()));           
+    setPlace.addAll(setPlaceMAM);
+  }
 %>
 
 <main id="content" role="main">
@@ -147,7 +168,19 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
             
             <!--  Bouton retour liste -->
 	        <p class="ds44-noMrg">
+	        	        
+	            <%
+	            if(isSelection) {
+	              request.setAttribute("libelle", AssmatUtil.getMessage("PROFIL-ASSMAT-LIBELLE-RETOUR-SELECTION-HTML", false));
+	              request.setAttribute("urlRetour", panierLink);
+	            } else {
+	              request.setAttribute("urlRetour", urlRetour);	              
+	            }
+	            %>
+	        
 	            <%@ include file="/plugins/SoclePlugin/jsp/facettes/doRetourListe.jspf" %>
+	            
+	                        
 	        </p>
 	        <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) || Util.notEmpty(profilSuivant) %>">
 	           <jalios:if predicate="<%= Util.notEmpty(profilPrecedent) || Util.notEmpty(profilSuivant) %>">
@@ -183,7 +216,7 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
                        </button>
                        <span class="ds44-docListElem mll">
                             <i class="icon icon-star-empty ds44-docListIco" aria-hidden="true"></i>
-                            <a class="ds44-inlineLink ds44-titleLink" href="#" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.recherche.selection")) %>'><%= glp("jcmsplugin.socle.recherche.ma-selection", (Util.isEmpty(panierSet)) ? "0" : panierSet.size() +"") %></a>
+                            <a class="ds44-inlineLink ds44-titleLink" href="<%= panierLink %>" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.recherche.selection")) %>'><%= glp("jcmsplugin.socle.recherche.ma-selection", (Util.isEmpty(panierSet)) ? "0" : panierSet.size() +"") %></a>
                        </span>
                        <span class="ds44-docListElem mll">
                            <i class="icon icon-print ds44-docListIco" aria-hidden="true"></i>
@@ -450,4 +483,133 @@ PortalJspCollection portalSelection = (PortalJspCollection) channel.getPublicati
     
     </article>
     
+    <jalios:if predicate="<%= Util.notEmpty(setPlace) %>">
+    <button class="ds44-btnStd ds44-btn--invert ds44-btnQuestion ds44-btnLeft ds44-btn-fixed ds44-js-button-sticky" type="button" data-target="#contactRelais" data-js="ds44-modal">
+        <span class="ds44-btnInnerText"><%= glp("jcmsplugin.socle.modal.button.lbl") %></span><i class="icon icon-help icon--sizeL" aria-hidden="true"></i>
+	</button>
+	
+	<section class="ds44-modal-container" id="contactRelais" data-search-modal="" role="dialog" aria-modal="true" aria-labelledby="overlay-faire-demande-title" aria-hidden="true">
+	    <div class="ds44-modal-box ds44-whiteBG ">
+	        <button class="ds44-btnOverlay--modale ds44-btnOverlay--closeOverlay" type="button" title="Fermer l'aide : Contacter votre relais" data-js="ds44-modal-action-close">
+	            <i class="icon icon-cross icon--xlarge" aria-hidden="true"></i><span class="ds44-btnInnerText--bottom">Fermer</span>
+	        </button>
+	        <h1 id="overlay-faire-demande-title" class="h2-like"><%= glp("jcmsplugin.socle.modal.title") %></h1>
+	        <div class="ds44-modal-gab">
+	            <p><%= glp("jcmsplugin.socle.modal.description") %></p>
+	        <div data-search-modal-content="">
+	        <jalios:foreach name="itPlace" collection="<%= setPlace %>" type="FicheLieu">
+	            <div class="ds44-mt3">
+	               <p class="h4-like ds44-cardTitle">
+		            <a href="<%= itPlace.getDisplayUrl(userLocale) %>" class="ds44-card__globalLink"><%= itPlace.getTitle() %></a>
+		           </p>
+	               <%
+	               String titreCommune = Util.notEmpty(itPlace.getCommune()) ? itPlace.getCommune().getTitle() : "";
+	               String adresse = SocleUtils.formatAddress("", itPlace.getEtageCouloirEscalier(),
+	                   itPlace.getEntreeBatimentImmeuble(), itPlace.getNdeVoie(), itPlace.getLibelleDeVoie(), itPlace.getLieudit(), itPlace.getCs2(),
+	                   itPlace.getCodePostal(), titreCommune, itPlace.getCedex2());
+	               %>
+	               <jalios:if predicate="<%= Util.notEmpty(adresse) %>">
+		              <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-marker ds44-docListIco" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.adresse") %> : </span><%= adresse %></p>
+		           </jalios:if>
+		           <jalios:if predicate="<%= Util.notEmpty(itPlace.getTelephone()) %>">
+		              <div class="ds44-docListElem ds44-mt-std">
+		                <i class="icon icon-phone ds44-docListIco" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.telephone") %> : </span>
+		                <ul class="ds44-list">
+		                    <jalios:foreach name="numTel" type="String" array="<%= itPlace.getTelephone() %>">
+		                        <li><ds:phone number="<%= numTel %>" /></li>
+		                    </jalios:foreach>
+		                </ul>
+		              </div>
+		           </jalios:if>
+		              <jalios:if predicate='<%=Util.notEmpty(itPlace.getEmail())%>'>
+		                <jalios:select>
+		                    <jalios:if predicate='<%=itPlace.getEmail().length > 1%>'>
+		                        <div class="ds44-docListElem mts">
+		                    </jalios:if>
+		                    <jalios:default>
+		                        <p class="ds44-docListElem mts">
+		                    </jalios:default>
+		                </jalios:select>
+		                <i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i>
+		                <jalios:if predicate='<%=itPlace.getEmail().length == 1%>'>
+		                    <%
+		                    String email = itPlace.getEmail()[0];
+		                    %>
+		                    <a href='<%="mailto:" + email%>'
+		                        title='<%=HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.ficheaide.contacter-x-par-mail.label", itPlace.getTitle(), email))%>'
+		                        data-statistic='{"name": "declenche-evenement","category": "BlocNousContacter","action": "Mailto","label": "<%=HttpUtil.encodeForHTMLAttribute(itPlace.getTitle())%>"}'>
+		                    <%=glp("jcmsplugin.socle.ficheaide.contacter-par-mail.label")%>
+		                    </a>
+		                </jalios:if>
+		                <jalios:if predicate='<%=itPlace.getEmail().length > 1%>'>
+		                    <ul class="ds44-list">
+		                    <jalios:foreach name="email" type="String" array='<%=itPlace.getEmail()%>'>
+		                        <li><a href='<%="mailto:" + email%>'
+		                            title='<%=HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.ficheaide.contacter-x-par-mail.label", itPlace.getTitle(), email))%>'
+		                            data-statistic='{"name": "declenche-evenement","category": "BlocNousContacter","action": "Mailto","label": "<%=HttpUtil.encodeForHTMLAttribute(itPlace.getTitle())%>"}'>
+		                        <%=email%>
+		                        </a></li>
+		                    </jalios:foreach>
+		                    </ul>
+		                </jalios:if>
+		                <jalios:select>
+		                    <jalios:if predicate='<%=itPlace.getEmail().length > 1%>'>
+		                        </div>
+		                    </jalios:if>
+		                    <jalios:default>
+		                        </p>
+		                    </jalios:default>
+		                </jalios:select>
+		            </jalios:if>
+		            
+		            <jalios:if predicate='<%=Util.notEmpty(itPlace.getSiteInternet())%>'>
+		                <jalios:select>
+		                    <jalios:if predicate='<%=itPlace.getSiteInternet().length > 1%>'>
+		                        <div class="ds44-docListElem mts">
+		                    </jalios:if>
+		                    <jalios:default>
+		                        <p class="ds44-docListElem mts">
+		                    </jalios:default>
+		                </jalios:select>
+		                <i class="icon icon-link ds44-docListIco" aria-hidden="true"></i>
+		                <jalios:if predicate='<%=itPlace.getSiteInternet().length == 1%>'>
+		                    <%
+		                    String site = itPlace.getSiteInternet()[0];
+		                    %>
+		                    <a href='<%=SocleUtils.parseUrl(site)%>'
+		                        title='<%=glp("jcmsplugin.socle.lien.site.nouvelonglet", itPlace.getTitle())%>'
+		                        target="_blank"
+		                        data-statistic='{"name": "declenche-evenement","category": "BlocNousContacter","action": "Site web","label": "<%=HttpUtil.encodeForHTMLAttribute(itPlace.getTitle())%>"}'>
+		                    <%=glp("jcmsplugin.socle.ficheaide.visiter-site.label")%>
+		                    </a>
+		                </jalios:if>
+		                <jalios:if predicate='<%=itPlace.getSiteInternet().length > 1%>'>
+		                    <ul class="ds44-list">
+		                    <jalios:foreach name="site" type="String" array='<%=itPlace.getSiteInternet()%>'>
+		                        <li><a href='<%=SocleUtils.parseUrl(site)%>'
+		                            title='<%=glp("jcmsplugin.socle.lien.site.nouvelonglet", site)%>'
+		                            target="_blank"
+		                            data-statistic='{"name": "declenche-evenement","category": "BlocNousContacter","action": "Site web","label": "<%=HttpUtil.encodeForHTMLAttribute(itPlace.getTitle())%>"}'>
+		                        <%=SocleUtils.parseUrl(site)%>
+		                        </a></li>
+		                    </jalios:foreach>
+		                    </ul>
+		                </jalios:if>
+		                <jalios:select>
+		                    <jalios:if predicate='<%=itPlace.getSiteInternet().length > 1%>'>
+		                         </div>
+		                    </jalios:if>
+		                    <jalios:default>
+		                         </p>
+		                    </jalios:default>
+		                </jalios:select>
+		            </jalios:if>
+		            
+	            </div>
+	        </jalios:foreach>
+	      </div>
+	        </div>
+	    </div>
+	</section>
+    </jalios:if>
 </main>

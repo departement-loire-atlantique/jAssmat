@@ -21,7 +21,7 @@ import fr.cg44.plugin.assmat.managers.ProfilManager;
 import fr.cg44.plugin.assmat.selector.PlaceSelector;
 import fr.trsb.cd44.solis.beans.AssmatSolis;
 import fr.trsb.cd44.solis.manager.SolisManager;
-import generated.Place;
+import generated.FicheLieu;
 import generated.ProfilASSMAT;
 
 public class LoginAuthenticationHandler extends AuthenticationHandler {
@@ -77,13 +77,13 @@ public class LoginAuthenticationHandler extends AuthenticationHandler {
           String uaName = "";
           String uaTel = "";
           if(Util.notEmpty(solis.getIdUa())) {
-            Set<Place> uaSet = channel.getDataSet(Place.class);
+            Set<FicheLieu> uaSet = channel.getDataSet(FicheLieu.class);
             DataSelector selector = new PlaceSelector(solis.getIdUa());
-            Set<Place> resultUaSet = JcmsUtil.select(uaSet, selector, Publication.getMdateComparator());
-            Place ua = Util.getFirst(resultUaSet) ;
+            Set<FicheLieu> resultUaSet = JcmsUtil.select(uaSet, selector, Publication.getMdateComparator());
+            FicheLieu ua = Util.getFirst(resultUaSet) ;
             if(Util.notEmpty(ua)) {
               uaName = ua.getTitle();
-              uaTel = Util.getFirst(ua.getPhones());
+              uaTel = Util.getFirst(ua.getTelephone());
             }
           }
           

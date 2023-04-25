@@ -338,20 +338,20 @@ jcmsContext.addJavaScript("plugins/AssmatPlugin/js/plugin.js");
 
 <%
 // 0011728: Affichage relais dans recherche AM sur Nantes 
-Set<Place> selectPlace = new HashSet<Place>();
+Set<FicheLieu> selectPlace = new HashSet<FicheLieu>();
 if(Util.notEmpty(adresse) && Util.notEmpty(assmatPointsTriee.entrySet())) {
   AssmatSearch firstAssmatSeach = Util.getFirst(assmatPointsTriee.entrySet()).getKey();  
   ProfilASSMAT profilAM = (ProfilASSMAT) channel.getPublication(firstAssmatSeach.getDbprofilId()) ; 
   AssmatSolis asmmatSolis = Util.getFirst(solisMgr.getAssmatSolisByNumAgrement(profilAM.getNum_agrement()));  
   String idRam = "RAM_" + (firstAssmatSeach.getIsDomicile() ? asmmatSolis.getIdRam() : asmmatSolis.getIdRamMam()); 
-  selectPlace.add((Place) Util.getFirst(JcmsUtil.applyDataSelector(channel.getAllDataSet(Place.class), new RelaisMamSelectorIDSolis(idRam))));
+  selectFicheLieu.add((FicheLieu) Util.getFirst(JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new RelaisMamSelectorIDSolis(idRam))));
 }
 
 
 // 0012395: Recherche par quartier Nantes - affichage relais  
 if( (44109 == codeInsee) &&  ( (-10 ==  distance && Util.notEmpty(listeIdQuartiers))  || (-20 ==  distance && Util.notEmpty(listeIdMicroQuartiers)) ) ) {
   // Les relais par rapport au quartier recherché
-  selectPlace = new HashSet<Place>();
+  selectPlace = new HashSet<FicheLieu>();
   // La liste des id relais recherché
   List<String> listeIdRechercheQuartiers =  new ArrayList<String>();      
   // Liste Micro Quartier (récupère le quartier)

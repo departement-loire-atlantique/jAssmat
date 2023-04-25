@@ -13,7 +13,7 @@
   request.setAttribute("classBeingProcessed", FormulaireDeContactActualiserCoo.class);
   
   String idUa= request.getParameter("idUA");
-  Place uniteAgrement = (Place) channel.getPublication(idUa);
+  FicheLieu uniteAgrement = (FicheLieu) channel.getPublication(idUa);
   
 %>
 
@@ -43,8 +43,8 @@ if(realLoggedMember == null) {
 <% 
 String email ="";
 if(Util.notEmpty(uniteAgrement)){
-  if(Util.notEmpty(uniteAgrement.getMails())){
-    email =Util.getFirst(uniteAgrement.getMails());
+  if(Util.notEmpty(uniteAgrement.getEmail())){
+    email =Util.getFirst(uniteAgrement.getEmail());
   }
 }
 %>

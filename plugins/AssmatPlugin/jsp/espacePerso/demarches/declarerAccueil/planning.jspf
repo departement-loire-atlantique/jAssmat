@@ -54,7 +54,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
   String libellePlanningDif = AssmatUtil.getMessagePropertiesParametersValues("ASS-DEC-PL-Z3-QUE-HTML", parametersPlanningDif);
         
 
-   // Planning regulier (indique quels jours sont cochés)  
+   // Planning regulier (indique quels jours sont cochés)
    Boolean[] joursCheckTab = new Boolean[7];
    int cpt = 0;
    for(String itJour : DeclarerAccueilAssmatHandler.JOURS) {

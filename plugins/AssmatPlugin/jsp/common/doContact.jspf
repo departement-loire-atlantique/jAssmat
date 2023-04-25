@@ -1,8 +1,8 @@
-<jalios:if predicate="<%= Util.notEmpty(obj.getPhones()) || Util.notEmpty(obj.getFax()) || Util.notEmpty(obj.getMails()) || Util.notEmpty(obj.getWebsites())  %>"><%
+<jalios:if predicate="<%= Util.notEmpty(obj.getTelephone()) || Util.notEmpty(obj.getFax()) || Util.notEmpty(obj.getEmail()) || Util.notEmpty(obj.getSiteInternet())  %>"><%
   %><div class="contacts">
-	    <jalios:if predicate="<%= Util.notEmpty(obj.getPhones()) %>"><%
+	    <jalios:if predicate="<%= Util.notEmpty(obj.getTelephone()) %>"><%
 	      %><div class="phone"><div><%= glp("plugin.tools.common.tel") %></div>
-	        <p itemprop="telephone"><jalios:foreach name="itPhone" type="String" array="<%= obj.getPhones() %>"><%
+	        <p itemprop="telephone"><jalios:foreach name="itPhone" type="String" array="<%= obj.getTelephone() %>"><%
 	        %><%= (itCounter > 1)?" - ":""%><%= itPhone %>
 	      </jalios:foreach></p></div><%
 	   %></jalios:if><%
@@ -16,8 +16,8 @@
 	      %></div><%
 	   %></jalios:if><%
 	              
-	   %><jalios:if predicate="<%= Util.notEmpty(obj.getMails()) %>"><%
-	       String[] list = obj.getMails();
+	   %><jalios:if predicate="<%= Util.notEmpty(obj.getEmail()) %>"><%
+	       String[] list = obj.getEmail();
 	     %><div class="mail"><%
 	        %><div><%= glp("plugin.tools.common.email", list.length) %></div><%
 	          %><p><%
@@ -32,8 +32,8 @@
 	     %></div><%
 	   %></jalios:if><%
 	   
-	   %><jalios:if predicate="<%= Util.notEmpty(obj.getWebsites()) %>"><%
-	       String[] list = obj.getWebsites();
+	   %><jalios:if predicate="<%= Util.notEmpty(obj.getSiteInternet()) %>"><%
+	       String[] list = obj.getSiteInternet();
 	      %><div class="website"><%
 	        %><p><%
 	          %><jalios:foreach name="itWebsite" type="String" array="<%= list %>">

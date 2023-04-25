@@ -99,65 +99,75 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
 
 	<span<% if((Util.notEmpty(horairesAtypiques) && "false".equals(horairesAtypiques)) || Util.isEmpty(horairesAtypiques)) {%> class="hidden" <% } %> data-enabled-by-field="#name-radio-form-element-<%= uuid %>-true">
 		<h3 class="h4-like"><trsb:glp key="OFFRE-ATYP-PLUS-HTML"></trsb:glp></h3>
-	
-		<p><trsb:glp key="OFFRE-ATYP-AV7-HTML"></trsb:glp></p>
+
+        <div>	
+		<p style="min-width:130px" class="inbl"><trsb:glp key="OFFRE-ATYP-AV7-HTML"></trsb:glp></p>
 		<% uuid = UUID.randomUUID().toString(); %>
-	    <div id="form-element-<%= uuid %>" data-name="avant7h" class="ds44-form__radio_container" data-required="false">
+	    <div id="form-element-<%= uuid %>" data-name="avant7h" class="ds44-form__radio_container inbl mls" data-required="false">
 <%-- 	        <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
-	        <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	        <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
 	            <input type="radio" <%if(Util.notEmpty(avant7h) && "true".equals(avant7h)){ %> checked="checked" <%} %> name="avant7h" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
 	        </div>
-	        <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+	        <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
 	            <input type="radio" <%if(Util.notEmpty(avant7h) && "false".equals(avant7h)){ %> checked="checked" <%} %> name="avant7h" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
 	        </div>
 	    </div>
-	
-		<p><trsb:glp key="OFFRE-ATYP-AP20-HTML"></trsb:glp></p>
+	    </div>
+
+        <div>	
+		<p style="min-width:130px" class="inbl"><trsb:glp key="OFFRE-ATYP-AP20-HTML"></trsb:glp></p>
 		<% uuid = UUID.randomUUID().toString(); %>
-        <div id="form-element-<%= uuid %>" data-name="apres20h" class="ds44-form__radio_container" data-required="false">
+        <div id="form-element-<%= uuid %>" data-name="apres20h" class="ds44-form__radio_container inbl mls" data-required="false">
 <%--             <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
-            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
                 <input type="radio" <%if(Util.notEmpty(apres20h) && "true".equals(apres20h)){ %> checked="checked" <%} %> name="apres20h" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
             </div>
-            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
                 <input type="radio" <%if(Util.notEmpty(apres20h) && "false".equals(apres20h)){ %> checked="checked" <%} %> name="apres20h" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
             </div>
         </div>
-	
-		<p><trsb:glp key="OFFRE-ATYP-SAM-HTML"></trsb:glp></p>
+        </div>
+
+        <div>	
+		<p style="min-width:130px" class="inbl"><trsb:glp key="OFFRE-ATYP-SAM-HTML"></trsb:glp></p>
 		<% uuid = UUID.randomUUID().toString(); %>
-        <div id="form-element-<%= uuid %>" data-name="leSamedi" class="ds44-form__radio_container" data-required="false">
+        <div id="form-element-<%= uuid %>" data-name="leSamedi" class="ds44-form__radio_container inbl mls" data-required="false">
 <%--             <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
-            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
                 <input type="radio" <%if(Util.notEmpty(leSamedi) && "true".equals(leSamedi)){ %> checked="checked" <%} %> name="leSamedi" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
             </div>
-            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
                 <input type="radio" <%if(Util.notEmpty(leSamedi) && "false".equals(leSamedi)){ %> checked="checked" <%} %> name="leSamedi" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
             </div>
         </div>
+        </div>
 	
-		<p><trsb:glp key="OFFRE-ATYP-DIM-HTML"></trsb:glp></p>
+	    <div>
+		<p style="min-width:130px" class="inbl"><trsb:glp key="OFFRE-ATYP-DIM-HTML"></trsb:glp></p>
 		<% uuid = UUID.randomUUID().toString(); %>
-        <div id="form-element-<%= uuid %>" data-name="leSamedi" class="ds44-form__radio_container" data-required="false">
+        <div id="form-element-<%= uuid %>" data-name="leSamedi" class="ds44-form__radio_container inbl mls" data-required="false">
 <%--             <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
-            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
                 <input type="radio" <%if(Util.notEmpty(leDimanche) && "true".equals(leDimanche)){ %> checked="checked" <%} %> name="leDimanche" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
             </div>
-            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
                 <input type="radio" <%if(Util.notEmpty(leDimanche) && "false".equals(leDimanche)){ %> checked="checked" <%} %> name="leDimanche" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
             </div>
         </div>
+        </div>
 	
-		<p><trsb:glp key="OFFRE-ATYP-NUIT-HTML"></trsb:glp></p>
+	    <div>
+		<p style="min-width:130px" class="inbl"><trsb:glp key="OFFRE-ATYP-NUIT-HTML"></trsb:glp></p>
         <% uuid = UUID.randomUUID().toString(); %>
-        <div id="form-element-<%= uuid %>" data-name="laNuit" class="ds44-form__radio_container" data-required="false">
+        <div id="form-element-<%= uuid %>" data-name="laNuit" class="ds44-form__radio_container inbl mls" data-required="false">
 <%--             <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
-            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
                 <input type="radio" <%if(Util.notEmpty(laNuit) && "true".equals(laNuit)){ %> checked="checked" <%} %> name="laNuit" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><%= glp("ui.com.lbl.true") %></label>
             </div>
-            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl ds44-noMrgt">
                 <input type="radio" <%if(Util.notEmpty(laNuit) && "false".equals(laNuit)){ %> checked="checked" <%} %> name="laNuit" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio" aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><%= glp("ui.com.lbl.false") %></label>
             </div>
+        </div>
         </div>
 	</span>
 </div>

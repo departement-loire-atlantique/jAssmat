@@ -24,6 +24,15 @@ jcmsplugin.socle.modal.button.lbl: Besoin d’aide ? Contacter votre relais
 jcmsplugin.socle.modal.title: Contacter votre relais
 jcmsplugin.socle.modal.description: Contactez le relais assistantes maternelles (RAM) ou relais petite enfance de votre secteur avant toute démarche (recherche, accueil de l’enfant, contrat de travail, rémunération, aides de la CAF…).
 
+#page favoris
+jcmsplugin.assmatplugin.favoris.selection: Vous avez sélectionné {0} assistant·es maternel·les
+jcmsplugin.assmatplugin.favoris.tout-retirer: Tout retirer de ma sélection
+jcmsplugin.assmatplugin.favoris.retirer: Retirer de la sélection : {0}
+jcmsplugin.assmatplugin.favoris.liste: Votre liste
+jcmsplugin.assmatplugin.favoris.action: Action
+jcmsplugin.assmatplugin.favoris.afficher-tableau: Afficher ma sélection en tableau
+jcmsplugin.assmatplugin.favoris.pas-selection: Pas de sélection
+
 
 #page inscription
 
@@ -476,7 +485,7 @@ plugin.assmatplugin.month.0: Janvier
 plugin.assmatplugin.month.1: Février
 plugin.assmatplugin.month.2: Mars
 plugin.assmatplugin.month.3: Avril
-plugin.assmatplugin.month.4: Mais
+plugin.assmatplugin.month.4: Mai
 plugin.assmatplugin.month.5: Juin
 plugin.assmatplugin.month.6: Juillet
 plugin.assmatplugin.month.7: Août

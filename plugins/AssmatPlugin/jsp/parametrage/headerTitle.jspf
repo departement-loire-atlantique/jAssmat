@@ -8,5 +8,5 @@
 <%} %>
 
 <%if (step == ParametrageAssmatHandler.OFFRE_STEP) {%>
-  <h3 class="title-bar-container dotted-portlet"><trsb:glp key="OFFRE-INTRO-HTML"></trsb:glp></h3>
+  <h3 class="title-bar-container dotted-portlet h4-like"><trsb:glp key="OFFRE-INTRO-HTML"></trsb:glp></h3>
 <%} %>                                  
