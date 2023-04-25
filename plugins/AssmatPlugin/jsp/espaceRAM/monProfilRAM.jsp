@@ -85,7 +85,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 			cityList.addAll(Arrays.asList(tabCity));
 			}
 			Set<FicheLieu> setPlaceUA = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.getAllDataSet(FicheLieu.class), new UniteAgrementSelectorCommune(cityList, categUA));
-			Place uniteAgrement = null;
+			FicheLieu uniteAgrement = null;
 			if(Util.notEmpty(setPlaceUA)){
 			  uniteAgrement = Util.getFirst(setPlaceUA);
 			}
