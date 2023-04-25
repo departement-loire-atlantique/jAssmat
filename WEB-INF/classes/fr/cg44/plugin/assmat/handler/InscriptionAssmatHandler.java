@@ -424,8 +424,9 @@ protected String nameUA;
 							// Preparation du mail
 							String from = AssmatUtil.getDefaultEmail();
 							String subject = AssmatUtil.getMessage("INSCRIPTION-MAIL-VALIDATION-SUBJECT");
-							String url =  channel.getUrl() + "espaceperso?token=" + tokenGenerate + "\">" + channel.getUrl() + "espaceperso?token=" + tokenGenerate;
-							String lien = "<a href=\"" + url + "</a>";
+							String url =  channel.getUrl() + "espaceperso?token=" + tokenGenerate;
+	            String lien = "<a href=\"" + url + "\">" + channel.getUrl() + "espaceperso?token=" + tokenGenerate + "</a>";
+
 
 							String[] parameters = new String[] {};
 							parameters = (String[]) Util.insertArray(parameters, 0, prenom);
