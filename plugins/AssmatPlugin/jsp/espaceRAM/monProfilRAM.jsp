@@ -50,7 +50,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 	                </p>
 				</jalios:if>
 				
-				<jalios:if predicate="<%= Util.notEmpty(placegetSiteInternets()) %>">
+				<jalios:if predicate="<%= Util.notEmpty(place.getSiteInternet()) %>">
 	                <p class="ds44-docListElem mtm"><i class="icon icon-link ds44-docListIco" aria-hidden="true"></i>
 	                    <jalios:foreach name="itSite" type="String" array="<%= place.getSiteInternet() %>"><%= (itCounter > 1)? " - ":"" %>
 	                        <a href="<%= itSite %>" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.lien.site.nouvelonglet", itSite)) %>' target="_blank"><%= itSite %></a>
@@ -80,7 +80,7 @@ if(Util.notEmpty(loggedMember) && (AssmatUtil.isMemberRAM(loggedMember))){
 			
 			//On récupere les communes "autres"
 			
-			City[] tabCity = firstPlace.getCities();
+			City[] tabCity = firstPlace.getCommunes();
 			if(Util.notEmpty(tabCity)){
 			cityList.addAll(Arrays.asList(tabCity));
 			}

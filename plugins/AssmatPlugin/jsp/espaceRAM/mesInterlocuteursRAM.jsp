@@ -35,7 +35,7 @@ Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.ge
 	
 	//On récupere les communes "autres"
 	
-	City[] tabCity = firstPlace.getCities();
+	City[] tabCity = firstPlace.getCommunes();
 	
 	if(Util.notEmpty(tabCity)) {
 	  cityList.addAll(Arrays.asList(tabCity));
