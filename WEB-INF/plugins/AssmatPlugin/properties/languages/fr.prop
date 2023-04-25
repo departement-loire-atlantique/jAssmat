@@ -25,7 +25,7 @@ jcmsplugin.socle.modal.title: Contacter votre relais
 jcmsplugin.socle.modal.description: Contactez le relais assistantes maternelles (RAM) ou relais petite enfance de votre secteur avant toute démarche (recherche, accueil de l’enfant, contrat de travail, rémunération, aides de la CAF…).
 
 #page favoris
-jcmsplugin.assmatplugin.favoris.selection: Vous avez sélectionné {0} assistant·es maternel·les
+jcmsplugin.assmatplugin.favoris.selection: Vous avez sélectionné <span data-nb-select="">{0}</span> assistant·es maternel·les
 jcmsplugin.assmatplugin.favoris.tout-retirer: Tout retirer de ma sélection
 jcmsplugin.assmatplugin.favoris.retirer: Retirer de la sélection : {0}
 jcmsplugin.assmatplugin.favoris.liste: Votre liste
