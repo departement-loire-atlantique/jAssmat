@@ -42,7 +42,9 @@ if (step == DeclarerAccueilAssmatHandler.LIEU_ACCUEIL) {
       
       <% uuid = UUID.randomUUID().toString(); %>
         <div id="form-element-<%= uuid %>" data-name="accueilDomicile" class="ds44-form__radio_container ds44-form__container" data-required="true">
-            <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
+            <jalios:if predicate="<%= assmatSolis.getExerceMam() && assmatSolis.getExerceDomicile() %>">
+                <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
+            </jalios:if>
             <jalios:if predicate="<%= assmatSolis.getExerceMam() %>">
 	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
 	                <input <%if(!assmatSolis.getExerceDomicile() || (accueilDomicile != null && !accueilDomicile) ){ %> checked <%} %> required type="radio" name="accueilDomicile" value="false" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><span><strong><trsb:glp key="ASS-DEC-ACC-MAM-HTML" ></trsb:glp></strong></span><br/><span><%= assmatSolis.getNomMam() %></span><br/><span><%= assmatSolis.getAdresseMam() %></span><br/><span><%= assmatSolis.getCpMam() %> <%= assmatSolis.getCommuneMam() %></label>
