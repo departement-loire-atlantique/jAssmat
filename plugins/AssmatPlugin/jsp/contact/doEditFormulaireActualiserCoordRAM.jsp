@@ -37,9 +37,8 @@ if(realLoggedMember == null) {
   realLoggedMember = loggedMember;
 }
 %>
-<input type="hidden" name="nom"  value="<%= realLoggedMember.getName() %>" data-technical-field/>
-<input type="hidden" name="prenom"  value="<%= realLoggedMember.getFirstName() %>" data-technical-field/>
-
+<input type="hidden" name="nom"  value='<%= Util.isEmpty(realLoggedMember) ? "" : realLoggedMember.getName() %>' data-technical-field/>
+<input type="hidden" name="prenom"  value='<%= Util.isEmpty(realLoggedMember) ? "" : realLoggedMember.getFirstName() %>' data-technical-field/>
 <% 
 String email ="";
 if(Util.notEmpty(uniteAgrement)){

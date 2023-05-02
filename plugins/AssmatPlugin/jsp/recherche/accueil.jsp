@@ -368,7 +368,7 @@ if( (44109 == codeInsee) &&  ( (-10 ==  distance && Util.notEmpty(listeIdQuartie
   for(Category itQuartierCat : quartiersNantesRootCat.getChildrenSet()) {
     String itIdQuartier = itQuartierCat.getExtraData("extra.Category.jcmsplugin.assmatplugin.search.mapping");
     if(Util.notEmpty(itIdQuartier) && listeIdRechercheQuartiers.contains(itIdQuartier)) {
-      selectPlace.addAll( itQuartierCat.getPublicationSet(Place.class, loggedMember));
+      selectPlace.addAll( itQuartierCat.getPublicationSet(FicheLieu.class, loggedMember));
     }
   }  
 }
