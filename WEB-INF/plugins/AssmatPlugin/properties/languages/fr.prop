@@ -4,6 +4,8 @@ jcmsplugin.assmatplugin.derniere-actualisation.profil: Date de dernière actuali
 jcmsplugin.assmatplugin.export-planning: Exporter les plannings
 jcmsplugin.assmatplugin.planning: Planning
 
+jcmsplugin.assmatplugin.menu.deconnexion: Se déconnecter
+
 #Page accueil
 jcmsplugin.assmatplugin.accueil.activeprofil: J'active mon profil
 jcmsplugin.assmatplugin.accueil.activecompte: Activez votre compte et définissez votre identifiant (login) et votre mot de passe
