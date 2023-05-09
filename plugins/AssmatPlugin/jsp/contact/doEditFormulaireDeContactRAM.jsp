@@ -7,6 +7,42 @@
 %>
 
 
+<%-- id Ram ------------------------------------------------------------ --%>
+<%
+
+Publication pubRam = getPublicationParameter("idRAM");
+String mailRamValues = "";
+String nomRam = "";
+
+if(Util.notEmpty(pubRam) && pubRam instanceof FicheLieu){
+  FicheLieu ficheLieu = (FicheLieu) pubRam; 
+  mailRamValues =  Util.getFirst(ficheLieu.getEmail());  
+  nomRam = pubRam.getTitle();
+ }
+%>
+
+
+
+
+<%-- RAM --%>
+<% String ramLabel = glp("jcmsplugin.socle.modal.title"); %>
+<div class="ds44-mb3">
+    <div class="ds44-form__container">
+        <div class="ds44-posRel">
+            <label id="label-form-element-assmat" for="form-element-assmat" class="ds44-formLabel">
+              <span class=""><span><%= ramLabel %></span></span>
+            </label>
+            <input type="text" id="form-element-assmat" name="assmat"
+                class="ds44-inpStd" title="<%= glp("jcmsplugin.assmatplugin.form.lbl.assistantematernelle.prefix", glp("jcmsplugin.socle.facette.champ-obligatoire.title", ramLabel)) %>"
+                disabled value="<%= nomRam %>">
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <%-- Nom ------------------------------------------------------------ --%>
 <% String nomLabel = channel.getTypeFieldLabel(FormulaireDeContactRAM.class, "name", userLang);%>
 <div class="ds44-mb3">
@@ -83,6 +119,9 @@
 </div>
 
 
+
+<%-- Mail Ram ------------------------------------------------------------ --%>
+<input type='hidden' name='mailRAM' value='<%= mailRamValues %>' data-technical-field />
 
 
 <button
