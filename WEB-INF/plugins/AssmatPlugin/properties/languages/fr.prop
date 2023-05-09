@@ -23,6 +23,7 @@ jcmsplugin.assmatplugin.accueil.bienvenue: Bonjour {0} {1}
 jcmsplugin.socle.modal.button.lbl: Besoin d’aide ? Contacter votre relais
 jcmsplugin.socle.modal.title: Contacter votre relais
 jcmsplugin.socle.modal.description: Contactez le relais assistantes maternelles (RAM) ou relais petite enfance de votre secteur avant toute démarche (recherche, accueil de l’enfant, contrat de travail, rémunération, aides de la CAF…).
+jcmsplugin.assmatplugin.lbl.relais.title: Relais
 
 #page favoris
 jcmsplugin.assmatplugin.favoris.selection: Vous avez sélectionné <span data-nb-select="">{0}</span> assistant·es maternel·les
@@ -326,6 +327,8 @@ jcmsplugin.assmatplugin.form.login.subtitle.tel: (mobile)
 
 
 jcmsplugin.assmatplugin.version-site.socle: Site version socle
+
+jcmsplugin.assmatplugin.formulaire.contact.ram: id de la data du formulaire de contact RAM
 
 
 #AnnuairePH
