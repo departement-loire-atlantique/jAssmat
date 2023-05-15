@@ -153,51 +153,60 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 %>
 
       <!-- BLOC SAISIE -->
-      <div class="semaine1">
-      <div class="blocSaisie semaine">
-        
         <jalios:select>
 	        <jalios:if predicate='<%= choixAccueilOccasionnel %>'>
-	          <p><trsb:glp key="ASS-DEC-AOCC-INTRO-HTML" /></p>	    
-	          <textarea id="precisionsPlanning" name="precision" rows="4" cols="" placeholder='<trsb:glp attribute="true" key="ASS-DEC-AOCC-PRE-HTML" />' ><%= precision %></textarea>
-	        </jalios:if>
+	            <% uuid = UUID.randomUUID().toString(); %>
+		        <jalios:buffer name="titleTextAreaOccasionel">
+		            <trsb:glp attribute="true" key="ASS-DEC-AOCC-PRE-HTML" />
+		        </jalios:buffer>
+		        <p role="heading" aria-level="2"><trsb:glp key="ASS-DEC-AOCC-INTRO-HTML" /></p>
+		        <div class="ds44-form__container">
+		            <div class="ds44-posRel">
+		                <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp attribute="true" key="ASS-DEC-AOCC-PRE-HTML" /></span></span></label>
+		                <textarea rows="4" cols="1" id="form-element-<%= uuid %>" name="form-element-<%= uuid %>" class="ds44-inpStd" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", titleTextAreaOccasionel) %>" required ></textarea>
+		            </div>
+		        </div>
+		    </jalios:if>
 	        <jalios:default>
-	          <p><trsb:glp key="ASS-DEC-PIRR-INTRO-HTML" /></p>      
-            <textarea id="precisionsPlanning" name="precision" rows="4" cols="" placeholder='<trsb:glp attribute="true" key="ASS-DEC-PIRR-PRE-HTML" />' ><%= precision %></textarea>         
-	        </jalios:default>
+                <% uuid = UUID.randomUUID().toString(); %>
+                <jalios:buffer name="titleTextAreaOccasionel">
+                    <trsb:glp attribute="true" key="ASS-DEC-PIRR-INTRO-HTML" />
+                </jalios:buffer>
+                <p role="heading" aria-level="2"><trsb:glp key="ASS-DEC-PIRR-INTRO-HTML" /></p>
+                <div class="ds44-form__container">
+                    <div class="ds44-posRel">
+                        <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp attribute="true" key="ASS-DEC-PIRR-PRE-HTML" /></span></span></label>
+                        <textarea rows="4" cols="1" id="form-element-<%= uuid %>" name="form-element-<%= uuid %>" class="ds44-inpStd" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", titleTextAreaOccasionel) %>" required ></textarea>
+                    </div>
+                </div>
+            </jalios:default>
         </jalios:select>
-      </div>
-      </div>
+        
+        
       <!-- FIN BLOC SAISIE -->
 
 
-     <p class="submit prev">
-         <label for="submitprev"> <input type="submit" id="submitprev"
-             name="opPrevious"
-             value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-PRE-HTML" ></trsb:glp>"
-             class="submitButton"> <span class="input-box"
-             style="background-color: #aec900"><span
-                 class="spr-recherche-ok"></span></span>
-         </label> <input type="hidden" name="noSendRedirect" value="true"> 
- 
-     </p> 
-    
- 
-      <p class="submit enregistrer" style='visibility: hidden'>
-        <label for="create"> <input type="submit" id="create" name="opCreate" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML" ></trsb:glp>" class="submitButton">
-          <span class="input-box" style="background-color: #aec900"><span class="spr-recherche-ok"></span></span>
-        </label> <input type="hidden" name="noSendRedirect" value="true"> <input type="hidden" name="id" value="c_5065">
-      </p>
-    
-      <p class="submit">
-        <label for="submit"> <input type="submit" id="submit"
-          name="opFinish" value="<trsb:glp attribute="true" key="ASS-DEC-GEN-ETP-SUI-HTML" ></trsb:glp>" class="submitButton">
-          <span class="input-box" style="background-color: #aec900"><span
-            class="spr-recherche-ok"></span></span>
-        </label> <input type="hidden" name="noSendRedirect" value="true">
-        <input type="hidden" name="id" value="c_5065">
-      
-      </p>
+     <div class="ds44-flex ds44-fsb">
+          <div class="ds44-form__container">
+              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opPrevious" title='<%= glp("jcmsplugin.assmatplugin.label.etape.prev", new String[]{"3/4", glp("jcmsplugin.assmatplugin.declaration.modalites")}) %>'><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></span></button>
+              <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+              <input type="hidden" name="id" value="c_5065" data-technical-field>
+          </div>
+     
+          <jalios:if predicate="<%= !isModif %>">
+            <div class="ds44-form__container">
+                <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opCreate" title='<trsb:glp attribute="true" key="ASS-DEC-GEN-ENR-HTML"></trsb:glp>'><trsb:glp key="ASS-DEC-GEN-ENR-HTML"></trsb:glp></button>
+                <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+                <input type="hidden" name="id" value="c_5065" data-technical-field>
+            </div>  
+          </jalios:if>
+          
+          <div class="ds44-form__container">
+              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"finale", glp("jcmsplugin.assmatplugin.declaration.enregistrement")}) %>'><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+              <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
+              <input type="hidden" name="id" value="c_5065" data-technical-field>
+          </div>
+      </div>
 
 	<%}%>
 <!-- FIN -->
