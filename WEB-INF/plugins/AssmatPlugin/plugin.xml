@@ -242,6 +242,8 @@
 
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationHandler" />
     <authenticationhandler class="fr.cg44.plugin.assmat.handler.LoginAuthenticationDossierHandler" />
+    
+    <policyfilter   class="fr.cg44.plugin.assmat.alert.AssmatAlert" />
 		
   </plugincomponents>
     
@@ -269,7 +271,9 @@
     <file path="jsp/target/smsBoard.jsp" include="ADMIN_REPORTING|ADMIN_REPORTING_SUBMENU"/>
     <file path="jsp/target/profilAMLink.jsp" include="MEMBER_PROFILE_MAINTAB"/>
     <file path="jsp/target/sendMailAssmatLink.jsp" include="ADMIN_OPERATION|ADMIN_OPERATION_SUBMENU"/>
-    <file path="jsp/target/expireImportLink.jsp" include="ADMIN_OPERATION|ADMIN_OPERATION_SUBMENU"/>  
+    <file path="jsp/target/expireImportLink.jsp" include="ADMIN_OPERATION|ADMIN_OPERATION_SUBMENU"/> 
+    <file path="jsp/target/connexionLink.jsp" include="DISPLAY_AFTER_HEADER_LIST_CAT" />
+    <file path="jsp/target/connexionMenu.jsp" include="DISPLAY_BEFORE_BLOC_MENU" />
   </public-files>
   
   <webapp-files>

@@ -22,7 +22,7 @@ String idPortailRAM = channel.getProperty("plugin.assmatplugin.portal.ram.id");
 <jalios:if predicate="<%=Util.notEmpty(setPlace) %>">
 <div class="blockMonProfilRAM">
 <h2>Mon profil</h2>
-<jalios:foreach name="place" type="Place" collection="<%=setPlace %>">
+<jalios:foreach name="place" type="FicheLieu" collection="<%=setPlace %>">
 
 
 <jalios:if predicate="<%=Util.notEmpty(place.getTitle()) %>">

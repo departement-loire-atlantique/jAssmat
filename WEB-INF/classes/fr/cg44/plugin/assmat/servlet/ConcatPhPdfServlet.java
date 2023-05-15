@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import com.jalios.jcms.JcmsUtil;
 import com.jalios.jcms.Publication;
 import com.jalios.util.Util;
 
@@ -80,12 +81,13 @@ public class ConcatPhPdfServlet extends HttpServlet {
           TreeMap<AssmatSearch,PointAssmat> assmatPoints = (TreeMap<AssmatSearch,PointAssmat>) session.getAttribute("assmatPoints");        
           GeneratePdf.traitementStructureSet(assmatPoints, baosContent, false, request);
           // Panier
-        } else if (type.equals("list")) {
-          Set<Publication> mapCommuneEtablissement = (Set<Publication>) request.getSession().getAttribute("listeProfilAMSelection");
-          GeneratePdf.traitementStructureSet(mapCommuneEtablissement, baosContent, true);
+        } else if (type.equals("list")) {          
+          Set<String> panier = (Set<String>) session.getAttribute("panier");          
+          Set<Publication>    panierSet   = JcmsUtil.idCollectionToDataTreeSet(panier, Publication.class); 
+          GeneratePdf.traitementStructureSet(panierSet, baosContent, true);
 
         } else {
-          LOGGER.warn("Structure PH : type de rapport PDF '" + type + "' non prevu.");
+          LOGGER.warn("Assmat : type de rapport PDF '" + type + "' non prevu.");
         }
 
         // setting the content type

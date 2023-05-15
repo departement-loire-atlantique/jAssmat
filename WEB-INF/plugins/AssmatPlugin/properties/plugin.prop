@@ -205,3 +205,7 @@ media.data-template.card.Place: /plugins/AssmatPlugin/jsp/cards/doPlaceCard.jsp
 # cartes
 jcmsplugin.socle.recherche.map.icon: [{"dispo":"https://design.loire-atlantique.fr/assets/images/apps/assmat/icones/png/icon-dispo_30x30.png", "time":"https://design.loire-atlantique.fr/assets/images/apps/assmat/icones/png/icon-time_30x30.png", "visible":"https://design.loire-atlantique.fr/assets/images/apps/assmat/icones/png/icon-visible_30x30.png"}]
 
+$jcmsplugin.socle.fichelieu.contact-form.cat: rp1_62675
+
+$jcmsplugin.assmat.connexion.cat: asm_268823
+$jcmsplugin.assmat.connexion.menu.cat : cra_60268

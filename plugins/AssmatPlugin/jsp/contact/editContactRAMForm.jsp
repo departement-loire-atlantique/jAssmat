@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="trsb" uri="/WEB-INF/plugins/AssmatPlugin/TagTRSBglp.tld"%>
 <%
-%><%@ include file='/jcore/doInitPage.jsp' %>
-<% String[] formTitles = JcmsUtil.getLanguageArray(channel.getTypeEntry(FormulaireDeContactRAM.class).getLabelMap()); %>
+%><%@ include file='/jcore/doInitPage.jsp' %><%
+%><%@ include file="/jcore/portal/doPortletParams.jspf" %><%
+%><% String[] formTitles = JcmsUtil.getLanguageArray(channel.getTypeEntry(FormulaireDeContactRAM.class).getLabelMap()); %>
 <jsp:useBean id='formHandler' scope='page' class='generated.EditFormulaireDeContactRAMHandler'>
   <jsp:setProperty name='formHandler' property='request' value='<%= request %>'/>
   <jsp:setProperty name='formHandler' property='response' value='<%= response %>'/>
@@ -16,7 +17,7 @@
     return;
   }
 
-  boolean hasParam = Util.notEmpty(request.getParameter("mailRAM"));
+  boolean hasParam = Util.notEmpty(request.getParameter("idRAM"));
   
   Publication currentPub = (Publication) request.getAttribute(PortalManager.PORTAL_PUBLICATION);
   String formAction = "plugins/SoclePlugin/jsp/forms/doFormDecodeParams.jsp";
@@ -39,7 +40,16 @@
         
     <jsp:include page="doEditFormulaireDeContactRAM.jsp" />
     
-    <input type='hidden' name='redirect' value='<%= currentPub.getDisplayUrl(userLocale) %>' data-technical-field />
+    <jalios:select>
+	    <jalios:if predicate="<%= Util.notEmpty(currentPub) %>">
+	        <input type='hidden' name='redirect' value='<%= currentPub.getDisplayUrl(userLocale) %>' data-technical-field />
+	    </jalios:if>
+	    
+	    <jalios:default>
+	       <input type='hidden' name='redirect' value='<%= currentCategory.getDisplayUrl(userLocale)  %>' data-technical-field />
+	    </jalios:default>  
+    </jalios:select>
+    
     <input type='hidden' name='ws' value='<%= formHandler.getWorkspace().getId() %>' data-technical-field />
     <input type='hidden' name='opCreate' value='<%= glp("ui.com.btn.submit") %>' data-technical-field />
     <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>

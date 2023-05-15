@@ -10,7 +10,7 @@
 Set<String>         panier      = (Set<String>) session.getAttribute("panier");
 PortletJsp          obj         = (PortletJsp)portlet; 
 Set<ProfilASSMAT>    panierSet   = JcmsUtil.idCollectionToDataTreeSet(panier, ProfilASSMAT.class); 
-request.getSession().setAttribute("listeProfilAMSelection", panierSet);
+
 String              urlAction   = ServletUtil.getResourcePath(request) + "?id=" + portlet.getId();
 ProfilManager profilMgr = ProfilManager.getInstance();
 
@@ -30,10 +30,10 @@ if(Util.notEmpty(panierSet)){
             <jalios:select>
             <jalios:if predicate="<%= Util.notEmpty(panierSet) && panierSet.size() > 0 %>">
             <div class="grid-12-medium-1 grid-12-small-1" >
-                <article class="col-7 ds44-contenuDossier">
-                    <h2 class="h4-like ds44-mb2"><%= glp("jcmsplugin.assmatplugin.favoris.selection", panierSet.size()) %></h2>
+                <article class="col-7" data-cart-manage>
+                    <h2 data-cart-title class="h4-like ds44-mb2"><%= glp("jcmsplugin.assmatplugin.favoris.selection", panierSet.size()) %></h2>
                         <div class="ds44-txtRight">
-	                        <button type="submit" class="modal confirm" >
+	                        <button data-cart-remove-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?removeAll=true" >
 	                            <i class="icon icon-cross" aria-hidden="true"></i>
 	                            <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.favoris.tout-retirer") %></span>
 	                        </button>                        
@@ -57,7 +57,7 @@ if(Util.notEmpty(panierSet)){
 	                           <jalios:foreach name="itProfilAM" type="ProfilASSMAT" collection="<%= panierSet %>" >	 
 	                        
 	                        
-	                           <tr>
+	                           <tr data-cart-element>
 	                               <td>
 	                        
 	                               <jalios:if predicate="<%= Util.notEmpty(itProfilAM) %>">
@@ -92,7 +92,7 @@ if(Util.notEmpty(panierSet)){
 	                               
 	                               
 	                               <td>
-	                                  <button><i class="icon icon-cross" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.favoris.retirer", itProfilAM.getAuthor().getFullName()) %></span></button>
+	                                  <button data-cart-remove-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= itProfilAM.getId() %>"><i class="icon icon-cross" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.favoris.retirer", itProfilAM.getAuthor().getFullName()) %></span></button>
 	                               </td>
 	                               
 	                               

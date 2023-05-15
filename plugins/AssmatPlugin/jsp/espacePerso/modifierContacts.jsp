@@ -118,7 +118,7 @@ String uuid = UUID.randomUUID().toString();
     <div class="ds44-form__container">
 	   <div class="ds44-posRel">
 	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %></span></span></label>
-	      <input type="text" id="form-element-<%= uuid %>" name="creneauAppels" class="ds44-inpStd" title='<%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %>'  />
+	      <input type="text" id="form-element-<%= uuid %>" name="creneauAppels" value='<%= creneauAppels %>' class="ds44-inpStd" title='<%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %>'  />
 	      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("plugin.assmatplugin.profilassmat.form.creneaux")) %></span></button>
 	   </div>
 	</div>   

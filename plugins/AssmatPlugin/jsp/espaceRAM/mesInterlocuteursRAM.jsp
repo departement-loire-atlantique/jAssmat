@@ -26,7 +26,7 @@ Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.ge
 	Category categUA = channel.getCategory(channel.getProperty("plugin.assmatplugin.categorie.unite.agrement.id"));
 	
 	//On recupere la premiere fiche lieu (appartenance du membre)
-	Place firstPlace = Util.getFirst(setPlace);
+	FicheLieu firstPlace = Util.getFirst(setPlace);
 	
 	//On créer un set de commune
 	List<City> cityList = new ArrayList<City>();
@@ -35,7 +35,7 @@ Set<FicheLieu> setPlace = (Set<FicheLieu>) JcmsUtil.applyDataSelector(channel.ge
 	
 	//On récupere les communes "autres"
 	
-	City[] tabCity = firstPlace.getCities();
+	City[] tabCity = firstPlace.getCommunes();
 	
 	if(Util.notEmpty(tabCity)) {
 	  cityList.addAll(Arrays.asList(tabCity));
