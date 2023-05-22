@@ -2,18 +2,30 @@ package fr.cg44.plugin.assmat.datacontroller;
 
 import fr.cg44.plugin.assmat.AssmatUtil;
 import generated.FormulaireDeContactDuneAM;
-import generated.FormulaireDeContactRAM;
-
 import java.util.Map;
 
 import com.jalios.jcms.BasicDataController;
-import com.jalios.jcms.Category;
 import com.jalios.jcms.Data;
 import com.jalios.jcms.Member;
 import com.jalios.util.Util;
 
 public class FormContactDuneAMDataController extends BasicDataController {
 
+  
+    @Override
+    public void beforeWrite(Data data, int op, Member mbr, Map map) {
+      // A la création du formulaire pour contacter une assmat 
+      // Ajoute l'email de l'assmat dans le formulaire
+      if(op  == OP_CREATE){
+        FormulaireDeContactDuneAM pub = (FormulaireDeContactDuneAM) data;
+        Member mbrRam = channel.getMember(pub.getMemberId());
+        if(Util.notEmpty(mbrRam)) {
+          pub.setMailam(mbrRam.getEmail());
+        }
+      }
+    }
+  
+    
 	  @Override
 	  public void afterWrite(Data data, int op, Member mbr, Map map) {
 		  // A la création du formulaire pour contacter une assmat 

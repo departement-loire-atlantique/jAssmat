@@ -11,7 +11,7 @@
   <jsp:setProperty name='formHandler' property='title' value='<%= formTitles %>'/>
 </jsp:useBean>
 <%
-  if (formHandler.validate()) {
+  if ( formHandler.validate()) {
     jcmsContext.addMsgSession(new JcmsMessage(JcmsMessage.Level.INFO, "Votre message a bien été envoyé"));
     return;
   }
@@ -19,7 +19,7 @@
   boolean hasParam = Util.notEmpty(request.getParameter("mailRAM"));
   
   Publication currentPub = (Publication) request.getAttribute(PortalManager.PORTAL_PUBLICATION);
-  String formAction = "plugins/SoclePlugin/jsp/forms/doFormDecodeParams.jsp";
+  String idMam = getUntrustedStringParameter("idMAM", "");
 %> 
 
 <jalios:if predicate='<%= formHandler.isOneSubmit() && formHandler.isSubmitted() %>'>
@@ -28,10 +28,12 @@
 
 <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
+<jalios:if predicate="<%= Util.notEmpty(idMam) %>">
+
 <% request.setAttribute("titreFormulaire", "Formulaire de contact"); %>
 <%@ include file='/plugins/SoclePlugin/jsp/forms/doFormHeader.jspf' %>
 
-<form action='<%= formAction %>' method='post' name='editForm' accept-charset="UTF-8"  enctype="multipart/form-data">
+<form data-no-encoding="true" action='<%= ServletUtil.getResourcePath(request) %>' method='post' name='editForm' accept-charset="UTF-8"  enctype="multipart/form-data">
 
     <%
     request.setAttribute("formHandler", formHandler);
@@ -49,3 +51,5 @@
 
 
 <%@ include file='/plugins/SoclePlugin/jsp/forms/doFormFooter.jspf' %>
+
+</jalios:if>
