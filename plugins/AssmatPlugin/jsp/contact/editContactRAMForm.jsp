@@ -20,7 +20,7 @@
   boolean hasParam = Util.notEmpty(request.getParameter("idRAM"));
   
   Publication currentPub = (Publication) request.getAttribute(PortalManager.PORTAL_PUBLICATION);
-  String formAction = "plugins/SoclePlugin/jsp/forms/doFormDecodeParams.jsp";
+  Publication pubRam = getPublicationParameter("idRAM");
 %> 
 
 <jalios:if predicate='<%= formHandler.isOneSubmit() && formHandler.isSubmitted() %>'>
@@ -29,10 +29,14 @@
 
 <%@ include file='/plugins/SoclePlugin/jsp/doMessageBoxCustom.jspf' %>
 
+<jalios:if predicate="<%= Util.notEmpty(pubRam) %>">
+
+
+
 <% request.setAttribute("titreFormulaire", "Formulaire de contact"); %>
 <%@ include file='/plugins/SoclePlugin/jsp/forms/doFormHeader.jspf' %>
 
-<form action='<%= formAction %>' method='post' name='editForm' accept-charset="UTF-8"  enctype="multipart/form-data">
+<form data-no-encoding="true" action='<%= ServletUtil.getResourcePath(request) %>' method='post' name='editForm' accept-charset="UTF-8"  enctype="multipart/form-data">
 
     <%
     request.setAttribute("formHandler", formHandler);
@@ -59,3 +63,5 @@
 
 
 <%@ include file='/plugins/SoclePlugin/jsp/forms/doFormFooter.jspf' %>
+
+</jalios:if>
