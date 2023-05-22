@@ -1,11 +1,5 @@
 package fr.cg44.plugin.assmat.handler;
 
-import io.swagger.client.ApiException;
-import io.swagger.client.model.AccueilDTO;
-import io.swagger.client.model.CreneauDTO;
-import io.swagger.client.model.DeclarationAccueilDTO;
-import io.swagger.client.model.SemaineTypeDTO;
-
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -21,6 +15,8 @@ import org.joda.time.DateTime;
 import org.joda.time.IllegalFieldValueException;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.jalios.jcms.Channel;
 import com.jalios.jcms.Data;
@@ -35,9 +31,14 @@ import com.jalios.util.Util;
 import fr.cg44.plugin.assmat.AssmatUtil;
 import fr.cg44.plugin.assmat.managers.ProfilManager;
 import fr.cg44.plugin.assmat.util.DemarcheUtil;
-
+import fr.cg44.plugin.assmat.util.PlanningUtil;
 import fr.trsb.cd44.solis.manager.SolisManager;
 import generated.ProfilASSMAT;
+import io.swagger.client.ApiException;
+import io.swagger.client.model.AccueilDTO;
+import io.swagger.client.model.CreneauDTO;
+import io.swagger.client.model.DeclarationAccueilDTO;
+import io.swagger.client.model.SemaineTypeDTO;
 
 public class DeclarerAccueilAssmatHandler extends EditDataHandler {
 
@@ -1372,7 +1373,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
       checkModalites(listError);
     } else if(formStep == PLANNING) {
       // Vérifie planning variable ou régulier suivant le choix de l'assmat dans les modalités
-      checkPlanning(listError);     
+      checkPlanning(listError);
     }
     
     if(Util.notEmpty(listError)){
@@ -1390,15 +1391,19 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
 
 
   private void checkPlanning(List<JcmsMessage> listError) {
+    // Mettre à jour les champs depuis la requête. Nécessaire faute au nouveau format des données envoyées par le formulaire
+    JSONArray planningDataArray = PlanningUtil.convertRequestFormToHandlerVars(request);
+    if (Util.notEmpty(planningDataArray)) updatePlanningDataFromJson(planningDataArray);
+    
     // Planning occasionnel
-    if(declaration.getAccueilOccasionnel() != null && declaration.getAccueilOccasionnel()){    
+    if(declaration.getAccueilOccasionnel() != null && declaration.getAccueilOccasionnel()){
       checkPrecision(listError, AssmatUtil.getMessage("ASS-DEC-AOCC-PRE-OBL-HTML"), AssmatUtil.getMessage("ASS-DEC-AOCC-PRE-ERR-HTML"));
     // Planning variable sans semaines types
     }else if(declaration.getPlanningSemainesTypes() != null && !declaration.getPlanningSemainesTypes()){
       checkPrecision(listError, AssmatUtil.getMessage("ASS-DEC-PIRR-PRE-OBL-HTML"), AssmatUtil.getMessage("ASS-DEC-PIRR-PRE-ERR-HTML"));
     // Planning régulier ou planning variable avec semaines types
     }else {
-      // Précisions > 50 caract
+      // Précisions > 250 caract
       if(Util.notEmpty(precision)){
         if(precision.length()> 250){
           listError.add(new JcmsMessage(JcmsMessage.Level.WARN, AssmatUtil.getMessage("ASS-DEC-PL-Z2-PRE-AUTR-CAR-HTML")));
@@ -1409,6 +1414,22 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
     }
   }
   
+  /**
+   * Depuis un tableau JSON, mettre à jour les données de planning
+   * @param planningDataArray
+   */
+  private void updatePlanningDataFromJson(JSONArray planningDataArray) {
+    for (int index = 0; index < planningDataArray.length(); index++) {
+      try {
+        JSONObject itObject = planningDataArray.getJSONObject(index);
+        Field itField = this.getClass().getDeclaredField(itObject.getString(PlanningUtil.fieldName));
+        itField.set(this, itObject.getString(PlanningUtil.fieldValue));
+      } catch (Exception e) {
+        logger.error(e);
+      }
+    }
+  }
+
   private void checkPrecision(List<JcmsMessage> listError, String errorObl, String ErrorLgt){
     if(Util.isEmpty(precision)) {
       listError.add(new JcmsMessage(JcmsMessage.Level.WARN, errorObl));
@@ -1428,7 +1449,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
       for(int semaineCpt = 1 ; semaineCpt <= 10 ; semaineCpt++){    
         String itLibelle;
         try {
-          itLibelle = (String) ReflectUtil.invokeMethod(this, "getLibelle" + semaineCpt);           
+          itLibelle = (String) ReflectUtil.invokeMethod(this, "getLibelle" + semaineCpt);
           if(Util.notEmpty(itLibelle)){
             if(itLibelle.length() > 20){
               valideLibelle = false;

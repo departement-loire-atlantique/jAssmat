@@ -176,7 +176,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
                 <div class="ds44-form__container">
                     <div class="ds44-posRel">
                         <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp attribute="true" key="ASS-DEC-PIRR-PRE-HTML" /></span></span></label>
-                        <textarea rows="4" cols="1" id="form-element-<%= uuid %>" name="form-element-<%= uuid %>" class="ds44-inpStd" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", titleTextAreaOccasionel) %>" required ></textarea>
+                        <textarea rows="4" cols="1" id="form-element-<%= uuid %>" name="precisionsPlanning" class="ds44-inpStd" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", titleTextAreaOccasionel) %>" required ></textarea>
                     </div>
                 </div>
             </jalios:default>

@@ -171,26 +171,26 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 	    <div id="form-element-<%= uuid %>" data-name="form-element-<%= uuid %>" class="ds44-form__checkbox_container ds44-form__container"  data-required="true">
 		    <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.assmatplugin.planning.joursAccueil") %></p>
 		    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-		        <input type="checkbox" id="name-check-form-element-<%= uuid %>-monday" name="form-element-<%= uuid %>" value="monday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-monday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-monday"><%= glp("plugin.assmatplugin.day.0") %></label>
-		    </div>
-		    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-		        <input type="checkbox" id="name-check-form-element-<%= uuid %>-tuesday" name="form-element-<%= uuid %>" value="tuesday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-tuesday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-tuesday"><%= glp("plugin.assmatplugin.day.1") %></label>
-		    </div>
-		    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-		        <input type="checkbox" id="name-check-form-element-<%= uuid %>-wednesday" name="form-element-<%= uuid %>" value="wednesday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-wednesday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-wednesday"><%= glp("plugin.assmatplugin.day.2") %></label>
-		    </div>
-		    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-		        <input type="checkbox" id="name-check-form-element-<%= uuid %>-thursday" name="form-element-<%= uuid %>" value="thursday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-thursday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-thursday"><%= glp("plugin.assmatplugin.day.3") %></label>
-		    </div>
-		    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-		        <input type="checkbox" id="name-check-form-element-<%= uuid %>-friday" name="form-element-<%= uuid %>" value="friday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-friday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-friday"><%= glp("plugin.assmatplugin.day.4") %></label>
-		    </div>
-		    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-		        <input type="checkbox" id="name-check-form-element-<%= uuid %>-saturday" name="form-element-<%= uuid %>" value="saturday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-saturday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-saturday"><%= glp("plugin.assmatplugin.day.5") %></label>
-		    </div>
-		    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-		        <input type="checkbox" id="name-check-form-element-<%= uuid %>-sunday" name="form-element-<%= uuid %>" value="sunday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-sunday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-sunday"><%= glp("plugin.assmatplugin.day.6") %></label>
-		    </div>
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-monday" name="regulLundi" value="monday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-monday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-monday"><%= glp("plugin.assmatplugin.day.0") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-tuesday" name="regulMardi" value="tuesday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-tuesday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-tuesday"><%= glp("plugin.assmatplugin.day.1") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-wednesday" name="regulMercredi" value="wednesday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-wednesday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-wednesday"><%= glp("plugin.assmatplugin.day.2") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-thursday" name="regulJeudi" value="thursday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-thursday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-thursday"><%= glp("plugin.assmatplugin.day.3") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-friday" name="regulVendredi" value="friday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-friday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-friday"><%= glp("plugin.assmatplugin.day.4") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-saturday" name="regulSamedi" value="saturday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-saturday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-saturday"><%= glp("plugin.assmatplugin.day.5") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-sunday" name="regulDimanche" value="sunday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-sunday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-sunday"><%= glp("plugin.assmatplugin.day.6") %></label>
+            </div>
 		</div>
 	</div>
     
@@ -392,24 +392,27 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
 	                <input type="checkbox" id="name-check-form-element-<%= uuid %>-monday" name="form-element-<%= uuid %>" value="monday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-monday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-monday"><%= glp("plugin.assmatplugin.day.0") %></label>
 	            </div>
-	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-	                <input type="checkbox" id="name-check-form-element-<%= uuid %>-tuesday" name="form-element-<%= uuid %>" value="tuesday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-tuesday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-tuesday"><%= glp("plugin.assmatplugin.day.1") %></label>
-	            </div>
-	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-	                <input type="checkbox" id="name-check-form-element-<%= uuid %>-wednesday" name="form-element-<%= uuid %>" value="wednesday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-wednesday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-wednesday"><%= glp("plugin.assmatplugin.day.2") %></label>
-	            </div>
-	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-	                <input type="checkbox" id="name-check-form-element-<%= uuid %>-thursday" name="form-element-<%= uuid %>" value="thursday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-thursday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-thursday"><%= glp("plugin.assmatplugin.day.3") %></label>
-	            </div>
-	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-	                <input type="checkbox" id="name-check-form-element-<%= uuid %>-friday" name="form-element-<%= uuid %>" value="friday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-friday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-friday"><%= glp("plugin.assmatplugin.day.4") %></label>
-	            </div>
-	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-	                <input type="checkbox" id="name-check-form-element-<%= uuid %>-saturday" name="form-element-<%= uuid %>" value="saturday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-saturday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-saturday"><%= glp("plugin.assmatplugin.day.5") %></label>
-	            </div>
-	            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-	                <input type="checkbox" id="name-check-form-element-<%= uuid %>-sunday" name="form-element-<%= uuid %>" value="sunday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-sunday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-sunday"><%= glp("plugin.assmatplugin.day.6") %></label>
-	            </div>
+	        <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-monday" name="regulLundiVac" value="monday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-monday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-monday"><%= glp("plugin.assmatplugin.day.0") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-tuesday" name="regulMardiVac" value="tuesday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-tuesday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-tuesday"><%= glp("plugin.assmatplugin.day.1") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-wednesday" name="regulMercrediVac" value="wednesday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-wednesday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-wednesday"><%= glp("plugin.assmatplugin.day.2") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-thursday" name="regulJeudiVac" value="thursday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-thursday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-thursday"><%= glp("plugin.assmatplugin.day.3") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-friday" name="regulVendrediVac" value="friday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-friday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-friday"><%= glp("plugin.assmatplugin.day.4") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-saturday" name="regulSamediVac" value="saturday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-saturday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-saturday"><%= glp("plugin.assmatplugin.day.5") %></label>
+            </div>
+            <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-sunday" name="regulDimancheVac" value="sunday" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label for="name-check-form-element-<%= uuid %>-sunday" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-sunday"><%= glp("plugin.assmatplugin.day.6") %></label>
+            </div>
 	        </div>
 	    </div>
 		    
@@ -572,7 +575,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 <div class="ds44-form__container">
     <div class="ds44-posRel">
         <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp attribute="true" key="ASS-DEC-PL-Z2-PRE-AUTR-HTML"></trsb:glp></span></span></label>
-        <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="form-element-<%= uuid %>" class="ds44-inpStd" title="<%= glp("jcmsplugin.assmatplugin.planning.precisions")%>"><%= precision %></textarea>
+        <textarea rows="5" cols="1" id="form-element-<%= uuid %>" name="precision" class="ds44-inpStd" title="<%= glp("jcmsplugin.assmatplugin.planning.precisions")%>"><%= precision %></textarea>
     </div>
 </div>
 
