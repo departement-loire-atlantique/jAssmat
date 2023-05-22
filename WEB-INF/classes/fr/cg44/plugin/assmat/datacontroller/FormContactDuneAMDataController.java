@@ -18,9 +18,9 @@ public class FormContactDuneAMDataController extends BasicDataController {
       // Ajoute l'email de l'assmat dans le formulaire
       if(op  == OP_CREATE){
         FormulaireDeContactDuneAM pub = (FormulaireDeContactDuneAM) data;
-        Member mbrRam = channel.getMember(pub.getMemberId());
-        if(Util.notEmpty(mbrRam)) {
-          pub.setMailam(mbrRam.getEmail());
+        Member mbrAssmat = channel.getMember(pub.getMemberId());
+        if(Util.notEmpty(mbrAssmat)) {
+          pub.setMailam(mbrAssmat.getEmail());
         }
       }
     }
