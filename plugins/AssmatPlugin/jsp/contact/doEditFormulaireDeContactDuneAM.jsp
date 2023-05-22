@@ -12,9 +12,8 @@
 String id = getUntrustedStringParameter("idMAM", "");
 String mbrRamId = "";
 Member mbrRam = channel.getMember(id);
-String mailAMValues ="";
+
 if(Util.notEmpty(mbrRam)){
-  mailAMValues = mbrRam.getEmail();
   mbrRamId = mbrRam.getId();
  }
 %>
@@ -31,7 +30,7 @@ if(Util.notEmpty(mbrRam)){
             </label>
             <input type="text" id="form-element-assmat" name="assmat"
                 class="ds44-inpStd" title="<%= glp("jcmsplugin.assmatplugin.form.lbl.assistantematernelle.prefix", glp("jcmsplugin.socle.facette.champ-obligatoire.title", assmatLabel)) %>"
-                readonly value="<%= mbrRam %>">
+                disabled value="<%= mbrRam %>">
         </div>
     </div>
 </div>
@@ -140,7 +139,6 @@ if(Util.notEmpty(mbrRam)){
 
 
 <input type='hidden' name='memberId' value='<%= mbrRamId %>' data-technical-field />
-<input type='hidden' name='mailam' value='<%= mailAMValues %>' data-technical-field />
 
 
 
