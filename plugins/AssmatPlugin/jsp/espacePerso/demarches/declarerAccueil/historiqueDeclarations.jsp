@@ -74,35 +74,35 @@ Set<AccueilDTO> declarationBrouillonList = null;
 Set<AccueilDTO> declarationEnCoursList = null;
 Set<AccueilDTO> declarationHistoriqueList = null;
 boolean isSwaggerOk = true;
-try {	
-	
-	//liste des declaration à l'état brouillon
-	declarationBrouillonList = new TreeSet<AccueilDTO>(new DeclarationAccueilDateModifComparator());
-	declarationBrouillonList.addAll(DemarcheUtil.getListAccueils(profil.getNum_agrement(), "brouillon"));
-	
-	//liste des declaration à l'état en cours
-	declarationEnCoursList = new TreeSet<AccueilDTO>(new DeclarationAccueilDateModifComparator());
-	declarationEnCoursList.addAll(DemarcheUtil.getListAccueils(profil.getNum_agrement(), "en cours"));
-	
-	//Liste des declaration sur un an pour l'historique
-	declarationHistoriqueList = new TreeSet<AccueilDTO>(new DeclarationAccueilDateFinComparator());
-	declarationHistoriqueList.addAll(DemarcheUtil.getListAccueils(profil.getNum_agrement(), "historique"));
-	Set<AccueilDTO> declarationHistoriqueRemoveList = new TreeSet<AccueilDTO>(new DeclarationAccueilDateFinComparator());
-	// les accueils dont la date de fin d’accueil date de moins d’un an et uniquement celles saisies via le site internet
-	if(Util.notEmpty(declarationHistoriqueList)) {
-	  
-	  GregorianCalendar calAn = new GregorianCalendar(); // Création d'un nouveau calendrier
-	  calAn.setTime(new Date()); // Initialisation du calendrier avec la date du jour
-	  calAn.add(GregorianCalendar.YEAR, -1); // On retranche 1 année
-	  
-		for(AccueilDTO itAccueil : declarationHistoriqueList) {
-		  if(itAccueil.getDateFinAccueil().toDate().before(calAn.getTime())) {
-		    declarationHistoriqueRemoveList.add(itAccueil);
-		  }
-		}
-		declarationHistoriqueList.removeAll(declarationHistoriqueRemoveList);
+try {   
+    
+    //liste des declaration à l'état brouillon
+    declarationBrouillonList = new TreeSet<AccueilDTO>(new DeclarationAccueilDateModifComparator());
+    declarationBrouillonList.addAll(DemarcheUtil.getListAccueils(profil.getNum_agrement(), "brouillon"));
+    
+    //liste des declaration à l'état en cours
+    declarationEnCoursList = new TreeSet<AccueilDTO>(new DeclarationAccueilDateModifComparator());
+    declarationEnCoursList.addAll(DemarcheUtil.getListAccueils(profil.getNum_agrement(), "en cours"));
+    
+    //Liste des declaration sur un an pour l'historique
+    declarationHistoriqueList = new TreeSet<AccueilDTO>(new DeclarationAccueilDateFinComparator());
+    declarationHistoriqueList.addAll(DemarcheUtil.getListAccueils(profil.getNum_agrement(), "historique"));
+    Set<AccueilDTO> declarationHistoriqueRemoveList = new TreeSet<AccueilDTO>(new DeclarationAccueilDateFinComparator());
+    // les accueils dont la date de fin d’accueil date de moins d’un an et uniquement celles saisies via le site internet
+    if(Util.notEmpty(declarationHistoriqueList)) {
+      
+      GregorianCalendar calAn = new GregorianCalendar(); // Création d'un nouveau calendrier
+      calAn.setTime(new Date()); // Initialisation du calendrier avec la date du jour
+      calAn.add(GregorianCalendar.YEAR, -1); // On retranche 1 année
+      
+        for(AccueilDTO itAccueil : declarationHistoriqueList) {
+          if(itAccueil.getDateFinAccueil().toDate().before(calAn.getTime())) {
+            declarationHistoriqueRemoveList.add(itAccueil);
+          }
+        }
+        declarationHistoriqueList.removeAll(declarationHistoriqueRemoveList);
   }
-	
+    
 } catch(ApiException e) {
   logger.warn("Web service swagger indisponible", e);
   isSwaggerOk = false;
@@ -111,53 +111,39 @@ try {
 %>
 
 
-<div class="headstall container-fluid demarche">
-  
-  <!--  Titre de la page -->
-  <div class="row-fluid">    
-    <div class="span12 label">
-      <div class="row-fluid title">
-        <div class="headerEspacePerso">
-					<h1><trsb:glp key="ASS-MACC-TITRE-HTML"/></h1>				
-				</div>
-				<div class="clear"></div>
-      </div>
-    </div>   
-  </div> 
-  <!-- FIN titre de la page -->
+
   
   
   <!-- Corps de la page -->
-  <div class="row-fluid">
-	  <div class="span12 label">
-	  
-	  
-	     <!-- Texte introductif  -->
-	     <p style="margin-top: 35px;"><trsb:glp key="ASS-MACC-INTRO-HTML"/></p>
-	     
-	     <jalios:if predicate="<%= isGroupAuthorized && isSwaggerOk %>">
-	     
-	       <%-- 2.3.2.2  Bloc des démarches enregistrées en brouillon --%>  
-			   <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsBrouillon.jspf'%>
-			   
-			   <%-- 2.3.2.3 Bloc des accueils en cours --%>
-			   <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsEnCours.jspf'%>
-			   
-			   <%-- 4 Historique des accueils --%>
-         <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsHistorique.jspf'%>
-			   
-			 </jalios:if>   
-			    
-	     <%-- BLOCK SWAGGER KO --%>
-	     <jalios:if predicate="<%= !isSwaggerOk %>">
-	       <p><trsb:glp key="SWAGGER-RESP-ERR" /></p>
-	     </jalios:if>
+ 
+      
+      
+         <!-- Texte introductif  -->
+         <p class="ds44-introduction"><trsb:glp key="ASS-MACC-INTRO-HTML"/></p>
+         
+         <jalios:if predicate="<%= isGroupAuthorized && isSwaggerOk %>">
+         
+               <%-- 2.3.2.2  Bloc des démarches enregistrées en brouillon --%>  
+               <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsBrouillon.jspf'%>
+               
+               <%-- 2.3.2.3 Bloc des accueils en cours --%>
+               <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsEnCours.jspf'%>
+               
+               <%-- 4 Historique des accueils --%>
+               <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/accueilsHistorique.jspf'%>
+               
+         </jalios:if>   
+                
+         <%-- BLOCK SWAGGER KO --%>
+         
+         <jalios:if predicate="<%= !isSwaggerOk %>">
+           <p><trsb:glp key="SWAGGER-RESP-ERR" /></p>
+         </jalios:if>
 
      
-	  </div>
-  </div>
+ 
   <!-- FIN corps de la page -->
     
 
-</div>
+
 
