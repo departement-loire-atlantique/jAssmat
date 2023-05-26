@@ -1,3 +1,4 @@
+<%@page import="fr.cg44.plugin.assmat.util.PlanningUtil"%>
 <%@page import="fr.cg44.plugin.assmat.util.DemarcheUtil"%>
 <%@page import="fr.cg44.plugin.assmat.handler.CreneauHorraire"%>
 <%@page import="org.joda.time.format.DateTimeFormat"%>
@@ -69,10 +70,7 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter
      assmatSolis= Util.getFirst(solisMgr.getAssmatSolisByNumAgrement(profilAM.getNum_agrement()));
   }else{
     sendForbidden(request, response);
-  }
-  
-  
-  
+  }  
 
   Boolean isModif = Util.notEmpty(request.getParameter("idModifEnCours"));
   

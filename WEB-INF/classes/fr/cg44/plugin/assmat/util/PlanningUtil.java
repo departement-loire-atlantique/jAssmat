@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.jalios.util.ReflectUtil;
 import com.jalios.util.Util;
 
 /**
@@ -19,8 +20,8 @@ public class PlanningUtil {
 
   private static final Logger LOGGER = Logger.getLogger(PlanningUtil.class);
   
-  public static String fieldName = "fieldName";
   public static String fieldValue = "fieldValue";
+  public static String fieldSetMethod = "fieldSetMethod";
   
   /**
    * Format typePlanning[colonne_planning][jour][startOrEnd]
@@ -40,16 +41,13 @@ public class PlanningUtil {
    * 1 -> transformer chaque donnée reçue en json
    * Ex
    * {
-   *    fieldName:""    <= à générer
-   *    fieldValue:""
+   *    fieldValue:"",
+   *    fieldSetMethod:""    <= à générer
    * }
    * 
    * 2 -> Utiliser la réflection de Java pour récupérer le champ souhaité et le mettre à jour
    * ATTENTION -> A faire dans la classe du formhandler !
-   * Ex
-   * String fieldName = stringCreatedByStringBuilder;
-   * Field field = getClass().getDeclaredField(fieldName);
-   * field.setString(this, value);
+   * 
    */
   
   private static String planningLbl = "planning";
@@ -58,6 +56,7 @@ public class PlanningUtil {
   private static String separator = "\\]\\[";
   private static String twoDots = ":";
   private static String letterH = "h";
+  private static String start = "start";
   
   /**
    * Récupère les paramètres d'une requête pour retourner un objet JSON
@@ -84,7 +83,7 @@ public class PlanningUtil {
   }
   
   /**
-   * Convertit un string paramètre d'un format précis en
+   * Convertit un string paramètre d'un format précis en un objet JSON
    * @param param
    * @return
    */
@@ -120,10 +119,10 @@ public class PlanningUtil {
       String[] paramArray = updatedParam.split(separator);
       // [0] est la colonne
       // [1] est le jour, qu'il faudra traduire
-      // [3] est le début ou la fin, qu'il faudra remplacer par une valeur technique "debcr" ou "fincr"
+      // [2] est le début ou la fin
       col = paramArray[0];
       day = convertDayLblToFrench(paramArray[1]);
-      startOrEnd = getStartOrEnd(paramArray[2]);
+      startOrEnd = paramArray[2];
     } catch (Exception e) {
       LOGGER.error(e);
       // si ça n'est pas le format attendu, on ne peut pas continuer
@@ -138,9 +137,13 @@ public class PlanningUtil {
     builder.append(day);
     builder.append(suffix);
     
+    // génération de la méthode 'set'
+    String numSemaine = prefix.replace("s", "");
+    String setMethod = "set" + (Util.notEmpty(prefix) ? "S"+numSemaine+(startOrEnd.equals(start) ? "d" : "f") : startOrEnd.equals(start) ? "D" : "F") 
+        + (startOrEnd.equals(start) ? "ebcr" : "incr" )+ col +day.toLowerCase() + (Util.notEmpty(suffix) ? "Vac" : "");
     try {
       fieldNameValue.put(fieldValue, value.replace(twoDots, letterH));
-      fieldNameValue.put(fieldName, builder.toString());
+      fieldNameValue.put(fieldSetMethod, setMethod);
     } catch (Exception e) {
       LOGGER.error(e);
       return new JSONObject();
@@ -151,6 +154,7 @@ public class PlanningUtil {
   
   /**
    * Méthode qui renvoie un nom de jour en français selon une valeur en anglais
+   * nécessaire pour la récupération d'une méthode via réflexivité
    * @param day
    * @return
    */
@@ -177,18 +181,21 @@ public class PlanningUtil {
   }
   
   /**
-   * Renvoie "debcr" ou "fincr" selon le paramètre donné
-   * @param param
+   * Sur un horaire 08h35, renvoie 08
+   * @param horaire
    * @return
    */
-  private static String getStartOrEnd(String param) {
-    switch (param) {
-      case "start":
-        return "debcr";
-      case "end":
-        return "fincr";
-    }
-    return "";
+  public static String getHeuresFromHoraire(String horaire) {
+    return Util.notEmpty(horaire) && horaire.indexOf(letterH) > 0 ? horaire.substring(0, horaire.indexOf(letterH)) : "";
+  }
+  
+  /**
+   * Sur un horaire 08h35, renvoie 35
+   * @param horaire
+   * @return
+   */
+  public static String getMinutesFromHoraire(String horaire) {
+    return Util.notEmpty(horaire) && horaire.indexOf(letterH) > 0 ? horaire.substring(horaire.indexOf(letterH) + 1) : "";
   }
   
 }
