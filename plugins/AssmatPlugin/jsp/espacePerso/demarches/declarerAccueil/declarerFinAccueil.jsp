@@ -227,7 +227,7 @@ if (Util.notEmpty(request.getParameter("opFishish"))) {
 		        </div>
 
 			    <div class="ds44-form__container">
-			        <input type="submit" class="ds44-btnStd" name="submit" value="<trsb:glp attribute="true" key="ASS-DFAC-BT-VAL-HTML"></trsb:glp>">
+			        <button type="submit" class="ds44-btnStd ds44-btn--invert" name="submit" value="<trsb:glp attribute="true" key="ASS-DFAC-BT-VAL-HTML"></trsb:glp>"><span class="ds44-btnInnerText"><trsb:glp key="ASS-DFAC-BT-VAL-HTML" attribute="true"></trsb:glp></span></button>			      			       
 			        <input type="hidden" name="noSendRedirect" value="true" data-technical-field/>
 			        <input type="hidden" name="opFishish" value="true" data-technical-field/>
 			        <input type="hidden" name="idDeclaration" value="<%= declaration.getIdDeclaration() %>" data-technical-field/>

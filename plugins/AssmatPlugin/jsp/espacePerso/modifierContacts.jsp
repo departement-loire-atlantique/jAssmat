@@ -59,11 +59,16 @@ String uuid = UUID.randomUUID().toString();
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" 
     name="formContact" id="formContact">
   
-    <p aria-level="3" class="h4-like"><trsb:glp key="CONTACT-INTROTEL-HTML"></trsb:glp></p>
+    <div class="ds44-form__container">
+  
+    <p aria-level="3" class="ds44-box-heading"><trsb:glp key="CONTACT-INTROTEL-HTML"></trsb:glp></p>
    
     <%-- Téléphone fix --%>	  
-	  <p aria-level="2" class="h4-like"><trsb:glp key="CONTACT-TEL-HTML"></trsb:glp></p>
+<%-- 	  <p aria-level="2" class="h4-like"><trsb:glp key="CONTACT-TEL-HTML"></trsb:glp></p> --%>
             <div class="ds44-form__container">
+ 
+ <div class="w50 u-fl">
+            
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe") %></span></span></label>
                     <input type="text" id="form-element-<%= uuid %>" value='<%= telephoneFixAssmat %>' name="telFix" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.fixe") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
@@ -74,10 +79,15 @@ String uuid = UUID.randomUUID().toString();
                         <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.socle.form.exemple.tel") %></li>
                     </ul>
                 </div>
-            </div>
+                
+</div>  
+
+<div class="w50 u-fl">              
+                
+           
             <% uuid = UUID.randomUUID().toString(); %>
-            <div id="form-element-<%= uuid %>" data-name="visibleFixMobile" class="ds44-form__radio_container ds44-form__container"  data-required="true">
-               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+            <div style="margin-left: 30px;" id="form-element-<%= uuid %>" data-name="visibleFixMobile" class="ds44-form__radio_container"  data-required="true">
+<%--                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
                <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "true".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visibleFixMobile" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-OUI-HTML"></trsb:glp></label>
                </div>
@@ -85,11 +95,19 @@ String uuid = UUID.randomUUID().toString();
                   <input type="radio" <%if(Util.notEmpty(visibiliteTelephoneFixe) && "false".equals(visibiliteTelephoneFixe) ){ %> checked="checked" <%} %> name="visibleFixMobile" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-TEL-NON-HTML"></trsb:glp></label>
                </div>
             </div>
+</div>
+            
+            </div>
+            
+ <div class="u-clear"></div>           
    
     <%-- Téléphone mobile --%>
     <% uuid = UUID.randomUUID().toString(); %>
-    <p aria-level="2" class="h4-like"><trsb:glp key="CONTACT-MOB-HTML"></trsb:glp></p>
+<%--     <p aria-level="2" class="h4-like"><trsb:glp key="CONTACT-MOB-HTML"></trsb:glp></p> --%>
             <div class="ds44-form__container">
+            
+<div class="w50 u-fl ">           
+            
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %></span></span></label>
                     <input type="text" id="form-element-<%= uuid %>" value='<%= telephoneMobileAssmat %>' name="telMobile" class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile") %>' autocomplete="tel-national" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
@@ -101,9 +119,14 @@ String uuid = UUID.randomUUID().toString();
                     </ul>
                 </div>
             </div>
+            
+
+
+<div class="w50 u-fl">     
+          
             <% uuid = UUID.randomUUID().toString(); %>
-            <div id="form-element-<%= uuid %>" data-name="visibleTelMobile" class="ds44-form__radio_container ds44-form__container"  data-required="true">
-		       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+            <div style="margin-left: 30px;" id="form-element-<%= uuid %>" data-name="visibleTelMobile" class="ds44-form__radio_container"  data-required="true">
+<%-- 		       <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
 		       <div class="ds44-form__container ds44-checkBox-radio_list inbl">
 		          <input type="radio" <%if(Util.notEmpty(visibiliteTelephonePortable) && "true".equals(visibiliteTelephonePortable) ){ %> checked="checked" <%} %> name="visibleTelMobile" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-MOB-OUI-HTML"></trsb:glp></label>
 		       </div>
@@ -111,27 +134,36 @@ String uuid = UUID.randomUUID().toString();
 		          <input type="radio" <%if(Util.notEmpty(visibiliteTelephonePortable) && "false".equals(visibiliteTelephonePortable) ){%> checked="checked" <%} %> name="visibleTelMobile" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-MOB-NON-HTML"></trsb:glp></label>
 		       </div>
 		    </div>
+</div>
+		 </div>
+		 
+<div class="u-clear"></div>	
    
     <%-- creneau appels --%>
     <% uuid = UUID.randomUUID().toString(); %>
-    <p aria-level="2" class="h4-like"><trsb:glp key="CONTACT-TEL-HOR-HTML"></trsb:glp></p>
+    <p aria-level="2" class="ds44-box-heading ds44-mt2"><trsb:glp key="CONTACT-TEL-HOR-HTML"></trsb:glp></p>
     <div class="ds44-form__container">
 	   <div class="ds44-posRel">
 	      <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %></span></span></label>
 	      <input type="text" id="form-element-<%= uuid %>" name="creneauAppels" value='<%= creneauAppels %>' class="ds44-inpStd" title='<%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %>'  />
 	      <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("plugin.assmatplugin.profilassmat.form.creneaux")) %></span></button>
 	   </div>
-	</div>   
+	</div> 
+	
+	  
    
-    <h3 class="h3-like"><trsb:glp key="CONTACT-INTROMAIL-HTML"></trsb:glp></h3>
+    <p class="ds44-box-heading"><trsb:glp key="CONTACT-INTROMAIL-HTML"></trsb:glp></p>
     
     <%-- email --%>
             <% uuid = UUID.randomUUID().toString(); %>
             <div class="ds44-form__container">
-                <p aria-level="2">
+                <p aria-level="2" class="ds44-mb3">
                   <trsb:glp key="CONTACT-LEG-MAIL-HTML"></trsb:glp>
                 </p>
-                <div class="ds44-posRel ds44-mt2">
+                
+                
+ <div class="w55 u-fl">              
+                <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %></span></span></label>
                     <input type="email" id="form-element-<%= uuid %>" name="email" value='<%= emailAssmat %>' class="ds44-inpStd" title='<%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email") %>' autocomplete="email" aria-describedby="explanation-form-element-<%= uuid %>" data-bkp-aria-describedby="explanation-form-element-<%= uuid %>">
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.inscription.champ.lbl.email")) %></span></button>
@@ -141,10 +173,14 @@ String uuid = UUID.randomUUID().toString();
                         <li id="explanation-form-element-<%= uuid %>" class="ds44-field-information-explanation"><%= glp("jcmsplugin.socle.form.exemple.email") %></li>
                     </ul>
                 </div>
-            </div>
+ 
+</div> 
+  
+<div class="w45 u-fl">              
+            
             <% uuid = UUID.randomUUID().toString(); %>
-            <div id="form-element-<%= uuid %>" data-name="visibleEmail" class="ds44-form__radio_container ds44-form__container"  data-required="true">
-               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+            <div style="margin-left: 30px;" id="form-element-<%= uuid %>" data-name="visibleEmail" class="ds44-form__radio_container"  data-required="true">
+<%--                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
                <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <%if(Util.notEmpty(visibiliteAdresseEmail) && "true".equals(visibiliteAdresseEmail) ){ %> checked="checked" <%} %> name="visibleEmail" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-MAIL-OUI-HTML"></trsb:glp></label>
                </div>
@@ -152,14 +188,20 @@ String uuid = UUID.randomUUID().toString();
                   <input type="radio" <%if(Util.notEmpty(visibiliteAdresseEmail) && "false".equals(visibiliteAdresseEmail) ){%> checked="checked" <%} %> name="visibleEmail" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-MAIL-NON-HTML"></trsb:glp></label>
                </div>
             </div>
+           
+</div>           
+            
+          </div>
+          
+<div class="u-clear"></div>         
 	  
-	  <h3 class="h3-like"><trsb:glp key="CONTACT-DISPO-HTML"></trsb:glp></h3>
+	  <p class="ds44-box-heading ds44-mt2"><trsb:glp key="CONTACT-DISPO-HTML"></trsb:glp></p>
 	  
 	  <%-- afficher disponibilité --%>
 	  <% uuid = UUID.randomUUID().toString(); %>
 	  <trsb:glp key="CONTACT-DISPO-LEG-HTML"></trsb:glp>
-	  <div id="form-element-<%= uuid %>" data-name="afficherContact" class="ds44-form__radio_container ds44-form__container"  data-required="true">
-               <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+	  <div id="form-element-<%= uuid %>" data-name="afficherContact" class="ds44-form__radio_container"  data-required="true">
+<%--                <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
                <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                   <input type="radio" <%if(afficherContactUniquementSiD){ %>  checked="checked" <%} %> name="afficherContact" value="true" id="name-radio-form-element-<%= uuid %>-true" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-true" for="name-radio-form-element-<%= uuid %>-true" class="ds44-radioLabel"><trsb:glp key="CONTACT-DISPO-OUI-HTML"></trsb:glp></label>
                </div>
@@ -174,5 +216,6 @@ String uuid = UUID.randomUUID().toString();
         <input type="hidden" name="opUpdate" value="true" />
         <input type="hidden" name="csrftoken" value="<%= HttpUtil.getCSRFToken(request) %>" data-technical-field>
     </div>
-    
+ 
+   </div>   
   </form>

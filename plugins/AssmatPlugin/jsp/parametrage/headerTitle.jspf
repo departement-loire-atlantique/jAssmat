@@ -1,12 +1,12 @@
 <%@page import="fr.cg44.plugin.assmat.handler.ParametrageAssmatHandler"%>
 <%if (step == ParametrageAssmatHandler.VISIBILITE_STEP && formHandler.getAfficherMessageConfirmationVisibiliteSiteNone()) {%>
-  <h3 class="title-bar-container dotted-portlet"><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "INTRO-HTML"%>'></trsb:glp></h3>
+  <p class="title-bar-container dotted-portlet ds44-introduction"><trsb:glp key='<%= "VISIB-" + (aide_caf ? "AIDE-CAF-" : "")  + "INTRO-HTML"%>'></trsb:glp></p>
 <%} %>
 
 <%if (step == ParametrageAssmatHandler.CONTACTS_STEP) {%>
-  <h3 class="title-bar-container dotted-portlet"><trsb:glp key="CONTACT-INTROTEL-HTML"></trsb:glp></h3>
+  <p class="title-bar-container dotted-portlet ds44-box-heading"><trsb:glp key="CONTACT-INTROTEL-HTML"></trsb:glp></p>
 <%} %>
 
 <%if (step == ParametrageAssmatHandler.OFFRE_STEP) {%>
-  <h3 class="title-bar-container dotted-portlet h4-like"><trsb:glp key="OFFRE-INTRO-HTML"></trsb:glp></h3>
+  <p class="title-bar-container dotted-portlet ds44-introduction"><trsb:glp key="OFFRE-INTRO-HTML"></trsb:glp></p>
 <%} %>                                  

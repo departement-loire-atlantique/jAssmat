@@ -27,7 +27,7 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
     <%-- Préférence de connexion --%>
     <% uuid = UUID.randomUUID().toString(); %>
     <div id="form-element-<%= uuid %>" data-name="choixLogin" class="ds44-form__radio_container ds44-form__container" data-required="true">
-        <p aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.choixLogin") %><sup aria-hidden="true">*</sup></p>
+        <p aria-level="2" class="ds44-box-heading"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.choixLogin") %><sup aria-hidden="true">*</sup></p>
 <%-- 	    <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
 	    <div class="ds44-form__container ds44-checkBox-radio_list ">
 	    
@@ -73,7 +73,7 @@ if (step == InscriptionAssmatHandler.LOGIN_STEP) {
     </div>
 
 
-	<p class="h4-like"><trsb:glp key="LOGIN-INTRO-MDP-HTML" ></trsb:glp></p>
+	<p class="ds44-box-heading"><trsb:glp key="LOGIN-INTRO-MDP-HTML" ></trsb:glp></p>
 	<p><trsb:glp key="LOGIN-LEGENDE-MDP-HTML" ></trsb:glp></p>
 	<% uuid = UUID.randomUUID().toString(); %>
 	<div class="ds44-form__container">

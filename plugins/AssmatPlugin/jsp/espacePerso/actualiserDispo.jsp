@@ -67,9 +67,9 @@ boolean noMonthIsCurrentMonth = false;
 
   <form method="post" action="<%= ServletUtil.getResourcePath(request) %>" name="formDispos" id="formDispos">
 
-    <div class="blocQuestion disponibilite">
+    <div class="blocQuestion disponibilite ds44-form__radio_container ds44-form__container">
 
-  <h3 class="title-bar-container dotted-portlet"><trsb:glp key="DISPO-INTRO-HTML"></trsb:glp></h3>
+  <p class="title-bar-container dotted-portlet ds44-box-heading"><trsb:glp key="DISPO-INTRO-HTML"></trsb:glp></p>
   <%
       int maxDispo = 10;
       if(dispos != null && dispos.size() < maxDispo){
@@ -224,7 +224,7 @@ boolean noMonthIsCurrentMonth = false;
         }%>
       <div class="categorie mtl">
         <input type="hidden" name="idDispo<%= cptDispo + 1 %>" value="<%=dispos.get(cptDispo).getId()%>" />
-        <h4 class="categorie title-bar-container dotted-portlet">        
+        <p class="categorie title-bar-container dotted-portlet ds44-box-heading">        
           <jalios:if predicate='<%= dispos.get(cptDispo).getAgrement().contains("dom-") %>'>
             À domicile : 
           </jalios:if>
@@ -232,7 +232,7 @@ boolean noMonthIsCurrentMonth = false;
             En MAM : 
           </jalios:if>
             1 place <%= AssmatUtil.getTitlePlace(dispos.get(cptDispo).getLibelle(), dispos.get(cptDispo).getLibelleComplementaire(), dispos.get(cptDispo).getTrancheDage()) %></p>      
-        </h4>
+        </p>
          <hr/>
         <jalios:select>     
           <jalios:if predicate='<%= dispos.get(cptDispo).getSaisieDisponible() %>'>

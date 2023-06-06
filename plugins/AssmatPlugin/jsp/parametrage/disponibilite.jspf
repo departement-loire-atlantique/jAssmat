@@ -32,7 +32,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
 
 <div class="blocQuestion disponibilite">
 
-  <h3 class="title-bar-container dotted-portlet"><trsb:glp key="DISPO-INTRO-HTML"></trsb:glp></h3>
+  <p class="title-bar-container dotted-portlet ds44-box-heading"><trsb:glp key="DISPO-INTRO-HTML"></trsb:glp></p>
   <%
       int maxDispo = 10;
       if(dispos != null && dispos.size() < maxDispo){
@@ -187,7 +187,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
         }%>
       <div class="categorie mtl">
         <input type="hidden" name="idDispo<%= cptDispo + 1 %>" value="<%=dispos.get(cptDispo).getId()%>" />
-        <h4 class="categorie title-bar-container dotted-portlet">        
+        <p class="categorie title-bar-container dotted-portlet ds44-box-heading">        
           <jalios:if predicate='<%= dispos.get(cptDispo).getAgrement().contains("dom-") %>'>
             À domicile : 
           </jalios:if>
@@ -195,7 +195,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
             En MAM : 
           </jalios:if>
             1 place <%= AssmatUtil.getTitlePlace(dispos.get(cptDispo).getLibelle(), dispos.get(cptDispo).getLibelleComplementaire(), dispos.get(cptDispo).getTrancheDage()) %></p>      
-        </h4>
+        </p>
          <hr/>
         <jalios:select>     
           <jalios:if predicate='<%= dispos.get(cptDispo).getSaisieDisponible() %>'>
@@ -240,7 +240,7 @@ if (step == ParametrageAssmatHandler.DISPONIBILITE_STEP) {
           <div id="Formulaires<%= cptDispo + 1 %>" data-fields-no-reset data-enabled-by-dispo-toggleable-oui-<%= cptDispo + 1 %> data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %> class='<%= hideEtaDispo1 && hideEtaDispo2 ? " hidden" : "" %>' style="clear: both;"> 
           
               <% uuid = UUID.randomUUID().toString(); %>
-              <p aria-level="2" class="h4-like hidden" data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p>
+              <p aria-level="2" class="ds44-box-heading hidden" data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>><trsb:glp key="DISPO-OUI-PLUS-DATE"></trsb:glp></p>
               <div  class='ds44-form__container<%= hideEtaDispo2 ? " hidden" : "" %>' data-fields-no-reset data-enabled-by-dispo-toggleable-oui-plus-<%= cptDispo + 1 %>>
                    <div class="ds44-select__shape ds44-inpStd">
                       <p class="ds44-selectLabel" aria-hidden="true"><%= glp("ui.com.lbl.month") %></p>

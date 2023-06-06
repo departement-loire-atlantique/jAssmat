@@ -46,6 +46,9 @@ jcmsplugin.assmatplugin.socle.portail.param.id:cra_103077
 # ID de la catégorie déclaration d'accueil
 jcmsplugin.assmatplugin.socle.categ.declare.accueil: cra_60283
 
+# ID de la catégorie Changer mes préférences de contact
+$jcmsplugin.assmatplugin.categ.espace.contact: cra_60272
+
 # Remplacement du fichier de Login
 #jcms.resource.login: plugins/AssmatPlugin/jsp/loginAM.jsp
 jcms.resource.login: 44/connexion/asm_268823

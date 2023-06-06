@@ -215,12 +215,12 @@ jcmsplugin.assmatplugin.libelle.ua.ou: ou
 jcmsplugin.assmatplugin.socle.footer.msg.1: Une question, besoin d'aide?
 
 
-jcmsplugin.assmatplugin.espaceperso.modiflogin:Modifier mon login :
+jcmsplugin.assmatplugin.espaceperso.modiflogin:Modifier mon identifiant :
 jcmsplugin.assmatplugin.espaceperso.utilisemail:Actuellement vous utilisez votre e-mail :
 jcmsplugin.assmatplugin.espaceperso.utilisetel:Actuellement vous utilisez votre numéro de téléphone :
 jcmsplugin.assmatplugin.espaceperso.utiliseagr:Actuellement vous utilisez votre numéro de dossier d'agrément:
-jcmsplugin.assmatplugin.espaceperso.declaremail:Si vous souhaitez déclarer une autre adresse mail ou autre numéro de téléphone portable que ceux indiqués ci-dessous, cliquez ici.
-jcmsplugin.assmatplugin.espaceperso.declarelog:Cochez une autre option si vous souhaitez changer votre login.
+jcmsplugin.assmatplugin.espaceperso.declaremail:Si vous souhaitez déclarer une autre adresse mail ou autre numéro de téléphone portable que ceux indiqués ci-dessous, <a href="{0}">cliquez ici.</a>
+jcmsplugin.assmatplugin.espaceperso.declarelog:Cochez une autre option si vous souhaitez changer votre identifiant.
 jcmsplugin.assmatplugin.espaceperso.passconfirm:Confirmation du mot de passe :
 jcmsplugin.assmatplugin.espaceperso.motdepass:Mot de passe :
 jcmsplugin.assmatplugin.espaceperso.motdepasscomporte:Le mot de passe doit comporter un minimum de 8 caractères avec : au moins une lettre majuscule, au moins une lettre en minuscule, et au moins un chiffre.

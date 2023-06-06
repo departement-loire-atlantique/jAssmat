@@ -26,38 +26,38 @@
 
         if (notfoundCompte) {
 %>
-  <h3 class="h3-like"><trsb:glp key="IDENT-ECHEC-INTRO-HTML" ></trsb:glp></h3>
+  <p class="ds44-box-heading"><trsb:glp key="IDENT-ECHEC-INTRO-HTML" ></trsb:glp></p>
   <%
   	}else if(Util.notEmpty(formHandler.getNbTentativeErrone())){
   			if (formHandler.getNbTentativeErrone() >= InscriptionAssmatHandler.NB_TENTATIVE_MAX) {
                 if (ticket10451) {
                 	%>
-                	    <h3 class="h3-like"><trsb:glp key="IDENT-TICKET10451-INTRO-HTML"></trsb:glp></h3>
+                	    <p class="ds44-box-heading"><trsb:glp key="IDENT-TICKET10451-INTRO-HTML"></trsb:glp></p>
                 	<%
                 	                } else {
                 	%>
-                	    <h3 class="h3-like"><trsb:glp key="IDENT-ECHEC2-INTRO-HTML"></trsb:glp></h3>
+                	    <p class="ds44-box-heading"><trsb:glp key="IDENT-ECHEC2-INTRO-HTML"></trsb:glp></p>
                 	<%
                 	                }				
     }else{%>
-    <h3 class="h3-like"><trsb:glp key="IDENT-INTRO-HTML" ></trsb:glp></h3>
+    <p class="ds44-box-heading"><trsb:glp key="IDENT-INTRO-HTML" ></trsb:glp></p>
 <%
     }
   }
 } %>
 
 <%if (step == InscriptionAssmatHandler.VERIFICATION_STEP) {%>
-    <h3 class="h3-like ds44-mb3"><trsb:glp key="VERIF-INTRO-HTML" ></trsb:glp></h3>
+    <p class="ds44-introduction ds44-mb3"><trsb:glp key="VERIF-INTRO-HTML" ></trsb:glp></p>
 <%} %>
 
 <%if (step == InscriptionAssmatHandler.CONTACT_STEP) {%>
-    <h3 class="h3-like"><trsb:glp key="CONTACTS-INTRO-HTML" ></trsb:glp></h3>
+    <p class="ds44-box-heading"><trsb:glp key="CONTACTS-INTRO-HTML" ></trsb:glp></p>
 <%} %>
 
 <%if (step == InscriptionAssmatHandler.LOGIN_STEP) {%>
-    <h3 class="h3-like"><trsb:glp key="LOGIN-INTRO-HTML" ></trsb:glp></h3>
+    <p class="ds44-box-heading"><trsb:glp key="LOGIN-INTRO-HTML" ></trsb:glp></p>
 <%} %>
 
 <%if (step == InscriptionAssmatHandler.CONFIRMATION_STEP) {%>
-    <h3 class="h3-like"><trsb:glp key="CONFIRM-INTRO-HTML" ></trsb:glp></h3>
+    <p class="ds44-introduction"><trsb:glp key="CONFIRM-INTRO-HTML" ></trsb:glp></p>
 <%} %>
