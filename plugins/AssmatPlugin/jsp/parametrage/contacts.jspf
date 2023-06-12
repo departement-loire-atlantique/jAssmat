@@ -91,14 +91,14 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
                       <input type="radio" <%if(Util.notEmpty(visibiliteTelephonePortable) && "false".equals(visibiliteTelephonePortable) ){ %> checked="checked" <%} %> name="visibiliteTelephonePortable" value="false" id="name-radio-form-element-<%= uuid %>-false" class="ds44-radio"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-false" for="name-radio-form-element-<%= uuid %>-false" class="ds44-radioLabel"><trsb:glp key="CONTACT-MOB-NON-HTML"></trsb:glp></label>
                    </div>
                 </div>
-            </div>
-            
 </div>
+            
+            </div>
 
 <div class="u-clear"></div>
             
             <% uuid = UUID.randomUUID().toString(); %>
-            <p class="h4-like"><trsb:glp key="CONTACT-TEL-HOR-HTML"></trsb:glp></p>
+            <p class="ds44-box-heading"><trsb:glp key="CONTACT-TEL-HOR-HTML"></trsb:glp></p>
             <div class="ds44-form__container">
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= glp("plugin.assmatplugin.profilassmat.form.creneaux") %></span></span></label>
@@ -112,7 +112,7 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
 		<%} %>
 
 
-	<h3 class="h3-like"><trsb:glp key="CONTACT-INTROMAIL-HTML"></trsb:glp></h3>
+	<p class="ds44-box-heading"><trsb:glp key="CONTACT-INTROMAIL-HTML"></trsb:glp></p>
 
 		<p><trsb:glp key="CONTACT-LEG-MAIL-HTML"></trsb:glp></p>
 
@@ -165,7 +165,7 @@ if (step == ParametrageAssmatHandler.CONTACTS_STEP) {
          
         <p class="hidden" data-enabled-by-field="#name-radio-form-element-<%= uuid %>-true"><trsb:glp key="CONTACT-LEG2-MAIL-HTML"></trsb:glp></p>
 
-	<h3 class="h3-like"><trsb:glp key="CONTACT-DISPO-HTML"></trsb:glp></h3>
+	<p class="ds44-box-heading"><trsb:glp key="CONTACT-DISPO-HTML"></trsb:glp></p>
 	
 	   <% uuid = UUID.randomUUID().toString(); %>
        <div id="form-element-<%= uuid %>" data-name="afficherContactUniquementSiD" class="ds44-form__radio_container"  data-required="true">

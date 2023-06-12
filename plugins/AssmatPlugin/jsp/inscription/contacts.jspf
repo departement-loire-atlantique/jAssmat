@@ -127,7 +127,7 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
 <div class="u-clear"></div>
 			
              
-            <p class="h5-like" style="padding-bottom: 20px">et/ou</p>
+            <p class="ds44-box-heading" style="padding-bottom: 20px">et/ou</p>
              
          
 		 
@@ -176,7 +176,7 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
 		    <%-- Préférence de type d'envoi --%>
 		    <% uuid = UUID.randomUUID().toString(); %>
 			<div id="form-element-<%= uuid %>" data-name="typeenvoi" class="ds44-form__radio_container ds44-form__container"  data-required="true">
-                <p role="heading" aria-level="2" class="h4-like"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.typeenvoi") %><sup aria-hidden="true">*</sup></p>
+                <p role="heading" aria-level="2" class="ds44-box-heading"><%= glp("jcmsplugin.assmatplugin.inscription.champ.lbl.typeenvoi") %><sup aria-hidden="true">*</sup></p>
 <%--                 <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
                 <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                     <input type="radio" name="typeenvoi" value="mail" id="name-radio-form-element-<%= uuid %>-mail" <%if(isMail){ %>checked="checked"<%} %> class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-mail" for="name-radio-form-element-<%= uuid %>-mail" class="ds44-radioLabel"><%=glp("jcmsplugin.assmatplugin.inscription.champ.typeenvoi.value.mail") %></label>
@@ -187,7 +187,7 @@ if (step == InscriptionAssmatHandler.CONTACT_STEP) {
             </div>
 
             <div class="mbl">
-		      <p role="heading" aria-level="2" class="h4-like"><trsb:glp key="CONTACTS-EXEMPLES-HTML-TITLE" ></trsb:glp></p>
+		      <p role="heading" aria-level="2" class="ds44-box-heading"><trsb:glp key="CONTACTS-EXEMPLES-HTML-TITLE" ></trsb:glp></p>
 		      <p><i><trsb:glp key="CONTACTS-EXEMPLES-HTML" ></trsb:glp></i></p>
 	        </div> 
 

@@ -28,7 +28,7 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
 
 <div class="blocQuestion">
 
-<h3 class="h4-like mtm"><trsb:glp key="OFFRE-TYPE-HTML"></trsb:glp></h3>
+<p class="ds44-box-heading mtm"><trsb:glp key="OFFRE-TYPE-HTML"></trsb:glp></p>
 
 
 <div class="ds44-flex">
@@ -98,7 +98,7 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
     </div>
 
 	<span<% if((Util.notEmpty(horairesAtypiques) && "false".equals(horairesAtypiques)) || Util.isEmpty(horairesAtypiques)) {%> class="hidden" <% } %> data-enabled-by-field="#name-radio-form-element-<%= uuid %>-true">
-		<h3 class="h4-like"><trsb:glp key="OFFRE-ATYP-PLUS-HTML"></trsb:glp></h3>
+		<p class="ds44-box-heading"><trsb:glp key="OFFRE-ATYP-PLUS-HTML"></trsb:glp></p>
 
         <div>	
 		<p style="min-width:130px" class="inbl"><trsb:glp key="OFFRE-ATYP-AV7-HTML"></trsb:glp></p>
@@ -177,7 +177,7 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
 </div>
 
 <div class="blocQuestion reponseBooleenne">
-	<h3 class="h4-like mts"><trsb:glp key="OFFRE-URG-HTML"></trsb:glp></h3>
+	<p class="ds44-box-heading mts"><trsb:glp key="OFFRE-URG-HTML"></trsb:glp></p>
 	<% uuid = UUID.randomUUID().toString(); %>
     <div id="form-element-<%= uuid %>" data-name="accepteDepannage" class="ds44-form__radio_container" data-required="false">
 <%--         <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
@@ -197,7 +197,7 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
     </div>
 </div>
 <div class="blocQuestion reponseBooleenne">
-	<h3 class="h4-like mts"><trsb:glp key="OFFRE-HANDI-HTML"></trsb:glp></h3>
+	<p class="ds44-box-heading mts"><trsb:glp key="OFFRE-HANDI-HTML"></trsb:glp></p>
 	<% uuid = UUID.randomUUID().toString(); %>
     <div id="form-element-<%= uuid %>" data-name="accueilEnfantHandicap" class="ds44-form__radio_container" data-required="false">
 <%--         <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
@@ -216,7 +216,7 @@ if (step == ParametrageAssmatHandler.OFFRE_STEP) {
     </div>
 </div>
 <div class="blocQuestion reponseBooleenne">
-	<h3 class="h4-like mts"><trsb:glp key="OFFRE-ACCESS-HTML"></trsb:glp></h3>
+	<p class="ds44-box-heading mts"><trsb:glp key="OFFRE-ACCESS-HTML"></trsb:glp></p>
 	<% uuid = UUID.randomUUID().toString(); %>
     <div id="form-element-<%= uuid %>" data-name="logementAccessible" class="ds44-form__radio_container" data-required="false">
 <%--         <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>

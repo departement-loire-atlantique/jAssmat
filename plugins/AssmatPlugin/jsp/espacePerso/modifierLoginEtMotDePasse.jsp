@@ -42,10 +42,14 @@ if (formHandler.validate()) {
    boolean loginTel= false;
    boolean loginAgrement= false;
    
-  		String emailAssmat = loggedMember.getEmail();
-  		String telephoneMobileAssmat = profil.getAuthor().getMobile();
-  		SelectionLogin typeLogin = SelectionLogin.getTypeLoginByValue(profil.getTypeLogin());
-  		int numeroDossierAssmat = profil.getNum_agrement();
+   String emailAssmat = loggedMember.getEmail();
+   String telephoneMobileAssmat = profil.getAuthor().getMobile();
+   SelectionLogin typeLogin = SelectionLogin.getTypeLoginByValue(profil.getTypeLogin());
+   int numeroDossierAssmat = profil.getNum_agrement();
+   
+   
+   String modifMailTelUrl = channel.getCategory("$jcmsplugin.assmatplugin.categ.espace.contact").getDisplayUrl(userLocale);
+   
   %>
 
 <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
@@ -53,7 +57,9 @@ if (formHandler.validate()) {
 
 <form method="post" action="<%= ServletUtil.getResourcePath(request) %>"  name="formContact" id ="formContact" data-no-encoding="true">
 
-       <h3 class="h3-like"><%=glp("jcmsplugin.assmatplugin.espaceperso.modiflogin") %></h3>
+<div class="ds44-form__container">
+
+       <p class="ds44-box-heading "><%=glp("jcmsplugin.assmatplugin.espaceperso.modiflogin") %></p>
               
             <%if(SelectionLogin.MAIL.equals(typeLogin)){ %>
             <p><b><%=glp("jcmsplugin.assmatplugin.espaceperso.utilisemail") %></b> <%=emailAssmat %> </p>
@@ -65,11 +71,11 @@ if (formHandler.validate()) {
             <p><b><%=glp("jcmsplugin.assmatplugin.espaceperso.utilisetel") %></b> <%=telephoneMobileAssmat %> </p>
             <%} %>
             
-            <p class="info"><%=glp("jcmsplugin.assmatplugin.espaceperso.declaremail") %></p>
+            <p class="info"><%=glp("jcmsplugin.assmatplugin.espaceperso.declaremail", modifMailTelUrl) %></p>
             <p class="info ds44-mt2"><b><%=glp("jcmsplugin.assmatplugin.espaceperso.declarelog") %></b></p>
             <% String uuid = UUID.randomUUID().toString(); %>
                 <div id="form-element-<%= uuid %>" data-name="choixLogin" class="ds44-form__radio_container ds44-form__container" data-required="true">
-                  <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p>
+<%--                   <p id="mandatory-message-form-element-<%= uuid %>" class="ds44-mandatory_message"><%= glp("jcmsplugin.socle.pageutile.message-case") %></p> --%>
                   <div class="ds44-flex">
 	                  <div class="ds44-fg1 ds44-txtRight ds44-mt1">
 	                    <p class=""><trsb:glp key="LIBELLE-PRERENCE-UTILISATION-LOGIN-HTML" ></trsb:glp></p>
@@ -127,7 +133,7 @@ if (formHandler.validate()) {
 	             </div>
              </div>
 
-              <h3 class="title-bar-container dotted-portlet"><%=glp("jcmsplugin.assmatplugin.espaceperso.modifmdp") %></h3>
+              <p class="title-bar-container dotted-portlet ds44-box-heading"><%=glp("jcmsplugin.assmatplugin.espaceperso.modifmdp") %></p>
               <p class="instructionsSaisie"><%=glp("jcmsplugin.assmatplugin.espaceperso.motdepasscomporte") %></p>
                            
             <div class="ds44-form__container">
@@ -160,8 +166,8 @@ if (formHandler.validate()) {
 		        <input type="hidden" name="opUpdate" value="true" data-technical-field/>
 		        <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>
 		    </div>
-
-  </form> 
+</div>
+</form> 
 <%
 }
 %>

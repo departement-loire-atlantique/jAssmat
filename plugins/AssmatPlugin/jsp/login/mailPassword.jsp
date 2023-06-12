@@ -150,6 +150,9 @@ String uuid = UUID.randomUUID().toString();
 			if(Util.isEmpty(telAssmat)) telAssmat = "";                        
 			%>
 			
+			<p class="ds44-box-heading" style="padding-bottom: 20px">ou</p>
+			
+			
 			<%-- Téléphone ------------------------------------------------------------ --%>
 	        <% String telephoneLabel = glp("jcmsplugin.assmatplugin.inscription.champ.lbl.mobile"); %>
 			<div class="ds44-form__container">
