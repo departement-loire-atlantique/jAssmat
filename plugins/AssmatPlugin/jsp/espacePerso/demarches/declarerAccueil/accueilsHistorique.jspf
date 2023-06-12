@@ -5,41 +5,34 @@
 
 <%-- 2.3.2.3 Bloc des accueils en cours --%>
 
-<div class="demarche en-cours">
+<section class="ds44-contenuArticle">
 
-   <div class="titre-demarche-en-cours" style="overflow: auto; padding: 25px 25px;">                  
-     <trsb:glp key="ASS-MACC-HISTO-TITRE-HTML"></trsb:glp>    
-   </div>
+
    
-   <div class="information">
+   
+    <div class="ds44-flex ds44-fsb ds44-mb2">
+        <h2><trsb:glp key="ASS-MACC-HISTO-TITRE-HTML"></trsb:glp></h2>
+    </div>
+   
+     
+   <p>
      <trsb:glp key="ASS-MACC-HISTO-INFO-HTML" />            
-   </div>  
+   </p>  
    
-   <jalios:if predicate="<%= Util.isEmpty(declarationHistoriqueList) %>"> 
-      <div class="information" style="padding-top: 0px;">
-       <trsb:glp key="ASS-MACC-HISTO-NULL-HTML" />            
-     </div> 
-   </jalios:if>
+  
+    <%-- Message si aucune délaration en cours --%>
+    <jalios:if predicate="<%= Util.isEmpty(declarationHistoriqueList) %>"> 
+        <p><trsb:glp key="ASS-MACC-HISTO-NULL-HTML" /></p> 
+    </jalios:if>
    
    
-   <jalios:if predicate="<%= declarationHistoriqueList != null && declarationHistoriqueList.size() > 0 %>">  
+   <jalios:if predicate="<%= Util.notEmpty(declarationHistoriqueList) %>">
    
-     <div class="div-responsive">
-         <div class="ligne-demarche-en-cours" style="margin-top: 5px; padding-bottom: 10px; font-weight: bold;">
-           <div class="nom-enfant">
-           </div>
-           <div class="date-declaration">
-              <trsb:glp key="ASS-MACC-HISTO-DATE-DEB-HTML" />  
-            </div>
+
+       <%-- Liste des déclarations d'accueil --%>
+       <ul class="ds44-mtb3 ds44-multiCol ds44-list">
             
-            <div class="date-accueil">
-              <trsb:glp key="ASS-MACC-HISTO-DATE-FIN-HTML" />  
-            </div>                           
-         </div>
-         
-         <jalios:pager linkCss="ajax-refresh nofocus" name="pagerHistorique" declare='true' pageSize="5" action="init" size="<%= declarationHistoriqueList.size() %>"/>
-         
-         <jalios:foreach collection="<%= declarationHistoriqueList %>" name="itAccueil" type="AccueilDTO"  max='<%= pagerHistorique.getPageSize() %>' skip='<%= pagerHistorique.getStart() %>'>
+         <jalios:foreach collection="<%= declarationHistoriqueList %>" name="itAccueil" type="AccueilDTO">
              <%
              String nomEnfant = itAccueil.getNomEnfant();
              String prenomEnfant = itAccueil.getPrenomEnfant();
@@ -65,69 +58,33 @@
              }
              
              %>  
-             
-             <div class="ligne-demarche-en-cours">
-          
-               <div class="nom-enfant">
-                 <%= prenomEnfant %> <%= nomEnfant %>
-               </div>
-           
-               <div class="date-declaration">
-                 <%= dateDebutAccueilString %>
-               </div>
-               
-               <div class="date-accueil">
-                 <%= dateFinAccueilString %>
-               </div>
-               
-               <div class="action-declaration">
-                
-                  <%-- Afficher la déclaration de début --%>
-                   <div>
-                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
-                       <a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherDeclaration.jsp?idDeclaration=<%= idDebutAccueil %>">                            
-                           <trsb:glp key="ASS-MACC-HISTO-LIEN-AFF-DEB-HTML" />            
-                       </a> 
-                   </div>  
-                             
-                   <%-- Afficher la déclaration de fin --%>
-                   <div>
-                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
-                       <a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherDeclaration.jsp?idDeclaration=<%= idDeclaration %>">
-                           <trsb:glp key="ASS-MACC-HISTO-LIEN-AFF-FIN-HTML" />           
-                       </a> 
-                   </div>
-                   
-                   <%-- Modification date de fin d'accueil --%>
-                   <div>
-                       <img src="plugins/ToolsPlugin/images/bullet.jpg" class="imgBullet">
-                       <a href="<%= lienDeclarationFinAccueil %>?idDeclaration=<%= idDeclaration %>">                            
-                           <trsb:glp key="ASS-MACC-HISTO-LIEN-AFF-MODIF-FIN-HTML" />           
-                       </a> 
-                    </div>
-                   
-               </div>
-          
-             </div> 
-         
+             	       
+               <li class="ds44-noCut">
+                   <%-- Tuile déclaration accueil --%>                
+                   <section class="ds44-card ds44-card--noLink ds44-card--contact">
+				    <div class="ds44-card__section txtleft">
+				        <p role="heading" aria-level="3" class="h4-like ds44-cardTitle"><%= prenomEnfant %> <%= nomEnfant %></p>
+				        <p class="ds44-docListElem ds44-mt-std"><i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
+				            <span><trsb:glp key="ASS-MACC-HISTO-DATE-DEB-HTML" /> : <%= dateDebutAccueilString %><br/>
+				            <trsb:glp key="ASS-MACC-HISTO-DATE-FIN-HTML" /> : <%= dateFinAccueilString %> </span>
+				            </span>
+				        </p>
+				        <hr class="mbm mtm" aria-hidden="true"/>
+				        <ul class="">
+				          <li><a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherDeclaration.jsp?idDeclaration=<%= idDebutAccueil %>"><trsb:glp key="ASS-MACC-HISTO-LIEN-AFF-DEB-HTML" /></a></li>						        
+				          <li><a href="plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficherDeclaration.jsp?idDeclaration=<%= idDeclaration %>"><trsb:glp key="ASS-MACC-HISTO-LIEN-AFF-FIN-HTML" /></a></li>  						        
+				          <li><a href="<%= lienDeclarationFinAccueil %>?idDeclaration=<%= idDeclaration %>"><trsb:glp key="ASS-MACC-HISTO-LIEN-AFF-MODIF-FIN-HTML" /></a></li>						        
+				        </ul>
+				    </div>
+				</section>      
+              </li>                             		          
+		   
+		                    
          </jalios:foreach> 
-         
-       </div>
-       
-       <div style="margin-bottom: 6px; margin-top: 2px;">
-          <jalios:pager name="pagerHistorique" template="corporate"/>
-       </div>
-       
+       </ul>       
     </jalios:if>
         
-</div>
+</section>
  
  
- <script>
- 
-// empeche le scroll vers le haut de la page lors d'un clique sur le pager
-var els = document.querySelectorAll(".nofocus");
-for (var i=0; i < els.length; i++) {
-    els[i].setAttribute("data-jalios-ajax-refresh", "nofocus");
-}
- </script> 
+

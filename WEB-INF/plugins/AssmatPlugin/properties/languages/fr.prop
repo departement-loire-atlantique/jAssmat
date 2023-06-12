@@ -156,7 +156,7 @@ jcmsplugin.assmatplugin.inscription.error.contact.choix.mdp.invalid: Votre mot d
 jcmsplugin.assmatplugin.inscription.identification: Identification
 jcmsplugin.assmatplugin.inscription.verification: Vérification
 jcmsplugin.assmatplugin.inscription.contacts: Contacts
-jcmsplugin.assmatplugin.inscription.login-mdp: Login et mot de passe
+jcmsplugin.assmatplugin.inscription.login-mdp: Identifiant et mot de passe
 jcmsplugin.assmatplugin.inscription.confirmation: Confirmation
 
 jcmsplugin.assmatplugin.declaration.enfant-accueilli: Enfant accueilli
