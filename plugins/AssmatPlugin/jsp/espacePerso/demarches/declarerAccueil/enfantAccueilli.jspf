@@ -36,7 +36,9 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
    String codePostalRepresentant1= formHandler.getDeclaration().getCpRepresentant1();
    String villeRepresentant1= formHandler.getDeclaration().getCommuneRepresentant1();
    String complementRepresentant1= formHandler.getDeclaration().getComplAdresseRepresentant1();  
-   Boolean saisieAdresseR1 = formHandler.getSaisieAdresseR1() != null ? formHandler.getSaisieAdresseR1() : false || Util.notEmpty(adresseRepresentant1);
+//    Boolean saisieAdresseR1 = formHandler.getSaisieAdresseR1() != null ? formHandler.getSaisieAdresseR1() : false || Util.notEmpty(adresseRepresentant1);
+   Boolean saisieAdresseR1 = formHandler.getSaisieAdresseR1() != null ? formHandler.getSaisieAdresseR1() : false;
+   
    
    String civiliteRepresentant2= formHandler.getDeclaration().getCiviliteRepresentant2();
    String nomRepresentant2= formHandler.getDeclaration().getNomRepresentant2(); 
@@ -46,8 +48,8 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
    String codePostalRepresentant2= formHandler.getDeclaration().getCpRepresentant2();
    String villeRepresentant2= formHandler.getDeclaration().getCommuneRepresentant2();
    String complementRepresentant2= formHandler.getDeclaration().getComplAdresseRepresentant2();
-   Boolean saisieAdresseR2 = formHandler.getSaisieAdresseR2() != null ? formHandler.getSaisieAdresseR2() : false || Util.notEmpty(adresseRepresentant2);
-  
+   //Boolean saisieAdresseR2 = formHandler.getSaisieAdresseR2() != null ? formHandler.getSaisieAdresseR2() : false || Util.notEmpty(adresseRepresentant2);
+   Boolean saisieAdresseR2 = formHandler.getSaisieAdresseR2() != null ? formHandler.getSaisieAdresseR2() : false;
    
    boolean saisieAdresseDif= Util.notEmpty(telephoneRepresentant2) || Util.notEmpty(adresseRepresentant2) || Util.notEmpty(complementRepresentant2); 
   
@@ -132,11 +134,11 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
    }  
 %>
 
-      <!-- Déclaration de l'enfant -->
+      <!-- D�claration de l'enfant -->
 
       <p><trsb:glp key="ASS-DEC-GEN-OBL-HTML" ></trsb:glp></p>
 
-      <p class="h3-like"><trsb:glp key="ASS-DEC-ENF-DECL-HTML" ></trsb:glp></p>
+       <p class="ds44-box-heading"><trsb:glp key="ASS-DEC-ENF-DECL-HTML" ></trsb:glp></p>
 
       <% uuid = UUID.randomUUID().toString(); %>
       <jalios:buffer name="labelField"><trsb:glp key="ASS-DEC-ENF-NOM-HTML" attribute="true" ></trsb:glp></jalios:buffer>
@@ -162,10 +164,10 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         <div id="form-element-<%= uuid %>" data-name="sexeEnfant" class="ds44-form__radio_container ds44-form__container"  data-required="true">
 		    <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
 		    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-		        <input <%= isModif && "Garçon".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Fille".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Fille" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.fille") %></label>
+		        <input <%= isModif && "Gar�on".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Fille".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Fille" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.fille") %></label>
 		    </div>
 		    <div class="ds44-form__container ds44-checkBox-radio_list inbl">
-		        <input <%= isModif && "Fille".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Garçon".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Garçon" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.garcon") %></label>
+		        <input <%= isModif && "Fille".equalsIgnoreCase(sexeEnfant) ? "disabled" : "" %> <%if("Gar�on".equalsIgnoreCase(sexeEnfant)){ %> checked <%} %> type="radio" name="sexeEnfant" value="Gar�on" id="name-radio-form-element-<%= uuid %>-m" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-m" for="name-radio-form-element-<%= uuid %>-m" class="ds44-radioLabel"><%= glp("jcmsplugin.assmatplugin.declarationaccueil.label.garcon") %></label>
 		    </div>
 		</div>
          
@@ -221,15 +223,16 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         
         <hr/>
         
-        <!-- Représentant légal 1 -->
+        <!-- Repr�sentant l�gal 1 -->
       
-        <p class="h3-like"><trsb:glp key="ASS-DEC-ENF-REP1-TITRE-HTML" ></trsb:glp></p>
+         <p class="ds44-box-heading"><trsb:glp key="ASS-DEC-ENF-REP1-TITRE-HTML" ></trsb:glp></p>
         
-        <p class="h4-like"><trsb:glp key="ASS-DEC-ENF-REP1-CIV-HTML" ></trsb:glp></p>
+<!--         <p class="h4-like"><trsb:glp key="ASS-DEC-ENF-REP1-CIV-HTML" ></trsb:glp></p> -->
 
         <% uuid = UUID.randomUUID().toString(); %>
         <div id="form-element-<%= uuid %>" data-name="civiliteRepresentant1" class="ds44-form__radio_container ds44-form__container"  data-required="true">
-            <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
+<%--             <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p> --%>
+            <p><trsb:glp key="ASS-DEC-ENF-REP1-CIV-HTML" ></trsb:glp><sup aria-hidden="true">*</sup></p>
             <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                 <input <%if("Madame".equalsIgnoreCase(civiliteRepresentant1)){ %> checked <%} %> type="radio" name="civiliteRepresentant1" value="Madame" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP1-MME-HTML" ></trsb:glp></label>
             </div>
@@ -304,7 +307,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
         
         <div data-enabled-by-name-check-form-element-<%= uuid %> class='<%= saisieAdresseR1 ? "" : "hidden"  %>'>
 
-	        <div class="h4-like">
+	        <div class="ds44-box-heading">
 	          <trsb:glp key="ASS-DEC-ENF-REP-ADR-AUTR-TEXT-HTML" />
 	        </div>
 	        
@@ -356,15 +359,16 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
       
       <hr/>
       
-      <!-- Représentant légal 2 -->
+      <!-- Repr�sentant l�gal 2 -->
       
-        <p class="h3-like"><trsb:glp key="ASS-DEC-ENF-REP2-TITRE-HTML" ></trsb:glp></p>
+        <p class="ds44-box-heading"><trsb:glp key="ASS-DEC-ENF-REP2-TITRE-HTML" ></trsb:glp></p>
         
-        <p class="h4-like"><trsb:glp key="ASS-DEC-ENF-REP2-CIV-HTML" ></trsb:glp></p>
+<!--         <p class="h4-like"><trsb:glp key="ASS-DEC-ENF-REP2-CIV-HTML" ></trsb:glp></p> -->
         
         <% uuid = UUID.randomUUID().toString(); %>
         <div id="form-element-<%= uuid %>" data-name="civiliteRepresentant2" class="ds44-form__radio_container ds44-form__container">
-            <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p>
+<%--             <p id="mandatory-message-form-element-<%= uuid %>" class=""><%= glp("jcmsplugin.socle.pageutile.message-case") %><sup aria-hidden="true">*</sup></p> --%>
+            <p><trsb:glp key="ASS-DEC-ENF-REP2-CIV-HTML" ></trsb:glp></p>          
             <div class="ds44-form__container ds44-checkBox-radio_list inbl">
                 <input <%if("Madame".equalsIgnoreCase(civiliteRepresentant2)){ %> checked <%} %> type="radio" name="civiliteRepresentant2" value="Madame" id="name-radio-form-element-<%= uuid %>-f" class="ds44-radio" required aria-describedby="mandatory-message-form-element-<%= uuid %>" /><label id="label-radio-form-element-<%= uuid %>-f" for="name-radio-form-element-<%= uuid %>-f" class="ds44-radioLabel"><trsb:glp key="ASS-DEC-ENF-REP2-MME-HTML" ></trsb:glp></label>
             </div>

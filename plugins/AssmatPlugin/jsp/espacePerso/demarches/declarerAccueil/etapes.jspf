@@ -118,6 +118,12 @@
             </li>
         </ul>
     </nav>
+    
+    <jalios:if predicate='<%= HttpUtil.isCSRFEnabled() %>'>
+        <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>                       
+    </jalios:if>
+    
+    
     <input type="hidden" value="true" name="opPrevious" data-technical-field>
     <input type="hidden" value="true" name="opChangeStep" data-technical-field>
     <%=formHandler.getAllFormStepHiddenFields()%>
