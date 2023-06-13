@@ -86,6 +86,9 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter
   String uuid = UUID.randomUUID().toString();
 
 %>
+
+<div class="ds44-form__container">
+
 <jalios:select>
     <jalios:if predicate="<%= isModif %>">
         <h2 class="h1-like">
@@ -140,3 +143,5 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter
         <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>                       
     </jalios:if>
 </form>
+
+</div>
