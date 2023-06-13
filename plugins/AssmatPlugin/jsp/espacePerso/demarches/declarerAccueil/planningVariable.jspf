@@ -48,9 +48,12 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 
   String precision = formHandler.getDeclaration().getPrecision() != null ? formHandler.getDeclaration().getPrecision() : "";
 
- Boolean estProvisoireBool = formHandler.getDeclaration().getEstProvisoire();  
- Boolean uniquementVacances = formHandler.getDeclaration().getUniquementVacances(); 
+ Boolean estProvisoireBool = formHandler.getDeclaration().getEstProvisoire();
+ Boolean uniquementVacances = formHandler.getDeclaration().getUniquementVacances();
  
+ String prefixPlanning = "";
+ String suffixPlanning = "";
+ String semaine = "";
   
 %>
 
@@ -58,7 +61,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
       <!-- BLOC SAISIE -->
 
         <div class="ds44-mb2">
-	        <p><trsb:glp key="ASS-DEC-PL-Z2V-PHR-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>' ></trsb:glp></p>          
+	        <p><trsb:glp key="ASS-DEC-PL-Z2V-PHR-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>' ></trsb:glp></p>
 	        <p><trsb:glp key="ASS-DEC-PL-Z2V-TEXT-HTML" ></trsb:glp></p>
         </div>
 
