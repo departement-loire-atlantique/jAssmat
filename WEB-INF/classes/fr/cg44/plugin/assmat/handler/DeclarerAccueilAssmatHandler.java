@@ -1,11 +1,5 @@
 package fr.cg44.plugin.assmat.handler;
 
-import io.swagger.client.ApiException;
-import io.swagger.client.model.AccueilDTO;
-import io.swagger.client.model.CreneauDTO;
-import io.swagger.client.model.DeclarationAccueilDTO;
-import io.swagger.client.model.SemaineTypeDTO;
-
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -21,6 +15,8 @@ import org.joda.time.DateTime;
 import org.joda.time.IllegalFieldValueException;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.jalios.jcms.Channel;
 import com.jalios.jcms.Data;
@@ -35,9 +31,14 @@ import com.jalios.util.Util;
 import fr.cg44.plugin.assmat.AssmatUtil;
 import fr.cg44.plugin.assmat.managers.ProfilManager;
 import fr.cg44.plugin.assmat.util.DemarcheUtil;
-
+import fr.cg44.plugin.assmat.util.PlanningUtil;
 import fr.trsb.cd44.solis.manager.SolisManager;
 import generated.ProfilASSMAT;
+import io.swagger.client.ApiException;
+import io.swagger.client.model.AccueilDTO;
+import io.swagger.client.model.CreneauDTO;
+import io.swagger.client.model.DeclarationAccueilDTO;
+import io.swagger.client.model.SemaineTypeDTO;
 
 public class DeclarerAccueilAssmatHandler extends EditDataHandler {
 
@@ -1023,6 +1024,10 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
     }    
     // PLANNING
     if(formStep == PLANNING) {       
+      // Mettre à jour les champs depuis la requête. Nécessaire faute au nouveau format des données envoyées par le formulaire
+//      JSONArray planningDataArray = PlanningUtil.convertRequestFormToHandlerVars(request);
+//      if (Util.notEmpty(planningDataArray)) updatePlanningDataFromJson(planningDataArray);
+      
       // Planning régulier
       if(declaration.getPlanningRegulier()) { 
         createPlanningRegulier();
@@ -1256,6 +1261,12 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
           for(int i=1; i<=3; i++) {  
             String itDebutCreneauJour = (String) ReflectUtil.invokeMethod(this, "get" + (typeSemaine == VARIABLE ? "S"+numSemaine+"d" : "D") + "ebcr"+ i +itJour.toLowerCase() + (typeSemaine == VACANCES ? "Vac" : ""));
             String itFinCreneauJour = (String) ReflectUtil.invokeMethod(this, "get" + (typeSemaine == VARIABLE ? "S"+numSemaine+"f" : "F") + "incr"+ i +itJour.toLowerCase() + (typeSemaine == VACANCES ? "Vac" : ""));
+            
+            if(itDebutCreneauJour != null && itFinCreneauJour != null) {
+              itDebutCreneauJour = itDebutCreneauJour.replace(":", "h");
+              itFinCreneauJour = itFinCreneauJour.replace(":", "h");
+            }
+            
             if(Util.notEmpty(itDebutCreneauJour) || Util.notEmpty(itFinCreneauJour) || i == 1) {
               CreneauDTO creneau = new CreneauDTO();
               creneau.setJourSemaine(itJour);
@@ -1372,7 +1383,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
       checkModalites(listError);
     } else if(formStep == PLANNING) {
       // Vérifie planning variable ou régulier suivant le choix de l'assmat dans les modalités
-      checkPlanning(listError);     
+      checkPlanning(listError);
     }
     
     if(Util.notEmpty(listError)){
@@ -1391,14 +1402,14 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
 
   private void checkPlanning(List<JcmsMessage> listError) {
     // Planning occasionnel
-    if(declaration.getAccueilOccasionnel() != null && declaration.getAccueilOccasionnel()){    
+    if(declaration.getAccueilOccasionnel() != null && declaration.getAccueilOccasionnel()){
       checkPrecision(listError, AssmatUtil.getMessage("ASS-DEC-AOCC-PRE-OBL-HTML"), AssmatUtil.getMessage("ASS-DEC-AOCC-PRE-ERR-HTML"));
     // Planning variable sans semaines types
     }else if(declaration.getPlanningSemainesTypes() != null && !declaration.getPlanningSemainesTypes()){
       checkPrecision(listError, AssmatUtil.getMessage("ASS-DEC-PIRR-PRE-OBL-HTML"), AssmatUtil.getMessage("ASS-DEC-PIRR-PRE-ERR-HTML"));
     // Planning régulier ou planning variable avec semaines types
     }else {
-      // Précisions > 50 caract
+      // Précisions > 250 caract
       if(Util.notEmpty(precision)){
         if(precision.length()> 250){
           listError.add(new JcmsMessage(JcmsMessage.Level.WARN, AssmatUtil.getMessage("ASS-DEC-PL-Z2-PRE-AUTR-CAR-HTML")));
@@ -1409,11 +1420,26 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
     }
   }
   
+  /**
+   * Depuis un tableau JSON, mettre à jour les données de planning
+   * @param planningDataArray
+   */
+  private void updatePlanningDataFromJson(JSONArray planningDataArray) {
+    for (int index = 0; index < planningDataArray.length(); index++) {
+      try {
+        JSONObject itObject = planningDataArray.getJSONObject(index);
+        ReflectUtil.invokeMethod(this, itObject.getString(PlanningUtil.fieldSetMethod), itObject.getString(PlanningUtil.fieldValue));
+      } catch (Exception e) {
+        logger.error(e);
+      }
+    }
+  }
+
   private void checkPrecision(List<JcmsMessage> listError, String errorObl, String ErrorLgt){
     if(Util.isEmpty(precision)) {
       listError.add(new JcmsMessage(JcmsMessage.Level.WARN, errorObl));
     // Précisions > 1000 caract
-    } else {     
+    } else {
       if(precision.length()> 1000){
         listError.add(new JcmsMessage(JcmsMessage.Level.WARN, ErrorLgt));
       }
@@ -1425,10 +1451,10 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
       
       // Erreur si longueur libelle > 20
       Boolean valideLibelle = true;
-      for(int semaineCpt = 1 ; semaineCpt <= 10 ; semaineCpt++){    
+      for(int semaineCpt = 1 ; semaineCpt <= 10 ; semaineCpt++){
         String itLibelle;
         try {
-          itLibelle = (String) ReflectUtil.invokeMethod(this, "getLibelle" + semaineCpt);           
+          itLibelle = (String) ReflectUtil.invokeMethod(this, "getLibelle" + semaineCpt);
           if(Util.notEmpty(itLibelle)){
             if(itLibelle.length() > 20){
               valideLibelle = false;
@@ -1469,20 +1495,20 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
             isCheckJour = false;
           }
           
-          Boolean unCreneauDeRenseigne = false;          
+          Boolean unCreneauDeRenseigne = false;
           String finPrecedentCrenauHorraire = "";
           
           for(int creCpt = 1 ; creCpt < 4 ; creCpt++){
             try {
-              String itDebutCreneauJour = (String) ReflectUtil.invokeMethod(this, "getS"+ semaineCpt + "debcr"+ creCpt +itJour.toLowerCase());          
-              String itFinCreneauJour = (String) ReflectUtil.invokeMethod(this, "getS" + semaineCpt +"fincr"+ creCpt +itJour.toLowerCase()); 
+              String itDebutCreneauJour = (String) ReflectUtil.invokeMethod(this, "getS"+ semaineCpt + "debcr"+ creCpt +itJour.toLowerCase());
+              String itFinCreneauJour = (String) ReflectUtil.invokeMethod(this, "getS" + semaineCpt +"fincr"+ creCpt +itJour.toLowerCase());
 
               // Erreur si un des horraire n'est pas dans le format attendu (00h00)
               if(Util.notEmpty(itDebutCreneauJour)){
-                valideCreneauFormat = valideCreneauFormat && checkFormatHeure(itDebutCreneauJour);             
+                valideCreneauFormat = valideCreneauFormat && checkFormatHeure(itDebutCreneauJour);
               }
               if(Util.notEmpty(itFinCreneauJour)){
-                valideCreneauFormat = valideCreneauFormat && checkFormatHeure(itFinCreneauJour);  
+                valideCreneauFormat = valideCreneauFormat && checkFormatHeure(itFinCreneauJour);
               }
 
               // Erreur si une des deux date est vide 
@@ -1498,11 +1524,11 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
               
               // Erreur si la règle suivant n'est pas respectée
               // on doit toujours avoir h1deb < h1fin < h2deb < h2fin < h3deb < h3fin
-              if(Util.notEmpty(itFinCreneauJour) && Util.notEmpty(itDebutCreneauJour)) {                                           
+              if(Util.notEmpty(itFinCreneauJour) && Util.notEmpty(itDebutCreneauJour)) {
                 if( 
                     (!crenauDebFinValide(itDebutCreneauJour, itFinCreneauJour)) || 
                     (Util.notEmpty(finPrecedentCrenauHorraire) && !crenauDebFinValide(finPrecedentCrenauHorraire, itDebutCreneauJour) )
-                  ) {               
+                  ) {
                   valideCoherenceCreneaux = false;
                 }                                            
               }
@@ -1539,14 +1565,14 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
   }
 
 
-  private void checkPlanningRegulier(List<JcmsMessage> listError) {        
+  private void checkPlanningRegulier(List<JcmsMessage> listError) {
     // check creneau horraire (format)
     if(declaration.getPlanningRegulier()) {
       Boolean valideCreneauFormat = true;
       Boolean valideCoherenceHorraire = true;
       Boolean valideCreneauPresence = true;
       Boolean valideCoherenceCreneaux = true;
-      for(int semaineCpt = 1 ; semaineCpt <= 2 ; semaineCpt++){   
+      for(int semaineCpt = 1 ; semaineCpt <= 2 ; semaineCpt++){
         for(String itJour : JOURS) {
                   
           Boolean isCheckJour = false;
@@ -1572,12 +1598,18 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
               String itDebutCreneauJour = (String) ReflectUtil.invokeMethod(this, "getDebcr"+ creCpt +itJour.toLowerCase() + (semaineCpt == 2 ? "Vac" : ""));          
               String itFinCreneauJour = (String) ReflectUtil.invokeMethod(this, "getFincr"+ creCpt +itJour.toLowerCase() + (semaineCpt == 2 ? "Vac" : "")); 
 
+              
+              if(itDebutCreneauJour != null && itFinCreneauJour != null) {
+                itDebutCreneauJour = itDebutCreneauJour.replace(":", "h");
+                itFinCreneauJour = itFinCreneauJour.replace(":", "h");               
+              }
+              
               // Erreur si un des horraire n'est pas dans le format attendu (00h00)
               if(Util.notEmpty(itDebutCreneauJour)){
-                valideCreneauFormat = valideCreneauFormat && checkFormatHeure(itDebutCreneauJour);             
+                valideCreneauFormat = valideCreneauFormat && checkFormatHeure(itDebutCreneauJour);
               }
               if(Util.notEmpty(itFinCreneauJour)){
-                valideCreneauFormat = valideCreneauFormat && checkFormatHeure(itFinCreneauJour);  
+                valideCreneauFormat = valideCreneauFormat && checkFormatHeure(itFinCreneauJour);
               }
 
               // Erreur si une des deux date est vide 
@@ -1593,7 +1625,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
               
               // Erreur si la règle suivant n'est pas respectée
               // on doit toujours avoir h1deb < h1fin < h2deb < h2fin < h3deb < h3fin
-              if(Util.notEmpty(itFinCreneauJour) && Util.notEmpty(itDebutCreneauJour)) {                               
+              if(Util.notEmpty(itFinCreneauJour) && Util.notEmpty(itDebutCreneauJour)) {
                 if( 
                     (!crenauDebFinValide(itDebutCreneauJour, itFinCreneauJour)) || 
                     (Util.notEmpty(finPrecedentCrenauHorraire) && !crenauDebFinValide(finPrecedentCrenauHorraire, itDebutCreneauJour) )
@@ -1642,7 +1674,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
         
 
         // check question des vacances
-        if(!Boolean.valueOf(uniquementVacances)) {       
+        if(!Boolean.valueOf(uniquementVacances)) {
           if (Util.isEmpty(accueilVacances)) {
             listError.add(new JcmsMessage(JcmsMessage.Level.WARN, AssmatUtil.getMessage("ASS-DEC-PL-Z3-QUE-ERR-HTML")));
           }
@@ -1715,7 +1747,7 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
     sb.append(handlerUtil.getHiddenFieldTag("formStep", formStep));
     // Onglet lieu d'accueil
     /*
-    if (formStep == ENFANT_ACCUEILLI) {     
+    if (formStep == ENFANT_ACCUEILLI) {
       getHiddenFieldLieuAccueil(sb);
       getHiddenFieldModalites(sb);
       getHiddenFieldPlanning(sb);

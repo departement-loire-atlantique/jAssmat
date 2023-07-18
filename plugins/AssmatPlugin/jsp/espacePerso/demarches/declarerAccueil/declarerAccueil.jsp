@@ -1,3 +1,4 @@
+<%@page import="fr.cg44.plugin.assmat.util.PlanningUtil"%>
 <%@page import="fr.cg44.plugin.assmat.util.DemarcheUtil"%>
 <%@page import="fr.cg44.plugin.assmat.handler.CreneauHorraire"%>
 <%@page import="org.joda.time.format.DateTimeFormat"%>
@@ -69,10 +70,7 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter
      assmatSolis= Util.getFirst(solisMgr.getAssmatSolisByNumAgrement(profilAM.getNum_agrement()));
   }else{
     sendForbidden(request, response);
-  }
-  
-  
-  
+  }  
 
   Boolean isModif = Util.notEmpty(request.getParameter("idModifEnCours"));
   
@@ -88,11 +86,14 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter
   String uuid = UUID.randomUUID().toString();
 
 %>
+
+<div class="ds44-form__container">
+
 <jalios:select>
     <jalios:if predicate="<%= isModif %>">
-        <h2 class="h1-like">
+        <p class="ds44-box-heading">
             <trsb:glp key="ASS-MODDEC-GEN-TITRE-HTML" />
-        </h2>
+        </p>
     </jalios:if>
     <jalios:default>
         <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>
@@ -142,3 +143,5 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter
         <input type="hidden" name="csrftoken" value="<%= getCSRFToken() %>" data-technical-field/>                       
     </jalios:if>
 </form>
+
+</div>

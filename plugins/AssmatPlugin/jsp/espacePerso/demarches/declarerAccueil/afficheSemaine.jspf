@@ -1,99 +1,216 @@
 
 <%@page import="fr.cg44.plugin.assmat.AssmatUtil"%>
-<p class="semaine">Semaine <%=numeroSemaine%></p>
-        <label for="specificiteSemaine<%=numeroSemaine%>" class="specificite question"><trsb:glp key="ASS-DEC-PL-Z2V-SPE-HTML" ></trsb:glp>
-         <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label='<%= AssmatUtil.getMessage("ASS-DEC-PL-Z2V-SPE-INF-HTML", false) %>' data-color="#AEC900">
-              <img alt="?" src="s.gif" class="spr-interrogation">
-            </button></label>
+<%@ page contentType="text/html; charset=UTF-8"%>
 
-          <input placeholder="Sp�cificit� semaine <%=numeroSemaine%>" type="text" name="libelle<%=numeroSemaine%>" id="specificiteSemaine<%=numeroSemaine%>" value='<%= libelle %>' class="specificite">
+<%
+prefixPlanning = "s" + numeroSemaine;
+suffixPlanning = "";
+semaine = "_" + prefixPlanning;
+nbCreneau = nbCreneau == 0 ? 1 : nbCreneau;      
+%>
 
 
-        
-        <jalios:select>
-            <jalios:if predicate='<%= !estProvisoireBool || Util.isEmpty(dateFinAccueil) %>'>
-                <p class="important"><trsb:glp key="ASS-DEC-PL-Z1-QUE-BASE-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>' ></trsb:glp></p>          
-            </jalios:if>          
-            <jalios:default>
-                <p class="important"><%=libelleTexteAccueil %></p>
-            </jalios:default>        
-        </jalios:select>
+             
+<div class="ds44-plannings ds44-mb2" data-limit-max="10" data-limit-min="1">
+
+ <div class="ds44-plannings-content">
+
+   <div  data-limit-max="3" data-limit-min="1"  data-planning="planning___NUM_PLANNING__" >
         
         
-        <%-- Jour de la semaine --%>
-        <jalios:foreach array="<%= DeclarerAccueilAssmatHandler.JOURS %>" name="itJour" type="String">
-	        <div class="gauche">
-	          <input onclick="if(!document.body.classList.contains('js-ready')){ alert('Veuillez patienter, la page n\'est pas encore compl�tement charg�e.'); return false;}" type="checkbox" <%= joursCheckTab[itCounter-1] ? "checked" : "" %> name="s<%= numeroSemaine + itJour %>" class="false-input cal<%= itJour.toLowerCase() %>">
-	        </div>
-	        <div class="intituleExtra">
-	          <label><%= itJour %></label>
-	        </div>        
-        </jalios:foreach>
+     <h2 class="h2-like">Semaine __NUM_PLANNING__</h2>
         
+        
+<%--         <%@include file="/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/blocPlanning.jspf" %> --%>
+   
+   
+   
+   <div class="ds44-form__container">
+        <label for="form-element-<%= uuid %>-s__NUM_PLANNING__" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp key="ASS-DEC-PL-Z2V-SPE-HTML" attribute="true"></trsb:glp></span></span></label>
+        <input type="text" id="form-element-<%= uuid %>-s__NUM_PLANNING__" name="libelle__NUM_PLANNING__" value="<%= libelle %>" class="ds44-inpStd" title="Spécificité semaine <%=numeroSemaine%>" />
+        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden">Effacer le contenu saisi dans le champ : Champ standard</span></button>
+        <button type="button" class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_<%= uuid %>">
+            <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden"><%=AssmatUtil.getMessage("ASS-DEC-PL-Z2V-SPE-INF-HTML") %></span>
+        </button>
+        <p id="tooltip-case_<%= uuid %>" class="hidden"><%=AssmatUtil.getMessage("ASS-DEC-PL-Z2V-SPE-INF-HTML") %></p>
+    </div>
+    
   
-        <div class="renseignementPlanning" style='display: <%= Util.arrayContains(joursCheckTab, true) ? "" : "none" %> ;'>
-        
-<%--           <p><strong><%=libelleIntro %></strong></p> --%>
+  
+    <%-- jours semaine --%>
+    <div class="ds-44-choices-days">
+        <% uuid = UUID.randomUUID().toString(); %>      
+        <div id="form-element-<%= uuid %>-s__NUM_PLANNING__" data-name="form-element-<%= uuid %>-s__NUM_PLANNING__" class="ds44-form__checkbox_container ds44-form__container"  data-required="true">
+        <p><%= glp("jcmsplugin.assmatplugin.planning.joursAccueil") %></p> 
+            <jalios:foreach array="<%= DeclarerAccueilAssmatHandler.JOURS %>" name="itJour" type="String">                                  
+              <div class="ds44-form__container ds44-checkBox-radio_list inbl">
+                <input type="checkbox" id="name-check-form-element-<%= uuid %>-<%= itJour %>-s__NUM_PLANNING__" name='<%= "s__NUM_PLANNING__" %><%= itJour %><%= suffixPlanning %>' value="true" data-day="<%= itJour.toLowerCase() %>" class="ds44-checkbox"   required  aria-describedby="mandatory-message-form-element-<%= uuid %>" />
+                <label for="name-check-form-element-<%= uuid %>-<%= itJour %>-s__NUM_PLANNING__" class="ds44-boxLabel" id="name-check-label-form-element-<%= uuid %>-<%= itJour %>"><%= itJour %></label>
+              </div>                        
+            </jalios:foreach>            
+        </div>      
+    </div>
+    
+    
+    
+    <div class="renseignementPlanning" style='display: <%= Util.arrayContains(joursCheckTab, true) ? "" : "none" %> ;'>
+        <p class="question"><trsb:glp key="ASS-DEC-PL-Z2R-EXP-HTML" ></trsb:glp></p>      
+    </div>
+    
+    
+    <%-- Copier/coller --%>
+    <div class="content-button">
+        <button class="ds44-btnStd ds44-btn--invert" data-planning-action="copy-paste">
+        <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.planning.copier-coller") %></span>
+        </button>
+    </div>   
 
-          <p class="question"><trsb:glp key="ASS-DEC-PL-Z2V-PREC-HTML" ></trsb:glp></p> 
-        </div>
-
-
-        <div class="posRel">
-        <div class="semainier" style='display: <%= Util.arrayContains(joursCheckTab, true) ? "" : "none" %> ;'>
-          <p class="btnFonctionnalite plus copierColler"><a href="#" onclick="return false;"><trsb:glp key="ASS-DEC-PL-Z2R-COP-HTML" ></trsb:glp></a></p>
-                  <table class="tableCreneau">
-                      <thead>
-                          <tr>
-                              <th class=""></th>
-                              <th class="" colspan="2" scope="col">Cr�neau 1</th>
-                              <th class="creneau2" colspan="2" scope="col" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'>Cr�neau 2</th>
-                              <th class="creneau3" colspan="2" scope="col" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'>Cr�neau 3</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td class="">Jours</td>
-                              <td class="">H d�but</td>
-                              <td class="">H fin</td>
-                              <td class="creneau2" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'>H d�but</td>
-                              <td class="creneau2" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'>H fin</td>
-                              <td class="creneau3" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'>H d�but</td>
-                              <td class="creneau3" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'>H fin</td>
-                          </tr>                                                 
-                          <jalios:foreach array="<%= DeclarerAccueilAssmatHandler.JOURS %>" name="itJour" type="String">
-                          
-                            <%
-                              // La liste des horraires pour le jour de la boucle (itJour)
-                              ArrayList<CreneauHorraire> horraireList = creneauMap.get(itJour);
-                            %>
-                                                                                                                        
-                            <tr class="<%= itJour.toLowerCase() %>" style='display: <%= joursCheckTab[itCounter-1]? "" : "none"   %> ;'>
-                              <th scope="row" class=""><%= itJour %></th>
-                              <td class="creneau1 debut"><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>debcr1<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 0 ? horraireList.get(0).getDebut() : "" %>' ></td>
-                              <td class="creneau1 fin"><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>fincr1<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 0 ? horraireList.get(0).getFin() : "" %>'></td>
-                              <td class="creneau2 debut" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>debcr2<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 1 ? horraireList.get(1).getDebut() : "" %>'></td>
-                              <td class="creneau2 fin" style='display: <%= nbCreneau >= 2 ? "" : "none" %>;'><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>fincr2<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 1 ? horraireList.get(1).getFin() : "" %>'></td>
-                              <td class="creneau3 debut" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>debcr3<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 2 ? horraireList.get(2).getDebut() : "" %>'></td>
-                              <td class="creneau3 fin" style='display: <%= nbCreneau >= 3 ? "" : "none" %>;'><input placeholder="00h00" type="text" name='s<%= numeroSemaine %>fincr3<%= itJour.toLowerCase() %>' value='<%= horraireList != null && horraireList.size() > 2 ? horraireList.get(2).getFin() : "" %>'></td>
-                            </tr>                                                  
-                          </jalios:foreach>
-                      </tbody>
-                  </table>
-
-                  <p class="btnFonctionnalite plus ajouterCreneau"><a href="#" onclick="return false;"><trsb:glp key="ASS-DEC-PL-Z2R-AJO-HTML" ></trsb:glp></a>
-                  <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-PL-Z2R-AJO-INFB-HTML") %>" data-color="#AEC900">
-                     <img alt="?" src="s.gif" class="spr-interrogation">
-                  </button></p>
-                  <p class="btnFonctionnalite plus ajouterCreneau3" style='display: <%= nbCreneau == 2 ? "" : "none" %>;' onclick="return false;" ><a href="#"><trsb:glp key="ASS-DEC-PL-Z2R-AJO-HTML" ></trsb:glp></a>
-                   <button class="cg-tooltip buttonHelp" data-category-id="none" aria-label="<%=AssmatUtil.getMessage("ASS-DEC-PL-Z2R-AJO-INFB-HTML") %>" data-color="#AEC900">
-                     <img alt="?" src="s.gif" class="spr-interrogation">
-                  </button>
-                  </p>
-                  <p class="btnFonctionnalite moins supprimerCreneau2" style='display: <%= nbCreneau == 2 ? "" : "none" %>;' onclick="return false;"><a href="#"><trsb:glp key="ASS-DEC-PL-Z2R-SUP-HTML" ></trsb:glp></a></p>
-                  <p class="btnFonctionnalite moins supprimerCreneau3" style='display: <%= nbCreneau == 3 ? "" : "none" %>;' onclick="return false;"><a href="#"><trsb:glp key="ASS-DEC-PL-Z2R-SUP-HTML" ></trsb:glp></a></p>
-                </div>
-                </div> <!-- /position -->
+  
+  
+  
+     <div class="ds44-planing-table-button">
+        <table class="ds44-planning-table">
+            <thead>
+            
+            
+                <tr class="first" data-row-name="th-first">
+                    <th></th>
+                    <th colspan="2" data-col-key="1" data-value-key="planning_1_1">Créneau 1</th>
+                    <jalios:if predicate="<%= nbCreneau >= 2 %>">
+                        <th colspan="2" data-col-key="2" data-value-key="planning_1_2">Créneau 2</th>
+                    </jalios:if>
+                    <jalios:if predicate="<%= nbCreneau >= 3 %>">
+                        <th colspan="2" data-col-key="3" data-value-key="planning_1_3">Créneau 3</th>
+                    </jalios:if>
+                </tr> 
                 
+                <tr class="second" data-row-name="th-second">
+                    <th>Jours</th>
+                    <th class="value" data-col-key="1" data-value-key="start">H de début</th>
+                    <th class="value" data-col-key="1" data-value-key="end">H de fin</th>
+                    <jalios:if predicate="<%= nbCreneau >= 2 %>">
+                        <th class="value" data-col-key="2" data-value-key="start">H de début</th>
+                        <th class="value" data-col-key="2" data-value-key="end">H de fin</th>
+                    </jalios:if>
+                    <jalios:if predicate="<%= nbCreneau >= 3 %>">
+                        <th class="value" data-col-key="3" data-value-key="start">H de début</th>
+                        <th class="value" data-col-key="3" data-value-key="end">H de fin</th>
+                    </jalios:if>
+                    
+
+                </tr>
+                          
+            </thead> 
+                       
+            <tbody>
+            
+                <tr data-first-line></tr>
+                
+                <jalios:foreach array="<%= DeclarerAccueilAssmatHandler.JOURS %>" name="itJour" type="String">
+                
+                    <%
+                      // La liste des horraires pour le jour de la boucle (itJour)
+                      ArrayList<CreneauHorraire> horraireList = creneauMap.get(itJour);
+                    %>
+                
+                 <jalios:if predicate="<%= joursCheckTab[itCounter-1] %>">
+                     <tr data-row-name='<%= itJour.toLowerCase() %>'>
+                        <td class="day"><%= itJour %></td>
+                        
+                        
+                        <% for (int creneauNumber = 1; creneauNumber <= 3; creneauNumber++) { %>
+                        
+                          <jalios:if predicate="<%= nbCreneau >= creneauNumber %>">
+                        
+                            <td class="value" data-col-key="<%= creneauNumber %>" data-value-key="start">                  
+                                <div class="ds44-form__container">
+                                    <div class="ds44-posRel">
+                                        <label for='debcr1<%= itJour.toLowerCase() %>' class="ds44-formLabel ds44-time"><span class="ds44-labelTypePlaceholder"><span>Créneau <%= creneauNumber %> du lundi heure de début<sup aria-hidden="true">*</sup></span></span></label>
+                                        
+                                        <div data-name='s__NUM_PLANNING__debcr<%= creneauNumber %><%= itJour.toLowerCase() %>' class="ds44-time__shape ds44-inpStd"  data-required="true">                              
+                                            <input id='s__NUM_PLANNING__debcr<%= creneauNumber %><%= itJour.toLowerCase() %>' type="text" inputmode="numeric" pattern="([01]?[0-9]{1}|2[0-3]{1})" maxlength="2" title="Créneau 1 du lundi heure de début : Heure (ex. 14) - obligatoire" value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getHeuresFromHoraire(horraireList.get(creneauNumber-1).getDebut()) : "" %>'  data-is-time="true"  required  >
+                                            <span>h</span>
+                                            <input type="text" inputmode="numeric" pattern="[0-5]{1}[0-9]{1}" maxlength="2" title="Créneau 1 du lundi heure de début : Minute (ex. 05) - obligatoire"  value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getMinutesFromHoraire(horraireList.get(creneauNumber-1).getDebut()) : "" %>' data-is-time="true"  required  >                                
+                                        </div>
+                                        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden">Effacer le contenu saisi dans le champ : Créneau 1 du lundi heure de début</span></button>
+                                    </div>
+                                </div>  
+                            </td> 
+                                                    
+                            <td class="value" data-col-key="<%= creneauNumber %>" data-value-key="end"> 
+                                <div class="ds44-form__container">  
+                                    <div class="ds44-posRel">
+                                        <label for='fincr1<%= itJour.toLowerCase() %>' class="ds44-formLabel ds44-time"><span class="ds44-labelTypePlaceholder"><span>Créneau <%= creneauNumber %> du lundi heure de fin<sup aria-hidden="true">*</sup></span></span></label>
+                                        
+                                        <div data-name='s__NUM_PLANNING__fincr<%= creneauNumber %><%= itJour.toLowerCase() %>' class="ds44-time__shape ds44-inpStd"  data-required="true">
+                                            <input id='s__NUM_PLANNING__fincr<%= creneauNumber %><%= itJour.toLowerCase() %>' type="text" inputmode="numeric" pattern="([01]?[0-9]{1}|2[0-3]{1})" maxlength="2" title="Créneau 1 du lundi heure de fin : Heure (ex. 14) - obligatoire" value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getHeuresFromHoraire(horraireList.get(creneauNumber-1).getFin()) : "" %>' data-is-time="true"  required  >
+                                            <span>h</span>
+                                            <input type="text" inputmode="numeric" pattern="[0-5]{1}[0-9]{1}" maxlength="2" title="Créneau 1 du lundi heure de fin : Minute (ex. 05) - obligatoire"  value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getMinutesFromHoraire(horraireList.get(creneauNumber-1).getFin()) : "" %>' data-is-time="true"  required  >
+                                        </div>
+                                        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden">Effacer le contenu saisi dans le champ : Créneau 1 du lundi heure de fin</span></button>
+                                    </div>
+                                </div>              
+                            </td> 
+                            
+                          </jalios:if>
+                        
+                        <%} %>
+                     
+                    </tr>
+                    
+                  </jalios:if>
+                  
+                </jalios:foreach>              
+            
+            </tbody>
+            
+                   
+        </table>  
         
-        <div class="borderDot title-bar-container dotted-portlet" style="margin-top: 10px;"></div>
+        
+        <div class="content-button">
+          <button class="ds44-btnStd ds44-btn--invert" data-planning-action="add">
+            <i class="icon icon-plus" aria-hidden="true"></i>
+            <span class="ds44-btnInnerText">Ajouter un créneau</span>
+          </button>
+          
+          <button type="button" class="js-simple-tooltip button" data-simpletooltip-content-id="tooltips-planning">
+            <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : [titre relatif à cette aide]</span>
+          </button>
+          
+          <p id="tooltips-planning" class="hidden">
+            Si vous gardez l’enfant sur plusieurs plages horaires dans la même journée, ajouter des créneaux pour saisir toutes les plages horaires. Vous pouvez saisir jusqu’à trois créneaux.
+          </p>
+        </div>
+        
+        
+                  
+    </div> 
+  
+  
+  
+    <div class="content-button">
+       <button class="ds44-btnStd ds44-btn--invert" data-planning-action="remove">
+         <i class="icon icon-cross" aria-hidden="true"></i>
+         <span class="ds44-btnInnerText">Supprimer un créneau</span>
+       </button>
+    </div>
+    
+    
+   </div> 
+ </div>
+    
+    <div class="content-button">
+        <button class="ds44-btnStd ds44-btn--invert" data-plannings-action="add-planning">
+          <span class="ds44-btnInnerText">Ajouter une semaine</span>
+        </button>
+        <button class="ds44-btnStd ds44-btn--invert" data-plannings-action="remove-planning">
+          <span class="ds44-btnInnerText">Supprimer une semaine</span>
+        </button>
+      </div>
+  
+  
+   
+</div>     
+                
+<hr/>
