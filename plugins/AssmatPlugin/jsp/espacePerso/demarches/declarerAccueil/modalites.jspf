@@ -169,7 +169,7 @@ if (step == DeclarerAccueilAssmatHandler.MODALITES) {
       
       <div class="ds44-flex ds44-fsb">
           <div class="ds44-form__container">
-              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opPrevious" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"2/4", glp("jcmsplugin.assmatplugin.declaration.lieu-accueil")}) %>"><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></span></button>
+              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-form-no-validate data-submit-key="opPrevious" name="opPrevious" value="true" title="<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"2/4", glp("jcmsplugin.assmatplugin.declaration.lieu-accueil")}) %>"><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></span></button>
               <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
               <input type="hidden" name="id" value="c_5065" data-technical-field>
           </div>

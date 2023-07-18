@@ -163,7 +163,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 		        <div class="ds44-form__container">
 		            <div class="ds44-posRel">
 		                <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp attribute="true" key="ASS-DEC-AOCC-PRE-HTML" /></span></span></label>
-		                <textarea rows="4" cols="1" id="form-element-<%= uuid %>" name="form-element-<%= uuid %>" class="ds44-inpStd" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", titleTextAreaOccasionel) %>" required ></textarea>
+		                <textarea rows="4" cols="1" id="form-element-<%= uuid %>" name="precision" class="ds44-inpStd" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", titleTextAreaOccasionel) %>" required ><%= precision %></textarea>
 		            </div>
 		        </div>
 		    </jalios:if>
@@ -176,7 +176,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
                 <div class="ds44-form__container">
                     <div class="ds44-posRel">
                         <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><trsb:glp attribute="true" key="ASS-DEC-PIRR-PRE-HTML" /></span></span></label>
-                        <textarea rows="4" cols="1" id="form-element-<%= uuid %>" name="precisionsPlanning" class="ds44-inpStd" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", titleTextAreaOccasionel) %>" required ></textarea>
+                        <textarea rows="4" cols="1" id="form-element-<%= uuid %>" name="precision" class="ds44-inpStd" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", titleTextAreaOccasionel) %>" required ><%= precision %></textarea>
                     </div>
                 </div>
             </jalios:default>
@@ -202,7 +202,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
           </jalios:if>
           
           <div class="ds44-form__container">
-              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"finale", glp("jcmsplugin.assmatplugin.declaration.enregistrement")}) %>'><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opFinish" title='<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"finale", glp("jcmsplugin.assmatplugin.declaration.enregistrement")}) %>'><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
               <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
               <input type="hidden" name="id" value="c_5065" data-technical-field>
           </div>

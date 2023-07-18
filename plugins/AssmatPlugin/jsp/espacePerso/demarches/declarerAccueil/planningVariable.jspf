@@ -59,7 +59,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 
 
       <!-- BLOC SAISIE -->
-
+<div>
         <div class="ds44-mb2">
 	        <p><trsb:glp key="ASS-DEC-PL-Z2V-PHR-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>' ></trsb:glp></p>
 	        <p><trsb:glp key="ASS-DEC-PL-Z2V-TEXT-HTML" ></trsb:glp></p>
@@ -86,29 +86,31 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 						  libelle = libelle != null ? libelle : "";
 						}
 						// Condition si la semaine doit d'afficher ou non. (si des information sont remplies pour cette semaine alors celle-ci s'affiche)
-						Boolean isVisibleSemaine =  numeroSemaine == 1 || numeroSemaine == 2 || Util.notEmpty(libelle) || nbCreneau >= 1 || Util.arrayContains(joursCheckTab, true) ? true : false;						
+						Boolean isVisibleSemaine =  numeroSemaine == 1 || numeroSemaine == 2 || Util.notEmpty(libelle) || nbCreneau >= 1 || Util.arrayContains(joursCheckTab, true) ? true : false;	
+						
+						
+					   // Si aucun jour alors du lundi au vendredi
+					   if( (numeroSemaine == 1 || numeroSemaine == 2) && !Arrays.asList(joursCheckTab).contains(true)) {
+					    joursCheckTab = new Boolean[]{true,true,true,true,true,false,false};
+					   }
+						
 						%>
 	
 	
-		        <div class="semaineBlock semaine<%= numeroSemaine %>" style='display: <%= isVisibleSemaine ? "" : "none" %> ;'>
+	           <jalios:if predicate="<%= isVisibleSemaine %>">
+	
+		        <div class="semaineBlock semaine<%= numeroSemaine %>">
+		        
+		        
 		           <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/afficheSemaine.jspf'%>
 		           
-		           <jalios:if predicate='<%= numeroSemaine != 1 && numeroSemaine != 10 %>'>
-				           <p class="btnFonctionnalite plus ajouterSemaine ajouterSemaine<%= numeroSemaine + 1 %>">
-				               <a href="#" onclick="return false;"><trsb:glp key="ASS-DEC-PL-Z2V-AJO-SEM-HTML"  ></trsb:glp></a>
-				           </p>
-		           </jalios:if>
-		           
-		           <jalios:if predicate='<%= numeroSemaine != 1 && numeroSemaine != 2 %>'>
-				           <p class="btnFonctionnalite moins supprimerSemaine<%= numeroSemaine %>">
-				               <a href="#" onclick="return false;">Supprimer la dernière semaine type</a>
-				           </p>
-		           </jalios:if>		           
+	           	           
 		        </div>
+		      </jalios:if>
           
         <% } %>
 
-        <hr/>
+
 
 		<!-- PRECISIONS -->
 		
@@ -126,7 +128,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 
      <div class="ds44-flex ds44-fsb">
           <div class="ds44-form__container">
-              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opPrevious" title='<%= glp("jcmsplugin.assmatplugin.label.etape.prev", new String[]{"3/4", glp("jcmsplugin.assmatplugin.declaration.modalites")}) %>'><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></span></button>
+              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-form-no-validate data-submit-key="opPrevious" name="opPrevious" value="true" title='<%= glp("jcmsplugin.assmatplugin.label.etape.prev", new String[]{"3/4", glp("jcmsplugin.assmatplugin.declaration.modalites")}) %>'><i class="icon icon-long-arrow-left" aria-hidden="true"></i><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-PRE-HTML"></trsb:glp></span></button>
               <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
               <input type="hidden" name="id" value="c_5065" data-technical-field>
           </div>
@@ -140,7 +142,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
           </jalios:if>
           
           <div class="ds44-form__container">
-              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opNext" title='<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"finale", glp("jcmsplugin.assmatplugin.declaration.enregistrement")}) %>'><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+              <button data-send-native class="ds44-btnStd ds44-btn--invert" data-submit-value="true" data-submit-key="opFinish" title='<%= glp("jcmsplugin.assmatplugin.label.etape.next", new String[]{"finale", glp("jcmsplugin.assmatplugin.declaration.enregistrement")}) %>'><span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-GEN-ETP-SUI-HTML"></trsb:glp></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
               <input type="hidden" name="noSendRedirect" value="true" data-technical-field>
               <input type="hidden" name="id" value="c_5065" data-technical-field>
           </div>
@@ -149,7 +151,7 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 	<%}%>
 <!-- FIN -->
 
-
+</div>
 
 
 

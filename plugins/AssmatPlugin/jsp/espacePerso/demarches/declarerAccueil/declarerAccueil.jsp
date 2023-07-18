@@ -91,9 +91,9 @@ if(Util.notEmpty(request.getParameter("idDeclaration")) && !request.getParameter
 
 <jalios:select>
     <jalios:if predicate="<%= isModif %>">
-        <h2 class="h1-like">
+        <p class="ds44-box-heading">
             <trsb:glp key="ASS-MODDEC-GEN-TITRE-HTML" />
-        </h2>
+        </p>
     </jalios:if>
     <jalios:default>
         <%@ include file='/plugins/AssmatPlugin/jsp/espacePerso/header.jspf' %>

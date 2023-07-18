@@ -27,20 +27,24 @@
 
 <jalios:if predicate='<%= step == DeclarerAccueilAssmatHandler.VALIDATION %>'>
 
-  <p class="important"><trsb:glp key="ASS-DEC-PL-FIN-HTML" /></p>
+  <p class="ds44-introduction"><trsb:glp key="ASS-DEC-PL-FIN-HTML" /></p>
 
   <p><trsb:glp key="ASS-DEC-PL-FIN-INFO-HTML" /></p>
 
-  <p style="margin-top: 20px">
-	  <a class="black-link" href="<%= lienDeclarationAccueil %>">
-	    <img src="plugins/AssmatPlugin/img/plus-vert.png" alt=""/>
-	    <trsb:glp key="ASS-DEC-PL-DEC-HTML" />    
+
+  
+  <div class="ds44-form__container">
+	  <a href="<%= lienDeclarationAccueil %>" class="ds44-btnStd ds44-btn--invert">
+	     <i class="icon icon-plus" aria-hidden="true"></i>
+	     <span class="ds44-btnInnerText"><trsb:glp key="ASS-DEC-PL-DEC-HTML" />  </span>
+	   </a>
+	          
+	          
+	  <a href="<%= lienActualiserDispo %>" class="ds44-btnStd ds44-btn--invert">
+	    <i class="icon icon-date" aria-hidden="true"></i>
+	    <span class="ds44-btnInnerText"> <trsb:glp key="ASS-DEC-PL-DIS-HTML" /></span>
 	  </a>
-	 	  
-	  <a class="black-link" href="<%= lienActualiserDispo %>">
-	     <img src="plugins/AssmatPlugin/img/icon-calendrier-blanc.png" alt=""/>
-	     <trsb:glp key="ASS-DEC-PL-DIS-HTML" />
-	  </a>
-  </p>
+  </div>
+  
 
 </jalios:if>

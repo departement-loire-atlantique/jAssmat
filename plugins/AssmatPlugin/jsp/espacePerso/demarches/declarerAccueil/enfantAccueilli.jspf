@@ -284,10 +284,10 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
 	    <div class="ds44-form__container">
 		    <div class="ds44-posRel">
 		        <label for="address_search_<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= adress1Label %></span></span></label>
-		        <input data-disabled-by-name-check-form-element-<%= uuid %>_checkbox type="text" id="address_search_<%= uuid %>" name="address_search" class="ds44-inpStd ds44-js-field-address" 
+		        <input data-disabled-metadata="false" data-disabled-by-name-check-form-element-<%= uuid %>_checkbox type="text" id="address_search_<%= uuid %>" name="address_search" class="ds44-inpStd ds44-js-field-address" 
 		          role="combobox" aria-autocomplete="list" autocomplete="off" aria-expanded="false" data-limit-char="3" data-url="https://api-adresse.data.gouv.fr/search/?limit=5" 
 		          title='<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", adress1Label) %>' value="<%= adresseRepresentant1 %> <%= codePostalRepresentant1 %> <%= villeRepresentant1 %>" 
-		          data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete="" required 
+		          data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete=""  
 		          <%= saisieAdresseR1 ? "disabled" : "" %>/>
 		          <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", adress1Label) %></span></button>
 		        <div class="ds44-autocomp-container hidden">
@@ -432,7 +432,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
                 <label for="address_search_<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= adress2Label %></span></span></label>
                 <input data-disabled-by-name-check-form-element-<%= uuid %>_checkbox type="text" id="address_search_<%= uuid %>" name="address_search_<%= uuid %>" class="ds44-inpStd ds44-js-field-address" 
                 role="combobox" aria-autocomplete="list" autocomplete="off" aria-expanded="false" data-limit-char="3" data-url="https://api-adresse.data.gouv.fr/search/?limit=5" 
-                title="<%= adress2Label %>" data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete="" />
+                title="<%= adress2Label %>" data-mode="free-text" data-disabled-by-name-check-address_manuel-1 data-address-autocomplete="" value="<%= adresseRepresentant2 %> <%= codePostalRepresentant2 %> <%= villeRepresentant2 %>" />
                 <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", adress2Label) %></span></button>
                 <div class="ds44-autocomp-container hidden">
                     <div class="ds44-autocomp-list">
@@ -457,7 +457,7 @@ if (step == DeclarerAccueilAssmatHandler.ENFANT_ACCUEILLI) {
                 <div class="ds44-posRel">
                     <label for="form-element-<%= uuid %>" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span><%= labelField %></span></span></label>
                     <input data-<%=uuidAdresse2%>="libelle" <%= isModif ? "readonly" : "" %> type="text" id="form-element-<%= uuid %>" name="adresseRepresentant2" 
-                    value="<%= adresseRepresentant2 %> <%= codePostalRepresentant2 %> <%= villeRepresentant2 %>"  class="ds44-inpStd" title='<%= labelField %>' <%= saisieAdresseR2 ? "disabled" : "" %>/>
+                    value="<%= adresseRepresentant2 %>"  class="ds44-inpStd" title='<%= labelField %>' <%= saisieAdresseR2 ? "disabled" : "" %>/>
                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", labelField) %></span></button>
                 </div>
               </div>

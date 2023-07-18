@@ -1025,8 +1025,8 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
     // PLANNING
     if(formStep == PLANNING) {       
       // Mettre à jour les champs depuis la requête. Nécessaire faute au nouveau format des données envoyées par le formulaire
-      JSONArray planningDataArray = PlanningUtil.convertRequestFormToHandlerVars(request);
-      if (Util.notEmpty(planningDataArray)) updatePlanningDataFromJson(planningDataArray);
+//      JSONArray planningDataArray = PlanningUtil.convertRequestFormToHandlerVars(request);
+//      if (Util.notEmpty(planningDataArray)) updatePlanningDataFromJson(planningDataArray);
       
       // Planning régulier
       if(declaration.getPlanningRegulier()) { 
@@ -1261,6 +1261,12 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
           for(int i=1; i<=3; i++) {  
             String itDebutCreneauJour = (String) ReflectUtil.invokeMethod(this, "get" + (typeSemaine == VARIABLE ? "S"+numSemaine+"d" : "D") + "ebcr"+ i +itJour.toLowerCase() + (typeSemaine == VACANCES ? "Vac" : ""));
             String itFinCreneauJour = (String) ReflectUtil.invokeMethod(this, "get" + (typeSemaine == VARIABLE ? "S"+numSemaine+"f" : "F") + "incr"+ i +itJour.toLowerCase() + (typeSemaine == VACANCES ? "Vac" : ""));
+            
+            if(itDebutCreneauJour != null && itFinCreneauJour != null) {
+              itDebutCreneauJour = itDebutCreneauJour.replace(":", "h");
+              itFinCreneauJour = itFinCreneauJour.replace(":", "h");
+            }
+            
             if(Util.notEmpty(itDebutCreneauJour) || Util.notEmpty(itFinCreneauJour) || i == 1) {
               CreneauDTO creneau = new CreneauDTO();
               creneau.setJourSemaine(itJour);
@@ -1592,6 +1598,12 @@ public class DeclarerAccueilAssmatHandler extends EditDataHandler {
               String itDebutCreneauJour = (String) ReflectUtil.invokeMethod(this, "getDebcr"+ creCpt +itJour.toLowerCase() + (semaineCpt == 2 ? "Vac" : ""));          
               String itFinCreneauJour = (String) ReflectUtil.invokeMethod(this, "getFincr"+ creCpt +itJour.toLowerCase() + (semaineCpt == 2 ? "Vac" : "")); 
 
+              
+              if(itDebutCreneauJour != null && itFinCreneauJour != null) {
+                itDebutCreneauJour = itDebutCreneauJour.replace(":", "h");
+                itFinCreneauJour = itFinCreneauJour.replace(":", "h");               
+              }
+              
               // Erreur si un des horraire n'est pas dans le format attendu (00h00)
               if(Util.notEmpty(itDebutCreneauJour)){
                 valideCreneauFormat = valideCreneauFormat && checkFormatHeure(itDebutCreneauJour);
