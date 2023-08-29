@@ -64,6 +64,12 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 	        <p><trsb:glp key="ASS-DEC-PL-Z2V-PHR-HTML" parameter='<%= new String[]{prenomEnfant, nomEnfant} %>' ></trsb:glp></p>
 	        <p><trsb:glp key="ASS-DEC-PL-Z2V-TEXT-HTML" ></trsb:glp></p>
         </div>
+        
+        
+        
+        <div class="ds44-plannings ds44-mb2" data-limit-max="10" data-limit-min="1">
+
+        <div class="ds44-plannings-content">
 
         <% for(int numeroSemaine = 1 ; numeroSemaine <= 10 ; numeroSemaine++) { %>
 	
@@ -109,6 +115,19 @@ if (step == DeclarerAccueilAssmatHandler.PLANNING) {
 		      </jalios:if>
           
         <% } %>
+        
+        </div>
+        
+                <div class="content-button">
+		        <button class="ds44-btnStd ds44-btn--invert" data-plannings-action="add-planning">
+		          <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.planning.ajouter-semaine") %></span>
+		        </button>
+		        <button class="ds44-btnStd ds44-btn--invert" data-plannings-action="remove-planning">
+		          <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.planning.suppr-semaine") %></span>
+		        </button>
+		      </div>
+        
+        </div>
 
 
 
