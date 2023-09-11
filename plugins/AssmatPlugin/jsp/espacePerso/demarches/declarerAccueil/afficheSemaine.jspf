@@ -11,14 +11,14 @@ nbCreneau = nbCreneau == 0 ? 1 : nbCreneau;
 
 
              
-<div class="ds44-plannings ds44-mb2" data-limit-max="10" data-limit-min="1">
+<!-- <div class="ds44-plannings ds44-mb2" data-limit-max="10" data-limit-min="1"> -->
 
- <div class="ds44-plannings-content">
+<!--  <div class="ds44-plannings-content"> -->
 
-   <div  data-limit-max="3" data-limit-min="1"  data-planning="planning___NUM_PLANNING__" >
+   <div  data-limit-max="3" data-limit-min="1" data-planning="planning___NUM_PLANNING__" >
         
         
-     <h2 class="h2-like">Semaine __NUM_PLANNING__</h2>
+     <h2 class="h2-like"><%= glp("jcmsplugin.assmatplugin.planning.semaine") %> __NUM_PLANNING__</h2>
         
         
 <%--         <%@include file="/plugins/AssmatPlugin/jsp/espacePerso/demarches/declarerAccueil/blocPlanning.jspf" %> --%>
@@ -75,26 +75,26 @@ nbCreneau = nbCreneau == 0 ? 1 : nbCreneau;
             
                 <tr class="first" data-row-name="th-first">
                     <th></th>
-                    <th colspan="2" data-col-key="1" data-value-key="planning_1_1">Créneau 1</th>
+                    <th colspan="2" data-col-key="1" data-value-key="planning_1_1"><%= glp("jcmsplugin.assmatplugin.planning.creneau", "1") %></th>
                     <jalios:if predicate="<%= nbCreneau >= 2 %>">
-                        <th colspan="2" data-col-key="2" data-value-key="planning_1_2">Créneau 2</th>
+                        <th colspan="2" data-col-key="2" data-value-key="planning_1_2"><%= glp("jcmsplugin.assmatplugin.planning.creneau", "2") %></th>
                     </jalios:if>
                     <jalios:if predicate="<%= nbCreneau >= 3 %>">
-                        <th colspan="2" data-col-key="3" data-value-key="planning_1_3">Créneau 3</th>
+                        <th colspan="2" data-col-key="3" data-value-key="planning_1_3"><%= glp("jcmsplugin.assmatplugin.planning.creneau", "3") %></th>
                     </jalios:if>
                 </tr> 
                 
                 <tr class="second" data-row-name="th-second">
                     <th>Jours</th>
-                    <th class="value" data-col-key="1" data-value-key="start">H de début</th>
-                    <th class="value" data-col-key="1" data-value-key="end">H de fin</th>
+                    <th class="value" data-col-key="1" data-value-key="start"><%= glp("jcmsplugin.assmatplugin.planning.h-debut") %></th>
+                    <th class="value" data-col-key="1" data-value-key="end"><%= glp("jcmsplugin.assmatplugin.planning.h-fin") %></th>
                     <jalios:if predicate="<%= nbCreneau >= 2 %>">
-                        <th class="value" data-col-key="2" data-value-key="start">H de début</th>
-                        <th class="value" data-col-key="2" data-value-key="end">H de fin</th>
+                        <th class="value" data-col-key="2" data-value-key="start"><%= glp("jcmsplugin.assmatplugin.planning.h-debut") %></th>
+                        <th class="value" data-col-key="2" data-value-key="end"><%= glp("jcmsplugin.assmatplugin.planning.h-fin") %></th>
                     </jalios:if>
                     <jalios:if predicate="<%= nbCreneau >= 3 %>">
-                        <th class="value" data-col-key="3" data-value-key="start">H de début</th>
-                        <th class="value" data-col-key="3" data-value-key="end">H de fin</th>
+                        <th class="value" data-col-key="3" data-value-key="start"><%= glp("jcmsplugin.assmatplugin.planning.h-debut") %></th>
+                        <th class="value" data-col-key="3" data-value-key="end"><%= glp("jcmsplugin.assmatplugin.planning.h-fin") %></th>
                     </jalios:if>
                     
 
@@ -125,14 +125,14 @@ nbCreneau = nbCreneau == 0 ? 1 : nbCreneau;
                             <td class="value" data-col-key="<%= creneauNumber %>" data-value-key="start">                  
                                 <div class="ds44-form__container">
                                     <div class="ds44-posRel">
-                                        <label for='debcr1<%= itJour.toLowerCase() %>' class="ds44-formLabel ds44-time"><span class="ds44-labelTypePlaceholder"><span>Créneau <%= creneauNumber %> du lundi heure de début<sup aria-hidden="true">*</sup></span></span></label>
+                                        <label for='debcr1<%= itJour.toLowerCase() %>' class="ds44-formLabel ds44-time"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.planning.creneau-jour-debut", creneauNumber, itJour.toLowerCase()) %><sup aria-hidden="true">*</sup></span></span></label>
                                         
                                         <div data-name='s__NUM_PLANNING__debcr<%= creneauNumber %><%= itJour.toLowerCase() %>' class="ds44-time__shape ds44-inpStd"  data-required="true">                              
-                                            <input id='s__NUM_PLANNING__debcr<%= creneauNumber %><%= itJour.toLowerCase() %>' type="text" inputmode="numeric" pattern="([01]?[0-9]{1}|2[0-3]{1})" maxlength="2" title="Créneau 1 du lundi heure de début : Heure (ex. 14) - obligatoire" value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getHeuresFromHoraire(horraireList.get(creneauNumber-1).getDebut()) : "" %>'  data-is-time="true"  required  >
+                                            <input id='s__NUM_PLANNING__debcr<%= creneauNumber %><%= itJour.toLowerCase() %>' type="text" inputmode="numeric" pattern="([01]?[0-9]{1}|2[0-3]{1})" maxlength="2" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.planning.creneau-jour-debut-heure", creneauNumber, itJour.toLowerCase())) %>" value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getHeuresFromHoraire(horraireList.get(creneauNumber-1).getDebut()) : "" %>'  data-is-time="true"  required  >
                                             <span>h</span>
-                                            <input type="text" inputmode="numeric" pattern="[0-5]{1}[0-9]{1}" maxlength="2" title="Créneau 1 du lundi heure de début : Minute (ex. 05) - obligatoire"  value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getMinutesFromHoraire(horraireList.get(creneauNumber-1).getDebut()) : "" %>' data-is-time="true"  required  >                                
+                                            <input type="text" inputmode="numeric" pattern="[0-5]{1}[0-9]{1}" maxlength="2" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.planning.creneau-jour-debut-minute", creneauNumber, itJour.toLowerCase())) %>" value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getMinutesFromHoraire(horraireList.get(creneauNumber-1).getDebut()) : "" %>' data-is-time="true"  required  >                                
                                         </div>
-                                        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden">Effacer le contenu saisi dans le champ : Créneau 1 du lundi heure de début</span></button>
+                                        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.planning.creneau-jour-debut", creneauNumber, itJour.toLowerCase())) %></span></button>
                                     </div>
                                 </div>  
                             </td> 
@@ -140,14 +140,14 @@ nbCreneau = nbCreneau == 0 ? 1 : nbCreneau;
                             <td class="value" data-col-key="<%= creneauNumber %>" data-value-key="end"> 
                                 <div class="ds44-form__container">  
                                     <div class="ds44-posRel">
-                                        <label for='fincr1<%= itJour.toLowerCase() %>' class="ds44-formLabel ds44-time"><span class="ds44-labelTypePlaceholder"><span>Créneau <%= creneauNumber %> du lundi heure de fin<sup aria-hidden="true">*</sup></span></span></label>
+                                        <label for='fincr1<%= itJour.toLowerCase() %>' class="ds44-formLabel ds44-time"><span class="ds44-labelTypePlaceholder"><span><%= glp("jcmsplugin.assmatplugin.planning.creneau-jour-fin", creneauNumber, itJour.toLowerCase()) %><sup aria-hidden="true">*</sup></span></span></label>
                                         
                                         <div data-name='s__NUM_PLANNING__fincr<%= creneauNumber %><%= itJour.toLowerCase() %>' class="ds44-time__shape ds44-inpStd"  data-required="true">
-                                            <input id='s__NUM_PLANNING__fincr<%= creneauNumber %><%= itJour.toLowerCase() %>' type="text" inputmode="numeric" pattern="([01]?[0-9]{1}|2[0-3]{1})" maxlength="2" title="Créneau 1 du lundi heure de fin : Heure (ex. 14) - obligatoire" value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getHeuresFromHoraire(horraireList.get(creneauNumber-1).getFin()) : "" %>' data-is-time="true"  required  >
+                                            <input id='s__NUM_PLANNING__fincr<%= creneauNumber %><%= itJour.toLowerCase() %>' type="text" inputmode="numeric" pattern="([01]?[0-9]{1}|2[0-3]{1})" maxlength="2" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.planning.creneau-jour-fin-heure", creneauNumber, itJour.toLowerCase())) %>" value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getHeuresFromHoraire(horraireList.get(creneauNumber-1).getFin()) : "" %>' data-is-time="true"  required  >
                                             <span>h</span>
-                                            <input type="text" inputmode="numeric" pattern="[0-5]{1}[0-9]{1}" maxlength="2" title="Créneau 1 du lundi heure de fin : Minute (ex. 05) - obligatoire"  value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getMinutesFromHoraire(horraireList.get(creneauNumber-1).getFin()) : "" %>' data-is-time="true"  required  >
+                                            <input type="text" inputmode="numeric" pattern="[0-5]{1}[0-9]{1}" maxlength="2" title="<%= glp("jcmsplugin.socle.facette.champ-obligatoire.title", glp("jcmsplugin.assmatplugin.planning.creneau-jour-fin-minute", creneauNumber, itJour.toLowerCase())) %>"  value='<%= horraireList != null && horraireList.size() > (creneauNumber-1) ? PlanningUtil.getMinutesFromHoraire(horraireList.get(creneauNumber-1).getFin()) : "" %>' data-is-time="true"  required  >
                                         </div>
-                                        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden">Effacer le contenu saisi dans le champ : Créneau 1 du lundi heure de fin</span></button>
+                                        <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.socle.facette.effacer-contenu-champ", glp("jcmsplugin.assmatplugin.planning.creneau-jour-fin", creneauNumber, itJour.toLowerCase())) %></span></button>
                                     </div>
                                 </div>              
                             </td> 
@@ -171,15 +171,15 @@ nbCreneau = nbCreneau == 0 ? 1 : nbCreneau;
         <div class="content-button">
           <button class="ds44-btnStd ds44-btn--invert" data-planning-action="add">
             <i class="icon icon-plus" aria-hidden="true"></i>
-            <span class="ds44-btnInnerText">Ajouter un créneau</span>
+            <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.planning.ajouter-creneau") %></span>
           </button>
           
           <button type="button" class="js-simple-tooltip button" data-simpletooltip-content-id="tooltips-planning">
-            <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden">Aide : [titre relatif à cette aide]</span>
+            <i class="icon icon-help" aria-hidden="true"></i><span class="visually-hidden"><%= glp("jcmsplugin.assmatplugin.planning.aide.title") %></span>
           </button>
           
           <p id="tooltips-planning" class="hidden">
-            Si vous gardez l’enfant sur plusieurs plages horaires dans la même journée, ajouter des créneaux pour saisir toutes les plages horaires. Vous pouvez saisir jusqu’à trois créneaux.
+            <%= glp("jcmsplugin.assmatplugin.planning.aide.content") %>
           </p>
         </div>
         
@@ -192,25 +192,20 @@ nbCreneau = nbCreneau == 0 ? 1 : nbCreneau;
     <div class="content-button">
        <button class="ds44-btnStd ds44-btn--invert" data-planning-action="remove">
          <i class="icon icon-cross" aria-hidden="true"></i>
-         <span class="ds44-btnInnerText">Supprimer un créneau</span>
+         <span class="ds44-btnInnerText"><%= glp("jcmsplugin.assmatplugin.planning.suppr-creneau") %></span>
        </button>
     </div>
-    
+ 
+ <hr/>   
     
    </div> 
- </div>
+<!--  </div> -->
     
-    <div class="content-button">
-        <button class="ds44-btnStd ds44-btn--invert" data-plannings-action="add-planning">
-          <span class="ds44-btnInnerText">Ajouter une semaine</span>
-        </button>
-        <button class="ds44-btnStd ds44-btn--invert" data-plannings-action="remove-planning">
-          <span class="ds44-btnInnerText">Supprimer une semaine</span>
-        </button>
-      </div>
+    
+    
+
   
   
    
-</div>     
+<!-- </div>      -->
                 
-<hr/>
